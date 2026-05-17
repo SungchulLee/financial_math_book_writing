@@ -1,45 +1,32 @@
 # Implicit Finite Difference Scheme: Implementation
 
-The **implicit finite difference method** is **unconditionally stable**, meaning it remains numerically stable even for relatively large time steps. The trade-off is that it requires solving a **system of linear equations** at each time step.
+Evaluate the spatial operator at the *unknown* time level $n+1$ instead of the known level $n$. Now $V_{i-1}^{n+1}, V_i^{n+1}, V_{i+1}^{n+1}$ all appear on the same side of the equation, so the scheme is no longer a one-line update but a tridiagonal linear system to solve at every step. The payoff is **unconditional stability**: pick $\Delta t$ as large as accuracy allows, the implicit scheme will never amplify errors -- freeing the time step from the CFL straitjacket that hobbles explicit Euler.
 
 ---
 
 ### Finite Difference Approximation
 
-We use the grid $S_i = i \Delta S$ for $i = 0, 1, \ldots, M$ and $t_n = n \Delta t$ for $n = 0, 1, \ldots, N$.
-
-In the implicit method, spatial derivatives are approximated at the **future time level** $t_{n+1}$:
-
-- Time derivative (backward difference):
-  $\frac{\partial V}{\partial t} \approx \frac{V_i^{n+1} - V_i^n}{\Delta t}$
-
-- First spatial derivative (central difference):
-  $\frac{\partial V}{\partial S} \approx \frac{V_{i+1}^{n} - V_{i-1}^{n}}{2\Delta S}$
-
-- Second spatial derivative (central difference):
-  $\frac{\partial^2 V}{\partial S^2} \approx \frac{V_{i+1}^{n} - 2V_i^{n} + V_{i-1}^{n}}{(\Delta S)^2}$
-
----
+Use the grid $S_i = i\Delta S$, $t_n = n\Delta t$. Recall (see [§ Discounting and killing term](../../ch06/bs_pde_structure/discounting_and_killing_term.md)) for the Black-Scholes PDE, and (see [§ Explicit, Implicit, and Crank-Nicolson Schemes](../fdm/explicit_implicit_crank_nicolson_schemes.md)) for the **implicit (backward Euler)** rule: evaluate the spatial operator at the **unknown** level $n+1$.
 
 ### The Discretized Equation
 
-Substituting into the Black-Scholes PDE and rearranging:
+This yields the tridiagonal linear system
 
 $$
-a_i V_{i-1}^{n+1} + b_i V_i^{n+1} + c_i V_{i+1}^{n+1} = V_i^n
+a_i V_{i-1}^{n+1} + b_i V_i^{n+1} + c_i V_{i+1}^{n+1} = V_i^n,
 $$
 
-with coefficients:
+with coefficients
 
 $$
 \begin{aligned}
-a_i &= -\frac{\Delta t}{2} \left( \sigma^2 i^2 - r i \right) \\
-b_i &= 1 + \Delta t \left( \sigma^2 i^2 + r \right) \\
-c_i &= -\frac{\Delta t}{2} \left( \sigma^2 i^2 + r i \right)
+a_i &= -\tfrac{\Delta t}{2}\left(\sigma^2 i^2 - r i\right) \\
+b_i &= 1 + \Delta t\left(\sigma^2 i^2 + r\right) \\
+c_i &= -\tfrac{\Delta t}{2}\left(\sigma^2 i^2 + r i\right).
 \end{aligned}
 $$
 
-This forms a **tridiagonal linear system** solved at each time step.
+The system is solved at each time step.
 
 ---
 

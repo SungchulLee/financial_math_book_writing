@@ -3,37 +3,7 @@
 
 Many short-rate models (including Vasicek and CIR) belong to the **affine term structure** class. Affine structure explains why bond prices have closed forms and provides a framework for multi-factor generalizations.
 
----
-
-## Affine bond prices
-
-
-A term structure model is affine if zero-coupon bond prices can be written as
-
-$$
-P(t,T) = \exp\big(A(t,T) - B(t,T)^{\top}X_t\big)
-$$
-
-
-where:
-
-- $X_t$ is a state vector (often including the short rate),
-- $A$ and $B$ are deterministic functions.
-
-In the one-factor case, $X_t=r_t$.
-
----
-
-## Why affine models are tractable
-
-
-Affine models lead to:
-
-- exponential-affine characteristic functions,
-- Riccati-type ODEs for $A$ and $B$,
-- closed-form bond prices and efficient option pricing in many cases.
-
-This is analogous to affine stochastic volatility (e.g., Heston).
+Recall (see [§ Affine Term Structure](../../ch15/affine_term_structure/bond_pricing_affine_framework.md)): the general definition $P(t,T) = \exp(A(t,T) - B(t,T)^{\top}X_t)$, the equivalence with affine drift/diffusion in the state, the Riccati ODE system for $A$ and $B$, and the tractability consequences (exponential-affine characteristic functions, closed-form bond prices, efficient option pricing) are developed in full generality there. Here we apply that framework to one-factor short-rate models, where $X_t = r_t$.
 
 ---
 

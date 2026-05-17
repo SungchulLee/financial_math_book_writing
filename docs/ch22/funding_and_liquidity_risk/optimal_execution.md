@@ -207,31 +207,7 @@ The **efficient frontier** traces the trade-off between $\mathbb{E}[C^*]$ and $\
 
 ## The Square-Root Impact Law
 
-### Empirical Evidence
-
-Extensive empirical studies show that aggregate market impact follows the **square-root law**:
-
-$$
-\Delta P \approx \sigma \cdot \sqrt{\frac{Q}{V}}
-$$
-
-where $Q$ is the total order size, $V$ is the daily volume, and $\sigma$ is daily volatility.
-
-This implies:
-
-- Impact is **concave** in order size (doubling the order does not double the impact)
-- Impact scales with volatility
-- Impact is inversely related to liquidity (volume)
-
-### Decomposition
-
-The total market impact decomposes as:
-
-$$
-\text{Total Impact} = \underbrace{\gamma \cdot Q}_{\text{permanent}} + \underbrace{\eta \cdot Q / T}_{\text{temporary (amortized)}}
-$$
-
-Empirical estimates typically find $\gamma \approx 0.1 \sigma / V$ and $\eta \approx 0.01 \sigma \sqrt{V}$ for liquid equities.
+Recall (see [§ Market Impact](market_impact.md)) for the empirical square-root law $\Delta P \approx \sigma\sqrt{Q/V}$, its concavity in order size, the permanent/temporary decomposition $\gamma Q + \eta Q/T$, and typical empirical coefficient estimates. See also [§ Market Impact and Feedback Effects](../../ch24/market_impact_and_feedback_effects/algorithmic_trading_mean_field_games.md) for cross-asset and feedback extensions.
 
 ---
 

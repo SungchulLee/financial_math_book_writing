@@ -1,16 +1,16 @@
 # Finite Difference Methods
 
-Finite difference methods approximate the Black-Scholes PDE by replacing continuous derivatives with discrete differences on a computational grid. This transforms the PDE into a system of algebraic equations that can be solved numerically.
+Lay a grid over the $(S,\tau)$ plane. At each interior node, replace $\partial V/\partial S$ by the central difference $(V_{i+1}-V_{i-1})/(2\Delta S)$, $\partial^2 V/\partial S^2$ by $(V_{i+1}-2V_i+V_{i-1})/(\Delta S)^2$, and the time derivative by one of three rules (forward, backward, central-in-time). The Black-Scholes PDE collapses to one algebraic equation per node, the boundary conditions fill in the rest, and the entire option-pricing problem reduces to stepping a tridiagonal linear system backward through time.
 
 ---
 
 ## The Black-Scholes PDE
 
-For an option price $V(t,S)$ with no dividends:
+Recall (see [§ Discounting and killing term](../../ch06/bs_pde_structure/discounting_and_killing_term.md)): for an option price $V(t,S)$ with no dividends,
 
 $$
 \boxed{
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0,
 }
 $$
 
@@ -180,27 +180,7 @@ $$
 
 ## Boundary Conditions
 
-### At S = 0 (or x → -∞)
-
-**Call**: $V(t, 0) = 0$
-
-**Put**: $V(t, 0) = Ke^{-r(T-t)}$
-
-### At S = S_max (or x = x_max)
-
-**Call**: $V(t, S_{\max}) \approx S_{\max} - Ke^{-r(T-t)}$
-
-**Put**: $V(t, S_{\max}) \approx 0$
-
-### Neumann (Derivative) Conditions
-
-For large $S$, call delta approaches 1:
-
-$$
-\frac{\partial V}{\partial S}(t, S_{\max}) = 1
-$$
-
-Implemented using one-sided differences or ghost points.
+Recall (see [§ Boundary and Terminal Conditions](boundary_and_terminal_conditions.md)): truncate to $[0,S_{\max}]$ and impose Dirichlet conditions ($V(t,0)=0$, $V(t,S_{\max})\approx S_{\max}-Ke^{-r(T-t)}$ for calls; mirrored for puts) or Neumann alternatives ($V_S(t,S_{\max})\approx 1$ for calls, $0$ for puts).
 
 ---
 
@@ -216,13 +196,7 @@ Implemented using one-sided differences or ghost points.
 
 ### Payoff Smoothing
 
-The payoff $(S-K)^+$ has a kink at $S = K$, causing accuracy issues.
-
-**Remedies**:
-
-1. Use fine grid near $K$
-2. Apply payoff smoothing
-3. Use Rannacher time-stepping
+The payoff $(S-K)^+$ has a kink at $S = K$, causing accuracy issues. Recall (see [§ Explicit, Implicit, and Crank-Nicolson Schemes](explicit_implicit_crank_nicolson_schemes.md)): Rannacher time-stepping (a few implicit steps then Crank-Nicolson) is the standard remedy; payoff smoothing and fine grids near $K$ are complementary.
 
 ### Coordinate Stretching
 

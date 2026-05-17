@@ -175,54 +175,13 @@ In a non-affine model---for instance, the SABR model with $\sigma(X_t) = X_t^\be
 
 ## Moment Generating Function vs Characteristic Function
 
-The log-affine formula applies to both the moment generating function (MGF) and the characteristic function (CF), with different choices of $u$.
-
-**Moment generating function** ($u \in \mathbb{R}^d$):
-
-$$
-M_X(\tau, u, x) = \mathbb{E}\!\left[e^{\langle u, X_T \rangle} \mid X_t = x\right] = e^{\phi(\tau, u) + \langle \psi(\tau, u), x \rangle}
-$$
-
-This exists only for $u$ in the domain where the expectation is finite. For CIR-type components, the MGF may explode in finite time for large $u$, a phenomenon called **moment explosion**.
-
-**Characteristic function** ($u = iv$, $v \in \mathbb{R}^d$):
-
-$$
-\Phi_X(\tau, v, x) = \mathbb{E}\!\left[e^{i\langle v, X_T \rangle} \mid X_t = x\right] = e^{\phi(\tau, iv) + \langle \psi(\tau, iv), x \rangle}
-$$
-
-The characteristic function always exists and is bounded by 1 in absolute value. It is the primary tool for Fourier-based pricing methods.
-
-!!! warning "Moment Explosion"
-    For the CIR process with parameters $\kappa$, $\theta$, $\xi$, the moment generating function $\mathbb{E}[e^{u r_T}]$ is finite only for $u$ below a critical threshold that depends on $\tau$. As $\tau \to \infty$, this threshold converges to $u^* = 2\kappa/\xi^2$. For $u \geq u^*$, the expectation is infinite. This has practical consequences: heavy-tailed distributions and extreme scenarios cannot be captured by the MGF alone.
+Recall (see [§ Characteristic Function of Affine Processes](../characteristic_function/characteristic_function.md)): the same log-affine formula yields the MGF $M_X(\tau,u,x) = e^{\phi(\tau,u) + \langle \psi(\tau,u), x\rangle}$ for real $u$ (finite only on a subset of $\mathbb{R}^d$) and the characteristic function $\Phi_X(\tau,v,x) = e^{\phi(\tau,iv) + \langle \psi(\tau,iv), x\rangle}$ for $u = iv$ (always finite, bounded by 1). The moment-explosion phenomenon for CIR-type components and its critical threshold $u^* = 2\kappa/\xi^2$ are treated there.
 
 ---
 
 ## The Multidimensional Case
 
-For a $d$-dimensional affine process with drift $b(x) = b_0 + \sum_{i=1}^d b_i x_i$, diffusion $a(x) = a_0 + \sum_{i=1}^d a_i x_i$, and jump compensator $m(x, dz) = m_0(dz) + \sum_{i=1}^d x_i m_i(dz)$, the log-affine property takes the form:
-
-$$
-\mathbb{E}\!\left[e^{\langle u, X_T \rangle} \mid X_t = x\right] = \exp\!\left(\phi(\tau, u) + \langle \psi(\tau, u), x \rangle\right)
-$$
-
-where now $\phi : \mathbb{R}_+ \times \mathbb{C}^d \to \mathbb{C}$ and $\psi : \mathbb{R}_+ \times \mathbb{C}^d \to \mathbb{C}^d$ satisfy the system
-
-$$
-\frac{\partial \phi}{\partial \tau} = F(\psi), \qquad \frac{\partial \psi}{\partial \tau} = R(\psi)
-$$
-
-with
-
-$$
-F(u) = \langle b_0, u \rangle + \frac{1}{2}\langle u, a_0 u \rangle + \int_{D \setminus \{0\}} (e^{\langle u, z \rangle} - 1)\,m_0(dz)
-$$
-
-$$
-R_i(u) = \langle b_i, u \rangle + \frac{1}{2}\langle u, a_i u \rangle + \int_{D \setminus \{0\}} (e^{\langle u, z \rangle} - 1)\,m_i(dz)
-$$
-
-The structure is identical to the scalar case: $\phi$ collects the state-independent terms and $\psi$ collects the state-dependent terms, with $R$ now a vector-valued function governing a coupled system of Riccati equations.
+Recall (see [§ Multidimensional Affine Processes](../multidimensional/admissibility_conditions.md)): the scalar derivation above extends component-wise to $d$ dimensions, producing the coupled Riccati system $\partial_\tau \phi = F(\psi)$, $\partial_\tau \psi = R(\psi)$ with $F, R$ expressed via the parameters $(b_0, b_i, a_0, a_i, m_0, m_i)$. The explicit formulas for $F$ and $R$ in terms of drift, diffusion, and jump-measure data are given in [§ State Space and Regularity](state_space_and_regularity.md) (Regularity Theorem) and developed further in the multidimensional section.
 
 ---
 

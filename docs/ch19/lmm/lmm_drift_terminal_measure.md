@@ -4,25 +4,11 @@ The LIBOR Market Model (LMM) is the standard framework for pricing interest rate
 
 ## Key Concepts
 
-**LIBOR Dynamics in Spot Measure**
-Define forward LIBOR $L_k(t)$ for tenor $[T_k, T_{k+1}]$ with accrual $\delta_k$:
+Recall (see [§ Forward LIBOR Dynamics](forward_libor_dynamics.md)) the forward LIBOR rate $L_k(t)$, with dynamics
 
-$$dL_k(t) = \mu_k^{\text{spot}}(t) dt + \sigma_k(t) dB_k(t)$$
+$$dL_k(t) = \mu_k(t)\,dt + \sigma_k(t)\,dB_k(t)$$
 
-The spot measure uses the rolling bank account as numeraire:
-
-$$N_t^{\text{spot}} = \prod_{j: T_j \leq t} (1 + \delta_j L_j(T_j))$$
-
-**Terminal Measure Change**
-The terminal measure uses the zero-coupon bond maturing at time $T_N$ as numeraire:
-
-$$N_t^{N} = P(t, T_N)$$
-
-Under terminal measure:
-
-$$dL_k(t) = \mu_k^N(t) dt + \sigma_k(t) dB_k^N(t)$$
-
-The Brownian motion has changed to $B_k^N$ reflecting the new measure.
+whose drift $\mu_k(t)$ depends on the chosen numeraire. The spot (rolling) measure uses $N_t^{\text{spot}} = \prod_{j: T_j \leq t} (1 + \delta_j L_j(T_j))$; the terminal measure uses $N_t^N = P(t, T_N)$.
 
 **Drift Correction Formula**
 The drift correction relates spot and terminal measure drifts:
@@ -77,28 +63,7 @@ Swap measure drift is different from terminal measure, optimized for swaption pr
 
 ## QuantPie Derivation: LIBOR Market Model Spot Measure
 
-### Definition of LIBOR and Spot Measure
-
-**LIBOR Definition**
-
-$$\begin{array}{ccccccc}
-\displaystyle
-L_n\left(t\right)P\left(t,T_{n}\right)
-=
-\frac{1}{\delta}
-\left(
-P\left(t,T_{n-1}\right)-P\left(t,T_{n}\right)
-\right)
-&\Rightarrow&\displaystyle
-L_n\left(t\right)
-=
-\frac{1}{\delta}
-\left(
-\frac{P\left(t,T_{n-1}\right)-P\left(t,T_{n}\right)}{P\left(t,T_{n}\right)}
-\right)\\
-\end{array}$$
-
-is tradable, where $L_n\left(t\right)P\left(t,T_{n}\right)$ is the value of tradable assets.
+Recall (see [§ Forward LIBOR Dynamics](forward_libor_dynamics.md)) the LIBOR definition and its tradability: $L_n(t)P(t,T_n) = \delta^{-1}(P(t,T_{n-1}) - P(t,T_n))$.
 
 ### Bank Account (Spot Measure Numeraire)
 

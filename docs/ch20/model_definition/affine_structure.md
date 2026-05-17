@@ -37,14 +37,7 @@ The affine form has immediate consequences:
 - **Forward rates** are affine in $r_t$: $f(t,T) = -\partial_T \ln P(t,T) = -\partial_T A(t,T) - \partial_T B(t,T)\, r_t$
 - The **entire yield curve** at time $t$ is determined by the single state variable $r_t$
 
-!!! note "Theorem: Sufficient Conditions for Affine Structure"
-    A short-rate model of the form
-
-    $$
-    dr_t = \bigl[\alpha(t) + \beta(t)\, r_t\bigr]\, dt + \sqrt{\gamma(t) + \delta(t)\, r_t}\; dW_t
-    $$
-
-    with deterministic coefficient functions $\alpha, \beta, \gamma, \delta$ admits an affine term structure. The Hull-White model $dr_t = [\theta(t) - ar_t]\, dt + \sigma\, dW_t$ corresponds to $\alpha(t) = \theta(t)$, $\beta(t) = -a$, $\gamma(t) = \sigma^2$, and $\delta(t) = 0$.
+Recall (see [§ General Affine Term Structure](../../ch15/affine_term_structure/bond_pricing_affine_framework.md)): a short-rate model of the form $dr_t = [\alpha(t) + \beta(t)\, r_t]\, dt + \sqrt{\gamma(t) + \delta(t)\, r_t}\; dW_t$ admits an affine term structure. The Hull-White model $dr_t = [\theta(t) - ar_t]\, dt + \sigma\, dW_t$ corresponds to $\alpha(t) = \theta(t)$, $\beta(t) = -a$, $\gamma(t) = \sigma^2$, and $\delta(t) = 0$.
 
 ---
 

@@ -46,77 +46,7 @@ In the Hull-White model, the parameters $a$ and $\sigma$ are chosen to fit volat
     where $f(0,t) = -\frac{\partial}{\partial t}\ln P^M(0,t)$ is the market instantaneous forward rate.
 
 ???+ note "Proof"
-    **Strategy:** Require that the model bond price $P^{\text{model}}(0,T)$ equals $P^M(0,T)$ and solve for $\theta(t)$.
-
-    **Step 1: Model bond price at time zero.** From the affine formula:
-
-    $$
-    P(0,T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_0^T r_s\, ds}\right]
-    $$
-
-    Since $\int_0^T r_s\, ds$ is Gaussian with mean $M(0,T)$ and variance $V(0,T)$:
-
-    $$
-    P(0,T) = \exp\!\left(-M(0,T) + \frac{1}{2}V(0,T)\right)
-    $$
-
-    **Step 2: Compute the model forward rate.** The model forward rate is
-
-    $$
-    f^{\text{model}}(0,t) = -\frac{\partial}{\partial t}\ln P(0,t) = \frac{\partial M(0,t)}{\partial t} - \frac{1}{2}\frac{\partial V(0,t)}{\partial t}
-    $$
-
-    From the explicit solution with $s = 0$:
-
-    $$
-    \mathbb{E}[r_t] = r_0\, e^{-at} + \int_0^t e^{-a(t-u)}\, \theta(u)\, du
-    $$
-
-    The mean of the integrated rate is $M(0,t) = \int_0^t \mathbb{E}[r_s]\, ds$, and $\frac{\partial M(0,t)}{\partial t} = \mathbb{E}[r_t]$.
-
-    For the variance term: $\frac{\partial V(0,t)}{\partial t} = \frac{\sigma^2}{a^2}[1 - 2e^{-at} + e^{-2at}] \cdot \frac{\partial}{\partial t}(\cdots)$. After careful differentiation:
-
-    $$
-    \frac{1}{2}\frac{\partial V(0,t)}{\partial t} = \frac{\sigma^2}{2a^2}(1 - e^{-at})^2
-    $$
-
-    **Step 3: Impose the fit condition.** Setting $f^{\text{model}}(0,t) = f^M(0,t)$:
-
-    $$
-    r_0\, e^{-at} + \int_0^t e^{-a(t-u)}\, \theta(u)\, du - \frac{\sigma^2}{2a^2}(1 - e^{-at})^2 = f^M(0,t)
-    $$
-
-    Differentiating both sides with respect to $t$:
-
-    $$
-    -a r_0\, e^{-at} + \theta(t) - a\int_0^t e^{-a(t-u)}\, \theta(u)\, du - \frac{\sigma^2}{a}e^{-at}(1 - e^{-at}) = f'(0,t)
-    $$
-
-    From the fit condition, $\int_0^t e^{-a(t-u)} \theta(u)\, du = f^M(0,t) - r_0 e^{-at} + \frac{\sigma^2}{2a^2}(1-e^{-at})^2$. Substituting:
-
-    $$
-    \theta(t) = f'(0,t) + a\left[f^M(0,t) - r_0 e^{-at} + \frac{\sigma^2}{2a^2}(1-e^{-at})^2\right] + ar_0 e^{-at} + \frac{\sigma^2}{a}e^{-at}(1-e^{-at})
-    $$
-
-    Simplifying (the $r_0 e^{-at}$ terms cancel):
-
-    $$
-    \theta(t) = f'(0,t) + af^M(0,t) + \frac{\sigma^2}{2a}(1 - e^{-at})^2 + \frac{\sigma^2}{a}e^{-at}(1 - e^{-at})
-    $$
-
-    Combining the $\sigma^2$ terms:
-
-    $$
-    \frac{\sigma^2}{2a}(1-e^{-at})^2 + \frac{\sigma^2}{a}e^{-at}(1-e^{-at}) = \frac{\sigma^2}{2a}(1-e^{-at})\bigl[(1-e^{-at}) + 2e^{-at}\bigr] = \frac{\sigma^2}{2a}(1-e^{-2at})
-    $$
-
-    Therefore:
-
-    $$
-    \theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1 - e^{-2at})
-    $$
-
-    $\square$
+    Recall (see [§ HW model definition](../model_definition/hull_white_sde_and_mean_reversion.md)) the same calibration identity is derived from the HJM no-arbitrage drift. Briefly: since $\int_0^T r_s ds$ is Gaussian with mean $M$ and variance $V$ (see [§ short rate distribution](short_rate_distribution.md)), $P(0,t)=\exp(-M+V/2)$. Setting $f^{\text{model}}(0,t)=-\partial_t\ln P(0,t)=f^M(0,t)$, differentiating in $t$, and combining $\sigma^2$ terms via $(1-e^{-at})[(1-e^{-at})+2e^{-at}]=1-e^{-2at}$ yields the stated formula. $\square$
 
 ---
 
@@ -142,35 +72,7 @@ The formula $\theta(t) = f'(0,t) + af(0,t) + \frac{\sigma^2}{2a}(1-e^{-2at})$ ha
     $$
 
 ???+ note "Proof"
-    The affine bond price at $t = 0$ is $P(0,T) = \exp(A(0,T) + B(0,T) r_0)$ where
-
-    $$
-    A(0,T) = \ln\frac{P^M(0,T)}{P^M(0,0)} + B(0,T) f(0,0) + \frac{\sigma^2}{4a} B(0,T)^2(1 - e^0)
-    $$
-
-    Since $P^M(0,0) = 1$, $f(0,0) = r_0$, and $1 - e^0 = 0$:
-
-    $$
-    A(0,T) = \ln P^M(0,T) + B(0,T) r_0
-    $$
-
-    Therefore:
-
-    $$
-    P(0,T) = \exp(\ln P^M(0,T) + B(0,T) r_0 + B(0,T) r_0) = P^M(0,T) \cdot e^{2B(0,T) r_0}
-    $$
-
-    Wait -- this requires careful accounting. Using the standard convention $P(t,T) = \exp(A(t,T) - \hat{B}(t,T) r_t)$ with $\hat{B} = (1-e^{-a\tau})/a > 0$:
-
-    $$
-    A(0,T) = \ln P^M(0,T) + \hat{B}(0,T) r_0
-    $$
-
-    $$
-    P(0,T) = \exp(A(0,T) - \hat{B}(0,T) r_0) = \exp(\ln P^M(0,T) + \hat{B}(0,T) r_0 - \hat{B}(0,T) r_0) = P^M(0,T)
-    $$
-
-    $\square$
+    Recall (see [§ HW bond pricing](../bond_pricing/bond_price_formula.md)) and [§ named functions](../named_functions/named_functions_definition.md) for $A,\hat{B}$. With the standard convention $P(t,T)=\exp(A(t,T)-\hat{B}(t,T)r_t)$ and $A(0,T)=\ln P^M(0,T)+\hat{B}(0,T)r_0$, the $\hat{B}(0,T)r_0$ terms cancel, giving $P(0,T)=P^M(0,T)$. $\square$
 
 ---
 

@@ -96,7 +96,7 @@ Model drift is evidence of model risk. Parameter drift is (potentially) manageab
 
 ### Example: correlation in Heston
 
-In the Heston model, $\rho$ (correlation between spot and variance shocks) is often observed to become more negative during market stress.
+Recall (see [§ Heston model](../../ch16/index.md)) that $\rho$ governs the spot--variance correlation; empirically it becomes more negative during market stress.
 
 **Is this parameter drift or model drift?**
 
@@ -240,7 +240,7 @@ Calibrate SVI parameters to SPX options daily. The skew parameter $\rho_{\text{S
 
 1. **Correlation with VIX:** $\rho_{\text{SVI}}$ is more negative when VIX is high. This is consistent with economics (leverage effect, panic-driven skew).
 
-2. **Comparison with SABR:** Calibrate SABR to same data. If SABR's $\rho_{\text{SABR}}$ shows similar dynamics, it's parameter drift. If only SVI shows it, it may be model-specific drift.
+2. **Comparison with SABR:** Recall (see [§ SABR model](../../ch14/sabr_model/arbitrage_free_sabr.md)). If SABR's $\rho_{\text{SABR}}$ shows similar dynamics, it's parameter drift; if only SVI shows it, it may be model-specific drift.
 
 3. **Out-of-sample test:** Use yesterday's parameters to price today's options. Compute error. If error is small and unbiased, model is adequate; parameter drift is genuine.
 

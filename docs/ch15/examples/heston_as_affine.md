@@ -50,13 +50,13 @@ The correlation $\rho$ is typically negative (the *leverage effect*): when the s
 
 ### Log-Price Dynamics
 
-Applying Ito's lemma to $X_t = \log S_t$:
+Recall (see [Itô calculus applications](../../ch03/ito_lemma/ito_calculus_applications.md)) the log-transform of GBM-type dynamics. With stochastic variance $V_t$:
 
 $$
 dX_t = \left(r - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\,dW_t^{(1)}
 $$
 
-The state vector is $\mathbf{X}_t = (X_t, V_t) \in \mathbb{R} \times \mathbb{R}_+$, which is the canonical state space $D = \mathbb{R}^1_+ \times \mathbb{R}^1$ with $m = 1$ (one CIR-type component: $V_t$) and $d = 2$.
+The state vector is $\mathbf{X}_t = (X_t, V_t) \in \mathbb{R} \times \mathbb{R}_+$ (canonical state space with $m = 1$, $d = 2$). For the complete model treatment, see [Heston complete model](../../ch16/index.md).
 
 ---
 
@@ -88,23 +88,17 @@ For option pricing on the stock, the short rate is constant: $r(\mathbf{X}_t) = 
 
 ## Functions F and R
 
-Using the identified parameters:
+Recall (see [characteristic function](../characteristic_function/characteristic_function.md)) the definitions of $F$ and $R_i$. For Heston:
 
 $$
-F(w) = \langle b_0, w \rangle = r\,w_1 + \kappa\theta\,w_2
-$$
-
-(No quadratic term since $a_0 = 0$.)
-
-$$
-R_1(w) = \langle b_1, w \rangle = 0
+F(w) = r\,w_1 + \kappa\theta\,w_2, \qquad R_1(w) = 0
 $$
 
 $$
-R_2(w) = \langle b_2, w \rangle + \frac{1}{2}\langle w, a_2 w \rangle = -\frac{1}{2}w_1 - \kappa w_2 + \frac{1}{2}(w_1^2 + 2\rho\xi w_1 w_2 + \xi^2 w_2^2)
+R_2(w) = -\frac{1}{2}w_1 - \kappa w_2 + \frac{1}{2}(w_1^2 + 2\rho\xi w_1 w_2 + \xi^2 w_2^2)
 $$
 
-The $R_1$ equation is trivial ($\psi_1' = 0$), and the $R_2$ equation is a Riccati equation in $\psi_2$ with coefficients depending on $\psi_1$.
+The $R_1$ equation is trivial ($\psi_1' = 0$); $R_2$ is a Riccati equation in $\psi_2$.
 
 ---
 
@@ -112,7 +106,7 @@ The $R_1$ equation is trivial ($\psi_1' = 0$), and the $R_2$ equation is a Ricca
 
 ### Characteristic Function Setup
 
-For the characteristic function of the log-price $X_T$ (marginal in the first component), set $u_1 = iv$ and $u_2 = 0$:
+For the characteristic function of the log-price $X_T$, set $u_1 = iv$, $u_2 = 0$:
 
 $$
 \psi_1'(\tau) = 0, \qquad \psi_1(0) = iv

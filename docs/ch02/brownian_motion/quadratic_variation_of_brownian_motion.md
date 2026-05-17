@@ -1,6 +1,6 @@
 # Quadratic Variation of Brownian Motion
 
-In the previous section we established that Brownian motion paths are Hölder-continuous of order $\alpha < \frac{1}{2}$ yet nowhere differentiable. This non-differentiability is not merely a curiosity — it means that Brownian motion has **unbounded total variation** on every interval, which is precisely why the Riemann–Stieltjes integral $\int_0^T f(t)\,dB_t$ cannot be defined for general adapted integrands in the classical sense. Any calculus built for Brownian motion must account for the wild oscillations of its paths.
+Recall (see [§ Hölder Continuity and Non-Differentiability](holder_continuity_and_non_differentiability.md)): Brownian motion paths are Hölder-continuous of order $\alpha < \frac{1}{2}$ yet nowhere differentiable, and have **unbounded total variation** on every interval. This is precisely why the Riemann–Stieltjes integral $\int_0^T f(t)\,dB_t$ cannot be defined for general adapted integrands in the classical sense. Any calculus built for Brownian motion must account for the wild oscillations of its paths.
 
 The quadratic variation captures exactly how much those oscillations accumulate. Its value — finite and nonzero — is what forces Itô's formula to differ from the classical chain rule by the correction term $\frac{1}{2}f''(B_t)\,dt$.
 
@@ -66,7 +66,7 @@ We need $\mathrm{Var}\!\left([B]_T^{(\Pi_n)}\right) \to 0$. This is where the **
 
 $$\mathrm{Var}\!\left([B]_T^{(\Pi_n)}\right) = \sum_{i=0}^{n-1} \mathrm{Var}\!\left((\Delta B_i)^2\right)$$
 
-For $X \sim \mathcal{N}(0, \sigma^2)$, the fourth moment is $\mathbb{E}[X^4] = 3\sigma^4$, so
+For $X \sim \mathcal{N}(0, \sigma^2)$, the fourth moment is $\mathbb{E}[X^4] = 3\sigma^4$ (recall, see [§ Moments of Brownian Motion](moments_of_brownian_motion.md)), so
 
 $$\mathrm{Var}(X^2) = \mathbb{E}[X^4] - (\mathbb{E}[X^2])^2 = 3\sigma^4 - \sigma^4 = 2\sigma^4$$
 
@@ -117,26 +117,7 @@ Higher-order terms vanish relative to $dt$: $(dt)^2$ is of order $(dt)^2$, and $
 
 ## Why This Forces Itô's Formula
 
-To see heuristically why quadratic variation forces a correction term, apply Taylor's theorem to $f(B_t)$ over a small increment (this argument motivates the result; the rigorous proof appears in the Itô's Lemma chapter):
-
-$$f(B_{t+dt}) - f(B_t) = f'(B_t)\,dB_t + \tfrac{1}{2}f''(B_t)\,(dB_t)^2 + \cdots$$
-
-For a smooth deterministic path, $(dB_t)^2 \sim (dt)^2 \to 0$ and the second term vanishes. For Brownian motion, $(dB_t)^2 = dt$ survives, giving **Itô's formula**:
-
-$$df(B_t) = f'(B_t)\,dB_t + \tfrac{1}{2}f''(B_t)\,dt$$
-
-The $\frac{1}{2}f''$ term is a direct consequence of $[B]_t = t$. This is the central role quadratic variation plays in the theory.
-
-!!! example "Itô's formula for $B_t^2$"
-    Take $f(x) = x^2$. Then $f'(x) = 2x$ and $f''(x) = 2$, so
-
-    $$d(B_t^2) = 2B_t\,dB_t + \tfrac{1}{2} \cdot 2\,dt = 2B_t\,dB_t + dt$$
-
-    Integrating: $B_T^2 = 2\int_0^T B_t\,dB_t + T$, or equivalently
-
-    $$\int_0^T B_t\,dB_t = \frac{B_T^2 - T}{2}$$
-
-    The $-T$ term has no counterpart in ordinary calculus and comes entirely from $[B]_T = T$.
+Heuristically, Taylor expansion of $f(B_t)$ over a small increment retains the second-order term $\tfrac{1}{2}f''(B_t)\,(dB_t)^2$ because $(dB_t)^2 = dt$ does not vanish. This produces the Itô correction $\tfrac{1}{2}f''(B_t)\,dt$ absent from classical calculus. The rigorous derivation and worked examples (including $f(x) = x^2$ giving $\int_0^T B_t\,dB_t = (B_T^2 - T)/2$) are developed in [§ Itô's Lemma](../../ch03/ito_lemma/ito_lemma.md).
 
 ---
 

@@ -4,28 +4,13 @@ A short rate model is useful in practice only if it reproduces today's observed 
 
 ## Why Consistency Matters
 
-In the Vasicek model the parameters $a$, $b$, and $\sigma$ are constants, producing a term structure that generically does not match the observed market curve. A trader using Vasicek would price a 10-year bond at a value different from the quoted market price, creating an immediate arbitrage signal that has nothing to do with the derivative being priced.
+Recall (see [Vasicek bond pricing](../../ch18/vasicek_model/bond_options_jamshidian.md)) that the Vasicek model uses constant $a$, $b$, $\sigma$, producing a term structure that generically does not match the observed market curve. A trader using Vasicek would price a 10-year bond at a value different from the quoted market price, creating an immediate arbitrage signal that has nothing to do with the derivative being priced.
 
 Hull and White resolved this by promoting the mean reversion target from a constant $b$ to a deterministic function $\theta^{\mathbb{Q}}(t)$, chosen to absorb the entire initial term structure. The resulting model prices all vanilla bonds correctly at $t = 0$ and can then be used to price derivatives consistently with the market.
 
 ## The Consistency Condition
 
-Recall the Hull-White bond price formula derived via expectation:
-
-$$
-P(t,T) = A(t,T)\,e^{-B(t,T)\,r(t)}
-$$
-
-where
-
-$$\begin{array}{lllll}
-\displaystyle
-B(t,T)
-&=&\displaystyle
-\frac{1}{\lambda}\left[1 - e^{-\lambda(T-t)}\right]
-\end{array}$$
-
-At time $t = 0$, the model price must equal the market price for every $T > 0$:
+Recall (see [§ Named Functions](../named_functions/named_functions_definition.md)) the bond price $P(t,T) = A(t,T)e^{-B(t,T)r(t)}$ with $B(t,T) = \frac{1}{\lambda}[1 - e^{-\lambda(T-t)}]$. At time $t = 0$, the model price must equal the market price for every $T > 0$:
 
 $$
 P(0,T) = A(0,T)\,e^{-B(0,T)\,r(0)} = P^M(0,T)

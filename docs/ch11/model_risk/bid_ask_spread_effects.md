@@ -2,6 +2,9 @@
 
 Bid-ask spreads represent the cost of immediate liquidity in financial markets. These microstructure features have profound impacts on hedging costs, execution strategies, and the practical feasibility of theoretical pricing models. Understanding spread effects is essential for realistic risk management.
 
+!!! tip "Toy mechanism: every round-trip costs half-spread × 2"
+    The simplest possible cost model: each share you buy clears at the *ask*, each you sell at the *bid*, so a round-trip rebalance of one share costs $A - B = $ one spread. A delta-hedger who rebalances $|\delta\Delta|$ shares pays $\tfrac{1}{2}(A-B)\cdot|\delta\Delta|$ on each trade. Sum over $N = T/\Delta t$ rebalances with $|\delta\Delta| \sim \Gamma\sigma S\sqrt{\Delta t}$ and the total cost scales as $T\Gamma\sigma S\cdot(A-B)/\sqrt{\Delta t}$ — *diverges* as $\Delta t \to 0$. So continuous-time Black–Scholes hedging is *infinitely expensive* in any model with a positive spread. Every result below — the Leland adjusted volatility, optimal rebalancing band, liquidity-adjusted Greeks — is a way of pricing this divergence into either the hedge frequency or the option itself.
+
 ## Key Concepts
 
 **Spread Definition and Components**
@@ -18,20 +21,12 @@ For liquid assets, spreads scale with:
 - Time of day: spreads typically widen during low-volume periods
 
 **Impact on Hedging Costs**
-Delta hedging requires frequent rebalancing:
 
-- Each rebalance incurs a round-trip cost of approximately $2S$ per unit
-- Continuous rehedging would incur infinite cost; practical strategies use discrete rehedging
-- Higher volatility increases rehedging frequency and costs
-- Spread width directly reduces the effective hedge ratio
+Recall (see [§ Transaction Costs and Liquidity Effects](transaction_costs_and_liquidity_effects.md)): hedge turnover (and hence spread cost) scales with $|\Gamma|\sigma S$ and diverges near expiry, forcing discrete rehedging in practice.
 
 **Optimal Rehedging Frequency**
-The cost of hedging includes:
 
-- Spread costs: $\sum_{i} 2S_i |\Delta \gamma_i|$ for rehedging events
-- Gamma loss between rehedges: $\frac{1}{2}\gamma (P/\sigma)^2$ for price moves of size P
-
-Optimal intervals balance these competing costs, typically ranging from daily to weekly for standard products.
+Recall (see [§ Transaction Costs and Liquidity Effects](transaction_costs_and_liquidity_effects.md)): optimal intervals balance spread costs against gamma loss between rehedges, with bandwidth $h \sim (\lambda/\Gamma)^{1/3}$ (Whalley–Wilmott). Practical intervals range from daily to weekly for standard products.
 
 **Execution and Transaction Costs**
 Multi-level spread effects:
@@ -50,11 +45,7 @@ Spreads create a pricing band:
 - Models underestimate costs if ignoring spread impact
 
 !!! warning "Model Limits"
-    Perfect replication assumed in Black-Scholes assumes zero transaction costs. Under realistic spreads:
-
-    - Perfect replication is impossible (hedging costs accumulate to significant levels)
-    - Safe pricing requires markup that exceeds model price by a spread-dependent premium
-    - Dynamic hedging becomes an optimal control problem, not a replication strategy
+    Recall (see [§ Breakdown of Continuous-Time Hedging](breakdown_of_continuous_time_hedging.md)): with realistic spreads, perfect replication fails; pricing requires a spread-dependent markup and hedging becomes an optimal control problem.
 
 ---
 

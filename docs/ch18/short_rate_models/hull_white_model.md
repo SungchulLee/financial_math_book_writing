@@ -2,84 +2,38 @@
 
 The **Hull-White model** (1990) extends Vasicek by introducing a time-dependent drift that enables **exact calibration to the initial yield curve**. This makes it the workhorse model for interest rate derivatives in practice.
 
-!!! note "Detailed Treatment"
-    This page provides an overview of the Hull-White model within the short-rate framework. For complete derivations, proofs, named function references, and Python implementations, see [§20 Hull-White Detailed](../../ch20/named_functions/named_functions_definition.md).
-
----
-
-## Model Specification
-
 Under the risk-neutral measure $\mathbb{Q}$:
 
 $$
 dr_t = [\theta(t) - \kappa r_t] \, dt + \sigma \, dW_t^{\mathbb{Q}}
 $$
 
-or equivalently $dr_t = \kappa[\bar{\theta}(t) - r_t] \, dt + \sigma \, dW_t^{\mathbb{Q}}$ where $\bar{\theta}(t) = \theta(t)/\kappa$.
+**Key difference from Vasicek:** the drift function $\theta(t)$ is time-dependent, chosen to fit the market term structure exactly while $\kappa$ (mean-reversion) and $\sigma$ (volatility) remain constants calibrated to volatility instruments.
 
-**Key difference from Vasicek:** The function $\theta(t)$ is time-dependent, chosen to match market data.
-
-**Parameters:**
-
-- $\kappa > 0$: mean-reversion speed (constant)
-- $\theta(t)$: time-dependent drift function (calibrated)
-- $\sigma > 0$: volatility (constant or time-dependent $\sigma(t)$)
+This overview situates Hull-White inside the short-rate framework of this chapter; all detailed derivations and named-function references live in [Chapter 20](../../ch20/index.md).
 
 ---
 
-## Exact Fit to the Initial Yield Curve
+## Where to find each topic
 
-The model reprices all observed discount bonds exactly: $P^{\text{model}}(0, T) = P^{\text{market}}(0, T)$ for all $T$. This determines $\theta(t)$ uniquely:
+Recall (see [§ General Short-Rate Framework](general_short_rate_framework.md)): the bond pricing PDE and the expectation $P(t,T) = \mathbb{E}^{\mathbb{Q}}_t[\exp(-\int_t^T r_s\,ds)]$ apply to Hull-White as a Markov short-rate model.
 
-$$
-\boxed{\theta(t) = \frac{\partial f(0, t)}{\partial t} + \kappa f(0, t) + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})}
-$$
+Recall (see [§ Affine Term Structure](affine_term_structure.md)): Hull-White is a Gaussian affine model; it shares Vasicek's $B(t,T) = (1 - e^{-\kappa(T-t)})/\kappa$ because $B$ depends only on $\kappa$, while $A(t,T)$ absorbs the time-dependent $\theta(t)$ to encode the market curve.
 
-where $f(0, t) = -\frac{\partial}{\partial t} \log P(0, t)$ is the market instantaneous forward rate. See [§20 Short Rate](../../ch20/short_rate/short_rate_solution.md) for the full HJM-based derivation.
+Recall (see [§ Vasicek Model](vasicek_model.md)): the Gaussian conditional distribution of $r_t$, with variance $v(s,t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa(t-s)})$, is identical to the Vasicek case.
 
----
+| Topic | Canonical location |
+|-------|--------------------|
+| Short-rate SDE solution and HJM-based derivation of $\theta(t)$ | [§20 Short Rate](../../ch20/short_rate/short_rate_solution.md) |
+| Exact-fit formula $\theta(t) = \partial_t f(0,t) + \kappa f(0,t) + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$ | [§20 Short Rate](../../ch20/short_rate/short_rate_solution.md) |
+| Named functions and Hull-White conventions | [§20 Named Functions](../../ch20/named_functions/named_functions_definition.md) |
+| Zero-coupon bond price formula and proofs | [§20 Bond Pricing](../../ch20/bond_pricing/bond_price_formula.md) |
+| Bond options under the $T$-forward measure | [§20 Bond Options](../../ch20/bond_options/zero_coupon_bond_options.md) |
+| Caplet/floorlet as ZCB put options | [§20 Caplet/Floorlet](../../ch20/derivatives_pricing/caplet_floorlet_formula.md) |
+| Swaption pricing via Jamshidian | [§20 Swaption Formula](../../ch20/derivatives_pricing/swaption_formula.md) |
+| Two-factor Hull-White (G2++) | [§20 Two-Factor Model](../../ch20/two_factor/two_factor_model_definition.md) |
 
-## Key Results
-
-### Gaussian Distribution
-
-The short rate $r_t$ conditional on $r_s$ is Gaussian with variance $v(s,t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa(t-s)})$, identical to Vasicek.
-
-### Affine Bond Prices
-
-$$
-P(t, T) = A(t, T) \exp(-B(t, T) \cdot r_t), \qquad B(t, T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa}
-$$
-
-where $B(t,T)$ is identical to Vasicek. The function $A(t,T)$ incorporates market bond prices to ensure exact calibration. See [§20 Zero Bond Pricing](../../ch20/bond_pricing/bond_price_formula.md) for explicit formulas and proofs.
-
-### Closed-Form Derivative Prices
-
-The Hull-White model provides analytical formulas for European bond options, caplets/floorlets, and swaptions (via Jamshidian's trick). See:
-
-- [§20 Zero Bond Options](../../ch20/bond_options/zero_coupon_bond_options.md) — bond option pricing under the $T$-forward measure
-- [§20 Caplet and Floor Formula](../../ch20/derivatives_pricing/caplet_floorlet_formula.md) — caplet pricing as ZCB put options
-- [§20 Swaption Formula](../../ch20/derivatives_pricing/swaption_formula.md) — Jamshidian decomposition and proof
-
----
-
-## Calibration
-
-**Step 1 — Fit the initial curve:** Given market discount factors, compute $f(0,t)$ and $\theta(t)$. This is automatic once $\kappa$ and $\sigma$ are fixed.
-
-**Step 2 — Calibrate to volatility instruments:** Fit $\kappa$ and $\sigma$ to cap and swaption implied volatilities:
-
-$$
-\min_{\kappa, \sigma} \sum_{i} w_i \left(\sigma^{\text{model}}_i(\kappa, \sigma) - \sigma^{\text{market}}_i\right)^2
-$$
-
----
-
-## Extensions
-
-**Time-dependent volatility:** Allow $\sigma(t)$ to vary for additional flexibility in fitting the volatility term structure.
-
-**Two-factor Hull-White (G2++):** $r_t = x_t + y_t + \phi(t)$ where $x_t, y_t$ are correlated OU processes, enabling richer yield curve dynamics including twists and butterfly shifts. See [§20 Two-Factor Model](../../ch20/two_factor/two_factor_model_definition.md).
+For calibration to caps/swaptions and side-by-side comparison with Vasicek and CIR, see [§ Vasicek vs CIR vs Hull-White](../model_comparison/vasicek_vs_cir_vs_hull_white.md).
 
 ---
 

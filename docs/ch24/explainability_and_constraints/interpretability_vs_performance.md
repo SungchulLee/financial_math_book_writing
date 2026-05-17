@@ -161,7 +161,7 @@ Interpretability is a form of risk control.
 ??? success "Solution to Exercise 4"
     **Post-hoc explanation methods** are applied after a black-box model is trained, without modifying the model itself. They produce interpretable approximations of the model's behavior.
 
-    **SHAP (SHapley Additive exPlanations):** Decomposes each prediction into additive feature contributions $f(x) = \phi_0 + \sum_i \phi_i$, grounded in Shapley value theory. It provides both local explanations (per-instance) and global importance (average $|\phi_i|$ across instances).
+    **SHAP (SHapley Additive exPlanations):** Recall (see [§ Shapley Values for Financial Models](shapley_values_financial_models.md)) — decomposes each prediction into additive feature contributions $f(x) = \phi_0 + \sum_i \phi_i$.
 
     **LIME (Local Interpretable Model-agnostic Explanations):** Fits a simple interpretable model (e.g., linear regression) in the neighborhood of each prediction. The local model approximates the black box's behavior near the point of interest.
 

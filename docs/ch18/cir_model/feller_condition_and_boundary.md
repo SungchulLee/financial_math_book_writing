@@ -6,13 +6,7 @@ The behavior of the CIR process near zero is governed by the **Feller condition*
 
 ## Statement of the Feller condition
 
-For the CIR process
-
-$$
-dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
-$$
-
-with $\kappa > 0$, $\theta > 0$, $\sigma > 0$, the **Feller condition** is
+Recall (see [§ CIR SDE and Square-Root Process](cir_sde_and_square_root_process.md)) the CIR process $dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$ with $\kappa, \theta, \sigma > 0$. The **Feller condition** is
 
 $$
 \boxed{2\kappa\theta \geq \sigma^2}
@@ -154,7 +148,7 @@ Even when $\nu \geq 1$, Euler discretization can produce negative values for lar
 
 ### Heston model connection
 
-The Feller condition for the Heston variance process $dv_t = \kappa_v(\theta_v - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t$ is $2\kappa_v\theta_v \geq \sigma_v^2$. In practice, calibrated Heston parameters frequently violate this condition (typical vol-of-vol $\sigma_v$ values are large), requiring careful numerical treatment of near-zero variance paths.
+Recall (see [§ CIR-as-variance (Heston)](../../ch16/variance_dynamics/cir_variance_process_solution.md)) that the same Feller condition $2\kappa_v\theta_v \geq \sigma_v^2$ governs the Heston variance process; calibrated Heston parameters frequently violate it.
 
 ---
 

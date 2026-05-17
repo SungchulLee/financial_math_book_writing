@@ -27,39 +27,13 @@ All four failures trace to a single structural property: in the local volatility
 
 ### What Stochastic Volatility Adds
 
-A stochastic volatility model introduces an independent volatility factor:
-
-$$
-dS_t = (r - q)S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1)}
-$$
-
-$$
-dv_t = \alpha(v_t, t) \, dt + \beta(v_t, t) \, dW_t^{(2)}
-$$
-
-with $\text{Corr}(dW_t^{(1)}, dW_t^{(2)}) = \rho \, dt$, where $\rho \in [-1, 1]$ is the spot-vol correlation.
-
-The key new elements are:
-
-- **Vol-of-vol** $\beta$: Controls the amplitude of volatility fluctuations independent of spot
-- **Spot-vol correlation** $\rho$: Controls the asymmetry (skew) of the smile; $\rho < 0$ produces downward skew
-- **Mean reversion** $\alpha$: Controls the persistence of volatility shocks and the term structure
-- **Two Brownian motions**: The market is incomplete (two sources of risk, one traded asset), so there is a family of equivalent martingale measures
+Recall (see [§ Chapter 14](../../ch14/index.md)): a stochastic volatility model introduces an independent volatility factor with dynamics $dS_t = (r-q)S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^{(1)}$, $dv_t = \alpha(v_t,t)\,dt + \beta(v_t,t)\,dW_t^{(2)}$, with $\text{Corr}(dW^{(1)}, dW^{(2)}) = \rho\,dt$. The key new elements -- vol-of-vol $\beta$, spot-vol correlation $\rho$, mean reversion $\alpha$, and a second Brownian motion (making the market incomplete) -- are absent in local volatility.
 
 ## The Gyongy Connection
 
 ### From Stochastic to Local Volatility
 
-Gyongy's theorem (developed in detail in the Gyongy's Theorem and Markovian Projection section) establishes the precise link between any stochastic volatility model and its local volatility projection.
-
-**Theorem 13.5.2** (Gyongy Projection, Recalled).
-Given the stochastic volatility model above, the local volatility function that matches all marginal distributions of $S_t$ is:
-
-$$
-\sigma_{\text{loc}}^2(K, t) = \mathbb{E}^{\mathbb{Q}}[v_t \mid S_t = K]
-$$
-
-This conditional expectation averages the instantaneous variance $v_t$ over all paths that reach level $K$ at time $t$. Different stochastic volatility models (Heston, SABR, Bergomi) produce different conditional expectations and hence different local volatility surfaces -- but all of these surfaces are consistent with the same vanilla option prices.
+Recall (see [§ Gyongy Theorem and Markovian Projection](../properties/gyongy_theorem_markovian_projection.md)): the local volatility function that matches all marginals of any SV model is $\sigma_{\text{loc}}^2(K, t) = \mathbb{E}^{\mathbb{Q}}[v_t \mid S_t = K]$, the conditional average of instantaneous variance over paths reaching $K$ at $t$. Different SV models (Heston, SABR, Bergomi) produce different conditional expectations and hence different local volatility surfaces -- but all are consistent with the same vanilla option prices.
 
 ### Implications for Model Choice
 
@@ -67,7 +41,7 @@ The Gyongy projection clarifies the model selection problem:
 
 1. **Vanilla pricing**: All models calibrated to the same vanilla surface have the same Gyongy projection. Local volatility is the unique one-factor summary of any model's vanilla-pricing content.
 2. **Exotic pricing**: The choice between models matters only for path-dependent and forward smile-dependent products, where the conditional distributions $\text{Law}(S_T \mid S_t = K)$ differ.
-3. **Dupire = Gyongy**: Applying Dupire's formula to market prices computes the Gyongy projection of whatever process generated those prices. The formula does not know or care about the underlying model.
+3. **Dupire = Gyongy**: Applying Dupire's formula (see [§ Dupire Formula](../local_volatility_framework/dupire_formula_and_local_volatility_surface.md)) to market prices computes the Gyongy projection of whatever process generated those prices. The formula does not know or care about the underlying model.
 
 ## The Stochastic Local Volatility Framework
 
@@ -213,14 +187,7 @@ Each step adds modeling power but also complexity. The key insight from local vo
 
 ### What to Expect in Chapter 14
 
-Chapter 14 develops the stochastic volatility framework in full generality:
-
-- **Heston model**: The canonical two-factor model with CIR variance dynamics, semi-analytical pricing via Fourier transforms
-- **SABR model**: The standard model for interest rate derivatives, with an explicit implied volatility approximation
-- **Bergomi models**: Forward variance models that directly parameterize the forward smile
-- **Rough volatility**: Models with non-Markovian, fractional Brownian motion driving the variance
-
-The Gyongy connection ensures that all of these models have a local volatility shadow, and the leverage function formalism provides a unified calibration framework.
+Recall (see [§ Chapter 14](../../ch14/index.md)): the stochastic volatility framework is developed in full generality there (Heston, SABR, Bergomi, rough volatility). The Gyongy connection ensures that all of these models have a local volatility shadow, and the leverage function formalism provides a unified calibration framework.
 
 ??? example "When to Use Which Model"
 

@@ -60,11 +60,7 @@ All pairwise distances concentrate around $\sqrt{d/6}$. When all points are equi
 
 ### Nonparametric Convergence Rates
 
-Recall Stone's theorem: for functions in the Hölder class $\mathcal{H}(\beta, L)$, the minimax rate for estimating $f$ in $L_2$ is:
-
-$$
-\inf_{\hat{f}} \sup_{f \in \mathcal{H}(\beta, L)} \mathbb{E}\|\hat{f} - f\|_2^2 \asymp n^{-\frac{2\beta}{2\beta + d}}
-$$
+Recall Stone's minimax rate $n^{-2\beta/(2\beta+d)}$ for the Hölder class $\mathcal{H}(\beta, L)$ (see [§ Parametric vs Nonparametric Learning](parametric_vs_nonparametric_learning.md)).
 
 ### Effective Sample Size
 
@@ -235,11 +231,7 @@ With $k$ factors, covariance has $nk + n$ parameters instead of $n(n+1)/2$.
 
 ### Sparsity and Regularization
 
-**LASSO for variable selection.** If only $s \ll d$ predictors are relevant:
-
-$$
-\hat{\beta} = \arg\min_\beta \left\{ \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1 \right\}
-$$
+**LASSO for variable selection** (Recall: $\hat{\beta} = \arg\min_\beta \{\|Y - X\beta\|_2^2 + \lambda \|\beta\|_1\}$; see [§ Bias–Variance Trade-Off](bias_variance_trade_off.md)). If only $s \ll d$ predictors are relevant:
 
 **Oracle inequality:** Under restricted eigenvalue conditions:
 

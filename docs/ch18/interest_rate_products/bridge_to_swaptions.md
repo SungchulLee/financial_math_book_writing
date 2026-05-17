@@ -3,7 +3,7 @@
 !!! tip "Key Idea"
     A swaption is an option on a swap. It inherits the structure of swaps but introduces nonlinear payoff and volatility dependence — making it the interest rate analogue of a stock option.
 
-A swap is a binding agreement to exchange fixed and floating payments. But what if a trader wants the **right**, not the obligation, to enter a swap in the future? This leads to the concept of a **swaption**.
+Recall (see [§ Swap Valuation](swap_valuation.md)): a swap is a binding agreement whose value is $V_{\text{swap}} = N A_{m,n}(t)(S_{m,n}(t) - K)$. A **swaption** gives the holder the right, not the obligation, to enter such a swap in the future.
 
 ---
 
@@ -55,7 +55,7 @@ The swaption payoff resembles a call option:
 - payoff: convex function of rate
 - value depends on **volatility**
 
-Under the **annuity measure** $\mathbb{Q}^A$ (with the swap annuity $A$ as numeraire), the swap rate behaves as a martingale, making it the natural underlying for swaption pricing — exactly as the stock price is a martingale under the risk-neutral measure in Black-Scholes.
+Recall (see [§ Interest Rate Swap](interest_rate_swap.md)): the swap rate $S_{m,n}(t)$ is a martingale under the annuity measure $\mathbb{Q}^A$ (numeraire $A_{m,n}(t)$), making it the natural underlying for swaption pricing — the swap-rate analogue of the $T_k$-forward martingale property in [§ Forward Rate Agreement](forward_rate_agreement.md).
 
 ---
 
@@ -99,7 +99,7 @@ The transition follows the same pattern as in Chapter 6:
 
 Swaptions are among the most actively traded instruments in fixed income markets. They serve three critical functions: hedging interest rate risk (a corporate treasurer can lock in the right to enter a favorable swap), trading volatility (swaption prices directly encode the market's view of rate uncertainty), and calibrating interest rate models (swaption prices are the primary targets against which term structure models are fitted).
 
-Pricing swaptions requires three ingredients: forward swap rates (from the yield curve), a discounting framework (annuity measure), and volatility assumptions. Depending on how volatility is modeled, this leads to the Black (1976) model for simple European swaptions, short-rate models (Vasicek, CIR, Hull-White) for path-dependent products, or LIBOR market models (LMM) for joint dynamics of multiple forward rates.
+Pricing swaptions requires three ingredients: forward swap rates (from the yield curve), a discounting framework (annuity measure), and volatility assumptions. The Black (1976) approach for European swaptions is developed in [§ Black Swaption Formula](../swaption_pricing/black_swaption_formula.md); short-rate alternatives in [§ General Short-Rate Framework](../short_rate_models/general_short_rate_framework.md); LMM in [§ Chapter 19](../../ch19/index.md).
 
 ---
 
@@ -181,3 +181,79 @@ where $V_{\text{swap}}(K)$ is the value of a payer swap with fixed rate $K$.
     $$
 
     This is the swaption analogue of put-call parity. $\square$
+
+---
+
+**Exercise 5.** Using the annuity measure $\mathbb{Q}^A$ (numeraire $A_{m,n}(t)$), explain why the time-$t$ value of a European payer swaption with strike $K$ expiring at $T_m$ is
+
+$$
+V(t) = N A_{m,n}(t) \, \mathbb{E}^{\mathbb{Q}^A}\!\left[(S_{m,n}(T_m) - K)^+ \,\big|\, \mathcal{F}(t)\right]
+$$
+
+Identify why the discount factor in front of the expectation is the annuity factor rather than $P(t, T_m)$, and explain how this relates to the swap-rate martingale property.
+
+??? success "Solution to Exercise 5"
+
+    **Numeraire choice.** The annuity measure $\mathbb{Q}^A$ has numeraire $A_{m,n}(t) = \sum_{k=m+1}^n \tau_k P(t,T_k)$. By the change-of-numeraire theorem, for any traded asset $V(t)$:
+
+    $$
+    \frac{V(t)}{A_{m,n}(t)} = \mathbb{E}^{\mathbb{Q}^A}\!\left[\frac{V(T_m)}{A_{m,n}(T_m)} \,\Big|\, \mathcal{F}(t)\right]
+    $$
+
+    **Swaption payoff.** The payer swaption at expiry $T_m$ pays $V(T_m) = N A_{m,n}(T_m)(S_{m,n}(T_m) - K)^+$, so $V(T_m)/A_{m,n}(T_m) = N (S_{m,n}(T_m) - K)^+$. Multiplying both sides by $A_{m,n}(t)$:
+
+    $$
+    V(t) = N A_{m,n}(t) \, \mathbb{E}^{\mathbb{Q}^A}\!\left[(S_{m,n}(T_m) - K)^+ \,\big|\, \mathcal{F}(t)\right]
+    $$
+
+    **Why the annuity factor, not $P(t, T_m)$.** The payoff is not a single cash flow at $T_m$; it depends on a swap that pays from $T_{m+1}$ through $T_n$. The annuity factor aggregates the discount factors for the entire payment schedule, which is precisely the "right" discounting for swap-rate-based payoffs.
+
+    **Swap-rate martingale property.** Under $\mathbb{Q}^A$, $S_{m,n}(t)$ is a martingale (recall [§ Interest Rate Swap](interest_rate_swap.md), Exercise 5). This means no drift correction is needed when modelling $S_{m,n}(t)$, e.g., as $dS = \sigma S \, dW^A$, leading directly to the Black (1976) formula for swaptions.
+
+---
+
+**Exercise 6.** Modelling the swap rate as geometric Brownian motion $dS_{m,n}(t) = \sigma S_{m,n}(t) \, dW^A(t)$ under $\mathbb{Q}^A$, derive the Black (1976) formula for a payer swaption:
+
+$$
+V_{\text{payer}}(t) = N A_{m,n}(t) \bigl[S_{m,n}(t) \Phi(d_1) - K \Phi(d_2)\bigr]
+$$
+
+where $d_1 = \frac{\ln(S/K) + \sigma^2 (T_m - t)/2}{\sigma \sqrt{T_m - t}}$ and $d_2 = d_1 - \sigma \sqrt{T_m - t}$. Why does this formula resemble Black–Scholes for stock options?
+
+??? success "Solution to Exercise 6"
+
+    **Setup.** Under $\mathbb{Q}^A$, with $S(t) := S_{m,n}(t)$ following $dS = \sigma S \, dW^A$, the log of $S(T_m)$ given $\mathcal{F}(t)$ is normal:
+
+    $$
+    \ln S(T_m) \sim \mathcal{N}\!\left(\ln S(t) - \tfrac{1}{2}\sigma^2 (T_m - t),\; \sigma^2 (T_m - t)\right)
+    $$
+
+    This is the same lognormal distribution that arises for stock prices in Black–Scholes (with $r = 0$ here because the swap rate is already a martingale under $\mathbb{Q}^A$).
+
+    **Expectation of the payoff.** Writing $\tau := T_m - t$, the standard lognormal call-option computation gives:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}^A}\!\left[(S(T_m) - K)^+ \,\big|\, \mathcal{F}(t)\right] = S(t) \Phi(d_1) - K \Phi(d_2)
+    $$
+
+    with
+
+    $$
+    d_1 = \frac{\ln(S(t)/K) + \tfrac{1}{2}\sigma^2 \tau}{\sigma \sqrt{\tau}}, \qquad d_2 = d_1 - \sigma \sqrt{\tau}
+    $$
+
+    Multiplying by the numeraire $N A_{m,n}(t)$ from Exercise 5:
+
+    $$
+    V_{\text{payer}}(t) = N A_{m,n}(t)\bigl[S(t) \Phi(d_1) - K \Phi(d_2)\bigr]
+    $$
+
+    **Why it looks like Black–Scholes.** Three correspondences make the formulas isomorphic:
+
+    | Black–Scholes | Black (1976) for swaptions |
+    |---|---|
+    | Stock price $S_t$ (martingale under $\mathbb{Q}^*$ = $e^{-rt}$-numeraire) | Swap rate $S_{m,n}(t)$ (martingale under $\mathbb{Q}^A$) |
+    | Discount factor $e^{-r(T-t)}$ | Annuity factor $A_{m,n}(t)$ |
+    | Volatility $\sigma$ of $\ln S$ | Volatility $\sigma$ of $\ln S_{m,n}$ |
+
+    The key insight is that choosing the annuity as numeraire eliminates the drift in $S_{m,n}(t)$, exactly as the bank-account numeraire eliminates drift (up to $r$) for $S_t$ in Black–Scholes. The remaining computation is identical: a lognormal call-option expectation.

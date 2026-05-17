@@ -60,19 +60,7 @@ $$
 ## Large deviations interpretation
 
 
-The small-$\sigma$ asymptotics connect to Varadhan's lemma: for the diffusion $S_t$,
-
-$$
--\sigma^2 \log \mathbb{P}(S_T \in A) \to \inf_{s \in A} I(s)
-$$
-
-where $I(s)$ is the rate function (action functional):
-
-$$
-I(s) = \frac{1}{2\tau}\left(\ln\frac{s}{S} - r\tau\right)^2
-$$
-
-This is the cost of deviating from the deterministic path.
+Recall (see [§ Small Noise and Large Deviations](../../ch03/diffusion_process/small_noise_and_large_deviations.md)): the small-$\sigma$ limit obeys Freidlin–Wentzell with rate function $I(s) = \frac{1}{2\tau}(\ln(s/S) - r\tau)^2$, the cost of deviating from the deterministic path.
 
 ---
 
@@ -109,24 +97,7 @@ The price is linear in $\sigma$ at leading order.
 ## Greeks in small volatility
 
 
-**Vega dominates ATM risk:**
-
-$$
-\nu = S\sqrt{\tau}N'(d_1) \approx \frac{S\sqrt{\tau}}{\sqrt{2\pi}} \quad \text{(nearly constant)}
-$$
-
-**Gamma for ATM:**
-
-$$
-\Gamma = \frac{N'(d_1)}{S\sigma\sqrt{\tau}} \approx \frac{1}{S\sigma\sqrt{2\pi\tau}} \to \infty \quad \text{as } \sigma \to 0
-$$
-
-**Delta transition:**
-As $\sigma \to 0$, delta becomes a step function:
-
-$$
-\Delta \to \begin{cases} 1 & S > Ke^{-r\tau} \\ \frac{1}{2} & S = Ke^{-r\tau} \\ 0 & S < Ke^{-r\tau} \end{cases}
-$$
+Recall (see [§ Scaling Laws for Greeks](../greeks_asympt/scaling_laws_for_greeks.md)): as $\sigma\to 0$ for ATM, vega is nearly constant $\nu\approx S\sqrt{\tau/2\pi}$, gamma blows up as $1/\sigma$, and delta degenerates to the step function $\mathbf{1}_{S>Ke^{-r\tau}}$ (with value $\tfrac12$ on the boundary).
 
 ---
 

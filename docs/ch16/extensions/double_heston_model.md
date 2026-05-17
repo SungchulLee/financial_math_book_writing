@@ -2,9 +2,9 @@
 
 ## Introduction
 
-The single-factor Heston model captures the essential features of stochastic volatility --- mean reversion, the leverage effect, and heavy tails --- but it has a fundamental limitation: a **single variance factor** cannot independently control the short-term and long-term behavior of the implied volatility surface. Short-dated options are driven primarily by the current variance $v_0$, while long-dated options are governed by the mean-reversion dynamics $(\kappa, \theta)$. With only five parameters, the model often fails to fit both regimes simultaneously.
+Recall single-factor Heston (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)). A single variance factor cannot independently control short- and long-term behavior of the implied volatility surface, since current $v_0$ drives short-dated options while $(\kappa, \theta)$ govern long-dated ones.
 
-The **double Heston model** (Christoffersen, Heston, and Jacobs, 2009) introduces two independent CIR variance factors, each with its own correlation, mean-reversion speed, and vol-of-vol. This doubles the parameter space but provides enough flexibility to separately control short-term smile dynamics (through a fast-reverting factor) and long-term volatility term structure (through a slow-reverting factor). The characteristic function retains the affine form, so all Fourier pricing methods carry over directly.
+The **double Heston model** (Christoffersen, Heston, and Jacobs, 2009) introduces two independent CIR variance factors, each with its own correlation, mean-reversion speed, and vol-of-vol. The fast-reverting factor controls short-term smile dynamics; the slow-reverting factor controls long-term term structure. The model retains the affine structure (see [§ Affine Structure and Riccati](../model_definition/affine_structure_and_riccati.md)), so all Fourier pricing methods carry over (see [§ Affine Extensions](../../ch15/extensions/jump_diffusion_affine.md)).
 
 !!! info "Prerequisites"
 
@@ -117,17 +117,7 @@ for $j = 1, 2$. Each $D_j$ equation is an **independent Riccati ODE** with the s
     \phi(u, \tau) = \exp\!\left(iu X_t + C(\tau, u) + D_1(\tau, u) v_t^{(1)} + D_2(\tau, u) v_t^{(2)}\right)
     $$
 
-    where $D_j(\tau, u)$ is the single Heston Riccati solution with parameters $(\kappa_j, \xi_j, \rho_j)$:
-
-    $$
-    D_j(\tau, u) = \frac{\kappa_j - i\rho_j \xi_j u - \gamma_j}{\xi_j^2} \cdot \frac{1 - e^{-\gamma_j \tau}}{1 - g_j e^{-\gamma_j \tau}}
-    $$
-
-    with $\gamma_j = \sqrt{(\kappa_j - i\rho_j\xi_j u)^2 + \xi_j^2(iu + u^2)}$ and $g_j = \frac{\kappa_j - i\rho_j\xi_j u - \gamma_j}{\kappa_j - i\rho_j\xi_j u + \gamma_j}$, and
-
-    $$
-    C(\tau, u) = \sum_{j=1}^{2} \frac{\kappa_j \theta_j}{\xi_j^2}\left[(\kappa_j - i\rho_j \xi_j u - \gamma_j)\tau - 2\ln\!\left(\frac{1 - g_j e^{-\gamma_j\tau}}{1 - g_j}\right)\right] + iu(r-q)\tau
-    $$
+    where each $D_j(\tau, u)$ is the single-Heston Riccati solution with parameters $(\kappa_j, \xi_j, \rho_j)$ (see [§ Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md)), and $C(\tau,u)$ sums the two factor contributions plus the drift $iu(r-q)\tau$.
 
 ??? example "Proof"
     The key observation is that the two variance factors contribute additively to the log-price quadratic variation:

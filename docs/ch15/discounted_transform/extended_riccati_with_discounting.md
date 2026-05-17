@@ -100,87 +100,7 @@ The $\tilde{\psi}$-equation is now a *full* Riccati equation $\tilde{\psi}' = \a
 
 ## Bond Pricing Application
 
-### Zero-Coupon Bond Price
-
-The zero-coupon bond price is the discounted transform with $u = 0$:
-
-$$
-P(t, T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r(X_s)\,ds} \mid X_t = x\right] = \exp\!\left(A(\tau) + \langle B(\tau), x \rangle\right)
-$$
-
-where $A(\tau) = \tilde{\phi}(\tau, 0)$ and $B(\tau) = \tilde{\psi}(\tau, 0)$ satisfy:
-
-$$
-A'(\tau) = F(B(\tau)) - \rho_0, \qquad A(0) = 0
-$$
-
-$$
-B'(\tau) = R(B(\tau)) - \rho_1, \qquad B(0) = 0
-$$
-
-The initial condition $B(0) = 0$ reflects the fact that at maturity, the bond pays $\$1$ regardless of the state.
-
-### One-Factor Short Rate Models
-
-For a one-factor model where $X_t = r_t$ and $r(x) = x$ (so $\rho_0 = 0$, $\rho_1 = 1$):
-
-$$
-B'(\tau) = \kappa_1 B(\tau) + \frac{1}{2}\sigma_1 B(\tau)^2 - 1, \qquad B(0) = 0
-$$
-
-$$
-A'(\tau) = \kappa_0 B(\tau) + \frac{1}{2}\sigma_0 B(\tau)^2, \qquad A(0) = 0
-$$
-
-??? example "Vasicek Bond Pricing"
-    For the Vasicek model ($\kappa_1 = -\kappa$, $\sigma_1 = 0$):
-
-    $$
-    B'(\tau) = -\kappa B(\tau) - 1, \qquad B(0) = 0
-    $$
-
-    This linear ODE has the solution:
-
-    $$
-    B(\tau) = -\frac{1 - e^{-\kappa\tau}}{\kappa}
-    $$
-
-    Note $B(\tau) < 0$, so the bond price $P = e^{A + Br}$ is decreasing in $r$, as expected (higher rates mean lower bond prices).
-
-    The $A$-equation gives:
-
-    $$
-    A(\tau) = \kappa\theta \int_0^\tau B(s)\,ds + \frac{\sigma^2}{2}\int_0^\tau B(s)^2\,ds
-    $$
-
-    After integration:
-
-    $$
-    A(\tau) = -\theta\!\left(\tau + \frac{e^{-\kappa\tau} - 1}{\kappa}\right) + \frac{\sigma^2}{2\kappa^2}\!\left(\tau + \frac{2(e^{-\kappa\tau} - 1)}{\kappa} + \frac{1 - e^{-2\kappa\tau}}{2\kappa}\right)
-    $$
-
-    which can be simplified to the standard Vasicek bond price formula. $\square$
-
-??? example "CIR Bond Pricing"
-    For the CIR model ($\kappa_1 = -\kappa$, $\sigma_1 = \xi^2$, $\kappa_0 = \kappa\theta$, $\sigma_0 = 0$):
-
-    $$
-    B'(\tau) = -\kappa B(\tau) + \frac{\xi^2}{2}B(\tau)^2 - 1, \qquad B(0) = 0
-    $$
-
-    This is a full Riccati equation. Define $\gamma = \sqrt{\kappa^2 + 2\xi^2}$. The solution is:
-
-    $$
-    B(\tau) = \frac{-2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}
-    $$
-
-    The $A$-equation integrates to:
-
-    $$
-    A(\tau) = \frac{2\kappa\theta}{\xi^2}\log\!\left(\frac{2\gamma\,e^{(\gamma+\kappa)\tau/2}}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}\right)
-    $$
-
-    The bond price is $P(t, T) = e^{A(\tau) + B(\tau)r_t}$, which is always positive and decreasing in $r_t$. When $2\kappa\theta \geq \xi^2$ (Feller condition), the short rate stays positive, ensuring economically meaningful yields. $\square$
+Recall (see [§ Affine Term Structure Models](../affine_term_structure/bond_pricing_affine_framework.md)): the zero-coupon bond price is the discounted transform with $u = 0$, giving $P(t, T) = \exp(A(\tau) + \langle B(\tau), x \rangle)$ where $A = \tilde{\phi}(\tau, 0)$ and $B = \tilde{\psi}(\tau, 0)$ satisfy the bond-pricing Riccati with $A(0) = 0$, $B(0) = 0$. Recall (see [§ Vasicek and CIR as Affine](../examples/vasicek_cir_as_affine.md)): for one-factor short-rate models with $r_t = X_t$, the bond pricing Riccati admits closed-form solutions — linear for Vasicek and a genuine quadratic Riccati for CIR with discriminant $\gamma = \sqrt{\kappa^2+2\xi^2}$.
 
 ---
 
@@ -228,7 +148,7 @@ This is the building block for Fourier inversion pricing of European options. Th
 
 ## Summary
 
-The extended Riccati system with discounting modifies the standard system by subtracting the short rate coefficients: $\tilde{\phi}' = F(\tilde{\psi}) - \rho_0$ and $\tilde{\psi}' = R(\tilde{\psi}) - \rho_1$. For bond pricing, setting $u = 0$ gives the exponential-affine bond price $P(t, T) = e^{A(\tau) + B(\tau)^\top x}$, where $A$ and $B$ satisfy the bond-pricing Riccati system. The Vasicek model yields a linear ODE for $B$ with exponential solution, while the CIR model yields a genuine Riccati equation with a solution involving the discriminant $\gamma = \sqrt{\kappa^2 + 2\xi^2}$. Yields and forward rates inherit the affine structure, giving the entire term structure as a linear function of the state.
+The extended Riccati system with discounting modifies the standard system by subtracting the short rate coefficients: $\tilde{\phi}' = F(\tilde{\psi}) - \rho_0$ and $\tilde{\psi}' = R(\tilde{\psi}) - \rho_1$. Setting $u = 0$ recovers bond pricing; Vasicek and CIR closed forms are worked in [§ Vasicek and CIR as Affine](../examples/vasicek_cir_as_affine.md). Yields and forward rates inherit the affine structure, giving the entire term structure as a linear function of the state.
 
 ---
 

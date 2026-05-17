@@ -58,48 +58,37 @@ $$
 \theta_t := \frac{\mu_t - r_t}{\sigma_t}
 $$
 
-and the [stochastic exponential](../martingale/stochastic_exponential.md)
+Recall (see [§ The Stochastic Exponential](../martingale/stochastic_exponential.md)): the density process
 
 $$
-Z_t = \exp\!\left(
--\int_0^t \theta_s\,dW_s^{\mathbb{P}}
--\frac{1}{2}\int_0^t \theta_s^2\,ds
-\right)
+Z_t = \mathcal{E}\!\left(-\int_0^\cdot \theta_s\,dW_s^{\mathbb{P}}\right)_t = \exp\!\left(-\int_0^t \theta_s\,dW_s^{\mathbb{P}} - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
 $$
 
-To ensure $Z_t$ defines a valid probability measure, it must be a true martingale.
-A sufficient condition is the
-[Novikov condition](../martingale/novikov_kazamaki_conditions.md):
+is a $\mathbb{P}$-local martingale. Recall (see [§ Novikov and Kazamaki Conditions](../martingale/novikov_kazamaki_conditions.md)): the sufficient condition
 
 $$
 \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] < \infty
 $$
 
-When this condition is satisfied, $Z_t$ defines a new probability measure $\mathbb{Q}$ by
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_t} = Z_t
-$$
+promotes $Z_t$ to a true martingale, so $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_t} = Z_t$ defines an equivalent probability measure $\mathbb{Q}$.
 
 ---
 
 ## Risk-Neutral Dynamics
 
-By Girsanov’s theorem, the process
+Recall (see [§ Girsanov's Theorem](../girsanov/girsanov_theorem.md#statement-of-girsanovs-theorem) and [§ Drift Adjustment](../girsanov/girsanov_drift_adjustment.md)): under $\mathbb{Q}$,
 
 $$
 W_t^{\mathbb{Q}} := W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds
 $$
 
-is a Brownian motion under $\mathbb{Q}$.
-
-The discounted asset price then satisfies
+is a Brownian motion, and substituting $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta_t\,dt$ into the discounted-price SDE eliminates the drift $(\mu_t - r_t)$:
 
 $$
 d\tilde{S}_t = \sigma_t \tilde{S}_t\,dW_t^{\mathbb{Q}}
 $$
 
-The drift vanishes, so the discounted price is a $\mathbb{Q}$-martingale.
+so $\tilde{S}_t$ is a $\mathbb{Q}$-martingale.
 
 ---
 

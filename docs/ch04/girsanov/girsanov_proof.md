@@ -2,53 +2,26 @@
 
 This section justifies the [theorem statement](girsanov_theorem.md#statement-of-girsanovs-theorem) through a sequence of steps.
 
+!!! tip "Toy mechanism: one cancellation does all the work"
+    The whole proof has a single load-bearing identity. The shifted process $\widetilde W_t = W_t + \int_0^t\theta\,ds$ carries an unwanted drift $+\theta_t\,dt$; the density $Z_t$ is *defined* with the term $-\theta_t\,dW_t$ precisely so that the Itô product $d(\widetilde W_t Z_t)$ generates a cross-variation $-Z_t\theta_t\,dt$ that *cancels* the drift exactly. After that one cancellation, $\widetilde W_t Z_t$ is a $\mathbb{P}$-martingale, $\widetilde W_t$ is a continuous $\mathbb{Q}$-local martingale with $\langle\widetilde W\rangle_t = t$, and Lévy's theorem closes the argument. The four steps below verify this in turn; the [cancellation table](#key-insight-the-cancellation-mechanism) at the bottom makes the bookkeeping explicit.
+
 ---
 
 ## Step 1: Verify the Exponential Martingale Property
 
 **Goal:** Show that $Z_t = \exp\left(-\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)$ is a $\mathbb{P}$-martingale.
 
-**Method:** Apply Itô's lemma to $Z_t = e^{X_t}$ where $X_t = -\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds$.
-
-**Computing the differential:**
-
-$$
-dX_t = -\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt
-$$
-
-Apply Itô to $f(X) = e^X$:
-
-$$
-dZ_t = e^{X_t}\,dX_t + \frac{1}{2}e^{X_t}(dX_t)^2
-$$
-
-Compute $(dX_t)^2$:
-
-$$
-(dX_t)^2 = \left(-\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt\right)^2 = \theta_t^2\,(dW_t)^2 = \theta_t^2\,dt
-$$
-
-Therefore:
-
-$$
-dZ_t = Z_t\left(-\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt\right) + \frac{1}{2}Z_t\,\theta_t^2\,dt
-$$
-
-$$
-= -Z_t\theta_t\,dW_t - \frac{1}{2}Z_t\theta_t^2\,dt + \frac{1}{2}Z_t\theta_t^2\,dt
-$$
+Recall (see [§ The Stochastic Exponential](../martingale/stochastic_exponential.md)): for a continuous local martingale $M_t = -\int_0^t \theta_s\,dW_s$, the Doléans-Dade exponential $\mathcal{E}(M)_t = \exp(M_t - \tfrac{1}{2}\langle M\rangle_t)$ satisfies the driftless SDE
 
 $$
 \boxed{dZ_t = -Z_t\theta_t\,dW_t}
 $$
 
-**Key observation:** There is **no $dt$ term**, only the $dW_t$ term. This shows $Z_t$ is a local martingale; the **Novikov condition** then ensures it is a true martingale.
-
-Since $Z_t$ is a true martingale (by the [Novikov condition](girsanov_theorem.md#setting-and-assumptions)) with $Z_0 = 1$, we have $\mathbb{E}^{\mathbb{P}}[Z_t] = 1$ for all $t$.
+so $Z_t$ is automatically a $\mathbb{P}$-local martingale. Recall (see [§ Novikov and Kazamaki Conditions](../martingale/novikov_kazamaki_conditions.md)): the Novikov condition $\mathbb{E}^{\mathbb{P}}[\exp(\tfrac{1}{2}\int_0^T \theta_s^2\,ds)] < \infty$ promotes this local martingale to a true martingale with $\mathbb{E}^{\mathbb{P}}[Z_t] = 1$ for all $t$.
 
 ---
 
-## Step 3: The Shifted Process is a Q-Martingale
+## Step 2: The Shifted Process is a Q-Martingale
 
 **Goal:** Show that $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is a continuous local martingale under $\mathbb{Q}$.
 
@@ -64,7 +37,7 @@ where the denominator simplifies to $Z_s$ by the martingale property of $Z_t$. T
 
 ---
 
-## Step 4: Quadratic Variation is Measure-Invariant
+## Step 3: Quadratic Variation is Measure-Invariant
 
 Since:
 
@@ -82,15 +55,15 @@ Therefore $\langle\widetilde{W}\rangle_t = t$.
 
 ---
 
-## Step 5: Lévy Characterization Theorem
+## Step 4: Lévy Characterization Theorem
 
 **Theorem (Lévy):** A continuous local martingale $M_t$ with quadratic variation $\langle M\rangle_t = t$ is a standard Brownian motion.
 
 **Application:** We have shown:
 
 1. $\widetilde{W}_t$ is continuous (sum of continuous processes)
-2. $\widetilde{W}_t$ is a continuous $\mathbb{Q}$-local martingale (Step 3)
-3. $\langle\widetilde{W}\rangle_t = t$ (Step 4)
+2. $\widetilde{W}_t$ is a continuous $\mathbb{Q}$-local martingale (Step 2)
+3. $\langle\widetilde{W}\rangle_t = t$ (Step 3)
 
 By Lévy's theorem:
 
@@ -100,9 +73,9 @@ $$
 
 ---
 
-## Step 6: Alternative Derivation Using Change of Variables (Optional)
+## Step 5: Alternative Derivation Using Change of Variables (Optional)
 
-Another approach uses direct computation. This is most transparent when $\theta$ is constant; for general adapted $\theta_t$, the characteristic-function argument does not generalize (use Steps 3–5 instead).
+Another approach uses direct computation. This is most transparent when $\theta$ is constant; for general adapted $\theta_t$, the characteristic-function argument does not generalize (use Steps 2–4 instead).
 
 **Key formula:** For a continuous $\mathbb{Q}$-local martingale $M_t$ with $\langle M\rangle_t = t$, the process must be Brownian (Lévy's characterization).
 
@@ -124,9 +97,9 @@ This matches the characteristic function of $\mathcal{N}(0, t)$, confirming that
 | Step | What we prove | Why it's needed |
 |------|---------------|-----------------|
 | 1 | $Z_t$ is a $\mathbb{P}$-martingale with $\mathbb{E}[Z_t]=1$ | Defines a valid probability measure $\mathbb{Q}$ |
-| 3 | $\widetilde{W}_t$ is a continuous $\mathbb{Q}$-local martingale | Necessary property of Brownian motion |
-| 4 | $\langle\widetilde{W}\rangle_t = t$ | Identifies the volatility as unit constant |
-| 5 | Apply Lévy's theorem | Concludes $\widetilde{W}_t$ is Brownian motion |
+| 2 | $\widetilde{W}_t$ is a continuous $\mathbb{Q}$-local martingale | Necessary property of Brownian motion |
+| 3 | $\langle\widetilde{W}\rangle_t = t$ | Identifies the volatility as unit constant |
+| 4 | Apply Lévy's theorem | Concludes $\widetilde{W}_t$ is Brownian motion |
 
 ---
 
@@ -170,9 +143,7 @@ No $dt$ term survives, so $\widetilde{W}_t Z_t$ is a $\mathbb{P}$-martingale, an
 
 ---
 
-## Technical Note: Novikov's Condition
-
-The [Novikov condition](girsanov_theorem.md#setting-and-assumptions) promotes $Z_t$ from local martingale to true martingale, ensuring $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$ and a valid measure change. Without it, $Z_t$ may only be a supermartingale with $\mathbb{E}^{\mathbb{P}}[Z_T] < 1$.
+Recall (see [§ Novikov and Kazamaki Conditions](../martingale/novikov_kazamaki_conditions.md)): without Novikov, $Z_t$ is only a supermartingale with $\mathbb{E}^{\mathbb{P}}[Z_T] \le 1$, and the measure change may fail.
 
 ---
 
@@ -222,7 +193,7 @@ Let $\theta$ be a constant. Apply Ito's lemma to $Z_t = \exp(-\theta W_t - \frac
 ---
 
 **Exercise 2.**
-In Step 3 of the proof, the change-of-measure formula states
+In Step 2 of the proof, the change-of-measure formula states
 
 $$
 \mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{Z_s}

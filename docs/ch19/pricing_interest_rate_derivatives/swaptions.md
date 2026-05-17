@@ -82,122 +82,37 @@ where $A_0 = \sum_{i=1}^{n} \delta_i P(0, T_i)$ is the **present value of the an
 
 ## Black's Model for Swaptions
 
-### Model Assumption
-
-Under the **annuity (swap) measure** $\mathbb{Q}^A$, the forward swap rate is a **martingale** with lognormal dynamics:
+Recall (see [§ Black Swaption Formula](../../ch18/swaption_pricing/black_swaption_formula.md)): under the annuity measure $\mathbb{Q}^A$ the forward swap rate $S_t$ is a martingale with $dS_t/S_t = \sigma\,dW_t^A$, and
 
 $$
-\frac{dS_t}{S_t} = \sigma \, dW_t^A
+\text{Payer} = A_0 [S_0 N(d_1) - K N(d_2)], \qquad \text{Receiver} = A_0 [K N(-d_2) - S_0 N(-d_1)],
 $$
 
-where $\sigma$ is the **swaption volatility**.
-
-### Change of Numéraire
-
-The annuity $A(t)$ serves as the numéraire. Under $\mathbb{Q}^A$:
-
-$$
-\text{Swaption Value} = A_0 \cdot \mathbb{E}^{\mathbb{Q}^A}[\max(S_{T_0} - K, 0)]
-$$
-
-Since $S_{T_0}$ is lognormal under $\mathbb{Q}^A$, this is a standard Black-Scholes expectation.
-
-### Black's Formula (Payer Swaption)
-
-$$
-\boxed{\text{Payer Swaption} = A_0 \cdot [S_0 N(d_1) - K N(d_2)]}
-$$
-
-where:
-
-$$
-d_1 = \frac{\ln(S_0/K) + \frac{1}{2}\sigma^2 T_0}{\sigma \sqrt{T_0}}
-$$
-
-$$
-d_2 = d_1 - \sigma \sqrt{T_0}
-$$
-
-### Receiver Swaption
-
-$$
-\text{Receiver Swaption} = A_0 \cdot [K N(-d_2) - S_0 N(-d_1)]
-$$
-
-### ATM Swaption
-
-When $K = S_0$ (at-the-money forward):
-
-$$
-\text{ATM Swaption} \approx A_0 \cdot S_0 \cdot \sigma \sqrt{T_0} \cdot \sqrt{\frac{2}{\pi}}
-$$
-
-using the approximation $N(d_1) - N(d_2) \approx \sigma\sqrt{T}/\sqrt{2\pi}$ for small $\sigma\sqrt{T}$.
+with $d_{1,2} = [\ln(S_0/K) \pm \tfrac{1}{2}\sigma^2 T_0]/(\sigma\sqrt{T_0})$. ATM: $\text{Swaption} \approx A_0 S_0 \sigma\sqrt{T_0/(2\pi)}$.
 
 ---
 
 ## Swaption Pricing in Short-Rate Models
 
-### Jamshidian's Trick
-
-In one-factor models (Vasicek, Hull-White, CIR), bond prices are monotonic in the short rate $r$.
-
-**Key insight:** There exists a unique $r^*$ such that the swap value equals zero:
+Recall (see [§ Swaption Pricing under Short-Rate Models](../../ch18/swaption_pricing/annuity_measure_and_change_of_numeraire.md) and [§ Bond Options — Jamshidian](bond_options.md)): in one-factor models, find $r^*$ with $\sum_i c_i P(T_0,T_i,r^*)=1$ (where $c_i=K\delta_i$, $c_n=1+K\delta_n$), then
 
 $$
-\sum_{i=1}^{n} c_i P(T_0, T_i, r^*) = P(T_0, T_0, r^*) = 1
+\text{Payer Swaption} = \sum_{i=1}^{n} c_i \cdot \text{Put}(P(T_0,T_i), K_i), \qquad K_i = P(T_0, T_i, r^*),
 $$
 
-where $c_i = K \delta_i$ for $i < n$ and $c_n = 1 + K \delta_n$.
-
-### Decomposition
-
-The payer swaption decomposes into:
-
-$$
-\text{Payer Swaption} = \sum_{i=1}^{n} c_i \cdot \text{Put}(P(T_0, T_i), K_i)
-$$
-
-where $K_i = P(T_0, T_i, r^*)$.
-
-Each put option has an analytical formula (in Vasicek/Hull-White/CIR), so the swaption price is semi-analytical.
-
-### Algorithm
-
-1. **Find $r^*$:** Solve $\sum_i c_i P(T_0, T_i, r^*) = 1$ via root-finding
-2. **Compute strikes:** $K_i = P(T_0, T_i, r^*)$
-3. **Price puts:** Use bond option formulas
-4. **Sum:** Swaption price = $\sum_i c_i \cdot \text{Put}_i$
+with each bond put priced analytically in Vasicek/Hull-White/CIR.
 
 ---
 
 ## Normal (Bachelier) Model
 
-### Motivation
-
-For low or negative rates, lognormal models break down. The Bachelier model assumes:
+Recall (see [§ Shifted and Normal Models](../interest_rate_model_risk/shifted_and_normal_models.md)): for low or negative rates the swap rate follows $dS_t = \sigma^{(n)}\,dW_t^A$ under $\mathbb{Q}^A$, giving
 
 $$
-dS_t = \sigma^{(n)} \, dW_t^A
+\text{Payer} = A_0 \bigl[(S_0 - K) N(d) + \sigma^{(n)}\sqrt{T_0}\,\phi(d)\bigr], \qquad d = (S_0 - K)/(\sigma^{(n)}\sqrt{T_0}),
 $$
 
-### Bachelier Swaption Formula
-
-$$
-\text{Payer Swaption} = A_0 \cdot \left[(S_0 - K) N(d) + \sigma^{(n)} \sqrt{T_0} \phi(d)\right]
-$$
-
-where:
-
-$$
-d = \frac{S_0 - K}{\sigma^{(n)} \sqrt{T_0}}
-$$
-
-### Conversion (ATM Approximation)
-
-$$
-\sigma^{(n)} \approx S_0 \cdot \sigma^{(\text{Black})}
-$$
+with ATM conversion $\sigma^{(n)} \approx S_0\,\sigma^{(\text{Black})}$.
 
 ---
 
@@ -237,27 +152,10 @@ Standard quotes include:
 
 ### Calibration Approaches
 
-**For Black's model:**
-
-- Direct use of market vols
-- Interpolation/extrapolation for missing points
-
-**For short-rate models (Hull-White):**
-
-- Fit $\kappa$ and $\sigma$ (or $\sigma(t)$) to swaption grid
-- Often done jointly with caps
-
-**For multi-factor models:**
-
-- More parameters allow better smile fit
-- Risk of overfitting
-
-### Joint Calibration
-
-Calibrate to both caps and swaptions:
+Recall (see [§ Calibration](../calibration/calibration_to_caps_and_swaptions.md)): for Black, use market vols directly; for Hull-White, fit $\kappa,\sigma(\cdot)$ to the swaption grid (often jointly with caps); multi-factor models trade better smile fit for overfitting risk. Joint objective:
 
 $$
-\min_{\theta} \sum_{\text{caps}} w_c (C^{\text{model}} - C^{\text{mkt}})^2 + \sum_{\text{swaptions}} w_s (S^{\text{model}} - S^{\text{mkt}})^2
+\min_{\theta} \sum_{\text{caps}} w_c (C^{\text{model}} - C^{\text{mkt}})^2 + \sum_{\text{swaptions}} w_s (S^{\text{model}} - S^{\text{mkt}})^2.
 $$
 
 ---

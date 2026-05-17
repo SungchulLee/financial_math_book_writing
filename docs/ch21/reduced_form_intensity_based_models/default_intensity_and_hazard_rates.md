@@ -38,59 +38,13 @@ $$
 
 ### Rigorous Definition
 
-More precisely, the intensity is defined through the **compensator** of the default indicator process $H_t = \mathbf{1}_{\{\tau \le t\}}$:
-
-$$
-A_t = \int_0^{t \wedge \tau} \lambda_s \, ds
-$$
-
-is the $(\mathcal{G}_t, \mathbb{Q})$-compensator of $H_t$, meaning:
-
-$$
-M_t := H_t - A_t = \mathbf{1}_{\{\tau \le t\}} - \int_0^{t \wedge \tau} \lambda_s \, ds
-$$
-
-is a $(\mathcal{G}_t, \mathbb{Q})$-martingale.
+Recall (see [§ Compensators and Martingales](compensators_and_martingales.md)) for the rigorous definition of $\lambda_t$ via the $(\mathcal{G}_t, \mathbb{Q})$-compensator $A_t = \int_0^{t \wedge \tau} \lambda_s\,ds$ of $H_t = \mathbf{1}_{\{\tau \le t\}}$ and the compensated martingale $M_t = H_t - A_t$.
 
 ---
 
 ## The Doubly-Stochastic (Cox Process) Construction
 
-### Construction
-
-The standard way to construct a default time with given intensity is via the **Cox process** (doubly-stochastic Poisson process):
-
-1. Let $(\lambda_t)_{t \ge 0}$ be an $\mathcal{F}_t$-adapted non-negative intensity process
-2. Define the **cumulative intensity**: $\Lambda_t = \int_0^t \lambda_s \, ds$
-3. Let $E \sim \text{Exp}(1)$ be independent of $\mathcal{F}_\infty$
-4. Define the default time:
-
-$$
-\tau = \inf\{t \ge 0 : \Lambda_t \ge E\} = \Lambda^{-1}(E)
-$$
-
-### Properties of Cox Construction
-
-Under this construction:
-
-- $\tau$ is a totally inaccessible $(\mathcal{G}_t)$-stopping time (surprise default)
-- The intensity interpretation is exact: $\lambda_t$ is the hazard rate
-- Immersion (H-hypothesis) holds automatically
-- Default is conditionally independent of $\mathcal{F}_\infty$ given $\Lambda_\tau$
-
-### Survival Probability
-
-The conditional survival probability given $\mathcal{F}_t$ is:
-
-$$
-\mathbb{Q}(\tau > T \mid \mathcal{F}_t) = \mathbb{Q}(E > \Lambda_T \mid \mathcal{F}_t) = \mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right]
-$$
-
-On the pre-default event $\{\tau > t\}$:
-
-$$
-\mathbb{Q}(\tau > T \mid \mathcal{G}_t) = \frac{\mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right]}{e^{-\Lambda_t}} = \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right]
-$$
+Recall (see [§ Cox Process Models](cox_process_models.md)) for the construction $\tau = \inf\{t : \Lambda_t \ge E\}$, the resulting totally inaccessible stopping time, the immersion (H-hypothesis) property, and the conditional survival formula $\mathbb{Q}(\tau > T \mid \mathcal{F}_t) = \mathbb{E}[e^{-\Lambda_T} \mid \mathcal{F}_t]$.
 
 ---
 
@@ -160,56 +114,7 @@ The intensity inherits randomness from the state variables.
 
 ### Common Specifications
 
-**1. Vasicek-type (Ornstein-Uhlenbeck):**
-
-$$
-d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma \, dW_t
-$$
-
-Properties:
-
-- Mean-reverting to long-run level $\theta$
-- Gaussian—can become negative (problematic)
-- Analytically tractable
-
-**2. CIR-type (Cox-Ingersoll-Ross):**
-
-$$
-d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t
-$$
-
-Properties:
-
-- Mean-reverting
-- Non-negative if $2\kappa\theta \ge \sigma^2$ (Feller condition)
-- Affine structure enables closed-form bond prices
-- Industry standard for credit modeling
-
-**3. Log-normal:**
-
-$$
-d\ln\lambda_t = \kappa(\theta - \ln\lambda_t) \, dt + \sigma \, dW_t
-$$
-
-Properties:
-
-- Strictly positive intensity
-- Mean-reverting in log-space
-- Heavier tails than CIR
-
-**4. Jump-diffusion:**
-
-$$
-d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t + J \, dN_t
-$$
-
-where $N_t$ is a Poisson process and $J$ is jump size.
-
-Properties:
-
-- Captures sudden credit deterioration
-- More realistic for crisis scenarios
-- Complicates pricing
+Recall (see [§ Affine Intensity Models](affine_intensity_models.md)) for the canonical specifications -- Vasicek-type OU (Gaussian, can become negative), CIR-type (Feller condition $2\kappa\theta \ge \sigma^2$, industry standard), and affine jump-diffusion extensions. A log-normal alternative $d\ln\lambda_t = \kappa(\theta - \ln\lambda_t)dt + \sigma\,dW_t$ gives strictly positive intensity with heavier tails than CIR but lacks closed-form survival.
 
 ---
 
@@ -264,23 +169,9 @@ The intensity $\lambda_t$ is $\mathcal{F}_t$-measurable, where $\mathcal{F}_t$ c
 
 Crucially, $\mathcal{F}_t$ does **not** contain information about the specific timing of $\tau$.
 
-### Surprise Default
+### Surprise Default and Immersion
 
-In reduced-form models with intensity, default is always a surprise:
-
-- $\tau$ is totally inaccessible (no announcing sequence)
-- Even with complete market information, exact default time is unknown
-- Default "arrives" at an unexpected moment
-
-This contrasts with structural models where default becomes predictable as firm value approaches the barrier.
-
-### Immersion
-
-Under the Cox construction, immersion holds automatically:
-
-- $\mathcal{F}$-martingales remain $\mathcal{G}$-martingales
-- Market dynamics are unchanged by default revelation
-- Clean separation of market and credit risk
+Recall (see [§ Cox Process Models](cox_process_models.md)) for the totally inaccessible property and the automatic immersion (H-hypothesis) under the Cox construction; both yield clean separation of market and credit risk, in contrast to predictable structural defaults.
 
 ---
 

@@ -5,6 +5,37 @@ As discussed in the preceding section on historical context, the arithmetic Brow
 
 This section defines GBM, derives its closed-form solution using Ito's lemma, characterizes the resulting log-normal distribution, computes its moments, and examines the model's empirical limitations.
 
+---
+
+## Toy: Where Geometric Brownian Motion Comes From
+
+Before the SDE, watch GBM emerge from a tiny multiplicative random walk.
+
+Partition $[0,T]$ into $n$ equal steps of length $\Delta t = T/n$. At each step, multiply the price by an independent factor
+
+$$
+\xi_i = \exp\!\left[\,\bigl(\mu - \tfrac{1}{2}\sigma^2\bigr)\Delta t + \sigma\sqrt{\Delta t}\,\varepsilon_i\,\right], \qquad \varepsilon_i = \pm 1 \text{ with equal probability}
+$$
+
+After $n$ steps,
+
+$$
+S_T = S_0 \prod_{i=1}^{n}\xi_i = S_0 \exp\!\left[\,\bigl(\mu - \tfrac{1}{2}\sigma^2\bigr)T + \sigma\sqrt{\Delta t}\sum_{i=1}^{n}\varepsilon_i\,\right]
+$$
+
+Two features are visible already in the toy:
+
+- **Positivity is automatic.** Each factor $\xi_i > 0$, so $S_T > 0$ for every path — the Bachelier negative-price defect is gone the moment we go multiplicative.
+- **The Itô correction $-\tfrac{1}{2}\sigma^2$ is necessary, not cosmetic.** Without it, $\mathbb{E}[\xi_i] = \cosh(\sigma\sqrt{\Delta t}) > 1$ even when $\mu = 0$, so multiplicative noise alone would inflate the mean. Subtracting $\tfrac{1}{2}\sigma^2\Delta t$ in the exponent restores $\mathbb{E}[S_T] = S_0 e^{\mu T}$.
+
+Take $n \to \infty$. By the central limit theorem, $\sqrt{\Delta t}\sum_i \varepsilon_i \to W_T \sim \mathcal{N}(0, T)$, and the limit
+
+$$
+S_T = S_0\,\exp\!\left[\bigl(\mu - \tfrac{1}{2}\sigma^2\bigr)T + \sigma W_T\right]
+$$
+
+is the closed-form solution of the GBM SDE that the next subsection states. Everything below — log-normality, $\mathbb{E}[S_t] = S_0 e^{\mu t}$, the Itô correction, independent increments — is already visible in this toy. The continuous-time machinery (Itô's lemma, stochastic integrals) is the apparatus that handles this limit rigorously.
+
 !!! abstract "Learning Objectives"
     After completing this section, you should be able to:
 
@@ -52,51 +83,13 @@ The SDE is of **multiplicative noise** type: both the drift coefficient $\mu S_t
 
 ## Solution via Ito's Lemma
 
-
-### 1. Setup
-
-To solve the GBM SDE, apply Ito's lemma to the function $f(x) = \ln x$. For $x > 0$, we have
+Recall (see [§ Ito Calculus Applications](../../ch03/ito_lemma/ito_calculus_applications.md) and [§ SDEs](../../ch03/sde/index.md)): applying Ito's lemma to $Y_t = \ln S_t$ converts the multiplicative GBM SDE into an ABM with drift $\mu - \tfrac{1}{2}\sigma^2$ and exponentiating yields the **closed-form solution**
 
 $$
-f'(x) = \frac{1}{x}, \qquad f''(x) = -\frac{1}{x^2}
+\boxed{S_t = S_0 \exp\!\left[\left(\mu - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t\right]}
 $$
 
-### 2. Application of Ito's Lemma
-
-By Ito's lemma, for a process $S_t$ satisfying $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$, the process $Y_t = \ln S_t$ satisfies
-
-$$
-dY_t = f'(S_t)\,dS_t + \frac{1}{2}\,f''(S_t)\,(dS_t)^2
-$$
-
-Substituting and using the Ito multiplication rules ($dt \cdot dt = 0$, $dW_t \cdot dt = 0$, $dW_t \cdot dW_t = dt$):
-
-$$
-dY_t = \frac{1}{S_t}\left(\mu S_t \, dt + \sigma S_t \, dW_t\right) + \frac{1}{2}\left(-\frac{1}{S_t^2}\right)\sigma^2 S_t^2 \, dt
-$$
-
-Simplifying:
-
-$$
-dY_t = \left(\mu - \frac{1}{2}\sigma^2\right) dt + \sigma \, dW_t
-$$
-
-### 3. Integration
-
-Since the coefficients are constant, $Y_t = \ln S_t$ is an arithmetic Brownian motion (with drift). Integrating from $0$ to $t$:
-
-$$
-\ln S_t - \ln S_0 = \left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t
-$$
-
-Exponentiating both sides yields the **closed-form solution**:
-
-$$
-\boxed{S_t = S_0 \exp\!\left[\left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t\right]}
-$$
-
-!!! warning "The Ito Correction Term"
-    The factor $-\frac{1}{2}\sigma^2$ in the exponent is the **Ito correction** (sometimes called the "convexity adjustment"). It arises from the second-order term in Ito's lemma and distinguishes stochastic calculus from ordinary calculus. Without this correction, $\mathbb{E}[S_t]$ would not equal $S_0 e^{\mu t}$. The Ito correction ensures consistency between the SDE drift $\mu$ and the expected growth rate of the price.
+The $-\tfrac{1}{2}\sigma^2$ term is the **Ito correction**; without it $\mathbb{E}[S_t] \neq S_0 e^{\mu t}$.
 
 ---
 

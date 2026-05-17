@@ -1,7 +1,9 @@
 # Gamma and Vega Hedging
 
-
 Delta hedging removes linear price risk but leaves the portfolio exposed to gamma (convexity) and vega (volatility) risks. Neutralizing these requires trading additional options.
+
+!!! tip "Toy mechanism: one Greek, one instrument"
+    Each Greek you want to neutralise needs its own freely-priced instrument. The underlying has $\Gamma = \nu = 0$ — it is linear in itself and insensitive to $\sigma$ — so cancelling those second-order Greeks requires *another option*. The recipe is mechanical: to zero out a portfolio with gamma $\Gamma_P$ using an instrument with gamma $\Gamma_I$, hold $n = -\Gamma_P/\Gamma_I$ units of the instrument. Then re-delta-hedge to mop up the delta introduced by the new option. The same one-Greek-one-instrument template scales to vega, vanna, volga: $k$ unhedged Greeks need $k$ option positions and one final share-rebalance.
 
 ---
 
@@ -10,13 +12,7 @@ Delta hedging removes linear price risk but leaves the portfolio exposed to gamm
 
 #### Why gamma matters
 
-After delta hedging, the residual P&L over an interval is
-
-$$
-P\&L_{\text{hedged}} \approx \frac{1}{2}\Gamma(\delta S)^2 + \Theta\,\delta t
-$$
-
-If $\Gamma$ is large, even moderate price moves create significant P&L swings. **Gamma hedging** seeks
+Recall (see [§ Gamma Risk and Convexity Effects](../hedging_errors/gamma_risk_and_convexity_effects.md)): after delta hedging, the residual P&L is $P\&L_{\text{hedged}} \approx \tfrac{1}{2}\Gamma(\delta S)^2 + \Theta\,\delta t$. If $\Gamma$ is large, even moderate price moves create significant P&L swings. **Gamma hedging** seeks
 
 $$
 \boxed{\Gamma_{\text{portfolio}} = 0}
@@ -80,13 +76,7 @@ Like gamma, vega can only be hedged with **other options** (the underlying has z
 
 #### Vega-gamma interaction
 
-In Black–Scholes, vega and gamma are proportional:
-
-$$
-\nu = \sigma S^2 \tau\,\Gamma
-$$
-
-This means gamma-hedging automatically addresses vega in the Black–Scholes world. However, in practice (stochastic volatility, term structure effects), vega and gamma are **not perfectly correlated**, and separate hedging is required.
+Recall (see [§ Greeks in the Black-Scholes Model](../../ch10/greeks/greeks_in_black_scholes_model.md)): in Black–Scholes, vega and gamma are proportional via $\nu = \sigma S^2 \tau\,\Gamma$. So gamma-hedging automatically addresses vega in the BS world. In practice (stochastic vol, term-structure effects — see [§ Implied Volatility Sensitivities](../../ch12/implied_volatility_sensitivities/smile_dynamics_and_hedging.md)), vega and gamma are **not perfectly correlated**, and separate hedging is required.
 
 ---
 
@@ -126,20 +116,7 @@ yielding the required positions in options A and B.
 ### The gamma-theta tradeoff
 
 
-Gamma and theta are fundamentally linked through the Black–Scholes PDE:
-
-$$
-\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r(V - S\Delta)
-$$
-
-This implies:
-
-| Position | Gamma | Theta | Interpretation |
-|---|---|---|---|
-| **Long options** | $\Gamma > 0$ | $\Theta < 0$ | Benefit from moves, pay time decay |
-| **Short options** | $\Gamma < 0$ | $\Theta > 0$ | Earn time decay, lose on moves |
-
-You cannot have both positive gamma and positive theta simultaneously (in Black–Scholes). This tradeoff is the central tension in options portfolio management.
+Recall (see [§ Gamma Risk and Convexity Effects](../hedging_errors/gamma_risk_and_convexity_effects.md)): the identity $\Theta + \tfrac{1}{2}\sigma^2 S^2 \Gamma = r(V - S\Delta)$ forces opposite signs on $\Gamma$ and $\Theta$ — long options pay theta to earn convexity, short options harvest theta and bear convexity risk. This tradeoff is the central tension in options portfolio management.
 
 ---
 

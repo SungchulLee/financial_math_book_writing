@@ -290,29 +290,11 @@ Quadratic Taylor expansions play a crucial role in many areas of mathematics. In
 
 #### Deterministic vs Brownian Scaling
 
-In deterministic calculus, the quadratic term becomes extremely small as increments shrink. If a variable changes by a small amount $dt$, then the square of the increment is negligible:
+In deterministic calculus, $(dt)^2 \ll dt$, so the quadratic term in a Taylor expansion is negligible. Brownian motion is fundamentally different.
 
-$$
-(dt)^2 \ll dt
-$$
+Recall (see [Quadratic Variation of Brownian Motion](../../ch02/brownian_motion/quadratic_variation_of_brownian_motion.md) for the underlying convergence and [§ From Taylor to Itô](from_taylor_to_ito.md) for the canonical multiplication table): Brownian increments scale as $\Delta B_t \sim \sqrt{\Delta t}$, so $(\Delta B_t)^2 \sim \Delta t$ — same order as the linear term. This is promoted to the algebraic rule $(dB_t)^2 = dt$, with $(dt)^2 = 0$ and $dt\,dB_t = 0$.
 
-For this reason, quadratic terms are typically ignored in first-order approximations.
-
-Brownian motion behaves differently. Over a short time interval $dt$, the increment of a Brownian motion satisfies
-
-$$
-\Delta B_t \sim \sqrt{dt}
-$$
-
-Because the increment scales with the square root of time, its square satisfies
-
-$$
-(\Delta B_t)^2 \sim dt
-$$
-
-This scaling is made precise via the quadratic variation of Brownian motion; see [From Taylor to Itô](from_taylor_to_ito.md) and [Quadratic Variation of Brownian Motion](../../ch02/brownian_motion/quadratic_variation_of_brownian_motion.md) for the rigorous statement.
-
-To illustrate these ideas, we simulate a Brownian path and examine both a nonlinear transformation and its quadratic variation.
+To illustrate, we simulate a Brownian path and examine both a nonlinear transformation and its quadratic variation.
 
 ```python
 import numpy as np

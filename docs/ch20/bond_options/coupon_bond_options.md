@@ -105,20 +105,7 @@ K_k &=& A(T_m, T_k)\,e^{-B(T_m, T_k)\,r^*}
 
 and $r^*$ solves $\sum_k c_k\,P(T_m, T_k; r^*) = 1$.
 
-Each ZCB put $V_p^{\text{ZCB}}(t_0, T_m, T_k; K_k)$ is computed using the Hull-White closed-form formula:
-
-$$\begin{array}{lllll}
-\displaystyle
-V_p^{\text{ZCB}}(t_0, T_m, T_k; K_k)
-&=&\displaystyle
-K_k\,P(t_0, T_m)\,N(-d_2) - P(t_0, T_k)\,N(-d_1)
-\end{array}$$
-
-with $d_1$, $d_2$ defined as in the ZCB option section using the volatility parameter
-
-$$
-\sigma_P = \frac{\sigma}{\lambda}\left(1 - e^{-\lambda(T_k - T_m)}\right)\sqrt{\frac{1 - e^{-2\lambda(T_m - t_0)}}{2\lambda}}
-$$
+Each ZCB put $V_p^{\text{ZCB}}(t_0, T_m, T_k; K_k)$ is computed using the Hull-White closed-form formula (Recall, see [§ ZCB Options](zero_coupon_bond_options.md)), with the standard $\sigma_P=\frac{\sigma}{\lambda}(1-e^{-\lambda(T_k-T_m)})\sqrt{(1-e^{-2\lambda(T_m-t_0)})/(2\lambda)}$.
 
 ## Put-Call Parity for Coupon Bond Options
 

@@ -344,70 +344,12 @@ For $\alpha > 0$, term structure is upward sloping.
 ### 3. Stochastic Volatility (Heston)
 
 
-The Heston model:
-
-
-$$
-\begin{align}
-dS_t &= (r - q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
-dv_t &= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
-d\langle W^S, W^v \rangle_t &= \rho dt
-\end{align}
-$$
-
-
-
-ATM term structure for small $T$:
-
-
-$$
-\sigma_{\text{ATM}}^2(T) \approx v_0 + (\theta - v_0)(1 - e^{-\kappa T}) + \frac{\xi^2}{4\kappa}(1 - e^{-2\kappa T})
-$$
-
-
-
-**Limits:**
-
-- Short maturity: $\sigma_{\text{ATM}}^2(T) \approx v_0$ (spot variance)
-- Long maturity: $\sigma_{\text{ATM}}^2(T) \to \theta + \frac{\xi^2}{4\kappa}$ (long-run level + vol-of-vol effect)
-
-**Slope:**
-
-$$
-\frac{d\sigma_{\text{ATM}}^2}{dT}\bigg|_{T=0} = \kappa(\theta - v_0)
-$$
-
-
-
-- If $v_0 < \theta$: Upward sloping (mean reversion from below)
-- If $v_0 > \theta$: Downward sloping (mean reversion from above)
+Recall (see [§ Stochastic Volatility](../../ch14/index.md)): in Heston $dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW^v$, the short-$T$ ATM variance satisfies $\sigma_{\text{ATM}}^2(T) \approx v_0 + (\theta - v_0)(1 - e^{-\kappa T}) + \frac{\xi^2}{4\kappa}(1 - e^{-2\kappa T})$ with initial slope $\kappa(\theta-v_0)$, so $v_0<\theta$ yields an upward-sloping term structure and $v_0>\theta$ a downward-sloping one; long-$T$ limit is $\theta + \xi^2/(4\kappa)$.
 
 ### 4. Jump-Diffusion Models
 
 
-With jumps in the underlying:
-
-
-$$
-dS_t = (r - q - \lambda m_J) S_t dt + \sigma S_t dW_t + S_t dJ_t
-$$
-
-
-
-where $J_t$ is a compound Poisson process with intensity $\lambda$ and jump size mean $m_J$.
-
-**Effect on term structure:** Jumps contribute a constant to the total variance:
-
-
-$$
-w(T) = \sigma^2 T + \lambda \mathbb{E}[J^2] T
-$$
-
-
-
-The term structure remains flat (both components scale linearly with $T$), but the **smile** exhibits curvature.
-
-**Implication:** Jumps affect strike dimension (smile shape) more than maturity dimension (term structure).
+With jumps $dS_t = (r - q - \lambda m_J) S_t dt + \sigma S_t dW_t + S_t dJ_t$, the compound Poisson component adds $\lambda\mathbb{E}[J^2]T$ to total variance — linear in $T$, so the term structure stays flat. Jumps act in the strike dimension (smile curvature, see [§ Skew and Smile](skew_and_smile.md)), not the maturity dimension.
 
 ## Empirical Stylized Facts
 
@@ -468,27 +410,7 @@ The term structure remains flat (both components scale linearly with $T$), but t
 ### 1. Variance Swap Basics
 
 
-A **variance swap** pays the difference between realized variance and a fixed strike $K_{\text{var}}$:
-
-
-$$
-\text{Payoff} = N_{\text{var}} \left( \frac{1}{T} \sum_{i=1}^n \log^2\frac{S_{t_i}}{S_{t_{i-1}}} - K_{\text{var}} \right)
-$$
-
-
-
-where $N_{\text{var}}$ is the variance notional.
-
-The fair strike is:
-
-
-$$
-K_{\text{var}} = \frac{2 e^{rT}}{T} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)
-$$
-
-
-
-This integral of option prices across strikes gives a **model-free implied variance**.
+Recall (see [§ Model-Free Results](../model_free_results/breeden_litzenberger_formula.md)): a variance swap pays $N_{\text{var}}(\tfrac{1}{T}\sum_i \log^2(S_{t_i}/S_{t_{i-1}}) - K_{\text{var}})$ with model-free fair strike $K_{\text{var}} = \tfrac{2e^{rT}}{T}(\int_0^F P(K)/K^2\,dK + \int_F^\infty C(K)/K^2\,dK)$ — a strike-weighted integral of OTM option prices.
 
 ### 2. Variance Term Structure
 

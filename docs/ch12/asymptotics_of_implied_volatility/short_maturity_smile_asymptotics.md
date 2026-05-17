@@ -318,44 +318,13 @@ $$
 ## Extreme Strikes: Small-Time Large-Deviation Theory
 
 
-### 1. Large Deviations for ITM/OTM Options
-
-
-For deep ITM or OTM options (large $|K - S_0|$) with small $T$:
-
-**Theorem 4.4.6** (Varadhan's Lemma Application)
-
+Recall (see [§ Small Noise and Large Deviations](../../ch03/diffusion_process/small_noise_and_large_deviations.md)) for the rate function $I(x)$ and Varadhan's lemma $-T\ln C(K,T)\to \inf_{x>K} I(x)$. Combining with the deep-OTM BS asymptotic $C\sim S_0 e^{-d_1^2/2}$ (see [§ Price-Level Asymptotic Regimes](../../ch10/asymptotic_regimes/short_maturity_asymptotics.md)) gives the IV translation
 
 $$
--\lim_{T \to 0} T \ln C(K, T) = \inf_{x: x > K} I(x)
+\sigma_{\text{IV}}^2(K, T) T \sim 2 I(K) \quad \text{as } T \to 0, \; K \text{ far from } S_0.
 $$
 
-
-
-where $I(x)$ is the **rate function** from large deviation theory:
-
-
-$$
-I(x) = \inf_{\text{paths } \{S_t\}: S_T = x} \int_0^T \frac{(\dot{S}_t - \mu(S_t))^2}{2\sigma^2(S_t) S_t^2} dt
-$$
-
-
-
-**Interpretation:** The option price decays exponentially in $T$ at a rate determined by the "most likely path" from $S_0$ to the payoff region.
-
-### 2. Connection to Implied Volatility
-
-
-Taking logarithms and using $C \approx S_0 \mathcal{N}(d_1) \approx S_0 e^{-d_1^2/2}$ for deep OTM:
-
-
-$$
-\sigma_{\text{IV}}^2(K, T) T \sim 2 I(K) \quad \text{as } T \to 0, \, K \text{ far from } S_0
-$$
-
-
-
-**Result:** The implied variance $\sigma_{\text{IV}}^2 T$ grows with $|K - S_0|$ to overcome the exponential decay of the option price.
+So $\sigma_{\text{IV}}^2 T$ grows with $|K-S_0|$ at the LDP rate.
 
 ## Small-Time vs Small Moneyness Regimes
 

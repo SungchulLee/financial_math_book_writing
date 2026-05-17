@@ -120,13 +120,7 @@ Discrete monitoring always produces a lower (or equal) maximum and a higher (or 
 - **Discrete lookback call** is cheaper than continuous lookback call
 - **Discrete lookback put** is cheaper than continuous lookback put
 
-The Broadie–Glasserman–Kou correction (similar to barrier options) adjusts for discrete monitoring:
-
-$$
-S_{\max}^{\text{continuous}} \approx S_{\max}^{\text{discrete}} \cdot e^{\beta \sigma \sqrt{T/n}}
-$$
-
-where $\beta \approx 0.5826$.
+Recall (see [§ Broadie–Glasserman–Kou Correction](barrier_options.md#broadieglassermankou-correction)): the analogous BGK correction here is $S_{\max}^{\text{continuous}} \approx S_{\max}^{\text{discrete}} \cdot e^{\beta \sigma \sqrt{T/n}}$ with $\beta \approx 0.5826$.
 
 ---
 

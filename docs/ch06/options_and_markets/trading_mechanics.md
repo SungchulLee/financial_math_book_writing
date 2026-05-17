@@ -1,5 +1,7 @@
 # Trading Mechanics
 
+Suppose you click "buy" on a single SPX call quoted at 180 points. Almost instantly you owe \$18,000, a market maker on the other side of the exchange owes you any payoff at expiration, and a clearinghouse you have never heard of stands between you to guarantee the contract. None of this machinery is visible in the formula $(S_T - K)^+$, yet every piece of it shapes the price you just paid: the standardization that lets two strangers transact a fungible contract, the bid-ask spread you crossed to get filled, the margin the writer had to post before quoting at all. The mathematical theory of option pricing assumes frictionless continuous trading; the institutional theory below explains which of those frictions are real and how large they are.
+
 Before developing the mathematical theory of option pricing, it is important to understand the institutional framework in which options are traded. The structure of the market --- whether trades occur on a centralized exchange or bilaterally between counterparties --- determines the degree of contract standardization, the liquidity available to participants, and the procedures governing exercise and settlement. These practical details motivate several modeling assumptions that appear later in the Black-Scholes framework.
 
 ---
@@ -41,7 +43,7 @@ Standardization is what makes exchange trading possible: because every contract 
 
 ## Contract Specifications: Real Market Examples
 
-In practice, the **contract multiplier** determines the monetary scale of premiums and payoffs. Two prominent examples illustrate the convention:
+Recall (see [§ Real-World Option Contracts](what_is_option.md)): the **contract multiplier** converts a quoted index-point premium into a currency amount. The two examples below give the full exchange specifications.
 
 ### S&P 500 Index Options (SPX)
 
@@ -85,7 +87,7 @@ $$
 
 ### Why Multipliers Matter
 
-The multiplier directly affects the monetary value of payoffs, the risk exposure per contract, and the margin requirements. Throughout this text, we work in **normalized units** (one unit of underlying), so the payoff of a call is simply $(S_T - K)^+$. In practice, all quantities must be scaled by the contract multiplier to obtain actual dollar (or won) amounts.
+The multiplier directly affects the monetary value of payoffs, the risk exposure per contract, and the margin requirements (see [§ Margin and Short Positions](margin.md)). Throughout this text, we work in **normalized units** (one unit of underlying), so the payoff of a call is simply $(S_T - K)^+$. In practice, all quantities must be scaled by the contract multiplier to obtain actual dollar (or won) amounts.
 
 ---
 
@@ -117,7 +119,7 @@ provides a normalized measure of transaction costs that is comparable across con
 
 Why does liquidity matter for pricing theory? The Black-Scholes model assumes continuous, frictionless trading. In practice, the bid-ask spread is the primary friction, and its size determines how closely real hedging approximates the theoretical ideal.
 
-Liquidity on options exchanges is provided in large part by **market makers** --- firms that continuously post bid and ask quotes and stand ready to trade in either direction. Market makers profit from the bid-ask spread but bear inventory risk: after filling a customer order, they hold a position that must be hedged. In practice, market makers use delta hedging and other Greek-based strategies to manage this risk, making the Black-Scholes framework not merely an academic construct but the operational backbone of options market-making.
+Liquidity on options exchanges is provided in large part by **market makers** --- firms that continuously post bid and ask quotes and stand ready to trade in either direction. Market makers profit from the bid-ask spread but bear inventory risk: after filling a customer order, they hold a position that must be hedged. Recall (see [§ The Greeks](../../ch10/greeks/delta_gamma_vega_theta_rho.md)): the delta- and Greek-based hedging strategies used to manage this inventory risk are developed later.
 
 ---
 

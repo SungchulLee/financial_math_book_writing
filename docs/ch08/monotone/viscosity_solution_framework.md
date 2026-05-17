@@ -1,6 +1,6 @@
 # Viscosity Solution Framework
 
-When the PDE lacks smooth solutions --- due to degenerate diffusion, non-smooth boundary data, or obstacle constraints --- classical solution theory breaks down. Viscosity solutions provide the correct weak solution concept for these problems, replacing pointwise PDE satisfaction with inequalities tested against smooth touching functions.
+When $u$ has a corner -- say $u(x)=|x|$, or the American-option price at the free boundary -- the second derivative does not exist there, so "u solves $F(u,Du,D^2u)=0$ pointwise" is meaningless. The viscosity trick replaces $u$'s missing derivatives with those of *touching* smooth test functions $\varphi$: $u$ is a **subsolution** if $F(\varphi,D\varphi,D^2\varphi)\le 0$ at every point where $\varphi$ touches $u$ from above, and a **supersolution** if the reverse inequality holds for $\varphi$ touching from below. This single substitution -- "lend $u$ the derivatives of a smooth function tangent to it" -- is the entire content of the **viscosity solution framework**.
 
 ---
 
@@ -8,13 +8,7 @@ When the PDE lacks smooth solutions --- due to degenerate diffusion, non-smooth 
 
 ### The Black-Scholes PDE at S = 0
 
-The Black-Scholes PDE:
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
-$$
-
-has diffusion coefficient $\frac{1}{2}\sigma^2 S^2$, which **degenerates** (vanishes) at $S = 0$. At this boundary, the PDE reduces to:
+Recall (see [§ Discounting and killing term](../../ch06/bs_pde_structure/discounting_and_killing_term.md)): the Black-Scholes PDE is $V_t + \tfrac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0$. Its diffusion coefficient $\tfrac{1}{2}\sigma^2 S^2$ **degenerates** (vanishes) at $S=0$, where the PDE reduces to:
 
 $$
 \frac{\partial V}{\partial t} - rV = 0
@@ -172,18 +166,7 @@ For $u_\tau = x^2 u_{xx}$ (the Black-Scholes diffusion term), the diffusion dege
 
 ### Example 3: American Option (Obstacle Problem)
 
-The American option value satisfies:
-
-$$
-\min(-u_\tau + \mathcal{L}u,\; u - \Phi) = 0
-$$
-
-In viscosity sense:
-
-- **Subsolution**: At any local max of $u - \varphi$, either $-\varphi_\tau + \mathcal{L}\varphi \leq 0$ or $u \leq \Phi$
-- **Supersolution**: At any local min of $u - \varphi$, either $-\varphi_\tau + \mathcal{L}\varphi \geq 0$ or $u \geq \Phi$
-
-This encodes the free boundary problem without explicitly tracking the boundary $S^*(t)$.
+Recall (see [§ American Options](../american_options/free_boundary_problems_american_options.md)): the value satisfies the variational inequality $\min(-u_\tau + \mathcal{L}u, u - \Phi) = 0$. In viscosity sense, the subsolution requires either $-\varphi_\tau + \mathcal{L}\varphi \leq 0$ or $u \leq \Phi$ at each touching point; the supersolution requires the corresponding $\geq 0$ alternative. The free boundary $S^*(t)$ is encoded implicitly.
 
 ### Example 4: Discontinuous Payoffs (Digital Options)
 

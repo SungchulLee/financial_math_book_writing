@@ -32,6 +32,8 @@ The total cost scales as $\kappa \cdot \sigma \cdot S \cdot \sqrt{N}$ for $N$ re
 
 ## MDP Formulation
 
+Recall (see [§ Definition of an MDP](markov_decision_processes.md#definition-of-an-mdp)) for the general MDP framework.
+
 ### State Space
 
 The hedging state at time $t_k$ encodes all relevant information:
@@ -118,23 +120,13 @@ At each step, the agent selects $\delta_k = \arg\max_\delta Q_\theta(s_k, \delta
 
 ### Policy Gradient for Hedging
 
-For continuous hedge ratios, use a Gaussian policy:
-
-$$
-\delta_k \sim \pi_\theta(\cdot \mid s_k) = \mathcal{N}\!\left(\mu_\theta(s_k), \sigma_\theta^2(s_k)\right)
-$$
-
-The policy gradient with baseline:
-
-$$
-\nabla_\theta J = \mathbb{E}\!\left[\sum_{k=0}^{N-1} \nabla_\theta \log \pi_\theta(\delta_k \mid s_k)(G_k - b(s_k))\right]
-$$
+Recall (see [§ Policy Gradient Theorem](policy_gradient_methods.md#policy-gradient-theorem) and [§ Variance Reduction via Baselines](policy_gradient_methods.md#variance-reduction-via-baselines)). For continuous hedge ratios, use a Gaussian policy $\delta_k \sim \mathcal{N}(\mu_\theta(s_k), \sigma_\theta^2(s_k))$ and apply the policy gradient with baseline $b(s_k)$.
 
 ### Training Protocol
 
 1. **Environment:** Simulate $M$ stock price paths under a chosen model (GBM, Heston, or empirical bootstrap)
 2. **Episode:** Each episode is one option hedging task from $t = 0$ to $t = T$
-3. **Training:** Run PPO or SAC for $10^5$--$10^6$ episodes
+3. **Training:** Run PPO or SAC for $10^5$--$10^6$ episodes (Recall (see [§ Proximal Policy Optimization (PPO)](policy_gradient_methods.md#proximal-policy-optimization-ppo)))
 4. **Evaluation:** Test on held-out paths (different random seeds or different model parameters)
 
 ---

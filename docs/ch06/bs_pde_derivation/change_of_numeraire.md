@@ -1,11 +1,22 @@
 # Black–Scholes PDE via Change of Numéraire
 
 
-This derivation removes the physical drift $\mu$ by **unit normalization**: expressing prices in units of the stock (rather than currency) shifts the drift under Girsanov's theorem, and the martingale condition in the new units produces the PDE. This is not about pricing differently—it is about changing the unit of account and observing that the pricing equation is invariant.
+This derivation removes the physical drift $\mu$ by **unit normalization**: expressing prices in units of the stock shifts the drift under Girsanov's theorem, and the martingale condition in the new units produces the PDE.
 
-The Black–Scholes PDE can be derived without any delta-hedging or replication argument. Instead, one chooses the **stock as numéraire**, constructs the associated martingale measure via Girsanov's theorem, and imposes the condition that the normalized option price is a martingale. The PDE then emerges from setting the drift of this martingale to zero.
+!!! tip "Orientation"
+    This is the most abstract derivation in the chapter sequence. The high-level idea is: (i) take the stock $S_t$ as the unit of account; (ii) Girsanov gives the **density process** $Z_t = S_te^{-rt}/S_0$ and a new measure $\mathbb{Q}^S$ under which $V/S$ is a martingale; (iii) the PDE is read off by setting the drift of $V/S$ to zero, then transforming back to $V$. No replicating portfolio is constructed explicitly.
 
-This derivation views the same pricing problem through a different lens than [self-financing replication](replication.md) or [risk-neutral pricing](risk_neutral_measure.md) under the money-market numéraire: rather than constructing the replicating strategy $(\alpha_t, \beta_t)$ explicitly or working under $\mathbb{Q}$, it changes the unit of account and reads the pricing equation off a martingale condition under $\mathbb{Q}^S$. The fact that a different numéraire and a different measure yield the same PDE is a concrete manifestation of pricing invariance — the underlying object is the unique no-arbitrage price; the [change-of-numéraire framework](../../ch01/numeraire_and_change_of_measure/numeraire_and_change_of_measure.md) supplies one more coordinate system on it.
+Recall (see [§ Risk-Neutral Pricing](risk_neutral_measure.md)): under $\mathbb{Q}$ the discounted stock $e^{-rt}S_t$ is already a $\mathbb{Q}$-martingale, so $Z_t = S_te^{-rt}/S_0$ defines a valid change of measure to $\mathbb{Q}^S$. The general change-of-numéraire framework is developed in [§ Numéraire](../../ch04/risk_neutral/numeraire.md); this page is its concrete application to Black–Scholes.
+
+
+## Mechanism: Changing the Unit of Account in Two States
+
+
+Numéraire change is fundamentally probability reweighting. Consider a one-period market with stock $S_1 \in \{S^u, S^d\}$ and bond $B_1 = 1+r$, both starting at $S_0$ and $B_0 = 1$. Pricing in dollars uses the risk-neutral measure $\mathbb{Q}$, under which $S_t/B_t$ is a martingale. Pricing in shares uses a new measure $\mathbb{Q}^S$ obtained by reweighting:
+
+$$Z = \frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_1/S_0}{B_1/B_0}$$
+
+The state where $S_1$ is high gets up-weighted, the state where $S_1$ is low gets down-weighted, by exactly the factor that makes $1/S_t \cdot B_t = B_t/S_t$ a $\mathbb{Q}^S$-martingale. Asset prices in units of stock — $V/S$ — are then the new "discounted prices." The continuous derivation below is the same operation in differential form: $Z_t = S_te^{-rt}/S_0$ tilts $\mathbb{Q}$ toward high-$S_T$ paths, the new martingale condition is $V/S$ rather than $e^{-rt}V$, and the resulting PDE for the option price $V$ turns out to be identical to the one obtained from the bond numéraire — the price is invariant to the chosen unit.
 
 
 ## Setup
@@ -27,29 +38,21 @@ We take the **stock** $S_t$ as numéraire. This is valid because $S_t$ is strict
 
 ### Radon–Nikodym Derivative
 
-By the [change-of-numéraire theorem](../../ch01/numeraire_and_change_of_measure/numeraire_and_change_of_measure.md), the density process from $\mathbb{Q}$ to $\mathbb{Q}^S$ is
+Recall (see [§ Numéraire](../../ch04/risk_neutral/numeraire.md)): the density process from $\mathbb{Q}$ to $\mathbb{Q}^S$ is the ratio of normalized numéraires,
 
 $$Z_t = \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{S_t / S_0}{B_t / B_0} = \frac{S_t e^{-rt}}{S_0}$$
 
 ### Dynamics of Z_t
 
-Apply Itô's product rule to $Z_t = (e^{-rt}/S_0) \cdot S_t$. Since $e^{-rt}$ is of bounded variation (zero quadratic variation), the cross-variation vanishes:
-
-$$dZ_t = \frac{e^{-rt}}{S_0}\, dS_t + \frac{S_t}{S_0}\, d(e^{-rt}) = \frac{e^{-rt}}{S_0}\bigl(rS_t\, dt + \sigma S_t\, dW^{\mathbb{Q}}_t\bigr) - \frac{rS_t e^{-rt}}{S_0}\, dt$$
-
-The $r\, dt$ terms cancel:
-
-$$dZ_t = \frac{\sigma S_t e^{-rt}}{S_0}\, dW^{\mathbb{Q}}_t = \sigma Z_t\, dW^{\mathbb{Q}}_t$$
-
-Therefore
+Itô's product rule applied to $Z_t = (e^{-rt}/S_0)S_t$ gives
 
 $$\frac{dZ_t}{Z_t} = \sigma\, dW^{\mathbb{Q}}_t$$
 
-This is a driftless geometric Brownian motion: $Z_t = \exp(\sigma W^{\mathbb{Q}}_t - \frac{1}{2}\sigma^2 t)$, the exponential martingale associated with the constant integrand $\sigma$. Since $\sigma$ is constant, $Z_t$ is a true $\mathbb{Q}$-martingale (not merely a local martingale) and defines a valid probability measure.
+after the $r\,dt$ terms cancel. Thus $Z_t = \exp(\sigma W^{\mathbb{Q}}_t - \tfrac{1}{2}\sigma^2 t)$ is a true $\mathbb{Q}$-martingale (constant integrand $\sigma$ trivially satisfies Novikov).
 
 ### Girsanov Transformation
 
-Since the density process has volatility $\sigma$ (i.e., $dZ_t/Z_t = \sigma\, dW^{\mathbb{Q}}_t$), Girsanov's theorem gives the $\mathbb{Q}^S$-Brownian motion:
+Recall (see [§ Girsanov's Theorem](../../ch04/girsanov/girsanov_theorem.md)): with density volatility $\sigma$, the $\mathbb{Q}^S$-Brownian motion is
 
 $$W^S_t = W^{\mathbb{Q}}_t - \sigma t$$
 
@@ -93,13 +96,11 @@ This driftless SDE shows $B_t/S_t$ is a local $\mathbb{Q}^S$-martingale. To conf
 
 *Under $\mathbb{Q}^S$, any traded asset price normalized by $S_t$ is a martingale.*
 
-Let $V(t, S)$ denote the option price as a function of time and the stock price. We assume $V \in C^{1,2}([0,T) \times (0,\infty))$ with at most polynomial growth. (The PDE holds on $[0,T) \times (0,\infty)$; the terminal condition $V(T, S) = \Phi(S)$ is imposed separately, since typical payoffs such as $(S - K)^+$ are not $C^2$.) These conditions are sufficient for Itô's formula to apply and, in the Black–Scholes setting, for the resulting local martingale to be a true martingale—polynomial growth of $V$ combined with the known moment bounds for GBM (see, e.g., Karatzas and Shreve, 1991, §3.3) provides the needed integrability. Under $\mathbb{Q}^S$, the normalized price
+Assume $V \in C^{1,2}([0,T) \times (0,\infty))$ with polynomial growth (sufficient for Itô's formula and for the local martingale below to be a true martingale, by the standard GBM moment bounds). Under $\mathbb{Q}^S$, the normalized price
 
 $$u(t, S) = \frac{V(t, S)}{S}$$
 
-must be a martingale. We are not "forcing" a martingale—this is a consequence of no-arbitrage under the chosen numéraire: any no-arbitrage price, when denominated in units of the numéraire, must be a martingale under the associated measure.
-
-By Itô's formula applied to $u(t, S_t)$, the process $u$ is first a local $\mathbb{Q}^S$-martingale. The polynomial growth condition on $V$, combined with known moment bounds for GBM, provides sufficient integrability in the Black–Scholes setting (using known moment bounds for GBM), so in this model the local martingale is a true martingale. The martingale condition requires the drift to vanish:
+must be a $\mathbb{Q}^S$-martingale — this is no-arbitrage in the chosen numéraire. The martingale condition requires zero drift:
 
 $$\frac{\partial u}{\partial t} + \mathcal{L}^S u = 0$$
 
@@ -211,7 +212,7 @@ The logical structure is:
 5. **Impose the martingale condition**: $u = V/S$ satisfies $\partial_t u + \mathcal{L}^S u = 0$.
 6. **Transform back to $V$**: the $\sigma^2$ terms cancel, yielding the Black–Scholes PDE.
 
-This derivation differs from the [replication approach](replication.md) in *method*: it begins with measure theory (Girsanov's theorem, Radon–Nikodym derivatives) rather than self-financing portfolios, and obtains the PDE from a martingale condition rather than a hedging argument. The replicating strategy $(\alpha_t, \beta_t)$ never appears explicitly here, but it is implicit in the background — completeness, which guarantees uniqueness of the pricing measure, is precisely the existence of such a strategy. Both approaches ultimately rest on the same theoretical foundations: **no-arbitrage** guarantees the existence of an equivalent martingale measure, and **completeness** (which in Black–Scholes is equivalent to the ability to replicate) guarantees its uniqueness and hence the uniqueness of the price. The fact that both approaches yield the same equation reflects this deep connection, established by the [FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
+Recall (see [§ Self-Financing Replication](replication.md)): replication makes the strategy $(\alpha_t,\beta_t)$ explicit; here the same strategy is implicit, and the PDE is read off from the martingale condition for $V/S$ rather than from $\alpha_t = V_S$. The two methods rest on the same FTAP foundation — see [§ FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
 
 
 ## References

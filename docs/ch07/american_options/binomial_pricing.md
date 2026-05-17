@@ -2,7 +2,7 @@
 
 ### Introduction
 
-The **binomial tree** is the most natural numerical framework for American option pricing. Its node-by-node structure allows the early-exercise decision to be evaluated at every point in the tree via **backward induction with a maximum condition**.
+The **binomial tree** is the most natural numerical framework for American option pricing. Its node-by-node structure allows the early-exercise decision to be evaluated at every point in the tree via **backward induction with a maximum condition**. For the discrete-tree treatment of American options, Recall (see [§ American options on trees](../../ch01/multi_period_model/american_options_on_trees.md)).
 
 This section develops the full binomial pricing algorithm for American options, demonstrates convergence, and shows how the method naturally identifies the early-exercise boundary.
 
@@ -24,19 +24,7 @@ This section develops the full binomial pricing algorithm for American options, 
 
 ### European Pricing: Recap
 
-In the CRR binomial model with $N$ time steps:
-
-$$
-\Delta t = \frac{T}{N}, \quad u = e^{\sigma\sqrt{\Delta t}}, \quad d = \frac{1}{u}, \quad q = \frac{e^{r\Delta t} - d}{u - d}
-$$
-
-For a **European** option, backward induction gives:
-
-$$
-V_{n,j} = e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1 - q) \, V_{n+1,j}\right]
-$$
-
-starting from terminal payoffs $V_{N,j} = \Phi(S_{N,j})$.
+Recall (see [§ Multi-period binomial model](../../ch01/multi_period_model/multi_period_binomial_model.md)) the CRR parameters $\Delta t = T/N$, $u = e^{\sigma\sqrt{\Delta t}}$, $d = 1/u$, $q = (e^{r\Delta t} - d)/(u - d)$, and the European backward induction $V_{n,j} = e^{-r\Delta t}[q V_{n+1,j+1} + (1-q) V_{n+1,j}]$ from terminal payoffs $V_{N,j} = \Phi(S_{N,j})$.
 
 ---
 
@@ -155,11 +143,12 @@ if __name__ == "__main__":
 
 The difference between American and European put prices is the **early exercise premium**:
 
+For the European put closed form, Recall (see [§ Black–Scholes formula](../../ch06/black_scholes_formula/bs_formula_statement.md)).
+
 ```python
 from scipy.stats import norm
 
 def european_put_bs(S, K, T, r, sigma):
-    """Black-Scholes European put price."""
     d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
     d2 = d1 - sigma * np.sqrt(T)
     return K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1)

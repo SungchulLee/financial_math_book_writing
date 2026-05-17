@@ -1,6 +1,8 @@
 # Multidimensional Itô's Lemma
 
-The one-dimensional Itô formula (see [Itô's Lemma](ito_lemma.md)) extends naturally to systems of SDEs driven by multiple Brownian motions. This page presents the multidimensional version using index notation, derives the quadratic covariation structure, and works through concrete examples.
+The one-dimensional Itô formula (see [§ Itô's Lemma](ito_lemma.md)) extends naturally to systems of SDEs driven by multiple Brownian motions. This page presents the multidimensional version using index notation, derives the quadratic covariation structure, and works through concrete examples.
+
+Recall (see [§ Itô's Lemma — Version 3](ito_lemma.md)): for a 1D Itô process $dX_t = \mu_t\,dt + \sigma_t\,dB_t$, the formula reads $df = (f_t + \mu_t f_x + \tfrac12 \sigma_t^2 f_{xx})\,dt + \sigma_t f_x\,dB_t$. The multidimensional version below replaces $\sigma_t^2$ by the diffusion matrix $a^{ij} = (\sigma\sigma^T)^{ij}$.
 
 ## 1. Setting
 
@@ -44,7 +46,7 @@ $$
 d\langle W^{\alpha}, W^{\beta} \rangle_t = \delta^{\alpha\beta}\,dt
 $$
 
-which reflects two facts: independent Brownian components ($\alpha \neq \beta$) have zero covariation, while the same component satisfies $(dW^\alpha)^2 = dt$ — see [From Taylor to Itô](from_taylor_to_ito.md) for the 1D derivation. Applying this:
+Recall (see [§ From Taylor to Itô](from_taylor_to_ito.md)): the 1D rule $(dW)^2 = dt$ is the canonical statement. Here it extends componentwise: independent Brownian components ($\alpha \neq \beta$) have zero covariation, while the same component satisfies $(dW^\alpha)^2 = dt$. Applying this:
 
 $$
 \boxed{
@@ -83,19 +85,7 @@ where all functions are evaluated at $(t, X_t)$.
 - **Drift of $f$**: time derivative + advection by drift + Itô correction from curvature
 - **Stochastic part of $f$**: $f_i \sigma^{i\alpha} dW_t^{\alpha}$, i.e., the gradient of $f$ contracted with the diffusion matrix $\sigma$, acting on $dW_t$
 
-The **infinitesimal generator** $\mathcal{L}$ packages the *spatial* part of the drift (excluding $f_t$):
-
-$$
-(\mathcal{L}f)(t, x) := b^{i}(t, x)\,f_i(t,x) + \frac{1}{2}a^{ij}(t, x)\,f_{ij}(t,x)
-$$
-
-so the standard form condenses to:
-
-$$
-df(t, X_t) = \bigl(f_t + \mathcal{L}f\bigr)(t, X_t)\,dt + f_i(t, X_t)\,\sigma^{i\alpha}(t, X_t)\,dW_t^{\alpha}
-$$
-
-Note that $\mathcal{L}$ acts on spatial variables only and does not include $f_t$; the full drift is $f_t + \mathcal{L}f$. The generator $\mathcal{L}$ governs the expected infinitesimal evolution of $f(t, X_t)$; it appears in the Kolmogorov forward and backward equations and the Feynman–Kac formula — see Kolmogorov Equations and Feynman–Kac Formula.
+Recall (see [§ Infinitesimal Generator](../infinitesimal_generator/infinitesimal_generator.md)): the **generator** $\mathcal{L}f := b^{i}f_i + \tfrac{1}{2}a^{ij}f_{ij}$ packages the spatial drift (excluding $f_t$), so the standard form condenses to $df(t, X_t) = (f_t + \mathcal{L}f)(t, X_t)\,dt + f_i\sigma^{i\alpha}\,dW_t^{\alpha}$. Its role in Kolmogorov equations, Dynkin's formula, and Feynman–Kac is developed there.
 
 ## 4. Examples
 

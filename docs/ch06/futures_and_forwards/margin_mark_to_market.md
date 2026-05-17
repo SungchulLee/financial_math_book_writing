@@ -1,5 +1,27 @@
 # Margin and Marking to Market
 
+## One Day at the Margin Window
+
+Before any definitions, watch what happens at the close of one trading day. A trader is long one S&P 500 E-mini futures contract (multiplier \$50) entered at $F_0 = 5{,}000$. The exchange has the trader deposit \$12,000 as an initial performance bond. By the end of the day, the settlement price prints at $F_1 = 5{,}030$. Three things happen automatically, in order:
+
+1. The clearinghouse computes the day's price change: $\Delta_1 = 5{,}030 - 5{,}000 = 30$ index points.
+2. It credits the trader's margin account with $\$50 \times 30 = \$1{,}500$ in cash.
+3. The short side of the same contract is debited \$1,500 — a zero-sum transfer.
+
+The trader's deposit is now \$13,500. The next morning the contract is treated as if it had been entered at $F_1 = 5{,}030$: the slate is wiped clean and the cycle repeats.
+
+Three consequences follow immediately, and the rest of this page just unpacks them:
+
+- A forward's *single* terminal payment $F_T - F_0$ has been replaced by *daily* payments $\sum_t \Delta_t$. The two sums are equal (telescope), but the timing is radically different.
+- Because cash is exchanged every evening, no large unrealized obligation accumulates — counterparty credit risk is *capped* at one day's adverse move.
+- The trader must keep enough cash on hand to absorb adverse $\Delta_t$ before they trigger a forced liquidation — *credit* risk has been swapped for *liquidity* risk.
+
+The formal definitions below give names to the pieces of this one-day cycle.
+
+---
+
+## What Marking to Market Is
+
 Exchange-traded futures contracts are settled daily through a process called **marking to market**. At the close of each trading day the exchange recalculates the contract's value using the day's settlement price, and the resulting gain or loss is immediately credited to or debited from the trader's margin account. This daily cash flow mechanism is the defining operational difference between futures and forwards.
 
 ---
@@ -67,9 +89,7 @@ Because gains and losses are settled in cash every day, no large unrealized obli
 
 ## Comparison with Forward Contracts
 
-A forward contract has no intermediate cash flows. The entire gain or loss is realized at maturity in a single payment of $S_T - K$, where $K$ is the agreed forward price. This means the losing party must make a potentially large payment after months or years, and the winning party bears the risk that the loser may default. Forwards therefore carry meaningful **credit risk**, which is managed through bilateral collateral agreements (if any) rather than an exchange mechanism.
-
-In summary, the daily settlement of futures replaces one large, uncertain future payment with a sequence of small, certain daily payments — converting credit risk into liquidity risk (the need to fund margin calls promptly).
+Recall (see [§ Futures vs Forwards](futures_vs_forwards.md)): a forward has no intermediate cash flows — the full payoff $S_T - K$ is exchanged once at maturity, exposing the winning party to default risk for the contract's entire life. Daily settlement of futures replaces that single large payment with a sequence of small daily payments, converting **credit risk** into **liquidity risk** (the need to fund margin calls promptly).
 
 ---
 
@@ -120,3 +140,30 @@ In summary, the daily settlement of futures replaces one large, uncertain future
     Day 2: P&L $= (5{,}220 - 5{,}190) \times 50 = 30 \times 50 = +\$1{,}500$. Balance $= 11{,}000 + 1{,}500 = \$12{,}500$. No margin call.
 
     No margin call is triggered on either day. The Day 1 loss from the price increase is more than offset by the Day 2 gain from the price decrease.
+
+---
+
+**Exercise 5.** A trader goes long one micro E-mini S&P 500 futures (MES, multiplier \$5) at 5{,}000. The initial margin is \$1{,}500 and the maintenance margin is \$1{,}200. Over four days the settlement prices are 4{,}980, 4{,}930, 4{,}900, and 4{,}950. Compute the margin balance at the end of each day, identify the day a margin call is triggered, and compute the required deposit.
+
+??? success "Solution to Exercise 5"
+    Daily P&L for the long is $(F_t - F_{t-1}) \times 5$.
+
+    Day 1: $(4{,}980 - 5{,}000) \times 5 = -\$100$. Balance $= 1{,}500 - 100 = \$1{,}400$. No call.
+
+    Day 2: $(4{,}930 - 4{,}980) \times 5 = -\$250$. Balance $= 1{,}400 - 250 = \$1{,}150$. **Margin call** ($1{,}150 < 1{,}200$). Deposit $= 1{,}500 - 1{,}150 = \$350$. Balance after deposit $= \$1{,}500$.
+
+    Day 3: $(4{,}900 - 4{,}930) \times 5 = -\$150$. Balance $= 1{,}500 - 150 = \$1{,}350$. No call.
+
+    Day 4: $(4{,}950 - 4{,}900) \times 5 = +\$250$. Balance $= 1{,}350 + 250 = \$1{,}600$. No call.
+
+---
+
+**Exercise 6.** Daily mark-to-market converts a single large terminal payment into a stream of small daily payments. State two ways this benefits the clearinghouse, and one situation in which it can harm an otherwise solvent trader.
+
+??? success "Solution to Exercise 6"
+    Two benefits to the clearinghouse:
+
+    1. **Bounded credit exposure.** A defaulting trader can owe at most roughly one day's adverse move, not the full contract maturity exposure.
+    2. **Early detection of stress.** Inability to meet a margin call signals trouble immediately, allowing the clearinghouse to liquidate the position before losses accumulate beyond the posted margin.
+
+    Harm to a solvent trader: **liquidity stress**. A trader with a correct long-horizon thesis may be forced to liquidate a position (or post substantial additional collateral on short notice) after a transient adverse move, even though the position would have been profitable held to maturity. The 2020 negative-WTI episode is an extreme example — long-position traders who could not fund margin calls intraday were forcibly closed out at the lows.

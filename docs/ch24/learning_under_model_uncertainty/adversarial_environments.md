@@ -24,13 +24,7 @@ This provides strong performance guarantees.
 ## Online adversarial learning
 
 
-Algorithms are designed to minimize regret:
-
-- Hedge / multiplicative weights,
-- online gradient descent,
-- mirror descent.
-
-They perform well against any adversarial sequence.
+Algorithms are designed to minimize regret (Hedge / multiplicative weights, online gradient descent, mirror descent) and perform well against any adversarial sequence. Recall (see [§ Regret Bounds](regret_bounds.md)) for the definition of regret and the $O(\sqrt{T \ln K})$ guarantee of Hedge.
 
 ---
 

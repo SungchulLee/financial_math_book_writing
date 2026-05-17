@@ -69,12 +69,7 @@ Under Black--Scholes, this sum of Gaussian variables is Gaussian, yielding a clo
 
 ### Path Simulation Under Heston
 
-To price an Asian option, simulate $N$ independent paths of $(S_t, v_t)$ at the averaging dates using the QE scheme. For each path $j = 1, \ldots, N$:
-
-1. Initialize $S_0^{(j)} = S_0$, $v_0^{(j)} = v_0$
-2. For $k = 1, \ldots, m$: simulate $v_{t_k}^{(j)}$ using the QE scheme, then simulate $S_{t_k}^{(j)}$
-3. Compute the average $A^{(j)} = \frac{1}{m} \sum_{k=1}^{m} S_{t_k}^{(j)}$
-4. Compute the discounted payoff $Y^{(j)} = e^{-rT}(A^{(j)} - K)^+$
+Recall (see [§ Monte Carlo](../monte_carlo/euler_discretization_and_pitfalls.md)): simulate $N$ paths of $(S_t, v_t)$ at the averaging dates via the QE scheme. For each path $j$, compute the average $A^{(j)} = \frac{1}{m} \sum_{k=1}^{m} S_{t_k}^{(j)}$ and the discounted payoff $Y^{(j)} = e^{-rT}(A^{(j)} - K)^+$.
 
 ### The Estimator
 
@@ -92,20 +87,7 @@ $$
 
 A 95% confidence interval is $\hat{V}_N \pm 1.96 \times \text{SE}$.
 
-!!! note "Theorem (MC Convergence Rate)"
-    The Monte Carlo estimator $\hat{V}_N$ satisfies:
-
-    $$
-    \hat{V}_N \xrightarrow{\text{a.s.}} V \quad \text{as } N \to \infty
-    $$
-
-    by the strong law of large numbers, and
-
-    $$
-    \sqrt{N}(\hat{V}_N - V) \xrightarrow{d} \mathcal{N}(0, \sigma_Y^2)
-    $$
-
-    by the central limit theorem, provided $\mathbb{E}[Y^2] < \infty$. The convergence rate is $\mathcal{O}(N^{-1/2})$, independent of the dimensionality of the path.
+Recall (see [§ Monte Carlo](../monte_carlo/euler_discretization_and_pitfalls.md)): by SLLN and CLT, $\hat{V}_N \to V$ at rate $\mathcal{O}(N^{-1/2})$, independent of path dimension.
 
 ---
 
@@ -130,13 +112,7 @@ $$
 
 ### Antithetic Variates
 
-For each pair of standard normal vectors $(Z_1, Z_2)$ driving the two Brownian motions, simulate a second path using $(-Z_1, -Z_2)$. The antithetic estimator is:
-
-$$
-\hat{V}_{\text{anti}} = \frac{1}{2N} \sum_{j=1}^{N} \left[Y^{(j)} + Y^{(j,\text{anti})}\right]
-$$
-
-For Asian options, the effectiveness of antithetic variates depends on the payoff structure. The averaging reduces the non-linearity, making the payoff closer to a linear function of the underlying Brownian increments, which improves the variance reduction.
+Recall (see [§ Variance Reduction](../monte_carlo/variance_reduction_techniques.md)): pair each path $(Z_1, Z_2)$ with $(-Z_1, -Z_2)$. For Asian options, the averaging reduces payoff non-linearity, improving the antithetic variance reduction relative to vanilla calls.
 
 ### Combined Strategy
 

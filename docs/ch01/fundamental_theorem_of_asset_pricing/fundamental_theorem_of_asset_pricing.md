@@ -68,13 +68,7 @@ This lower-bound condition excludes pathological strategies such as **doubling s
 
 
 **Arbitrage.**
-An **arbitrage opportunity** is an admissible self-financing strategy $\theta$ satisfying:
-
-1. $V_0(\theta) = 0$ (zero initial investment),
-2. $V_T(\theta) \geq 0$ $\;\mathbb{P}$-almost surely,
-3. $\mathbb{P}(V_T(\theta) > 0) > 0$ (strictly positive probability of profit).
-
-In short: a risk-free gain from nothing.
+Recall (see [§ Arbitrage and Dominance](../discrete_time_foundations/arbitrage_and_dominance.md)): an **arbitrage opportunity** is an admissible self-financing strategy $\theta$ with $V_0(\theta) = 0$, $V_T(\theta) \geq 0$ a.s., and $\mathbb{P}(V_T(\theta) > 0) > 0$.
 
 **Equivalent martingale measure (EMM).**
 A probability measure $\mathbb{Q}$ on $(\Omega, \mathcal{F})$ is an **equivalent martingale measure** (also called a **risk-neutral measure**) if:
@@ -222,71 +216,24 @@ Consider two risky assets ($d = 2$) and three states ($n = 3$). The closed simpl
 If $0 \in \mathcal{S}$, some probability weighting makes the expected excess return vanish—an EMM exists. If $0 \notin \mathcal{S}$, a line through the origin (the separating hyperplane, with normal vector $\theta$) separates $\mathcal{S}$ from the origin. The portfolio $\theta$ then has the property that its expected payoff is negative under *every* probability measure on $\Omega$, which forces its payoff to be negative in every state. Flipping the sign gives an arbitrage.
 
 
-## Proof of the Second FTAP (Completeness ⟺ Uniqueness)
+## Second FTAP: Pointer
 
-
-We continue in the one-period finite-state model.
-
-**Completeness $\Rightarrow$ Uniqueness.**
-
-Suppose the market is complete, so that every contingent claim $\Phi \in \mathbb{R}^n$ can be replicated: for every $\Phi$ there exists $\theta$ with $X\theta = \Phi - c\mathbf{1}$ for some constant $c$ (the initial cost). If $\mathbb{Q}_1$ and $\mathbb{Q}_2$ are both EMMs, then for any claim $\Phi$:
-
-$$\mathbb{E}^{\mathbb{Q}_1}[\Phi] = c = \mathbb{E}^{\mathbb{Q}_2}[\Phi]$$
-
-Since this holds for all $\Phi \in \mathbb{R}^n$, we can take $\Phi = \mathbf{1}_{\{\omega_i\}}$ (the indicator of each state) to get $q^1_i = q^2_i$ for all $i$. Hence $\mathbb{Q}_1 = \mathbb{Q}_2$.
-
-**Uniqueness $\Rightarrow$ Completeness.**
-
-Suppose $\mathbb{Q}$ is the unique EMM. The set of EMMs is
-
-$$\mathcal{K} = \{q \in \operatorname{int}(\Delta_n) : X^T q = 0\} = \operatorname{int}(\Delta_n) \cap \ker(X^T)$$
-
-Uniqueness means $\mathcal{K}$ is a singleton. Since $\ker(X^T) \subset \mathbb{R}^n$ is a linear subspace, the constraint $q \in \operatorname{int}(\Delta_n)$ with $X^T q = 0$ being a singleton requires that $\ker(X^T)$ intersects the affine hyperplane $\{\sum q_i = 1\}$ in exactly one point. This happens precisely when $\dim(\ker(X^T)) = 1$.
-
-Now $\dim(\ker(X^T)) = n - \operatorname{rank}(X)$. So the uniqueness condition gives $\operatorname{rank}(X) = n - 1$. The image of $X$ (the space of attainable payoff vectors) therefore has dimension $n - 1$ in $\mathbb{R}^n$. Since the attainable payoffs also satisfy the constraint $\mathbb{E}^{\mathbb{Q}}[X\theta] = 0$ (a single linear constraint on $\mathbb{R}^n$), the space of zero-cost attainable payoffs is exactly the orthogonal complement of $q$ within $\mathbb{R}^n$. Every claim $\Phi$ can be decomposed as $\Phi = c \cdot \mathbf{1} + X\theta$ for some scalar $c$ and portfolio $\theta$, showing the market is complete. $\square$
-
-!!! note "Remark on dimensions"
-    In a model with $n$ states and $d$ risky assets, the rank of $X$ is at most $\min(n, d)$. For $\dim(\ker(X^T)) = 1$ we need $\operatorname{rank}(X) = n - 1$, which requires $d \geq n - 1$. When $d = n - 1$ and $X$ has full column rank, the market is exactly complete. When $d < n - 1$, the market is generically incomplete: there are multiple EMMs, and derivatives have a range of no-arbitrage prices rather than a unique price.
+The Second FTAP — completeness $\iff$ uniqueness of the EMM — together with its proof, rank condition $\operatorname{rank}(X) = n - 1$, and pricing-interval consequences, is developed in detail on the next page: [§ Complete Markets and Uniqueness](complete_markets_and_uniqueness.md). The argument extends the kernel-of-$X^T$ description of the EMM introduced above by intersecting it with the affine hyperplane $\{\sum q_i = 1\}$ and reading off when this intersection is a singleton.
 
 
 ## Extension to Continuous Time
 
 
-In continuous time the proof requires substantially more sophisticated analysis. The key difficulty is that the strategy space and the payoff space are infinite-dimensional, so finite-dimensional linear algebra (separating hyperplane in $\mathbb{R}^d$) must be replaced by functional analysis.
-
-### From NA to NFLVR
-
-The straightforward condition "no arbitrage" turns out to be too weak in continuous time. Consider a sequence of strategies $\theta_n$ with $V_0(\theta_n) = 0$ and $V_T(\theta_n) \geq -1/n$, converging to a payoff that is non-negative and strictly positive with positive probability. No single strategy is an arbitrage, but the limiting "free lunch" is economically just as problematic.
-
-Delbaen and Schachermayer (1994) introduced the condition **No Free Lunch with Vanishing Risk (NFLVR)**, which closes this loophole:
+In continuous time the strategy space is infinite-dimensional, so finite-dimensional separation must be replaced by functional analysis, and NA must be strengthened to **NFLVR (No Free Lunch with Vanishing Risk)**, which excludes both outright arbitrage and approximate arbitrage in the limit:
 
 $$\text{NFLVR} \;:\; \overline{\mathcal{C} - L^0_+} \cap L^\infty_+ = \{0\}$$
 
-where $\mathcal{C} = \{V_T(\theta) : \theta \text{ admissible}, V_0(\theta) = 0\}$ is the set of terminal values of zero-cost admissible strategies, and the closure is in an appropriate topology.
-
-NFLVR is strictly stronger than NA but is the economically natural condition: it excludes both outright arbitrage and approximate arbitrage in the limit.
-
-
-### The Delbaen–Schachermayer Theorem
+where $\mathcal{C} = \{V_T(\theta) : \theta \text{ admissible}, V_0(\theta) = 0\}$.
 
 **Theorem (First FTAP, continuous time; Delbaen–Schachermayer, 1994).**
-*Let $S$ be a bounded semimartingale. Then NFLVR holds if and only if there exists a probability measure $\mathbb{Q} \sim \mathbb{P}$ such that $S$ is a $\sigma$-martingale under $\mathbb{Q}$.*
+*Let $S$ be a locally bounded semimartingale. Then NFLVR holds if and only if there exists $\mathbb{Q} \sim \mathbb{P}$ under which $S$ is a local martingale (an **equivalent local martingale measure**, ELMM).*
 
-For locally bounded semimartingales, the conclusion strengthens to $S$ being a **local martingale** under $\mathbb{Q}$, and the measure $\mathbb{Q}$ is called an **equivalent local martingale measure (ELMM)**.
-
-The proof strategy is:
-
-1. Define the convex cone of attainable claims $\mathcal{C} = \{(\theta \cdot S)_T : \theta \text{ admissible}, V_0 = 0\}$.
-
-2. NFLVR ensures the closure $\bar{\mathcal{C}} \cap L^\infty_+$ is trivial.
-
-3. By the **Kreps–Yan theorem** (a functional-analytic extension of the separating hyperplane theorem to $L^\infty$), there exists a strictly positive continuous linear functional $\Lambda$ on $L^\infty$ that vanishes on $\mathcal{C}$.
-
-4. By the **Riesz representation theorem**, $\Lambda$ corresponds to a measure $\mathbb{Q} \in L^1$ with $d\mathbb{Q}/d\mathbb{P} > 0$.
-
-5. The condition $\Lambda(X) = 0$ for all $X \in \mathcal{C}$ translates into the (local/sigma) martingale property for discounted prices under $\mathbb{Q}$.
-
-The reverse direction (ELMM $\Rightarrow$ NFLVR) follows by the same expectation argument as in the finite case: under $\mathbb{Q}$, the discounted wealth process of any admissible strategy is a supermartingale, so a non-negative terminal value with zero initial value must be identically zero.
+The proof replaces the finite-dimensional separation step of the finite-state proof with the Kreps–Yan theorem on $L^\infty$ (see [§ Separating Hyperplane Theorem](separating_hyperplane_theorem.md#the-kreps-yan-extension)). Continuous-time NFLVR theory, superhedging duality, and the robust extensions are developed in [Chapter 4 (Risk-Neutral Measures)](../../ch04/index.md) and [§ Robust No-Arbitrage Pricing](../../ch23/robust_no_arbitrage_pricing/superhedging_duality.md).
 
 
 ### Historical Development
@@ -343,25 +290,13 @@ A martingale $M_t$ satisfies $\mathbb{E}[M_{t+1} \mid \mathcal{F}_t] = M_t$: the
 In the finite model, $X\theta$ ranges over a subspace $\mathcal{V} = \operatorname{Im}(X) \subset \mathbb{R}^n$. No-arbitrage says $\mathcal{V}$ does not intersect the positive orthant $\mathbb{R}^n_+ \setminus \{0\}$. Dually, there must exist a strictly positive vector $q$ in the orthogonal complement $\mathcal{V}^\perp$ (after normalization, this is the EMM). The separating hyperplane theorem makes this duality precise.
 
 **Connection to Girsanov theory.**
-In continuous time with a single Brownian driver, the measure change takes the form
-
-$$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \mathcal{E}\left(-\int_0^T \lambda_s \, dW_s\right) = \exp\left(-\int_0^T \lambda_s \, dW_s - \frac{1}{2}\int_0^T \lambda_s^2 \, ds\right)$$
-
-where $\lambda_t = (\mu_t - r)/\sigma_t$ is the **market price of risk**. By Girsanov's theorem, $W^{\mathbb{Q}}_t = W_t + \int_0^t \lambda_s \, ds$ is a $\mathbb{Q}$-Brownian motion, and under $\mathbb{Q}$ the stock dynamics become $dS_t = rS_t\, dt + \sigma_t S_t\, dW^{\mathbb{Q}}_t$.
+Recall (see [§ Girsanov's Theorem](../../ch04/girsanov/girsanov_theorem.md) and [§ Market Price of Risk](../../ch04/risk_neutral/market_price_of_risk.md)): in continuous time the FTAP measure change is given by the Doléans exponential of $-\int_0^\cdot \lambda_s\, dW_s$ with market price of risk $\lambda_t = (\mu_t - r)/\sigma_t$, under which $\tilde{S}_t$ becomes a $\mathbb{Q}$-martingale.
 
 
 ## Connection to Black–Scholes
 
 
-In the Black–Scholes model,
-
-$$dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$$
-
-with constant parameters $\mu, \sigma, r$. The market price of risk is $\lambda = (\mu - r)/\sigma$, and the Radon–Nikodym derivative is
-
-$$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\left(-\lambda W_T - \frac{\lambda^2 T}{2}\right)$$
-
-Under $\mathbb{Q}$, the stock follows $dS_t = rS_t\, dt + \sigma S_t\, dW^{\mathbb{Q}}_t$, and the discounted price $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale, confirming the first FTAP. Since there is one source of randomness ($W_t$) and one risky asset, the EMM is **unique** and the market is **complete**, confirming the second FTAP.
+Recall (see [§ Risk-Neutral Construction](../../ch04/risk_neutral/construction.md)): in Black–Scholes, $\lambda = (\mu - r)/\sigma$ defines an EMM $\mathbb{Q}$ under which $dS_t = rS_t\, dt + \sigma S_t\, dW^{\mathbb{Q}}_t$ and $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale; with one Brownian driver and one risky asset, the EMM is unique and the market complete — both FTAPs confirmed.
 
 
 ## Summary

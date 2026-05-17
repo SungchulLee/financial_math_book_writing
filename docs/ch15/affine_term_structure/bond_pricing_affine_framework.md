@@ -34,17 +34,17 @@ where $r(x) = \rho_0 + \langle \rho_1, x \rangle$ is the affine short rate.
 
 ### Application of the Discounted Transform
 
-This is the discounted transform $\mathcal{T}(\tau, u, x)$ evaluated at $u = 0$:
+Recall (see [§ Discounted Transform](../discounted_transform/discounted_characteristic_function.md)): the bond price is the discounted transform $\mathcal{T}(\tau, u, x)$ evaluated at $u = 0$,
 
 $$
-P(t, T) = \mathcal{T}(\tau, 0, x) = \exp\!\left(A(\tau) + \langle B(\tau), x \rangle\right)
+P(t, T) = \mathcal{T}(\tau, 0, x) = \exp\!\left(A(\tau) + \langle B(\tau), x \rangle\right),
 $$
 
-where $A(\tau) = \tilde{\phi}(\tau, 0)$ and $B(\tau) = \tilde{\psi}(\tau, 0)$.
+with $A(\tau) = \tilde{\phi}(\tau, 0)$ and $B(\tau) = \tilde{\psi}(\tau, 0)$.
 
 ### The Bond Pricing Riccati System
 
-From the extended Riccati equations with $\tilde{\psi}(0) = 0$:
+Specializing the extended Riccati system (see [§ Characteristic Function](../characteristic_function/characteristic_function.md)) to $\tilde{\psi}(0) = 0$:
 
 $$
 B'(\tau) = R(B(\tau)) - \rho_1, \qquad B(0) = 0
@@ -54,7 +54,7 @@ $$
 A'(\tau) = F(B(\tau)) - \rho_0, \qquad A(0) = 0
 $$
 
-where $F$ and $R$ are the functions determined by the affine parameters of $X_t$.
+where $F$ and $R$ are determined by the affine parameters of $X_t$.
 
 **Theorem (Affine Bond Pricing).** Let $X_t$ be an affine process on $D = \mathbb{R}^m_+ \times \mathbb{R}^{d-m}$ with short rate $r(x) = \rho_0 + \langle \rho_1, x \rangle$. Then the zero-coupon bond price is
 
@@ -82,75 +82,23 @@ $$
 A'(\tau) = \kappa_0 B(\tau) + \frac{1}{2}\sigma_0 B(\tau)^2, \qquad A(0) = 0
 $$
 
-**Vasicek** ($\kappa_1 = -\kappa$, $\sigma_1 = 0$, $\kappa_0 = \kappa\theta$, $\sigma_0 = \sigma^2$):
-
-$$
-B(\tau) = -\frac{1 - e^{-\kappa\tau}}{\kappa}
-$$
-
-$$
-A(\tau) = \left(\frac{\sigma^2}{2\kappa^2} - \theta\right)(B(\tau) + \tau) - \frac{\sigma^2}{4\kappa}B(\tau)^2
-$$
-
-**CIR** ($\kappa_1 = -\kappa$, $\sigma_1 = \xi^2$, $\kappa_0 = \kappa\theta$, $\sigma_0 = 0$):
-
-$$
-B(\tau) = \frac{-2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}, \qquad \gamma = \sqrt{\kappa^2 + 2\xi^2}
-$$
-
-$$
-A(\tau) = \frac{2\kappa\theta}{\xi^2}\log\!\left(\frac{2\gamma\,e^{(\gamma+\kappa)\tau/2}}{(\gamma+\kappa)(e^{\gamma\tau}-1)+2\gamma}\right)
-$$
+Recall (see [§ Vasicek and CIR as Affine](../examples/gbm_as_affine.md), [§ Vasicek Model](../../ch18/vasicek_model/vasicek_sde_and_ou_process.md), [§ CIR Model](../../ch18/cir_model/cir_sde_and_square_root_process.md)): closed-form solutions for Vasicek ($\sigma_1=0$) and CIR ($\sigma_1=\xi^2$, discriminant $\gamma = \sqrt{\kappa^2 + 2\xi^2}$).
 
 ---
 
 ## Yields and the Term Structure
 
-### Continuously Compounded Yield
-
-The yield $y(t, T)$ for maturity $\tau = T - t$ is:
+Recall (see [§ Yield Curve Dynamics](yield_curve_dynamics.md)): the yield and instantaneous forward rate are affine in the state,
 
 $$
-y(t, T) = -\frac{\log P(t, T)}{\tau} = -\frac{A(\tau)}{\tau} - \frac{\langle B(\tau), X_t \rangle}{\tau}
+y(t, T) = \bar{a}(\tau) + \langle \bar{b}(\tau), X_t \rangle, \qquad f(t, T) = -A'(\tau) - \langle B'(\tau), X_t \rangle,
 $$
 
-Since $A$ and $B$ are deterministic functions of $\tau$, the yield is **affine in the state**:
-
-$$
-y(t, T) = \bar{a}(\tau) + \langle \bar{b}(\tau), X_t \rangle
-$$
-
-where $\bar{a}(\tau) = -A(\tau)/\tau$ and $\bar{b}(\tau) = -B(\tau)/\tau$.
-
-### Instantaneous Forward Rate
-
-$$
-f(t, T) = -\frac{\partial}{\partial T}\log P(t, T) = -A'(\tau) - \langle B'(\tau), X_t \rangle
-$$
-
-At $T = t$ (i.e., $\tau = 0$): $f(t, t) = -A'(0) - \langle B'(0), X_t \rangle$. Using the Riccati initial conditions $B(0) = 0$:
-
-$$
-B'(0) = R(0) - \rho_1 = -\rho_1, \qquad A'(0) = F(0) - \rho_0 = -\rho_0
-$$
-
-Therefore $f(t, t) = \rho_0 + \langle \rho_1, X_t \rangle = r(X_t)$, confirming consistency.
+with $\bar{a}(\tau) = -A(\tau)/\tau$, $\bar{b}(\tau) = -B(\tau)/\tau$. The consistency check $f(t, t) = r(X_t)$ follows from the Riccati initial conditions $B'(0) = -\rho_1$, $A'(0) = -\rho_0$.
 
 ### Long Rate
 
-As $\tau \to \infty$ (for models where $B(\tau)/\tau \to 0$), the long rate $y(\infty) = \lim_{\tau \to \infty} y(t, T)$ depends only on the model parameters, not on $X_t$:
-
-**Vasicek long rate**:
-
-$$
-y(\infty) = \theta - \frac{\sigma^2}{2\kappa^2}
-$$
-
-**CIR long rate**:
-
-$$
-y(\infty) = \frac{2\kappa\theta}{\gamma + \kappa}
-$$
+As $\tau \to \infty$ (for models where $B(\tau)/\tau \to 0$), the long rate $y(\infty) = \lim_{\tau \to \infty} y(t, T)$ depends only on the model parameters, not on $X_t$. Recall (see [§ Vasicek Model](../../ch18/vasicek_model/vasicek_sde_and_ou_process.md), [§ CIR Model](../../ch18/cir_model/cir_sde_and_square_root_process.md)): Vasicek gives $y(\infty) = \theta - \sigma^2/(2\kappa^2)$; CIR gives $y(\infty) = 2\kappa\theta/(\gamma+\kappa)$.
 
 ---
 

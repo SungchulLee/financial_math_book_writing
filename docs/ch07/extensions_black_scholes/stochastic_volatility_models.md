@@ -157,25 +157,7 @@ $$
 
 ### Incomplete Markets
 
-#### The Problem
-
-Two sources of randomness ($W^{(1)}$, $W^{(2)}$) but only one traded asset ($S$).
-
-#### Implications
-
-1. **Non-unique risk-neutral measure**: Volatility risk premium is not determined by no-arbitrage
-2. **Imperfect hedging**: Cannot replicate arbitrary payoffs
-3. **Model calibration determines $\mathbb{Q}$**: Not derived from $\mathbb{P}$
-
-#### The Volatility Risk Premium
-
-Under $\mathbb{P}$, variance drift may differ:
-
-$$
-dv_t = [\kappa(\theta - v_t) - \lambda(t, v_t)]\,dt + \xi\sqrt{v_t}\,dW_t^{(2),\mathbb{P}}
-$$
-
-where $\lambda$ is the volatility risk premium (typically negative—investors pay for volatility protection).
+Recall (see [§ Incomplete Markets and Pricing Bounds](incomplete_markets_and_pricing_bounds.md)): two Brownian motions $(W^{(1)},W^{(2)})$ with only $S$ traded leaves the volatility risk premium $\lambda(t,v_t)$ undetermined by no-arbitrage; under $\mathbb{P}$, $dv_t = [\kappa(\theta-v_t)-\lambda(t,v_t)]\,dt+\xi\sqrt{v_t}\,dW_t^{(2),\mathbb{P}}$, and calibration to option quotes selects a particular $\mathbb{Q}$.
 
 ---
 
@@ -218,15 +200,7 @@ Higher vol-of-vol at high variance levels.
 
 ### Comparison: Local vs Stochastic Volatility
 
-| Aspect | Local Volatility | Stochastic Volatility |
-|--------|-----------------|----------------------|
-| Factors | 1 | 2 |
-| Market | Complete | Incomplete |
-| Smile fit | Exact | Approximate |
-| Forward smile | Flattens | Persists |
-| Calibration | Unstable | More stable |
-| Hedging | Poor | Better |
-| Exotic pricing | Problematic | More reliable |
+Recall (see [§ Local Volatility Models](local_volatility_models.md)): local vol is 1-factor, complete, fits the smile exactly but flattens the forward smile and hedges poorly; stochastic vol is 2-factor, incomplete, fits approximately but produces persistent forward smiles and more reliable exotic prices.
 
 ---
 

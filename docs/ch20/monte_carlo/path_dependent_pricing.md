@@ -4,13 +4,13 @@ Many interest rate derivatives encountered in practice have payoffs that depend 
 
 ## General Monte Carlo Pricing Framework
 
-Under the risk-neutral measure $\mathbb{Q}$, the price at time $0$ of a derivative with path-dependent cash flows $\{c_{t_1}, c_{t_2}, \ldots, c_{t_n}\}$ is
+Recall (see [§ Risk-Neutral Pricing](../../ch04/risk_neutral/martingale_and_no_arbitrage.md)) the price of a derivative with path-dependent cash flows $\{c_{t_1}, c_{t_2}, \ldots, c_{t_n}\}$ is
 
 $$
 V_0 = \mathbb{E}^{\mathbb{Q}}\!\left[\sum_{i=1}^{n} \frac{c_{t_i}}{M(t_i)}\right]
 $$
 
-where $M(t) = \exp\!\left(\int_0^t r_s\,ds\right)$ is the money market account. The Monte Carlo estimator on $N_{\text{paths}}$ simulated paths is
+with $M(t) = \exp\!\left(\int_0^t r_s\,ds\right)$. The Monte Carlo estimator on $N_{\text{paths}}$ simulated paths is
 
 $$
 \hat{V}_0 = \frac{1}{N_{\text{paths}}} \sum_{k=1}^{N_{\text{paths}}} \sum_{i=1}^{n} \frac{c_{t_i}^{(k)}}{M^{(k)}(t_i)}

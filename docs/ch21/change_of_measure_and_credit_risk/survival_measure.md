@@ -197,29 +197,11 @@ The intensity mean-reverts **faster** and toward a **lower** level under $\mathb
 
 ### Pricing Defaultable Bonds
 
-For a zero-coupon defaultable bond with zero recovery:
-
-$$
-\bar{P}(t,T) = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}\left[\frac{S(t,T)}{1}\right]
-$$
-
-With recovery $R$ under RMV:
-
-$$
-P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + (1-R)\lambda_s) ds} \mid \mathcal{F}_t\right]
-$$
-
-This can be evaluated under an appropriately defined survival measure with modified intensity loading $(1-R)\lambda$.
+Recall (see [§ Defaultable Bonds](../pricing_with_default_risk/defaultable_bonds.md)): for a zero-coupon defaultable bond, the survival measure evaluates pre-default cashflows; with RMV recovery the loading $(1-R)\lambda$ replaces $\lambda$ in $\bar{P}$.
 
 ### CDS Pricing
 
-The par CDS spread involves the ratio:
-
-$$
-s_{\text{par}} = \frac{(1-R) \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s)ds} \lambda_u du\right]}{\sum_i \Delta_i \bar{P}(t, t_i)}
-$$
-
-The denominator is the risky annuity, directly computed from $\bar{P}(t, t_i)$. The numerator can be rewritten using the survival measure to simplify the computation.
+Recall (see [§ Credit Default Swaps (CDS)](../credit_derivatives/credit_default_swaps_cds.md)): the par CDS spread is a ratio of protection-leg to risky-annuity, with $\bar{P}(t,t_i)$ supplying the discount weights and the survival measure simplifying the numerator expectation.
 
 ### Quanto-Survival Expectations
 

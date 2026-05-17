@@ -1,18 +1,14 @@
 # Comparison Principle
 
-The comparison principle is the central uniqueness and ordering result for viscosity solutions. It states that if a subsolution lies below a supersolution on the boundary, then this ordering persists throughout the domain. This immediately implies uniqueness: the viscosity solution is the only function that is simultaneously a sub- and supersolution.
+Take two viscosity solutions of the same PDE and ask whether they can ever cross in the interior. The **comparison principle** says no: if a subsolution lies below a supersolution on the parabolic boundary, that ordering propagates everywhere in the domain. Uniqueness follows in one line -- a function that is simultaneously a sub- and supersolution is squeezed between itself, so it is the only solution. Existence of a comparison principle is also the third leg of the Barles-Souganidis convergence theorem, which is why every viscosity-solution problem in this folder is tested for it first.
 
 ---
 
 ## Statement for Parabolic Problems
 
-Consider the degenerate parabolic PDE:
+Recall (see [§ Viscosity Solution Framework](viscosity_solution_framework.md)): viscosity sub/supersolutions and degenerate ellipticity.
 
-$$
-u_\tau + F(\tau, x, u, Du, D^2u) = 0 \quad \text{in } (0, T] \times \Omega
-$$
-
-where $F$ is degenerate elliptic (non-increasing in the $D^2u$ argument) and proper (non-decreasing in the $u$ argument, i.e., $F(\tau, x, r, p, X) \leq F(\tau, x, s, p, X)$ whenever $r \leq s$).
+Consider the degenerate parabolic PDE $u_\tau + F(\tau, x, u, Du, D^2u) = 0$ on $(0, T] \times \Omega$, where $F$ is degenerate elliptic and **proper** (non-decreasing in $u$).
 
 !!! abstract "Theorem (Comparison Principle)"
     Let $u$ be a viscosity subsolution and $v$ a viscosity supersolution of $u_\tau + F = 0$ on $(0, T] \times \Omega$. If $u \leq v$ on the **parabolic boundary** (i.e., at $\tau = 0$ and on $\partial\Omega$), then:
@@ -165,47 +161,11 @@ For the obstacle problem $\min(-u_\tau + \mathcal{L}u,\; u - \Phi) = 0$, the com
 
 ---
 
-## The Discrete Comparison Principle
+## Discrete Analog and Maximum Principle
 
-For numerical schemes, the comparison principle has a discrete analog.
+Recall (see [§ Barles-Souganidis Theorem](barles_souganidis_theorem.md)): the discrete comparison principle says $S_h[u] \leq S_h[v]$ at all nodes implies $u \leq v$ at all nodes, and monotone schemes (non-negative stencil coefficients) automatically satisfy it. This is the discrete shadow of the continuous comparison principle and underlies the Barles-Souganidis convergence framework.
 
-### Definition
-
-A numerical scheme $S_h[u] = 0$ satisfies the **discrete comparison principle** if:
-
-$$
-S_h[u] \leq S_h[v] \quad \text{at all nodes} \quad \Longrightarrow \quad u \leq v \quad \text{at all nodes}
-$$
-
-(given appropriate boundary ordering).
-
-### Monotone Schemes
-
-A scheme is **monotone** if $S_h[\cdot]$ is a non-decreasing function of each of its arguments (the values at neighboring nodes). For explicit schemes, this corresponds to **non-negative stencil coefficients**.
-
-Monotone schemes automatically satisfy the discrete comparison principle, which is the discrete analog of the continuous comparison principle. This connection is the foundation of the Barles-Souganidis convergence theorem.
-
-### Example: Explicit Scheme
-
-The explicit scheme $u_j^{n+1} = a_j u_{j-1}^n + b_j u_j^n + c_j u_{j+1}^n$ is monotone if and only if $a_j, b_j, c_j \geq 0$. This is precisely the CFL condition combined with the positivity requirement on all coefficients.
-
----
-
-## Maximum Principle Connection
-
-The comparison principle generalizes the classical **maximum principle** for parabolic PDEs.
-
-**Classical maximum principle**: If $u_\tau - \mathcal{L}u \leq 0$ (subsolution) in a domain, then $u$ attains its maximum on the parabolic boundary.
-
-**Viscosity comparison principle**: Extends this to non-smooth functions and degenerate operators, providing ordering between any subsolution and supersolution.
-
-For monotone schemes, the discrete maximum principle states:
-
-$$
-\min_j u_j^n \leq u_j^{n+1} \leq \max_j u_j^n
-$$
-
-This is the discrete analog that ensures no new extrema are created by the scheme, and it implies $L^\infty$ stability.
+The continuous comparison principle generalizes the classical **maximum principle**: a subsolution attains its maximum on the parabolic boundary. The discrete analog $\min_j u_j^n \leq u_j^{n+1} \leq \max_j u_j^n$ for monotone schemes implies $L^\infty$ stability.
 
 ---
 

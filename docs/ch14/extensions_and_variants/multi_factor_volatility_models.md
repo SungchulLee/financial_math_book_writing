@@ -1,7 +1,7 @@
 # Multi-Factor Volatility Models
 
 
-Single-factor stochastic volatility models often fail to capture the full richness of volatility dynamics. **Multi-factor volatility models** introduce additional latent factors to improve realism and stability.
+Single-factor stochastic volatility models often fail to capture the full richness of volatility dynamics. **Multi-factor volatility models** introduce additional latent factors to improve realism and stability. Recall (see [§ General Stochastic Volatility Framework](../general_stochastic_volatility_framework/correlation_and_leverage_effect.md)) for the single-factor baseline this extends.
 
 ---
 
@@ -35,9 +35,9 @@ where each factor satisfies its own stochastic dynamics, often with different me
 ## Examples
 
 
-- **Two-factor Heston:** fast and slow variance components,
+- **Two-factor Heston:** fast and slow variance components (CIR variance dynamics: Recall (see [§ The Heston Model](../the_heston_model/affine_structure.md))),
 - **Long/short memory models:** separated time scales,
-- **Factor-based rough approximations:** Markovian lifts of rough volatility.
+- **Factor-based rough approximations:** Markovian lifts of rough volatility (Recall (see [§ Rough Volatility Overview](rough_volatility_overview.md))).
 
 These models improve fit and stability across maturities.
 
@@ -57,6 +57,8 @@ Calibration typically requires:
 - wide maturity coverage,
 - strong parameter constraints,
 - stability-focused objectives.
+
+Recall (see [§ Calibration of Stochastic Volatility Models](../calibration_of_stochastic_volatility_models/identifiability_issues.md)) for the general SV calibration objective and regularization techniques applied here.
 
 ---
 

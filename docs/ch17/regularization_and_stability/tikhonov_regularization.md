@@ -8,16 +8,7 @@ Ill-posed calibration problems are often stabilized by **regularization**, which
 ## Motivation
 
 
-Recall a typical least-squares calibration problem:
-
-$$
-\min_{\theta \in \Theta} \; \frac12\|F(\theta) - y\|_W^2
-$$
-
-
-where $F$ is the forward pricing map and $y$ denotes market data.
-
-If the Jacobian of $F$ is ill-conditioned, small data noise can lead to large parameter fluctuations. Tikhonov regularization addresses this by penalizing undesirable parameter behavior.
+Recall (see [§ Calibration as Inverse Problem](../calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md)) the typical weighted least-squares calibration $\min_\theta \frac12\|F(\theta) - y\|_W^2$, where ill-conditioning of $F$'s Jacobian amplifies data noise into parameter fluctuations. Tikhonov regularization addresses this by penalizing undesirable parameter behavior.
 
 ---
 
@@ -73,12 +64,7 @@ This bias–variance trade-off is central to regularization.
 ## Interpretation as Bayesian prior
 
 
-Tikhonov regularization admits a Bayesian interpretation:
-
-- likelihood: $y \mid \theta \sim \mathcal{N}(F(\theta), W^{-1})$,
-- prior: $\theta \sim \mathcal{N}(\theta_0, (\lambda L^\top L)^{-1})$.
-
-Then the regularized solution is the **maximum a posteriori (MAP)** estimator.
+Recall (see [§ Calibration as Inverse Problem](../calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md)) the Bayesian view of calibration. Tikhonov corresponds to a Gaussian prior $\theta \sim \mathcal{N}(\theta_0, (\lambda L^\top L)^{-1})$ together with a Gaussian likelihood $y \mid \theta \sim \mathcal{N}(F(\theta), W^{-1})$; the regularized solution is then the **maximum a posteriori (MAP)** estimator.
 
 ---
 
@@ -99,8 +85,8 @@ In practice, calibration stability over time is often the most relevant criterio
 ## Practical considerations in finance
 
 
-- Regularization should not dominate liquid, well-identified directions.
-- Over-regularization can suppress meaningful smile/skew information.
+- Regularization should not dominate liquid, well-identified directions (see [§ Static Calibration to Vanilla Options](../static_calibration_to_vanilla_options/calibration_to_implied_volatility_surface.md)).
+- Over-regularization can suppress meaningful smile/skew information; for stochastic-volatility tuning, see [§ SV Calibration](../sv_calibration/cross_model_calibration_comparison.md).
 - Prior parameters should be economically interpretable.
 
 ---

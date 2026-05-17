@@ -30,28 +30,16 @@ where $B_t = e^{\int_0^t r_s\,ds}$ is the money market account and $\mathbb{Q}$ 
 
 ## Key Properties
 
-### 1. Bond-Deflated Prices are Martingales
-
-By the [numéraire theorem](numeraire.md#the-fundamental-theorem-for-numeraires),
-$S_t / P(t,T)$ is a $\mathbb{Q}^T$-martingale for any traded asset $S_t$.
-
-### 2. Forward Prices are Martingales
-
-The **forward price** of $S$ for delivery at $T$:
+Recall (see [§ The Fundamental Theorem for
+Numéraires](numeraire.md#the-fundamental-theorem-for-numeraires)): for any traded
+asset $S_t$, the bond-deflated price $S_t / P(t,T)$ is a $\mathbb{Q}^T$-martingale.
+Specialised to $S_t$, this is the **forward price**
 
 $$
-F(t,T) = \frac{S_t}{P(t,T)}
+F(t,T) = \frac{S_t}{P(t,T)}, \qquad F(t,T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]
 $$
 
-is a $\mathbb{Q}^T$-martingale:
-
-$$
-F(t,T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]
-$$
-
-### 3. Pricing Formula
-
-For a claim with payoff $\Phi_T$ at time $T$:
+since $F(T,T) = S_T$. For a claim with payoff $\Phi_T$ at time $T$:
 
 $$
 \boxed{
@@ -59,7 +47,7 @@ V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
 }
 $$
 
-**No explicit discounting required**—the bond price handles it.
+No explicit discounting is required — the bond price handles it.
 
 ---
 
@@ -189,35 +177,13 @@ Since $F(t,T)$ is a $\mathbb{Q}^T$-martingale: $\mathbb{E}^{\mathbb{Q}^T}[S_T] =
 
 ## The Forward Measure in Vasicek Model
 
-### Bond Price Dynamics
-
-In Vasicek:
-
-$$
-dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma_r\,dW_t^{\mathbb{Q}}
-$$
-
-The bond price is:
-
-$$
-P(t,T) = A(t,T)e^{-B(t,T)r_t}
-$$
-
-with $B(t,T) = \frac{1-e^{-\kappa(T-t)}}{\kappa}$.
-
-### Bond Volatility
-
-$$
-\sigma_P(t,T) = -B(t,T)\sigma_r
-$$
-
-### Interest Rate Under Q^T
+Recall (see [§ Vasicek Example](examples.md#example-6-vasicek-interest-rate-model)): under $\mathbb{Q}$, $dr_t = \kappa(\bar r - r_t)\,dt + \sigma_r\,dW_t^{\mathbb{Q}}$ and the bond price is $P(t,T)=A(t,T)e^{-B(t,T)r_t}$ with $B(t,T)=(1-e^{-\kappa(T-t)})/\kappa$. The bond volatility is $\sigma_P(t,T) = -B(t,T)\sigma_r$, and substituting into the Girsanov shift $W^{\mathbb{Q}^T}_t = W^{\mathbb{Q}}_t - \int_0^t \sigma_P(s,T)\,ds$ gives the short-rate dynamics under the $T$-forward measure:
 
 $$
 dr_t = [\kappa(\bar{r} - r_t) - \sigma_r^2 B(t,T)]\,dt + \sigma_r\,dW_t^{\mathbb{Q}^T}
 $$
 
-The drift is modified by the "volatility of the drift" adjustment.
+The extra drift $-\sigma_r^2 B(t,T)$ is the convexity adjustment.
 
 ---
 
@@ -463,33 +429,23 @@ For two different maturities $T_1 < T_2$, write the Radon–Nikodym derivative $
 ---
 
 **Exercise 7.**
-Consider the exchange option with payoff $(S_T^1 - S_T^2)^+$. Using $S_t^2$ as numeraire, derive Margrabe's formula. Explain why the interest rate $r$ does not appear in the final formula, and identify the relevant volatility parameter $\sigma$ in terms of $\sigma_1$, $\sigma_2$, and $\rho$.
+Recall (see [§ Numéraire, Example: Exchange Option](numeraire.md#example-exchange-option-margrabes-formula)) that Margrabe's formula uses $S^2$ as numéraire. In contrast, when the payoff $(S_T - K)^+$ on a single asset is dated at $T$, the $T$-forward measure is preferred over the money-market numéraire. State the precise advantage of $\mathbb{Q}^T$ over $\mathbb{Q}$ when interest rates are stochastic and explain why this advantage disappears when $r$ is constant.
 
 ??? success "Solution to Exercise 7"
-    The exchange option has payoff $(S_T^1 - S_T^2)^+$. Using $N_t = S_t^2$ as numéraire, define the measure $\mathbb{Q}^{S^2}$ under which $S_t^1/S_t^2$ is a martingale.
-
-    The price is:
+    Under $\mathbb{Q}$, the pricing formula
 
     $$
-    V_t = S_t^2 \cdot \mathbb{E}^{\mathbb{Q}^{S^2}}\!\left[\left(\frac{S_T^1}{S_T^2} - 1\right)^+\;\middle|\;\mathcal{F}_t\right]
+    V_t = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\Phi_T \;\middle|\; \mathcal{F}_t\right]
     $$
 
-    Let $R_t = S_t^1/S_t^2$. Under $\mathbb{Q}^{S^2}$, $R_t$ is a martingale. If both assets follow geometric Brownian motions under $\mathbb{Q}$ with volatilities $\sigma_1, \sigma_2$ and correlation $\rho$, then $R_t$ is log-normal under $\mathbb{Q}^{S^2}$ with volatility
+    requires the joint distribution of the stochastic discount factor $e^{-\int_t^T r_s\,ds}$ and the payoff $\Phi_T$ — the two are generally correlated when $r$ is stochastic, so the discount cannot be pulled out of the expectation.
+
+    Under $\mathbb{Q}^T$, the discount factor is replaced by the deterministic prefactor $P(t,T)$:
 
     $$
-    \sigma = \sqrt{\sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2}
+    V_t = P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
     $$
 
-    Since $R_t$ is a martingale, its log-normal dynamics have zero drift (in the risk-neutral sense for this numéraire), and the problem reduces to a Black-Scholes call with underlying $R_t$, strike 1, and volatility $\sigma$. Multiplying by $S_t^2$:
+    Stochastic discounting becomes a single market-observable number, and only the $\mathbb{Q}^T$-distribution of $\Phi_T$ is needed.
 
-    $$
-    V_t = S_t^1\mathcal{N}(d_1) - S_t^2\mathcal{N}(d_2)
-    $$
-
-    where
-
-    $$
-    d_1 = \frac{\ln(S_t^1/S_t^2) + \frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}, \qquad d_2 = d_1 - \sigma\sqrt{T-t}
-    $$
-
-    The interest rate $r$ does not appear because both $S^1$ and $S^2$ grow at rate $r$ under $\mathbb{Q}$, and the ratio $S_t^1/S_t^2$ cancels this common growth. Equivalently, the option is self-financing when denominated in either asset, so no external financing (at rate $r$) is needed. The only relevant parameter is the volatility $\sigma$ of the ratio process, which depends on $\sigma_1$, $\sigma_2$, and $\rho$.
+    When $r$ is **constant**, $e^{-r(T-t)}$ is deterministic and factors out of the $\mathbb{Q}$-expectation; meanwhile $P(t,T) = e^{-r(T-t)}$ as well, and $\mathbb{Q}^T \equiv \mathbb{Q}$ since the Radon–Nikodym derivative $e^{-rT}/P(0,T) = 1$. The two formulas coincide and the advantage vanishes.

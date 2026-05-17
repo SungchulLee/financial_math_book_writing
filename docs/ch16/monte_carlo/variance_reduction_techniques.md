@@ -17,19 +17,7 @@ Monte Carlo estimators converge at rate $\mathcal{O}(M^{-1/2})$ regardless of th
 
 ## The Baseline Problem
 
-A Monte Carlo estimator for a European option under Heston takes the form:
-
-$$
-\hat{V} = e^{-rT} \frac{1}{M} \sum_{m=1}^{M} g\!\left(S_T^{(m)}\right)
-$$
-
-where $g$ is the payoff function and $S_T^{(m)}$ are independent samples from the risk-neutral terminal distribution. The variance of this estimator is:
-
-$$
-\text{Var}(\hat{V}) = \frac{\sigma_g^2}{M}, \qquad \sigma_g^2 = \text{Var}\!\left(e^{-rT} g(S_T)\right)
-$$
-
-The 95% confidence interval has half-width $1.96 \, \sigma_g / \sqrt{M}$. Reducing $\sigma_g^2$ by a factor of $k$ is equivalent to using $kM$ paths---a direct computational saving.
+Recall (see [§ European Pricing](../european_pricing/semi_closed_form_fourier_inversion.md)): the MC estimator $\hat{V} = e^{-rT} \frac{1}{M} \sum_{m=1}^{M} g(S_T^{(m)})$ has variance $\text{Var}(\hat{V}) = \sigma_g^2/M$ with $\sigma_g^2 = \text{Var}(e^{-rT} g(S_T))$. Reducing $\sigma_g^2$ by a factor of $k$ is equivalent to using $kM$ paths---a direct computational saving.
 
 ---
 

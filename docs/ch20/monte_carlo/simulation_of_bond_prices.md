@@ -4,19 +4,13 @@ In the Hull-White model, the zero-coupon bond price $P(t,T)$ is available in clo
 
 ## Bond Price Along a Simulated Path
 
-Recall from the bond pricing section that in the one-factor Hull-White model, the zero-coupon bond price takes the affine form
+Recall (see [§ Hull-White Bond Pricing](../bond_pricing/bond_price_formula.md)) the one-factor affine form
 
 $$
-P(t,T) = \exp\!\bigl(A(t,T) + B(t,T)\,r_t\bigr)
+P(t,T) = \exp\!\bigl(A(t,T) + B(t,T)\,r_t\bigr), \qquad B(t,T) = \frac{e^{-\lambda(T-t)} - 1}{\lambda}
 $$
 
-where
-
-$$
-B(t,T) = \frac{e^{-\lambda(T-t)} - 1}{\lambda}
-$$
-
-and the function $A(t,T)$ is determined by the no-arbitrage condition to fit the initial market curve $P^M(0,T)$.
+with $A(t,T)$ determined by no-arbitrage fitting of $P^M(0,T)$.
 
 Given a simulated short rate value $r_{t_i}$ at time $t_i$, the bond price for any maturity $T > t_i$ is computed directly from this formula. There is no approximation involved: the affine structure gives the exact bond price conditional on $r_{t_i}$.
 
@@ -25,19 +19,13 @@ Given a simulated short rate value $r_{t_i}$ at time $t_i$, the bond price for a
 
 ## Path-Wise Bond Price Computation
 
-Consider a time grid $0 = t_0 < t_1 < \cdots < t_N = T_{\max}$ and a set of maturities $T_1, T_2, \ldots, T_M$ at which we need bond prices. Along each simulated path $\omega$, the short rate trajectory $\{r_{t_0}(\omega), r_{t_1}(\omega), \ldots, r_{t_N}(\omega)\}$ is generated using exact simulation:
+Consider a time grid $0 = t_0 < t_1 < \cdots < t_N = T_{\max}$ and a set of maturities $T_1, T_2, \ldots, T_M$ at which we need bond prices. Recall (see [§ Exact Simulation](exact_simulation.md)) the exact Gaussian transition
 
 $$
-r_{t_{i+1}} = r_{t_i}\,e^{-\lambda \Delta t} + \lambda \int_{t_i}^{t_{i+1}} \theta(s)\,e^{-\lambda(t_{i+1}-s)}\,ds + \sigma \int_{t_i}^{t_{i+1}} e^{-\lambda(t_{i+1}-s)}\,dW_s
+r_{t_{i+1}} = \mu(t_i, t_{i+1}) + \sigma_r(t_i, t_{i+1})\,Z_{i+1}, \quad Z_{i+1} \sim N(0,1)
 $$
 
-Since the stochastic integral is Gaussian with mean zero and variance $\frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda \Delta t})$, the transition is sampled exactly as
-
-$$
-r_{t_{i+1}} = \mu(t_i, t_{i+1}) + \sigma_r(t_i, t_{i+1})\,Z_{i+1}
-$$
-
-where $Z_{i+1} \sim N(0,1)$, $\mu(t_i, t_{i+1}) = r_{t_i}\,e^{-\lambda \Delta t} + \lambda \int_{t_i}^{t_{i+1}} \theta(s)\,e^{-\lambda(t_{i+1}-s)}\,ds$, and $\sigma_r^2(t_i, t_{i+1}) = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda \Delta t})$.
+with $\sigma_r^2(t_i, t_{i+1}) = \frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda \Delta t})$, generates the short rate trajectory $\{r_{t_0}(\omega), \ldots, r_{t_N}(\omega)\}$.
 
 At each time step $t_i$ and for each required maturity $T_j > t_i$, the bond price is
 
@@ -124,13 +112,13 @@ This quantity is useful for pricing forward-starting derivatives and for computi
 
 ## Two-Factor Bond Price Simulation
 
-In the two-factor Hull-White model with $r_t = x_t + y_t + \varphi(t)$, the bond price depends on both state variables:
+Recall (see [§ HW Model Definition](../model_definition/hull_white_sde_and_mean_reversion.md)) the two-factor Hull-White model with $r_t = x_t + y_t + \varphi(t)$ gives
 
 $$
 P(t, T) = \exp\!\bigl(A^{(2)}(t,T) + B_x(t,T)\,x_t + B_y(t,T)\,y_t\bigr)
 $$
 
-where $B_x(t,T) = (e^{-\lambda_1(T-t)} - 1)/\lambda_1$ and $B_y(t,T) = (e^{-\lambda_2(T-t)} - 1)/\lambda_2$. Path-wise computation requires simulating both factors $(x_{t_i}, y_{t_i})$ at each time step, then evaluating the two-factor affine formula.
+with $B_x(t,T) = (e^{-\lambda_1(T-t)} - 1)/\lambda_1$ and $B_y(t,T) = (e^{-\lambda_2(T-t)} - 1)/\lambda_2$. Path-wise computation requires simulating both factors $(x_{t_i}, y_{t_i})$ at each time step, then evaluating the two-factor affine formula.
 
 The two-factor model produces richer yield curve dynamics: different paths can exhibit not only parallel shifts but also twist and butterfly movements, since the two factors decay at different rates $\lambda_1$ and $\lambda_2$.
 

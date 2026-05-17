@@ -22,14 +22,7 @@ For at-the-money options ($S \approx K$) in Black–Scholes:
 
 ## Theta-Gamma relationship
 
-
-A fundamental identity links theta and gamma for delta-hedged positions:
-
-$$
-\boxed{\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV - rS\Delta}
-$$
-
-For ATM options where $\Delta \approx \frac{1}{2}$ and $V \approx \frac{S\sigma\sqrt{\tau}}{\sqrt{2\pi}}$:
+**Recall** (see [§ PDEs Satisfied by Greeks](../greeks_pde/pdes_satisfied_by_greeks.md)): the Black–Scholes PDE gives the algebraic identity $\Theta + \tfrac12\sigma^2 S^2\Gamma = rV - rS\Delta$. For ATM options where $\Delta \approx \frac{1}{2}$ and $V \approx \frac{S\sigma\sqrt{\tau}}{\sqrt{2\pi}}$:
 
 $$
 \Theta \approx -\frac{1}{2}\sigma^2 S^2 \Gamma + \mathcal{O}(\sqrt{\tau})

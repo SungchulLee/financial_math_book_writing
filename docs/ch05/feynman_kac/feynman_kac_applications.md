@@ -1,95 +1,66 @@
-# Feynman Kac
+# Feynman–Kac: Worked Examples and the Forward Equation
 
-
-This page has two goals:
-
-1. practice solving PDEs using the probabilistic representation
-2. make explicit where the **forward equation** sits inside Feynman–Kac
+This page is the canonical home for **worked heat-equation examples** and for the role of the **forward (Fokker–Planck) equation** inside the Feynman–Kac representation. For the general statement, see [§ The Feynman–Kac Formula](feynman_kac_formula.md); for the discounting and source extensions, see [§ Discounted Feynman–Kac](discounted_feynman_kac.md) and [§ Running Payoff Feynman–Kac](feynman_kac_running_payoff.md).
 
 ---
 
-## Application Heat
-
+## Example 1: Pure Diffusion Heat Equation
 
 Solve
 
 $$
-V_t + \frac12\sigma^2 V_{xx}=0,\qquad V(T,x)=x^2
+V_t + \tfrac12\sigma^2 V_{xx}=0,\qquad V(T,x)=x^2.
 $$
 
-
-
-Take the process $dX_s=\sigma\,dW_s$. By Feynman–Kac (no discount, no running payoff),
+Take $dX_s=\sigma\,dW_s$. By Feynman–Kac (no discount, no source),
 
 $$
-V(t,x)=\mathbb E_{t,x}[X_T^2]
+V(t,x)=\mathbb{E}_{t,x}[X_T^2].
 $$
-
 
 Since $X_T=x+\sigma(W_T-W_t)$,
 
 $$
-V(t,x)=x^2+\sigma^2(T-t)
+V(t,x)=x^2+\sigma^2(T-t).
 $$
-
-
 
 **Exercise:** verify directly that this satisfies the PDE and terminal condition.
 
 ---
 
-## Application heat
-
+## Example 2: Drifted Diffusion
 
 Solve
 
 $$
-V_t + \mu V_x + \frac12\sigma^2 V_{xx}=0,\qquad V(T,x)=x^2
+V_t + \mu V_x + \tfrac12\sigma^2 V_{xx}=0,\qquad V(T,x)=x^2.
 $$
-
-
 
 Take $dX_s=\mu\,ds+\sigma\,dW_s$. Then $X_T=x+\mu(T-t)+\sigma(W_T-W_t)$, so
 
 $$
-V(t,x)=\mathbb E[X_T^2]=\big(x+\mu(T-t)\big)^2+\sigma^2(T-t)
+V(t,x)=\mathbb{E}[X_T^2]=\bigl(x+\mu(T-t)\bigr)^2+\sigma^2(T-t).
 $$
-
-
 
 ---
 
-## Where forward
+## Where the Forward Equation Lives
 
-
-Let $p(x,t;y,T)$ be the transition density of $X$. Then (in the simplest case)
-
-$$
-u(x,t)=\mathbb E[f(X_T)\mid X_t=x]=\int f(y)\,p(x,t;y,T)\,dy
-$$
-
-
-
-- For fixed $(x,t)$, as a function of $(y,T)$, the density $p$ satisfies the **Kolmogorov forward** equation.
-- For fixed $(y,T)$, as a function of $(x,t)$, the same $p$ satisfies the **Kolmogorov backward** equation.
-
-So even when you “solve the backward PDE for $u$,” the representation
+The Feynman–Kac representation can be written as an integral against the transition density $p(x,t;y,T)$:
 
 $$
-u(x,t)=\int f(y)\,p(x,t;y,T)\,dy
+u(x,t)=\mathbb{E}[g(X_T)\mid X_t=x]=\int g(y)\,p(x,t;y,T)\,dy.
 $$
 
-
-quietly contains the forward evolution through $p$.
+Recall (see [§ Forward–Backward Duality](../kolmogorov_equations/forward_backward_duality.md)): the same $p$ solves the **backward** equation in $(x,t)$ and the **forward** (Fokker–Planck) equation in $(y,T)$. So solving the backward PDE for $u$ implicitly contains the forward evolution through $p$.
 
 ---
 
 ## Summary
 
-
 - Backward PDE: differential law for $u$
 - Forward PDE: differential law for $p$
-- Feynman–Kac: the bridge $u = \int f\,p$
+- Feynman–Kac: the bridge $u = \int g\,p\,dy$
 
 ---
 

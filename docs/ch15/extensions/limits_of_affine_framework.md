@@ -15,24 +15,13 @@ The affine framework is one of the most powerful tools in mathematical finance: 
 
 ## What Makes a Model Affine
 
-An affine model is defined by three structural conditions on the state vector $X_t \in D \subseteq \mathbb{R}^d$:
+Recall (see [affine process definition](../definition_and_setup/definition_of_affine_process.md) and [general Riccati system](../characteristic_function/generalized_riccati_odes.md)). An affine model imposes three structural conditions on $X_t \in D \subseteq \mathbb{R}^d$:
 
-!!! info "Definition: Affine Process"
-    A Markov process $X_t$ is **affine** if its infinitesimal generator $\mathcal{A}$ has the property that for every $u \in i\mathbb{R}^d$, the function $x \mapsto e^{u^\top x}$ is an eigenvector of $\mathcal{A}$ up to an affine correction. Equivalently, the conditional characteristic function has the exponential-affine form:
+1. **Affine drift**: $\mu(x) = b_0 + Bx$
+2. **Affine diffusion**: $a(x) = a_0 + \sum_{i=1}^d \alpha_i x^{(i)}$
+3. **Affine jump compensator**: intensity $\Lambda(x) = \lambda_0 + \lambda^\top x$ with state-independent jump size distribution
 
-    $$
-    \mathbb{E}\!\left[e^{u^\top X_T} \mid X_t = x\right] = \exp\!\left(\phi(\tau, u) + \psi(\tau, u)^\top x\right)
-    $$
-
-    where $\phi$ and $\psi$ solve Riccati ODEs.
-
-This requires:
-
-1. **Affine drift**: $\mu(x) = b_0 + Bx$ (linear in the state)
-2. **Affine diffusion**: $a(x) = a_0 + \sum_{i=1}^d \alpha_i x^{(i)}$ (the diffusion matrix is affine in the state)
-3. **Affine jump compensator**: The jump intensity is $\Lambda(x) = \lambda_0 + \lambda^\top x$ and the jump size distribution is state-independent
-
-If any of these three conditions is violated, the exponential-affine form of the characteristic function breaks down, and the Riccati ODE system no longer applies.
+If any condition is violated, the exponential-affine characteristic function breaks down and the Riccati ODE system no longer applies.
 
 ---
 

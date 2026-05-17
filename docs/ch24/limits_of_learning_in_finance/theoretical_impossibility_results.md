@@ -32,26 +32,14 @@ Any discovered pattern may vanish once exploited.
 ## Adversarial and adaptive markets
 
 
-In adaptive markets:
-
-- strategies change the environment,
-- learning induces feedback effects,
-- convergence guarantees may fail.
-
-This limits long-term learnability.
+In adaptive markets, strategies change the environment, learning induces feedback effects, and convergence guarantees may fail. The capacity-erosion dynamic (alpha decays as capital crowds in) is treated in detail in Recall (see [§ Market Impact and Feedback Effects](../market_impact_and_feedback_effects/algorithmic_trading_mean_field_games.md)).
 
 ---
 
 ## Implications for practice
 
 
-Impossibility results imply:
-
-- performance guarantees are fragile,
-- humility is required in model claims,
-- robustness matters more than optimality.
-
-Learning must be combined with judgment.
+Impossibility results imply that performance guarantees are fragile, humility is required, and robustness dominates optimality. Learning must be combined with judgment.
 
 ---
 

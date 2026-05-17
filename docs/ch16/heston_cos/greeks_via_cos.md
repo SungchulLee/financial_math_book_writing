@@ -27,19 +27,7 @@ Each differentiation produces a new series of the same form, preserving the comp
 
 ## COS Price Formula Recap
 
-The COS call price is
-
-$$
-C = e^{-r\tau} \sum_{k=0}^{N-1}{}' A_k \, V_k^{\text{call}}
-$$
-
-where
-
-$$
-A_k = \frac{2}{b-a} \, \text{Re}\!\left[\varphi\!\left(\frac{k\pi}{b-a}\right) \exp\!\left(-i\frac{k\pi a}{b-a}\right)\right]
-$$
-
-and $\varphi(u) = \exp(C(\tau, u) + D(\tau, u) v_0 + iu \log S_0)$ is the Heston CF. The dependence of $\varphi$ on $S_0$ is explicit through the $iu \log S_0$ term.
+Recall (see [§ COS Pricing Formula](../../ch09/cos_method/cos_pricing_formula.md) and [§ European Call/Put Pricing](european_call_put_pricing.md)): $C = e^{-r\tau}\sum_{k=0}^{N-1}{}' A_k V_k^{\text{call}}$ with $A_k = \frac{2}{b-a}\mathrm{Re}[\varphi(u_k)e^{-iu_k a}]$ and $u_k = k\pi/(b-a)$. Greeks here use the Heston CF $\varphi(u) = \exp(C(\tau,u) + D(\tau,u)v_0 + iu\log S_0)$ (see [§ Heston Characteristic Function](../heston_cf/heston_sde_and_affine_recap.md)); the explicit $iu\log S_0$ term drives spot-Greek derivatives below.
 
 ---
 

@@ -24,7 +24,7 @@ The key insight is that the optimal exercise decision at each time step requires
 
 ### The Optimal Stopping Problem
 
-The American option price at time $t_0 = 0$ is:
+Recall (see [§ Risk-neutral valuation](../../ch04/risk_neutral/risk_neutral_valuation_principle.md)) and (see [§ Stopping times](../../ch02/filtration_and_martingale/stopping_time.md)) for the underlying $\mathbb{Q}$-expectation and stopping-time machinery. The American option price at $t_0 = 0$ is:
 
 $$
 V_0 = \sup_{\tau \in \mathcal{T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \Phi(S_\tau)\right]

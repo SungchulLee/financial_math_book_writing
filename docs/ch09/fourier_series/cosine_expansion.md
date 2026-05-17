@@ -130,13 +130,13 @@ $$
 To illustrate the rapid convergence of cosine expansions for smooth densities, consider a standard normal density truncated to $[a, b] = [-10, 10]$.
 
 !!! example "Cosine Coefficients of the Normal Density"
-    Let $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ on $[-10, 10]$. The cosine coefficients are
+    Recall (see [§ Fundamental solution of the heat equation](../../ch05/heat_equation/fundamental_solution.md)) that the standard normal density is real-analytic with Gaussian characteristic function, so its cosine coefficients on $[-10, 10]$,
 
     $$
-    A_k = \frac{2}{20}\int_{-10}^{10} \frac{1}{\sqrt{2\pi}}e^{-x^2/2}\cos\!\left(\frac{k\pi(x+10)}{20}\right)dx
+    A_k = \frac{1}{10}\int_{-10}^{10} \frac{1}{\sqrt{2\pi}}e^{-x^2/2}\cos\!\left(\frac{k\pi(x+10)}{20}\right)dx,
     $$
 
-    Since the Gaussian is analytic (entire), the cosine coefficients decay exponentially. Numerically:
+    decay (super-)exponentially in $k$:
 
     | $k$ | $A_k$ (approximate) |
     |---|---|
@@ -172,15 +172,7 @@ For contrast, consider a function with a kink.
 
 ## Role in the COS Method
 
-The Fourier cosine series on $[a, b]$ is the expansion chosen by the COS method (Fang and Oosterlee, 2008) for representing the risk-neutral density. The reasons for this choice are now clear:
-
-1. **Boundary compatibility.** Probability densities typically decay to zero or near-zero at the boundaries of the truncation interval $[a, b]$, so the even extension is smooth at the boundaries. This avoids the artificial discontinuities that would arise from periodic extension in the full Fourier series.
-
-2. **Rapid convergence.** For smooth densities (as produced by affine models), the cosine coefficients decay exponentially, requiring only $N = 64$ to $128$ terms.
-
-3. **Simple coefficient recovery.** As shown in the next section on [Cosine Coefficients via CF](../cos_method/cosine_coefficients_via_cf.md), the cosine coefficients $A_k$ can be expressed in terms of the characteristic function, enabling coefficient computation without knowing the density explicitly.
-
-4. **Real-valued series.** The cosine series produces real-valued partial sums automatically, avoiding the need to take real parts of complex exponentials at each evaluation point.
+Recall (see [§ COS method](../cos_method/characteristic_function_to_density.md)) for the algorithmic details. The cosine basis is chosen because (i) the even extension absorbs boundary mismatches that would otherwise cause $O(1/n)$ Gibbs decay; (ii) smooth densities give exponentially decaying coefficients; (iii) the coefficients $A_k$ admit a closed-form CF expression (see [§ Cosine coefficients via CF](../cos_method/cosine_coefficients_via_cf.md)); and (iv) the series is real-valued.
 
 ---
 

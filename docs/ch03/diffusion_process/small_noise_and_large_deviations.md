@@ -113,7 +113,7 @@ This recovers the **Kramers escape rate** from statistical physics.
 
 ### Hamilton–Jacobi Connection
 
-The large-deviations Hamiltonian is built from the same coefficients $(b, a)$ that define the [generator](diffusion_process_overview.md#infinitesimal-generator) $\mathcal{L} = b \cdot \nabla + \frac{1}{2}a:\nabla^2$. Define the **Hamiltonian**:
+Recall (see [§ The Infinitesimal Generator](../infinitesimal_generator/infinitesimal_generator.md)): the generator is $\mathcal{L} = b \cdot \nabla + \frac{1}{2}a:\nabla^2$. The large-deviations **Hamiltonian** is the symbol of $\mathcal{L}$ (replace $\nabla \mapsto p$):
 
 $$
 H(x, p) = b(x) \cdot p + \frac{1}{2}\,p^\top a(x)\,p, \qquad a = \sigma\sigma^\top

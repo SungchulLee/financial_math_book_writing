@@ -28,13 +28,7 @@ $$
 
 where the parabolic Hölder space $C^{2+\alpha, 1+\alpha/2}$ captures two spatial derivatives and one time derivative with Hölder continuity.
 
-**Heat kernel interpretation.** The fundamental solution (heat kernel) of the log-transformed Black–Scholes equation is Gaussian:
-
-$$
-G(t,x;T,y) = \frac{1}{\sqrt{2\pi\sigma^2(T-t)}} \exp\!\left(-\frac{(y-x-(r-\frac12\sigma^2)(T-t))^2}{2\sigma^2(T-t)}\right)
-$$
-
-Convolution with any $L^1$ terminal data produces a $C^\infty$ function for $t < T$.
+**Heat kernel interpretation.** In log-coordinates the operator has a Gaussian fundamental solution (heat kernel), and convolution with any $L^1$ terminal data produces a $C^\infty$ function for $t < T$ (the explicit kernel is written out in Exercise 1 and used again under "Degenerate coefficients" below).
 
 ---
 
@@ -47,25 +41,9 @@ $$
 \Phi''(S) = \delta(S-K) \quad \text{(Dirac mass)}
 $$
 
-For $t<T$, diffusion replaces this by a narrow bump of width $\mathcal{O}(\sqrt{T-t})$.
+For $t<T$, diffusion replaces this by a narrow bump.
 
-**Quantitative smoothing.** The gamma at time $t < T$ satisfies:
-
-$$
-\Gamma(t,S) = \frac{1}{S\sigma\sqrt{\tau}} N'(d_1) \leq \frac{1}{S\sigma\sqrt{2\pi\tau}}
-$$
-
-The maximum gamma occurs at $S = K e^{-(r-\frac12\sigma^2)\tau} \approx K$ and equals:
-
-$$
-\Gamma_{\max}(t) = \frac{1}{K\sigma\sqrt{2\pi\tau}} = \mathcal{O}(\tau^{-1/2})
-$$
-
-This shows how the Dirac mass "regularizes" into a smooth bump with:
-
-- **Height**: $\mathcal{O}(\tau^{-1/2})$
-- **Width**: $\mathcal{O}(\sqrt{\tau})$
-- **Area** (integral of $\Gamma$): $\mathcal{O}(1)$, independent of $\tau$
+**Recall** (see [§ Greeks in the Black–Scholes Model](../greeks/greeks_in_black_scholes_model.md) for the closed-form $\Gamma = N'(d_1)/(S\sigma\sqrt{\tau})$, and [§ Blow-Up of Gamma Near Expiry](../greeks_asympt/blow_up_of_gamma_near_expiry.md) for the ATM scaling): the regularized Dirac mass becomes a bump with height $\mathcal{O}(\tau^{-1/2})$, width $\mathcal{O}(\sqrt{\tau})$, and unit area, with maximum $\Gamma_{\max}(t) = 1/(K\sigma\sqrt{2\pi\tau})$ near $S=K$.
 
 ---
 

@@ -2,28 +2,21 @@
 
 An arbitrage opportunity is a trading strategy that generates profit without
 risk or net investment. This is the central impossibility condition of
-mathematical finance: if markets allowed riskless profits from nothing, prices
-would be driven to eliminate them, and no consistent pricing framework could
-exist.
+mathematical finance: if markets allowed riskless profits from nothing,
+prices would be driven to eliminate them, and no consistent pricing
+framework could exist. This is the **only** economic assumption used in the
+rest of the chapter — no utility function, no equilibrium argument, no
+statistical hypothesis. The FTAP is called *fundamental* because it derives
+probability (the risk-neutral measure $\mathbb{Q}$, constructed in
+[§ State prices](state_prices_arrow_debreu.md)) from economics
+(no-arbitrage), not the other way around.
 
-Building on the portfolio and payoff framework from the
-[preceding section](portfolios_and_payoffs.md), we ask: when can an investor
-construct a portfolio with zero cost and non-negative payoff that is strictly
-positive somewhere? The answer to this question is the economic content of
-the [First Fundamental Theorem](one_period_market_model.md). The absence of
-arbitrage will imply the existence of a linear pricing rule
-$\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$ with $\boldsymbol{\phi} \gg 0$,
-which we construct using state prices in the
-[next section](state_prices_arrow_debreu.md).
-
-!!! tip "Key insight: no-arbitrage is the only assumption needed"
-    The entire pricing theory of this chapter --- state prices, risk-neutral
-    measures, and discounted expectation --- follows from the single economic
-    assumption that no arbitrage opportunity exists. No utility function, no
-    equilibrium argument, no statistical hypothesis is required. This is why
-    the FTAP is called *fundamental*: it derives probability (the
-    risk-neutral measure $\mathbb{Q}$) from economics (no-arbitrage), not
-    the other way around.
+This page is the **canonical home** for the no-arbitrage theory: the
+formal arbitrage definition, the Law of One Price, dominance, the
+hierarchy $\text{NA} \Rightarrow \text{ND} \Rightarrow \text{LOP}$, and
+the finite-state First Fundamental Theorem of Asset Pricing
+$\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$, $\boldsymbol{\phi} \gg 0$, with
+full proof via Farkas/Separating Hyperplane.
 
 !!! abstract "Learning Objectives"
     After completing this section, you should be able to:
@@ -36,17 +29,16 @@ which we construct using state prices in the
 
 ---
 
-## Notation and Market Setup
+## Notation (recall)
 
-We work in the one-period market model established in the [One-Period Market Model](one_period_market_model.md) page. Time runs from $t = 0$ (today) to $t = 1$ (future). At $t = 1$, exactly one of $S$ possible states $\omega_1, \omega_2, \ldots, \omega_S$ is realized. There are $N$ traded assets. Asset $j$ has price $P_j$ at $t = 0$ and delivers state-contingent payoff $X_{js}$ at $t = 1$ in state $\omega_s$.
-
-The **price vector** and **payoff matrix** are:
-
-$$
-\mathbf{P} = \begin{pmatrix} P_1 \\ P_2 \\ \vdots \\ P_N \end{pmatrix} \in \mathbb{R}^N, \qquad \mathbf{X} = \begin{pmatrix} X_{11} & X_{12} & \cdots & X_{1S} \\ X_{21} & X_{22} & \cdots & X_{2S} \\ \vdots & \vdots & \ddots & \vdots \\ X_{N1} & X_{N2} & \cdots & X_{NS} \end{pmatrix} \in \mathbb{R}^{N \times S}
-$$
-
-A **portfolio** is a vector $\boldsymbol{\theta} = (\theta_1, \ldots, \theta_N)^\top \in \mathbb{R}^N$, where $\theta_j$ is the number of units held of asset $j$. The portfolio's cost at $t = 0$ is $\boldsymbol{\theta}^\top \mathbf{P}$, and its payoff in state $\omega_s$ is $(\mathbf{X}^\top \boldsymbol{\theta})_s = \sum_{j=1}^N \theta_j X_{js}$.
+Recall (see [§ One-Period Market Model](one_period_market_model.md) and
+[§ Portfolios and payoffs](portfolios_and_payoffs.md)): the market has $S$
+states $\omega_1, \ldots, \omega_S$ at $t = 1$, price vector
+$\mathbf{P} \in \mathbb{R}^N$, and payoff matrix $\mathbf{X} \in
+\mathbb{R}^{N \times S}$ with $X_{js}$ the payoff of asset $j$ in state
+$\omega_s$. A portfolio $\boldsymbol{\theta} \in \mathbb{R}^N$ has cost
+$\boldsymbol{\theta}^\top \mathbf{P}$ at $t = 0$ and payoff
+$\mathbf{X}^\top \boldsymbol{\theta} \in \mathbb{R}^S$ at $t = 1$.
 
 ---
 
@@ -380,13 +372,17 @@ So for any $t \in (0, 0.8)$, we get $\boldsymbol{\phi} \gg \mathbf{0}$. By the F
 
 ---
 
-## Connection to the Fundamental Theorem of Asset Pricing
+## What Comes Next
 
-The results on this page are the starting point for the **First Fundamental Theorem of Asset Pricing** (FTAP), which is treated in full generality in [Section 1.3](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md). In the finite one-period setting:
-
-- **This page** establishes that no-arbitrage is equivalent to the existence of strictly positive state prices $\boldsymbol{\phi} \gg \mathbf{0}$ with $\mathbf{P} = \mathbf{X}\,\boldsymbol{\phi}$.
-- **The [next section](state_prices_arrow_debreu.md)** shows that these state prices define Arrow-Debreu prices and can be re-scaled to produce risk-neutral probabilities, giving the discounted expected value formula $P_j = \frac{1}{1+r_f}\mathbb{E}^{\mathbb{Q}}[X_j]$.
-- **Section 1.3** extends these ideas to multi-period and more general settings, where the role of $\boldsymbol{\phi}$ is played by an equivalent martingale measure and the Separating Hyperplane Theorem is replaced by the Hahn-Banach theorem.
+The next page, [§ State prices](state_prices_arrow_debreu.md), interprets
+the vector $\boldsymbol{\phi}$ of this theorem as the prices of
+Arrow–Debreu securities, rescales it into a risk-neutral measure
+$\mathbb{Q}$, and rewrites $\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$ as
+discounted risk-neutral expectation. The general (multi-period,
+continuous-time) version of the FTAP, where the role of $\boldsymbol{\phi}$
+is played by an equivalent martingale measure and Farkas is replaced by
+Hahn–Banach, is in
+[§ Fundamental Theorem of Asset Pricing](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
 
 ---
 

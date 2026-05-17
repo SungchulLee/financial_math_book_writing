@@ -8,15 +8,7 @@ Without Itô's lemma, computing stochastic integrals means wrestling directly wi
 
 ## 1. The Direct Computation Problem
 
-The **Itô integral** is defined as an $L^2$-limit of Riemann sums:
-
-$$
-\int_0^t f(s,B_s)\,dB_s
-:= \lim_{n\to\infty} \sum_{i=0}^{n-1} f(t_i,B_{t_i})\,\bigl(B_{t_{i+1}}-B_{t_i}\bigr),
-\qquad t_i = i\,t/n
-$$
-
-where the integrand is evaluated at the **left endpoint**.
+Recall (see [§ Itô Integral Construction](../ito_integral/ito_integral_construction.md)): the Itô integral $\int_0^t f(s,B_s)\,dB_s$ is the $L^2$-limit of left-endpoint Riemann sums $\sum f(t_i, B_{t_i})(B_{t_{i+1}} - B_{t_i})$.
 
 Direct computation from this definition typically requires:
 
@@ -32,68 +24,13 @@ To see why this becomes unpleasant quickly, we compute a few integrals directly.
 
 ### Example A: Computing the Integral of B dB Directly
 
-By definition,
+Recall (see [§ Itô Integral Construction](../ito_integral/ito_integral_construction.md) and [§ Quadratic Variation](../ito_integral/quadratic_variation.md)): the identity $2xy=(x+y)^2-x^2-y^2$ applied to the Riemann sum splits it into a telescoping piece $\to B_1^2 - 0$ and a quadratic-variation piece $\sum(B_{t_{i+1}} - B_{t_i})^2 \xrightarrow{L^2} [B,B]_1 = 1$, yielding $\int_0^1 B_s\,dB_s = \tfrac12 B_1^2 - \tfrac12$.
 
-$$
-\int_0^1 B_s\,dB_s
-= \lim_{n\to\infty} \sum_{i=0}^{n-1} B_{t_i}\,(B_{t_{i+1}}-B_{t_i}),\qquad t_i=i/n
-$$
-
-Use the identity $2xy=(x+y)^2-x^2-y^2$ with $x=B_{t_i}$, $y=B_{t_{i+1}}-B_{t_i}$:
-
-$$
-B_{t_i}(B_{t_{i+1}}-B_{t_i})
-= \frac12\bigl(B_{t_{i+1}}^2-B_{t_i}^2\bigr)
--\frac12\bigl(B_{t_{i+1}}-B_{t_i}\bigr)^2
-$$
-
-Summing over $i$ gives a telescoping term and a quadratic-variation term:
-
-- Telescoping:
-
-    $$
-    \sum_{i=0}^{n-1}(B_{t_{i+1}}^2-B_{t_i}^2)=B_1^2-B_0^2=B_1^2
-    $$
-
-- Quadratic variation:
-
-    $$
-    \sum_{i=0}^{n-1}(B_{t_{i+1}}-B_{t_i})^2 \xrightarrow{L^2} [B,B]_1 = 1
-    $$
-
-Therefore,
-
-$$
-\boxed{
-\int_0^1 B_s\,dB_s = \frac12 B_1^2 - \frac12
-}
-$$
-
-Even this "simple" integral required a special algebraic trick and knowledge of quadratic variation.
+Even this "simple" integral required a special algebraic trick and direct knowledge of quadratic variation.
 
 ### Example B: Computing the Integral of sB dB Directly
 
-The definition gives
-
-$$
-\int_0^1 sB_s\,dB_s
-= \lim_{n\to\infty}\sum_{i=0}^{n-1} t_i B_{t_i}(B_{t_{i+1}}-B_{t_i})
-$$
-
-Write $2t_i B_{t_i}(B_{t_{i+1}}-B_{t_i}) = t_i(B_{t_{i+1}}^2 - B_{t_i}^2) - t_i(B_{t_{i+1}}-B_{t_i})^2$ and apply Abel summation (summation by parts) to the first sum:
-
-$$
-\sum_{i=0}^{n-1} t_i(B_{t_{i+1}}^2 - B_{t_i}^2)
-= t_{n-1}B_1^2 - \sum_{i=1}^{n-1}(t_i - t_{i-1})B_{t_i}^2
-$$
-
-As $n\to\infty$: the boundary term $t_{n-1}B_1^2 \to B_1^2$, the ordinary Riemann sum converges to $\int_0^1 B_s^2\,ds$, and the quadratic-variation sum satisfies
-
-$$
-\sum_{i=0}^{n-1} t_i(B_{t_{i+1}}-B_{t_i})^2 \xrightarrow{L^2} \int_0^1 s\,d[B,B]_s = \int_0^1 s\,ds = \frac12
-$$
-
-Combining and dividing by 2:
+A second example using the same machinery: write $2t_i B_{t_i}(B_{t_{i+1}}-B_{t_i})$ as a telescoping piece plus a weighted quadratic-variation piece, then apply Abel summation. The weighted QV converges to $\int_0^1 s\,d[B,B]_s = \tfrac12$ (see [§ Quadratic Variation](../ito_integral/quadratic_variation.md)). Combining:
 
 $$
 \boxed{
@@ -105,7 +42,7 @@ $$
 }
 $$
 
-This computation is far more error-prone than Example A and produces another random integral $\int_0^1 B_s^2\,ds$ that has no closed form. More complex integrands make things worse rapidly.
+This computation is markedly more error-prone than Example A and produces another random integral $\int_0^1 B_s^2\,ds$ that has no closed form. More complex integrands make things worse rapidly.
 
 ---
 
@@ -117,7 +54,9 @@ $$
 \int_0^t g(s)\,ds = G(t)-G(0),\qquad G'=g
 $$
 
-Itô's lemma plays the same role for stochastic integrals, but with the Itô correction $\tfrac12 f_{bb}\,dt$ — the curvature term that survives because $(dB_t)^2 = dt$ (see [Quadratic Taylor Expansion](taylor_expansion_quadratic.md)). Where the classical FTC simply evaluates an antiderivative at the endpoints, the stochastic version must also subtract this accumulated curvature correction.
+Itô's lemma plays the same role for stochastic integrals, but with the Itô correction $\tfrac12 f_{bb}\,dt$ — the curvature term that survives because $(dB_t)^2 = dt$.
+
+Recall (see [§ From Taylor to Itô](from_taylor_to_ito.md) for the rule and [§ Quadratic Approximation](taylor_expansion_quadratic.md) for the scaling): $(dB_t)^2 = dt$ while $(dt)^2 = 0$ and $dt\,dB_t = 0$. Where the classical FTC simply evaluates an antiderivative at the endpoints, the stochastic version must subtract this accumulated curvature correction.
 
 To compute $\int_0^t g(s,B_s)\,dB_s$ using Itô's lemma:
 
@@ -150,6 +89,8 @@ This is the stochastic analogue of $\int_0^t g(s)\,ds = G(t) - G(0)$. The right-
 ---
 
 ## 4. Re-doing the Earlier Examples
+
+The same three integrals computed in [§ Applications and Examples](ito_calculus_applications.md) (Examples 1, 3, 4) are recomputed below to contrast directly with the Riemann-sum approach of Section 2.
 
 ### Example A: Integral of B dB
 

@@ -38,6 +38,16 @@ The rest of this page proves the equivalence in both directions. The forward dir
 This route derives the pricing equation from the risk-neutral pricing principle rather than from a local delta-hedging argument (as in [delta hedging](delta_hedging.md)), a change of numéraire (as in the [stock-measure approach](change_of_numeraire.md)), or a preference specification (as in the [equilibrium approach](equilibrium.md)). The economic content lies in the existence and uniqueness of $\mathbb{Q}$; the analytic content lies in Itô's formula and Feynman–Kac.
 
 
+## Mechanism: Reweighting a Biased Coin
+
+
+The simplest measure change lives on a two-state space. A biased coin lands heads with probability $p$ (paying $u$) and tails with probability $1-p$ (paying $d$); under $\mathbb{P}$ the expected payoff is $pu + (1-p)d$. To make a chosen reference value $r^\star \in (d, u)$ act as the mean, reweight by
+
+$$Z(\text{H}) = \frac{q}{p}, \qquad Z(\text{T}) = \frac{1-q}{1-p}, \qquad q = \frac{r^\star - d}{u - d}$$
+
+The new measure $\mathbb{Q}$ defined by $\mathbb{Q}(A) = \mathbb{E}^{\mathbb{P}}[Z\,\mathbf{1}_A]$ assigns each state the unique weight that drives the mean to $r^\star$. The physical probabilities $p$ have done no real work — only their ratio $Z$ enters pricing. Girsanov's theorem below carries out exactly this reweighting in continuous time: a single drift parameter $\theta = (\mu-r)/\sigma$ is fixed by the condition that under $\mathbb{Q}$ the stock has drift $r$, the diffusion analog of "drive the mean to $r^\star$." Once that calibration is done, the rest of the derivation is purely analytic.
+
+
 ## Setup
 
 
@@ -47,59 +57,26 @@ $$dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$$
 
 with constants $\mu$, $\sigma > 0$, and a money market account $B_t = e^{rt}$.
 
-**Construction of $\mathbb{Q}$.** In the Black–Scholes model, the risk-neutral measure $\mathbb{Q}$ is constructed directly by Girsanov's theorem. The process
+**Construction of $\mathbb{Q}$.** Recall (see [§ Girsanov's Theorem](../../ch04/girsanov/girsanov_theorem.md) and [§ Market Price of Risk](../../ch04/risk_neutral/market_price_of_risk.md)): with $\theta = (\mu - r)/\sigma$, the process $W^{\mathbb{Q}}_t = W_t + \theta\, t$ is a $\mathbb{Q}$-Brownian motion, and the stock dynamics under $\mathbb{Q}$ are
 
-$$W^{\mathbb{Q}}_t = W_t + \frac{\mu - r}{\sigma}\, t$$
+$$dS_t = rS_t\, dt + \sigma S_t\, dW^{\mathbb{Q}}_t$$
 
-is a $\mathbb{Q}$-Brownian motion, and the stock dynamics under $\mathbb{Q}$ are
+Since the single risky asset spans the single Brownian source of risk, the market is complete and $\mathbb{Q}$ is unique (recall [§ FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md)).
 
-$$
-dS_t
-= rS_t\, dt + \sigma S_t\, \left(dW_t + \frac{\mu - r}{\sigma}\, dt\right)
-= rS_t\, dt + \sigma S_t\, dW^{\mathbb{Q}}_t
-$$
+**Verification that $\mathbb{Q}$ is an equivalent martingale measure.** A direct Itô calculation gives $d\widetilde{S}_t = \sigma\widetilde{S}_t\,dW_t^{\mathbb{Q}}$ for the discounted stock $\widetilde{S}_t = e^{-rt}S_t$, so the $dt$ terms cancel and $\widetilde{S}_t$ is driftless under $\mathbb{Q}$. Because $\sigma$ is constant the resulting exponential is a true (not merely local) $\mathbb{Q}$-martingale (full check deferred to the Technical Notes admonition below).
 
-The ratio $\theta = (\mu - r)/\sigma$ is the **market price of risk**: it is the Girsanov drift removal that converts the physical drift $\mu$ to the risk-neutral drift $r$. Since the single risky asset spans the single Brownian source of risk, the market is complete, and the equivalent martingale measure is unique. (This also follows from the [fundamental theorem of asset pricing](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md): no-arbitrage guarantees existence, and completeness guarantees uniqueness.)
-
-**Verification that $\mathbb{Q}$ is an equivalent martingale measure.** The discounted bank account $e^{-rt}B_t = 1$ is constant, hence trivially a martingale. For the discounted stock $\widetilde{S}_t = e^{-rt}S_t$, the product rule and the $\mathbb{Q}$-dynamics give:
-
-$$
-d\widetilde{S}_t
-= -re^{-rt}S_t\,dt + e^{-rt}\,dS_t
-= -re^{-rt}S_t\,dt + e^{-rt}\!\left(rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}\right)
-= \sigma\widetilde{S}_t\,dW_t^{\mathbb{Q}}
-$$
-
-The $dt$ terms cancel exactly, leaving a driftless SDE. The solution is $\widetilde{S}_t = \widetilde{S}_0\exp\!\left(\sigma W_t^{\mathbb{Q}} - \frac{1}{2}\sigma^2 t\right)$, the exponential martingale associated with a constant integrand. Since $\sigma$ is constant, the Novikov condition is trivially satisfied, and this is a true $\mathbb{Q}$-martingale (not merely a local martingale).
-
-**Derivation of the pricing formula (P).** With $\mathbb{Q}$ constructed, the no-arbitrage price follows. Since the Black–Scholes market is complete, any payoff $\Phi(S_T)$ is replicated by a self-financing portfolio $(\alpha_t, \beta_t)$ in $(S_t, B_t)$ — the same strategy constructed explicitly in [self-financing replication](replication.md), here re-characterized through the martingale property of discounted wealth — with value $V_t$ satisfying $dV_t = \alpha_t\,dS_t + \beta_t\,dB_t$. Applying the product rule to $\widetilde{V}_t = e^{-rt}V_t$:
-
-$$d\widetilde{V}_t = \alpha_t\,d\widetilde{S}_t$$
-
-This is a stochastic integral against the $\mathbb{Q}$-martingale $\widetilde{S}_t$, so $\widetilde{V}_t$ is a local $\mathbb{Q}$-martingale. Under the square-integrability condition $\mathbb{E}^{\mathbb{Q}}\!\left[\int_0^T \alpha_t^2 \widetilde{S}_t^2\,dt\right] < \infty$, it is a true $\mathbb{Q}$-martingale. The martingale property then gives:
+**Derivation of the pricing formula (P).** Recall (see [§ Risk-Neutral Valuation Principle](../../ch04/risk_neutral/risk_neutral_valuation_principle.md) and [§ Self-Financing Replication](replication.md)): completeness and the MRT-enforced replication $\alpha_t = V_S$ make $\widetilde{V}_t = e^{-rt}V_t$ a $\mathbb{Q}$-martingale, hence
 
 $$e^{-rt}V_t = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t\right]$$
 
-Multiplying by $e^{rt}$ yields **(P)**. Equivalently, this pricing formula follows directly from the fundamental theorem of asset pricing without explicit reference to replication: no-arbitrage and the uniqueness of $\mathbb{Q}$ pin the price as the unique no-arbitrage value.
+which is **(P)**.
 
-We write $V_t = V(t, S_t)$ for the option price process evaluated along the stock path; in what follows, $V(t,S)$ denotes the deterministic pricing function and $V_t$ the corresponding stochastic process. We assume $V \in C^{1,2}([0,T) \times (0,\infty))$ with polynomial growth. Polynomial growth is imposed to guarantee the relevant expectations are finite and to support uniqueness in the classical solution class. Since geometric Brownian motion has finite moments of all orders, this growth bound suffices.
+??? note "Technical notes: true-vs-local martingale, Novikov, integrability"
+    *Discounted stock.* Solving $d\widetilde{S}_t = \sigma\widetilde{S}_t\,dW_t^{\mathbb{Q}}$ gives $\widetilde{S}_t = \widetilde{S}_0\exp(\sigma W_t^{\mathbb{Q}} - \tfrac{1}{2}\sigma^2 t)$, a Doléans exponential with constant integrand. The Novikov condition $\mathbb{E}^{\mathbb{Q}}[\exp(\tfrac{1}{2}\int_0^T\sigma^2\,dt)]<\infty$ is trivially satisfied, so $\widetilde{S}_t$ is a true $\mathbb{Q}$-martingale (not merely a local one) and $\mathbb{E}^{\mathbb{Q}}[\widetilde{S}_t]=\widetilde{S}_0$ for all $t$.
 
-Note also that conditioning on $S_t = S$ and conditioning on $\mathcal{F}_t$ are interchangeable here because the $\mathbb{Q}$-dynamics of $S_t$ are Markov. Under $\mathbb{Q}$, the stock follows the diffusion
+    *Discounted wealth.* The local-martingale $\widetilde{V}_t$ is a true martingale under $\mathbb{E}^{\mathbb{Q}}[\int_0^T \alpha_t^2\widetilde{S}_t^2\,dt]<\infty$, which holds in the Black–Scholes setting for $V$ with polynomial growth (using finite GBM moments).
 
-$$
-dS_t = rS_t\, dt + \sigma S_t\, dW_t^{\mathbb{Q}}
-$$
-
-which is a time-homogeneous Markov process. Therefore, for any measurable payoff $\Phi$,
-
-$$
-\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)\mid \mathcal{F}_t]
-=
-\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)\mid S_t]
-\quad \text{a.s.}
-$$
-
-The intuition is that, for a Markov process, the future evolution depends only on the current state and not on the past history. Although $\mathcal{F}_t$ contains the entire path information up to time $t$, this additional information is redundant once $S_t$ is known. Hence the conditional expectation reduces to a function of $(t, S_t)$ alone.
+We write $V_t = V(t, S_t)$, with $V(t,S) \in C^{1,2}([0,T) \times (0,\infty))$ of polynomial growth. Since the $\mathbb{Q}$-dynamics of $S$ are time-homogeneous Markov, $\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)\mid\mathcal{F}_t] = \mathbb{E}^{\mathbb{Q}}[\Phi(S_T)\mid S_t]$ a.s., so the price is a function of $(t,S_t)$ alone.
 
 The two sections that follow prove the equivalence **(P) $\Leftrightarrow$ (A)**.
 

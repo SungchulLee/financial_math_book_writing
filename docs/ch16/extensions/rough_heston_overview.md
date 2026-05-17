@@ -2,9 +2,9 @@
 
 ## Introduction
 
-High-frequency analysis of realized volatility reveals a striking empirical fact: the **log-volatility** of equity indices behaves like a fractional Brownian motion with **Hurst parameter** $H \approx 0.1$, far below the classical value $H = 0.5$ of standard Brownian motion. This means volatility paths are **rougher** than Brownian motion --- they have more rapid local fluctuations and exhibit power-law behavior $\mathbb{E}[|v_{t+\Delta} - v_t|^2] \sim \Delta^{2H}$ with $H < 0.5$.
+Recall the rough-volatility empirical findings (see [§ Rough Volatility](../../ch14/extensions_and_variants/sabr_model.md)): equity log-volatility behaves like fractional Brownian motion with **Hurst parameter** $H \approx 0.1 \ll 0.5$, producing power-law scaling $\mathbb{E}[|v_{t+\Delta} - v_t|^2] \sim \Delta^{2H}$.
 
-The standard Heston model, built on the CIR process (a Markovian diffusion with $H = 0.5$), cannot reproduce this roughness signature. The **rough Heston model** (El Euch and Rosenbaum, 2019) replaces the CIR variance process with a Volterra-type integral equation driven by a **fractional kernel** $K_H(t) = t^{H-1/2} / \Gamma(H + 1/2)$. The resulting process is non-Markovian, but the characteristic function still satisfies a (fractional) Riccati equation, preserving much of the analytical tractability of the standard Heston model.
+Recall standard Heston (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)): the CIR variance process is Markovian with $H = 0.5$ and cannot reproduce this roughness. The **rough Heston model** (El Euch and Rosenbaum, 2019) replaces CIR with a Volterra-type integral equation driven by the **fractional kernel** $K_H(t) = t^{H-1/2} / \Gamma(H + 1/2)$. The process is non-Markovian, but the characteristic function still satisfies a (fractional) Riccati equation.
 
 This section provides an overview of the rough Heston framework, its mathematical foundations, key results, and implications for option pricing and calibration.
 
@@ -132,13 +132,7 @@ where $g(0, u)$ satisfies a system involving the solution to a **fractional Ricc
 
 ### Comparison with Standard Riccati
 
-In the standard Heston model, the function $D(\tau, u)$ satisfies the ODE:
-
-$$
-\frac{dD}{d\tau} = F(D), \qquad D(0, u) = 0
-$$
-
-The rough Heston replaces this ODE with a **Volterra integral equation** of the second kind:
+Recall the standard Heston Riccati ODE $dD/d\tau = F(D)$ with $D(0,u)=0$ (see [§ Riccati ODE System](../heston_cf/riccati_ode_system.md)). The rough Heston replaces this with a **Volterra integral equation** of the second kind:
 
 $$
 h(t) = \int_0^t K_H(t - s) F(h(s)) \, ds

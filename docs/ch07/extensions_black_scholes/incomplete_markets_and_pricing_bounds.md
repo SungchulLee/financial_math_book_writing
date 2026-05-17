@@ -131,41 +131,7 @@ $$
 
 ## Example: Stochastic Volatility
 
-### Setup
-
-$$
-\begin{aligned}
-dS_t &= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
-dv_t &= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
-\end{aligned}
-$$
-
-with $\text{Corr}(dW^{(1)}, dW^{(2)}) = \rho$.
-
-### Incompleteness
-
-- 2 sources of randomness ($W^{(1)}, W^{(2)}$)
-- Only 1 tradeable asset ($S$)
-- Cannot hedge variance risk with the stock alone
-
-### Market Price of Volatility Risk
-
-The measure change involves:
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}} = \mathcal{E}\left(-\int_0^T \theta_t^{(1)}\,dW_t^{(1)} - \int_0^T \theta_t^{(2)}\,dW_t^{(2)}\right)
-$$
-
-- $\theta_t^{(1)} = (\mu - r)/\sqrt{v_t}$ is determined by no-arbitrage
-- $\theta_t^{(2)} = \lambda(t, v_t)$ is **free** (volatility risk premium)
-
-### Different Choices of λ
-
-| Choice | Measure | Effect |
-|--------|---------|--------|
-| $\lambda = 0$ | Minimal | No volatility risk premium |
-| $\lambda = \lambda_0\sqrt{v}$ | Proportional | Common parameterization |
-| Calibrated | Market-implied | Matches option prices |
+Recall (see [§ Stochastic Volatility Models](stochastic_volatility_models.md)): with two Brownian motions $(W^{(1)},W^{(2)})$ and only $S$ traded, the Girsanov density has two market-price-of-risk components — $\theta^{(1)}=(\mu-r)/\sqrt{v_t}$ pinned by no-arbitrage and $\theta^{(2)}=\lambda(t,v_t)$ free, parameterizing the family $\mathcal{Q}$. Choices include $\lambda=0$ (minimal measure), $\lambda=\lambda_0\sqrt{v}$ (proportional), or market-calibrated.
 
 ---
 

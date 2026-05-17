@@ -231,14 +231,13 @@ where $c_{\alpha}$ is chosen so that $P(\theta \in C_{\text{HPD}} | X) = 1 - \al
 
 ### 4. Bayesian Model Uncertainty
 
-
-**Posterior Model Probability**:
+**Recall** (see [§ Knightian Uncertainty](../model_uncertainty_and_ambiguity/knightian_uncertainty.md)): posterior model probabilities
 
 $$
 P(M_k | X) = \frac{P(X | M_k) P(M_k)}{\sum_j P(X | M_j) P(M_j)}
 $$
 
-**Credible Model Set**: Include models until cumulative posterior probability exceeds $1 - \alpha$.
+define a credible model set by including models until cumulative posterior probability exceeds $1 - \alpha$.
 
 ## Calibration Confidence Sets in Practice
 

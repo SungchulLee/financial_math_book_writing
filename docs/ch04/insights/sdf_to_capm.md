@@ -139,3 +139,47 @@ Explain how the Girsanov kernel $\boldsymbol{\theta}$ in the measure-change fram
     The market price of risk $\boldsymbol{\theta}$ is the Girsanov kernel that removes drift from discounted prices. In matrix form, $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ says excess returns equal volatility exposure times prices of risk. Comparing with $\mathbb{E}[\mathbf{R}] - R_f\mathbf{1} = \beta\boldsymbol{\lambda}$, the volatility matrix $\Sigma$ encodes factor exposures and $\boldsymbol{\theta}$ encodes risk premia per unit of Brownian shock.
 
     When the number of Brownian motions exceeds the number of traded assets, $\Sigma$ has a non-trivial null space and $\boldsymbol{\theta}$ is not uniquely determined. Each valid $\boldsymbol{\theta}$ defines a different equivalent local martingale measure and different derivative prices. This is market incompleteness: the pricing kernel is not fully pinned down by traded assets, and additional information (calibration, equilibrium, or preferences) is needed to select a unique measure.
+
+---
+
+**Exercise 5.**
+In a single-factor market with $M_T = a - bR_M$ and $\mathbb{E}[M_T] = 1/R_f$,
+identify which quantity plays the role of the market price of risk $\theta$
+in [§ Risk Premium Decomposition](risk_premium_decomposition.md). Express
+$\theta$ explicitly in terms of $b$, $R_f$, and the market's volatility.
+
+??? success "Solution to Exercise 5"
+    Comparing $\mathbb{E}[R_M] - R_f = -R_f \operatorname{Cov}(M_T, R_M)$
+    with $M_T = a - bR_M$ gives $\operatorname{Cov}(M_T, R_M) = -b\,\operatorname{Var}(R_M)$, so
+
+    $$
+    \mathbb{E}[R_M] - R_f = bR_f\,\operatorname{Var}(R_M) = bR_f\,\sigma_M^2
+    $$
+
+    The Sharpe ratio of the market is
+
+    $$
+    \theta = \frac{\mathbb{E}[R_M] - R_f}{\sigma_M} = bR_f\,\sigma_M
+    $$
+
+    The SDF coefficient $b$ governs the price of market risk, so
+    $bR_f\sigma_M$ plays the role of the Girsanov kernel $\theta$ in the
+    continuous-time pricing framework. $\square$
+
+---
+
+**Exercise 6.**
+A claim has zero exposure to every priced factor: $\beta_{ij} = 0$ for all
+$j$. Use the factor pricing equation to determine its expected return.
+Connect the result to the canonical drift-removal statement in
+[§ Risk Premium Decomposition](risk_premium_decomposition.md).
+
+??? success "Solution to Exercise 6"
+    From $\mathbb{E}[R_i] - R_f = \sum_j \beta_{ij}\lambda_j = 0$, the claim
+    earns the risk-free rate: $\mathbb{E}[R_i] = R_f$.
+
+    The continuous-time analogue is that an asset with zero exposure to every
+    Brownian shock ($\sigma_{ij} = 0$ for all $j$) has $\mu_i = r$ under
+    $\mathbb{P}$ already, and the Girsanov substitution leaves its dynamics
+    unchanged. In both representations, a position carrying no priced risk
+    earns no risk premium.

@@ -2,12 +2,7 @@
 
 ## Swaption Payoff and Change of Numeraire
 
-$$\begin{array}{lll}
-\displaystyle
-\text{PAYOFF}^\text{Swaption}(T_m)
-&=&\displaystyle
-N\max\left(A_{mn}(T_m)\left(S_{mn}(T_m)-K\right),0\right)
-\end{array}$$
+Recall (see [§ Swaption Pricing](../../ch18/swaption_pricing/annuity_measure_and_change_of_numeraire.md)): a payer swaption pays $N\max(A_{mn}(T_m)(S_{mn}(T_m)-K),0)$ at $T_m$, with swap rate $S_{mn}(t)=(P(t,T_m)-P(t,T_n))/A_{mn}(t)$ a $\mathbb{Q}^{mn}$-martingale under the annuity numeraire. The risk-neutral price is
 
 $$\begin{array}{lll}
 \displaystyle
@@ -16,49 +11,9 @@ V^\text{Swaption}(t_0)
 \mathbb{E}^\mathbb{Q}\left[\frac{M(t_0)}{M(T_m)}N\max\left(A_{mn}(T_m)(S_{mn}(T_m)-K),0\right)\Big{|}{\cal F}(t_0)\right]
 \end{array}$$
 
-## Swap Rate S_mn is a Q^mn-Martingale
-
-Since $S_{mn}(t)=\sum_{k=m+1}^n \omega_k(t)l_k(t)=\frac{P(t,T_{m})-P(t,T_n)}{A_{mn}(t)}$ and since $P(t,T_{m})$ and $P(t,T_{n})$ are prices of tradable assets,
-
-$$\begin{array}{lll}
-\displaystyle
-\mathbb{E}^{mn}\left[S_{mn}(t)\Big{|}{\cal F}(s)\right]
-=S_{mn}(s)
-\end{array}$$
-
 ## Black Type Formula
 
-Assume that the swap rate follows a lognormal distribution:
-
-$$\begin{array}{lll}
-\displaystyle
-dS_{mn}(t)
-=
-\sigma_{mn}S_{mn}(t)dW^{mn}(t)
-\end{array}$$
-
-Then, we can use the Black–Scholes computation with interest rate 0:
-
-$$\begin{array}{lll}
-\displaystyle
-V^\text{Swaption,Payer}(t_0)
-&=&\displaystyle
-NA_{mn}(t_0)\left[S_{mn}(t_0)N(d_1)-KN(d_2)\right]\\
-\displaystyle
-V^\text{Swaption,Receiver}(t_0)
-&=&\displaystyle
-NA_{mn}(t_0)\left[-S_{mn}(t_0)N(-d_1)+KN(-d_2)\right]\\
-\end{array}$$
-
-where
-
-$$\begin{array}{lll}
-d_1&=&\displaystyle
-\frac{1}{v}\log\frac{S_{mn}(t_0)}{K}+\frac{1}{2}v\\
-d_2&=&\displaystyle
-\frac{1}{v}\log\frac{S_{mn}(t_0)}{K}-\frac{1}{2}v\\
-v&=&\sigma_{mn}\sqrt{T_m-t_0}
-\end{array}$$
+Recall (see [§ Swaption Pricing](../../ch18/swaption_pricing/annuity_measure_and_change_of_numeraire.md)): under the annuity measure with lognormal $dS_{mn}=\sigma_{mn}S_{mn}dW^{mn}$, Black-Scholes with zero rate gives $V^\text{Payer}=NA_{mn}(t_0)[S_{mn}(t_0)N(d_1)-KN(d_2)]$ (and the receiver analogue), with $d_{1,2}=\log(S_{mn}(t_0)/K)/v\pm\tfrac{1}{2}v$ and $v=\sigma_{mn}\sqrt{T_m-t_0}$.
 
 ## Hull-White Swaption Formula
 
@@ -97,14 +52,7 @@ $$\begin{array}{lll}
 
 ## Jamshidian Trick
 
-The ZCB price $P(T_m,T_k)=e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}$ at the swaption maturity $T_m$ is a function of the short rate $r(T_m)$ at $T_m$. Actually, the functions $r(T_m)\rightarrow P(T_m,T_k)$ are strictly decreasing. So, there exists a unique $r^*$ such that
-
-$$
-\displaystyle
-\sum_{k=m+1}^nc_kP(T_m,T_k,r^*)=1
-$$
-
-Using this, the swaption payoff can be decomposed into a sum of ZCB put options:
+Recall (see [§ Jamshidian's Trick](../bond_options/jamshidian_trick.md)): in the Hull-White model each ZCB price $P(T_m,T_k)=e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}$ is strictly decreasing in $r(T_m)$, so a unique critical rate $r^*$ exists with $\sum_{k=m+1}^n c_k P(T_m,T_k,r^*)=1$. Setting $K_k = P(T_m,T_k;r^*)$, the swaption payoff decomposes into a portfolio of ZCB puts:
 
 $$\begin{array}{lll}
 \displaystyle

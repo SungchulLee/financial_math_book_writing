@@ -37,20 +37,15 @@ The calibration proceeds as follows.
 - Set vega weights $w_i = 1/\mathcal{V}_i^2$
 - Filter out options with very small vega ($\mathcal{V}_i < \epsilon$, typically 0.01) to avoid numerical instability from near-zero denominators
 
-**Step 2: Define the objective function.**
+**Step 2: Define the objective function.** Recall (see [§ Vega Weighting](objective_function_design.md#vega-weighting-bridging-the-two-spaces)) the vega-weighted price-space loss:
 
 $$
 \mathcal{L}(\Theta) = \sum_{i=1}^M w_i \left[C_i^{\text{Heston}}(\Theta) - C_i^{\text{mkt}}\right]^2
 $$
 
-where $C_i^{\text{Heston}}(\Theta)$ is computed via the COS method or Carr-Madan FFT for all $M$ options simultaneously.
+with $w_i = 1/\mathcal{V}_i^2$. Recall (see [§ Heston Pricing (European/COS/FFT)](../european_pricing/semi_closed_form_fourier_inversion.md)) that $C_i^{\text{Heston}}(\Theta)$ is computed via the COS method or Carr-Madan FFT for all $M$ options simultaneously.
 
-**Step 3: Global search (DE).**
-
-- Bounds: $v_0 \in [0.001, 1]$, $\kappa \in [0.01, 10]$, $\theta \in [0.001, 1]$, $\xi \in [0.01, 3]$, $\rho \in [-0.99, 0.99]$
-- Population size $N_p = 50$, mutation $F = 0.8$, crossover $CR = 0.9$
-- Run for 200 generations
-- Include yesterday's parameters in the initial population (warm start)
+**Step 3: Global search (DE).** Recall (see [§ Differential Evolution](differential_evolution.md)) for full settings: $N_p = 50$, $F = 0.8$, $CR = 0.9$, 200 generations, with yesterday's parameters seeded in the initial population (warm start).
 
 **Step 4: Local refinement.**
 

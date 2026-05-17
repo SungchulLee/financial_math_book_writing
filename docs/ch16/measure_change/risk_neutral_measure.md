@@ -20,14 +20,10 @@ Under the physical measure $\mathbb{P}$, the stock has a drift $\mu$ reflecting 
 
 ## Physical Dynamics
 
-Under the physical measure $\mathbb{P}$, the Heston model specifies
+Recall (see [§ Heston SDE](../model_definition/heston_sde_and_parameters.md) and [§ Variance Dynamics](../variance_dynamics/cir_variance_process_solution.md)) the Heston SDE under $\mathbb{P}$:
 
 $$
-dS_t = \mu S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1), \mathbb{P}}
-$$
-
-$$
-dv_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^{(2), \mathbb{P}}
+dS_t = \mu S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1), \mathbb{P}}, \qquad dv_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^{(2), \mathbb{P}}
 $$
 
 with $d\langle W^{(1), \mathbb{P}}, W^{(2), \mathbb{P}} \rangle_t = \rho \, dt$.
@@ -46,7 +42,7 @@ The five physical parameters are:
 
 ## Girsanov's Theorem for Two-Dimensional Diffusions
 
-To change from $\mathbb{P}$ to $\mathbb{Q}$, define the market prices of risk $\lambda_S(t)$ and $\lambda_v(t)$ and the Radon–Nikodym derivative
+Recall (see [§ Girsanov's Theorem](../../ch04/girsanov/girsanov_theorem.md) and [§ Market Price of Risk](../../ch04/risk_neutral/market_price_of_risk.md)) the general construction. Applied to the Heston model: define the market prices of risk $\lambda_S(t)$ and $\lambda_v(t)$ and the Radon–Nikodym derivative
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\!\left(-\int_0^T \lambda_S(t) \, dW_t^{(1), \mathbb{P}} - \int_0^T \lambda_v(t) \, dW_t^{(2), \mathbb{P}} - \frac{1}{2}\int_0^T (\lambda_S^2(t) + \lambda_v^2(t)) \, dt\right)

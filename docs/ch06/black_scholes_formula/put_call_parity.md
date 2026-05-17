@@ -1,7 +1,9 @@
 # Put-Call Parity
 
-
 **Put-call parity** is a fundamental relationship between European call and put option prices. It is a **no-arbitrage condition** that must hold in frictionless markets, and provides a powerful tool for pricing, hedging, and detecting arbitrage opportunities.
+
+!!! tip "Toy mechanism: long call + short put = forward"
+    The single-line picture: at expiry, $(S_T - K)^+ - (K - S_T)^+ = S_T - K$ in every state. The right-hand side is the payoff of a *forward contract* to buy the stock at $K$. So **long call + short put = forward**, and the time-$0$ value of the forward is $S - Ke^{-rT}$. Everything in this section is a consequence of this one identity. The result is *model-free*: it does not use the Black–Scholes dynamics — only the absence of arbitrage and a risk-free bond.
 
 This section derives put-call parity, verifies it for the Black-Scholes formula, and explores its applications.
 
@@ -68,69 +70,13 @@ Each form is useful for different applications.
 
 ## No-Arbitrage Derivation
 
-*Section goal: deriving parity from a portfolio that replicates the forward in two ways.*
-
-Put-call parity can be derived purely from **no-arbitrage arguments**, independent of any model assumptions (like constant volatility or log-normal returns).
-
-### 1. **Portfolio Construction**
-
-
-Consider two portfolios at time $t=0$:
-
-**Portfolio A**: 
-
-- Long 1 call with strike $K$
-- Long 1 zero-coupon bond paying $K$ at time $T$
-
-**Portfolio B**:
-
-- Long 1 put with strike $K$
-- Long 1 share of stock
-
-### 2. **Initial Values**
-
+Recall (see [§ Put-Call Parity: The Bridge](../futures_and_forwards/bridge_to_options.md)): comparing Portfolio A (long call + zero-coupon bond paying $K$) with Portfolio B (long put + stock) yields identical terminal payoffs $\max(S_T, K)$ in every state, so by no-arbitrage their initial values agree:
 
 $$
-V_0^A = C_0 + Ke^{-rT}
+C_0 + Ke^{-rT} = P_0 + S_0 \quad\Longleftrightarrow\quad \boxed{C_0 - P_0 = S_0 - Ke^{-rT}}
 $$
 
-$$
-V_0^B = P_0 + S_0
-$$
-
-### 3. **Terminal Values**
-
-
-| Scenario | Portfolio A | Portfolio B |
-|---|---|---|
-| $S_T > K$ | $(S_T - K) + K = S_T$ | $0 + S_T = S_T$ |
-| $S_T \leq K$ | $0 + K = K$ | $(K - S_T) + S_T = K$ |
-
-In both cases $V_T^A = V_T^B$.
-
-**Payoff geometry.** It helps to visualize the four payoffs as a function of $S_T$:
-
-- **Long call**: zero for $S_T \leq K$, then a $45^\circ$ line $S_T - K$ for $S_T > K$ (hockey stick pointing up-right).
-- **Short put**: a $45^\circ$ line $S_T - K$ for $S_T < K$ (going from $-K$ at $S_T = 0$ up to zero at $S_T = K$), then flat zero for $S_T \geq K$ (hockey stick pointing down-left).
-
-Adding "long call $+$ short put" stitches the two pieces together into a *single straight line of slope $1$ passing through $(K, 0)$* — the payoff function $S_T - K$, identical to a forward struck at $K$. The kinks at $S_T = K$ cancel exactly. Drawing the three payoff diagrams on the same axes (long call, short put, and their sum) is the single most useful sketch for internalizing put-call parity.
-
-### 4. **No-Arbitrage Conclusion**
-
-
-Since the two portfolios have **identical terminal payoffs** in all states, they must have **identical initial values** (otherwise arbitrage exists):
-
-$$
-C_0 + Ke^{-rT} = P_0 + S_0
-$$
-
-Rearranging:
-
-$$
-\boxed{C_0 - P_0 = S_0 - Ke^{-rT}}
-$$
-
-This is put-call parity.
+The derivation is **model-free**: it requires only a risk-free bond and the absence of arbitrage, not the Black-Scholes dynamics. Equivalently, "long call $+$ short put" replicates a forward struck at $K$ (slope-$1$ line through $(K, 0)$). The remainder of this section verifies parity algebraically against the BS formula and explores its applications.
 
 ---
 
@@ -271,51 +217,7 @@ $$
 
 ## Generalizations
 
-*Section goal: parity under continuous dividends, foreign-domestic FX, and American options.*
-
-### 1. **With Continuous Dividends**
-
-
-If the stock pays dividends at continuous rate $q$:
-
-$$
-\boxed{C - P = Se^{-qT} - Ke^{-rT}}
-$$
-
-**Derivation**: Replace $S$ with $Se^{-qT}$ (present value of stock after dividend payments).
-
-### 2. **With Discrete Dividends**
-
-
-If the stock pays known dividends $D$ at time $t_d < T$:
-
-$$
-\boxed{C - P = \left(S - De^{-rt_d}\right) - Ke^{-rT}}
-$$
-
-**Derivation**: Subtract the present value of dividends from the stock price.
-
-### 3. **Foreign Currency Options (Garman-Kohlhagen)**
-
-
-For options on foreign exchange rate $X$ (domestic per foreign):
-
-$$
-\boxed{C - P = Xe^{-r_f T} - Ke^{-r_d T}}
-$$
-
-where $r_d$ = domestic rate, $r_f$ = foreign rate.
-
-### 4. **Futures Options**
-
-
-For options on futures contracts with futures price $F$:
-
-$$
-\boxed{C - P = e^{-rT}(F - K)}
-$$
-
-Since futures require no initial payment, this simplifies further.
+Recall (see [§ Put-Call Parity: The Bridge](../futures_and_forwards/bridge_to_options.md)): parity extends by replacing $S$ with the carry-adjusted spot — continuous dividends give $C - P = Se^{-qT} - Ke^{-rT}$, discrete dividends give $C - P = (S - De^{-rt_d}) - Ke^{-rT}$, FX (Garman-Kohlhagen) gives $C - P = Xe^{-r_fT} - Ke^{-r_dT}$, and futures give $C - P = e^{-rT}(F - K)$.
 
 ---
 

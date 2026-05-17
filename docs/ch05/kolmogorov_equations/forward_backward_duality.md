@@ -291,21 +291,7 @@ Both require forward simulation of the SDE, but answer different questions.
 
 ## Connection to Time Reversal
 
-The forward–backward duality is intimately connected to **time reversal** of diffusions.
-
-If $X_t$ has generator $\mathcal{L}$ and stationary distribution $\pi$, then the time-reversed process $\tilde{X}_t = X_{T-t}$ has drift:
-
-$$\tilde{\mu}(x) = -\mu(x) + \sigma^2(x) \frac{\partial \log \pi}{\partial x}(x)$$
-
-The reversed generator $\tilde{\mathcal{L}}$ is related to $\mathcal{L}^*$ via $\pi$:
-
-$$\tilde{\mathcal{L}}f = \frac{1}{\pi}\mathcal{L}^*(\pi f)$$
-
-This is the foundation of:
-
-- **Score-based diffusion models** in ML
-- **Stochastic bridges** (conditioned diffusions)
-- **Entropy production** in non-equilibrium thermodynamics
+Recall (see [§ Time Reversal of Diffusions](../../ch03/diffusion_process/time_reversal_of_diffusions.md)): the reversed process has drift $\tilde{\mu} = -\mu + \sigma^2\partial_x\log\pi$ and reversed generator $\tilde{\mathcal{L}}f = \pi^{-1}\mathcal{L}^*(\pi f)$, foundational for score-based diffusion models, stochastic bridges, and entropy production.
 
 ---
 

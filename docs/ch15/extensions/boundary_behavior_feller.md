@@ -17,13 +17,7 @@ The CIR-type components of an affine process live on $\mathbb{R}_+$ and have squ
 
 ### Why Boundary Behavior Matters
 
-Consider the CIR variance process in the Heston model:
-
-$$
-dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t, \qquad V_0 > 0
-$$
-
-If $V_t$ hits zero, the diffusion coefficient vanishes and the process degenerates. Three questions arise:
+Recall (see [Heston CIR variance SDE](../examples/heston_as_affine.md)). If $V_t$ hits zero, the diffusion coefficient vanishes and the process degenerates. Three questions arise:
 
 1. **Does $V_t$ ever reach zero?** If yes, the square-root diffusion creates a singular point.
 2. **What happens at zero?** Is the process absorbed (stuck at zero forever) or reflected (immediately pushed back)?
@@ -177,7 +171,7 @@ $$
 where $(b_0)_i$ is the constant drift of the $i$-th component (evaluated at $x^{(i)} = 0$ with other CIR components at zero) and $(\alpha_i)_{ii}$ is the diffusion coefficient.
 
 !!! info "Proposition: Feller Condition for Heston Variance"
-    In the Heston model, the variance process has $b_0^{(1)} = \kappa\theta$ and $(\alpha_1)_{11} = \xi^2$. The Feller condition is $2\kappa\theta \geq \xi^2$, identical to the scalar CIR condition.
+    Recall (see [Heston affine parameters](../examples/heston_as_affine.md)): $b_0^{(1)} = \kappa\theta$, $(\alpha_1)_{11} = \xi^2$. The Feller condition is $2\kappa\theta \geq \xi^2$, identical to the scalar CIR condition.
 
 ### Cross-Component Effects
 

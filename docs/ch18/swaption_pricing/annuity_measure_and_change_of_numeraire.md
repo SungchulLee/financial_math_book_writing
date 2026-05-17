@@ -17,17 +17,7 @@ This simplifies the computation of expectations.
 
 ## Change of Numeraire
 
-Let $N(t)$ be a strictly positive tradable asset (numeraire). Define the measure $\mathbb{Q}^N$ such that:
-
-$$
-\frac{X(t)}{N(t)}
-$$
-
-is a martingale for any asset price $X(t)$ (properly discounted).
-
----
-
-### Examples
+Recall (see [§ Risk-Neutral / Forward Measure](../../ch04/risk_neutral/forward_measure.md)) that for any strictly positive tradable numeraire $N(t)$ there is a measure $\mathbb{Q}^N$ under which $X(t)/N(t)$ is a martingale for every tradable $X(t)$. The relevant numeraire / measure / martingale triples are:
 
 | Numeraire | Measure | Martingale |
 |----------|--------|-----------|
@@ -110,18 +100,7 @@ $$
 
 ## Connection to Chapter 6
 
-This is the exact analogue of:
-
-- forward measure → forward price is martingale
-- annuity measure → swap rate is martingale
-
-Thus:
-
-| Chapter 6 | Chapter 18 |
-|----------|-----------|
-| Forward price | Swap rate |
-| Forward measure | Annuity measure |
-| Black formula | Black swaption formula |
+Recall (see [§ Black Formula](../../ch06/index.md)) the forward-measure analogue: forward price is a martingale under the $T$-forward measure, giving the Black formula. The annuity measure plays the exact same role for the swap rate, leading to the Black swaption formula.
 
 ---
 

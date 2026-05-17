@@ -231,31 +231,7 @@ where $\varepsilon \in [0,1]$ and $\mathcal{Q}$ is a set of contaminating distri
 
 ### Garlappi-Uppal-Wang Framework
 
-Garlappi, Uppal, and Wang (2007) incorporate parameter uncertainty directly into the portfolio problem. The investor solves:
-
-$$
-\max_w \min_{\mu \in \mathcal{C}} \left\{w^\top \mu - \frac{\lambda}{2}\,w^\top \Sigma w\right\}
-$$
-
-where $\mathcal{C}$ is an ellipsoidal confidence region for $\mu$:
-
-$$
-\mathcal{C} = \left\{\mu : (\mu - \hat{\mu})^\top \hat{\Sigma}_\mu^{-1}(\mu - \hat{\mu}) \leq \varepsilon^2\right\}
-$$
-
-The worst-case expected return for any portfolio $w$ is:
-
-$$
-\min_{\mu \in \mathcal{C}} w^\top \mu = w^\top \hat{\mu} - \varepsilon\sqrt{w^\top \hat{\Sigma}_\mu\, w}
-$$
-
-so the robust problem becomes:
-
-$$
-\max_w \left\{w^\top \hat{\mu} - \varepsilon\sqrt{w^\top \hat{\Sigma}_\mu\, w} - \frac{\lambda}{2}\,w^\top \Sigma w\right\}
-$$
-
-This is equivalent to the SOCP formulation discussed in the robust portfolio optimization section.
+Recall the ellipsoidal-uncertainty robust problem $\max_w \min_{\mu \in \mathcal{C}} \{w^\top \mu - \tfrac{\lambda}{2}w^\top \Sigma w\}$ and its worst-case reduction $\min_{\mu \in \mathcal{C}} w^\top \mu = w^\top \hat{\mu} - \varepsilon\sqrt{w^\top \hat{\Sigma}_\mu w}$ (see [§ Robust Portfolio Optimization](robust_portfolio_optimization.md)). Garlappi-Uppal-Wang (2007) apply this with $\mathcal{C}$ a Bayesian posterior confidence region for $\mu$.
 
 !!! info "Black-Litterman as Implicit Robustness"
     The connection between Black-Litterman and robust optimization runs deep. By anchoring expected returns to equilibrium and controlling the degree of deviation through $\tau$ and $\Omega$, Black-Litterman implicitly constrains the optimizer from pursuing extreme positions based on noisy estimates. The Bayesian posterior covariance $\hat{\Sigma}_{\text{BL}}$ plays the role of the uncertainty set in robust optimization.

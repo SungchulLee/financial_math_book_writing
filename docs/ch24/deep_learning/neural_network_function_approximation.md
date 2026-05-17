@@ -196,19 +196,13 @@ Moreover, deep ReLU networks achieve the optimal approximation rate $O(N^{-2s/d}
 
 ## Approximation vs Estimation: The Statistical Perspective
 
-In practice, we do not choose the approximating network freely---we learn it from data. The total error decomposes into approximation and estimation components.
-
-**Theorem (Error Decomposition).** Let $f^*$ be the target function, $\mathcal{F}_N$ the class of networks with $N$ parameters, and $\hat{f}_n$ the network estimated from $n$ data points. Then:
+In practice, we do not choose the approximating network freely---we learn it from data. The total error decomposes into approximation and estimation components (Recall (see [§ Bias-Variance Trade-Off](../statistical_learning_in_financial_models/bias_variance_trade_off.md)) for the general bias-variance picture):
 
 $$
 \mathbb{E}\left[\|f^* - \hat{f}_n\|^2\right] \leq \underbrace{\inf_{f \in \mathcal{F}_N} \|f^* - f\|^2}_{\text{Approximation error}} + \underbrace{\mathbb{E}\left[\|\hat{f}_n - f_N^*\|^2\right]}_{\text{Estimation error}}
 $$
 
-where $f_N^* = \arg\min_{f \in \mathcal{F}_N} \|f^* - f\|^2$ is the best approximation within the network class.
-
-**Approximation error** decreases with network size $N$ (wider/deeper networks can represent more functions).
-
-**Estimation error** increases with $N$ relative to sample size $n$ (more parameters require more data to estimate reliably).
+where $f_N^* = \arg\min_{f \in \mathcal{F}_N} \|f^* - f\|^2$. Approximation error decreases with network size $N$; estimation error increases with $N$ relative to sample size $n$.
 
 ### Covering Number Bounds
 
@@ -268,7 +262,7 @@ For American option pricing with $d$ exercise features, the neural network appro
 
 3. **Depth provides exponential efficiency** for compositional functions, with deep ReLU networks achieving optimal Sobolev approximation rates.
 
-4. **Total error** decomposes into approximation error (decreasing with network size) and estimation error (increasing with network size relative to data), creating a bias-variance trade-off.
+4. **Total error** decomposes into approximation error (decreasing with network size) and estimation error (increasing with network size relative to data), creating a bias-variance trade-off (see [§ Bias–Variance Trade-Off](../statistical_learning_in_financial_models/bias_variance_trade_off.md) for the general decomposition).
 
 5. **Financial applications** include high-dimensional option pricing, volatility surface fitting, and conditional expectation approximation, where the curse of dimensionality defeats classical methods.
 

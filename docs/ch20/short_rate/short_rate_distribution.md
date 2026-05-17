@@ -44,33 +44,7 @@ The starting point is the explicit solution of the Hull-White SDE derived in the
     $$
 
 ???+ note "Proof"
-    From the explicit solution:
-
-    $$
-    r_T = r_t\, e^{-a(T-t)} + \int_t^T e^{-a(T-u)}\, \theta(u)\, du + \sigma \int_t^T e^{-a(T-u)}\, dW_u^{\mathbb{Q}}
-    $$
-
-    The first two terms are $\mathcal{F}_t$-measurable (deterministic given $r_t$). The third term is a stochastic integral of a deterministic integrand against Brownian motion, hence Gaussian with mean zero.
-
-    **Conditional mean:**
-
-    $$
-    \mathbb{E}[r_T \mid \mathcal{F}_t] = r_t\, e^{-a(T-t)} + \int_t^T e^{-a(T-u)}\, \theta(u)\, du + 0 = \mu(t,T)
-    $$
-
-    **Conditional variance** (by the Ito isometry):
-
-    $$
-    \text{Var}[r_T \mid \mathcal{F}_t] = \sigma^2 \int_t^T e^{-2a(T-u)}\, du
-    $$
-
-    Evaluate the integral:
-
-    $$
-    \sigma^2 \int_t^T e^{-2a(T-u)}\, du = \sigma^2 \left[\frac{1}{2a}\, e^{-2a(T-u)}\right]_{u=t}^{u=T} = \frac{\sigma^2}{2a}\bigl(1 - e^{-2a(T-t)}\bigr)
-    $$
-
-    $\square$
+    Recall (see [§ HW solution](short_rate_solution.md)): from the explicit solution, the stochastic part $\sigma\int_t^T e^{-a(T-u)}dW_u^\mathbb{Q}$ is Gaussian (mean zero, Ito isometry), and the remaining terms are $\mathcal{F}_t$-measurable. Evaluating the isometry integral gives $\Sigma^2(t,T)=\frac{\sigma^2}{2a}(1-e^{-2a(T-t)})$. $\square$
 
 ---
 
@@ -255,7 +229,7 @@ For bond pricing, the distribution of the integrated short rate $\int_t^T r_s\, 
 
     $\square$
 
-The Gaussian distribution of $\int_t^T r_s\, ds$ is what makes the bond price $P(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\, ds} \mid \mathcal{F}_t]$ analytically tractable via the MGF of a Gaussian.
+The Gaussian distribution of $\int_t^T r_s\, ds$ underlies the analytic bond pricing formula (Recall (see [§ HW bond pricing](../bond_pricing/bond_price_formula.md))).
 
 ---
 

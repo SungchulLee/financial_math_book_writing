@@ -1,52 +1,14 @@
 # T-Forward Measures
 
-
-Beyond the risk-neutral measure, it is often convenient to price derivatives under a **forward measure**, associated with a specific maturity $T$.
-
----
-
-## Definition of the T-forward measure
-
-
-Let $P(t,T)$ be the zero-coupon bond maturing at $T$.
-The **T-forward measure** $\mathbb{Q}^T$ is defined by choosing $P(t,T)$ as numéraire.
-
-Under $\mathbb{Q}^T$,
-
-$$
-\frac{S_t}{P(t,T)} \text{ is a martingale}
-$$
-
-
-for any tradable asset $S_t$ that pays off at or before $T$.
-
----
-
-## Pricing under the forward measure
-
-
-For a payoff $V_T$ at time $T$,
+Recall (see [§ general forward measure](../../ch04/risk_neutral/forward_measure.md)): the **$T$-forward measure** $\mathbb{Q}^T$ chooses the zero-coupon bond $P(t,T)$ as numéraire, so $S_t/P(t,T)$ is a $\mathbb{Q}^T$-martingale for any tradable asset paying off at or before $T$, and a payoff $V_T$ at time $T$ has price
 
 $$
 V_t = P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[V_T \mid \mathcal{F}_t]
 $$
 
+Discounting disappears because the numéraire matures at $T$. The Girsanov change from $\mathbb{Q}$ to $\mathbb{Q}^T$ alters drifts but leaves volatilities unchanged, and many forward rates become martingales under their natural forward measures.
 
-
-Discounting disappears because the numéraire already matures at $T$.
-
----
-
-## Dynamics under the forward measure
-
-
-Changing from $\mathbb{Q}$ to $\mathbb{Q}^T$:
-
-- alters drift terms,
-- leaves volatilities unchanged,
-- simplifies pricing of forwards, FRAs, and caps.
-
-Many rates become martingales under their natural forward measures.
+This section is the canonical reference for the $T$-forward measure in the interest-rate context.
 
 ---
 
@@ -80,65 +42,7 @@ Forward measures are especially useful for:
 
 ## QuantPie Derivation: Change of Numeraire
 
-### Instantaneous Forward Rate Dynamics under Different Measures
-
-**Risk Neutral Measure:**
-
-$$\begin{array}{lllll}
-\text{Risk Neutral}&&
-\displaystyle
-df(t,T)
-&=&\displaystyle
-\left(\sigma(t,T)\int_t^T\sigma(t,T')dT'\right)dt+\sigma(t,T)dW^\mathbb{Q}(t)\\
-\end{array}$$
-
-**T Forward Measure:**
-
-$$\begin{array}{lllll}
-\text{$T$ Forward}&&
-\displaystyle
-df(t,T)
-&=&\displaystyle
-\sigma(t,T)dW^T(t)\\
-\end{array}$$
-
-**$T_f$ Forward Measure:**
-
-$$\begin{array}{lllll}
-\text{$T_f$ Forward}&&
-\displaystyle
-df(t,T)
-&=&\displaystyle
--\left(\sigma(t,T)\int_T^{T_f}\sigma(t,T')dT'\right)dt
-+\sigma(t,T)dW^{T_f}(t)\\
-\end{array}$$
-
-### Forward Rate as a Markov Process
-
-$f(t,T)$, as a function of $t$, is a Markov process.
-
-$$\begin{array}{lllll}
-\displaystyle
-f(t,T)
-=
-f(0,T)+
-\int_0^t\left(\sigma(t',T)\int_{t'}^T\sigma(t',T')dT'\right)dt'+\int_0^t\sigma(t',T)dW^\mathbb{Q}(t')
-\end{array}$$
-
-$$\begin{array}{lllll}
-\displaystyle
-f(t+\Delta,T)
-=
-f(0,T)+
-\int_0^{t+\Delta}\left(\sigma(t',T)\int_{t'}^T\sigma(t',T')dT'\right)dt'+\int_0^{t+\Delta}\sigma(t',T)dW^\mathbb{Q}(t')
-\end{array}$$
-
-$$\begin{array}{lllll}
-\displaystyle
-f(t+\Delta,T)-f(t,T)
-=
-\int_t^{t+\Delta}\left(\sigma(t',T)\int_{t'}^T\sigma(t',T')dT'\right)dt'+\int_t^{t+\Delta}\sigma(t',T)dW^\mathbb{Q}(t')
-\end{array}$$
+Recall (see [§ HJM](../hjm/forward_rate_dynamics.md)): the instantaneous forward rate $f(t,T)$ is a Markov process under $\mathbb{Q}$ with the HJM drift condition, and changing to $\mathbb{Q}^T$ or $\mathbb{Q}^{T_f}$ rescales that drift. Below we derive the change of numéraire to $\mathbb{Q}^T$ directly from the ZCB dynamics.
 
 ### T-Forward Measure: Direct Computation
 

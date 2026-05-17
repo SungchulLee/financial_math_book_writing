@@ -227,13 +227,7 @@ Maintain complete list of models:
 
 ### 2. Tiering
 
-Categorize models by importance:
-
-| Tier | Criteria | Validation Frequency |
-|------|----------|---------------------|
-| **1** | Material impact, complex | Annual or more frequent |
-| **2** | Moderate impact | Annual |
-| **3** | Low impact, simple | Periodic (2-3 years) |
+Recall (see [§ Periodic Review](model_validation.md#periodic-review)) that models are categorized by importance, with Tier 1 (material/complex) reviewed annually or more frequently, Tier 2 annually, and Tier 3 every 2--3 years.
 
 ### 3. Model Risk Reporting
 

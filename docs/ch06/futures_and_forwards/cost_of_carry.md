@@ -2,7 +2,23 @@
 
 **Key idea**: The forward price reflects the net cost of holding the asset until maturity, not expectations of where the price will be.
 
-The previous sections established that the no-arbitrage forward price of a non-dividend-paying asset is $F_0 = S_0 e^{rT}$. In practice, assets generate income, require storage, or offer convenience to their holders. The **cost-of-carry model** captures all of these factors in a single exponential adjustment. The general formula is
+## A Tiny Storage-Cost Scenario
+
+Before any general formula, watch what happens when the basic forward setup is perturbed by one new cash flow. Suppose wheat trades at $S_0 = \$6.00$ per bushel, the risk-free rate is $r = 4\%$, and storing wheat costs $u = 3\%$ per year (silo rental, insurance, spoilage). Replicate a one-year long forward by buying the wheat and borrowing — exactly as in [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md) — but now the silo charges rent along the way. The cumulative outlay grows at $r + u$ rather than $r$, so
+
+$$
+F_0 = S_0 \, e^{(r + u) T} = 6.00 \, e^{0.07} \approx \$6.4350
+$$
+
+Compared with the storage-free case $S_0 e^{rT} \approx \$6.2449$, the forward is roughly $\$0.19$ higher per bushel — exactly the present-valued storage cost rolled into the delivery price. Reverse the sign and the same algebra absorbs *income* the asset throws off (a dividend, a coupon, a convenience yield): each cash flow shifts the carry rate by its own annualized rate.
+
+This single observation — **carry rates add inside the exponent** — is the whole cost-of-carry model.
+
+---
+
+## The General Formula
+
+Recall (see [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md)): the no-arbitrage forward price of a non-dividend-paying asset is $F_0 = S_0 e^{rT}$. In practice, assets generate income, require storage, or offer convenience to their holders. The **cost-of-carry model** captures all of these factors in a single exponential adjustment. The general formula is
 
 $$
 F_0 = S_0 \, e^{(r - q + u - y)T}
@@ -98,11 +114,9 @@ The relationship between the forward price and the spot price defines the shape 
 Contango and backwardation are not permanent conditions — they shift as supply, demand, and interest rates change.
 
 ??? example "Real-World Example: WTI Crude Oil Term Structure"
-    The WTI crude oil forward curve frequently shifts between contango and backwardation depending on supply conditions. During periods of tight supply or geopolitical risk, the front-month contract trades at a significant premium to deferred months — a classic backwardation pattern where the market values immediate delivery far more than future delivery.
+    The WTI crude oil forward curve frequently shifts between contango and backwardation depending on supply conditions. During tight supply or geopolitical risk, the front-month contract trades at a premium to deferred months (backwardation); when storage is abundant, the curve tilts into contango.
 
-    Conversely, when storage is abundant and supply exceeds near-term demand, the curve tilts into contango: deferred contracts trade above the front month, reflecting the financing and storage costs of holding physical oil.
-
-    An extreme dislocation occurred on April 20, 2020, when the front-month WTI contract (May 2020, CLK20) settled at $-\$37.63$ per barrel while contracts just one month out remained positive. Storage at the Cushing, Oklahoma delivery point was nearly full, and traders holding long positions who could not take physical delivery were forced to sell at any price. This episode demonstrated that physical delivery constraints can overwhelm the standard cost-of-carry relationship and produce term structure dislocations that no equilibrium model would predict.
+    Recall (see [§ Margin and Marking to Market](margin_mark_to_market.md)): on April 20, 2020, CLK20 settled at $-\$37.63$, demonstrating that physical-delivery constraints can produce term-structure dislocations no equilibrium cost-of-carry model would predict.
 
 ---
 
@@ -182,3 +196,43 @@ Contango and backwardation are not permanent conditions — they shift as supply
     Since $S_0 > 0$ and $T > 0$, we have $F_0 < S_0$ if and only if $e^{(r + u - y)T} < 1$, which holds if and only if $r + u - y < 0$, i.e., $y > r + u$. $\square$
 
     When supply is scarce, holders of the physical commodity gain a large implicit benefit: they can continue production, fulfill contractual obligations, or sell into a tight spot market at elevated prices. This benefit is the convenience yield. As the shortage intensifies, the convenience yield rises, eventually surpassing $r + u$ and pushing the forward price below the spot price (backwardation). In this regime, the market prices immediate delivery at a premium over future delivery, reflecting the urgency of current demand.
+
+---
+
+**Exercise 5.** A stock index is at $S_0 = 5{,}000$, the risk-free rate is $r = 4.5\%$, and the continuous dividend yield is $q = 2\%$. Compute the forward prices for $T = 3$ months, $T = 1$ year, and $T = 2$ years. State whether the forward curve is in contango or backwardation, and explain why this is the expected regime for equity indices.
+
+??? success "Solution to Exercise 5"
+    With $r - q = 0.025$:
+
+    $$
+    F_0(0.25) = 5{,}000 \, e^{0.025 \times 0.25} \approx 5{,}031.35
+    $$
+
+    $$
+    F_0(1) = 5{,}000 \, e^{0.025} \approx 5{,}126.58
+    $$
+
+    $$
+    F_0(2) = 5{,}000 \, e^{0.05} \approx 5{,}256.36
+    $$
+
+    Forward prices rise with $T$, so the curve is in **contango**. Equity indices typically trade in contango because the risk-free rate exceeds the dividend yield, making the net cost of carry $r - q > 0$. Holders forgo financing on the cash used to buy the index but receive dividends; on average, financing dominates.
+
+---
+
+**Exercise 6.** Suppose physical gold has spot price $S_0 = \$2{,}100$/oz, risk-free rate $r = 4\%$, storage cost $u = 0.4\%$, and zero convenience yield. The 1-year futures is quoted at $G_0 = \$2{,}150$. Is there an arbitrage? If so, describe the strategy.
+
+??? success "Solution to Exercise 6"
+    The theoretical forward price is
+
+    $$
+    F_0 = 2{,}100 \, e^{(0.04 + 0.004) \times 1} = 2{,}100 \, e^{0.044} \approx \$2{,}194.51
+    $$
+
+    The market price $G_0 = 2{,}150 < 2{,}194.51 = F_0$, so the futures is **underpriced**. The arbitrage (recall, see [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md)): go **long** the futures, short the physical gold (receive $\$2{,}100$, avoid storage cost), and lend $\$2{,}100$ at $r = 4\%$. At $T = 1$:
+
+    - Lending pays $2{,}100 \, e^{0.04} \approx \$2{,}185.69$.
+    - Avoided storage saves $2{,}100 \,(e^{0.004} - 0) \approx \$8.42$ in carry-cost terms.
+    - Pay $G_0 = \$2{,}150$ via the long futures to receive a share to cover the short.
+
+    Net risk-free profit $\approx 2{,}194.51 - 2{,}150 = \$44.51$ per ounce, independent of the spot price at maturity. (In practice the short-physical leg requires a lease market for gold; the qualitative arbitrage logic is the same.)

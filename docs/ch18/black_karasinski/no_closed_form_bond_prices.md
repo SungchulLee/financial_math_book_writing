@@ -26,26 +26,11 @@ The term $e^x g$ --- the discounting term --- is the fundamental obstruction. Th
 
 ## Numerical method 1: trinomial tree
 
-The most widely used method for BK bond pricing is the **trinomial tree** (Hull-White tree adapted for log-normal rates). The tree discretizes both time and the log-rate space.
-
-### Construction
-
-1. Build a tree for $x = \ln r$ with time steps $\Delta t$ and log-rate steps $\Delta x = \sigma\sqrt{3\Delta t}$
-2. At each node, compute branching probabilities (up, middle, down) that match the conditional mean and variance of $x_{t+\Delta t}$
-3. Calibrate $\theta(t_k)$ at each time step to match the observed discount factor $P^{\text{mkt}}(0, t_k)$
-
-### Bond pricing on the tree
-
-To price a bond maturing at $T$:
-
-1. Set all terminal nodes at time $T$ to value $1$
-2. Roll backward through the tree: at each node $(t_k, x_j)$, the bond price is the discounted expected value
+Recall (see [§ Trinomial Tree Implementation](trinomial_tree_implementation.md)) that a tree is built in log-rate space with $\Delta x = \sigma\sqrt{3\Delta t}$, branching probabilities match the conditional mean and variance, and $\theta(t_k)$ is calibrated by forward induction. Bond prices follow by backward induction
 
 $$
 g(t_k, x_j) = e^{-e^{x_j}\Delta t}\left[p_u\,g(t_{k+1}, x_{j+1}) + p_m\,g(t_{k+1}, x_j) + p_d\,g(t_{k+1}, x_{j-1})\right]
 $$
-
-where $p_u, p_m, p_d$ are the branching probabilities and $e^{x_j}$ is the short rate at node $j$.
 
 **Convergence**: $O(\Delta t)$ for standard trees, $O(\Delta t^2)$ with Richardson extrapolation.
 
@@ -80,23 +65,7 @@ $$
 
 ## Numerical method 3: Monte Carlo
 
-Monte Carlo simulation generates paths of $x_t = \ln r_t$ (which is Gaussian, making simulation straightforward) and averages the discounted payoffs.
-
-### Path simulation
-
-Since $x_t$ follows an OU process, exact simulation is available:
-
-$$
-x_{t+\Delta t} = x_t\,e^{-a\Delta t} + \frac{\theta(t)}{a}(1 - e^{-a\Delta t}) + \sigma\sqrt{\frac{1 - e^{-2a\Delta t}}{2a}}\,Z
-$$
-
-where $Z \sim \mathcal{N}(0,1)$. The short rate is then $r_t = e^{x_t}$.
-
-### Bond price estimator
-
-$$
-\hat{P}(t,T) = \frac{1}{M}\sum_{m=1}^M \exp\!\left(-\sum_{k=0}^{N-1}\frac{e^{x_{t_k}^{(m)}} + e^{x_{t_{k+1}}^{(m)}}}{2}\,\Delta t_k\right)
-$$
+Recall (see [§ Monte Carlo Simulation](monte_carlo_simulation.md)) that exact OU simulation of $x_t = \ln r_t$ is available and the bond price estimator averages $\exp(-\int_t^T r_s\,ds)$ over $M$ paths via trapezoidal integration.
 
 **Convergence**: $O(1/\sqrt{M})$ statistical error plus $O(\Delta t^2)$ discretization error (with trapezoidal rule).
 

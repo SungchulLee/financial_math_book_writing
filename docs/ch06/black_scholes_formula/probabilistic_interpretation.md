@@ -1,7 +1,9 @@
 # Probabilistic Interpretation of the Black-Scholes Formula
 
-
 The Black-Scholes formula is not merely a mathematical expression—it has deep **probabilistic meaning**. The terms $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ represent probabilities under different measures, and the formula can be understood as a weighted average of terminal payoffs.
+
+!!! tip "Toy mechanism: two probabilities, one event"
+    Imagine a single stock that ends up at $S_T = 120$ with probability $p$ and at $S_T = 80$ with probability $1-p$. The call payoff at $K = 100$ is $20\,\mathbf{1}_{\{S_T = 120\}}$, so under the risk-neutral measure $\mathbb{Q}$ the discounted price is $C_0 = e^{-rT}\cdot 20\,q$, where $q = \mathbb{Q}(S_T = 120)$. Now rewrite the same expression by *splitting* the expectation into a stock-receipt term and a strike-payment term: $C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T\,\mathbf{1}_{\{S_T>K\}}] - Ke^{-rT}\mathbb{Q}(S_T>K)$. The strike term carries the bare probability $q$; the stock term carries the *stock-weighted* probability $\bar q = 120 q / \mathbb{E}^{\mathbb{Q}}[S_T]$. Two probabilities, one event — the discrete picture is exactly what $\mathcal{N}(d_2)$ and $\mathcal{N}(d_1)$ generalise in the lognormal model below.
 
 This section reveals the probabilistic structure underlying the option pricing formula.
 
@@ -14,41 +16,9 @@ This section reveals the probabilistic structure underlying the option pricing f
 
 ## Risk-Neutral Expectation
 
-*Section goal: pricing as a discounted expectation under the risk-neutral measure $\mathbb{Q}$.*
+Recall (see [§ Risk-Neutral Valuation Principle](../../ch04/risk_neutral/risk_neutral_valuation_principle.md) and [§ Feynman-Kac](../bs_pde_analytic_solution/feynman_kac.md)): under $\mathbb{Q}$, $C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T-K)^+]$ with $S_T = S_0 e^{(r-\frac{1}{2}\sigma^2)T + \sigma W_T}$ and $\log S_T$ Gaussian with mean $\log S_0 + (r-\tfrac{1}{2}\sigma^2)T$ and variance $\sigma^2 T$. (Throughout this section, $W_t$ is Brownian under $\mathbb{Q}$; the measure change to $\mathbb{Q}^S$ below uses $\widetilde{W}_t = W_t - \sigma t$.)
 
-### 1. **Fundamental Pricing Formula**
-
-
-Under the risk-neutral measure $\mathbb{Q}$, the option price is:
-
-$$
-V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff at } T]
-$$
-
-For a European call:
-
-$$
-C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]
-$$
-
-### 2. **Terminal Stock Price Distribution**
-
-
-**Throughout this section, $W_t$ denotes a Brownian motion under the risk-neutral measure $\mathbb{Q}$.** Under $\mathbb{Q}$, the terminal stock price is
-
-$$
-S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T}
-$$
-
-so $W_T \sim \mathcal{N}(0, T)$. After the measure change to $\mathbb{Q}^S$ below, we will work with $\widetilde{W}_t = W_t - \sigma t$ instead, which is Brownian under $\mathbb{Q}^S$ by Girsanov's theorem.
-
-**Log-normal distribution**:
-
-$$
-\log S_T \sim \mathcal{N}\left(\log S_0 + \left(r - \frac{1}{2}\sigma^2\right)T, \sigma^2 T\right)
-$$
-
-### 3. **Decomposition of Call Expectation**
+### 1. **Decomposition of Call Expectation**
 
 
 $$
@@ -354,66 +324,13 @@ The difference captures the **risk premium** embedded in the stock.
 
 ## Connection to Delta Hedging
 
-*Section goal: why $\Delta = \mathcal{N}(d_1)$ equals a probability without literally being one.*
-
-The hedge ratio (delta) for a call is:
-
-$$
-\Delta_{\text{call}} = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
-$$
-
-**Interpretation**: To hedge a short call position, hold $\mathcal{N}(d_1)$ shares of stock.
-
-**Why this equals the stock-measure probability**: The delta emerges naturally from the replication argument, where we solve:
-
-$$
-V = \Delta S + \beta
-$$
-
-The $\Delta$ that replicates the option is exactly the probability under the measure where $S$ is the numeraire.
+Recall (see [§ Properties and Bounds](properties_and_bounds.md) and [§ Greeks in Black-Scholes](../../ch10/greeks/greeks_in_black_scholes_model.md)): $\Delta_{\text{call}} = \partial C/\partial S = \mathcal{N}(d_1)$, so the same number plays two roles — replication coefficient (shares to hedge) and stock-measure exercise probability — the algebraic coincidence that makes the numéraire-change derivation clean.
 
 ---
 
 ## Limiting Cases
 
-*Section goal: what the two probabilities collapse to in degenerate parameter regimes.*
-
-### 1. **Deep In-the-Money** (S ≫ K)
-
-
-- $d_1, d_2 \to +\infty$
-- $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$
-- Both probabilities approach 100% (certain exercise)
-
-Call price:
-
-$$
-C \to S - Ke^{-rT}
-$$
-
-(intrinsic value plus cost of carry)
-
-### 2. **Deep Out-of-the-Money** (S ≪ K)
-
-
-- $d_1, d_2 \to -\infty$
-- $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$
-- Both probabilities approach 0% (no exercise)
-
-Call price:
-
-$$
-C \to 0
-$$
-
-### 3. **At-the-Money Forward** (S = Ke^-rT)
-
-
-- $d_1 = \frac{\sigma\sqrt{T}}{2}$, $d_2 = -\frac{\sigma\sqrt{T}}{2}$
-- $\mathcal{N}(d_1) = \mathcal{N}(-d_2) \approx 0.5 + \delta$
-- $\mathcal{N}(d_2) = \mathcal{N}(-d_1) \approx 0.5 - \delta$
-
-Both probabilities are near 50%, symmetrically distributed around 0.5.
+Recall (see [§ Asymptotic Behavior](asymptotic_behavior.md)): in the deep-ITM, deep-OTM, and ATM-forward regimes, both $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ collapse to $1$, $0$, or symmetrically about $\tfrac{1}{2}$ — see the summary table there for the precise limits.
 
 ---
 

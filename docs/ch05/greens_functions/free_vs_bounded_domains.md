@@ -2,11 +2,13 @@
 
 The qualitative behavior of a Green's function depends on whether the domain is **free** (all of $\mathbb{R}$) or **bounded** with explicit boundary conditions. On free domains, heat diffuses to infinity and mass spreads without loss. On bounded domains, heat either leaks out through absorbing boundaries or bounces back off reflecting ones, producing a much richer structure. In finance this is exactly the distinction between vanilla options (free domain) and barrier options (bounded domain).
 
+This page is the **geometry lens** on Green's functions; the operator/PDE lens is in [Green's Function for Parabolic PDEs](greens_function_parabolic.md), the probability lens in [Transition Density as Green's Function](transition_density_as_greens_function.md), and the eigenstructure lens in [Spectral Decomposition](spectral_decomposition.md).
+
 ---
 
 ## Free-Space Green's Function
 
-On $\mathbb{R}$ the Green's function (i.e., transition density) for $\partial_t u = \tfrac12\partial_{xx} u$ is the Gaussian heat kernel (see [Green's Function](greens_function_parabolic.md) for the derivation):
+Recall (see [§ Green's Function for Parabolic PDEs](greens_function_parabolic.md) and [§ Transition Density as Green's Function](transition_density_as_greens_function.md)): for $\partial_t u = \tfrac12\partial_{xx} u$ on $\mathbb{R}$, the Green's function (i.e., transition density) is the **Gaussian heat kernel**
 
 $$
 G_{\text{free}}(t,x;s,y) = \frac{1}{\sqrt{2\pi(t-s)}}\exp\!\left(-\frac{(x-y)^2}{2(t-s)}\right).
@@ -44,13 +46,13 @@ Each image pair enforces cancellation at $x=0$ and $x=L$ simultaneously. Images 
 
 ### Spectral Representation
 
-The same Green's function admits the sine expansion
+Recall (see [§ Spectral Decomposition](spectral_decomposition.md)): the same Green's function admits the sine expansion
 
 $$
 G_{\text{Dir}}(t,x;0,y) = \frac{2}{L}\sum_{n=1}^{\infty} e^{-n^2\pi^2 t/(2L^2)} \sin\!\left(\tfrac{n\pi x}{L}\right)\sin\!\left(\tfrac{n\pi y}{L}\right).
 $$
 
-The full derivation lives on the [Spectral Decomposition](spectral_decomposition.md) page. The key facts for this lens are that the spectrum is **discrete** with $\lambda_n = n^2\pi^2/(2L^2)$, that mass leaks out ($\int_0^L G_{\text{Dir}}\,dx < 1$ and $\to 0$ as $t\to\infty$), and that the leakage rate is the principal eigenvalue $\lambda_1 = \pi^2/(2L^2)$.
+The key facts for this lens are that the spectrum is **discrete** with $\lambda_n = n^2\pi^2/(2L^2)$, that mass leaks out ($\int_0^L G_{\text{Dir}}\,dx < 1$ and $\to 0$ as $t\to\infty$), and that the leakage rate is the principal eigenvalue $\lambda_1 = \pi^2/(2L^2)$.
 
 ### Images vs Spectral: the Time-Scale Trade-off
 
@@ -76,7 +78,7 @@ $$
 G_{\text{Neu}}(t,x;0,y) = \sum_{k\in\mathbb{Z}}\bigl[G_{\text{free}}(t,x;0,y+2kL) + G_{\text{free}}(t,x;0,-y+2kL)\bigr].
 $$
 
-The spectral version contains a constant zero-eigenvalue mode plus cosines (see [Spectral Decomposition](spectral_decomposition.md)):
+Recall (see [§ Spectral Decomposition](spectral_decomposition.md)): the spectral version contains a constant zero-eigenvalue mode plus cosines,
 
 $$
 G_{\text{Neu}}(t,x;0,y) = \frac{1}{L} + \frac{2}{L}\sum_{n=1}^{\infty} e^{-n^2\pi^2 t/(2L^2)}\cos\!\left(\tfrac{n\pi x}{L}\right)\cos\!\left(\tfrac{n\pi y}{L}\right).

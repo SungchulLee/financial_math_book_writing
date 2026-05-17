@@ -63,11 +63,7 @@ If the model misfits these co-terminal swaptions (as the one-factor model often 
 
 For cap calibration, the two-factor model provides a smaller relative improvement. Caps depend on caplet volatilities, which are functions of the short rate distribution at individual reset dates. Since the short rate distribution involves both factors additively:
 
-$$
-\text{Var}(r_{T_k}) = \frac{\sigma_1^2}{2\lambda_1}(1 - e^{-2\lambda_1 T_k}) + \frac{\sigma_2^2}{2\lambda_2}(1 - e^{-2\lambda_2 T_k}) + \frac{2\rho\sigma_1\sigma_2}{\lambda_1+\lambda_2}(1 - e^{-(\lambda_1+\lambda_2)T_k})
-$$
-
-the two-factor model has more flexibility to fit the caplet volatility term structure, but the additional parameters primarily affect the tenor dimension (which caplets do not probe). The improvement over the one-factor model is typically modest: 20--50\% reduction in RMSE.
+$\text{Var}(r_{T_k})$ — Recall (see [§ Short Rate Variance](correlation_between_factors.md#short-rate-variance)) — the two-factor model has more flexibility to fit the caplet volatility term structure, but the additional parameters primarily affect the tenor dimension (which caplets do not probe). The improvement over the one-factor model is typically modest: 20--50\% reduction in RMSE.
 
 ## When Is the Second Factor Necessary
 

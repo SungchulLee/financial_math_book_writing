@@ -3,7 +3,41 @@
 
 The **Black-Scholes model**, developed independently by Fischer Black and Myron Scholes (1973) and Robert Merton (1973), constitutes a cornerstone of modern financial mathematics. It provides a robust framework for pricing European options under the assumption that the underlying asset follows **geometric Brownian motion**—a continuous-time stochastic process.
 
-This section introduces the Black-Scholes model, its historical significance, and its relationship to the discrete-time binomial framework studied in Section 2.1.
+Before the abstract framework, it pays to see the central mechanism — replication eliminating the drift — in the smallest possible model. Everything that follows is the continuous-time amplification of this one calculation.
+
+---
+
+## The Mechanism in One Binomial Step
+
+Consider a single period of length $\Delta t$. The stock $S_0$ moves to either $uS_0$ or $dS_0$, the bond grows by $e^{r\Delta t}$, and a call pays $C_u = (uS_0 - K)^+$ or $C_d = (dS_0 - K)^+$.
+
+Form a portfolio of $\Delta$ shares plus $B$ dollars in the bond. To replicate the call, demand that both states match:
+
+$$
+\Delta\,uS_0 + Be^{r\Delta t} = C_u, \qquad \Delta\,dS_0 + Be^{r\Delta t} = C_d
+$$
+
+Solving gives
+
+$$
+\Delta = \frac{C_u - C_d}{(u - d)S_0}, \qquad B = e^{-r\Delta t}\,\frac{uC_d - dC_u}{u - d}
+$$
+
+and the price $C_0 = \Delta S_0 + B$ rearranges to
+
+$$
+C_0 = e^{-r\Delta t}\!\left[q\,C_u + (1-q)\,C_d\right], \qquad q = \frac{e^{r\Delta t} - d}{u - d}
+$$
+
+The physical probability of an up-move never appears. The expected return of the stock under $\mathbb{P}$ never appears. The replication argument has produced a price formula that depends only on observable parameters $(u, d, r, \Delta t)$.
+
+This is the entire Black-Scholes mechanism in one step:
+
+- a hedged portfolio cancels the random component,
+- no-arbitrage forces the deterministic residual to grow at $r$,
+- the drift $\mu$ disappears from the pricing equation.
+
+The continuous-time model replaces the two-state move with geometric Brownian motion, the static portfolio with a continuously rebalanced one, and the algebraic identity above with a partial differential equation. The mechanism is identical.
 
 ---
 
@@ -126,31 +160,9 @@ where:
 - $\sigma$ = volatility (standard deviation of returns)
 - $W_t$ = standard Brownian motion
 
-**2. Derivative Valuation**
+**2. Derivative Valuation and Hedging**
 
-The option value $V(S,t)$ satisfies the **Black-Scholes PDE**:
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
-$$
-
-with terminal condition (for European call):
-
-$$
-V(S,T) = \max(S-K, 0)
-$$
-
-**3. Hedging Strategy**
-
-The replicating portfolio:
-
-$$
-\Pi = V - \Delta S
-$$
-
-where $\Delta = \frac{\partial V}{\partial S}$ is the **delta** (hedge ratio).
-
-By constructing this portfolio to be **locally risk-free**, we eliminate uncertainty and derive the PDE.
+Recall (see [§ BS PDE Derivation](../bs_pde_derivation/one_equation_five_perspectives.md)): the option value satisfies the **Black-Scholes PDE** with terminal condition $V(S,T)=(S-K)^+$ for a European call, derived from the locally risk-free hedge portfolio $\Pi = V - \Delta S$ with $\Delta = \partial V/\partial S$.
 
 ---
 
@@ -172,24 +184,7 @@ By constructing this portfolio to be **locally risk-free**, we eliminate uncerta
 
 ### 2. **Risk-Neutral Valuation**
 
-
-Under the **risk-neutral measure** $\mathbb{Q}$:
-
-$$
-V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
-$$
-
-The asset grows at the risk-free rate $r$ (not the actual expected return $\mu$):
-
-$$
-dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
-$$
-
-**Why this works**:
-
-- The hedging portfolio earns the risk-free rate
-- Pricing as if risk-neutral simplifies calculations
-- The replication argument justifies this "artificial" probability measure
+Recall (see [§ Risk-Neutral Measure](../../ch04/risk_neutral/martingale_and_no_arbitrage.md)): under $\mathbb{Q}$, $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$ and $V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]$ — the replicating-portfolio argument justifies this artificial measure.
 
 ### 3. **Dynamic Hedging**
 
@@ -206,74 +201,7 @@ Unlike buy-and-hold strategies, option replication requires **continuous rebalan
 
 ## The Black-Scholes PDE
 
-
-### 1. **Derivation Idea** (Details in Section 5.4)
-
-
-**Step 1**: Construct a hedged portfolio
-
-$$
-\Pi = V - \Delta S
-$$
-
-**Step 2**: Choose $\Delta$ to eliminate randomness
-
-$$
-\Delta = \frac{\partial V}{\partial S}
-$$
-
-**Step 3**: Apply Itô's lemma to $V(S,t)$
-
-$$
-dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}dt
-$$
-
-**Step 4**: Show portfolio is risk-free
-
-$$
-d\Pi = \left[\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt
-$$
-
-**Step 5**: No-arbitrage requires risk-free return
-
-$$
-d\Pi = r\Pi dt
-$$
-
-**Result**: The Black-Scholes PDE.
-
-### 2. **Trivial Solutions**
-
-
-Before solving for option prices, observe that simple portfolios satisfy the PDE:
-
-**1. The stock itself**: $V = S$
-
-Verify:
-
-$$
-\frac{\partial S}{\partial t} = 0, \quad \frac{\partial S}{\partial S} = 1, \quad \frac{\partial^2 S}{\partial S^2} = 0
-$$
-
-$$
-0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = 0 \quad \checkmark
-$$
-
-**2. The risk-free bond**: $V = e^{rt}$
-
-Verify:
-
-$$
-\frac{\partial e^{rt}}{\partial t} = re^{rt}, \quad \frac{\partial e^{rt}}{\partial S} = 0, \quad \frac{\partial^2 e^{rt}}{\partial S^2} = 0
-$$
-
-$$
-re^{rt} + 0 + 0 - re^{rt} = 0 \quad \checkmark
-$$
-
-**Interpretation**: The PDE correctly describes basic traded assets. Any **linear combination** of stock and bond also satisfies the PDE, forming the basis of replication.
-
-**Non-trivial solutions**: Options with payoffs $(S-K)^+$ or $(K-S)^+$ require solving the full PDE.
+Recall (see [§ Delta Hedging](../bs_pde_derivation/delta_hedging.md)): forming the hedged portfolio $\Pi = V - \Delta S$ with $\Delta = \partial V/\partial S$ eliminates the $dW$ exposure, and no-arbitrage forces the residual deterministic portfolio to earn $r$, yielding the Black-Scholes PDE. The full step-by-step derivation, including the verification that $V = S$ and $V = e^{r(t-T)}$ are trivial solutions, is given in [§ Delta Hedging](../bs_pde_derivation/delta_hedging.md) and Exercise 6 there. Four further routes (replication, risk-neutral measure, change of numéraire, equilibrium) lead to the same PDE — see [§ One Equation, Five Perspectives](../bs_pde_derivation/one_equation_five_perspectives.md).
 
 ---
 

@@ -91,128 +91,35 @@ The barrier is determined optimally by equity holders' decision to default, typi
 
 ## The Black-Cox Model
 
-### Setup
-
-Black and Cox (1976) extended Merton by introducing a **safety covenant**: default occurs at the first time asset value falls to a constant barrier $B < V_0$.
-
-The default time is:
+Recall (see [§ Black-Cox Model](black_cox_model.md)) for the full derivation. Briefly: with constant barrier $B < V_0$ and $\tau = \inf\{t : V_t \le B\}$, set $a = \ln(V_0/B)$ and $\mu = r - q - \sigma^2/2$. Recall the [first-passage time](../../ch02/brownian_motion/first_passage_times.md) reduction:
 
 $$
-\tau = \inf\{t \ge 0 : V_t \le B\}
+\tau = \inf\{t : \mu t + \sigma W_t \le -a\}.
 $$
 
-### Transformation to Standard Form
-
-Define the log-asset process:
+The survival probability, default CDF, and inverse-Gaussian default-time density follow from the reflection principle:
 
 $$
-X_t = \ln V_t = \ln V_0 + \mu t + \sigma W_t
+S(0,T) = N(d_+) - (B/V_0)^{2\mu/\sigma^2} N(d_-), \qquad F(T) = 1 - S(0,T),
 $$
 
-where $\mu = r - q - \sigma^2/2$.
-
-Default occurs when $X_t$ first hits $\ln B$. Define $a = \ln(V_0/B) > 0$. Then:
-
 $$
-\tau = \inf\{t : X_t - \ln V_0 \le -a\} = \inf\{t : \mu t + \sigma W_t \le -a\}
+f(t) = \frac{a}{\sigma\sqrt{2\pi t^3}} \exp\!\left(-\frac{(a + \mu t)^2}{2\sigma^2 t}\right), \quad t > 0,
 $$
 
-This is a **first-passage time** for Brownian motion with drift.
-
----
-
-## First-Passage Time Distributions
-
-### Survival Probability
-
-The probability that default has not occurred by time $T$ is:
-
-$$
-S(0,T) = \mathbb{Q}(\tau > T) = \mathbb{Q}\left(\min_{0 \le t \le T} V_t > B\right)
-$$
-
-For GBM with constant barrier, this has a closed-form solution.
-
-### Closed-Form Formula
-
-Let $a = \ln(V_0/B)$ and define:
-
-$$
-\nu = \frac{\mu}{\sigma} = \frac{r - q - \sigma^2/2}{\sigma}
-$$
-
-The survival probability is:
-
-$$
-S(0,T) = N\left(\frac{a + \nu \sigma T}{\sigma\sqrt{T}}\right) - e^{2\nu a} N\left(\frac{-a + \nu \sigma T}{\sigma\sqrt{T}}\right)
-$$
-
-or equivalently:
-
-$$
-S(0,T) = N(d_+) - \left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} N(d_-)
-$$
-
-where:
-
-$$
-d_+ = \frac{\ln(V_0/B) + \mu T}{\sigma\sqrt{T}}, \quad d_- = \frac{\ln(B/V_0) + \mu T}{\sigma\sqrt{T}}
-$$
-
-### Default Probability
-
-The cumulative default probability is:
-
-$$
-F(T) = \mathbb{Q}(\tau \le T) = 1 - S(0,T)
-$$
-
-### Density of Default Time
-
-The density of the first-passage time is:
-
-$$
-f(t) = \frac{a}{\sigma\sqrt{2\pi t^3}} \exp\left(-\frac{(a + \mu t)^2}{2\sigma^2 t}\right), \quad t > 0
-$$
-
-This is the **inverse Gaussian density** (shifted).
+with $d_\pm = (\pm\ln(V_0/B) + \mu T)/(\sigma\sqrt{T})$.
 
 ---
 
 ## Pricing Defaultable Bonds
 
-### Zero-Coupon Bond with Recovery
-
-Consider a defaultable zero-coupon bond paying:
-
-- Face value $D$ at maturity $T$ if no default
-- Recovery $R \cdot B$ at default time $\tau$ if default occurs before $T$
-
-The price is:
+Recall (see [§ Pricing Defaultable Bonds](black_cox_model.md#pricing-defaultable-bonds); deeper treatment in [pricing with default risk](../pricing_with_default_risk/defaultable_bonds.md)). For a zero-coupon bond paying $D$ at $T$ if $\tau > T$ and $RB$ at $\tau$ otherwise,
 
 $$
-P^d(0,T) = D \cdot e^{-rT} \cdot S(0,T) + R \cdot B \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \mathbf{1}_{\{\tau \le T\}}\right]
+P^d(0,T) = D e^{-rT} S(0,T) + RB\,\mathbb{E}^{\mathbb{Q}}\!\left[e^{-r\tau}\mathbf{1}_{\{\tau\le T\}}\right],
 $$
 
-### Expected Discounted Default Payment
-
-The second term involves:
-
-$$
-\mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \mathbf{1}_{\{\tau \le T\}}\right] = \int_0^T e^{-rt} f(t) \, dt
-$$
-
-For the Black-Cox model, this has a semi-closed form involving the normal CDF.
-
-### Credit Spread
-
-The credit spread is:
-
-$$
-s(T) = -\frac{1}{T} \ln\left(\frac{P^d(0,T)}{D \cdot e^{-rT}}\right)
-$$
-
-First-passage models generate non-trivial short-term spreads (unlike Merton), because there is always positive probability of hitting the barrier immediately.
+and $s(T) = -\frac{1}{T}\ln[P^d(0,T)/(D e^{-rT})]$. Unlike Merton, $s(T) > 0$ as $T \to 0$ because the barrier may be hit immediately.
 
 ---
 
@@ -283,14 +190,7 @@ Jumps allow for sudden default, partially addressing short-term spread issues.
 
 ## Comparison with Merton Model
 
-| Feature | Merton Model | First-Passage Model |
-|---------|--------------|---------------------|
-| Default timing | Only at maturity $T$ | Any time $t \le T$ |
-| Short-term spreads | Near zero | Positive |
-| Spread term structure | Always upward sloping | Can be hump-shaped |
-| Analytical tractability | Very high | High (constant barrier) |
-| Economic realism | Limited | Better |
-| Barrier interpretation | Debt face value | Safety covenant level |
+Recall (see [§ Comparison: Black-Cox vs Merton](black_cox_model.md#comparison-black-cox-vs-merton)) for the full table.
 
 ---
 
@@ -326,42 +226,7 @@ This sensitivity is a source of model risk.
 
 ## Numerical Example
 
-**Parameters:**
-
-- Asset value: $V_0 = 100$
-- Default barrier: $B = 60$
-- Risk-free rate: $r = 5\%$
-- Asset volatility: $\sigma = 25\%$
-- Dividend rate: $q = 2\%$
-- Time horizon: $T = 5$ years
-
-**Calculations:**
-
-Drift parameter: $\mu = r - q - \sigma^2/2 = 0.05 - 0.02 - 0.03125 = -0.00125$
-
-Log-barrier distance: $a = \ln(100/60) = 0.5108$
-
-$$
-d_+ = \frac{0.5108 + (-0.00125)(5)}{0.25\sqrt{5}} = \frac{0.5046}{0.559} = 0.902
-$$
-
-$$
-d_- = \frac{-0.5108 + (-0.00125)(5)}{0.25\sqrt{5}} = \frac{-0.5171}{0.559} = -0.925
-$$
-
-Exponent: $2\mu/\sigma^2 = 2(-0.00125)/(0.0625) = -0.04$
-
-$$
-\left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} = (0.6)^{-0.04} = 1.0205
-$$
-
-**Survival probability:**
-
-$$
-S(0,5) = N(0.902) - 1.0205 \times N(-0.925) = 0.8165 - 1.0205 \times 0.1775 = 0.635
-$$
-
-**5-year default probability:** $36.5\%$
+Recall (see [§ Numerical Example](black_cox_model.md#numerical-example)) for a worked first-passage calculation with $V_0=100$, $B=65$, $\sigma=25\%$, $T=5$.
 
 ---
 

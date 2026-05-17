@@ -1,6 +1,6 @@
 # Theta from Time Stepping
 
-Theta ($\Theta$) measures the rate at which an option's value decays with the passage of time. Unlike delta and gamma, which are spatial derivatives readily available from the FDM grid, theta involves the time direction and can be extracted either directly from the time-stepping process or indirectly through the Black-Scholes PDE.
+An FDM solver already walks backward through time, storing $V$ at every time level. To get $\Theta=\partial V/\partial t$, just difference two adjacent stored levels -- the time-stepping has done the hard work already. Or skip differencing entirely and read $\Theta$ off the Black-Scholes PDE rearranged as $\Theta = rV - rS\Delta - \tfrac{1}{2}\sigma^2 S^2\Gamma$, which uses spatial Greeks you already have on the grid. Both routes give the same answer; this page weighs them against each other.
 
 ---
 
@@ -147,27 +147,7 @@ Near expiry, theta is large and changes rapidly. This creates challenges:
 
 ## Theta for Different Option Types
 
-### European Call
-
-At $t = 0$ (long before expiry), from the Black-Scholes formula:
-
-$$
-\Theta_{\text{call}} = -\frac{\sigma S \phi(d_1)}{2\sqrt{T}} - rKe^{-rT}\mathcal{N}(d_2)
-$$
-
-where $\phi$ is the standard normal density and $\Phi$ is the cumulative normal distribution. Both terms are negative, so $\Theta_{\text{call}} < 0$.
-
-### European Put
-
-$$
-\Theta_{\text{put}} = -\frac{\sigma S \phi(d_1)}{2\sqrt{T}} + rKe^{-rT}\mathcal{N}(-d_2)
-$$
-
-For deep in-the-money puts, the second term can dominate, making $\Theta_{\text{put}} > 0$: a deep ITM put can actually gain value with time passage because the present value of the exercise proceeds increases.
-
-### On the FDM Grid
-
-The FDM naturally handles all these cases. The theta estimate at each grid node $S_j$ reflects the local behavior of the option, including the sign change for deep ITM puts.
+Recall (see [BS Greeks closed forms](../../ch10/greeks/greeks_in_black_scholes_model.md)): for a European call $\Theta_{\text{call}} < 0$ (both time-value and discounting terms reduce price), while for deep ITM puts the positive $rKe^{-rT}\mathcal{N}(-d_2)$ term can dominate, giving $\Theta_{\text{put}} > 0$. The FDM theta estimate at each node reflects this local behavior, including the sign change for deep ITM puts.
 
 ---
 

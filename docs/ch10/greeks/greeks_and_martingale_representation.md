@@ -8,25 +8,11 @@ In complete diffusion models, martingale representation yields a conceptual foun
 ## Discounted asset and wealth
 
 
-In Black–Scholes under $\mathbb{Q}$,
-
-
-$$
-\mathrm{d}S_t = rS_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t,
-\qquad
-B_t = e^{rt}
-$$
-
-
-
-Define the discounted asset $\widetilde{S}_t := B_t^{-1}S_t$. Then
-
+Recall (see [§ Black–Scholes formula](../../ch06/black_scholes_formula/bs_formula_statement.md)): under $\mathbb{Q}$, $\mathrm{d}S_t = rS_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t$ and $B_t = e^{rt}$. Define the discounted asset $\widetilde{S}_t := B_t^{-1}S_t$. Then
 
 $$
 \mathrm{d}\widetilde{S}_t = \sigma \widetilde{S}_t\,\mathrm{d}W_t
 $$
-
-
 
 so $\widetilde{S}$ is a $\mathbb{Q}$-martingale.
 
@@ -71,8 +57,7 @@ for some predictable $Z$ with $\mathbb{E}\int_0^T Z_s^2\,\mathrm{d}s<\infty$.
 ## Identification of delta
 
 
-By Itô’s formula and the PDE cancellation of drift,
-
+By Itô’s formula and the PDE cancellation of drift (Recall — see [§ BS PDE structure](../../ch06/bs_pde_structure/discounting_and_killing_term.md)),
 
 $$
 \mathrm{d}\widetilde{V}_t
@@ -80,10 +65,7 @@ $$
 B_t^{-1}\sigma S_t V_S(t,S_t)\,\mathrm{d}W_t
 $$
 
-
-
 Thus
-
 
 $$
 \boxed{
@@ -91,6 +73,8 @@ Z_t = B_t^{-1}\sigma S_t\,\Delta(t,S_t),
 \qquad \Delta=V_S
 }
 $$
+
+Recall (see [§ Hedging applications](../../ch11/index.md)): this identifies delta as the self-financing hedge ratio.
 
 
 

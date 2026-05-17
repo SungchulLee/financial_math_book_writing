@@ -24,12 +24,7 @@ In reality:
 ## Market impact as endogeneity
 
 
-Trading generates:
-
-- temporary impact through order-book pressure,
-- permanent impact through information revelation.
-
-As a result, price dynamics depend on market participants’ actions.
+Recall (see [Price Impact in the MFG Framework](algorithmic_trading_mean_field_games.md#price-impact-in-the-mfg-framework)): trading generates temporary impact (order-book pressure) and permanent impact (information revelation), so price dynamics depend on participants' aggregate actions rather than being exogenously specified.
 
 ---
 

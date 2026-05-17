@@ -4,13 +4,11 @@ A Bermudan swaption grants the holder the right to enter into an interest rate s
 
 ## Bermudan Swaption Payoff
 
-Consider a Bermudan payer swaption with exercise dates $\mathcal{T} = \{T_m, T_{m+1}, \ldots, T_{n-1}\}$ and an underlying swap with payment dates $T_{m+1}, \ldots, T_n$, fixed rate $K$, and notional $N$. If the holder exercises at date $T_j \in \mathcal{T}$, they enter a swap with remaining payments at $T_{j+1}, \ldots, T_n$, receiving the exercise value
+Consider a Bermudan payer swaption with exercise dates $\mathcal{T}=\{T_m,\ldots,T_{n-1}\}$ on a swap with payments $T_{m+1},\ldots,T_n$, fixed rate $K$, notional $N$. Recall (see [§ HW Swaption Formula](swaption_formula.md)): the exercise value at $T_j\in\mathcal{T}$ uses the same "crucial expression"
 
 $$
-E(T_j) = N\!\left(1 - \sum_{k=j+1}^{n} c_k\,P(T_j, T_k)\right)
+E(T_j) = N\!\left(1 - \sum_{k=j+1}^{n} c_k\,P(T_j, T_k)\right), \qquad c_k=K\tau_k\ (k<n),\ c_n=K\tau_n+1.
 $$
-
-where $c_k = K\tau_k$ for $k < n$ and $c_n = K\tau_n + 1$, exactly as in the European swaption payoff.
 
 !!! info "Definition: Bermudan Swaption Value"
     The Bermudan swaption value at time $t_0$ is
@@ -31,7 +29,7 @@ The difference $V^{\text{Berm}} - V^{\text{European}}$ is the early exercise pre
 
 ## Pricing on a Hull-White Trinomial Tree
 
-The Hull-White trinomial tree provides a natural framework for Bermudan pricing via backward induction. The tree discretizes the short rate process and allows exact computation of continuation values at each node.
+Recall (see [§ HW Tree Implementation](../tree_implementation/tree_construction.md)): the trinomial tree discretizes the short rate process. Bermudan pricing uses it via backward induction with exact continuation values at each node.
 
 ### Backward Induction Algorithm
 
@@ -76,7 +74,7 @@ $$
 E_{ij} = N\!\left(1 - \sum_{k=i+1}^{n} c_k\,P(T_i, T_k; r_{ij})\right)
 $$
 
-where each $P(T_i, T_k; r_{ij}) = A(T_i, T_k)\,e^{-B(T_i, T_k)\,r_{ij}}$ uses the Hull-White analytic bond price formula. This avoids the need to roll ZCB prices through the tree for each payment date.
+where each $P(T_i,T_k;r_{ij})$ uses the Hull-White affine bond formula (see [§ HW Bond Pricing](../bond_pricing/bond_price_formula.md)). This avoids rolling ZCB prices through the tree for each payment date.
 
 ## Exercise Boundary
 
@@ -99,7 +97,7 @@ For more complex variants (path-dependent features, multiple factors), the Longs
 
 !!! info "Algorithm: Longstaff-Schwartz for Bermudan Swaptions"
 
-    1. **Simulate paths**: Generate $M$ paths of the short rate $\{r^{(m)}(t)\}$ using exact simulation.
+    1. **Simulate paths**: Generate $M$ paths of the short rate $\{r^{(m)}(t)\}$ using exact simulation (see [§ HW Monte Carlo](../monte_carlo/exact_simulation.md)).
     2. **Terminal payoffs**: At the last exercise date $T_{n-1}$, compute $V^{(m)} = \max(E^{(m)}(T_{n-1}), 0)$ for each path.
     3. **Backward regression**: For each exercise date $T_j$ from $T_{n-2}$ back to $T_m$:
         - Compute the exercise value $E^{(m)}(T_j)$ on each path.

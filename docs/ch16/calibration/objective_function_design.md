@@ -201,14 +201,7 @@ The five Heston parameters interact nonlinearly through the characteristic funct
 
 ### Parameter Degeneracies
 
-Two well-known degeneracies complicate calibration:
-
-1. **$\kappa$-$\theta$ degeneracy**: Short-maturity options constrain $v_0$ and $\rho$ well, but only the product $\kappa\theta$ (not $\kappa$ and $\theta$ separately) affects the short-term smile. Separate identification requires long-maturity data.
-
-2. **$\xi$-$\rho$ interaction**: Both parameters affect the smile curvature. Increasing $\xi$ steepens the smile, while making $\rho$ more negative increases the skew. These effects partially compensate, creating a valley of near-optimal solutions.
-
-!!! warning "Flat Regions in the Landscape"
-    Near the degeneracy manifold, the objective function gradient is small and the Hessian is ill-conditioned. Gradient-based optimizers converge slowly or stall, and the calibrated parameters may be sensitive to small changes in market data.
+Recall (see [§ Parameter Degeneracies](parameter_stability.md#parameter-degeneracies)): the Heston calibration objective has two well-known flat directions --- the $\kappa$-$\theta$ ridge (only the product is identified from short-maturity data) and the $\xi$-$\rho$ valley (skew vs convexity trade-off) --- which produce ill-conditioned Hessians and make gradient-based optimization slow.
 
 ### Effect of Error Metric on Landscape
 
@@ -218,27 +211,7 @@ The vega-weighted and IVRMSE objectives typically produce a **more convex** land
 
 ## Regularization
 
-To combat parameter instability and degeneracy, a regularization term is often added to the objective function.
-
-### Tikhonov Regularization
-
-The penalized objective adds a quadratic penalty on the deviation from a reference parameter set $\Theta_{\text{ref}}$:
-
-$$
-\mathcal{L}_{\text{reg}}(\Theta) = \mathcal{L}(\Theta) + \lambda \| \Theta - \Theta_{\text{ref}} \|^2
-$$
-
-where $\lambda > 0$ is the regularization strength. The reference $\Theta_{\text{ref}}$ can be yesterday's calibrated parameters (for temporal stability) or a prior estimate from historical analysis.
-
-### Weighted Regularization
-
-Different parameters may warrant different penalty strengths:
-
-$$
-\mathcal{L}_{\text{reg}}(\Theta) = \mathcal{L}(\Theta) + \sum_{j=1}^{5} \lambda_j (\Theta_j - \Theta_{\text{ref},j})^2
-$$
-
-For example, one might penalize changes in $\kappa$ and $\theta$ strongly (since they are poorly identified from short-maturity data) while allowing $v_0$ and $\rho$ to vary freely (since they are well-constrained by market data).
+Recall (see [§ Tikhonov Regularization](parameter_stability.md#tikhonov-regularization)): to combat parameter instability and degeneracy, a Tikhonov penalty $\lambda \sum_j \lambda_j (\Theta_j - \Theta_{\text{ref},j})^2$ may be added, with parameter-specific weights that anchor poorly identified parameters ($\kappa$, $\theta$) while allowing well-identified ones ($v_0$, $\rho$) to follow the market.
 
 ---
 

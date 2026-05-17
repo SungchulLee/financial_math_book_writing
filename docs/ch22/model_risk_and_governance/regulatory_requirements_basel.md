@@ -282,13 +282,7 @@ This encompasses three sources:
 
 #### Backtesting Framework
 
-For VaR models, the standard backtest checks whether the observed exceedance rate $\hat{p}$ is consistent with the theoretical rate $(1 - \alpha)$. Using the Kupiec likelihood ratio test:
-
-$$
-LR_{\text{uc}} = -2\ln\!\left[\frac{(1-\alpha)^{n_0}\,\alpha^{n_1}}{\hat{p}^{\,n_1}(1-\hat{p})^{n_0}}\right] \;\sim\; \chi^2(1)
-$$
-
-where $n_1$ is the number of exceedances and $n_0 = n - n_1$.
+Recall (see [§ Kupiec test](backtesting_and_limits.md#kupiec-test-unconditional-coverage)) the unconditional coverage test $LR_{uc} \sim \chi^2(1)$ for whether observed exceedances match the theoretical rate $(1-\alpha)$.
 
 #### Benchmarking Requirements
 
@@ -309,12 +303,7 @@ with materiality thresholds set by the institution's model risk policy.
 
 ### Model Risk Governance
 
-SR 11-7 requires a governance framework with:
-
-- **Model inventory:** Comprehensive register of all models
-- **Model tiering:** Classification by risk (Tier 1 = highest impact)
-- **Validation frequency:** Annual minimum; more frequent for high-tier models
-- **Challenge function:** Independent review authority with power to restrict model use
+Recall (see [§ Model validation governance](model_validation.md#ongoing-validation)) that SR 11-7 requires a governance framework with model inventory, tiering, annual-minimum validation frequency, and an independent challenge function.
 
 ---
 

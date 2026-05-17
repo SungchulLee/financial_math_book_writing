@@ -6,30 +6,7 @@ The Black–Scholes model assumes a **complete market**, where all risks can be 
 
 ## Market Completeness in Black–Scholes
 
-In the Black–Scholes framework, a market is **complete** if every contingent claim can be replicated by a self-financing trading strategy in the underlying assets.
-
-**Formal definition:** A market is complete if the replicating portfolio $\Pi_t$ satisfies:
-
-$$
-\Pi_T = \Phi(S_T) \quad \text{a.s.}
-$$
-
-for any payoff $\Phi$, where $\Pi_t$ is constructed from holdings in $S_t$ and the risk-free bond.
-
-**Black–Scholes completeness requires:**
-
-1. **Single source of randomness:** One Brownian motion drives $S_t$
-2. **Continuous trading:** Portfolio can be rebalanced continuously
-3. **No frictions:** No transaction costs, no constraints
-4. **Constant parameters:** $\sigma$, $r$, $q$ are known constants
-
-Under these conditions, the delta-hedging strategy:
-
-$$
-\Delta_t = \frac{\partial C}{\partial S}(t, S_t)
-$$
-
-replicates any European payoff exactly.
+Recall (see [§ BS Formula Statement](../../ch06/black_scholes_formula/bs_formula_statement.md) and [§ Martingale and No-Arbitrage](../../ch04/risk_neutral/martingale_and_no_arbitrage.md)): in the Black–Scholes setting (single Brownian, continuous trading, no frictions, constant $\sigma, r, q$), every European payoff $\Phi(S_T)$ is replicated a.s. by the self-financing delta-hedging strategy $\Delta_t = \partial_S C(t, S_t)$, so the market is **complete**.
 
 ---
 
@@ -39,38 +16,11 @@ Real markets violate the completeness conditions in multiple ways:
 
 ### 1. Stochastic Volatility
 
-When volatility is random:
-
-$$
-\begin{aligned}
-dS_t &= \mu S_t\,dt + \sqrt{V_t} S_t\,dW_t^S \\
-dV_t &= a(V_t)\,dt + b(V_t)\,dW_t^V
-\end{aligned}
-$$
-
-there are **two sources of randomness** ($W^S$, $W^V$) but only **one traded asset** ($S$). The volatility shock $dW_t^V$ cannot be hedged by trading $S$ alone.
-
-**Dimension count:**
-
-- Risk factors: 2 (price, volatility)
-- Traded instruments: 1 (underlying) + 1 (bond) = 2
-- But bond provides no volatility exposure → effective instruments for volatility: 0
+Recall (see [§ Two-Factor Diffusion Models](../general_stochastic_volatility_framework/two_factor_diffusion_models.md)): the two-factor SV system has **two Brownians** $(W^S, W^V)$ but only **one traded risky asset** $S$; the bond carries no volatility exposure, so the component of $dW^V$ orthogonal to $dW^S$ is unhedgeable.
 
 ### 2. Jumps and Discontinuities
 
-If prices can jump:
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t + S_{t^-}(e^{J_t} - 1)\,dN_t
-$$
-
-where $N_t$ is a Poisson process, then:
-
-- Jump timing is unpredictable
-- Jump size may be random
-- Continuous hedging cannot eliminate jump risk
-
-Even with deterministic jump sizes, the number of jump states can exceed the number of traded instruments.
+Recall (see [§ Jump-Diffusion SDE](../../ch07/merton_jump_diffusion/jump_diffusion_sde.md) and [§ Incomplete Market and Measure Choice](../../ch07/merton_jump_diffusion/incomplete_market_and_measure_choice.md)): a compound-Poisson jump term $S_{t^-}(e^{J_t}-1)\,dN_t$ adds unpredictable timing and (typically) random size; continuous delta-hedging cannot span the jump-generated $\sigma$-algebra.
 
 ### 3. Discrete Trading
 
@@ -168,16 +118,7 @@ While volatility derivatives exist (variance swaps, VIX options), in many market
 
 ### Market Price of Volatility Risk
 
-The change from physical to risk-neutral measure involves a **market price of volatility risk** $\lambda_V$:
-
-$$
-dW_t^{V,\mathbb{Q}} = dW_t^{V,\mathbb{P}} - \lambda_V(t, S_t, V_t)\,dt
-$$
-
-Under $\mathbb{P}$: volatility dynamics reflect actual evolution
-Under $\mathbb{Q}$: volatility dynamics are risk-adjusted for pricing
-
-The difference $\lambda_V$ is not uniquely determined by no-arbitrage—it reflects market equilibrium and risk preferences.
+Recall (see [§ Market Price of Risk](../../ch04/risk_neutral/market_price_of_risk.md) and [§ Risk-Neutral vs Physical Measure](../general_stochastic_volatility_framework/risk_neutral_vs_physical_measure.md)): the Girsanov shift $dW_t^{V,\mathbb{Q}} = dW_t^{V,\mathbb{P}} - \lambda_V(t,S_t,V_t)\,dt$ introduces a **market price of volatility risk** $\lambda_V$ that no-arbitrage alone does not pin down — its choice reflects equilibrium and risk preferences.
 
 ### Volatility Risk Premium
 

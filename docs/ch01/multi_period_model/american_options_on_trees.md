@@ -48,12 +48,7 @@ The difference $V_0^{\text{Am}} - V_0^{\text{Eu}}$ is called the **early exercis
 
 ### Setup and Notation
 
-We work on the $N$-period binomial tree from the [Multi-Period Binomial Model](multi_period_binomial_model.md). Recall the notation:
-
-- $S_{n,j} = S_0 \, u^j \, d^{n-j}$ is the stock price at node $(n, j)$
-- $u = e^{\sigma\sqrt{\Delta t}}$, $d = 1/u$, and $\Delta t = T/N$
-- $q = \frac{e^{r\Delta t} - d}{u - d}$ is the risk-neutral probability of an up move
-- $\mathbb{Q}$ denotes the risk-neutral measure
+Recall (see [§ Multi-Period Binomial Model — Tree](multi_period_binomial_model.md#the-multi-period-tree)): the $N$-period CRR tree with $S_{n,j}=S_0 u^j d^{n-j}$, $u=e^{\sigma\sqrt{\Delta t}}$, $d=1/u$, $\Delta t = T/N$, and risk-neutral probability $q=(e^{r\Delta t}-d)/(u-d)$ under $\mathbb{Q}$.
 
 The **intrinsic value** (immediate exercise payoff) at node $(n, j)$ is:
 
@@ -125,13 +120,7 @@ That is, the first time the option value equals the intrinsic value — the firs
 
 ### Comparison with European Pricing
 
-For a European option, the backward recursion is simply:
-
-$$
-V_{n,j}^{\text{Eu}} = e^{-r\Delta t}\!\left[q\,V_{n+1,j+1}^{\text{Eu}} + (1-q)\,V_{n+1,j}^{\text{Eu}}\right]
-$$
-
-The American recursion adds the $\max$ with the intrinsic value. Since the maximum is at least as large as the continuation value alone, we have $V_{n,j} \geq V_{n,j}^{\text{Eu}}$ at every node.
+Recall (see [§ Multi-Period Binomial Model — Backward Induction](multi_period_binomial_model.md#backward-induction-for-european-options)): the European recursion is $V_{n,j}^{\text{Eu}} = e^{-r\Delta t}[qV_{n+1,j+1}^{\text{Eu}}+(1-q)V_{n+1,j}^{\text{Eu}}]$. The American recursion adds the $\max$ with the intrinsic value, so $V_{n,j} \geq V_{n,j}^{\text{Eu}}$ at every node.
 
 ---
 
@@ -409,21 +398,9 @@ By the [comparison established earlier](#comparison-with-european-pricing), the 
 
 ### The Free-Boundary Problem
 
-As $N \to \infty$ and $\Delta t \to 0$, the binomial tree converges to a continuous-time model (see [Binomial to Black–Scholes](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md)). In this limit, the American put price $P(S, t)$ satisfies a **free-boundary problem**:
+As $N \to \infty$ and $\Delta t \to 0$, the binomial tree converges to a continuous-time model (see [Binomial to Black–Scholes](../binomial_to_black_scholes/binomial_to_black_scholes_limit.md)). In this limit, the American put price $P(S, t)$ satisfies a **free-boundary problem**.
 
-In the **continuation region** ($S > S^*(t)$), the price satisfies the Black–Scholes PDE:
-
-$$
-\frac{\partial P}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 P}{\partial S^2} + rS\frac{\partial P}{\partial S} - rP = 0
-$$
-
-On the **free boundary** ($S = S^*(t)$), two conditions hold:
-
-$$
-P(S^*(t), t) = K - S^*(t), \qquad \frac{\partial P}{\partial S}(S^*(t), t) = -1
-$$
-
-The first condition (value matching) says the option value equals the intrinsic value at the boundary. The second condition (smooth pasting) ensures the value function meets the intrinsic value smoothly — without a kink.
+Recall (see [§ Early Exercise — Free-Boundary Formulation](../../ch07/american_options/early_exercise.md)): in the continuation region the price satisfies the Black–Scholes PDE, and on the free boundary $S^*(t)$ both value-matching $P(S^*,t)=K-S^*$ and smooth-pasting $\partial_S P(S^*,t)=-1$ hold.
 
 The discrete early exercise boundary $\{S_n^*\}$ from the binomial tree approximates this continuous free boundary, providing a practical computational method for a problem that has no closed-form solution.
 

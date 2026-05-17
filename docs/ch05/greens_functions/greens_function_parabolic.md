@@ -94,11 +94,7 @@ $$
 
 The full derivations and probabilistic interpretations are in [Transition Density as Green's Function](transition_density_as_greens_function.md); the spectral/eigenfunction structure is in [Spectral Decomposition](spectral_decomposition.md).
 
-**Brownian motion with drift.** For $dX_t = \mu\,dt + \sigma\,dW_t$,
-
-$$
-G(t, x; s, y) = \frac{1}{\sigma\sqrt{2\pi(t-s)}}\exp\!\left(-\frac{(x - y - \mu(t-s))^2}{2\sigma^2(t-s)}\right)
-$$
+**Brownian motion with drift** $dX_t = \mu\,dt + \sigma\,dW_t$: coefficients are constant, so the parametrix $G_0$ above is exact. See [Transition Density as Green's Function](transition_density_as_greens_function.md) for the formula and its probabilistic meaning.
 
 **Ornstein-Uhlenbeck.** For $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$,
 
@@ -140,22 +136,10 @@ The Green's function is the fundamental building block for parabolic PDEs: it so
 ## Exercises
 
 **Exercise 1.**
-For the heat equation on $\mathbb{R}$, verify that $G(t,x;0,y) = (2\pi t)^{-1/2}\exp(-(x-y)^2/(2t))$ satisfies the delta-function initial condition: $\lim_{t \to 0^+}\int G(t,x;0,y)\,f(y)\,dy = f(x)$ for continuous bounded $f$.
+The approximate-identity property $\lim_{t\to 0^+}\int G(t,x;0,y)f(y)\,dy = f(x)$ for the heat kernel is established in [§ Fundamental Solution](../heat_equation/fundamental_solution.md). State why this same property -- recast as $G \to \delta(x-y)$ -- is exactly what makes the superposition formula $u(t,x) = \int G\,f\,dy$ recover the initial data $f$ at $t = 0$.
 
 ??? success "Solution to Exercise 1"
-    Substitute $z = (y-x)/\sqrt{t}$, so $y = x + z\sqrt{t}$ and $dy = \sqrt{t}\,dz$:
-
-    $$
-    \int G(t,x;0,y)\,f(y)\,dy = \int \frac{1}{\sqrt{2\pi}}e^{-z^2/2}\,f(x + z\sqrt{t})\,dz
-    $$
-
-    As $t \to 0^+$, $f(x + z\sqrt{t}) \to f(x)$ pointwise. By dominated convergence (with bound $\|f\|_\infty$ times the standard Gaussian),
-
-    $$
-    \lim_{t \to 0^+}\int \frac{1}{\sqrt{2\pi}}e^{-z^2/2}\,f(x + z\sqrt{t})\,dz = f(x)\int\frac{1}{\sqrt{2\pi}}e^{-z^2/2}\,dz = f(x)
-    $$
-
-    $G$ acts as an approximate identity as $t \to 0^+$.
+    Plugging $t = 0$ into the superposition formula gives $u(0,x) = \int \delta(x-y)f(y)\,dy = f(x)$, which is the defining initial condition. The approximate-identity property is therefore not a separate fact about Gaussians: it is the **consistency condition** that lets the integral formula serve as the solution operator at all. Without it, $u(0,x)$ would not return $f(x)$ and $G$ would not be the Green's function.
 
 ---
 

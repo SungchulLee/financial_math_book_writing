@@ -21,28 +21,18 @@ Real markets violate these assumptions.
 ## Credit Valuation Adjustment (CVA)
 
 
-**CVA** accounts for counterparty default risk:
+Recall (see [§ XVA](../../ch22/valuation_adjustments_xva/cva_dva.md)): **CVA** accounts for counterparty default risk and reduces a derivative's value:
 
 $$
 \text{CVA} = \mathbb{E}[\text{Exposure} \times \text{Loss Given Default}]
 $$
-
-
-
-It reduces the value of a derivative due to counterparty credit risk.
 
 ---
 
 ## Other XVA components
 
 
-Common adjustments include:
-
-- **DVA:** own default risk,
-- **FVA:** funding costs,
-- **MVA:** margin valuation adjustment.
-
-Together, these are known as **XVA**.
+Recall (see [§ XVA](../../ch22/valuation_adjustments_xva/cva_dva.md)): the family of XVA adjustments includes **DVA** (own default), **FVA** (funding), and **MVA** (margin).
 
 ---
 

@@ -7,16 +7,7 @@ For vanilla options, gamma becomes large near expiry around the strike.
 
 ## Scaling
 
-
-In Black–Scholes,
-
-$$
-\Gamma(t,S)= \frac{N'(d_1)}{S\sigma\sqrt{\tau}},
-\qquad \tau=T-t
-$$
-
-
-Thus near the money (where $N'(d_1) \approx 1/\sqrt{2\pi}$),
+**Recall** (see [§ Greeks in the Black–Scholes Model](../greeks/greeks_in_black_scholes_model.md)): $\Gamma(t,S) = N'(d_1)/(S\sigma\sqrt{\tau})$ with $\tau = T - t$. Near the money (where $N'(d_1) \approx 1/\sqrt{2\pi}$),
 
 $$
 \boxed{\Gamma_{\text{ATM}} = \frac{1}{S\sigma\sqrt{2\pi\tau}} \sim \tau^{-1/2}}

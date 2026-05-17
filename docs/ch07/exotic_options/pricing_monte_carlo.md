@@ -225,13 +225,7 @@ def asian_call_control_variate(S, K, T, r, sigma, M, N):
 
 ### Geometric Asian as Control Variate
 
-For arithmetic Asian options specifically, the **geometric average Asian option** provides an even better control variate than the European call, because the geometric average is more highly correlated with the arithmetic average:
-
-$$
-\hat{V}_{\text{arith}} = \hat{V}_{\text{arith,MC}} + \left(V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}}\right)
-$$
-
-This typically provides superior variance reduction compared to the European call control variate.
+Recall (see [§ Arithmetic Asian Options: Approximation Methods](asian_options.md#arithmetic-asian-options-approximation-methods)): because $\bar S_{\text{geom}}$ is far more highly correlated with $\bar S_{\text{arith}}$ than $S_T$ is, the geometric Asian (closed form) yields a much stronger control variate than the European call.
 
 ---
 

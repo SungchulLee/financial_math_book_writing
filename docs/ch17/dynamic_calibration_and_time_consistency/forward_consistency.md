@@ -41,37 +41,7 @@ If forward consistency fails:
 
 ## Forward consistency in interest-rate models
 
-The Heath–Jarrow–Morton (HJM) framework provides the canonical example of forward consistency.
-
-### The HJM approach
-
-In HJM, the entire forward rate curve $f(t, T)$ for $T \ge t$ is modeled as the state variable:
-
-$$
-df(t, T) = \alpha(t, T) \, dt + \sigma(t, T) \, dW_t
-$$
-
-The no-arbitrage drift condition determines $\alpha$ in terms of $\sigma$:
-
-$$
-\alpha(t, T) = \sigma(t, T) \int_t^T \sigma(t, u) \, du
-$$
-
-### Why HJM is forward consistent
-
-At time $t$, the model is "calibrated" by observing the current forward curve $f(t, \cdot)$. The model then specifies exactly how this curve evolves. At time $t + \Delta t$:
-
-- The curve $f(t + \Delta t, \cdot)$ is determined by the model dynamics.
-- No recalibration is needed (or possible) for the curve shape.
-- Only the volatility structure $\sigma(t, T)$ may be recalibrated.
-
-This eliminates the inconsistency between calibration and dynamics for the primary state variable.
-
-### Limitations
-
-- HJM requires specifying a volatility function $\sigma(t, T)$ across all maturities.
-- The infinite-dimensional state is often reduced to finite factors (Hull–White, Gaussian HJM).
-- Volatility recalibration can still introduce inconsistencies.
+Recall (see [§ HJM forward rates](../../ch19/hjm/forward_rate_dynamics.md)) the dynamics $df(t,T) = \alpha(t,T)\,dt + \sigma(t,T)\,dW_t$ and the no-arbitrage drift $\alpha(t,T) = \sigma(t,T)\int_t^T \sigma(t,u)\,du$. HJM is the canonical forward-consistent framework: the entire forward curve $f(t,\cdot)$ is the state variable, so "calibration" reduces to observing today's curve and the model itself specifies how it evolves. Only the volatility structure $\sigma(t,T)$ remains to be recalibrated, and even that is typically restricted (Hull--White, Gaussian HJM).
 
 ---
 

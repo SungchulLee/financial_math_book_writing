@@ -1,9 +1,6 @@
 # Computational Examples
 
-
-This section bridges the Black-Scholes formulas with numerical computation through manual calculations, a Python implementation, and worked examples that illustrate key features of option pricing.
-
-Having developed the Black-Scholes formula and its mathematical structure, we now turn to its practical implementation: how to compute prices, Greeks, and implied volatilities reliably and efficiently.
+Having developed the Black-Scholes formula and its mathematical structure, we now turn to its practical implementation. The mechanism is straightforward — evaluate $d_1, d_2$, then two CDF values — but the structure of the formula makes the numerical work surprisingly rich: closed-form Greeks fall out by differentiating term by term, vectorised array operations replace contract-by-contract loops, and edge cases ($T \to 0$, extreme $d_i$) require care that the abstract formula hides. This section bridges the formula with practice through hand calculation, a Python implementation, Greeks, sensitivity panels, and worked examples.
 
 !!! info "Where this fits"
     - **Roadmap row(s):** Operationalisation across all six perspectives.
@@ -331,7 +328,6 @@ Using the Greeks function above, the results are:
 ---
 
 ### Summary
-
 
 The examples above illustrate three key computational takeaways:
 

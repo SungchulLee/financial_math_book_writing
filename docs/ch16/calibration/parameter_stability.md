@@ -27,7 +27,7 @@ The calibration objective $\mathcal{L}(\Theta)$ has regions where the gradient i
 
 The Heston model has two well-known degeneracies:
 
-**1. The $\kappa$-$\theta$ degeneracy.** Short-maturity options primarily constrain the initial variance $v_0$ and the correlation $\rho$. The mean-reversion speed $\kappa$ and long-run variance $\theta$ enter the short-maturity smile mainly through the product $\kappa\theta$. Given short-maturity data alone, the contour $\kappa\theta = c$ forms a **hyperbolic ridge** in the $(\kappa, \theta)$ plane where the objective function is nearly constant. Adding long-maturity data breaks this degeneracy, since $\kappa$ separately controls the time scale of variance mean-reversion.
+**1. The $\kappa$-$\theta$ degeneracy.** Short-maturity options primarily constrain $v_0$ and $\rho$. The mean-reversion speed $\kappa$ and long-run variance $\theta$ enter the short-maturity smile mainly through the product $\kappa\theta$, producing a **hyperbolic ridge** $\kappa\theta = c$ in the $(\kappa, \theta)$ plane where the objective is nearly constant. Recall (see [§ Joint Calibration Across Maturities](joint_calibration_across_maturities.md)): long-maturity data breaks this degeneracy via the $e^{-\kappa T}$ term structure.
 
 **2. The $\xi$-$\rho$ interaction.** Both the vol-of-vol $\xi$ and the correlation $\rho$ affect the implied volatility skew. Increasing $|\rho|$ steepens the skew, and increasing $\xi$ adds curvature (smile convexity). These effects partially compensate: a model with $(\xi = 0.3, \rho = -0.8)$ can produce a similar skew to one with $(\xi = 0.5, \rho = -0.6)$. The near-degeneracy creates an elongated valley in the $(\xi, \rho)$ subspace.
 

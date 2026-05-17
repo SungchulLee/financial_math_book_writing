@@ -119,7 +119,7 @@ The log-price $x_t = \ln S_t$ in the Bates model has a characteristic function t
     g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}
     $$
 
-    and the jump part is:
+    and the jump part is (recall [Characteristic Function § Theorem](characteristic_function.md#derivation)):
 
     $$
     \phi_{\text{Jump}}(u) = \exp\!\left[\lambda T\!\left(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1\right) - iu\lambda\bar{k}T\right]

@@ -103,44 +103,23 @@ Then $V_t \le K e^{\gamma t}$ if and only if $\tilde{V}_t \le K$, reducing to a 
 
 ### Log-Transform and Brownian Motion
 
-Define $X_t = \ln V_t$. Then:
+Recall (see [first-passage times](../../ch02/brownian_motion/first_passage_times.md) and [reflection principle](../../ch02/brownian_motion/reflection_principle.md)). With $X_t = \ln V_t$, $\mu = r - q - \sigma^2/2$, and $a = \ln(V_0/B) > 0$, the default time reduces to the first-passage of drifted BM:
 
 $$
-X_t = X_0 + \mu t + \sigma W_t^{\mathbb{Q}}
-$$
-
-where $\mu = r - q - \sigma^2/2$ and $X_0 = \ln V_0$.
-
-For a constant barrier $B$, default occurs when $X_t$ first hits $\ln B$. Define the log-barrier distance:
-
-$$
-a = \ln(V_0 / B) > 0
-$$
-
-The default time becomes the first-passage time of a Brownian motion with drift $\mu$ to level $-a$:
-
-$$
-\tau = \inf\{t \ge 0 : \mu t + \sigma W_t \le -a\}
+\tau = \inf\{t \ge 0 : \mu t + \sigma W_t \le -a\}.
 $$
 
 ### Closed-Form Survival Probability
 
-The survival probability up to time $T$ is:
+Applying the reflection principle yields
 
 $$
-S(0,T) = \mathbb{Q}(\tau > T) = N(d_+) - \left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} N(d_-)
+S(0,T) = \mathbb{Q}(\tau > T) = N(d_+) - \left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} N(d_-),
 $$
 
-where:
-
 $$
-d_+ = \frac{\ln(V_0/B) + \mu T}{\sigma\sqrt{T}}, \quad d_- = \frac{\ln(B/V_0) + \mu T}{\sigma\sqrt{T}}
+d_+ = \frac{\ln(V_0/B) + \mu T}{\sigma\sqrt{T}}, \quad d_- = \frac{\ln(B/V_0) + \mu T}{\sigma\sqrt{T}}.
 $$
-
-and $N(\cdot)$ is the standard normal CDF.
-
-!!! tip "Derivation Sketch"
-    The formula follows from the **reflection principle** for Brownian motion with drift. For a drifted Brownian motion $Y_t = \mu t + \sigma W_t$, the probability $\mathbb{P}(\min_{0 \le s \le t} Y_s > -a)$ is obtained by combining the direct path probability with the reflected path contribution, weighted by $e^{-2\mu a/\sigma^2}$.
 
 ### General Forward Survival Probability
 
@@ -286,19 +265,19 @@ The hump-shaped curve arises because:
 
 ### Equity Value
 
-In the Black-Cox model, equity is a **down-and-out call option** on firm value with barrier $B$ and strike $D$:
+Equity is a **down-and-out call** on firm value with barrier $B$ and strike $D$ (recall barrier-option formulas: see [exotic options](../../ch07/exotic_options/exotic_options_overview.md)):
 
 $$
 E_0 = \mathbb{E}^{\mathbb{Q}}\left[e^{-rT}(V_T - D)^+ \mathbf{1}_{\{\tau > T\}}\right]
 $$
 
-This is a standard barrier option with closed-form solution:
+with closed-form
 
 $$
-E_0 = V_0 e^{-qT}\left[N(d_1) - \left(\frac{B}{V_0}\right)^{2(r-q)/\sigma^2 + 1} N(e_1)\right] - D e^{-rT}\left[N(d_2) - \left(\frac{B}{V_0}\right)^{2(r-q)/\sigma^2 - 1} N(e_2)\right]
+E_0 = V_0 e^{-qT}\!\left[N(d_1) - \left(\tfrac{B}{V_0}\right)^{2(r-q)/\sigma^2 + 1}\! N(e_1)\right] - D e^{-rT}\!\left[N(d_2) - \left(\tfrac{B}{V_0}\right)^{2(r-q)/\sigma^2 - 1}\! N(e_2)\right],
 $$
 
-where $d_1, d_2$ are the standard Black-Scholes terms and $e_1, e_2$ are their barrier-adjusted counterparts.
+with $e_1,e_2$ the barrier-adjusted Black-Scholes terms.
 
 ### Debt Value
 

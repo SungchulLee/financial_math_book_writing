@@ -27,19 +27,7 @@ Before the October 1987 crash, the SPX implied volatility surface was relatively
 #### 2. Post-1987: The Emergence of Skew
 
 
-The October 1987 crash (Black Monday) fundamentally changed the SPX smile:
-
-**Key changes:**
-
-- Pronounced downside skew emerged
-- OTM puts became significantly more expensive
-- The "smirk" pattern became permanent
-
-**Mechanism:**
-
-- Portfolio insurance strategies contributed to crash severity
-- Investors now demand protection against tail events
-- "Crashophobia" priced into OTM puts
+Recall (see [§ Skew and Smile](skew_and_smile.md)): the October 1987 crash made permanent the equity smirk — OTM puts became expensive, "crashophobia" was priced in, and the downward-skew/leverage-effect/portfolio-insurance mechanism took hold.
 
 #### 3. Modern Era (2000-Present)
 
@@ -168,54 +156,19 @@ plt.show()
 #### 1. The Volatility Skew
 
 
-The SPX exhibits a pronounced **negative skew**:
+Recall (see [§ Skew and Smile](skew_and_smile.md)): risk-reversal $\text{RR}_{25}=\sigma_{25\Delta C}-\sigma_{25\Delta P}$ and butterfly $\text{BF}_{25}=\tfrac{1}{2}(\sigma_{25\Delta C}+\sigma_{25\Delta P})-\sigma_{\text{ATM}}$ quantify skew and curvature. SPX displays a pronounced **negative skew** $\sigma_{\text{IV}}(K_{\text{OTM put}}) > \sigma_{\text{IV}}(K_{\text{ATM}}) > \sigma_{\text{IV}}(K_{\text{OTM call}})$ with typical values:
 
-$$
-\sigma_{\text{IV}}(K_{\text{OTM put}}) > \sigma_{\text{IV}}(K_{\text{ATM}}) > \sigma_{\text{IV}}(K_{\text{OTM call}})
-$$
-
-
-**Quantitative measures:**
-
-| Measure | Definition | Typical SPX Value |
-|---------|-----------|-------------------|
-| 25-delta skew | $\sigma_{25\Delta P} - \sigma_{\text{ATM}}$ | 4-8% |
-| 10-delta skew | $\sigma_{10\Delta P} - \sigma_{\text{ATM}}$ | 8-15% |
-| Risk reversal | $\sigma_{25\Delta C} - \sigma_{25\Delta P}$ | -5% to -10% |
+| Measure | Typical SPX Value |
+|---------|-------------------|
+| 25-delta skew $\sigma_{25\Delta P}-\sigma_{\text{ATM}}$ | 4-8% |
+| 10-delta skew $\sigma_{10\Delta P}-\sigma_{\text{ATM}}$ | 8-15% |
+| Risk reversal $\text{RR}_{25}$ | -5% to -10% |
+| Butterfly $\text{BF}_{25}$ | 0.5-2.0 vol pts |
 
 #### 2. Put-Call Parity Check
 
 
-Implied volatilities from puts and calls at the same strike should be equal (absent arbitrage):
-
-$$
-\sigma_{\text{IV}}^{\text{call}}(K, T) = \sigma_{\text{IV}}^{\text{put}}(K, T)
-$$
-
-
-Small deviations occur due to:
-
-- Bid-ask spreads
-- American exercise premium (for SPY options)
-- Dividend expectations
-- Interest rate assumptions
-
-#### 3. Smile Curvature (Butterfly)
-
-
-The **butterfly spread** measures smile curvature:
-
-$$
-\text{Butterfly} = \frac{1}{2}(\sigma_{25\Delta C} + \sigma_{25\Delta P}) - \sigma_{\text{ATM}}
-$$
-
-
-Typical SPX values: 0.5-2.0 vol points
-
-**Interpretation:** Positive butterfly indicates:
-
-- Fat tails in risk-neutral distribution
-- Market prices both up and down jump risk
+Implied volatilities from puts and calls at the same strike must agree absent arbitrage, $\sigma_{\text{IV}}^{\text{call}}(K,T)=\sigma_{\text{IV}}^{\text{put}}(K,T)$. Small deviations arise from bid-ask spreads, early-exercise premium (SPY), dividend forecasts, and rate assumptions.
 
 ### Comparison Across Markets
 
@@ -339,11 +292,7 @@ Practitioners exploit the smile structure through targeted strategies:
 #### 3. Hedging with the Smile
 
 
-When hedging exotic options (barriers, cliquets, autocallables), traders must account for the smile to avoid systematic hedging losses:
-
-- **Naive Black-Scholes hedging** with a single flat volatility ignores the strike-dependence of IV, leading to P&L leakage.
-- **Smile-adjusted deltas** incorporate the dependence of IV on spot movements (the "skew delta" or "smile delta").
-- **Vanna and volga hedging** accounts for the cross-sensitivities between spot and volatility that arise from the smile structure.
+Recall (see [§ Smile Dynamics](../smile_dynamics/dynamic_consistency.md) and [§ IV Sensitivities](../implied_volatility_sensitivities/vega_and_implied_volatility_sensitivity.md)): exotics (barriers, cliquets, autocallables) require smile-adjusted deltas (skew/smile delta) and vanna-volga corrections; naive flat-vol Black-Scholes hedging leaks P&L.
 
 ### Interpretation Guidelines
 
@@ -390,7 +339,7 @@ The SPX smile provides the clearest empirical refutation of the constant-volatil
 | Return distribution | Lognormal, symmetric | Fat tails, negative skew |
 | Model fit to market | Single $\sigma$ for all options | Full volatility surface $\sigma_{\text{IV}}(K, T)$ |
 
-This mismatch motivates models that reproduce the observed implied volatility surface, including local volatility models (Dupire, Derman-Kani), stochastic volatility models (Heston, SABR), and jump-diffusion models (Merton).
+This mismatch motivates models that reproduce the observed implied volatility surface; see [§ Dupire local volatility](../../ch13/local_volatility_framework/dupire_formula_and_local_volatility_surface.md) and [§ Stochastic volatility](../../ch14/index.md) (Heston, SABR, jump-diffusion).
 
 #### Key Empirical Facts
 

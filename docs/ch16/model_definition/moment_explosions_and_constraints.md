@@ -69,15 +69,9 @@ This means $\phi(u, T)$ is defined for $u \in \mathbb{R}$ (the real line, corres
 
 ### Derivation via Riccati Blow-Up
 
-The moment $\mathbb{E}[S_T^p] = \phi(-ip, T) = \exp(C(T, -ip) + D(T, -ip)\,v_0 + p\,x_0)$ is finite if and only if the Riccati ODE for $D(\tau, u)$ does not blow up (reach infinity) before time $\tau = T$ at the point $u = -ip$.
+The moment $\mathbb{E}[S_T^p] = \phi(-ip, T) = \exp(C(T, -ip) + D(T, -ip)\,v_0 + p\,x_0)$ is finite if and only if the Riccati ODE for $D(\tau, u)$ does not blow up before time $\tau = T$ at the point $u = -ip$.
 
-Recall the Riccati ODE for $D$:
-
-$$
-D' = \tfrac{1}{2}\sigma_v^2\,D^2 + (\rho\sigma_v\,iu - \kappa)\,D + \tfrac{1}{2}(iu - u^2)
-$$
-
-Substituting $u = -ip$ (so $iu = p$ and $u^2 = -p^2$):
+Recall (see [§ Affine Structure and Riccati System](affine_structure_and_riccati.md)) the Riccati ODE $D' = \tfrac{1}{2}\sigma_v^2 D^2 + (\rho\sigma_v\,iu - \kappa)D + \tfrac{1}{2}(iu - u^2)$. Substituting $u = -ip$ (so $iu = p$ and $u^2 = -p^2$):
 
 $$
 D' = \tfrac{1}{2}\sigma_v^2\,D^2 + (\rho\sigma_v\,p - \kappa)\,D + \tfrac{1}{2}(p + p^2)

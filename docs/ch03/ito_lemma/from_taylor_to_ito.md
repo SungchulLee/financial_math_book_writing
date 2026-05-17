@@ -1,8 +1,12 @@
 # From Taylor to Itô
 
-This page derives Itô's formula mechanically from a second-order Taylor expansion.
-The key tool is the **Itô multiplication table**, which evaluates each second-order
-differential product term by term, reducing the five-term expansion to Itô's formula.
+This page is the **canonical home of the Itô multiplication table** and the mechanical
+derivation of Itô's formula from a second-order Taylor expansion. Other pages in this
+section recall the rule $(dB_t)^2 = dt$ and link back here rather than rederive it.
+
+Recall (see [§ Quadratic Approximation](taylor_expansion_quadratic.md)): the second-order
+Taylor expansion already contains the term $\tfrac12 f_{xx}(\Delta x)^2$. The novelty here
+is purely in the **scaling** of $(\Delta B_t)^2$ — the rest is bookkeeping.
 
 ---
 
@@ -141,6 +145,22 @@ $\square$
 !!! note "Extension to general Itô processes"
 
     The same procedure extends to a general Itô process $dX_t = \mu_t\,dt + \sigma_t\,dW_t$. The key step is that $(dX_t)^2 = \sigma_t^2\,dt$, because only the $dW_t$ component survives squaring: $(\mu_t\,dt)^2 = 0$, $\mu_t\,dt\cdot\sigma_t\,dW_t = 0$, and $(\sigma_t\,dW_t)^2 = \sigma_t^2\,dt$. Substituting this into the second-order Taylor term yields the general Itô formula; see [Itô's Lemma](ito_lemma.md).
+
+---
+
+## 5. Role in the System
+
+This page is the **origin** of Itô calculus: a single mechanism (Brownian scaling) generates a single rule $(dW_t)^2 = dt$, which forces a single new identity (Itô's formula). Everything downstream is a corollary:
+
+```mermaid
+flowchart LR
+    A[Taylor Expansion] --> B["(dW)² = dt"]
+    B --> C[Itô's Lemma]
+    C --> D[Generator]
+    D --> E[Dynkin Formula]
+```
+
+Subsequent pages **apply** the multiplication table rather than rederive it: [Itô's Lemma](ito_lemma.md) states the transformation rule, [Itô Rules](ito_rules.md) develop the derived identities (product, quotient, integration by parts), and [Applications](ito_calculus_applications.md) puts the lemma to work.
 
 ---
 

@@ -1,13 +1,123 @@
 # Change of Numeraire: Alternative Derivation of Black-Scholes
 
+Everything in this subsubsection follows from one sentence:
 
-The heat equation and Feynman-Kac sections derived the Black-Scholes formula $C = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)$ by solving the PDE and computing a risk-neutral expectation. But a question remains: why does the formula split into exactly *two* terms, each involving a normal CDF? The PDE route gives no clear answer --- the split emerges from completing the square in a Gaussian integral.
+> **A change of numeraire is a reweighting of probabilitieson sample paths.**
 
-The **change of numeraire** technique answers this question directly. It shows that each term is a probability under a different measure: $\mathcal{N}(d_2)$ is the risk-neutral probability that $S_T > K$, while $\mathcal{N}(d_1)$ is the same event's probability under the *stock measure*. Unlike the PDE methods developed earlier, this approach is entirely probabilistic --- it uses **measure changes** rather than differential equations. While the standard risk-neutral approach uses the money market account as numeraire, changing to alternative numeraires (e.g., the stock itself) simplifies certain pricing problems and reveals the measure-theoretic structure hidden inside familiar formulas.
+The [§ Heat Equation](heat_equation.md) and [§ Feynman–Kac](feynman_kac.md) subsubsections derived the Black–Scholes formula 
+
+$$
+C = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)
+$$ 
+
+but did not answer a basic question: why exactly *two* terms, each a normal CDF? The change-of-numeraire viewpoint answers it directly: **the two CDFs are two probabilities of the same event $\{S_T > K\}$ under two different probability measures**, each natural to a different "unit of account" (numeraire).
+
+$$
+\mathcal{N}(d_1) = \mathbb{Q}^S(S_T>K),\quad
+\mathcal{N}(d_2) = \mathbb{Q}(S_T>K) 
+$$ 
+
+We build the picture in the order a reader naturally builds intuition: a one-step binomial toy first, where the measure change is just finite reweighting of a finite probability space, then the continuous-time Girsanov machinery that lifts the toy to Black–Scholes.
+
+!!! warning "Terminology: stock measure vs. $T$-forward measure"
+    The measure $\mathbb{Q}^S$ obtained by taking the stock $S_t$ as numeraire is called the **stock measure** (or **share measure**). In some texts it is loosely called a "forward measure", but this terminology should be avoided: in interest-rate theory the **$T$-forward measure** $\mathbb{Q}^T$ is a *different* object, defined by taking the zero-coupon bond $P(t,T)$ as numeraire. The two measures coincide only when interest rates are deterministic and the underlying is itself a bond. Throughout this subsubsection, "stock measure" means $\mathbb{Q}^S$ with numeraire $S_t$; the $T$-forward measure $\mathbb{Q}^T$ appears only in the summary table and in Exercise 6.
 
 ---
 
-## Numeraire and Pricing Measures
+## 1. Why Numeraires? A One-Step Binomial Toy
+
+Before any Girsanov machinery, work the simplest possible measure change on a finite probability space.
+
+### 1.1 Setup: a One-Step Binomial Market
+
+At time $1$ the stock takes value $S_u$ (up) or $S_d$ (down), with $S_u > S_0 e^r > S_d$ (no-arbitrage). Under the **risk-neutral measure** $\mathbb{Q}$, the probability of the up move is fixed by the martingale condition $e^{-r}\, \mathbb{E}^{\mathbb{Q}}[S_1] = S_0$:
+
+$$
+q := \mathbb{Q}(\text{up}) = \frac{S_0\, e^r - S_d}{S_u - S_d}, \qquad 1 - q = \mathbb{Q}(\text{down}) = \frac{S_u - S_0\, e^r}{S_u - S_d}
+$$
+
+The Radon–Nikodym derivative against the physical measure $\mathbb{P}$ is simply the ratio of probabilities on each state — a vector of two numbers. **The measure change is just a finite reweighting.**
+
+### 1.2 Pricing a Call in Two Numeraires
+
+Price a European call $C_1 = (S_1 - K)^+$ with $S_d < K < S_u$. Under $\mathbb{Q}$ with the money-market numeraire $B_t = e^{rt}$:
+
+$$
+C_0 = e^{-r}\, \mathbb{E}^{\mathbb{Q}}[(S_1 - K)^+] = e^{-r}\, q\, (S_u - K)
+$$
+
+Split:
+
+$$
+C_0 = \underbrace{e^{-r}\, q\, S_u}_{\text{"$S$-piece"}} - \underbrace{K\, e^{-r}\, q}_{\text{"$\$$-piece"}}
+$$
+
+The $\$$-piece reads cleanly as $K$ times the **discounted risk-neutral probability of exercise** $e^{-r}\, \mathbb{Q}(S_1 > K)$. The $S$-piece is the expected discounted in-the-money stock value $e^{-r}\, \mathbb{E}^{\mathbb{Q}}[S_1\, \mathbb{1}_{S_1 > K}]$ — a product, not yet "$S_0$ times a probability." The question of the subsubsection is whether it can be made to look like the $\$$-piece, by changing measures.
+
+### 1.3 The Stock as Numeraire
+
+Yes — reweight $\mathbb{Q}$ once more. Define the **stock measure** $\mathbb{Q}^S$ by the Radon–Nikodym derivative
+
+$$
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}} := \frac{S_1}{S_0\, e^r}
+$$
+
+— the ratio of the stock's terminal value to its $\mathbb{Q}$-expectation. By the martingale condition $\mathbb{E}^{\mathbb{Q}}[d\mathbb{Q}^S / d\mathbb{Q}] = 1$, so $\mathbb{Q}^S$ is a valid probability measure. State-by-state:
+
+$$
+\mathbb{Q}^S(\text{up}) = q\, \frac{S_u}{S_0\, e^r}, \qquad \mathbb{Q}^S(\text{down}) = (1 - q)\, \frac{S_d}{S_0\, e^r}
+$$
+
+The up state is *upweighted* by the factor $S_u / (S_0 e^r) > 1$; the down state is *downweighted* by $S_d / (S_0 e^r) < 1$. **Probability mass flows toward the in-the-money state.** This is the entire content of switching numeraires.
+
+Now compute the $S$-piece directly under $\mathbb{Q}^S$:
+
+$$
+e^{-r}\, q\, S_u = S_0\, \cdot\, \frac{q\, S_u}{S_0\, e^r} = S_0\, \mathbb{Q}^S(\text{up}) = S_0\, \mathbb{Q}^S(S_1 > K)
+$$
+
+The product becomes exactly "$S_0$ times a probability," with the probability computed under the new measure.
+
+### 1.4 The Two-Numeraire Decomposition
+
+Putting both pieces together:
+
+$$
+C_0 = S_0\, \mathbb{Q}^S(S_1 > K) - K\, e^{-r}\, \mathbb{Q}(S_1 > K)
+$$
+
+Each term is *unit $\times$ probability of exercise*, with the unit and the measure matched consistently. The $\$$-piece uses the bond numeraire and the risk-neutral measure; the $S$-piece uses the stock numeraire and the stock measure. The two probabilities are of the *same event*, computed under two different reweightings of the underlying probability space.
+
+### 1.5 The Continuous-Time Lift
+
+This is the binomial analogue of the Black–Scholes formula
+
+$$
+C = S_0\, \mathcal{N}(d_1) - K\, e^{-rT}\, \mathcal{N}(d_2)
+$$
+
+with the identification
+
+$$
+\mathcal{N}(d_2) = \mathbb{Q}(S_T > K), \qquad \mathcal{N}(d_1) = \mathbb{Q}^S(S_T > K)
+$$
+
+**The two CDFs in the Black–Scholes formula are two probabilities of the same event under two different measures.** The discrete reweighting $S_1 / (S_0 e^r)$ becomes, in the continuum limit, the **Doléans exponential**
+
+$$
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{S_T}{S_0\, e^{rT}} = \exp\!\left(\sigma\, W_T^{\mathbb{Q}} - \tfrac{1}{2}\sigma^2\, T\right)
+$$
+
+— the Girsanov density. Under $\mathbb{Q}^S$, Brownian motion picks up a drift $\sigma\, t$, and $W_t^{\mathbb{Q}^S} := W_t^{\mathbb{Q}} - \sigma\, t$ is a standard Brownian motion. **The rest of this subsubsection is the rigorous continuous-time form of the two-state calculation above** — Doléans replaces "vector of two numbers," Girsanov replaces "finite reweighting."
+
+!!! tip "Core principle"
+    A change of numeraire is a **reweighting of probabilities**. Each numeraire $N_t$ comes with its own measure $\mathbb{Q}^N$, defined by the requirement that prices expressed in units of $N_t$ are $\mathbb{Q}^N$-martingales. The Radon–Nikodym derivative $d\mathbb{Q}^N / d\mathbb{Q}$ encodes the relative reweighting: a finite ratio per state in discrete time, a Doléans exponential in continuous time.
+
+This is the mechanism. Black–Scholes is the application: $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ are probabilities of the same event $\{S_T > K\}$ under the stock measure $\mathbb{Q}^S$ and the risk-neutral measure $\mathbb{Q}$ respectively.
+
+---
+
+## 2. Numeraire and Pricing Measures
 
 
 ### 1. **Definition of Numeraire**
@@ -49,7 +159,7 @@ $$
 
 ---
 
-## General Numeraire Change
+## 3. General Numeraire Change
 
 
 ### 1. **Fundamental Theorem**
@@ -101,7 +211,7 @@ Equivalently, $dW_t^{\mathbb{Q}} = dW_t^{\mathbb{Q}^N} + \sigma_N dt$. The drift
 
 ---
 
-## Stock Numeraire and Forward Measure
+## 4. Stock Numeraire and the Stock Measure
 
 
 ### 1. **Setup: Stock as Numeraire**
@@ -109,7 +219,7 @@ Equivalently, $dW_t^{\mathbb{Q}} = dW_t^{\mathbb{Q}^N} + \sigma_N dt$. The drift
 
 Choose $N_t = S_t$ (the underlying stock itself).
 
-The associated measure $\mathbb{Q}^S$ is called the **stock measure** or **forward measure**.
+The associated measure $\mathbb{Q}^S$ is called the **stock measure** (or **share measure**). As noted in the terminology warning above, it should *not* be conflated with the $T$-forward measure $\mathbb{Q}^T$ of interest-rate theory, which uses a zero-coupon bond as numeraire.
 
 ### 2. **Relative Prices Under Q^S**
 
@@ -135,11 +245,19 @@ $$
 ### 3. **Radon–Nikodym Derivative**
 
 
-The stock measure is related to $\mathbb{Q}$ by:
+The stock measure $\mathbb{Q}^S$ is related to $\mathbb{Q}$ by the **density process**
+
+$$
+Z_t := \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{S_t / B_t}{S_0 / B_0} = \frac{S_t e^{-rt}}{S_0}
+$$
+
+evaluated at $t = T$:
 
 $$
 \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}
 $$
+
+Since $S_t e^{-rt} / S_0 = \exp(-\tfrac{1}{2}\sigma^2 t + \sigma W_t^{\mathbb{Q}})$ is a Doléans-Dade exponential with bounded volatility $\sigma$, Novikov's condition $\mathbb{E}^{\mathbb{Q}}[\exp(\tfrac{1}{2}\sigma^2 T)] < \infty$ is trivially satisfied, so $Z_t$ is a **true** $\mathbb{Q}$-martingale (not merely a local martingale) with $\mathbb{E}^{\mathbb{Q}}[Z_T] = 1$. This is the precise integrability condition that makes the change of measure rigorous; under it, $\mathbb{Q}^S$ is a well-defined probability measure equivalent to $\mathbb{Q}$ on $\mathcal{F}_T$.
 
 
 
@@ -166,7 +284,7 @@ $$
 
 ---
 
-## Black-Scholes via Stock Numeraire
+## 5. Black-Scholes via Stock Numeraire
 
 
 ### 1. **Call Option Valuation**
@@ -203,102 +321,63 @@ $$
 
 
 
-### 2. **First Term: Q^S(S_T > K)**
+### 2. **First Term: $\mathbb{Q}^S(S_T > K)$**
 
 
-Under $\mathbb{Q}^S$, the stock dynamics have drift $(r + \sigma^2)$, so by Ito's formula:
-
-$$
-S_T = S_0 \exp\left(\left(r + \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)
-$$
-
-
-
-Therefore:
+Under $\mathbb{Q}^S$, the shifted drift $(r + \sigma^2)$ derived in §4 above gives a GBM with log-normal terminal law
 
 $$
-S_T > K \iff \sigma W_T^{\mathbb{Q}^S} > \ln(K/S_0) - \left(r + \frac{1}{2}\sigma^2\right)T
+\ln S_T \sim \mathcal{N}\!\left(\ln S_0 + (r + \tfrac{1}{2}\sigma^2)T,\ \sigma^2 T\right) \quad \text{under } \mathbb{Q}^S.
 $$
 
+!!! note "Recall (Gaussian tail computation)"
+    Reducing $\{S_T > K\}$ to a standard-normal tail and evaluating it is the same completion-of-square computation carried out canonically in [§ Feynman–Kac](feynman_kac.md) (and equivalently in [§ Heat Equation](heat_equation.md) via the heat-kernel picture). We do not repeat it.
 
-
-Dividing by $\sigma\sqrt{T}$ and using $W_T^{\mathbb{Q}^S}/\sqrt{T} \sim \mathcal{N}(0,1)$:
-
-$$
-S_T > K \iff \frac{W_T^{\mathbb{Q}^S}}{\sqrt{T}} > -\frac{\ln(S_0/K) + \left(r + \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}} = -d_1
-$$
-
-
-
-where
+The result is
 
 $$
-d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+\mathbb{Q}^S(S_T > K) = \mathcal{N}(d_1), \qquad d_1 = \frac{\ln(S_0/K) + (r + \tfrac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}.
 $$
 
-
-
-Hence:
-
-$$
-\mathbb{Q}^S(S_T > K) = \mathcal{N}(d_1)
-$$
+The *probabilistic content* — and the reason this subsubsection exists — is that $\mathcal{N}(d_1)$ is the exercise probability **under the stock measure**, not under $\mathbb{Q}$.
 
 
 
-### 3. **Second Term: Change to Q**
+### 3. **Second Term: Change Back to $\mathbb{Q}$**
 
 
-For the second term, we use:
+For the second term, the abstract Bayes / Radon–Nikodym formula
 
 $$
-\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right] = \mathbb{E}^{\mathbb{Q}}\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right]
+\mathbb{E}^{\mathbb{Q}^S}[X] = \mathbb{E}^{\mathbb{Q}}\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} \cdot X\right]
 $$
 
-
-
-
-$$
-= \mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right] = \frac{e^{-rT}}{S_0}\mathbb{Q}(S_T > K)
-$$
-
-
-
-Under $\mathbb{Q}$:
+with $X = S_T^{-1}\mathbf{1}_{\{S_T > K\}}$ and the explicit density $\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\big|_{\mathcal{F}_T} = S_T e^{-rT}/S_0$ from §3 gives
 
 $$
-\mathbb{Q}(S_T > K) = \mathcal{N}(d_2)
+\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right] = \mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right] = \frac{e^{-rT}}{S_0}\,\mathbb{Q}(S_T > K).
 $$
 
+The two $S_T$ factors cancel cleanly — the structural reason the change of numeraire works. By the canonical computation in [§ Feynman–Kac](feynman_kac.md),
 
-
-where $d_2 = d_1 - \sigma\sqrt{T}$.
+$$
+\mathbb{Q}(S_T > K) = \mathcal{N}(d_2), \qquad d_2 = d_1 - \sigma\sqrt{T}.
+$$
 
 ### 4. **Final Result**
 
 
-Combining:
-
-$$
-\frac{C_0}{S_0} = \mathcal{N}(d_1) - K \cdot \frac{e^{-rT}}{S_0}\mathcal{N}(d_2)
-$$
-
-
-
+Combining the two terms,
 
 $$
 \boxed{C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)}
 $$
 
-
-
-This is the **Black-Scholes formula**, derived via stock numeraire.
-
-**Key insight**: The term $\mathcal{N}(d_1)$ arises naturally as the probability under the **stock measure**, not the risk-neutral measure.
+— the same formula obtained in [§ Heat Equation](heat_equation.md) and [§ Feynman–Kac](feynman_kac.md), but now **reinterpreted**: each $\mathcal{N}(d_i)$ is a probability of $\{S_T > K\}$, measured under a *different* numeraire. $\mathcal{N}(d_1)$ is the stock-measure probability; $\mathcal{N}(d_2)$ is the risk-neutral one. That asymmetry is the subsubsection's signature insight.
 
 ---
 
-## Foreign Exchange Options
+## 6. Foreign Exchange Options
 
 
 ### 1. **Setup: Quanto Options**
@@ -324,11 +403,13 @@ $$
 
 Choose numeraire $N_t = X_t B_t^f = X_t e^{r_f t}$ (foreign money market converted to domestic).
 
-The Radon–Nikodym derivative:
+The Radon–Nikodym derivative is the density process $N_t / B_t^d$ normalised to start at $1$:
 
 $$
-\frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\Big|_{\mathcal{F}_T} = \frac{X_T e^{r_f T - r_d T}}{X_0}
+\frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\bigg|_{\mathcal{F}_t} = \frac{N_t / B_t^d}{N_0 / B_0^d} = \frac{X_t e^{(r_f - r_d) t}}{X_0}, \qquad \frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\bigg|_{\mathcal{F}_T} = \frac{X_T e^{(r_f - r_d)T}}{X_0}
 $$
+
+This is a true $\mathbb{Q}^d$-martingale (Novikov is satisfied since $\sigma$ is bounded), so the change of measure is well defined.
 
 
 
@@ -351,79 +432,36 @@ $$
 ### 3. **Call on FX Rate**
 
 
-Using the foreign measure:
+Repeating the stock-numeraire argument of the previous subsubsection with $X_t e^{r_f t}$ in place of $S_t$ — the only change is that the discount rate is now $r_d$ and the foreign rate $r_f$ plays the role of a continuous dividend yield — gives the **Garman–Kohlhagen formula**
 
 $$
-C_0 = X_0 e^{-r_f T}\mathcal{N}(d_1) - K e^{-r_d T}\mathcal{N}(d_2)
+C_0 = X_0 e^{-r_f T}\mathcal{N}(d_1) - K e^{-r_d T}\mathcal{N}(d_2), \qquad d_1 = \frac{\ln(X_0/K) + (r_d - r_f + \tfrac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}.
 $$
 
-
-
-where
-
-$$
-d_1 = \frac{\ln(X_0/K) + (r_d - r_f + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
-$$
-
-
-
-This is the **Garman-Kohlhagen formula** for FX options.
+The Gaussian tail evaluation is identical to the one in [§ Feynman–Kac](feynman_kac.md); the *new* content here is the **foreign–domestic symmetry**: by reversing the roles of the two currencies one obtains the corresponding put formula and the put–call relation expressed in the foreign numeraire (Exercise 3).
 
 ---
 
-## Summary: When to Use Each Numeraire
+## 7. When to Use Each Numeraire
 
 
 | Numeraire | Measure | Application | Advantage |
 |-----------|---------|-------------|-----------|
 | Money market $B_t$ | Risk-neutral $\mathbb{Q}$ | Standard options | Familiar, drift = $r$ |
-| Stock $S_t$ | Stock measure $\mathbb{Q}^S$ | Forward contracts | $\mathcal{N}(d_1)$ as probability |
-| Zero-coupon bond $P(t,T)$ | Forward measure $\mathbb{Q}^T$ | Interest rate options | Simplifies swap pricing |
+| Stock $S_t$ | **Stock measure** $\mathbb{Q}^S$ (a.k.a. share measure) | Equity options, forward contracts | $\mathcal{N}(d_1)$ as exercise probability |
+| Zero-coupon bond $P(t,T)$ | **$T$-forward measure** $\mathbb{Q}^T$ (distinct from $\mathbb{Q}^S$!) | Interest rate options | Forwards are $\mathbb{Q}^T$-martingales; simplifies swap pricing |
 | Foreign money market | Foreign measure $\mathbb{Q}^f$ | FX options | Symmetry between currencies |
 
 **General principle**: Choose the numeraire that **eliminates drift** from the payoff-relevant dynamics.
 
 ---
 
-## Connection to Other Solution Methods
+## 8. Summary
 
 
-In the context of solving the Black-Scholes PDE, change of numeraire is:
+This subsubsection did not re-derive the Black–Scholes formula; it **reinterpreted** the formula already obtained in [§ Heat Equation](heat_equation.md) and [§ Feynman–Kac](feynman_kac.md). The signature insight: $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ are *the same event* $\{S_T > K\}$ measured under two different numeraires — the stock and the money market. The Radon–Nikodym density $S_T e^{-rT}/S_0$ links them, and Girsanov turns the density into a drift shift $\sigma$. The framework generalises immediately: replace $S$ by the foreign money account to get Garman–Kohlhagen, or by a zero-coupon bond to get the $T$-forward measure (Exercise 6).
 
-**Not a PDE technique** (like Fourier or separation of variables), but rather a **probabilistic reinterpretation** that:
-
-- Avoids solving PDEs entirely
-- Uses martingale representation instead
-- Provides intuition for why certain probabilities appear in formulas
-
-**Relation to Feynman-Kac**: Both express PDE solutions as expectations, but:
-
-- Feynman-Kac uses the **original measure** and discounting
-- Numeraire change uses **different measures** without explicit discounting
-
----
-
-## Summary
-
-
-The change of numeraire technique provides an elegant alternative to standard risk-neutral pricing:
-
-1. **Key idea**: Price assets relative to any traded numeraire, not just the money market
-
-2. **Mathematical tool**: Radon–Nikodym derivative relating different numeraire measures
-
-3. **Girsanov connection**: Numeraire change induces Brownian motion drift change
-
-4. **Black-Scholes derivation**: Stock numeraire gives $\mathcal{N}(d_1)$ direct probabilistic interpretation
-
-5. **Advantages**: 
-   - Conceptual clarity (e.g., $d_1$ as stock-measure probability)
-   - Simplifies certain exotic options
-   - Natural framework for FX and interest rate derivatives
-
-6. **Limitation**: Requires understanding of measure theory; not always simpler than PDE methods
-
-In the operator framework of the introduction, the change of numeraire expresses the pricing semigroup $\mathcal{P}_\tau$ as an **expectation under a different probability measure**, revealing the structural meaning of each term in the Black--Scholes formula.
+In the operator language of [§ Introduction](intro.md), the pricing semigroup $\mathcal{P}_\tau$ admits **multiple expectation representations**, one per numeraire — the Core Identity is invariant, only its decomposition into "probability × payoff factor" changes.
 
 ---
 

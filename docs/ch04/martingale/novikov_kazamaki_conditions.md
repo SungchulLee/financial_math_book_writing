@@ -1,6 +1,6 @@
 # Novikov and Kazamaki Conditions
 
-This section provides the conditions guaranteeing that a [stochastic exponential](stochastic_exponential.md) is a true martingale, so that the Girsanov measure change produces a valid probability measure (see [Unifying Principle](unifying_principle.md)).
+The stochastic exponential $Z_t = \exp\!\bigl(M_t - \tfrac{1}{2}\langle M\rangle_t\bigr)$ has zero drift by Itô's lemma, so $Z$ is automatically a *local* martingale. But to use $Z_T$ as a Radon-Nikodym density $d\mathbb{Q}/d\mathbb{P}$ we need $\mathbb{E}[Z_T] = 1$ -- global fairness, not just local. That equality fails precisely when $\langle M\rangle$ grows too fast and $Z$ leaks mass. The **Novikov** and **Kazamaki** conditions are explicit exponential-moment bounds on $\langle M\rangle$ (resp. $M$) that rule out this leak (see [Stochastic Exponential](stochastic_exponential.md) and [Unifying Principle](unifying_principle.md)).
 
 !!! info "Prerequisites"
     This section assumes familiarity with:
@@ -249,17 +249,10 @@ When the Feller condition holds, the variance process remains strictly positive,
 
 ## Applications in Finance
 
-### Girsanov's Theorem
+Novikov/Kazamaki are the workhorses that validate measure-change densities:
 
-For the [Girsanov measure change](stochastic_exponential.md#connection-to-girsanovs-theorem) to be valid, the density $Z_T = \mathcal{E}(M)_T$ must satisfy $\mathbb{E}[Z_T] = 1$. Novikov or Kazamaki provides this guarantee.
-
-### Risk-Neutral Measure Construction
-
-The risk-neutral measure $\mathbb{Q}$ exists and is equivalent to $\mathbb{P}$ when both a suitable market price of risk $\theta$ is specified and the stochastic exponential is a true martingale (Novikov/Kazamaki). When the latter fails, $\mathbb{Q}$ may fail to be equivalent to $\mathbb{P}$, or the market may admit arbitrage of the first kind.
-
-### Bubbles and Strict Local Martingales
-
-When both conditions fail, $Z_t$ may be a [strict local martingale](local_martingale.md#strict-local-martingales-and-financial-bubbles) with $\mathbb{E}[Z_T] < 1$, corresponding to asset price bubbles.
+- **Girsanov / Risk-Neutral**: Recall (see [§ Girsanov's Theorem](../girsanov/girsanov_theorem.md) and [§ Risk-Neutral Construction](../risk_neutral/construction.md)) — they guarantee $\mathbb{E}[Z_T]=1$, so $\mathbb{Q}$ is a valid probability measure.
+- **Bubbles**: Recall (see [§ Local Martingales — Strict Local Martingales and Financial Bubbles](local_martingale.md#strict-local-martingales-and-financial-bubbles)) — failure of both conditions can leave $Z$ a strict local martingale with $\mathbb{E}[Z_T] < 1$, the bubble signature.
 
 ---
 

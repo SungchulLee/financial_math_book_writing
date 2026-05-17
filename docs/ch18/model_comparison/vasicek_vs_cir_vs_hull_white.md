@@ -14,7 +14,7 @@ The three canonical one-factor short rate models---Vasicek, Cox--Ingersoll--Ross
 
 ## Model Dynamics
 
-All three models specify the short rate as a mean-reverting diffusion under the risk-neutral measure $\mathbb{Q}$.
+Recall the short-rate framework (see [§ Short-rate framework](../short_rate_models/general_short_rate_framework.md)). All three models specify the short rate as a mean-reverting diffusion under the risk-neutral measure $\mathbb{Q}$.
 
 !!! info "Definition: Model SDEs"
 
@@ -67,6 +67,8 @@ All three models produce exponential-affine bond prices $P(t,T) = A(t,T)\,e^{-B(
 
 ### Vasicek
 
+Recall (see [§ Vasicek SDE and bond pricing](../vasicek_model/vasicek_sde_and_ou_process.md)).
+
 $$
 B(\tau) = \frac{1 - e^{-\kappa\tau}}{\kappa}
 $$
@@ -77,6 +79,8 @@ $$
 
 ### CIR
 
+Recall (see [§ CIR, Feller, and non-central chi-squared](../cir_model/cir_sde_and_square_root_process.md)).
+
 $$
 B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}, \qquad \gamma = \sqrt{\kappa^2 + 2\sigma^2}
 $$
@@ -86,6 +90,8 @@ A(\tau) = \left(\frac{2\gamma\,e^{(\kappa + \gamma)\tau/2}}{(\gamma + \kappa)(e^
 $$
 
 ### Hull-White
+
+Recall (see [§ Hull-White (full treatment)](../../ch20/index.md)).
 
 $$
 B(\tau) = \frac{1 - e^{-a\tau}}{a}

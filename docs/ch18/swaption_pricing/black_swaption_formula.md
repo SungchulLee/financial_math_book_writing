@@ -67,25 +67,13 @@ $$
 dS_{m,n}(t) = \sigma_S S_{m,n}(t) \, dW_t^A, \qquad t \leq T_m
 $$
 
-where $\sigma_S$ is the swaption volatility. Because $S_{m,n}(t)$ is a martingale under $\mathbb{Q}^A$, there is **no drift term**. The solution is
-
-$$
-S_{m,n}(T_m) = S_{m,n}(t) \exp\!\left(-\frac{1}{2}\sigma_S^2(T_m - t) + \sigma_S\sqrt{T_m - t} \, Z\right)
-$$
-
-where $Z \sim \mathcal{N}(0,1)$ under $\mathbb{Q}^A$. Thus $\ln S_{m,n}(T_m)$ is normally distributed with mean $\ln S_{m,n}(t) - \frac{1}{2}\sigma_S^2(T_m - t)$ and variance $\sigma_S^2(T_m - t)$.
+where $\sigma_S$ is the swaption volatility. Because $S_{m,n}(t)$ is a martingale under $\mathbb{Q}^A$, there is **no drift term**. Recall (see [§ Swap Rate Dynamics and Lognormal Model](swap_rate_dynamics_and_lognormal_model.md)) that the explicit solution is lognormal with $\ln S_{m,n}(T_m) \sim \mathcal{N}\!\bigl(\ln S_{m,n}(t) - \tfrac{1}{2}\sigma_S^2(T_m-t),\ \sigma_S^2(T_m-t)\bigr)$.
 
 ---
 
 ## Reduction to the Black Formula
 
-We now compute
-
-$$
-\mathbb{E}^{\mathbb{Q}^A}\!\left[(S_{m,n}(T_m) - K)^+ \mid \mathcal{F}_t\right]
-$$
-
-This is exactly the same expectation that appears in the Black formula for an option on a forward price. Therefore,
+The expectation $\mathbb{E}^{\mathbb{Q}^A}[(S_{m,n}(T_m) - K)^+ \mid \mathcal{F}_t]$ is exactly the Black-type expectation of a lognormal martingale against a strike. Recall (see [§ Black Formula](../../ch06/index.md)) that this evaluates to
 
 $$
 \mathbb{E}^{\mathbb{Q}^A}\!\left[(S_{m,n}(T_m) - K)^+ \mid \mathcal{F}_t\right] = S_{m,n}(t)\mathcal{N}(d_1) - K\mathcal{N}(d_2)

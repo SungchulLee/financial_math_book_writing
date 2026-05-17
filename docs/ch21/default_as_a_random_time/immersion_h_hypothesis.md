@@ -87,11 +87,7 @@ where $\alpha_t^u$ is the conditional density of $\tau$ given $\mathcal{F}_t$.
 
 ### Natural Satisfaction in Reduced-Form Models
 
-In canonical reduced-form (intensity-based) credit models, immersion holds by construction. The key mechanism is the **doubly-stochastic** (Cox process) construction:
-
-1. Default intensity $\lambda_t$ is $\mathcal{F}_t$-adapted
-2. Default time is $\tau = \inf\{t : \int_0^t \lambda_s ds \ge E\}$ where $E \sim \text{Exp}(1)$ is independent of $\mathcal{F}_\infty$
-3. The independence of $E$ from market factors ensures immersion
+Recall (see [Stopping Times and Enlargement of Filtration](stopping_times_and_enlargement_of_filtration.md)): in the Cox construction with $\mathcal{F}_t$-adapted intensity $\lambda_t$ and an independent exponential trigger $E \perp \mathcal{F}_\infty$, immersion holds because the only "new" randomness in $\tau$ is orthogonal to all market information.
 
 ### Mathematical Verification
 
@@ -111,32 +107,7 @@ Therefore: $\mathbb{E}[M_T \mid \mathcal{G}_t] = \mathbb{E}[M_T \mid \mathcal{F}
 
 ### Pre-Default Pricing Formula
 
-Under immersion, the price of a defaultable claim paying $X$ at maturity $T$ (if no default) is:
-
-$$
-V_t = \mathbf{1}_{\{\tau > t\}} \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} X \mid \mathcal{F}_t\right]
-$$
-
-The default indicator $\mathbf{1}_{\{\tau > t\}}$ factors out cleanly because:
-
-- The expectation over market factors uses $\mathcal{F}_t$-conditioning (immersion)
-- Default risk enters only through the intensity adjustment $\lambda_s$
-
-### Separation of Market and Credit Risk
-
-Immersion enables a clean decomposition:
-
-$$
-\text{Defaultable Price} = \text{Default-Free Price} \times \text{Survival Adjustment}
-$$
-
-More precisely, for a zero-recovery defaultable bond:
-
-$$
-P^d(t,T) = P(t,T) \cdot S(t,T)
-$$
-
-where $P(t,T)$ is the default-free discount factor and $S(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t]$ is the survival probability.
+Under immersion, the price of a defaultable claim paying $X$ at maturity $T$ (if no default) factors as $V_t = \mathbf{1}_{\{\tau > t\}}\,\mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T (r_s + \lambda_s)\,ds}\,X \mid \mathcal{F}_t]$, and zero-recovery bonds decompose as $P^d(t,T) = P(t,T) \cdot S(t,T)$ — full derivation in [§ Pricing with Default Risk](../pricing_with_default_risk/defaultable_bonds.md).
 
 ---
 
@@ -144,15 +115,7 @@ where $P(t,T)$ is the default-free discount factor and $S(t,T) = \mathbb{E}^{\ma
 
 ### Structural Models
 
-In structural (Merton-type) models, immersion typically **does not hold**. Default is triggered when firm value $V_t$ crosses a barrier, and $V_t$ is directly linked to market observables.
-
-**Example:** If $V_t$ is correlated with equity prices $S_t$, then observing default (i.e., $V_\tau \le B$) reveals information about the path of $S$:
-
-$$
-\mathbb{E}[S_T \mid \mathcal{G}_t] \ne \mathbb{E}[S_T \mid \mathcal{F}_t]
-$$
-
-Default signals that firm value was low, which correlates with low equity values.
+In structural (Merton-type) models, immersion typically **does not hold** because default is a hitting time of an $\mathcal{F}$-adapted firm-value process (see [§ Structural Credit Risk Models](../structural_credit_risk_models/black_cox_model.md)), so observing default reveals information about the path of correlated market observables: $\mathbb{E}[S_T \mid \mathcal{G}_t] \ne \mathbb{E}[S_T \mid \mathcal{F}_t]$.
 
 ### Information-Based Models
 

@@ -1,6 +1,6 @@
 # Time-Dependent Parameters
 
-In the standard Heston model, the parameters $\kappa$, $\theta$, $\xi$, and $\rho$ are constants. This produces a single implied volatility surface shape that cannot simultaneously match market smiles at both short and long maturities. In practice, the short-maturity smile is steep and driven by jump-like behavior, while the long-maturity smile flattens as mean reversion dominates. Allowing parameters to vary with time --- typically as piecewise-constant functions --- gives the model enough flexibility to fit the entire term structure of implied volatilities while preserving the affine structure that enables semi-analytic pricing.
+Recall standard Heston with constant $(\kappa, \theta, \xi, \rho)$ (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)): a single parameter set cannot simultaneously match steep short-maturity skews and flatter long-maturity smiles. Allowing parameters to vary with time --- typically as piecewise-constant functions on a maturity grid --- gives enough flexibility to fit the full term structure while preserving the affine structure (see [§ Affine Structure and Riccati](../model_definition/affine_structure_and_riccati.md)).
 
 !!! info "Prerequisites"
 
@@ -102,23 +102,7 @@ $$
 
 ### Closed-Form Solution on Each Interval
 
-On interval $[T_{i-1}, T_i]$ of length $\tau_i = T_i - T_{i-1}$, the Riccati ODE for $D$ with constant coefficients $(\kappa_i, \xi_i, \rho_i)$ has the standard Heston solution:
-
-$$
-\gamma_i = \sqrt{(\kappa_i - i\rho_i\xi_i u)^2 + \xi_i^2(iu + u^2)}
-$$
-
-$$
-g_i = \frac{\kappa_i - i\rho_i\xi_i u - \gamma_i}{\kappa_i - i\rho_i\xi_i u + \gamma_i}
-$$
-
-The $D$-function increment on interval $i$ starting from terminal value $D_{\text{in}}$ is obtained by substituting into the general Riccati solution with initial condition $D_{\text{in}}$ rather than zero. When $D_{\text{in}} = 0$ (the rightmost interval), the standard formula applies:
-
-$$
-D_i(\tau_i) = \frac{\kappa_i - i\rho_i\xi_i u - \gamma_i}{\xi_i^2}\cdot\frac{1 - e^{-\gamma_i\tau_i}}{1 - g_i e^{-\gamma_i\tau_i}}
-$$
-
-For interior intervals where $D_{\text{in}} \neq 0$, a numerical ODE solver (e.g., fourth-order Runge-Kutta) is typically used.
+On interval $[T_{i-1}, T_i]$ of length $\tau_i$, the Riccati ODE for $D$ with constant coefficients $(\kappa_i, \xi_i, \rho_i)$ admits the standard Heston solution in terms of $\gamma_i, g_i$ (see [§ Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md)). For the rightmost interval ($D_{\text{in}}=0$), the standard formula applies directly; for interior intervals where $D_{\text{in}} \neq 0$, a numerical ODE solver (e.g., fourth-order Runge-Kutta) is typically used.
 
 ---
 
@@ -126,13 +110,7 @@ For interior intervals where $D_{\text{in}} \neq 0$, a numerical ODE solver (e.g
 
 ### Objective Function
 
-Calibration proceeds by minimizing the distance between model and market implied volatilities across all strikes and maturities:
-
-$$
-\min_{\Theta}\;\sum_{j=1}^{M}\sum_{k=1}^{K_j} w_{jk}\left[\sigma^{\text{model}}(K_k, T_j; \Theta) - \sigma^{\text{mkt}}(K_k, T_j)\right]^2
-$$
-
-where $\Theta = \{v_0, \kappa_i, \theta_i, \xi_i, \rho_i\}_{i=1}^N$ and $w_{jk}$ are liquidity-based weights.
+Recall the standard Heston calibration objective (see [§ Calibration](../calibration/calibration_to_iv_surface.md)): minimize the weighted squared implied-volatility error across strikes and maturities, now over the extended parameter set $\Theta = \{v_0, \kappa_i, \theta_i, \xi_i, \rho_i\}_{i=1}^N$.
 
 ### Sequential Calibration Strategy
 

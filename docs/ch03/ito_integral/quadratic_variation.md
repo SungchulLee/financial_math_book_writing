@@ -2,7 +2,7 @@
 
 ### 1. Concept Definition
 
-**Quadratic variation** measures the cumulative size of squared increments of a stochastic process. For a partition $\Pi = \{0 = t_0 < t_1 < \cdots < t_n = T\}$ with mesh $\|\Pi\| = \max_k(t_k - t_{k-1})$, the **quadratic variation sum** of a process $X$ is
+Subdivide $[0,T]$ finely and sum the squared increments of a path: $\sum_k(X_{t_k}-X_{t_{k-1}})^2$. For any smooth or piecewise-smooth function, each squared increment scales like $(\Delta t)^2$, so the sum vanishes as the mesh shrinks. For Brownian motion, each $(\Delta B)^2$ has mean $\Delta t$ and the sum converges to $T$ -- a deterministic, non-zero limit, despite the path itself being purely random. This single diagnostic -- the **quadratic variation** -- separates Brownian motion from every classical curve and is the source of every correction term in stochastic calculus. For a partition $\Pi = \{0 = t_0 < t_1 < \cdots < t_n = T\}$ with mesh $\|\Pi\| = \max_k(t_k - t_{k-1})$, the **quadratic variation sum** of a process $X$ is
 
 $$
 Q(X, \Pi) := \sum_{k=1}^n (X_{t_k} - X_{t_{k-1}})^2

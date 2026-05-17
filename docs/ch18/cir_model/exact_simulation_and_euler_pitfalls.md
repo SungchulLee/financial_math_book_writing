@@ -6,23 +6,13 @@ Simulating CIR paths is essential for Monte Carlo pricing of path-dependent deri
 
 ## Exact simulation via the non-central chi-squared distribution
 
-The exact method exploits the known transition density of the CIR process. Given $r_t$ at time $t$, the conditional distribution of $r_{t+\Delta t}$ is a scaled non-central chi-squared:
+Recall (see [§ Transition Density: Non-Central Chi-Squared](transition_density.md)) the scaled non-central chi-squared transition law
 
 $$
-r_{t+\Delta t} \mid r_t \sim \frac{\sigma^2(1 - e^{-\kappa\Delta t})}{4\kappa}\;\chi^2\!\left(d,\;\lambda(r_t)\right)
+r_{t+\Delta t} \mid r_t \sim \frac{\sigma^2(1 - e^{-\kappa\Delta t})}{4\kappa}\;\chi^2\!\left(d,\;\lambda(r_t)\right),
 $$
 
-where the degrees of freedom and non-centrality parameter are
-
-$$
-d = \frac{4\kappa\theta}{\sigma^2}
-$$
-
-$$
-\lambda(r_t) = \frac{4\kappa\,e^{-\kappa\Delta t}}{\sigma^2(1 - e^{-\kappa\Delta t})}\,r_t
-$$
-
-The scaling factor $c = \frac{\sigma^2(1-e^{-\kappa\Delta t})}{4\kappa}$ converts from the chi-squared scale to the rate scale.
+with $d = 4\kappa\theta/\sigma^2$ and $\lambda(r_t) = 4\kappa e^{-\kappa\Delta t}\,r_t/[\sigma^2(1-e^{-\kappa\Delta t})]$, scaling factor $c = \sigma^2(1-e^{-\kappa\Delta t})/(4\kappa)$.
 
 ### Algorithm
 

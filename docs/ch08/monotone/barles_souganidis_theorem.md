@@ -1,6 +1,6 @@
 # Barles-Souganidis Theorem
 
-The Barles-Souganidis theorem is the fundamental convergence result for approximation schemes applied to viscosity solutions. It provides a complete, verifiable criterion: a scheme converges to the viscosity solution if and only if it is **monotone**, **stable**, and **consistent**, provided a comparison principle holds. This theorem is the nonlinear analog of the Lax equivalence theorem.
+For linear problems, Lax says consistency plus stability gives convergence. For *nonlinear*, degenerate PDEs -- American options, uncertain volatility, HJB equations -- that two-out-of-two recipe is not enough: a scheme can be consistent and stable yet drift to the wrong limit. The **Barles-Souganidis theorem** adds a third ingredient, **monotonicity** (increasing the input data cannot decrease the output), and shows that monotonicity + stability + consistency forces convergence to the *viscosity* solution -- provided a comparison principle holds. This is the nonlinear analog of Lax and the rigorous foundation for every monotone scheme in this folder.
 
 ---
 
@@ -152,13 +152,7 @@ This is the subsolution property. The supersolution property for $\underline{u}$
 
 ### Step 3: Apply the Comparison Principle
 
-Since $\overline{u}$ is a subsolution and $\underline{u}$ is a supersolution (both with the correct boundary data), the comparison principle gives:
-
-$$
-\overline{u} \leq \underline{u}
-$$
-
-Combined with $\underline{u} \leq \overline{u}$ (by definition):
+Recall (see [§ Comparison Principle](comparison_principle.md)): since $\overline{u}$ is a subsolution and $\underline{u}$ a supersolution with the correct boundary data, $\overline{u} \leq \underline{u}$. Combined with $\underline{u} \leq \overline{u}$ (by definition):
 
 $$
 \overline{u} = \underline{u} = u
@@ -170,35 +164,15 @@ where $u$ is the unique viscosity solution. Since the $\limsup$ and $\liminf$ ag
 
 ## Verification for Black-Scholes Schemes
 
-### Explicit Scheme (with CFL)
+Recall (see [§ FDM](../fdm/boundary_and_terminal_conditions.md)) for the explicit/implicit/Crank-Nicolson schemes themselves, and (see [§ Stability Analysis](../analysis/stability_consistency_convergence.md)) for the $L^\infty$/von Neumann arguments. Summarized verification:
 
-| Condition | Verification |
-|-----------|-------------|
-| **Monotonicity** | Non-negative coefficients: $a_j, b_j, c_j \geq 0$ (CFL + positivity) |
-| **Stability** | Discrete maximum principle: $0 \leq u_j^n \leq C$ |
-| **Consistency** | Taylor expansion: LTE $= O(\Delta\tau + (\Delta S)^2) \to 0$ |
+| Scheme | Monotonicity | Stability | Consistency | B-S verdict |
+|--------|---|---|---|---|
+| Explicit (CFL) | $a_j, b_j, c_j \geq 0$ | DMP, $0 \leq u_j^n \leq C$ | LTE $= O(\Delta\tau + (\Delta S)^2)$ | converges |
+| Implicit | $M$-matrix inverse $\geq 0$ | unconditional $L^\infty$ | LTE $= O(\Delta\tau + (\Delta S)^2)$ | converges |
+| Crank-Nicolson | **fails** for large $\lambda$ | unconditional $L^\infty$ | LTE $= O((\Delta\tau)^2 + (\Delta S)^2)$ | not guaranteed |
 
-**Conclusion**: The explicit scheme with CFL converges to the viscosity solution.
-
-### Implicit Scheme
-
-| Condition | Verification |
-|-----------|-------------|
-| **Monotonicity** | Inverse of an M-matrix has non-negative entries |
-| **Stability** | Unconditional $L^\infty$ bound |
-| **Consistency** | LTE $= O(\Delta\tau + (\Delta S)^2) \to 0$ |
-
-**Conclusion**: The implicit scheme converges to the viscosity solution (unconditionally).
-
-### Crank-Nicolson
-
-| Condition | Verification |
-|-----------|-------------|
-| **Monotonicity** | **Fails** for large $\lambda$: amplification factor can be negative |
-| **Stability** | $L^\infty$ stable (unconditionally) |
-| **Consistency** | LTE $= O((\Delta\tau)^2 + (\Delta S)^2) \to 0$ |
-
-**Conclusion**: Crank-Nicolson does **not** satisfy the Barles-Souganidis conditions directly. It converges for smooth problems (by Lax theory), but may produce incorrect results near non-smooth features. The Rannacher modification (implicit start) restores monotonicity where it matters.
+The Rannacher modification (implicit start, then CN) restores monotonicity where it matters.
 
 ---
 
@@ -231,26 +205,7 @@ In practice, the tradeoff is managed by:
 
 ## Application to American Options
 
-The American option obstacle problem:
-
-$$
-\min(-u_\tau + \mathcal{L}u,\; u - \Phi) = 0
-$$
-
-is naturally handled by the Barles-Souganidis framework. The discrete scheme becomes:
-
-$$
-u_j^{n+1} = \max\!\left(\text{time-step result},\; \Phi_j\right)
-$$
-
-The $\max$ operation preserves monotonicity (if the underlying time-step is monotone). Thus:
-
-- Implicit scheme with projection: monotone, stable, consistent $\Rightarrow$ converges
-- PSOR: equivalent to the projected implicit solve $\Rightarrow$ converges
-- Penalty method: approximates the obstacle with a smooth penalty; converges as both $h \to 0$ and penalty parameter $\rho \to \infty$
-
-!!! warning "Crank-Nicolson with Projection"
-    Applying Crank-Nicolson and then projecting $u_j \leftarrow \max(u_j, \Phi_j)$ is **not** guaranteed to be monotone. For American options, the implicit scheme or Rannacher-started Crank-Nicolson is preferred to ensure reliable convergence.
+Recall (see [§ American Options](../american_options/free_boundary_problems_american_options.md)): the obstacle problem $\min(-u_\tau + \mathcal{L}u, u - \Phi) = 0$ is handled by composing a monotone time-step with the projection $u_j^{n+1} = \max(\text{time-step result}, \Phi_j)$. Both operations are monotone, so implicit + projection, PSOR, and penalty methods all fall under Barles-Souganidis. Crank-Nicolson + projection is **not** monotone in general.
 
 ---
 
@@ -281,14 +236,7 @@ $$
 | **Consistency** | Scheme $\to$ PDE on smooth functions | Taylor expansion of LTE |
 | **Comparison** | Ordering preserved from boundary | Property of the PDE |
 
-| Scheme | Monotone | Converges (Barles-Souganidis) |
-|--------|----------|-------------------------------|
-| Explicit (CFL satisfied) | Yes | Yes |
-| Implicit | Yes | Yes |
-| Crank-Nicolson | No (in general) | Not guaranteed |
-| Rannacher (implicit start + CN) | Yes (effectively) | Yes |
-
-The Barles-Souganidis theorem provides the definitive convergence guarantee for finite difference methods applied to option pricing PDEs. Its practical message is clear: ensure your scheme is monotone (non-negative coefficients, CFL condition, or implicit time stepping) to guarantee convergence to the correct price, especially for American options and problems with non-smooth data.
+Practical message: ensure your scheme is monotone (non-negative coefficients, CFL, or implicit time stepping) to guarantee convergence — especially for American options and non-smooth data.
 
 ---
 

@@ -307,30 +307,7 @@ for all $\varphi \in C_{b,\text{Lip}}(\mathbb{R})$.
 
 ### 1. Uncertain Volatility and G-Expectation
 
-
-The G-expectation framework provides a rigorous foundation for the **uncertain volatility model** of Avellaneda, Levy, and Paras (1995) and Lyons (1995).
-
-**Option Pricing**: For a European option with payoff $\varphi(S_T)$ under uncertain volatility $\sigma_t \in [\underline{\sigma}, \overline{\sigma}]$:
-
-$$
-\text{Robust price} = \hat{\mathbb{E}}[\varphi(S_T)] = u(0, S_0)
-$$
-
-where $u$ solves the fully nonlinear PDE:
-
-$$
-\frac{\partial u}{\partial t} + \frac{1}{2}\Sigma\left(\frac{\partial^2 u}{\partial S^2}\right)^2 S^2 \frac{\partial^2 u}{\partial S^2} + rS\frac{\partial u}{\partial S} - ru = 0
-$$
-
-with
-
-$$
-\Sigma(\Gamma) = \begin{cases} \overline{\sigma} & \text{if } \Gamma \geq 0 \\ \underline{\sigma} & \text{if } \Gamma < 0 \end{cases}
-$$
-
-and terminal condition $u(T, S) = \varphi(S)$.
-
-**Example**: For a European call $\varphi(S) = (S - K)^+$ (convex payoff, $\Gamma \geq 0$), the robust price equals the Black-Scholes price at the maximum volatility $\overline{\sigma}$. For a European put combined with a covered call (concave near the strike), the effective volatility switches.
+**Recall** (see [§ Uncertain Volatility Models](uncertain_volatility_models.md)) for the full Avellaneda-Levy-Paras / Lyons framework, the BSB PDE, and gamma-sign volatility switching. The G-expectation realises this as $\hat{\mathbb{E}}[\varphi(S_T)] = u(0,S_0)$ with $u$ solving the BSB equation: for a convex payoff (e.g., European call) the robust price equals Black-Scholes at $\overline{\sigma}$.
 
 ### 2. Risk Measures and Coherence
 

@@ -360,19 +360,13 @@ Left wing flatter (higher IV) than right wing.
 ## Connections to Variance Swaps
 
 
-### 1. Variance Swap Pricing
-
-
-The fair strike for a variance swap is:
-
+Recall (see [§ Model-Free Results](../model_free_results/breeden_litzenberger_formula.md)) for the variance-swap replication formula
 
 $$
-K_{\text{var}} = \frac{2 e^{rT}}{T} \left(\int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK\right)
+K_{\text{var}} = \frac{2 e^{rT}}{T} \left(\int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK\right).
 $$
 
-
-
-### 2. Wing Contribution
+### Wing Contribution
 
 
 The integral is dominated by the wings:
@@ -630,44 +624,7 @@ $$
 ## Relationship to Greeks
 
 
-### 1. Wing Vega
-
-
-The vega in the wings is:
-
-
-$$
-\mathcal{V}(K) = S_0 e^{-qT} \phi(d_1) \sqrt{T}
-$$
-
-
-
-For large $K$, $d_1 \to -\infty$, so $\phi(d_1) \to 0$ exponentially.
-
-**Implication:** Deep OTM options have very low vega—changes in wing IV have limited P&L impact unless positions are large.
-
-### 2. Wing Delta
-
-
-Deep OTM call delta:
-
-
-$$
-\Delta_{\text{call}} = e^{-qT} \mathcal{N}(d_1) \to 0 \quad \text{as } K \to \infty
-$$
-
-
-
-Deep OTM put delta:
-
-
-$$
-\Delta_{\text{put}} = -e^{-qT} \mathcal{N}(-d_1) \to -e^{-qT} \quad \text{as } K \to 0
-$$
-
-
-
-**Wing hedging:** Minimal sensitivity to spot moves, but gamma risk remains.
+Recall (see [§ Greek Asymptotics](../../ch10/greeks_asympt/blow_up_of_gamma_near_expiry.md)): in the wings $\phi(d_1)\to 0$ exponentially so OTM vega vanishes; OTM call delta $\to 0$ as $K\to\infty$ and OTM put delta $\to -e^{-qT}$ as $K\to 0$. Wing hedging therefore has minimal delta sensitivity but residual gamma risk.
 
 ## Computational Aspects
 

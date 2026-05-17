@@ -112,26 +112,7 @@ $$
 
 ## Connection to Robust Control
 
-
-### 1. Hansen-Sargent Duality
-
-
-**Theorem**: Risk-sensitive control is equivalent to:
-
-$$
-V^{\gamma}(x) = \max_{h} \min_u \left\{c(x, u) + \mathbb{E}[V^{\gamma}(f(x, u, W + h))] - \frac{\|h\|^2}{2\gamma}\right\}
-$$
-
-**Interpretation**: Controller minimizes cost while nature maximizes via disturbance $h$, penalized by $\|h\|^2/(2\gamma)$.
-
-### 2. Worst-Case Distribution
-
-
-The worst-case distribution tilts the noise toward adverse outcomes:
-
-$$
-\frac{dP^*}{dP_0} \propto \exp\left(\gamma V^{\gamma}(f(x, u, W))\right)
-$$
+> **Recall** (see [§ Multiplier Preferences](multiplier_preferences.md) and [§ Hansen-Sargent Robust Control](multiplier_preferences.md#hansen-sargent-robust-control)): risk-sensitive control with parameter $\gamma$ is dual to a min-max problem in which an adversary distorts the disturbance subject to a quadratic (entropy) penalty $\|h\|^2/(2\gamma)$. The exponentially tilted worst-case measure $dP^*/dP_0 \propto e^{\gamma V^\gamma}$ is the same tilting that drives multiplier preferences, with the identification $\theta = 1/\gamma$.
 
 ## Whittle's Risk-Sensitive Control
 
@@ -287,14 +268,7 @@ with appropriate weights $w_i$.
 
 ### 1. Entropy-Penalized Control
 
-
-**Equivalence**: Risk-sensitive control with parameter $\gamma$ is equivalent to:
-
-$$
-\min_P \left\{\mathbb{E}_P[C] + \frac{1}{\gamma} D_{\text{KL}}(P \| P_0)\right\}
-$$
-
-where $P$ is an alternative probability measure.
+> **Recall** (see [§ Entropy Penalization](entropy_penalization.md) and [§ Multiplier Preferences](multiplier_preferences.md)): risk-sensitive control with parameter $\gamma$ coincides with the variational problem $\min_P\{\mathbb{E}_P[C] + \gamma^{-1} D_{\text{KL}}(P\|P_0)\}$ via the KL-tilting identity, i.e., multiplier preferences with $\theta = 1/\gamma$.
 
 ### 2. Exponential Utility
 

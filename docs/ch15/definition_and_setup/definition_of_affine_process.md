@@ -44,133 +44,21 @@ where:
 - $c_0 \in \mathbb{R}^{n \times n}$ and $c_1 \in \mathbb{R}^{n \times n}$ define the volatility structure
 - $r_0 \in \mathbb{R}$ and $r_1 \in \mathbb{R}^n$ define the short rate
 
-### Characteristic Function
+### Characteristic Function and Bond Pricing (Preview)
 
-The power of the affine framework lies in the conditional characteristic function:
-
-$$
-\varphi(\mathbf{X}_t, t, T, \mathbf{u}) := \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r(\mathbf{X}_s)ds} e^{i\mathbf{u}^T\mathbf{X}_T} \Big| \mathcal{F}_t\right]
-$$
-
-For an affine process, this takes an **affine form**:
-
-$$
-\varphi(\mathbf{X}_t, t, T, \mathbf{u}) = e^{A(\tau, \mathbf{u}) + \mathbf{B}^T(\tau, \mathbf{u})\mathbf{X}_t}
-$$
-
-where:
-
-- $\tau = T - t$ is the time to maturity
-- $A(\tau, \mathbf{u})$ and $\mathbf{B}(\tau, \mathbf{u})$ are determined by **Riccati equations**
-- **Terminal conditions**: $A(0, \mathbf{u}) = 0$ and $\mathbf{B}(0, \mathbf{u}) = \mathbf{u}$
-
-### Riccati Equations
-
-The functions $A(\tau, \mathbf{u})$ and $\mathbf{B}(\tau, \mathbf{u})$ satisfy the system of Riccati equations (with terminal conditions at $\tau = 0$):
-
-$$
-\begin{array}{lll}
-\displaystyle -\frac{\partial A}{\partial \tau} &=& r_0 - \mathbf{B}^T a_0 - \frac{1}{2}\mathbf{B}^T c_0 \mathbf{B}\\
-\displaystyle -\frac{\partial \mathbf{B}}{\partial \tau} &=& r_1 - a_1^T \mathbf{B} - \frac{1}{2}c_1^T \mathbf{B} \mathbf{B}\\
-\end{array}
-$$
-
-Or equivalently, integrating backward from maturity:
-
-$$
-\begin{array}{lll}
-\displaystyle \frac{dA}{d\tau} &=& -r_0 + \mathbf{B}^T a_0 + \frac{1}{2}\mathbf{B}^T c_0 \mathbf{B}\\
-\displaystyle \frac{d\mathbf{B}}{d\tau} &=& -r_1 + a_1^T \mathbf{B} + \frac{1}{2}\mathbf{B}^T c_1 \mathbf{B}\\
-\end{array}
-$$
-
-### Bond Pricing
-
-The zero-coupon bond price is directly obtained from the characteristic function:
-
-$$
-P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r(\mathbf{X}_s)ds} \Big| \mathcal{F}_t\right] = e^{A(T-t, 0) + \mathbf{B}^T(T-t, 0)\mathbf{X}_t}
-$$
-
-This gives an **exponential-affine form** for bond prices:
-
-$$
-P(t, T) = \exp\left(A(T-t) + \mathbf{B}^T(T-t)\mathbf{X}_t\right)
-$$
+Recall (see [§ Characteristic Function of Affine Processes](../characteristic_function/characteristic_function.md) and [§ Generalized Riccati ODEs](../characteristic_function/generalized_riccati_odes.md)): the affine structure guarantees that the discounted characteristic function takes the exponential-affine form $\varphi(\mathbf{X}_t,t,T,\mathbf{u}) = e^{A(\tau,\mathbf{u}) + \mathbf{B}(\tau,\mathbf{u})^T\mathbf{X}_t}$ where $A$ and $\mathbf{B}$ satisfy a system of Riccati ODEs with terminal data $A(0,\mathbf{u})=0$, $\mathbf{B}(0,\mathbf{u})=\mathbf{u}$. The full derivation and explicit ODE form is given in those sections; setting $\mathbf{u}=\mathbf{0}$ recovers the zero-coupon bond price as developed in [§ Exponential-Affine Bond Price Formula](../affine_term_structure/exponential_affine_bond_price.md).
 
 ---
 
 ## Key Properties
 
-### 1. Closed-Form Bond Prices
-
-Once the Riccati equations are solved, bond prices have a closed-form exponential-affine structure. This is a major computational advantage.
-
-### 2. Solvability
-
-The Riccati equations can often be solved:
-
-- **Analytically** for certain specifications (e.g., Vasicek, Hull-White)
-- **Semi-analytically** for others
-- **Numerically** for complex models
-
-### 3. Characteristic Function Availability
-
-The explicit affine form of the characteristic function enables:
-
-- Fourier inversion to compute option prices
-- Fast computation of bond prices and yields
-- Closed-form or semi-analytical derivatives
-
-### 4. State Space Flexibility
-
-Affine models can incorporate:
-
-- Multiple factors (multidimensional $\mathbf{X}_t$)
-- Regime switching
-- Jumps (in extended formulations)
+Recall (see [§ Exponential-Affine Bond Price Formula](../affine_term_structure/exponential_affine_bond_price.md) and [§ Characteristic Function of Affine Processes](../characteristic_function/characteristic_function.md)): the linearity conditions deliver four practical payoffs — closed-form exponential-affine bond prices once the Riccati system is solved, analytical or semi-analytical solvability (analytic for Vasicek/Hull-White, semi-analytic or numerical otherwise), an explicit characteristic function enabling Fourier-based option pricing, and state-space flexibility accommodating multiple factors, regime switching, and jumps (see [§ Affine Jump-Diffusions](../extensions/boundary_behavior_feller.md)).
 
 ---
 
 ## Examples of Affine Processes
 
-### Vasicek Model
-
-State variable: $X_t = r_t$ (short rate), one-dimensional.
-
-Dynamics:
-
-$$dr_t = \kappa(\theta - r_t)dt + \sigma dW_t$$
-
-Affine parameters:
-
-- $a_0 = \kappa\theta$, $a_1 = -\kappa$
-- $c_0 = \sigma^2$, $c_1 = 0$
-- $r_0 = 0$, $r_1 = 1$
-
-This is a classic affine model with analytical Riccati solutions.
-
-### Two-Factor CIR + Vasicek
-
-State variables: $X_t = (r_t, s_t)$ where $r_t$ is a CIR process and $s_t$ is a Vasicek long-rate factor.
-
-Both components are affine, and the sum is affine, making it suitable for modeling mean reversion with stochastic long rates.
-
-### Geometric Brownian Motion (Transformed)
-
-The stock price $S_t$ itself is **not** affine (see the detailed example in the next section), but $X_t = \log S_t$ is affine.
-
----
-
-## Why Affine Processes Matter
-
-1. **Computational Efficiency**: Closed-form or semi-analytical solutions for bond prices eliminate numerical integration.
-
-2. **Calibration**: The structure enables efficient likelihood-based or moment-matching estimation.
-
-3. **Generality**: Despite linearity restrictions, affine models are flexible enough for practical applications.
-
-4. **Extensions**: The framework extends to affine jump-diffusions, multivariate cases, and hybrid models.
+Recall (see [§ Vasicek and CIR as Affine](../examples/vasicek_cir_as_affine.md), [§ Heston Model as Affine](../examples/heston_as_affine.md), and [§ GBM and Log-Price](../examples/gbm_as_affine.md)): Vasicek and CIR are one-factor affine short-rate models, Heston is a two-factor affine stochastic-volatility model, and $\log S_t$ is affine even though $S_t$ itself is not. Full parameter identification, Riccati closed forms, and bond/option-price consequences are developed there.
 
 ---
 

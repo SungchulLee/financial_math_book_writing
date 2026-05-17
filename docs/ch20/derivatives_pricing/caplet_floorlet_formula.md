@@ -2,16 +2,11 @@
 
 ## Caplet/Floorlet Payoff
 
-$$\begin{array}{lll}
-\text{Time}&\text{Action}\\
-T_{k-1}&\text{Forward Rate Determined $l_k(T_{k−1})=l(T_{k−1}; T_{k−1}, T_k)$ }\\
-T_k&\text{Caplet Paid $N\tau_k \max(l_k(T_{k−1})-K,0))$}\\
-&\text{Floorlet Paid $N\tau_k \max(K-l_k(T_{k−1}),0))$}
-\end{array}$$
-
-where $\tau_k=T_k-T_{k-1}$.
+Recall (see [§ Interest Rate Products](../../ch18/interest_rate_products/coupon_bond_and_frn.md)): at $T_{k-1}$ the forward rate $l_k(T_{k-1})=l(T_{k-1};T_{k-1},T_k)$ is fixed, and at $T_k$ the caplet pays $N\tau_k\max(l_k(T_{k-1})-K,0)$ and the floorlet pays $N\tau_k\max(K-l_k(T_{k-1}),0)$, where $\tau_k=T_k-T_{k-1}$.
 
 ## Change of Numeraire
+
+Recall (see [§ Forward Measure](../../ch04/risk_neutral/forward_measure.md)): switching to the $T_k$-forward measure with numeraire $P(\cdot,T_k)$ gives
 
 $$\begin{array}{llllllll}
 \displaystyle
@@ -26,56 +21,11 @@ N\tau_kP(t_0,T_k)\mathbb{E}^{\mathbb{T_k}}\left[
 \right]
 \end{array}$$
 
-## Forward Rate l_k is a T_k-Martingale
-
-Since $l_k(t)=\frac{1}{\tau_k}\frac{P(t,T_{k-1})-P(t,T_k)}{P(t,T_k)}$ and since $P(t,T_{k-1})$ and $P(t,T_{k})$ are prices of tradable assets,
-
-$$\begin{array}{lll}
-\displaystyle
-\mathbb{E}^{\mathbb{T_k}}\left[l_k(t)\Big{|}{\cal F}(s)\right]
-=l_k(s)
-\end{array}$$
+and $l_k(t)=\frac{1}{\tau_k}\frac{P(t,T_{k-1})-P(t,T_k)}{P(t,T_k)}$ is a $\mathbb{Q}^{T_k}$-martingale: $\mathbb{E}^{T_k}[l_k(t)|{\cal F}(s)]=l_k(s)$.
 
 ## Black's Formula
 
-Assume that the libor rate follows a lognormal distribution:
-
-$$\begin{array}{lll}
-\displaystyle
-dl_k(t)
-=
-\sigma_kl_k(t)dW^{\mathbb{T_k}}(t)
-\end{array}$$
-
-Then, we can use the Black–Scholes computation with interest rate 0:
-
-$$\begin{array}{lll}
-\displaystyle
-{\bf\text{Caplet}}^{\text{Black}}(t,T_{k-1},T_k,N,K,\sigma_k)
-&=&\displaystyle
-N\tau_kP(t,T_k)\left[
-l_k(t)N(d_1)-KN(d_2)
-\right]\\
-\displaystyle
-{\bf\text{Floorlet}}^{\text{Black}}(t,T_{k-1},T_k,N,K,\sigma_k)
-&=&\displaystyle
-N\tau_kP(t,T_k)\left[
--l_k(t)N(-d_1)+KN(-d_2)
-\right]\\
-\end{array}$$
-
-where
-
-$$\begin{array}{lll}
-\displaystyle
-d_1
-&=&\displaystyle
-\frac{1}{v_k}\log\left(\frac{l_k(t)}{K}\right)+\frac{1}{2}v_k\\
-\displaystyle
-d_2&=&\displaystyle
-\frac{1}{v_k}\log\left(\frac{l_k(t)}{K}\right)-\frac{1}{2}v_k\\
-v_k&=&\sigma_k\sqrt{T_{k-1}-t}\\
-\end{array}$$
+Recall (see [§ Black's Caplet Formula](../../ch19/lmm/caplet_pricing_black_formula.md)): assuming $dl_k(t)=\sigma_kl_k(t)dW^{T_k}(t)$ (lognormal LIBOR), Black-Scholes with zero rate gives the standard $\text{Caplet}^{\text{Black}}(t,\ldots,\sigma_k)=N\tau_k P(t,T_k)[l_k(t)N(d_1)-KN(d_2)]$ (and the symmetric floorlet), with $d_{1,2}=\log(l_k(t)/K)/v_k\pm\tfrac{1}{2}v_k$ and $v_k=\sigma_k\sqrt{T_{k-1}-t}$.
 
 ## Hull-White Caplet Formula (Using T_k Measure)
 
@@ -224,48 +174,18 @@ V^\text{CPL}(t_0,T)
 N P(t_0,T_k)e^{-A(\tau_k)}\left[e^{\frac{1}{2}B^2(\tau_k)v_r^2(t_0,T_{k-1})-B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k})}N(d_1)-\hat{K}N(d_2)\right]\\
 \end{array}$$
 
-where $A(\tau_k)$ and $B(\tau_k)$ are related with
-the underlying ZCB price $P(T_{k-1},T_k)$ at option maturity $T_{k-1}$,
-$\tau_k=T_k-T_{k-1}$, by
+Here the underlying ZCB price at option maturity $T_{k-1}$, with $\tau_k=T_k-T_{k-1}$, is the affine form
+
+$$
+\displaystyle
+P(T_{k-1},T_k)=e^{A(\tau_k)+B(\tau_k)r(T_{k-1})}
+$$
+
+Recall (see [§ Hull-White Named Functions](../named_functions/named_functions_definition.md)): the named functions $\theta(t)$, $A(\tau)$, $B(\tau)$ are defined there in the negative-$B$ convention $B(\tau)=(e^{-\lambda\tau}-1)/\lambda$.
+
+Recall (see [§ Short Rate Under T-Forward Measure](../measure_change/short_rate_under_t_forward.md)): under $\mathbb{Q}^{\color{red}{T_{k}}}$ (the relevant numeraire here, not $\mathbb{Q}^{T_{k-1}}$) the short rate satisfies $dr(t)=\lambda\bigl(\theta^{\color{red}{T_{k}}}(t)-r(t)\bigr)dt+\sigma dW^{\color{red}{T_{k}}}(t)$ with $\theta^{\color{red}{T_{k}}}(t)=\theta(t)+\frac{\sigma^2}{\lambda}B(\color{red}{T_{k}}-t)$, so $r(T_{k-1})\mid r(t_0)\sim N\!\left(\mu_r(t_0,T_{k-1},\color{red}{T_k}),v_r^2(t_0,T_{k-1})\right)$ with
 
 $$\begin{array}{lll}
-\displaystyle
-\theta(t)
-&=&\displaystyle
-f(0,t)+\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
--
-\frac{\sigma^2}{2\lambda^2}\left(e^{-2\lambda t}-1\right)\\
-\displaystyle
-A(\tau_k)
-&=&\displaystyle
--\frac{\sigma^2}{4\lambda^3}
-\left(3-2\lambda\tau_k-4e^{-\lambda\tau_k}+e^{-2\lambda\tau_k}\right)
-+
-\lambda\int_0^{\tau_k}\theta(T_k-\tau')B(\tau')d\tau'
-\\
-\displaystyle
-B(\tau_k)
-&=&\displaystyle
-\frac{e^{-\lambda\tau_k}-1}{\lambda}
-\\
-\displaystyle
-P(T_{k-1},T_k)
-&=&\displaystyle e^{A(\tau_k)+B(\tau_k)r(T_{k-1})}\\
-\end{array}$$
-
-where $\mu_r(t_0,T_{k-1},\color{red}{T_k})$ and $v_r^2(t_0,T_{k-1})$ are related with
-the short rate $r(T_{k-1})$ at option maturity $T_{k-1}$
-under $\mathbb{Q}^{\color{red}{T_{k}}}$, not $\mathbb{Q}^{\color{black}{T_{k-1}}}$ measure by
-
-$$\begin{array}{lll}
-\displaystyle
-\theta^{\color{red}{T_{k}}}(t)
-&=&\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(\color{red}{T_{k}}-t)\\
-dr(t)&=&\displaystyle
-\lambda\left(\theta^{\color{red}{T_{k}}}(t)-r(t)\right) dt+\sigma dW^{\color{red}{T_{k}}}(t)\\
-\displaystyle
-r(T_{k-1})|r(t_0)&\sim&\displaystyle
-N\left(\mu_r(t_0,T_{k-1},\color{red}{T_k}),v_r^2(t_0,T_{k-1})\right)\\
 \mu_r(t_0,T_{k-1},\color{red}{T_k})&=&\displaystyle
 r(t_0)e^{-\lambda(T_{k-1}-t_0)}
 +\lambda\int_{t_0}^{T_{k-1}}\theta^{\color{red}{T_{k}}}(t')e^{-\lambda(T_{k-1}-t')}dt'\\

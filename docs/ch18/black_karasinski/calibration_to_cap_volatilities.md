@@ -56,27 +56,17 @@ $$
 
 ### Backward induction procedure
 
-Given a calibrated BK trinomial tree (where $\theta(t_k)$ at each time step matches the market discount curve), a caplet with reset $T_i$ and payment $T_{i+1}$ is priced as follows:
+Recall (see [§ Trinomial Tree Implementation](trinomial_tree_implementation.md)) the backward induction recursion. For a caplet with reset $T_i$ and payment $T_{i+1}$, given a calibrated tree:
 
-**Step 1.** At all terminal nodes at time $T_{i+1}$, set the payoff:
-
-$$
-V(T_{i+1}, x_j) = \delta_i\left[L_j - K\right]^+
-$$
-
-where $L_j$ is the LIBOR rate implied by the one-period bond price at node $(T_i, x_j)$:
+**Step 1.** At each node at time $T_i$, compute the LIBOR rate
 
 $$
 L_j = \frac{1}{\delta_i}\left[\frac{1}{P_{\text{tree}}(T_i, T_{i+1}; x_j)} - 1\right]
 $$
 
-and $P_{\text{tree}}(T_i, T_{i+1}; x_j)$ is the price of a zero-coupon bond maturing at $T_{i+1}$, computed at node $(T_i, x_j)$ by one step of discounting on the tree.
+and set the (deflated) payoff $V(T_{i+1}, x_j) = \delta_i\left[L_j - K\right]^+$.
 
-**Step 2.** Roll backward from $T_{i+1}$ to time 0 using the standard tree recursion:
-
-$$
-V(t_k, x_j) = e^{-e^{x_j}\Delta t}\left[p_u\,V(t_{k+1}, x_{j+1}) + p_m\,V(t_{k+1}, x_j) + p_d\,V(t_{k+1}, x_{j-1})\right]
-$$
+**Step 2.** Roll backward to time 0 using the standard tree recursion.
 
 **Step 3.** Read off $V(0, x_0)$ as the model caplet price.
 

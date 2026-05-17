@@ -129,13 +129,7 @@ At inception, $V_{\text{swap}} = 0$ when $S = S_n$ (the par swap rate).
 
 #### Par Swap Rate Formula
 
-The par swap rate satisfies:
-
-$$
-S_n = \frac{P(0, T_0) - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
-$$
-
-For a spot-starting swap with $T_0 = 0$ (so $P(0, T_0) = 1$):
+Recall (see [§ Forward Swap](no_arbitrage_relations.md#forward-swap)): the par swap rate is $S_n = (P(0,T_0) - P(0,T_n))/\sum_{i=1}^n \delta_i P(0,T_i)$. For a spot-starting swap ($T_0 = 0$, $P(0,T_0)=1$):
 
 $$
 S_n = \frac{1 - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
@@ -190,45 +184,7 @@ Output: Discount curve {P(0, T)}
 
 ### Interpolation Between Nodes
 
-#### The Need for Interpolation
-
-Bootstrapping produces discount factors at **discrete** maturities. Pricing arbitrary instruments requires values at **any** maturity.
-
-#### Common Interpolation Methods
-
-**Linear on Log-Discounts:**
-
-$$
-\log P(0, T) = \frac{T_2 - T}{T_2 - T_1} \log P(0, T_1) + \frac{T - T_1}{T_2 - T_1} \log P(0, T_2)
-$$
-
-- Equivalent to linear interpolation on continuously compounded zero rates
-- Simple, but produces discontinuous forward rates
-
-**Cubic Spline on Zero Rates:**
-
-Fit a cubic spline $z(T)$ through the bootstrapped zero rates.
-
-- Produces smooth zero curve
-- May produce oscillating forward rates
-
-**Monotone Convex:**
-
-Specialized method ensuring:
-
-- Positive forward rates
-- Monotone forwards in each segment
-- Local control (changes don't propagate)
-
-#### Forward Rate Implications
-
-The choice of interpolation strongly affects forward rates:
-
-| Method | Zero Curve | Forward Curve |
-|--------|------------|---------------|
-| Linear on log-discounts | Piecewise linear | Piecewise constant (jumps at nodes) |
-| Cubic spline | Smooth | Can oscillate, may go negative |
-| Monotone convex | Smooth | Monotone within segments |
+Bootstrapping produces discount factors at **discrete** maturities; pricing instruments with arbitrary dates requires a continuous curve. Recall (see [§ Interpolation Methods for Yield Curves](interpolation_methods.md)): the main families are linear-on-log-discounts (piecewise-constant forwards), cubic spline on zero rates (smooth but possibly oscillating forwards), and monotone convex (positive, locally monotone forwards).
 
 ---
 

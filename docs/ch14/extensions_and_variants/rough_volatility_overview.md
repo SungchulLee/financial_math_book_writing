@@ -49,7 +49,7 @@ Rough volatility models naturally explain:
 - fast decay of ATM skew,
 - empirical scaling laws.
 
-These features are difficult to reproduce with classical stochastic volatility.
+Recall (see [§ Implied Volatility Surface](../../ch12/index.md)) for the empirical smile/skew stylized facts being matched, and Recall (see [§ General Stochastic Volatility Framework](../general_stochastic_volatility_framework/correlation_and_leverage_effect.md)) for the classical SV baseline these features are difficult to reproduce in.
 
 ---
 
@@ -58,10 +58,10 @@ These features are difficult to reproduce with classical stochastic volatility.
 
 - non-Markovian dynamics,
 - higher computational cost,
-- calibration complexity,
+- calibration complexity (Recall (see [§ Calibration of Stochastic Volatility Models](../calibration_of_stochastic_volatility_models/identifiability_issues.md))),
 - limited closed-form pricing results.
 
-As a result, rough volatility is often used in simplified or approximated form.
+As a result, rough volatility is often used in simplified or approximated form, e.g. via Markovian lifts (Recall (see [§ Multi-Factor Volatility Models](multi_factor_volatility_models.md))).
 
 ---
 

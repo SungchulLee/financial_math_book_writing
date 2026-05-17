@@ -85,31 +85,13 @@ where $\tau = T - t$ and $A$, $B$ solve **Riccati ODEs**.
 
 ### Heston Characteristic Function
 
-For the Heston model (derived in Section 9.3):
+Recall (see [§ Affine Structure](../the_heston_model/affine_structure.md)): for the Heston model, the log-price characteristic function has the affine exponential form
 
 $$
-\varphi(\tau, u) = \exp\left(C(\tau, u) + D(\tau, u)V_0 + iu\log S_0\right)
+\varphi(\tau, u) = \exp\left(C(\tau, u) + D(\tau, u)V_0 + iu\log S_0\right),
 $$
 
-with:
-
-$$
-C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu - d)\tau - 2\ln\left(\frac{1 - ge^{d\tau}}{1-g}\right)\right]
-$$
-
-$$
-D(\tau, u) = \frac{\kappa - \rho\xi iu - d}{\xi^2} \cdot \frac{1 - e^{d\tau}}{1 - ge^{d\tau}}
-$$
-
-where:
-
-$$
-d = \sqrt{(\kappa - \rho\xi iu)^2 + \xi^2(iu + u^2)}
-$$
-
-$$
-g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}
-$$
+where $C$ and $D$ are obtained in closed form by solving the Riccati system associated with the variance dynamics; full coefficients $C,D,d,g$ and the rotation-count fix for the "little Heston trap" are derived there. The Fourier-pricing machinery in this folder applies directly given $\varphi$.
 
 ---
 
@@ -117,13 +99,7 @@ $$
 
 ### Black–Scholes
 
-For GBM with constant volatility $\sigma$:
-
-$$
-\varphi_{\text{BS}}(\tau, u) = \exp\left(iu\left[\log S_0 + (r-q-\tfrac{\sigma^2}{2})\tau\right] - \frac{\sigma^2 u^2 \tau}{2}\right)
-$$
-
-This is Gaussian in $u$.
+Recall (see [§ Characteristic Function to Density](../../ch09/cos_method/characteristic_function_to_density.md)): for GBM with constant volatility $\sigma$, $\varphi_{\text{BS}}(\tau, u)$ is Gaussian in $u$ and serves as the standard sanity check (Heston with $\xi\to 0$).
 
 ### Variance Gamma
 
@@ -199,12 +175,7 @@ where $u^-$ and $u^+$ depend on model parameters (related to moment explosion).
 
 ### Importance for Pricing
 
-Fourier pricing methods often evaluate $\varphi$ at complex $u$:
-
-- Carr–Madan uses $u - i(\alpha + 1)$
-- Lewis formula uses $u - i/2$
-
-The strip of regularity determines which damping parameters $\alpha$ are valid.
+Recall (see [§ Carr–Madan FFT](../../ch09/alternative_fourier/carr_madan_fft.md), [§ Lewis Integration Formula](../../ch09/alternative_fourier/lewis_integration_formula.md)): Fourier pricing methods evaluate $\varphi$ at complex $u$ (Carr–Madan at $u - i(\alpha+1)$, Lewis at $u - i/2$), and the strip of regularity determines admissible damping.
 
 ---
 
@@ -229,11 +200,7 @@ $$
 
 ### Lee's Moment Formula
 
-For implied volatility wings, the moment explosion determines asymptotic behavior:
-
-$$
-\sigma_{\text{impl}}^2(k, T) \sim \frac{2|k|}{T}\left(1 - \frac{1}{n^*(T)}\text{sgn}(k)\right) \quad \text{as } |k| \to \infty
-$$
+Recall (see [§ Error Analysis and Convergence](../../ch09/cos_method/error_analysis_and_convergence.md)): the moment-explosion critical $n^*(T)$ controls implied-volatility wings via Lee's formula $\sigma_{\text{impl}}^2(k, T) \sim \frac{2|k|}{T}\left(1 - \frac{1}{n^*(T)}\text{sgn}(k)\right)$ as $|k| \to \infty$.
 
 ---
 
@@ -241,29 +208,7 @@ $$
 
 ### Numerical Evaluation
 
-```python
-def heston_cf(u, S0, V0, kappa, theta, xi, rho, r, q, tau):
-    """
-    Heston characteristic function (Lord-Kahl formulation)
-    """
-    i = complex(0, 1)
-    
-    # Intermediate quantities
-    a = kappa - rho * xi * i * u
-    b = xi**2 * (i * u + u**2)
-    d = np.sqrt(a**2 + b)
-    
-    # Guard against numerical issues
-    g = (a - d) / (a + d)
-    
-    # C and D functions
-    D = (a - d) / xi**2 * (1 - np.exp(-d * tau)) / (1 - g * np.exp(-d * tau))
-    C = (r - q) * i * u * tau + kappa * theta / xi**2 * (
-        (a - d) * tau - 2 * np.log((1 - g * np.exp(-d * tau)) / (1 - g))
-    )
-    
-    return np.exp(C + D * V0 + i * u * np.log(S0))
-```
+Recall (see [§ Affine Structure](../the_heston_model/affine_structure.md)): a reference Lord–Kahl implementation of `heston_cf(u, S0, V0, kappa, theta, xi, rho, r, q, tau)` is given there; the stability rules below apply to any affine SV CF used in the Fourier-pricing machinery of this folder.
 
 ### Stability Checklist
 

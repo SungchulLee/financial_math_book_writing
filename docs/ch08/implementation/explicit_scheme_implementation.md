@@ -1,49 +1,30 @@
 # Explicit Finite Difference Scheme: Implementation
 
-The **explicit finite difference scheme** computes the option price at the next time step directly using known values from the current time step. It is straightforward to implement but suffers from conditional stability.
+Replace $\partial V/\partial\tau$ by a forward difference and evaluate the spatial operator at the *known* time level $n$. The unknown $V_i^{n+1}$ then drops out as an explicit linear combination of three known values $V_{i-1}^n, V_i^n, V_{i+1}^n$ -- one matrix-vector product per step, no solve required. The price for this simplicity is conditional stability: pick $\Delta t$ too large relative to $(\Delta S)^2/\sigma^2$ and the scheme amplifies errors instead of damping them, and the answer diverges.
 
 ---
 
 ### Discretizing the Black-Scholes PDE
 
-Recall the Black-Scholes PDE:
+Recall (see [§ Discounting and killing term](../../ch06/bs_pde_structure/discounting_and_killing_term.md)): the Black-Scholes PDE is $V_t + \tfrac{1}{2}\sigma^2 S^2 V_{SS} + rS V_S - rV = 0$.
 
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0
-$$
-
-Replace derivatives using finite difference approximations:
-
-- Time derivative (backward difference):
-  $\frac{\partial V}{\partial t} \approx \frac{V_i^{n+1} - V_i^n}{\Delta t}$
-
-- First derivative in space (central difference):
-  $\frac{\partial V}{\partial S} \approx \frac{V_{i+1}^{n+1} - V_{i-1}^{n+1}}{2\Delta S}$
-
-- Second derivative in space (central difference):
-  $\frac{\partial^2 V}{\partial S^2} \approx \frac{V_{i+1}^{n+1} - 2V_i^{n+1} + V_{i-1}^{n+1}}{(\Delta S)^2}$
-
----
-
-### The Explicit Formula
-
-Substituting and rearranging:
+Recall (see [§ Finite Difference Methods](../fdm/finite_difference_methods.md)): replacing time by a forward difference and both space derivatives by central differences at the **known** time level $n$ yields the **explicit** three-point stencil
 
 $$
 V_i^{n+1} = a_i V_{i-1}^n + b_i V_i^n + c_i V_{i+1}^n
 $$
 
-where the coefficients are:
+with coefficients
 
 $$
 \begin{aligned}
-a_i &= \frac{\Delta t}{2} \left[ \sigma^2 i^2 - r i \right] \\
-b_i &= 1 - \Delta t \left[ \sigma^2 i^2 + r \right] \\
-c_i &= \frac{\Delta t}{2} \left[ \sigma^2 i^2 + r i \right]
+a_i &= \tfrac{\Delta t}{2}\!\left[\sigma^2 i^2 - r i\right] \\
+b_i &= 1 - \Delta t\!\left[\sigma^2 i^2 + r\right] \\
+c_i &= \tfrac{\Delta t}{2}\!\left[\sigma^2 i^2 + r i\right]
 \end{aligned}
 $$
 
-Here $i$ is the spatial grid index and $S_i = i \Delta S$.
+Here $i$ is the spatial grid index and $S_i = i\Delta S$.
 
 ---
 
@@ -67,10 +48,10 @@ Here $i$ is the spatial grid index and $S_i = i \Delta S$.
 
 ### Stability Condition
 
-The explicit scheme is only **conditionally stable**. A conservative stability condition is:
+Recall (see [§ CFL Condition and Time Step Restrictions](../analysis/cfl_condition_and_time_step.md)): the explicit scheme is only **conditionally stable**, with the conservative restriction
 
 $$
-\Delta t \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}
+\Delta t \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}.
 $$
 
 If violated, the solution may exhibit oscillations or grow without bound.

@@ -25,7 +25,7 @@ All one-factor short-rate models with time-dependent drift --- Vasicek, CIR, Hul
 
 All models are calibrated to the same market data:
 
-- **Yield curve**: Bootstrapped from deposit rates, futures, and swaps (e.g., USD SOFR curve)
+- **Yield curve**: Bootstrapped from deposit rates, futures, and swaps (e.g., USD SOFR curve) — recall (see [§ Yield curves](../yield_curves/discount_factors_and_zero_rates.md))
 - **Cap volatilities**: ATM cap implied volatilities for maturities 1Y through 10Y
 - **Swaption volatilities**: ATM swaption implied volatilities on a grid of option expiries (1Y--10Y) and swap tenors (1Y--10Y)
 
@@ -92,6 +92,8 @@ The advantage of BK over HW appears only when fitting **OTM caps** (skew), where
 ---
 
 ## Swaption Volatility Fit
+
+Recall swaption pricing (see [§ Swaption pricing](../swaption_pricing/annuity_measure_and_change_of_numeraire.md)).
 
 ### The swaption matrix challenge
 

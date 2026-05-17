@@ -35,29 +35,7 @@ We now derive the connection to the characteristic function in full detail.
 
 ## Derivation of the CF-Based Formula
 
-Write the cosine as the real part of a complex exponential:
-
-$$
-\cos\!\left(\frac{k\pi(x-a)}{b-a}\right) = \text{Re}\!\left[\exp\!\left(\frac{ik\pi(x-a)}{b-a}\right)\right]
-$$
-
-Substituting into the definition of $A_k$:
-
-$$
-A_k = \frac{2}{b-a}\,\text{Re}\!\left[\int_a^b f(x)\exp\!\left(\frac{ik\pi(x-a)}{b-a}\right)dx\right]
-$$
-
-Expanding the exponent:
-
-$$
-\frac{ik\pi(x-a)}{b-a} = \frac{ik\pi x}{b-a} - \frac{ik\pi a}{b-a}
-$$
-
-so that
-
-$$
-A_k = \frac{2}{b-a}\,\text{Re}\!\left[e^{-ik\pi a/(b-a)}\int_a^b f(x)\exp\!\left(\frac{ik\pi x}{b-a}\right)dx\right]
-$$
+**Recall** (see [§ Cosine Coefficients via the Characteristic Function](../fourier_series/fourier_series_of_densities.md#cosine-coefficients-via-the-characteristic-function)): writing $\cos(\cdot) = \text{Re}[e^{i\cdot}]$ and factoring the phase reduces the cosine-coefficient integral to a characteristic function evaluation.
 
 !!! note "Theorem: Cosine Coefficients via Characteristic Function"
     Let $f$ be a probability density with characteristic function $\phi(u) = \int_{-\infty}^{\infty}e^{iux}f(x)\,dx$. Define
@@ -69,33 +47,13 @@ $$
     Then:
 
     - If $f$ is supported on $[a, b]$: $A_k = F_k$ exactly.
-    - If $f$ has support on $\mathbb{R}$: $A_k = F_k - \varepsilon_k$, where the truncation error is
+    - If $f$ has support on $\mathbb{R}$: $A_k = F_k - \varepsilon_k$, with truncation error bounded by
 
     $$
-    \varepsilon_k = \frac{2}{b-a}\,\text{Re}\!\left[e^{-ik\pi a/(b-a)}\int_{\mathbb{R}\setminus[a,b]} f(x)\exp\!\left(\frac{ik\pi x}{b-a}\right)dx\right]
+    |\varepsilon_k| \leq \frac{2}{b-a}\int_{\mathbb{R}\setminus[a,b]} f(x)\,dx = \frac{2}{b-a}\,P(X \notin [a, b])
     $$
 
-**Proof.** When $f$ is supported on $[a, b]$:
-
-$$
-\int_a^b f(x)\exp\!\left(\frac{ik\pi x}{b-a}\right)dx = \int_{-\infty}^{\infty} f(x)\exp\!\left(\frac{ik\pi x}{b-a}\right)dx = \phi\!\left(\frac{k\pi}{b-a}\right)
-$$
-
-The first equality holds because $f(x) = 0$ outside $[a, b]$. Substitution gives $A_k = F_k$.
-
-For general $f$ on $\mathbb{R}$:
-
-$$
-\int_a^b f(x)\exp\!\left(\frac{ik\pi x}{b-a}\right)dx = \phi\!\left(\frac{k\pi}{b-a}\right) - \int_{\mathbb{R}\setminus[a,b]} f(x)\exp\!\left(\frac{ik\pi x}{b-a}\right)dx
-$$
-
-The second term is the truncation error $\varepsilon_k$, bounded by
-
-$$
-|\varepsilon_k| \leq \frac{2}{b-a}\int_{\mathbb{R}\setminus[a,b]} f(x)\,dx = \frac{2}{b-a}\,P(X \notin [a, b])
-$$
-
-$\square$
+The proof and explicit form of $\varepsilon_k$ are derived in [§ Fourier Series of Probability Densities](../fourier_series/fourier_series_of_densities.md#cosine-coefficients-via-the-characteristic-function). In what follows we treat $F_k$ as the COS-method input and focus on its algorithmic and error properties.
 
 ---
 

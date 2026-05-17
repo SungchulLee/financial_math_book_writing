@@ -140,39 +140,7 @@ By choosing $x^{(j)} = 0$ for all $j \in J$ as well (which is in $D$), we get $\
 
 ## Verification for Standard Models
 
-### CIR Model
-
-The CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ on $D = \mathbb{R}_+$ has:
-
-- $b_0 = \kappa\theta$, $B = -\kappa$, $a_0 = 0$, $\alpha_1 = \xi^2$
-
-Checking admissibility:
-
-- (A1): $a_0 = 0 \geq 0$ -- satisfied
-- (A2): $\alpha_1 = \xi^2 > 0$ -- satisfied
-- (A5): $(a_0)_{11} = 0$ -- satisfied
-- (B1): $(b_0)_1 = \kappa\theta \geq 0$ iff $\kappa\theta \geq 0$ -- satisfied when $\kappa > 0$ and $\theta > 0$
-
-!!! tip "Feller Condition vs. Admissibility"
-    Admissibility requires only $\kappa\theta \geq 0$, which prevents the drift from pushing the process below zero. The stronger **Feller condition** $2\kappa\theta \geq \xi^2$ ensures the boundary $X_t = 0$ is **never reached**, providing strict positivity. Both conditions allow a well-defined process, but the Feller condition additionally guarantees the transition density exists and is smooth.
-
-### Heston Model
-
-The Heston model on $D = \mathbb{R}_+ \times \mathbb{R}$ with state $(V_t, \log S_t)$:
-
-- $b_0 = (\kappa\theta, r)^\top$, $B = \begin{pmatrix} -\kappa & 0 \\ -1/2 & 0 \end{pmatrix}$
-- $a_0 = 0$, $\alpha_1 = \begin{pmatrix} \xi^2 & \rho\xi \\ \rho\xi & 1 \end{pmatrix}$, $\alpha_2 = 0$
-
-Checking:
-
-- (A2): $\alpha_1$ is positive semi-definite iff $\xi^2 \cdot 1 - (\rho\xi)^2 = \xi^2(1 - \rho^2) \geq 0$, which holds for $|\rho| \leq 1$ -- satisfied
-- (A3): $\alpha_2 = 0$ -- satisfied (log-price is the Gaussian component)
-- (A5): $(a_0)_{11} = 0$ -- satisfied
-- (B1): $(b_0)_1 = \kappa\theta \geq 0$ -- satisfied
-- (B2): Not applicable (only one CIR component)
-
-!!! example "What Could Go Wrong"
-    If the Heston model were specified with $\alpha_1 = \begin{pmatrix} \xi^2 & \rho\xi \\ \rho\xi & 1 \end{pmatrix}$ and $|\rho| > 1$, then $\alpha_1$ would not be positive semi-definite, violating (A2). The covariance matrix $a(x) = \alpha_1 V_t$ would have a negative eigenvalue, making the SDE ill-posed.
+Recall (see [§ Examples](../examples/gbm_as_affine.md) for CIR, and [§ Heston](../../ch16/index.md) for the 2D affine check).
 
 ---
 

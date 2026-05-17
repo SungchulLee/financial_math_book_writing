@@ -20,15 +20,7 @@ The two intensities generally differ due to risk premia.
 ## Intensity decomposition
 
 
-A common representation is
-
-$$
-\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \text{credit risk premium}
-$$
-
-
-
-The premium compensates investors for bearing default risk.
+Recall (see [§ Measure Changes with Default](measure_changes_with_default.md)): the risk-neutral intensity decomposes as $\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \text{credit risk premium}$. The premium compensates investors for bearing default risk.
 
 ---
 

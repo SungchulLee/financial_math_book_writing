@@ -2,7 +2,7 @@
 
 ## What is Interest Rate Swap?
 
-An interest rate swap (IRS) is an agreement between two parties to exchange interest rate cash flows, based on a specified notional amount from a fixed rate to a floating rate (or vice versa).
+An interest rate swap (IRS) is an agreement between two parties to exchange interest rate cash flows, based on a specified notional amount from a fixed rate to a floating rate (or vice versa). Throughout, $L(t, T_{k-1}, T_k)$ denotes the simply compounded forward rate (see [§ Forward Rate Agreement](forward_rate_agreement.md)).
 
 ## Tenor Structure
 
@@ -11,13 +11,13 @@ The interest rate swap length ($T_n-T_m$ in our notation) is called the tenor of
 $$\begin{array}{lllllllllllllll}
 &&\text{Time}&&\text{Action}\\
 \text{Now}&&t&&\text{Enter the contract}\\
-\text{Reset Date}&&T_{k-1} > t&&\text{Observe Float Rate}\ l_k(T_{k-1})\\
-\text{Payment Date}&&T_k > T_{k-1} > t&&\text{Exchange Fixed and Float Interest on Principle}\\
+\text{Reset Date}&&T_{k-1} > t&&\text{Observe Float Rate}\ L(T_{k-1},T_{k-1},T_k)\\
+\text{Payment Date}&&T_k > T_{k-1} > t&&\text{Exchange Fixed and Float Interest on Principal}
 \end{array}$$
 
 ## Interest Rate Swap Valuation
 
-The following derives the swap value from its FRA decomposition. A self-contained treatment with worked examples, par swap rate derivation, and interpretation appears in the dedicated [Swap Valuation](swap_valuation.md) page.
+Recall (see [§ Forward Rate Agreement](forward_rate_agreement.md)): the payer FRA on $[T_{k-1}, T_k]$ has value $N(L(t,T_{k-1},T_k)-K)\tau_k P(t,T_k)$. Summing over the swap tenor gives the swap value. A self-contained leg-by-leg derivation with worked numerics and the par-rate identity appears in the dedicated [§ Swap Valuation](swap_valuation.md) page.
 
 $$\begin{array}{lllllllll}
 \displaystyle
@@ -25,11 +25,11 @@ $$\begin{array}{lllllllll}
 &=&
 \sum_{k=m+1}^n{\bf\text{FRA}}^{\text{Payer}}(t,T_{k-1},T_k,N,K)\\
 &=&
-N\sum_{k=m+1}^n\left(l_k(t)-K\right)\tau_kP(t,T_k)\\
+N\sum_{k=m+1}^n\left(L(t,T_{k-1},T_k)-K\right)\tau_kP(t,T_k)\\
 &=&
 NA_{m,n}(t)\left(S_{m,n}(t)-K\right)\\
 &=&
-N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)\\
+N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)
 \end{array}$$
 
 and
@@ -48,8 +48,8 @@ A_{m,n}(t)&=&\displaystyle\sum_{k=m+1}^n \tau_k P(t,T_k)\\
 \omega_k(t)
 &=&\displaystyle\frac{\tau_k P(t,T_k)}{\sum_{k'=m+1}^n\tau_{k'} P(t,T_{k'})}
 &=&\displaystyle\frac{\tau_k P(t,T_k)}{A_{m,n}(t)}\\
-S_{m,n}(t)&=&\displaystyle\sum_{k=m+1}^n \omega_k(t)l_k(t)
-&=&\displaystyle\frac{P(t,T_{m})-P(t,T_n)}{A_{m,n}(t)}\\
+S_{m,n}(t)&=&\displaystyle\sum_{k=m+1}^n \omega_k(t)L(t,T_{k-1},T_k)
+&=&\displaystyle\frac{P(t,T_{m})-P(t,T_n)}{A_{m,n}(t)}
 \end{array}$$
 
 As a byproduct, we have
@@ -67,7 +67,7 @@ A_{m,n}(t)S_{m,n}(t)
     &=&\displaystyle
     \sum_{k=m+1}^n {\bf\text{FRA}}^{\text{Payer}}(t,T_{k-1},T_k,N,K)\\
     &=&\displaystyle
-    N\sum_{k=m+1}^n \left(l_k(t)-K\right)\tau_k P(t,T_k)
+    N\sum_{k=m+1}^n \left(L(t,T_{k-1},T_k)-K\right)\tau_k P(t,T_k)
     \end{array}$$
 
     We simplify further using the annuity factor or present value of a basis point $A_{m,n}(t)$:
@@ -76,9 +76,9 @@ A_{m,n}(t)S_{m,n}(t)
     \displaystyle
     S_{m,n}(t)
     &=&\displaystyle
-    \sum_{k=m+1}^n \omega_k(t)l_k(t)\\
+    \sum_{k=m+1}^n \omega_k(t)L(t,T_{k-1},T_k)\\
     &=&\displaystyle
-    \frac{\sum_{k=m+1}^n \tau_k P(t,T_k)l_k(t)}{A_{m,n}(t)}\\
+    \frac{\sum_{k=m+1}^n \tau_k P(t,T_k)L(t,T_{k-1},T_k)}{A_{m,n}(t)}\\
     &=&\displaystyle
     \frac{\sum_{k=m+1}^n \tau_k P(t,T_k)\frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)}-1\right)}{A_{m,n}(t)}\\
     &=&\displaystyle
@@ -183,7 +183,7 @@ S_{m,n}(t)
 
 ---
 
-**Exercise 3.** Show that the swap rate $S_{m,n}(t)$ is a weighted average of forward rates: $S_{m,n}(t) = \sum_k \omega_k(t) l_k(t)$ where $\omega_k(t) = \tau_k P(t,T_k) / A_{m,n}(t)$. Verify that the weights sum to one.
+**Exercise 3.** Show that the swap rate $S_{m,n}(t)$ is a weighted average of forward rates: $S_{m,n}(t) = \sum_k \omega_k(t) L(t,T_{k-1},T_k)$ where $\omega_k(t) = \tau_k P(t,T_k) / A_{m,n}(t)$. Verify that the weights sum to one.
 
 ??? success "Solution to Exercise 3"
 
@@ -193,16 +193,16 @@ S_{m,n}(t)
     S_{m,n}(t) = \frac{P(t, T_m) - P(t, T_n)}{A_{m,n}(t)}
     $$
 
-    We expand the numerator using a telescoping sum. Since $l_k(t) = \frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)} - 1\right)$, we have $P(t, T_{k-1}) - P(t, T_k) = \tau_k l_k(t) P(t, T_k)$. Therefore:
+    We expand the numerator using a telescoping sum. Since $L(t,T_{k-1},T_k) = \frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)} - 1\right)$, we have $P(t, T_{k-1}) - P(t, T_k) = \tau_k L(t,T_{k-1},T_k) P(t, T_k)$. Therefore:
 
     $$
-    P(t, T_m) - P(t, T_n) = \sum_{k=m+1}^{n} (P(t, T_{k-1}) - P(t, T_k)) = \sum_{k=m+1}^{n} \tau_k l_k(t) P(t, T_k)
+    P(t, T_m) - P(t, T_n) = \sum_{k=m+1}^{n} (P(t, T_{k-1}) - P(t, T_k)) = \sum_{k=m+1}^{n} \tau_k L(t,T_{k-1},T_k) P(t, T_k)
     $$
 
     Dividing by $A_{m,n}(t)$:
 
     $$
-    S_{m,n}(t) = \frac{\sum_{k=m+1}^{n} \tau_k l_k(t) P(t, T_k)}{A_{m,n}(t)} = \sum_{k=m+1}^{n} \frac{\tau_k P(t, T_k)}{A_{m,n}(t)} \cdot l_k(t) = \sum_{k=m+1}^{n} \omega_k(t) \, l_k(t)
+    S_{m,n}(t) = \frac{\sum_{k=m+1}^{n} \tau_k L(t,T_{k-1},T_k) P(t, T_k)}{A_{m,n}(t)} = \sum_{k=m+1}^{n} \frac{\tau_k P(t, T_k)}{A_{m,n}(t)} \cdot L(t,T_{k-1},T_k) = \sum_{k=m+1}^{n} \omega_k(t) \, L(t,T_{k-1},T_k)
     $$
 
     where $\omega_k(t) = \frac{\tau_k P(t, T_k)}{A_{m,n}(t)}$.
@@ -340,13 +340,13 @@ S_{m,n}(t)
     **Decomposition.** The payer IRS is valued as:
 
     $$
-    \text{IRS}^{\text{Payer}}(t, \mathcal{T}, N, K) = N\sum_{k=m+1}^{n}(l_k(t) - K)\tau_k P(t, T_k)
+    \text{IRS}^{\text{Payer}}(t, \mathcal{T}, N, K) = N\sum_{k=m+1}^{n}(L(t,T_{k-1},T_k) - K)\tau_k P(t, T_k)
     $$
 
     Each term in the sum is exactly the value of a payer FRA:
 
     $$
-    \text{FRA}^{\text{Payer}}(t, T_{k-1}, T_k, N, K) = N(l_k(t) - K)\tau_k P(t, T_k)
+    \text{FRA}^{\text{Payer}}(t, T_{k-1}, T_k, N, K) = N(L(t,T_{k-1},T_k) - K)\tau_k P(t, T_k)
     $$
 
     Therefore:
@@ -363,6 +363,6 @@ S_{m,n}(t)
     - **Bootstrapping:** The discount factor curve can be constructed from swap rates by recognizing each swap as a sum of FRAs.
     - **Risk decomposition:** The swap's total risk is the sum of the risks of its component FRAs, allowing period-by-period risk attribution.
 
-    **Can each FRA be hedged independently?** Yes, in principle each FRA can be hedged independently using zero-coupon bonds. The $k$-th FRA has value $N\tau_k(l_k(t) - K)P(t, T_k)$, which depends on $P(t, T_{k-1})$ and $P(t, T_k)$. It can be hedged by trading in the $T_{k-1}$ and $T_k$ maturity bonds.
+    **Can each FRA be hedged independently?** Yes, in principle each FRA can be hedged independently using zero-coupon bonds. The $k$-th FRA has value $N\tau_k(L(t,T_{k-1},T_k) - K)P(t, T_k)$, which depends on $P(t, T_{k-1})$ and $P(t, T_k)$. It can be hedged by trading in the $T_{k-1}$ and $T_k$ maturity bonds.
 
     However, there is a subtlety: while the valuation decomposes additively, the hedging of each FRA involves positions in adjacent bonds, and these positions overlap between consecutive FRAs ($\text{FRA}_k$ involves $P(t, T_k)$ which also appears in $\text{FRA}_{k+1}$). In practice, the aggregate hedge of the full swap is more efficient than hedging each FRA separately, as overlapping bond positions can be netted. This netting is precisely why swaps are traded as single instruments rather than as strips of individual FRAs.

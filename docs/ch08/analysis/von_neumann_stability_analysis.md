@@ -1,6 +1,6 @@
 # Von Neumann Stability Analysis
 
-Von Neumann (Fourier) stability analysis determines whether a finite difference scheme amplifies or damps numerical errors over time. By decomposing the error into Fourier modes, we derive precise conditions under which explicit, implicit, and Crank-Nicolson schemes remain stable.
+A constant-coefficient FDM scheme acts the same way on every Fourier mode of the error: a single mode $\varepsilon_j^n = \hat\varepsilon^n e^{ikj\Delta x}$ at frequency $k$ becomes $\hat\varepsilon^{n+1}=g(k)\hat\varepsilon^n$ at the next step, for some amplification factor $g(k)$. Stability is then a pure algebra question -- is $|g(k)|\le 1$ for every $k$? -- and answering it sweep by sweep recovers the conditional bound $\sigma^2\Delta t\le(\Delta x)^2$ for explicit Euler, unconditional stability for implicit Euler, and the same for Crank-Nicolson. This Fourier diagonalization is **Von Neumann stability analysis**.
 
 ---
 

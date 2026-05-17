@@ -8,11 +8,7 @@ As $\tau\downarrow 0$, delta approaches a step function across the strike. This 
 ## Boundary layer
 
 
-For a European call, $\Delta = N(d_1)$ where
-
-$$
-d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}
-$$
+**Recall** (see [§ Greeks in the Black–Scholes Model](../greeks/greeks_in_black_scholes_model.md)): for a European call, $\Delta = N(d_1)$ with $d_1 = [\ln(S/K) + (r + \tfrac12\sigma^2)\tau]/(\sigma\sqrt{\tau})$.
 
 As $\tau \to 0$:
 
@@ -84,13 +80,7 @@ This shows that in the **inner region** near the strike, delta is approximately 
 ## Put delta near the money
 
 
-For a European put, $\Delta_{\text{put}} = N(d_1) - 1$, so:
-
-- $S > K \Rightarrow \Delta_{\text{put}} \to 0$
-- $S < K \Rightarrow \Delta_{\text{put}} \to -1$
-- $S = K \Rightarrow \Delta_{\text{put}} \to -\frac{1}{2}$
-
-The transition has the same width $\sim \sigma\sqrt{\tau}$ and the same gamma profile, consistent with put-call parity: $\Delta_{\text{call}} - \Delta_{\text{put}} = 1$.
+**Recall** (see [§ Greeks in the Black–Scholes Model](../greeks/greeks_in_black_scholes_model.md)): $\Delta_{\text{put}} = N(d_1) - 1$, so it transitions from $-1$ (deep ITM) through $-\tfrac12$ (ATM) to $0$ (deep OTM) with the same width $\sim\sigma\sqrt{\tau}$ and identical gamma (by put-call parity).
 
 ---
 

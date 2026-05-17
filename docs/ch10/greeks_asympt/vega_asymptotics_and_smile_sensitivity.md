@@ -7,14 +7,13 @@ Vega concentrates near the money and vanishes as maturity shrinks. In models wit
 
 ## Black–Scholes vega: closed form
 
-
-In the Black–Scholes model, vega for both calls and puts is
+**Recall** (see [§ Greeks in the Black–Scholes Model](../greeks/greeks_in_black_scholes_model.md)): for both calls and puts,
 
 $$
-\nu = S\sqrt{\tau}\,N'(d_1) = S\sqrt{\tau}\,\frac{1}{\sqrt{2\pi}}\exp\!\left(-\frac{d_1^2}{2}\right)
+\nu = S\sqrt{\tau}\,N'(d_1),
 $$
 
-where $d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}$. Note that vega is always non-negative: higher volatility always increases the value of a vanilla option.
+with $d_1$ as defined there. Vega is always non-negative: higher volatility increases the value of a vanilla option.
 
 ---
 

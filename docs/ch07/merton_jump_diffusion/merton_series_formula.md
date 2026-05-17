@@ -16,13 +16,9 @@ The most celebrated result of Merton's 1976 paper is a **closed-form series expa
 
 ### The Conditioning Trick
 
-The log-return in the Merton model is:
+Recall (see [Jump-Diffusion SDE § Log-Price Process](jump_diffusion_sde.md#log-price-process)): the Merton log-return is $\ln(S_T/S_0) = (r - \lambda\bar{k} - \tfrac{1}{2}\sigma^2)T + \sigma W_T + \sum_{i=1}^{N_T}\ln Y_i$.
 
-$$
-\ln\frac{S_T}{S_0} = \left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)T + \sigma W_T + \sum_{i=1}^{N_T}\ln Y_i
-$$
-
-Conditional on $N_T = n$, the jump sum $\sum_{i=1}^{n}\ln Y_i$ is a sum of $n$ independent $N(\mu_J, \sigma_J^2)$ random variables, hence $N(n\mu_J, n\sigma_J^2)$. Combined with the Gaussian diffusion term $\sigma W_T \sim N(0, \sigma^2 T)$, the conditional log-return is normal. A normal log-return means the conditional asset price is log-normal, and log-normal prices yield Black-Scholes formulas.
+Conditional on $N_T = n$, the jump sum is $N(n\mu_J, n\sigma_J^2)$, so the conditional log-return is normal and the conditional asset price is log-normal --- yielding a Black-Scholes formula at adjusted parameters.
 
 ### Why This Is Remarkable
 

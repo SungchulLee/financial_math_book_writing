@@ -1,7 +1,9 @@
 # Instability of Higher-Order Greeks
 
-
 Higher-order Greeks can be unstable to estimate, especially near maturity and near payoff kinks.
+
+!!! tip "Toy mechanism: $n$-th derivative amplifies noise by $h^{-n}$"
+    The whole instability picture comes from one line of error analysis. A finite-difference estimate of an $n$-th derivative is $\sim h^{-n}$ times a linear combination of noisy function values. If pricing noise has size $\epsilon$, the estimated derivative has error $\epsilon/h^n$ from noise plus $O(h^k)$ from truncation. Optimal $h$ balances these — but for $n = 2$ (gamma), $n = 3$ (speed), $n = 4$ (...), the noise term blows up faster and faster as $h$ shrinks. Pin risk near expiry is the same effect in continuous form: gamma $\sim 1/\sqrt{T-t}$ diverges, and any small parameter uncertainty gets amplified by that diverging Greek. Every numerical pathology below — adjoint vs. bumping, smoothing splines, Malliavin weights — is a way of taming this $h^{-n}$ amplification.
 
 ---
 
@@ -84,11 +86,7 @@ Higher derivatives require larger $h$, reducing accuracy.
 ## Gamma instability near expiry
 
 
-Near expiry ($\tau \to 0$) for ATM options:
-
-$$
-\Gamma = \frac{N'(d_1)}{S\sigma\sqrt{\tau}} \sim \tau^{-1/2}
-$$
+Recall (see [§ Greeks](../../ch10/greeks/delta_gamma_vega_theta_rho.md)): for ATM near expiry, $\Gamma = N'(d_1)/(S\sigma\sqrt{\tau}) \sim \tau^{-1/2}$.
 
 **Spatial sensitivity.** The gamma profile has width $\sim \sigma\sqrt{\tau}$, so:
 

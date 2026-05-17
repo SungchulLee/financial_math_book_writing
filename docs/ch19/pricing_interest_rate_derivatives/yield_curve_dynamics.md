@@ -42,13 +42,7 @@ Consequences:
 
 ## Drift restrictions and no-arbitrage
 
-
-No-arbitrage imposes strong constraints on curve dynamics:
-
-- drifts of bond prices are determined by volatility,
-- arbitrage-free evolution ties together different maturities.
-
-These ideas are formalized in HJM theory.
+Recall (see [§ HJM Framework](../hjm/forward_rate_dynamics.md)): no-arbitrage forces bond-price drifts to be determined by volatility, tying together the evolution across all maturities.
 
 ---
 

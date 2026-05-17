@@ -1,71 +1,25 @@
 # Basic Option Strategies
 
+Consider two investors who both own 100 shares of the same stock at \$100. The first wants extra income and will tolerate giving up unusually large upside; she sells a call struck at \$110 and pockets the premium. The second is worried about a crash before earnings; he buys a put struck at \$95 and pays a small premium for that protection. Same starting position, opposite goals, and yet both arrive there by attaching exactly one option to the stock. The strategies in this section are little more than these two moves — a few elementary combinations of long, short, call, put, and stock — but they already display the central lesson: options let an investor reshape a payoff curve almost piece by piece.
+
 An option on its own provides leveraged, directional exposure. But the real utility of options emerges when they are combined with other positions — with the underlying stock, with other options, or with both. This section catalogs the four elementary single-option positions, establishes the symmetry between long and short sides, and then introduces the two most important option-stock combinations: the covered call and the protective put. These strategies illustrate the core principle that will drive the rest of this chapter: options allow investors to reshape the payoff profile of a portfolio, and pricing them correctly is essential for any rational hedging decision.
 
 ---
 
 ## The Four Elementary Positions
 
-Every option strategy is built from four atomic building blocks. Let $S_T$ denote the stock price at maturity, $K$ the strike price, and $c$ the call premium and $p$ the put premium paid at inception. From this point on, we distinguish **payoff** (the value received at maturity, always non-negative for long positions) from **profit** (payoff minus premium, which can be negative).
+Every option strategy is built from four atomic building blocks. Let $S_T$ denote the stock price at maturity, $K$ the strike price, and $c$ the call premium and $p$ the put premium paid at inception. Recall (see [§ Long and Short Positions](option_payoffs.md)): the writer's payoff is the negative of the holder's, so the market is zero-sum at expiration. From this point on, we distinguish **payoff** (the value received at maturity, always non-negative for long positions) from **profit** (payoff minus premium, which can be negative).
 
-### Long Call
+Subtracting the premium from each long/short payoff in turn gives the four atomic profit functions and their breakevens, summarized below:
 
-The holder pays premium $c$ and receives the right to buy at $K$. The payoff at maturity is $(S_T - K)^+$, so the profit is
-
-$$
-\Pi_{\text{long call}} = (S_T - K)^+ - c
-$$
-
-- **Max profit**: unlimited (as $S_T \to \infty$)
-- **Max loss**: $c$ (the premium paid)
-- **Breakeven**: $S_T = K + c$
-
-### Short Call
-
-The writer receives premium $c$ and bears the obligation to sell at $K$. By the linearity of profit, the short position is the exact negative of the long:
-
-$$
-\Pi_{\text{short call}} = c - (S_T - K)^+
-$$
-
-- **Max profit**: $c$
-- **Max loss**: unlimited
-- **Breakeven**: $S_T = K + c$
-
-### Long Put
-
-The holder pays premium $p$ and receives the right to sell at $K$:
-
-$$
-\Pi_{\text{long put}} = (K - S_T)^+ - p
-$$
-
-- **Max profit**: $K - p$ (attained when $S_T = 0$)
-- **Max loss**: $p$
-- **Breakeven**: $S_T = K - p$
-
-### Short Put
-
-The writer receives premium $p$ and bears the obligation to buy at $K$:
-
-$$
-\Pi_{\text{short put}} = p - (K - S_T)^+
-$$
-
-- **Max profit**: $p$
-- **Max loss**: $K - p$
-- **Breakeven**: $S_T = K - p$
-
-### Payoff Symmetry
-
-The key structural observation is that **long and short positions are mirror images**. For any option with payoff $\Pi_{\text{long}}$, the short side has $\Pi_{\text{short}} = -\Pi_{\text{long}}$, so every dollar gained by one party is lost by the other. This zero-sum property is summarized in the following table:
-
-| Position | Payoff at Maturity | Max Profit | Max Loss | Breakeven |
+| Position | Profit at Maturity | Max Profit | Max Loss | Breakeven |
 |---|---|---|---|---|
 | Long call | $(S_T - K)^+ - c$ | $\infty$ | $c$ | $K + c$ |
 | Short call | $c - (S_T - K)^+$ | $c$ | $\infty$ | $K + c$ |
 | Long put | $(K - S_T)^+ - p$ | $K - p$ | $p$ | $K - p$ |
 | Short put | $p - (K - S_T)^+$ | $p$ | $K - p$ | $K - p$ |
+
+For any position, $\Pi_{\text{short}} = -\Pi_{\text{long}}$: every dollar gained by one party is lost by the other.
 
 ---
 
@@ -144,9 +98,7 @@ xychart-beta
 
 ## From Strategies to Pricing Theory
 
-The covered call and protective put reveal a fundamental question. In the covered call, the investor is willing to cap upside in exchange for immediate income; in the protective put, the investor pays a premium for downside protection. Both strategies reshape the distribution of portfolio returns — but how much should that reshaping cost?
-
-If the premium is too low, the option writer gives away valuable protection; if too high, the buyer overpays for a guarantee. A mispriced option creates an arbitrage opportunity when combined with the underlying stock. Determining the unique no-arbitrage price requires a model of how $S_T$ behaves — which is precisely the problem that the Black-Scholes framework, developed in the subsequent sections, solves.
+Both strategies reshape the portfolio's payoff distribution — but the *cost* of that reshaping is the premium, and a mispriced premium combined with the stock creates arbitrage. Recall (see [§ Why Pricing Matters](why_pricing_matters.md)): the no-arbitrage premium is the cost of a replicating portfolio of stock and bond.
 
 ---
 

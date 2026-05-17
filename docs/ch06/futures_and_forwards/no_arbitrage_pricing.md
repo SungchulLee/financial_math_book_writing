@@ -1,13 +1,35 @@
 # No-Arbitrage Pricing of Forwards
 
+## A 30-Second Toy Arbitrage
+
+Before any formula, watch the mechanism on a single set of numbers. Suppose gold trades at $S_0 = \$1{,}000$ per ounce, the risk-free rate is $r = 5\%$ (continuously compounded), and a one-year forward is quoted at $F_0 = \$1{,}100$. A trader can execute three trades at time $t = 0$:
+
+1. Sell one forward (zero cost; obligated to deliver one ounce at $T = 1$ for $\$1{,}100$).
+2. Buy one ounce of gold spot, paying $\$1{,}000$.
+3. Borrow $\$1{,}000$ at $5\%$, repayable at $1{,}000 \, e^{0.05} \approx \$1{,}051.27$ in one year.
+
+Net cash at $t = 0$ is zero. At $t = 1$, the trader delivers the ounce of gold through the forward, collects $\$1{,}100$, and repays the $\$1{,}051.27$ loan, pocketing
+
+$$
+1{,}100 - 1{,}051.27 \approx \$48.73
+$$
+
+**risk-free**, regardless of whether gold ends at $\$500$ or $\$2{,}000$ at maturity. The spot price $S_T$ cancels because the long stock leg pays $S_T$ and the short forward leg pays $-S_T$.
+
+The arbitrage exists because $F_0 = \$1{,}100$ is strictly greater than $S_0 \, e^{rT} = \$1{,}051.27$. The whole theory of forward pricing is the observation that **the only quote that destroys this profit is $F_0 = S_0 \, e^{rT}$**. Everything in this section is a generalization of the three lines above.
+
+---
+
+## The Principle Behind the Toy
+
 The forward price is not chosen by negotiation or forecasting. It is determined by a single, unforgiving constraint: **no arbitrage**. If any other price were quoted, a trader could lock in a risk-free profit with zero net investment. The forward price is the unique number that eliminates this possibility.
 
 !!! info "Key Idea"
     The forward price is the unique price that eliminates arbitrage. It is determined entirely by the current spot price $S_0$, the risk-free rate $r$, and the time to maturity $T$. No forecast of the asset's future value is needed.
 
----
-
 **Interpretation**: The forward price is simply today's spot price carried forward at the risk-free rate — nothing more. All the information needed is already in $S_0$ and $r$.
+
+---
 
 ## Replication Argument
 
@@ -177,31 +199,13 @@ Intuitively, any "optimistic" or "pessimistic" view about the stock's future is 
 
 ## Connection to Risk-Neutral Pricing
 
-The absence of $\mu$ connects directly to the **risk-neutral pricing** framework. Under the risk-neutral measure $\mathbb{Q}$, the stock's drift is replaced by the risk-free rate:
-
-$$
-dS_t = r S_t \, dt + \sigma S_t \, dW_t^{\mathbb{Q}}
-$$
-
-The expected stock price under $\mathbb{Q}$ at time $T$ is therefore
-
-$$
-\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 \, e^{rT}
-$$
-
-Comparing with the forward price formula, we obtain the elegant identity
+Recall (see [§ Risk-Neutral Valuation Principle](../../ch04/risk_neutral/risk_neutral_valuation_principle.md)): under the risk-neutral measure $\mathbb{Q}$, the stock's drift is replaced by $r$, so $\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT}$. Comparing with the forward formula gives the identity
 
 $$
 F_0 = \mathbb{E}^{\mathbb{Q}}[S_T]
 $$
 
-The forward price equals the risk-neutral expected value of the future stock price. This is a special case of the fundamental theorem of asset pricing: the forward contract has zero cost to enter, so its expected payoff under $\mathbb{Q}$, discounted at $r$, must be zero:
-
-$$
-e^{-rT} \, \mathbb{E}^{\mathbb{Q}}[S_T - F_0] = 0 \quad \Longrightarrow \quad F_0 = \mathbb{E}^{\mathbb{Q}}[S_T]
-$$
-
-This relationship will reappear throughout the text as we price options and other derivatives.
+The forward price equals the risk-neutral expectation of the future spot — a relationship that reappears throughout derivative pricing.
 
 ---
 
@@ -303,3 +307,24 @@ $$
     $$
 
     The $\sigma^2$ terms cancel, confirming that the forward price depends only on $S_0$, $r$, and $T$ -- not on volatility. $\square$
+
+---
+
+**Exercise 6.** A non-dividend-paying stock trades at $S_0 = \$120$ and the continuously compounded risk-free rate is $r = 5\%$. A trader observes that the 3-month forward is quoted at $F_0 = \$121.00$ while the 6-month forward is quoted at $F_0 = \$123.50$. Identify whether each quote is overpriced, underpriced, or fair, and describe any arbitrage available.
+
+??? success "Solution to Exercise 6"
+    Theoretical forward prices:
+
+    $$
+    F_0^{(3m)} = 120 \, e^{0.05 \times 0.25} = 120 \, e^{0.0125} \approx \$121.51
+    $$
+
+    $$
+    F_0^{(6m)} = 120 \, e^{0.05 \times 0.5} = 120 \, e^{0.025} \approx \$123.04
+    $$
+
+    The 3-month forward quote $\$121.00 < 121.51$ is **underpriced**: execute Case 2 (long forward, short stock, lend) for a risk-free profit of $\$0.51$.
+
+    The 6-month forward quote $\$123.50 > 123.04$ is **overpriced**: execute Case 1 (short forward, buy stock, borrow) for a risk-free profit of $\$0.46$.
+
+    Both arbitrages can be combined into a single calendar-spread trade with combined profit of about $\$0.97$ per share at the respective maturities.

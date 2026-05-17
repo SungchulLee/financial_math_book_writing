@@ -10,7 +10,7 @@ Stochastic volatility models also admit a **partial differential equation (PDE)*
 
 Let $V(t, S, v)$ be the price at time $t$ of a European option when the spot price is $S$ and instantaneous variance is $v$.
 
-By delta-vega hedging arguments (in the presence of a volatility-traded asset) or by the Feynman–Kac theorem, $V$ satisfies:
+Recall (see [§ BS PDE Derivation — Replication](../../ch06/bs_pde_derivation/replication.md), [§ Delta Hedging](../../ch06/bs_pde_derivation/delta_hedging.md)): by delta-vega hedging arguments (now with a volatility-traded asset to span both shocks) or by the Feynman–Kac theorem, $V$ satisfies
 
 $$
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0
@@ -62,7 +62,7 @@ $$
 \frac{\partial V}{\partial t} + \left(r-q-\frac{v}{2}\right)\frac{\partial V}{\partial x} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{v}{2}\frac{\partial^2 V}{\partial x^2} + \rho\xi v\frac{\partial^2 V}{\partial x \partial v} + \frac{\xi^2 v}{2}\frac{\partial^2 V}{\partial v^2} - rV = 0
 $$
 
-This form has constant coefficients in the second-order $x$ terms, simplifying numerical treatment.
+This form has constant coefficients in the second-order $x$ terms, simplifying numerical treatment (the same affine-in-$v$ structure underlying [§ Affine Structure](../the_heston_model/affine_structure.md)).
 
 ---
 
@@ -84,10 +84,7 @@ This form has constant coefficients in the second-order $x$ terms, simplifying n
 
 **As $v \to 0$:**
 
-The PDE degenerates (diffusion coefficient vanishes). Treatment depends on the Feller condition:
-
-- **Feller satisfied ($2\kappa\theta \geq \xi^2$):** Boundary is unattainable; no explicit condition needed
-- **Feller violated:** Boundary is attainable; specify behavior (typically: smooth continuation)
+The PDE degenerates (diffusion coefficient vanishes). Recall (see [§ Feller Condition and Boundary Behavior](../the_heston_model/feller_condition_and_boundary_behavior.md)): if $2\kappa\theta \geq \xi^2$ the boundary is unattainable and no explicit condition is needed; otherwise it is attainable and behavior (e.g. smooth continuation) must be specified.
 
 A common approach: use the **limiting PDE** as $v \to 0$:
 
@@ -127,33 +124,15 @@ Denote $V_{i,j}^n \approx V(t_n, x_i, v_j)$.
 
 ### Standard Finite Differences
 
-**First derivatives:**
+Recall (see [§ Finite Difference Methods](../../ch08/fdm/finite_difference_methods.md)): central differences give $\partial_x V$, $\partial_{xx} V$, and the four-point diagonal stencil gives the cross term
 
 $$
-\frac{\partial V}{\partial x} \approx \frac{V_{i+1,j} - V_{i-1,j}}{2\Delta x} \quad \text{(central)}
-$$
-
-**Second derivatives:**
-
-$$
-\frac{\partial^2 V}{\partial x^2} \approx \frac{V_{i+1,j} - 2V_{i,j} + V_{i-1,j}}{(\Delta x)^2}
-$$
-
-**Mixed derivative:**
-
-$$
-\frac{\partial^2 V}{\partial x \partial v} \approx \frac{V_{i+1,j+1} - V_{i+1,j-1} - V_{i-1,j+1} + V_{i-1,j-1}}{4\Delta x \Delta v}
+\frac{\partial^2 V}{\partial x \partial v} \approx \frac{V_{i+1,j+1} - V_{i+1,j-1} - V_{i-1,j+1} + V_{i-1,j-1}}{4\Delta x \Delta v}.
 $$
 
 ### Time Stepping
 
-**Explicit scheme:** Unstable for fine grids; CFL condition required
-
-**Implicit scheme:** Unconditionally stable but requires solving linear systems
-
-**Crank–Nicolson:** Second-order in time, but can produce oscillations
-
-**ADI (Alternating Direction Implicit):** Preferred for 2D problems
+Recall (see [§ Explicit / Implicit / Crank–Nicolson Schemes](../../ch08/fdm/explicit_implicit_crank_nicolson_schemes.md)): explicit is CFL-limited, implicit is unconditionally stable, Crank–Nicolson is second-order but can oscillate. For 2D SV PDEs, ADI splitting is the standard choice.
 
 ---
 

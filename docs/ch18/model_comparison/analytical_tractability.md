@@ -22,6 +22,8 @@ The choice of short-rate model in practice often hinges not on which model best 
 
 ## Affine vs Non-Affine Models
 
+Recall (see [§ Affine bond pricing (general theory)](../../ch15/affine_term_structure/bond_pricing_affine_framework.md)).
+
 ### Affine term structure
 
 A model is affine if the zero-coupon bond price has the form
@@ -47,6 +49,8 @@ When the short-rate dynamics produce a bond pricing PDE with non-linear coeffici
 
 ### Vasicek
 
+Recall (see [§ Vasicek SDE and bond pricing](../vasicek_model/vasicek_sde_and_ou_process.md)).
+
 SDE: $dr_t = a(b - r_t)\,dt + \sigma\,dW_t$
 
 | Quantity | Closed form | Formula |
@@ -59,6 +63,8 @@ SDE: $dr_t = a(b - r_t)\,dt + \sigma\,dW_t$
 | Greeks | Yes | Analytical |
 
 ### CIR
+
+Recall (see [§ CIR, Feller, and non-central chi-squared](../cir_model/cir_sde_and_square_root_process.md)).
 
 SDE: $dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$
 
@@ -73,6 +79,8 @@ SDE: $dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$
 
 ### Hull-White (extended Vasicek)
 
+Recall (see [§ Hull-White (full treatment)](../../ch20/index.md)).
+
 SDE: $dr_t = [\theta(t) - a\,r_t]\,dt + \sigma\,dW_t$
 
 | Quantity | Closed form | Formula |
@@ -86,6 +94,8 @@ SDE: $dr_t = [\theta(t) - a\,r_t]\,dt + \sigma\,dW_t$
 | Yield curve fit | Exact | $\theta(t)$ calibrated to market curve |
 
 ### Black-Karasinski
+
+Recall (see [§ Black-Karasinski](../black_karasinski/log_normal_short_rate_sde.md)).
 
 SDE: $d(\ln r_t) = [\theta(t) - a\ln r_t]\,dt + \sigma\,dW_t$
 

@@ -95,20 +95,7 @@ This creates path-dependence and nonlinearity.
 
 ## Funding Valuation Adjustment (FVA)
 
-### Basic Formula
-
-$$
-\text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[(V_t - C_t)^+] \cdot D(0,t) \, dt
-$$
-
-where $C_t$ is collateral held.
-
-### Interpretation
-
-- Positive exposure ($V_t > C_t$): Bank must fund the gap at $s_F$
-- Negative exposure ($V_t < C_t$): Bank may earn funding benefit
-
-See [FVA, KVA, and MVA](../valuation_adjustments_xva/fva_kva.md) for details.
+Recall (see [§ FVA, KVA, and MVA](../valuation_adjustments_xva/fva_kva.md)) for the canonical FVA formula $\text{FVA} = \int_0^T s_F(t)\,\mathbb{E}[(V_t-C_t)^+]\,D(0,t)\,dt$, the funding-benefit/cost interpretation, and the relationship with other XVAs.
 
 ---
 
@@ -144,40 +131,7 @@ $$
 
 ## Collateral and Margin
 
-### Variation Margin (VM)
-
-Daily exchange of collateral based on mark-to-market:
-
-$$
-\text{VM}_t = V_t - V_{t-1}
-$$
-
-**Effect on funding:**
-
-- Reduces counterparty credit risk
-- Increases funding/liquidity needs
-- Procyclical: Margin calls increase during stress
-
-### Initial Margin (IM)
-
-Upfront collateral posted against potential future exposure:
-
-$$
-\text{IM} \approx \text{SIMM}(\text{Portfolio Sensitivities})
-$$
-
-**Effect:**
-
-- Significant funding drag on trades
-- Creates MVA (Margin Valuation Adjustment)
-- Incentive to reduce bilateral exposures
-
-### Margin Period of Risk (MPOR)
-
-Time between last margin call and closeout:
-
-- Typically 10 days bilateral, 5 days cleared
-- Exposure during MPOR still exists
+Recall (see [§ Counterparty Credit Risk](../counterparty_credit_risk/expected_positive_exposure_epe.md)) for variation margin (VM), initial margin (IM/SIMM), MVA, and margin period of risk (MPOR). The funding-relevant consequences are: VM/IM both increase liquidity needs, are procyclical, and MVA arises from the funding cost of posted IM.
 
 ---
 
@@ -247,25 +201,7 @@ Derivative RWA depends on counterparty credit quality and exposure.
 
 ## Procyclicality
 
-### Margin Procyclicality
-
-During stress:
-
-1. Market moves cause losses
-2. Margin calls increase
-3. Liquidity demand spikes
-4. Fire sales depress prices further
-5. More margin calls...
-
-**Feedback loop amplifies stress.**
-
-### Funding Spread Procyclicality
-
-Bank funding spreads widen during stress:
-
-- Just when funding is most needed
-- Amplifies balance sheet pressure
-- Can force deleveraging
+Recall (see [§ Systemic Risk and Network Effects](../systemic_risk_and_network_effects/clearing_and_central_counterparties.md) and [§ Stress Testing](../stress_testing_and_scenario_analysis/extreme_scenarios.md)) for the margin-call $\to$ fire-sale $\to$ wider funding-spread feedback loop and its role in amplifying systemic stress and forced deleveraging.
 
 ---
 

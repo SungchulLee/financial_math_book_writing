@@ -74,41 +74,12 @@ $$\text{VaR}_{\text{model}} = f(\text{volatility}, \text{correlation}) \text{ bu
 - Independent risk governance necessary
 
 **2008 Financial Crisis: Systemic Model Failure**
-The financial crisis involved multiple simultaneous model failures:
+The 2008 crisis combined housing-price, CDO/Gaussian-copula, liquidity, and counterparty-risk model failures simultaneously. Recall (see [§ Model Risk in Credit Markets](../../ch21/model_risk_in_credit_markets/wrong_way_risk.md)) for the Gaussian-copula and CDO-tranche breakdown in detail. Distinct systemic features of 2008:
 
-1. **Housing model failures**:
-   - Models assumed housing prices would never decline nationally
-   - Regional correlations underestimated (everyone exposed to housing)
-   - Default correlations exploded (unemployment contagion)
-
-2. **CDO model failures** (Gaussian copula):
-   - Assumed constant correlation; correlation jumped during crisis
-   - Assumed mortgages independent; defaults clustered
-   - Senior tranches rated AAA despite hidden leverage
-
-3. **Liquidity model failures**:
-   - Models assumed assets could always be sold at mid-market prices
-   - Actual: bid-ask spreads exploded, positions became illiquid
-   - Fire sales became spiral: forced sales compressed prices
-
-4. **Counterparty risk failures**:
-   - CDS allowed leverage without capital charges (regulatory arbitrage)
-   - Interconnectedness hidden (Lehman bankruptcy had 930,000 contracts counterparties)
-   - Systemic risk ignored
-
-**Failure mechanisms**:
-
-- **Model calibration to normal times**: parameters estimated 1990-2007, excluded prior crises
-- **Regulatory arbitrage**: models exploited to minimize capital (Basel II)
-- **Incentive misalignment**: originators had no loss exposure; buyers had misaligned info
+- **Calibration to normal times**: parameters estimated 1990--2007 excluded prior crises
+- **Regulatory arbitrage** under Basel II: capital minimized through model exploits
 - **Procyclicality**: low VaR in good times encouraged risk-taking; high VaR in bad times forced deleveraging
-
-**Systemic lessons**:
-
-- Models trained on limited data (normal times only) fail in crises
-- Interconnectedness and systemic risk not captured in individual firm models
-- Regulatory arbitrage incentivizes model exploits
-- Market prices can become detached from fundamentals (feedback loops)
+- **Interconnectedness**: Lehman's $\sim$930{,}000 derivative contracts revealed hidden systemic linkages
 
 **Common Themes Across Failures**
 

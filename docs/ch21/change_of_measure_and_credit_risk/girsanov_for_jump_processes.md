@@ -1,22 +1,14 @@
 # Girsanov for Jump Processes
 
 
-Girsanov’s theorem extends beyond diffusions to **jump processes**, providing the mathematical foundation for changing measures in credit risk models.
+Recall (see [§ Girsanov Theorem](../../ch04/girsanov/girsanov_theorem.md)): in pure diffusion models, the Girsanov density $L_t = \exp(-\int_0^t \gamma_s dW_s - \tfrac{1}{2}\int_0^t \gamma_s^2 ds)$ defines an equivalent measure under which $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \gamma_s ds$ is Brownian. Here we extend this framework to **jump processes**, providing the mathematical foundation for changing measures in credit risk models.
 
 ---
 
 ## Jumps and compensators
 
 
-Default is modeled as a jump process with compensator
-
-$$
-A_t = \int_0^{t \wedge \tau} \lambda_s ds
-$$
-
-
-
-Under a measure change, both the compensator and intensity may change.
+Recall (see [§ Compensators and Martingales](../reduced_form_intensity_based_models/compensators_and_martingales.md)): the default compensator is $A_t = \int_0^{t \wedge \tau} \lambda_s ds$. Under a measure change, both the compensator and intensity may change.
 
 ---
 

@@ -222,21 +222,7 @@ $$
 
 ## Swap Rate Volatility in the LMM
 
-### Rebonato's Approximation
-
-In the LIBOR Market Model, the swap rate $S(t) = \sum_i w_i(t) L_i(t)$ is not exactly lognormal. The effective swap rate volatility is approximated by freezing the weights at their initial values:
-
-$$
-v_S^2 \, T_0 \approx \sum_{i,j=0}^{n-1} \frac{w_i(0) \, w_j(0) \, L_i(0) \, L_j(0)}{S(0)^2} \, \rho_{ij} \int_0^{T_0} \sigma_i(t) \, \sigma_j(t) \, dt
-$$
-
-This is **Rebonato's swaption volatility formula**, which expresses the Black swaption implied volatility in terms of the LMM parameters (forward rate volatilities and correlations).
-
-### Interpretation
-
-- The **diagonal terms** ($i = j$) capture individual forward rate contributions
-- The **off-diagonal terms** ($i \neq j$) reflect the impact of correlation between forward rates
-- Lower correlation reduces the effective swap rate volatility (diversification effect)
+Recall (see [§ LMM](../lmm/libor_market_model.md)): in the LIBOR Market Model the swap rate $S(t) = \sum_i w_i(t) L_i(t)$ is not exactly lognormal, and **Rebonato's frozen-weight approximation** expresses the Black swaption implied variance as a quadratic form in $(w_i(0) L_i(0)/S(0))$ with kernel $\rho_{ij}\int_0^{T_0}\sigma_i\sigma_j\,dt$. Diagonal terms capture individual forward-rate contributions; off-diagonal terms reflect correlation diversification.
 
 ---
 

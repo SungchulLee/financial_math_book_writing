@@ -15,13 +15,7 @@ Dupire's formula requires the partial derivatives $\partial C / \partial T$, $\p
 
 ### Why Raw Data Fails
 
-Consider a discrete set of market call prices $\{C_{\text{mkt}}(K_i, T_j)\}$ observed at strikes $K_1 < K_2 < \cdots < K_m$ and maturities $T_1 < T_2 < \cdots < T_p$. Applying Dupire's formula directly via finite differences:
-
-$$
-\sigma_{\text{loc}}^2(K_i, T_j) = \frac{\frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}} + (r - q)K_i \frac{C(K_{i+1}, T_j) - C(K_{i-1}, T_j)}{K_{i+1} - K_{i-1}} + qC(K_i, T_j)}{\frac{1}{2}K_i^2 \frac{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}{(\Delta K)^2}}
-$$
-
-The denominator involves a second difference of noisy data. If the noise in each price is $\epsilon$, the noise in $C_{KK} \approx \partial^2 C / \partial K^2$ scales as $\epsilon / (\Delta K)^2$, which can be enormous when $\Delta K$ is small or $\epsilon$ is not negligible relative to the butterfly spread price.
+Consider a discrete set of market call prices $\{C_{\text{mkt}}(K_i, T_j)\}$ observed at strikes $K_1 < K_2 < \cdots < K_m$ and maturities $T_1 < T_2 < \cdots < T_p$. Recall (see [§ Dupire Formula Derivation](../local_volatility_framework/dupire_formula_derivation.md)): the Dupire ratio applied via centered finite differences uses second differences of $C$ in $K$ in its denominator and first differences in $T$ and $K$ in its numerator. The denominator involves a second difference of noisy data. If the noise in each price is $\epsilon$, the noise in $C_{KK} \approx \partial^2 C / \partial K^2$ scales as $\epsilon / (\Delta K)^2$, which can be enormous when $\Delta K$ is small or $\epsilon$ is not negligible relative to the butterfly spread price.
 
 **Example:** With $\Delta K = 5$ and price noise $\epsilon = \$0.05$:
 

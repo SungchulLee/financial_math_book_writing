@@ -279,67 +279,19 @@ This is the **central pathology** of continuous-time finance: the model is arbit
 
 ## The Fundamental Theorem of Asset Pricing
 
-The converse is also true: if there's no arbitrage, then a martingale measure must exist.
-
-!!! tip "Fundamental Theorem of Asset Pricing (FTAP)"
-    The following are equivalent:
-    
-    1. **No arbitrage** (NFLVR holds)
-    2. **Existence of ELMM**: There exists a probability measure $\mathbb{Q} \sim \mathbb{P}$ such that discounted asset prices are $\mathbb{Q}$-local martingales
-    
-    The measure $\mathbb{Q}$ is called an **Equivalent Local Martingale Measure (ELMM)**.
-
-**Direction 1** (ELMM ⟹ No Arbitrage): Proved above using the supermartingale argument.
-
-**Direction 2** (No Arbitrage ⟹ ELMM): This is the hard direction, requiring functional analysis (Hahn–Banach theorem, separating hyperplanes). See [FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) for the full proof.
+Recall (see [§ Fundamental Theorem of Asset Pricing](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md)): NFLVR holds if and only if there exists $\mathbb{Q}\sim\mathbb{P}$ under which discounted asset prices are $\mathbb{Q}$-local martingales (an ELMM). The supermartingale argument above proves the easy direction (ELMM $\Rightarrow$ no arbitrage); the converse requires separating-hyperplane techniques and is covered in ch01.
 
 ---
 
 ## How Measure Change Removes Drift
 
-### What Changes Under Q
+A change from $\mathbb{P}$ to $\mathbb{Q}$ leaves the sample paths, trading strategies, and payoffs unchanged; it alters only the probability weights and hence the drift.
 
-A change from $\mathbb{P}$ to $\mathbb{Q}$ does **not** alter:
-
-- The paths of asset prices (same sample space $\Omega$)
-- The available trading strategies
-- The economic payoffs
-
-It **only** alters:
-
-- The probabilities assigned to different scenarios
-- The drift of stochastic processes
-
-### The Mechanism
-
-Under $\mathbb{P}$, the discounted price has drift $(\mu - r)$. The
-[construction of $\mathbb{Q}$](construction.md) uses the
-[market price of risk](market_price_of_risk.md) $\theta_t = (\mu_t - r_t)/\sigma_t$
-to define a Girsanov shift that absorbs this drift into the change of Brownian motion,
-yielding a driftless discounted price under $\mathbb{Q}$.
+Recall (see [§ Drift Adjustment](../girsanov/girsanov_drift_adjustment.md)): with $\theta_t = (\mu_t - r_t)/\sigma_t$ the [market price of risk](market_price_of_risk.md), the Girsanov shift $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds$ absorbs $(\mu - r)$ into the change of Brownian motion, yielding a driftless discounted price under $\mathbb{Q}$.
 
 ---
 
-## Example: Black–Scholes Model
-
-In the Black–Scholes model ($dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ with
-constant coefficients), the discounted price has drift $\mu - r \neq 0$, so the
-martingale property fails under $\mathbb{P}$.
-
-Applying the [standard construction](construction.md) with constant market price of
-risk $\theta = (\mu - r)/\sigma$, the Radon–Nikodym derivative is the
-[stochastic exponential](../martingale/stochastic_exponential.md)
-$\mathcal{E}(-\theta W^{\mathbb{P}})_T$. Under $\mathbb{Q}$:
-
-$$
-d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}
-$$
-
-No drift — the discounted price is a $\mathbb{Q}$-martingale. Since $\theta$ is
-constant, the Novikov condition $e^{\theta^2 T/2} < \infty$ is trivially satisfied,
-confirming $\mathbb{Q}$ is a valid equivalent measure. See
-[Novikov and Kazamaki Conditions](../martingale/novikov_kazamaki_conditions.md) for
-general criteria.
+Recall (see [§ Black-Scholes Example](examples.md#example-1-black-scholes-model-single-stock)): in the constant-coefficient model, $\theta=(\mu-r)/\sigma$ is constant, Novikov holds trivially, and $\tilde S_t$ becomes a true $\mathbb{Q}$-martingale.
 
 ---
 
@@ -372,34 +324,7 @@ The measure $\mathbb{Q}$ encodes the **prices** that prevent arbitrage:
 
 ## Complete vs. Incomplete Markets
 
-### Complete Markets
-
-A market is **complete** if every contingent claim can be replicated by a self-financing strategy.
-
-!!! tip "Second Fundamental Theorem"
-    An arbitrage-free market is **complete** if and only if the ELMM $\mathbb{Q}$ is **unique**.
-
-In complete markets:
-
-- Every derivative has a unique arbitrage-free price
-- Hedging is perfect (zero residual risk)
-- The Martingale Representation Theorem holds: every martingale is a stochastic integral w.r.t. traded assets
-
-**Example**: Black–Scholes model (one stock driven by one Brownian motion)
-
-### Incomplete Markets
-
-When markets are incomplete:
-
-- **Multiple ELMMs exist**
-- Derivative prices lie in an interval $[\underline{V}, \overline{V}]$
-- Additional criteria needed to select a price (utility maximization, variance-optimal, minimal entropy)
-
-**Example**: Stochastic volatility models (two sources of randomness—stock and volatility—but only stock is traded)
-
-The connection to the Martingale Representation Theorem: incompleteness means some martingales cannot be represented as integrals w.r.t. traded assets, so perfect hedging is impossible.
-
-See [Martingale Representation Theorem](../martingale/martingale_representation_theorem.md) for the mathematical details.
+Recall (see [§ Complete Markets and Uniqueness](../../ch01/fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md)): an arbitrage-free market is complete iff the ELMM $\mathbb{Q}$ is unique; completeness is equivalent to the [Martingale Representation Theorem](../martingale/martingale_representation_theorem.md) holding for the traded assets. Incomplete markets (e.g. stochastic volatility — see [§ Heston Example](examples.md#example-4-incomplete-market-stochastic-volatility)) admit a pricing interval $[\underline V, \overline V]$ rather than a unique price.
 
 ---
 

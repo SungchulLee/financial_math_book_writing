@@ -4,7 +4,7 @@
 
 We now reinterpret the diffusion defined in the [overview](diffusion_process_overview.md) through its [generator](diffusion_process_overview.md#infinitesimal-generator) $\mathcal{L}$ alone. The **martingale problem** is the intrinsic definition of a diffusion: it characterises the law of the process via $\mathcal{L}$, without reference to a specific Brownian motion or probability space. This viewpoint is essential for proving uniqueness in law, studying diffusions with irregular coefficients, and establishing the [strong Markov property](strong_markov_property.md).
 
-Given the coefficients $b$ and $a = \sigma\sigma^\top$ (with $a(x)$ symmetric non-negative definite) that define the generator $\mathcal{L} = b \cdot \nabla + \frac{1}{2}a : \nabla^2$:
+Given the coefficients $b$ and $a = \sigma\sigma^\top$ (with $a(x)$ symmetric non-negative definite) defining the [generator](diffusion_process_overview.md#infinitesimal-generator) $\mathcal{L}$:
 
 !!! info "Definition: Solution to the Martingale Problem"
     Fix an initial law $\mu$ on $\mathbb{R}^d$. A probability measure $\mathbb{P}$ on the path space $C([0,\infty); \mathbb{R}^d)$ **solves the martingale problem for $(\mathcal{L}, \mu)$** if:
@@ -34,20 +34,9 @@ The SDE approach requires: (a) a fixed probability space, (b) an explicit Browni
 
 ### Relation to SDEs
 
-If $a = \sigma\sigma^\top$ and $X$ solves the SDE
+Recall (see [§ Diffusion Process Overview](diffusion_process_overview.md#infinitesimal-generator)): by Itô's formula, every strong solution of the SDE satisfies $M_t^f = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s = \int_0^t \partial_i f(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha$, which is a local martingale. Hence **every strong solution of the SDE solves the martingale problem**.
 
-$$
-\mathrm{d}X_t^{i} = b^{i}(X_t)\,\mathrm{d}t + \sigma^{i\alpha}(X_t)\,\mathrm{d}W_t^{\alpha}
-$$
-
-then Itô's formula gives
-
-$$
-f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s
-= \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^{\alpha}
-$$
-
-which is a local martingale (a true martingale under mild integrability conditions). Hence **every strong solution of the SDE solves the martingale problem**. The converse — constructing an SDE from a solution of the martingale problem — requires extracting a Brownian motion. This is done in two steps: first, the **Doob–Meyer decomposition** identifies the quadratic variation of the local martingale $M^f$, which determines $a(x)$; second, the **martingale representation theorem** (Lévy's characterisation) extracts a BM $W$ such that $M^f_t = \int_0^t \partial_i f(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha$, where $\sigma$ is a matrix square root of $a$ with $a = \sigma\sigma^\top$. Both steps are possible when $a(x)$ is strictly positive definite; in the degenerate case the representation breaks down.
+The **converse** — constructing an SDE from a solution of the martingale problem — requires extracting a Brownian motion. This is done in two steps: first, the **Doob–Meyer decomposition** identifies the quadratic variation of the local martingale $M^f$, which determines $a(x)$; second, the **martingale representation theorem** (Lévy's characterisation) extracts a BM $W$ such that $M^f_t = \int_0^t \partial_i f(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha$, where $\sigma$ is a matrix square root of $a$ with $a = \sigma\sigma^\top$. Both steps are possible when $a(x)$ is strictly positive definite; in the degenerate case the representation breaks down.
 
 ### Uniqueness in Law vs Pathwise Uniqueness
 
@@ -85,49 +74,13 @@ Consider $d = 1$, $b = 0$, $a(x) = |x|^{2\alpha}$ for $\alpha \in (0, 1/2)$. The
 
 ### Quadratic Variation Test Function
 
-Taking $f(x) = x^i x^j$ in the martingale problem (this function is not in $C_c^\infty(\mathbb{R}^d)$, but the computation extends to polynomial test functions by a standard localisation argument using a sequence of cut-offs $\chi_n \in C_c^\infty$ with $\chi_n \to 1$):
-
-$$
-M_t^{x^i x^j}
-= X_t^i X_t^j - X_0^i X_0^j
-
-- \int_0^t \left(b^i(X_s) X_s^j + b^j(X_s) X_s^i + a^{ij}(X_s)\right)\mathrm{d}s
-$$
-
-The $a^{ij}$ term arises from the second-order part of $\mathcal{L}$. This shows that **$a^{ij}(x)\,\mathrm{d}t$ is the quadratic covariation rate**, consistent with the SDE definition $\mathrm{d}\langle X^i, X^j\rangle_t = a^{ij}(X_t)\,\mathrm{d}t$.
+Recall (see [§ Diffusion Process Overview](diffusion_process_overview.md#diffusion-matrix-and-quadratic-covariation)): $\mathrm{d}\langle X^i, X^j\rangle_t = a^{ij}(X_t)\,\mathrm{d}t$. Within the martingale-problem framework this identity is recovered by taking $f(x) = x^i x^j$ (with a $C_c^\infty$ cut-off for localisation): the requirement that $M_t^{x^ix^j}$ be a martingale forces the $a^{ij}$ term in $\mathcal{L}(x^ix^j) = b^i x^j + b^j x^i + a^{ij}$ to match the quadratic-covariation rate (worked out in Exercise 2 below).
 
 ---
 
 ## Proof / Derivation
 
-We sketch the derivation of $M_t^f$ as a martingale from the SDE.
-
-**Given:** $X$ solves the SDE with coefficients $b$, $\sigma$, $a = \sigma\sigma^\top$.
-
-**Apply Itô's formula** to $f \in C_c^\infty(\mathbb{R}^d)$:
-
-$$
-f(X_t)
-= f(X_0)
-
-+ \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\mathrm{d}X_s^i
-+ \frac{1}{2}\int_0^t \frac{\partial^2 f}{\partial x_i \partial x_j}(X_s)\,\mathrm{d}\langle X^i, X^j\rangle_s
-$$
-
-Substituting $\mathrm{d}X_s^i = b^i(X_s)\,\mathrm{d}s + \sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha$ and $\mathrm{d}\langle X^i, X^j\rangle_s = a^{ij}(X_s)\,\mathrm{d}s$:
-
-$$
-f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,\mathrm{d}s
-= \int_0^t \frac{\partial f}{\partial x_i}(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha
-$$
-
-The right side is a stochastic integral against $W$, hence a local martingale. To upgrade to a **true martingale**: since $f \in C_c^\infty$, the gradient $\nabla f$ is bounded and supported on a compact set $K \subset \mathbb{R}^d$. Under the SDE's linear growth condition on $\sigma$, one verifies
-
-$$
-\mathbb{E}\!\int_0^t \sum_{i=1}^d\sum_{\alpha=1}^m \bigl|\partial_i f(X_s)\bigr|^2 \bigl|\sigma^{i\alpha}(X_s)\bigr|^2\,\mathrm{d}s < \infty
-$$
-
-which (by the Itô isometry) ensures the stochastic integral is square-integrable, hence a true martingale. $\square$
+Recall (see [§ Diffusion Process Overview — Infinitesimal Generator](diffusion_process_overview.md#infinitesimal-generator)): for a strong solution, $M_t^f = \int_0^t \partial_i f(X_s)\,\sigma^{i\alpha}(X_s)\,\mathrm{d}W_s^\alpha$ is a local martingale. For $f \in C_c^\infty(\mathbb{R}^d)$, $\nabla f$ has compact support so $\partial_i f\,\sigma^{i\alpha}$ is uniformly bounded along the path; the Itô isometry then upgrades the local martingale to a true martingale. $\square$
 
 ---
 

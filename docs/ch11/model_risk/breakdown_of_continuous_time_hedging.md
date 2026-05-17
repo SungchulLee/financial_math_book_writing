@@ -1,7 +1,9 @@
 # Breakdown of Continuous-Time Hedging
 
-
 Replication assumes continuous trading, no costs, continuous paths, and correct model. Jumps, discrete trading, and model error break replication.
+
+!!! tip "Toy mechanism: which assumption breaks, which Greek can't catch it"
+    The BS replication argument rests on four assumptions, and each gives one term in the hedging-error Taylor expansion that the next-higher Greek would have to neutralise. Continuous trading $\Rightarrow$ no $(\Delta S)^2$ residual; break it (discrete $\Delta t$) and gamma cannot fully offset the realised variance. No costs $\Rightarrow$ rebalancing is free; break it and the cost-error tradeoff appears. Continuous paths $\Rightarrow$ second-order Taylor is exact; break it with a jump $\Delta S \sim S$ and *no finite-order Taylor expansion* in Greeks can fit. Correct model $\Rightarrow$ true and hedger volatility agree; break it and the variance-gap identity $\tfrac{1}{2}\hat\Gamma S^2(\sigma^2 - \hat\sigma^2)\,dt$ from [§ Impact of Volatility Misspecification](../hedging_errors/impact_of_volatility_misspecification.md) appears. The whole section is one diagnostic table: which assumption broke determines which residual term survives.
 
 ---
 
@@ -79,39 +81,16 @@ $$
 ## Discrete trading: the fundamental limit
 
 
-With trading only at times $t_0, t_1, \ldots, t_N$, the hedging error per interval is:
-
-$$
-\epsilon_k = \frac{1}{2}\Gamma_k \left[(\Delta S_k)^2 - \sigma^2 S_k^2 \Delta t\right] + \mathcal{O}(\Delta t)
-$$
-
-**Total error variance** scales as $\Delta t$, never reaching zero:
-
-$$
-\text{Var}(\text{HE}) = \mathcal{O}(\Delta t)
-$$
-
-**Implication:** Perfect replication is impossible with discrete trading.
+Recall (see [§ Discrete-Time Hedging Error](../hedging_errors/discrete_time_hedging_error.md)): the per-step error is $\epsilon_k = \tfrac{1}{2}\Gamma_k[(\Delta S_k)^2 - \sigma^2 S_k^2 \Delta t] + O(\Delta t)$, with cumulative variance $O(\Delta t)$ that never reaches zero. **Implication:** Perfect replication is impossible with discrete trading.
 
 ---
 
 ## Model error: volatility misspecification
 
 
-If the hedger uses $\hat{\sigma}$ while true volatility is $\sigma(t)$:
+Recall (see [§ Impact of Volatility Misspecification](../hedging_errors/impact_of_volatility_misspecification.md)): if the hedger uses $\hat{\sigma}$ while true volatility is $\sigma(t)$, the cumulative hedging error is the El Karoui–Jeanblanc–Shreve integral $\text{HE} = \tfrac{1}{2}\int_0^T \Gamma(t,S_t)S_t^2(\sigma(t)^2 - \hat{\sigma}^2)\,dt$ — a **systematic** (non-mean-zero) drift.
 
-$$
-\text{HE} = \frac{1}{2}\int_0^T \Gamma(t, S_t) S_t^2 \left(\sigma(t)^2 - \hat{\sigma}^2\right) dt
-$$
-
-This is a **systematic error** (not mean-zero) that accumulates over time.
-
-**For stochastic volatility:** $\sigma(t)$ is random, so hedging error is doubly stochastic:
-
-1. Randomness from $S$ path
-2. Randomness from $\sigma$ path
-
-Delta hedging in a stochastic volatility world leaves **vega exposure** unhedged.
+**For stochastic volatility:** Recall (see [§ Stochastic Volatility](../../ch14/index.md)): $\sigma(t)$ random makes the hedging error doubly stochastic and leaves vega exposure unhedged under delta-only hedging.
 
 ---
 
@@ -130,21 +109,7 @@ Delta hedging in a stochastic volatility world leaves **vega exposure** unhedged
 ## Robustness of hedging strategies
 
 
-**Delta-only hedging** is robust to:
-
-- Small volatility changes (first-order effect is zero)
-- Small discrete intervals
-
-**Delta-only hedging** is fragile to:
-
-- Large jumps
-- Systematic volatility misspecification
-- Near-expiry gamma exposure
-
-**Delta-gamma hedging** adds second-order protection but:
-
-- Requires additional instruments (e.g., another option)
-- Introduces new risks (basis risk)
+Recall (see [§ Robustness vs Optimality](robustness_vs_optimality.md)): delta-only hedging is robust to small vol changes and short discrete intervals but fragile to large jumps, systematic vol misspecification, and near-expiry gamma. Delta-gamma hedging adds second-order protection at the cost of additional instruments and basis risk.
 
 ---
 

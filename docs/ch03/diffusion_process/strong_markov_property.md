@@ -2,11 +2,9 @@
 
 ## Concept Definition
 
-Throughout, $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P})$ is a filtered probability space satisfying the usual conditions. A **stopping time** is a random variable $\tau : \Omega \to [0, \infty]$ such that $\{\tau \le t\} \in \mathcal{F}_t$ for all $t \ge 0$. The **stopped $\sigma$-algebra** is
+The [overview](diffusion_process_overview.md#markov-property) defined the Markov property at deterministic times $s$. This page extends it to **random times** — stopping times — which is what most applications (exit times, first-passage times, restart arguments) actually require. The filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P})$ satisfies the usual conditions throughout.
 
-$$
-\mathcal{F}_\tau := \{ A \in \mathcal{F} : A \cap \{\tau \le t\} \in \mathcal{F}_t \text{ for all } t \ge 0 \}
-$$
+Recall (see [§ Stopping Time](../../ch02/filtration_and_martingale/stopping_time.md)): a **stopping time** $\tau : \Omega \to [0, \infty]$ satisfies $\{\tau \le t\} \in \mathcal{F}_t$ for all $t \ge 0$, with stopped $\sigma$-algebra $\mathcal{F}_\tau := \{A \in \mathcal{F} : A \cap \{\tau \le t\} \in \mathcal{F}_t \text{ for all } t \ge 0\}$.
 
 !!! info "Definition: Markov Property vs Strong Markov Property"
     A time-homogeneous Markov process $(X_t)_{t \ge 0}$ satisfies the **Markov property** if for all bounded measurable $\varphi$ and all $0 \le s \le t$,

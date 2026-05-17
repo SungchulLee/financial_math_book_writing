@@ -87,11 +87,7 @@ Slow convergence that improves when $[a, b]$ is widened (but not when $N$ is inc
 
 ### The Problem
 
-The COS density coefficients are:
-
-$$
-A_k = \frac{2}{b-a}\operatorname{Re}\!\left[\phi\!\left(\frac{k\pi}{b-a}\right) e^{-ik\pi a/(b-a)}\right]
-$$
+**Recall** (see [§ Cosine Series Coefficients via CF](../cos_method/cosine_coefficients_via_cf.md)): the COS density coefficients are $A_k = \frac{2}{b-a}\operatorname{Re}[\phi(k\pi/(b-a))\,e^{-ik\pi a/(b-a)}]$.
 
 The convergence rate of the cosine series depends on how fast $|A_k|$ decays as $k \to \infty$, which in turn depends on how fast $|\phi(u)|$ decays as $|u| \to \infty$.
 
@@ -193,11 +189,9 @@ Even when the analytical CF is well-behaved, its numerical evaluation can introd
 
 ### Common Sources
 
-**Branch-cut discontinuities in the Heston CF.** The Heston characteristic function involves the complex square root $\gamma = \sqrt{(\kappa - i\rho\xi u)^2 + \xi^2(iu + u^2)}$. The standard principal branch of the square root has a cut along the negative real axis. For certain $u$ values, the argument of the square root crosses this cut, producing a discontinuous $\phi(u)$ that destroys convergence.
+**Branch-cut discontinuities in the Heston CF.** Recall (see [§ Numerical Stability and Branch Cuts](../../ch16/heston_cf/numerical_stability_and_branch_cuts.md)): the Heston CF involves a complex square root whose principal-branch cut can be crossed by $u$, producing a discontinuous $\phi(u)$ that destroys COS convergence; the "little Heston trap" rotation (Albrecher et al., 2007) eliminates this.
 
-The Albrecher et al. (2007) rotation $\gamma \to -\gamma$ with corresponding adjustment of $g$ eliminates this problem for the "little Heston trap" formulation.
-
-**Overflow/underflow in exponentials.** For large $|u|$ or long maturities $T$, the exponential terms $e^{-\gamma T}$ in the Heston CF can overflow or underflow. This produces NaN or zero values in the cosine coefficients.
+**Overflow/underflow in exponentials.** For large $|u|$ or long maturities $T$, the exponential terms $e^{-\gamma T}$ in the Heston CF can overflow or underflow, producing NaN or zero values in the cosine coefficients.
 
 **Cancellation in near-degenerate regimes.** When $\xi \to 0$ (deterministic volatility limit) or $\kappa \to \infty$ (instantaneous mean reversion), the CF approaches a simpler limiting form, but the general formula involves differences of nearly equal large numbers, causing catastrophic cancellation.
 

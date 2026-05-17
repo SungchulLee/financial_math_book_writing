@@ -2,7 +2,7 @@
 
 ### 1. Concept Definition
 
-The **Itô isometry** is the fundamental identity that governs the second moment of stochastic integrals. Since the Itô integral has mean zero (martingale property), its second moment equals its variance. The identity states: for an adapted, square-integrable process $\beta(t)$,
+On a simple adapted process, $\int_0^T \beta\,dW$ is a finite sum of products $\beta_{t_k}(W_{t_{k+1}}-W_{t_k})$ -- independent, mean-zero, with variance $\beta_{t_k}^2(t_{k+1}-t_k)$. Summing the variances gives $\sum \beta_{t_k}^2(t_{k+1}-t_k)$, which is exactly a Riemann sum for $\int_0^T \beta^2\,dt$. Passing to the $L^2$-limit preserves this identity, producing the **Itô isometry**: for an adapted, square-integrable process $\beta(t)$,
 
 $$
 \boxed{
@@ -29,65 +29,22 @@ Distances in $\mathcal{L}^2([0,T])$ (measured by $\mathbb{E}[\int \beta^2\,dt]$)
 
 ### 2. Explanation
 
-#### Heuristic setup
+#### Why the identity holds
 
-Let $W_t$ be a standard Brownian motion and let $\beta(t)$ be a **simple adapted process**: $\beta(t) = \beta_i$ on $[t_i, t_{i+1})$. The Itô integral is approximated by
+Recall (see [§ Construction of the Itô Integral](ito_integral_construction.md)): for a simple adapted process $\beta(t) = \beta_i$ on $[t_i, t_{i+1})$, squaring the stochastic sum $\sum_i \beta_i \Delta W_i$ produces a diagonal piece and a cross piece. Cross terms vanish in expectation because each future increment $\Delta W_j$ is independent of $\mathcal{F}_{t_j}$ with mean zero; diagonal terms reduce to $\sum_i \mathbb{E}[\beta_i^2]\,(t_{i+1}-t_i)$, which is the Riemann sum for $\mathbb{E}[\int_0^T \beta^2\,dt]$. The proof for simple processes is given in full there, and the identity extends to all of $\mathcal{L}^2([0,T])$ by continuity.
 
-$$
-\int_0^T \beta(t)\, dW_t \;\approx\; \sum_{i=0}^{n-1} \beta_i (W_{t_{i+1}} - W_{t_i})
-$$
+#### The conceptual content: orthogonality
 
-Each term $\beta_i \Delta W_i$ is the **gain from holding $\beta_i$ units of risk** over the interval $[t_i, t_{i+1}]$.
+The two facts driving the identity are:
 
-#### Squaring the sum
+- Brownian increments on **disjoint intervals are orthogonal in $L^2(\Omega)$** — independent with mean zero.
+- $\mathbb{E}[(\Delta W_i)^2] = \Delta t_i$, the quadratic-variation fact $[W]_t = t$ (canonical home: [§ Quadratic Variation](quadratic_variation.md)).
 
-To understand the *size* of the integral, examine its second moment. Squaring:
-
-$$
-\left( \sum_{i=0}^{n-1} \beta_i \Delta W_i \right)^2
-= \underbrace{\sum_{i=0}^{n-1} \beta_i^2 (\Delta W_i)^2}_{\text{diagonal terms}}
-
-+ 2\underbrace{\sum_{i < j} \beta_i \beta_j \Delta W_i \Delta W_j}_{\text{cross terms}}
-$$
-
-#### Why cross terms vanish
-
-Let $(\mathcal{F}_t)_{t \ge 0}$ be the natural filtration of $W_t$. Fix $i < j$. Then $\beta_j$ is $\mathcal{F}_{t_j}$-measurable, and $\Delta W_j$ is independent of $\mathcal{F}_{t_j}$ with $\mathbb{E}[\Delta W_j \mid \mathcal{F}_{t_j}] = 0$. Therefore:
-
-$$
-\mathbb{E}[\beta_i \beta_j \Delta W_i \Delta W_j]
-= \mathbb{E}\!\left[\beta_i \Delta W_i \cdot \beta_j\, \underbrace{\mathbb{E}[\Delta W_j \mid \mathcal{F}_{t_j}]}_{=\, 0}\right] = 0
-$$
-
-**Intuition**: $\Delta W_j$ represents **future noise**, independent of everything known at time $t_j$. Conditioning kills the future noise. Brownian increments on disjoint intervals are **orthogonal random variables in $L^2(\Omega)$**.
-
-#### Diagonal terms
-
-We are left with:
-
-$$
-\mathbb{E}\!\left[\sum_{i} \beta_i^2 (\Delta W_i)^2\right]
-= \sum_{i} \mathbb{E}[\beta_i^2]\, \mathbb{E}[(\Delta W_i)^2]
-= \sum_{i} \mathbb{E}[\beta_i^2]\, (t_{i+1} - t_i)
-$$
-
-using independence of $\beta_i$ (adapted to $\mathcal{F}_{t_i}$) from the future increment $\Delta W_i$, and $\mathbb{E}[(\Delta W_i)^2] = t_{i+1} - t_i$. As the partition is refined, this Riemann sum converges to:
-
-$$
-\mathbb{E}\!\left[\int_0^T \beta^2(t)\, dt\right]
-$$
-
-completing the heuristic derivation.
+Orthogonality kills cross terms; quadratic variation converts $(\Delta W)^2$ into $\Delta t$. The combination is what gives stochastic integration a Hilbert-space (isometry) structure.
 
 #### Connection to the L² extension
 
-The isometry is not just an interesting identity—it is the **mechanism of construction**. The rigorous extension of the Itô integral from simple processes to all $\mathcal{L}^2([0,T])$ proceeds by:
-
-1. Defining the integral for simple processes and proving the isometry directly.
-2. Using the isometry to show that approximating sequences of simple processes yield Cauchy sequences in $L^2(\Omega)$.
-3. Defining the general integral as the $L^2(\Omega)$ limit.
-
-Without the isometry, step 2 fails and the extension is impossible. The isometry is the **stochastic analogue of Parseval's identity**: energy in equals energy out.
+The isometry is not just an interesting identity—it is the **mechanism of construction**. Recall (see [§ Construction of the Itô Integral](ito_integral_construction.md)): the three-step extension (define on simple processes, prove isometry, complete in $L^2(\Omega)$) fails without the isometry because step 2 (Cauchy approximation) requires it. The isometry is the **stochastic analogue of Parseval's identity**: energy in equals energy out.
 
 ---
 

@@ -63,14 +63,7 @@ B(t,T)
 
 ???+ note "Proof (PDE)"
 
-    Since the Hull-White short rate dynamics is
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    dr=\lambda\left(\theta(t)-r\right) dt+\sigma dW^{\mathbb{Q}}(t)
-    \end{array}$$
-
-    the ZCB PDE becomes
+    Recall (see [HW SDE](../model_definition/hull_white_sde_and_mean_reversion.md)) the short rate dynamics $dr=\lambda(\theta(t)-r)dt+\sigma dW^{\mathbb{Q}}(t)$. The ZCB PDE becomes
 
     $$
     \displaystyle

@@ -6,13 +6,13 @@ The CIR model retains the affine bond price structure $P(t,T) = A(\tau)\,e^{-B(\
 
 ## Bond pricing PDE for the CIR model
 
-The CIR short rate under $\mathbb{Q}$ satisfies $dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$. The zero-coupon bond price $P(t,T) = f(t, r_t)$ satisfies the PDE
+Recall (see [§ Zero-Coupon Bond Pricing Under CIR](zero_coupon_bond_pricing.md)) the bond pricing PDE
 
 $$
-f_t + \kappa(\theta - r)\,f_r + \frac{1}{2}\sigma^2 r\,f_{rr} - r\,f = 0
+f_t + \kappa(\theta - r)\,f_r + \frac{1}{2}\sigma^2 r\,f_{rr} - r\,f = 0, \qquad f(T,r)=1.
 $$
 
-with terminal condition $f(T, r) = 1$. The crucial difference from Vasicek is the factor $r$ multiplying $f_{rr}$: the diffusion coefficient $\sigma^2 r$ is **affine** in $r$, preserving the affine structure.
+The factor $r$ multiplying $f_{rr}$ is affine in $r$, preserving the affine structure.
 
 ---
 
@@ -135,27 +135,7 @@ The exponent $2\kappa\theta/\sigma^2 = \nu/2$ involves the Feller ratio $\nu$.
 
 ## Complete CIR bond pricing formula
 
-Assembling the results:
-
-$$
-P(t,T) = A(\tau)\,e^{-B(\tau)\,r_t}
-$$
-
-with
-
-$$
-B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}
-$$
-
-$$
-A(\tau) = \left(\frac{2\gamma\,e^{(\gamma + \kappa)\tau/2}}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}\right)^{2\kappa\theta/\sigma^2}
-$$
-
-$$
-\gamma = \sqrt{\kappa^2 + 2\sigma^2}
-$$
-
-**Verification.** At $\tau = 0$: $B(0) = 0$, $A(0) = (2\gamma/(2\gamma))^{2\kappa\theta/\sigma^2} = 1$, so $P(T,T) = 1$. $\square$
+Recall (see [§ Zero-Coupon Bond Pricing Under CIR](zero_coupon_bond_pricing.md)) the assembled formula $P(t,T) = A(\tau)e^{-B(\tau)r_t}$ with the closed-form $A, B$ and $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$. At $\tau=0$, $B(0)=0$ and $A(0)=1$, so $P(T,T)=1$. $\square$
 
 ---
 

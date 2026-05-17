@@ -41,7 +41,7 @@ Instead of differentiating raw quotes, one typically:
 1. constructs a smooth surface $\tilde C(K,T)$ (or $\tilde\sigma_{\text{impl}}(K,T)$),
 2. applies Dupire differentiation to the smooth surface.
 
-This is a form of **regularization**: you restrict attention to smooth surfaces compatible with data.
+This is a form of **regularization** (Recall (see [§ Regularization and stability](../regularization_and_stability/penalization_and_smoothness_constraints.md))): you restrict attention to smooth surfaces compatible with data.
 
 Common smoothing approaches:
 
@@ -63,7 +63,7 @@ Common smoothing approaches:
 
 Smoothing must respect no-arbitrage conditions, otherwise the denominator $\partial_{KK}C$ can become negative or near-zero, producing unstable or imaginary local vol.
 
-Useful constraints include:
+Useful constraints include (Recall (see [§ Breeden–Litzenberger](../../ch12/model_free_results/breeden_litzenberger_formula.md)) for the convexity interpretation):
 
 - **monotonicity in strike:** $\partial_K C \le 0$,
 - **convexity in strike:** $\partial_{KK} C \ge 0$,

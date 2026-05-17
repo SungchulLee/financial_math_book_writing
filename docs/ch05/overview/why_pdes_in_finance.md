@@ -12,7 +12,7 @@ $$
 V(t, S) = e^{-r(T-t)}\,\mathbb{E}^{\mathbb{Q}}[g(S_T) \mid S_t = S]
 $$
 
-This expectation is a **function of the current state** $(t, S)$. The Feynman-Kac theorem (developed in [The SDE-PDE Bridge](sde_pde_bridge.md)) guarantees that such a function satisfies a parabolic PDE — the Black-Scholes equation in the geometric Brownian motion case. The remarkable consequence: **a deterministic PDE captures the present value of a random future payoff**.
+Recall (see [§ The SDE–PDE Bridge](sde_pde_bridge.md)): such a discounted expectation of a Markovian diffusion satisfies a parabolic PDE — the Feynman–Kac equation $\partial_t u + \mathcal{L}u - ru = 0$. The remarkable financial consequence: **a deterministic PDE captures the present value of a random future payoff**.
 
 !!! quote "The Central Principle"
     Every pricing problem for a Markovian underlying reduces to solving a PDE. The drift and volatility of the underlying determine the PDE coefficients; the payoff sets the terminal condition; discounting enters as a zeroth-order term.
@@ -21,11 +21,11 @@ This expectation is a **function of the current state** $(t, S)$. The Feynman-Ka
 
 ## The Three-Term Anatomy of a Pricing PDE
 
-The generator $\mathcal{L}$ of the underlying diffusion (see [The SDE-PDE Bridge](sde_pde_bridge.md) for its definition and the Feynman-Kac derivation) decomposes the pricing PDE into three financially meaningful terms:
+Recall (see [§ The SDE–PDE Bridge](sde_pde_bridge.md)): the generator $\mathcal{L}$ packages the drift and diffusion of the underlying into a single first-and-second-order spatial operator. Interpreted financially, the pricing PDE $\partial_t V + \mathcal{L}V - rV = 0$ decomposes into three meaningful terms:
 
-- **Drift** $\mu$ contributes a first-order (transport) term — directional motion of the underlying
-- **Volatility** $\sigma$ contributes a second-order (diffusion) term — random fluctuation
-- **Discounting** $r$ contributes a zeroth-order (decay) term — time value of money
+- **Drift** contributes a first-order (transport) term — directional motion of the underlying
+- **Volatility** contributes a second-order (diffusion) term — random fluctuation
+- **Discounting** contributes a zeroth-order (decay) term — time value of money
 
 This three-term structure — transport, diffusion, decay — is the universal anatomy of every financial pricing PDE.
 
@@ -134,14 +134,7 @@ $$
 
 ### Derivation via Hedging
 
-The PDE can also be derived by a **replicating portfolio argument** (the original Black-Scholes derivation):
-
-1. Form a portfolio $\Pi = V - \Delta S$ where $\Delta = \partial V / \partial S$
-2. By Ito's lemma: $d\Pi = \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right)dt$
-3. No-arbitrage requires $d\Pi = r\Pi\,dt$
-4. Substituting and rearranging yields the Black-Scholes PDE
-
-This hedging derivation and the Feynman-Kac probabilistic derivation are two sides of the same coin.
+Recall (see [§ Delta Hedging](../../ch06/bs_pde_derivation/delta_hedging.md)): the BS PDE also follows from a replicating-portfolio / no-arbitrage argument, giving the same equation as the Feynman–Kac route — see also [§ Replication](../../ch06/bs_pde_derivation/replication.md) and [§ One Equation, Five Perspectives](../../ch06/bs_pde_derivation/one_equation_five_perspectives.md) for the full taxonomy of derivations.
 
 ---
 
@@ -189,23 +182,7 @@ where $\mathcal{L}_r$ is the generator of the short-rate process.
 
 ## The PDE Perspective on Greeks
 
-A major advantage of the PDE approach is that **Greeks are built into the solution**. Since $V(t,S)$ is computed on an entire grid, its derivatives are immediately available:
-
-| Greek | Definition | PDE Interpretation |
-|---|---|---|
-| Delta ($\Delta$) | $\frac{\partial V}{\partial S}$ | Slope of the solution surface |
-| Gamma ($\Gamma$) | $\frac{\partial^2 V}{\partial S^2}$ | Curvature of the solution surface |
-| Theta ($\Theta$) | $\frac{\partial V}{\partial t}$ | Time decay, recoverable from the PDE itself |
-| Vega | $\frac{\partial V}{\partial \sigma}$ | Sensitivity to volatility (requires re-solving) |
-
-!!! note "Theta from the PDE"
-    The Black-Scholes PDE itself gives $\Theta$ directly:
-
-    $$
-    \Theta = rV - rS\Delta - \frac{1}{2}\sigma^2 S^2 \Gamma
-    $$
-
-    This is a **model-independent relationship** (within Black-Scholes) connecting the Greeks.
+Recall (see [§ Greeks from PDE](../../ch06/bs_pde_structure/greeks_from_pde.md)): because $V(t,S)$ is solved on a full grid, the spatial Greeks ($\Delta = \partial_S V$, $\Gamma = \partial_{SS} V$) come for free, and the PDE itself yields the algebraic identity $\Theta = rV - rS\Delta - \tfrac12\sigma^2 S^2 \Gamma$.
 
 ---
 
@@ -243,11 +220,11 @@ The PDE approach to finance rests on three pillars:
 
 ## See Also
 
-- [The SDE-PDE Bridge](sde_pde_bridge.md) -- the mathematical connection between diffusions and PDEs
-- [Classification of Second-Order PDEs](classification_of_second_order_pdes.md) -- elliptic, parabolic, hyperbolic
-- [Boundary Value Problems](boundary_value_problems.md) -- Dirichlet, Neumann, Robin conditions
-- [Feynman-Kac Formula](../feynman_kac/feynman_kac_formula.md) -- the rigorous statement and proof
-- [Black-Scholes PDE](../../ch06/bs_pde_structure/discounting_and_killing_term.md) -- detailed PDE structure
+- [§ The SDE–PDE Bridge](sde_pde_bridge.md) — the mathematical connection between diffusions and PDEs
+- [§ Classification of Second-Order PDEs](classification_of_second_order_pdes.md) — elliptic, parabolic, hyperbolic
+- [§ Boundary Value Problems](boundary_value_problems.md) — Dirichlet, Neumann, Robin conditions
+- [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — the rigorous statement and proof
+- [Black–Scholes PDE](../../ch06/bs_pde_structure/discounting_and_killing_term.md) — detailed PDE structure
 
 ---
 

@@ -4,6 +4,20 @@
 This derivation removes the physical drift $\mu$ by **portfolio construction**: choosing the hedge ratio $\Delta = V_S$ eliminates all stochastic risk, and no-arbitrage forces the resulting riskless portfolio to earn the rate $r$. This is the original approach of Black and Scholes (1973), and remains the most direct route from market assumptions to the pricing equation.
 
 
+## Mechanism: Hedging in a Single Binomial Step
+
+
+Before the continuous derivation, the mechanism is visible in a single binomial step. Let the stock today be $S_0$ and let it move tomorrow to either $S_0 u$ or $S_0 d$, with $d < e^{r\Delta t} < u$. Sell an option with payoff $\Phi$ and hold $\Delta$ shares against it. The portfolio value at the next step is
+
+$$\Pi = -\Phi(S) + \Delta\, S$$
+
+Choosing
+
+$$\Delta = \frac{\Phi(S_0 u) - \Phi(S_0 d)}{S_0 u - S_0 d}$$
+
+makes $\Pi$ take the same value in both states — randomness is eliminated by a single difference quotient. No-arbitrage then forces $\Pi$ to grow at rate $r$, pinning down the option price. The continuous derivation below is the differential limit of this idea: $\Delta = V_S$ cancels the random part of $dV$ via Itô's formula, and no-arbitrage prices the rest.
+
+
 ## Setup
 
 
@@ -25,11 +39,7 @@ In practice, a derivatives dealer typically **writes** (sells) the option, recei
 ## Step 1: Dynamics of the Derivative Price
 
 
-Apply Itô's formula to $V(t, S_t)$:
-
-$$dV = \frac{\partial V}{\partial t}\, dt + \frac{\partial V}{\partial S}\, dS + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}\,(dS)^2$$
-
-The quadratic variation is $(dS)^2 = \sigma^2 S^2\, dt$ (using the Itô rules $(dt)^2 = 0$, $dt\, dW = 0$, $(dW)^2 = dt$). Substituting $dS = \mu S\, dt + \sigma S\, dW$:
+Recall (see [§ Itô's Lemma](../../ch03/ito_lemma/ito_lemma.md)): applying Itô's formula to $V(t, S_t)$ with $dS = \mu S\,dt + \sigma S\,dW$ and $(dS)^2 = \sigma^2 S^2\,dt$ gives
 
 $$dV = \left(\frac{\partial V}{\partial t} + \mu S \frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right) dt + \sigma S \frac{\partial V}{\partial S}\, dW$$
 
@@ -46,8 +56,6 @@ $$\Pi_t = -V_t + \Delta\, S_t$$
 Over an infinitesimal interval $[t, t + dt]$, hold $\Delta$ **fixed** (it will be rebalanced at $t + dt$). The change in portfolio value is
 
 $$d\Pi = -dV + \Delta\, dS$$
-
-This implicitly assumes that any cash required to rebalance the hedge is borrowed or lent at the risk-free rate $r$. The precise relationship between this "freeze-and-rebalance" construction and the self-financing formulation is discussed in the admonition near the end of this page (and made fully rigorous in [self-financing replication](replication.md)).
 
 Substituting the expressions for $dV$ and $dS$:
 
@@ -88,15 +96,11 @@ This is the **Black–Scholes PDE**, subject to the terminal condition $V(T, S) 
 !!! note "Sign convention"
     The sign convention for $\Pi$ (long or short the option) does not affect the PDE. The factor of $-1$ propagates through both sides of $d\Pi = r\Pi\, dt$ and cancels, leaving the same pricing equation. The PDE is a property of the price function $V$, not of which side of the trade you are on.
 
-Continuous hedging is, of course, an idealization: in practice, portfolios are rebalanced at discrete intervals, and each rebalance incurs transaction costs. These frictions mean that exact replication is impossible, and the hedging error grows with the rebalancing interval. Exercise 5 below quantifies this effect.
-
 
 ## Why the Drift μ Disappears
 
 
-The absence of $\mu$ from the PDE is the central economic insight of the derivation. The hedging portfolio eliminates all exposure to the stock's random fluctuations, so the stock's expected return becomes irrelevant—only the volatility (which determines the magnitude of fluctuations, and hence the cost of hedging) and the risk-free rate (which determines the opportunity cost) enter the equation.
-
-This means investors with different views on the stock's future return all agree on the option price, provided they agree on the volatility. It is also the reason the PDE can be solved without specifying the physical drift, and why the solution coincides with the expectation under the risk-neutral measure.
+In this derivation, $\mu$ cancels at the moment $\Delta = V_S$ is chosen: the hedge eliminates the stock's random fluctuations, so its expected return becomes irrelevant. Only $\sigma$ (the cost of hedging) and $r$ (the opportunity cost) enter the PDE. Each of the other four routes removes $\mu$ by a different mechanism — see the comparative table in [§ Why So Many Derivations?](one_equation_five_perspectives.md).
 
 
 ## Extension: Continuous Dividend Yield
@@ -132,8 +136,8 @@ $$\boxed{\frac{\partial V}{\partial t} + (r - q)S\frac{\partial V}{\partial S} +
 The dividend yield replaces $r$ by $r - q$ in the first-order (drift) term, while the discounting term $-rV$ is unchanged.
 
 
-??? note "On self-financing and rebalancing"
-    This derivation holds $\Delta$ fixed over each infinitesimal interval $[t, t+dt]$ and then rebalances—a "freeze-and-rebalance" heuristic that avoids the machinery of self-financing strategies. In the standard Black–Scholes setting this leads to the same PDE as the rigorous self-financing replication argument (see the [rigorous version](replication.md)), which constructs $(\alpha_t, \beta_t)$ in the stock and bond satisfying $dV_t = \alpha_t\,dS_t + \beta_t\,dB_t$ with no external cash flows. The informal hedge ratio $\Delta = V_S$ used here and the rigorous stock holding $\alpha_t = V_S$ of the next page are the same object: the two pages differ in how the bond leg is treated, not in the stock leg.
+??? note "Limitations of continuous hedging"
+    The "freeze-and-rebalance" step above implicitly assumes any cash required to rebalance is borrowed or lent at $r$, and that rebalancing is continuous and frictionless. In practice, portfolios are rebalanced at discrete intervals and each rebalance incurs transaction costs, so exact replication is impossible and the hedging error grows with the rebalancing interval (Exercise 5 quantifies this). The precise relationship between this heuristic and a genuinely self-financing strategy is made fully rigorous in [§ Black–Scholes PDE via Self-Financing Replication](replication.md): the hedge ratio $\Delta = V_S$ here is the same object as the stock holding $\alpha_t = V_S$ there.
 
 
 ## Summary
@@ -147,7 +151,7 @@ The derivation proceeds in three steps:
 
 The Black–Scholes PDE with terminal condition $V(T, S) = \Phi(S)$ is a **backward parabolic equation**: it is solved from $t = T$ back to $t = 0$.
 
-For alternative derivations that arrive at the same PDE via different reasoning, see [Black–Scholes PDE via Change of Numéraire](change_of_numeraire.md) (martingale condition on $V/S$) and [Risk-Neutral Pricing](../../ch01/numeraire_and_change_of_measure/numeraire_and_change_of_measure.md) (Feynman–Kac representation under the equivalent martingale measure).
+For alternative derivations of the same PDE, see [§ Why So Many Derivations?](one_equation_five_perspectives.md) for the comparative map across the five routes.
 
 
 ## References

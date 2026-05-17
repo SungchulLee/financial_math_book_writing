@@ -173,40 +173,15 @@ These are precisely the **static no-arbitrage bounds** on European call prices.
 ### 1. Vega Formula
 
 
-The derivative of the Black-Scholes price with respect to volatility:
-
-
-$$
-\mathcal{V} := \frac{\partial C_{\text{BS}}}{\partial \sigma} = S e^{-qT} \phi(d_1) \sqrt{T}
-$$
-
-
-
-where $\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$ is the standard normal density.
-
-### 2. Positivity and Implications
-
-
-**Proposition 4.2.1** (Strict Positivity of Vega)  
-For all $(S, K, T, r, q, \sigma)$ with $S > 0$, $T > 0$, $\sigma > 0$:
-
+Recall (see [§ Vega and Implied Volatility Sensitivity](../implied_volatility_sensitivities/vega_and_implied_volatility_sensitivity.md) and [§ Greeks in Black-Scholes Model](../../ch10/greeks/greeks_in_black_scholes_model.md)): the Black-Scholes vega is
 
 $$
-\mathcal{V}(\sigma) > 0
+\mathcal{V} := \frac{\partial C_{\text{BS}}}{\partial \sigma} = S e^{-qT} \phi(d_1) \sqrt{T} > 0,
 $$
 
+where $\phi$ is the standard normal density. Hence $\sigma \mapsto C_{\text{BS}}(\sigma)$ is strictly increasing on $(0, \infty)$, establishing uniqueness of $\sigma_{\text{IV}}$ whenever it exists.
 
-
-*Proof.* Each factor is strictly positive:
-
-- $S e^{-qT} > 0$ (discounted spot)
-- $\phi(d_1) > 0$ (Gaussian density is positive everywhere)
-- $\sqrt{T} > 0$ □
-
-**Corollary 4.2.2** (Strict Monotonicity)  
-The map $\sigma \mapsto C_{\text{BS}}(\sigma)$ is strictly increasing on $(0, \infty)$.
-
-### 3. Uniform Lower Bound on Vega
+### 2. Uniform Lower Bound on Vega
 
 
 While vega is always positive, its magnitude varies with moneyness and maturity. 
@@ -221,7 +196,7 @@ $$
 
 
 
-*Proof.* On any compact interval $[\sigma_{\min}, \sigma_{\max}]$, the continuous positive function $\mathcal{V}$ attains its infimum, which is strictly positive by Proposition 4.2.1. □
+*Proof.* On any compact interval $[\sigma_{\min}, \sigma_{\max}]$, the continuous positive function $\mathcal{V}$ attains its infimum, which is strictly positive by positivity of vega. □
 
 This ensures that the inverse map $C \mapsto \sigma_{\text{IV}}$ has bounded derivative:
 

@@ -17,35 +17,13 @@ This section defines the general one-factor stochastic volatility framework, ide
 
 ## The General One-Factor SV Framework
 
-### Intuition
+Recall (see [§ Two-Factor Diffusion Models](../../ch14/general_stochastic_volatility_framework/two_factor_diffusion_models.md)): a generic stochastic volatility model writes
 
-In any stochastic volatility model, the key idea is the same: the instantaneous variance is not a fixed parameter but a random process with its own dynamics. Different models differ only in how they specify the drift and diffusion of the variance (or volatility) process. Thinking of the variance dynamics as a "plug-in module" within a common framework makes it straightforward to compare models and understand what drives their distinct behaviors.
+$$
+dS_t = (r - q)\,S_t\,dt + \sigma(v_t)\,S_t\,dW_t^{(1)}, \qquad dv_t = \mu_v(v_t)\,dt + \sigma_v(v_t)\,dW_t^{(2)}, \qquad d\langle W^{(1)}, W^{(2)}\rangle_t = \rho\,dt.
+$$
 
-### Definition
-
-!!! info "Definition: General One-Factor Stochastic Volatility Model"
-    Under the risk-neutral measure $\mathbb{Q}$, a one-factor stochastic volatility model specifies:
-
-    $$
-    dS_t = (r - q)\,S_t\,dt + \sigma(v_t)\,S_t\,dW_t^{(1)}
-    $$
-
-    $$
-    dv_t = \mu_v(v_t)\,dt + \sigma_v(v_t)\,dW_t^{(2)}
-    $$
-
-    $$
-    d\langle W^{(1)}, W^{(2)} \rangle_t = \rho\,dt
-    $$
-
-    where:
-
-    - $v_t$ is the state variable driving volatility
-    - $\sigma(v_t)$ is the **volatility function** mapping the state variable to the instantaneous volatility of $S_t$
-    - $\mu_v(v_t)$ is the **drift function** of the variance/volatility process
-    - $\sigma_v(v_t)$ is the **diffusion function** of the variance/volatility process
-
-The three coefficient functions $\sigma(\cdot)$, $\mu_v(\cdot)$, and $\sigma_v(\cdot)$ determine the model completely. Each named SV model corresponds to a particular choice of these three functions.
+The three coefficient functions $\sigma(\cdot)$, $\mu_v(\cdot)$, $\sigma_v(\cdot)$ determine the model completely. Each named SV model corresponds to a particular choice of these functions.
 
 ---
 
@@ -117,21 +95,9 @@ The following table catalogs the most important one-factor SV models by their co
 
 ## Affine Structure: The Key Distinction
 
-The property that sets the Heston model apart is its **affine structure**. To see why this matters, consider the characteristic function of the log-price:
+Recall (see [§ Affine Structure and Riccati System](affine_structure_and_riccati.md) and [§ Heston as Affine](../../ch15/examples/heston_as_affine.md)): because the drift and squared diffusion of $v_t$ are affine in $v_t$, the conditional characteristic function admits the exponential-affine form $\phi(u, \tau) = \exp(C(\tau, u) + D(\tau, u)v_t + iu\,x_t)$, with $C$ and $D$ solving Riccati ODEs. The 2D PDE reduces to a pair of ODEs solvable in closed form.
 
-$$
-\phi(u, \tau) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{iu\,x_T} \,\middle|\, x_t, v_t\right]
-$$
-
-For the Heston model, the Feynman-Kac theorem links $\phi$ to a PDE. Because the drift and squared diffusion of $v_t$ are both affine in $v_t$, one can guess (and verify) that $\phi$ has the exponential-affine form:
-
-$$
-\phi(u, \tau) = \exp\!\bigl(C(\tau, u) + D(\tau, u)\,v_t + iu\,x_t\bigr)
-$$
-
-where $C$ and $D$ satisfy Riccati ordinary differential equations. This reduces the pricing problem from solving a PDE in $(x, v, t)$ to solving two ODEs, which can be done in closed form.
-
-For non-affine models (Hull-White, SABR, 3/2), no such reduction exists in general. The characteristic function either has no closed form or requires special transformations.
+For non-affine models (Hull-White, SABR, 3/2), no such reduction exists in general; the characteristic function either has no closed form or requires special transformations.
 
 !!! note "Affine Models Beyond Heston"
     The Heston model is the most important member of the affine class, but it is not the only one. The Bates (1996) model adds jumps to the Heston price dynamics while preserving affine structure. Multi-factor models (double Heston) stack two independent CIR variance processes. These extensions, discussed in later sections, all share the Riccati ODE structure.
@@ -140,16 +106,7 @@ For non-affine models (Hull-White, SABR, 3/2), no such reduction exists in gener
 
 ## Existence and Uniqueness
 
-The Heston SDE system has well-defined solutions under the standard parameter constraints.
-
-!!! success "Theorem: Existence and Pathwise Uniqueness"
-    Suppose $\kappa > 0$, $\theta > 0$, $\sigma_v > 0$, $\rho \in [-1, 1]$, and $v_0 > 0$. Then:
-
-    1. The CIR variance equation $dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t^{(2)}$ has a unique strong solution $v_t \geq 0$ for all $t \geq 0$
-    2. If the Feller condition $2\kappa\theta \geq \sigma_v^2$ holds, then $v_t > 0$ a.s. for all $t > 0$
-    3. Given any continuous, non-negative variance path $v_t$, the asset price equation has a unique strong solution $S_t > 0$ for all $t \geq 0$
-
-The variance process existence and uniqueness rely on the Yamada-Watanabe theorem, which applies to SDEs with Holder-$\frac{1}{2}$ continuous diffusion coefficients (the $\sqrt{v}$ function). The standard Lipschitz condition for uniqueness fails at $v = 0$, but the Yamada-Watanabe condition $\int_0^\epsilon \sigma_v^{-2}(x)\,dx = \int_0^\epsilon (\sigma_v^2 x)^{-1}\,dx = +\infty$ suffices for pathwise uniqueness.
+Recall (see [§ Feller Condition and Boundary Behavior](feller_condition_and_boundary.md) and [§ CIR Variance Process Solution](../variance_dynamics/cir_variance_process_solution.md)): under $\kappa, \theta, \sigma_v > 0$ and $v_0 > 0$, the CIR variance equation admits a unique strong non-negative solution (via Yamada-Watanabe), strict positivity follows under the Feller condition $2\kappa\theta \geq \sigma_v^2$, and the asset price equation has a unique strong positive solution given any continuous non-negative variance path.
 
 ---
 

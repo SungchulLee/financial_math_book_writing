@@ -1,7 +1,9 @@
 # Properties and Bounds of Option Prices
 
-
 Option prices satisfy fundamental mathematical properties that follow from no-arbitrage principles. These properties—monotonicity, convexity, and bounds—provide constraints that any valid pricing model must respect and enable arbitrage detection in practice.
+
+!!! tip "Toy mechanism: dominated portfolios"
+    Every result in this section is a corollary of a single mechanism: if portfolio $A$ pays at least as much as portfolio $B$ in every state of the world, then $A_0 \geq B_0$. The lower bound $C \geq (S - Ke^{-rT})^+$, the convex butterfly constraint, the calendar-spread inequality, and the parity-based Greek symmetries all come from comparing two payoff functions pathwise and reading off the price inequality. The Black–Scholes formula then *verifies* these properties — but the properties themselves are deeper than any specific model.
 
 This section rigorously establishes these properties for European options under the Black-Scholes framework.
 
@@ -161,22 +163,12 @@ Since $\mathcal{N}(d_1) < 1$, we have $\frac{\partial P}{\partial S} < 0$. ✓
 
 ## Monotonicity in Time
 
-*Section goal: how $\Theta < 0$ encodes time decay, with the calendar-vs-maturity-time distinction.*
+*Section goal: how $\Theta < 0$ encodes time decay and the calendar-vs-maturity-time sign.*
 
 ### 1. **Time Decay (Theta)**
 
 
-For European calls on non-dividend-paying stocks:
-
-$$
-\Theta_{\text{call}} := \frac{\partial C}{\partial t} = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T}} - rKe^{-rT}\mathcal{N}(d_2)
-$$
-
-Here $\Theta$ is the derivative with respect to **calendar time**, related to time-to-maturity by $\Theta = -\partial C/\partial T$ (calendar time advancing equals $T$ shrinking).
-
-**Interpretation**: With $r > 0$, both terms are strictly positive, so $\Theta_{\text{call}} < 0$ — the call price decreases as calendar time passes. This is **time decay**.
-
-**Exception**: For dividend-paying stocks (or European puts), deep-ITM theta can be positive when interest on the deferred strike dominates. For non-dividend calls with $r > 0$, $\Theta < 0$ everywhere.
+Recall (see [§ Greeks in Black-Scholes](../../ch10/greeks/greeks_in_black_scholes_model.md)): the closed-form theta $\Theta_{\text{call}} = -S\mathcal{N}'(d_1)\sigma/(2\sqrt{T}) - rKe^{-rT}\mathcal{N}(d_2)$ is negative when $r>0$ (non-dividend), so call value decays in calendar time, with $\Theta = -\partial C/\partial T$.
 
 ### 2. **Increasing with Time to Maturity**
 
@@ -199,32 +191,15 @@ $$
 
 ## Monotonicity in Volatility
 
-*Section goal: vega $\nu > 0$ and why both calls and puts gain value from higher $\sigma$.*
+*Section goal: vega $\nu > 0$ as a property bound — both calls and puts gain from higher $\sigma$.*
 
-### 1. **Vega (Volatility Sensitivity)**
-
-
-$$
-\boxed{\frac{\partial C}{\partial \sigma} = S\sqrt{T}\,\mathcal{N}'(d_1) > 0}
-$$
-
-**Interpretation**: Call (and put) prices are **strictly increasing** in volatility.
-
-**Vega formula**:
+Recall (see [§ Greeks in Black-Scholes](../../ch10/greeks/greeks_in_black_scholes_model.md)): $\nu = \partial C/\partial\sigma = S\sqrt{T}\,\mathcal{N}'(d_1) > 0$, identical for calls and puts by put-call parity, so option value is strictly increasing in $\sigma$
 
 $$
-\nu = S\sqrt{T}\,\mathcal{N}'(d_1) = S\sqrt{T}\frac{1}{\sqrt{2\pi}}e^{-d_1^2/2} > 0
+\boxed{\frac{\partial C}{\partial \sigma} > 0, \qquad \nu_{\text{call}} = \nu_{\text{put}}}
 $$
 
-**Economic intuition**: Higher volatility increases the probability of large moves. For options (with capped downside but unlimited upside), this increases value.
-
-**Key property**: Vega is the same for calls and puts with identical strike and maturity:
-
-$$
-\nu_{\text{call}} = \nu_{\text{put}}
-$$
-
-This follows from put-call parity (volatility affects both equally).
+**Economic intuition**: Higher volatility increases the probability of large moves. For options (capped downside, unlimited upside) this increases value.
 
 ---
 

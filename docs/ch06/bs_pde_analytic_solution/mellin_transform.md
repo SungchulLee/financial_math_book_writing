@@ -1,12 +1,95 @@
 # Mellin Transform for the Black-Scholes PDE
 
-The Black-Scholes PDE has variable coefficients $rS\frac{\partial V}{\partial S}$ and $\frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2}$ that arise because stock prices evolve multiplicatively: a percentage return is the same whether the stock is at \$10 or \$1000. The Fourier transform is the natural tool for additive processes on $(-\infty, \infty)$, while the **Mellin transform** is the natural tool for multiplicative processes on $(0, \infty)$. Where the Fourier transform diagonalizes the constant-coefficient operators $\frac{\partial}{\partial x}$ and $\frac{\partial^2}{\partial x^2}$, the Mellin transform diagonalizes the variable-coefficient operators $S\frac{\partial}{\partial S}$ and $S^2\frac{\partial^2}{\partial S^2}$ that appear directly in the Black-Scholes equation. This allows us to work with the stock price $S$ itself, without the logarithmic change of variable $x = \ln S$ that other transform methods require.
+Everything in this subsection follows from one sentence:
 
-This section develops the Mellin transform approach to solving the Black-Scholes PDE, derives the European call price via Mellin inversion, and establishes the precise duality between the Mellin and Fourier transforms.
+> **The Mellin transform in $x$ is the Fourier transform in $\log x$.**
+
+The Mellin transform follows from one simple calculation:
+
+$$
+S \frac{d}{dS}\, S^s = s \cdot S^s
+$$
+
+**Power laws are eigenfunctions of the scaling operator $S\, \partial_S$** — the multiplicative analogue of plane waves $e^{i\omega x}$ being eigenfunctions of $\partial_x$. The Mellin transform decomposes any function on $(0, \infty)$ into these power-law modes, and in those coordinates the variable-coefficient Black–Scholes operator collapses to a quadratic polynomial in the Mellin variable $s$.
+
+We build the picture in the same order a reader naturally builds intuition: the toy eigenfunction calculation first, then the transform definition, and only then the Black–Scholes PDE in Mellin space.
 
 ---
 
-## Mellin Transform: Definition and Properties
+## 1. Why Mellin? A Toy Mechanism
+
+Before any finance, work the eigenvalue calculation. Consider the **scaling operator**
+
+$$
+D := S \frac{d}{dS}
+$$
+
+acting on functions of $S \in (0, \infty)$. Apply $D$ to a power-law $S^s$ with $s \in \mathbb{C}$:
+
+$$
+D \cdot S^s = S \cdot s\, S^{s-1} = s \cdot S^s
+$$
+
+Iterating,
+
+$$
+D^n \cdot S^s = s^n \cdot S^s, \qquad S^2 \frac{d^2}{dS^2}\, S^s = D(D - 1)\, S^s = s(s - 1)\, S^s
+$$
+
+These two identities are the Mellin analogue of the Fourier eigenfunction relation $\partial_x\, e^{i\omega x} = i\omega \cdot e^{i\omega x}$ — they are the entire mechanism that makes the rest of the subsection work.
+
+### 1.1 Why Mellin and Not Fourier?
+
+The Fourier transform decomposes $f(x)$ into plane waves $e^{i\omega x}$ — the eigenfunctions of *translation*, $x \mapsto x + a$. Each plane wave is invariant (up to a phase) under shifting by $a$.
+
+The Mellin transform decomposes $V(S)$ into power-laws $S^{-s}$ — the eigenfunctions of *dilation*, $S \mapsto \lambda S$. Each power-law $S^{-s}$ is invariant (up to a scaling factor $\lambda^{-s}$) under multiplication by $\lambda$.
+
+Stock prices evolve **multiplicatively**: a $5\%$ return is the same whether $S = \$10$ or $\$1000$. The natural symmetry group of the Black–Scholes problem is therefore the multiplicative group $(0, \infty)$, not the additive group $\mathbb{R}$ — and Mellin is built for exactly that group.
+
+### 1.2 Diagonalization Picture
+
+A constant-coefficient operator in $x$ — say $-\partial_x^2 + \mu^2$ — commutes with translations and is diagonalized by Fourier. The Black–Scholes spatial operator
+
+$$
+\mathcal{L}_S = \frac{\sigma^2}{2} S^2 \frac{d^2}{dS^2} + r S \frac{d}{dS} - r
+$$
+
+is **not** constant-coefficient in $S$ (the coefficients $S^2$ and $S$ depend explicitly on $S$), so Fourier in $S$ would not diagonalize it directly. But written in terms of the scaling operator $D = S\, \partial_S$,
+
+$$
+\mathcal{L}_S = \frac{\sigma^2}{2}\, D(D - 1) + r D - r
+$$
+
+— a **polynomial in $D$ alone** — and every $D$-polynomial is diagonalized by power-law modes. Hence Mellin in $S$ diagonalizes the BS operator without first changing variables to $x = \ln S$.
+
+In Mellin coordinates, the action on power-law modes becomes a *scalar* multiplication:
+
+$$
+\mathcal{L}_S\, S^{-s} = \Lambda(s)\, S^{-s}, \qquad \Lambda(s) = \frac{\sigma^2}{2}\, s(s - 1) - r s - r
+$$
+
+(reading off from $D \cdot S^{-s} = -s \cdot S^{-s}$). The eigenvalue $\Lambda(s)$ is the **Mellin symbol** of the BS operator — analogous to the Fourier characteristic exponent $\psi(\omega)$.
+
+!!! tip "Core principle"
+    The Mellin transform decomposes functions on $(0, \infty)$ into power-law modes $S^{-s}$, which are joint eigenfunctions of the **scaling operator** $D = S\, \partial_S$ and of every operator that is a polynomial in $D$. For the Black–Scholes generator, this turns the second-order spatial operator into a quadratic polynomial $\Lambda(s)$ in the Mellin variable.
+
+This is the mechanism. Black–Scholes is the application.
+
+### 1.3 Mellin = Fourier in Disguise
+
+The change of variable $x = \ln S$ converts the Mellin integral into a Fourier-type integral:
+
+$$
+\mathcal{M}[V](s) = \int_0^\infty V(S)\, S^{s - 1}\, dS \underset{x = \ln S}{=} \int_{-\infty}^\infty V(e^x)\, e^{s x}\, dx
+$$
+
+— the Mellin transform of $V(S)$ at the point $s$ is the two-sided Laplace / generalized Fourier transform of the function $x \mapsto V(e^x)$. So Mellin in $S$ and Fourier in $x = \ln S$ are *the same transform written in different coordinates*; the toy eigenfunction identity $D\, S^s = s\, S^s$ is the spatial-side translation of $\partial_x\, e^{s x} = s\, e^{s x}$. The reason we keep Mellin as a separate development is that the multiplicative variable $S$ is the financially natural one: power-law modes $S^{-s}$ are gearing/moneyness exponents that map directly onto market language, whereas $e^{i\omega x}$ does not.
+
+This subsection is therefore best read as an *alternative perspective* on the Black-Scholes formula rather than a self-contained derivation: the cleanest contour analysis still proceeds through the Fourier picture of [§ Fourier Transform](fourier_transform.md). What the Mellin viewpoint adds is the multiplicative-symmetry interpretation and a clean operator-algebra story tied directly to financial coordinates.
+
+---
+
+## 2. Mellin Transform: Definition and Properties
 
 ### Definition
 
@@ -42,15 +125,12 @@ Both results follow from integration by parts, assuming that boundary terms at $
 
 ---
 
-## Transforming the Black-Scholes PDE
+## 3. Transforming the Black-Scholes PDE
 
-The Black-Scholes PDE in original $(S, t)$ variables is
+!!! note "Recall"
+    The Black-Scholes PDE and its terminal/boundary conditions are stated in [§ Introduction](intro.md); the heat-equation form and risk-neutral framing are developed in [§ Heat Equation](heat_equation.md) and [§ Feynman–Kac](feynman_kac.md).
 
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
-$$
-
-Apply the Mellin transform in $S$, writing $\hat{V}(s,t) = \mathcal{M}[V](s,t)$:
+Apply the Mellin transform in $S$ directly to the BS PDE in $(S, t)$ variables, writing $\hat{V}(s,t) = \mathcal{M}[V](s,t)$:
 
 $$
 \frac{\partial \hat{V}}{\partial t} + rs\,\hat{V} + \frac{\sigma^2}{2}s(s-1)\,\hat{V} - r\,\hat{V} = 0
@@ -86,158 +166,73 @@ $$
 
 ---
 
-## Mellin Solution for the European Call
+## 4. Mellin Solution for the European Call
 
 ### Mellin Transform of the Call Payoff
 
-For the European call payoff $\Phi(S) = (S - K)^+$:
+For the European call payoff $\Phi(S) = (S - K)^+$, a direct calculation gives
 
 $$
-\mathcal{M}[(S-K)^+](s) = \int_K^{\infty}(S-K)\,S^{s-1}\,dS
+\mathcal{M}[(S-K)^+](s) = \int_K^{\infty}(S-K)\,S^{s-1}\,dS = \frac{K^{s+1}}{s(s+1)}
 $$
 
-Expanding:
+The integral converges at $S = \infty$ only when $\text{Re}(s) < -1$, so this identity is meaningful on the half-plane $\text{Re}(s) < -1$.
 
-$$
-= \int_K^{\infty}S^s\,dS - K\int_K^{\infty}S^{s-1}\,dS
-$$
+??? note "Analytic strip"
+    The Mellin transform of an integrable function is, in general, holomorphic on a vertical strip $c_1 < \text{Re}(s) < c_2$ — its **fundamental strip** — determined by the decay of the function at $0$ and at $\infty$. For the call payoff $(S - K)^+$, the function vanishes for $S < K$ (so there is no constraint at $S = 0$) but grows linearly at infinity, forcing $\text{Re}(s) < -1$. Strictly speaking the "strip" here is the half-plane $\text{Re}(s) < -1$.
 
-$$
-= \left[\frac{S^{s+1}}{s+1}\right]_K^{\infty} - K\left[\frac{S^s}{s}\right]_K^{\infty}
-$$
-
-For convergence at infinity, we need $\text{Re}(s+1) < 0$ and $\text{Re}(s) < 0$, so $\text{Re}(s) < -1$. Under this condition:
-
-$$
-= -\frac{K^{s+1}}{s+1} + \frac{K^{s+1}}{s} = K^{s+1}\left[\frac{1}{s} - \frac{1}{s+1}\right]
-$$
-
-$$
-\boxed{\mathcal{M}[(S-K)^+](s) = \frac{K^{s+1}}{s(s+1)}}
-$$
-
-valid for $\text{Re}(s) < -1$.
+    The inverse Mellin contour $\text{Re}(s) = c$ **must lie inside this strip** for the inversion integral to represent the original function. Recovering the option price by deforming the contour to the right (toward $\text{Re}(s) = 0$) crosses the poles at $s = -1$ and $s = 0$, which lie *outside* the fundamental strip. The standard residue calculation below treats this contour deformation **formally**: full justification requires bounding the integrand on closing arcs and checking that no other singularities (e.g. from $e^{-\Lambda(s)\tau}$, which is entire, or growth of $S^{-s}$) obstruct the deformation. We do not attempt that here.
 
 ### Option Value in Mellin Space
 
-Combining the payoff transform with the general solution:
+Combining the payoff transform with the general solution gives
 
 $$
-\hat{C}(s,t) = \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}
+\hat{C}(s,t) = \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}, \qquad \tau = T-t
 $$
 
-where $\tau = T - t$ and $\Lambda(s) = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r$.
-
-### Mellin Inversion via Residue Calculus
-
-The call price is recovered by the inverse Mellin transform:
+and the call price is recovered by
 
 $$
-C(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}\,ds
+C(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}\,ds, \qquad c < -1
 $$
 
-where $c < -1$ places the contour in the strip of analyticity.
+The integrand has **simple poles** at $s = 0$ and $s = -1$, where $\Lambda(0) = -r$ and $\Lambda(-1) = \sigma^2 - 2r$. From [§ Heat Equation](heat_equation.md), the BS call has the form $C = S N(d_1) - Ke^{-r\tau} N(d_2)$ with $d_{1,2}$ as defined there; the Mellin inversion **naturally produces this two-term structure** because the two poles correspond (heuristically) to the two terms. The pole *positions* are visible from $\frac{1}{s(s+1)}$, but the $N(d_1)$ and $N(d_2)$ factors come from the imaginary-axis integral that survives the residue computation, not from the residues themselves.
 
-### Finding the Poles
+??? note "Advanced Remark: Mellin residue calculation"
+    Treating the contour deformation **formally**, the residues are
 
-The integrand has **simple poles** at:
+    $$
+    \text{Res}_{s=0}\bigl[\hat{C}(s,t)\,S^{-s}\bigr] = K\,e^{r\tau}, \qquad \text{Res}_{s=-1}\bigl[\hat{C}(s,t)\,S^{-s}\bigr] = -S\,e^{(2r - \sigma^2)\tau}
+    $$
 
-- $s = 0$, where $\Lambda(0) = -r$
-- $s = -1$, where $\Lambda(-1) = \frac{\sigma^2}{2} - r + \frac{\sigma^2}{2} - r = \sigma^2 - 2r$
-
-### Residue at s = 0
-
-$$
-\text{Res}_{s=0} = \lim_{s \to 0}\,s \cdot \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}
-$$
-
-$$
-= \frac{K}{1} \cdot e^{-(-r)\tau} \cdot 1 = Ke^{r\tau}
-$$
-
-### Residue at s = -1
-
-$$
-\text{Res}_{s=-1} = \lim_{s \to -1}\,(s+1) \cdot \frac{K^{s+1}}{s(s+1)}\,e^{-\Lambda(s)\tau}\,S^{-s}
-$$
-
-$$
-= \frac{K^0}{-1} \cdot e^{-(\sigma^2 - 2r)\tau} \cdot S = -S\,e^{(2r - \sigma^2)\tau}
-$$
-
-### Recovery of the Black-Scholes Formula
-
-The standard approach decomposes the call price into two probability terms. Writing
-
-$$
-C(S,t) = S\,\Pi_1 - Ke^{-r\tau}\,\Pi_2
-$$
-
-where $\Pi_1$ and $\Pi_2$ are computed via separate Mellin inversions, one obtains after contour integration:
-
-$$
-\boxed{C(S,t) = S\,N(d_1) - Ke^{-r\tau}\,N(d_2)}
-$$
-
-where $d_1$ and $d_2$ are the standard Black-Scholes quantities. The Mellin transform **automatically generates** the two-term structure of the Black-Scholes formula, with each term arising from a separate pole contribution.
+    A naive "sum of residues" gives the wrong answer: the BS call formula (see [§ Heat Equation](heat_equation.md)) arises only after one keeps the contour integral and identifies the surviving Gaussian integrals along $\text{Re}(s) = c$ as the normal CDFs. Recovering those CDF factors is the same Gaussian completion-of-square computation carried out in [§ Feynman–Kac](feynman_kac.md) and [§ Fourier Transform](fourier_transform.md). A fully rigorous treatment requires verifying decay of the integrand along closing arcs, checking that the deformed contour encloses no other singularities, and tracking convergence of the residual line integral.
 
 ---
 
-## Mellin-Fourier Duality
+## 5. Mellin-Fourier Duality
 
-### The Connection
-
-The substitution $S = e^x$ reveals the precise relationship between the Mellin and Fourier transforms:
+The substitution $S = e^x$ relates the two transforms directly:
 
 $$
-\mathcal{M}[V](s) = \int_0^{\infty}V(S)\,S^{s-1}\,dS = \int_{-\infty}^{\infty}V(e^x)\,e^{sx}\,dx = \mathcal{F}[V(e^x)](-is)
+\mathcal{M}[V](s) = \int_{-\infty}^{\infty}V(e^x)\,e^{sx}\,dx = \mathcal{F}[V(e^x)](-is)
 $$
 
-Therefore:
+So a Mellin transform in $S$ is a Fourier transform in $x = \ln S$ with $\omega = -is$. This is why both transforms reduce the Black-Scholes PDE to an ODE: they are the same harmonic analysis, written in multiplicative ($S$) versus additive ($\ln S$) coordinates. The $e^{i\omega x}$ machinery developed in [§ Fourier Transform](fourier_transform.md) transfers verbatim under $\omega \leftrightarrow -is$.
 
-$$
-\text{Mellin in } S = \text{Fourier in } x = \ln S \text{ with } \omega = -is
-$$
-
-The Mellin inverse correspondingly becomes
-
-$$
-\mathcal{M}^{-1}[f](S) = \frac{1}{2\pi}\int_{-\infty}^{\infty}f(c + i\omega)\,S^{-c-i\omega}\,d\omega
-$$
-
-This duality explains why both transforms reduce the Black-Scholes PDE to an ODE: they are the same transform applied in different coordinates (multiplicative vs. additive).
-
-### Parseval's Theorem for the Mellin Transform
-
-The Mellin transform preserves energy in the following sense:
+The Mellin Parseval identity takes the form
 
 $$
 \int_0^{\infty}|V(S)|^2\,\frac{dS}{S} = \frac{1}{2\pi}\int_{-\infty}^{\infty}|\mathcal{M}[V](c + i\omega)|^2\,d\omega
 $$
 
-The measure $\frac{dS}{S}$ is the Haar measure on the multiplicative group $(0,\infty)$, confirming that the Mellin transform is the natural harmonic analysis on this group.
-
-### Convolution Theorem
-
-The Mellin transform of a **multiplicative convolution** satisfies
-
-$$
-\mathcal{M}[V \cdot W](s) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[V](\xi)\,\mathcal{M}[W](s-\xi)\,d\xi
-$$
-
-This is the analogue of the Fourier convolution theorem, adapted to the multiplicative structure.
+The measure $\frac{dS}{S}$ is the Haar measure on the multiplicative group $(0, \infty)$ — the right invariant measure under $S \mapsto \lambda S$ — confirming that the Mellin transform is the natural harmonic analysis on this group, just as the Fourier transform is natural on the additive group $\mathbb{R}$.
 
 ---
 
-## Mellin Transforms for Exotic Payoffs
+## 6. Mellin Transforms for Exotic Payoffs
 
-The Mellin transform extends naturally to other payoff structures. For **power options** with payoff $(S^n - K^n)^+$:
-
-$$
-\mathcal{M}[(S^n - K^n)^+](s) = \frac{K^{ns+n}}{s(s+n)}
-$$
-
-The solution structure parallels the European call but with modified parameters in $\Lambda(s)$. More generally, any payoff that is piecewise polynomial in $S$ admits a Mellin transform expressible in terms of rational functions of $s$ and powers of $K$, making the inversion tractable via residue calculus. In the operator framework of the introduction, the Mellin approach provides a **multiplicative spectral representation** of the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$, diagonalizing it in the basis of power functions $S^s$.
+Any payoff that is piecewise polynomial in $S$ has a Mellin transform expressible as a rational function of $s$ times powers of $K$, so the inversion remains tractable. For instance, the **power option** payoff $(S^n - K^n)^+$ transforms (see Exercise 5) to $\frac{nK^{n+s}}{s(s+n)}$, valid for $\text{Re}(s) < -n$. Within the pricing-semigroup framing of [§ Introduction](intro.md), the Mellin approach is a **multiplicative spectral representation** that diagonalizes the semigroup on the basis of power functions $S^s$ — the multiplicative analogue of the Fourier exponentials $e^{i\omega x}$.
 
 ---
 

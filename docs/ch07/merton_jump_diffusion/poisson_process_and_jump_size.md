@@ -191,13 +191,7 @@ The "typical values" use $\mu_J = -0.10$ and $\sigma_J = 0.30$.
 
 ### The Compensator Revisited
 
-The expected relative jump size is:
-
-$$
-\bar{k} = \mathbb{E}[Y_i - 1] = e^{\mu_J + \sigma_J^2/2} - 1
-$$
-
-When $\mu_J < 0$ and $\sigma_J$ is moderate, $\bar{k} < 0$, meaning jumps on average reduce the price. The compensator $\lambda\bar{k}$ is then negative, so the drift $r - \lambda\bar{k} > r$ compensates by increasing the continuous drift to maintain the martingale property.
+Recall (see [Jump-Diffusion SDE § The Compensator Term](jump_diffusion_sde.md#the-compensator-term)): $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$, and when $\bar{k} < 0$ the drift $r - \lambda\bar{k} > r$ restores the martingale property.
 
 ---
 
@@ -245,17 +239,7 @@ These formulas follow from the general result that the $n$-th cumulant of a comp
 
 ### Contribution to Return Distribution Shape
 
-The total log-return variance, skewness, and kurtosis combine the diffusion and jump components:
-
-$$
-\text{Total variance} = \sigma^2 t + \lambda t(\sigma_J^2 + \mu_J^2)
-$$
-
-$$
-\text{Skewness} = \frac{\lambda t(\mu_J^3 + 3\mu_J\sigma_J^2)}{[\sigma^2 t + \lambda t(\sigma_J^2 + \mu_J^2)]^{3/2}}
-$$
-
-Note that as $t \to 0$, the skewness scales as $t^{-1/2}$ (assuming jumps dominate), which becomes arbitrarily large in magnitude. This explains why short-maturity implied volatility smiles are steeper than long-maturity smiles in the Merton model.
+Recall (see [Jump-Diffusion SDE](jump_diffusion_sde.md#moments-of-the-return-distribution)): the combined diffusion + jump variance, skewness, and excess kurtosis, together with the $t^{-1/2}$ short-maturity divergence of skewness, follow directly from the cumulant formulas above.
 
 ---
 

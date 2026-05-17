@@ -2,6 +2,9 @@
 
 Girsanov's theorem is one of the most powerful tools in mathematical finance. It describes how a change of probability measure modifies the drift of a stochastic process while preserving its Brownian structure. This is essential for pricing derivatives via risk-neutral measures.
 
+!!! tip "Toy mechanism: one likelihood ratio fixes everything"
+    Recall (see [§ Intuitive Introduction](girsanov_intuition.md)) the discrete picture: changing $\mathbb{P}(H) = p$ to $\mathbb{Q}(H) = q$ amounts to multiplying by the likelihood ratio $L = \mathbb{Q}/\mathbb{P}$, then $\mathbb{E}^{\mathbb{Q}}[X] = \mathbb{E}^{\mathbb{P}}[LX]$. Girsanov's theorem promotes this single line of arithmetic to a Brownian filtration: the density $Z_T$ defined below plays the role of $L$, and its construction is reverse-engineered so that the shifted process $\widetilde W_t = W_t + \int_0^t\theta_s\,ds$ becomes a $\mathbb{Q}$-Brownian motion. Three numbered boxes follow — exponential martingale, measure change, statement — and they are the *only* nontrivial content of the theorem.
+
 !!! note "Standing assumptions"
     All processes in this section are defined on a filtered probability space $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})$ satisfying the usual conditions. All measure changes are between **equivalent** probability measures ($\mathbb{Q} \sim \mathbb{P}$), meaning they share the same null sets: events impossible under $\mathbb{P}$ remain impossible under $\mathbb{Q}$, and vice versa. Throughout, we distinguish **local martingales** from **true martingales**; the latter requires integrability verification (e.g., Novikov's condition).
 

@@ -15,13 +15,7 @@ Constructing the local volatility surface from market data is the computational 
 
 ### The Formula in Price Space
 
-Dupire's formula expresses local volatility in terms of call price derivatives:
-
-$$
-\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + qC + (r - q)K\frac{\partial C}{\partial K}}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}
-$$
-
-Given a smooth call price surface $\hat{C}(K, T)$ (from the interpolation step), the derivatives are approximated by finite differences.
+Recall (see [§ Dupire Formula Derivation](../local_volatility_framework/dupire_formula_derivation.md)): Dupire's formula expresses $\sigma_{\text{loc}}^2(K, T)$ as a ratio with call-price-derivative numerator $\partial_T C + qC + (r-q)K\,\partial_K C$ and denominator $\tfrac{1}{2}K^2\,\partial_{KK}C$. Given a smooth call price surface $\hat{C}(K, T)$ (from the interpolation step), the derivatives are approximated by finite differences.
 
 ### Finite Difference Approximations
 
@@ -65,15 +59,7 @@ An alternative to differentiating call prices is to express Dupire's formula dir
 
 ### The Gatheral-Jacquier Formula
 
-Given the implied volatility surface $\sigma_{\text{IV}}(K, T)$, the local volatility is:
-
-$$
-\sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}}T\frac{\partial \sigma_{\text{IV}}}{\partial T} + 2(r - q)K\sigma_{\text{IV}}T\frac{\partial \sigma_{\text{IV}}}{\partial K}}{\left(1 + Kd_1\sqrt{T}\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2 + \sigma_{\text{IV}}K^2 T\left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1\sqrt{T}\left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
-$$
-
-where $d_1 = \frac{\ln(S_0/K) + (r - q + \sigma_{\text{IV}}^2/2)T}{\sigma_{\text{IV}}\sqrt{T}}$.
-
-This formula requires only the first and second derivatives of $\sigma_{\text{IV}}$ with respect to strike, and the first derivative with respect to maturity. When the IV surface is represented by an analytic parametrization (SVI, SSVI), these derivatives can be computed analytically, avoiding finite differences entirely.
+Recall (see [§ Relationship to Implied Volatility](../properties/relationship_to_implied_volatility.md)): the Gatheral formula expresses $\sigma_{\text{loc}}^2(K, T)$ as a closed-form rational function of $\sigma_{\text{IV}}$ and its first and second strike derivatives plus its first maturity derivative, with denominator structure $(1 + Kd_1\sqrt{T}\,\partial_K\sigma_{\text{IV}})^2 + \cdots$ (Durrleman's condition). When the IV surface is represented by an analytic parametrization (SVI, SSVI), these derivatives can be computed analytically, avoiding finite differences entirely.
 
 ### Total Variance Formulation
 
@@ -112,15 +98,7 @@ These issues stem from the **ill-posedness** of the inverse problem: small pertu
 
 ### Tikhonov Regularization
 
-Instead of applying Dupire's formula pointwise, solve the inverse problem with a regularization penalty:
-
-$$
-\min_{\sigma_{\text{loc}}} \left\{\sum_{i,j} w_{ij}\left(C_{\text{model}}(K_i, T_j; \sigma_{\text{loc}}) - \hat{C}(K_i, T_j)\right)^2 + \lambda_1 \int\!\!\int \left(\frac{\partial \sigma_{\text{loc}}}{\partial K}\right)^2 dK \, dT + \lambda_2 \int\!\!\int \left(\frac{\partial \sigma_{\text{loc}}}{\partial T}\right)^2 dK \, dT\right\}
-$$
-
-where $C_{\text{model}}(K_i, T_j; \sigma_{\text{loc}})$ is the price computed by solving the forward PDE with the candidate $\sigma_{\text{loc}}$, and $\lambda_1, \lambda_2 > 0$ are regularization parameters penalizing roughness.
-
-This formulation:
+Recall (see [§ Regularization and Stability](../../ch17/regularization_and_stability/tikhonov_regularization.md)): instead of applying Dupire's formula pointwise, solve the inverse problem with a Tikhonov penalty combining data fidelity $\sum_{i,j} w_{ij}(C_{\text{model}}(K_i, T_j; \sigma_{\text{loc}}) - \hat{C}(K_i, T_j))^2$ with roughness penalties $\lambda_1 \int\!\!\int (\partial_K \sigma_{\text{loc}})^2\,dK\,dT + \lambda_2 \int\!\!\int (\partial_T \sigma_{\text{loc}})^2\,dK\,dT$. Here $C_{\text{model}}$ is the price computed by solving the forward PDE with the candidate $\sigma_{\text{loc}}$, and $\lambda_1, \lambda_2 > 0$ control smoothness. This formulation:
 
 - Ensures $\sigma_{\text{loc}}$ is smooth (via the penalty terms)
 - Matches market prices approximately (via the data-fidelity term)

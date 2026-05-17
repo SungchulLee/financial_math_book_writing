@@ -60,62 +60,15 @@ Therefore, we need models that reproduce the observed smile.
 
 ## SABR Model (Overview)
 
-One of the most widely used models is the **SABR model**.
-
-It assumes:
+Recall (see [§ SABR / Hagan Implied Volatility Approximation](../../ch14/sabr_model/hagan_implied_volatility_approximation.md)) the SABR specification
 
 $$
 \begin{aligned}
-dS_t &= \sigma_t S_t^\beta dW_t^1 \\
-d\sigma_t &= \alpha \sigma_t dW_t^2 \\
-dW_t^1 dW_t^2 &= \rho dt
+dS_t &= \sigma_t S_t^\beta dW_t^1, \quad d\sigma_t = \alpha \sigma_t dW_t^2, \quad dW_t^1 dW_t^2 = \rho\, dt
 \end{aligned}
 $$
 
-where:
-
-- $S_t$: forward swap rate
-- $\sigma_t$: stochastic volatility
-- $\beta$: elasticity parameter
-- $\alpha$: volatility of volatility
-- $\rho$: correlation
-
----
-
-## Key Features
-
-- stochastic volatility
-- flexible skew control
-- closed-form implied volatility approximation
-
----
-
-## SABR Implied Volatility Formula
-
-The SABR model provides an approximate formula:
-
-$$
-\sigma_{\text{SABR}}(K)
-\approx
-\frac{\alpha}{(S K)^{(1-\beta)/2}}
-\cdot
-\frac{z}{\chi(z)}
-\cdot
-\left[1 + \text{correction terms}\right]
-$$
-
-where:
-
-- $z$ and $\chi(z)$ depend on $\log(S/K)$ and $\rho$
-
----
-
-## Interpretation of Parameters
-
-- $\alpha$: overall volatility level
-- $\beta$: controls backbone (shape vs level)
-- $\rho$: controls skew
-- $\nu$: controls curvature (vol-of-vol)
+with $S_t$ now interpreted as the **forward swap rate**, and the Hagan closed-form approximation $\sigma_{\text{SABR}}(K)$ used to fit the swaption smile. The parameter roles ($\alpha$ level, $\beta$ backbone, $\rho$ skew, $\nu$ curvature) carry over unchanged.
 
 ---
 

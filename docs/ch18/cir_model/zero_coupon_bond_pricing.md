@@ -6,13 +6,13 @@ The Cox-Ingersoll-Ross model belongs to the affine class of short-rate models, w
 
 ## Risk-neutral pricing framework
 
-Under the risk-neutral measure $\mathbb{Q}$, the CIR short rate satisfies
+Recall (see [§ CIR SDE and Square-Root Process](cir_sde_and_square_root_process.md)) the CIR short rate under $\mathbb{Q}$:
 
 $$
-dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t^{\mathbb{Q}}
+dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t^{\mathbb{Q}}.
 $$
 
-where $\kappa > 0$ is the speed of mean reversion, $\theta > 0$ is the long-run mean, and $\sigma > 0$ is the volatility parameter. The zero-coupon bond price at time $t$ for maturity $T$ is defined by the conditional expectation
+The zero-coupon bond price at time $t$ for maturity $T$ is defined by the conditional expectation
 
 $$
 P(t,T) = \mathbb{E}^{\mathbb{Q}}\!\left[\exp\!\left(-\int_t^T r_s\,ds\right)\,\bigg|\,\mathcal{F}_t\right]

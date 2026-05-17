@@ -150,35 +150,7 @@ The Riccati system is linear: $\psi'(\tau) = B^\top\psi(\tau)$, which gives $\ps
 
 ### Heston Model: A₁(2)
 
-State: $X_t = (V_t, \log S_t)^\top$ with $V_t \in \mathbb{R}_+$ (variance) and $\log S_t \in \mathbb{R}$ (log-price).
-
-$$
-dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{(1)}
-$$
-
-$$
-d\log S_t = \left(r - \tfrac{1}{2}V_t\right)dt + \sqrt{V_t}\left(\rho\,dW_t^{(1)} + \sqrt{1-\rho^2}\,dW_t^{(2)}\right)
-$$
-
-Affine parameters:
-
-- $b_0 = (\kappa\theta, r)^\top$, $B = \begin{pmatrix} -\kappa & 0 \\ -1/2 & 0 \end{pmatrix}$
-- $a_0 = 0$, $\alpha_1 = \begin{pmatrix} \xi^2 & \rho\xi \\ \rho\xi & 1 \end{pmatrix}$, $\alpha_2 = 0$
-
-The variance $V_t$ drives the diffusion of both itself and the log-price, placing the Heston model in $A_1(2)$: one CIR-type factor ($V_t$) among two total.
-
-!!! example "Heston Riccati System"
-    Writing $\psi = (\psi_1, \psi_2)^\top$, the Riccati equations become:
-
-    $$
-    \psi_1' = -\kappa\psi_1 - \tfrac{1}{2}\psi_2 + \tfrac{1}{2}(\xi^2\psi_1^2 + 2\rho\xi\psi_1\psi_2 + \psi_2^2)
-    $$
-
-    $$
-    \psi_2' = 0
-    $$
-
-    The second equation gives $\psi_2(\tau) = u_2$ (constant), reducing the system to a scalar Riccati equation for $\psi_1$ with coefficients depending on $u_2$. This is why the Heston characteristic function has a semi-closed form.
+Recall (see [Heston as 2D affine](../../ch16/index.md)).
 
 ### Three-Factor Interest Rate Model: A₁(3)
 
@@ -190,19 +162,7 @@ This specification allows stochastic volatility of yields (through $V_t$) togeth
 
 ## Bond Pricing in the Vector Case
 
-For the affine short rate $r_t = \rho_0 + \rho_1^\top X_t$, the zero-coupon bond price is
-
-$$
-P(t,T) = \exp\!\bigl(A(\tau) + B(\tau)^\top X_t\bigr)
-$$
-
-where $A$ and $B$ satisfy the **extended Riccati system**:
-
-$$
-\frac{dB_i}{d\tau} = R_i(B) - (\rho_1)_i, \qquad \frac{dA}{d\tau} = F(B) - \rho_0
-$$
-
-with $A(0) = 0$ and $B(0) = \mathbf{0}$. The additional terms $-\rho_1$ and $-\rho_0$ account for the discounting by the short rate. The [exponential-affine bond price formula](../affine_term_structure/exponential_affine_bond_price.md) page treats this in detail for the scalar case; the vector extension is a direct generalization.
+Recall (see [§ ATSM multifactor](../affine_term_structure/exponential_affine_bond_price.md)).
 
 ---
 

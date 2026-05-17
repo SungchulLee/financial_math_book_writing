@@ -1,6 +1,6 @@
 # Stability, Consistency, and Convergence
 
-The reliability of a finite difference scheme depends on three fundamental properties: **consistency** (local accuracy), **stability** (bounded error growth), and **convergence** (approach to the true solution). The Lax Equivalence Theorem connects these concepts.
+Consider what could go wrong with an FDM scheme. Either the *local* equation it solves is wrong (the discrete operator does not match the PDE as $h\to 0$ -- a **consistency** failure), or each step amplifies errors so badly that they swamp the answer (a **stability** failure). Eliminate both and the global error must go to zero -- this is **convergence**. The Lax Equivalence Theorem makes the implication precise: for linear, well-posed problems, consistency plus stability is equivalent to convergence.
 
 ---
 
@@ -71,55 +71,7 @@ for some constant $C$ independent of the mesh.
 
 ### Von Neumann (Fourier) Analysis
 
-The standard method for analyzing stability of constant-coefficient schemes.
-
-**Idea**: Decompose errors into Fourier modes $e^{ik\xi}$ and analyze their growth.
-
-**Amplification factor**: For mode $k$, let $G(k)$ be the ratio of amplitudes at successive time steps.
-
-**Stability criterion**:
-
-$$
-\boxed{
-|G(k)| \leq 1 \quad \text{for all } k
-}
-$$
-
-### Example: Explicit Scheme for Heat Equation
-
-For $u_\tau = \frac{1}{2}u_{xx}$ with explicit discretization:
-
-$$
-G = 1 - 2\lambda(1 - \cos(k\Delta x))
-$$
-
-where $\lambda = \frac{\Delta\tau}{(\Delta x)^2}$.
-
-**Stability requires**: $|G| \leq 1 \Rightarrow \lambda \leq \frac{1}{2}$
-
-$$
-\boxed{
-\Delta\tau \leq \frac{(\Delta x)^2}{2} \quad \text{(CFL condition)}
-}
-$$
-
-### Example: Implicit Scheme
-
-$$
-G = \frac{1}{1 + 2\lambda(1 - \cos(k\Delta x))}
-$$
-
-Since the denominator $> 1$, we have $|G| < 1$ for all $\lambda > 0$.
-
-**Unconditionally stable**: No restriction on $\Delta\tau$.
-
-### Example: Crank-Nicolson
-
-$$
-G = \frac{1 - \lambda(1 - \cos(k\Delta x))}{1 + \lambda(1 - \cos(k\Delta x))}
-$$
-
-**Unconditionally stable**: $|G| \leq 1$ for all $\lambda$.
+Recall (see [§ Von Neumann Stability Analysis](von_neumann_stability_analysis.md)): decompose errors into Fourier modes $\varepsilon_j^n = g^n e^{i\xi j}$; the scheme is stable iff the amplification factor $|g(\xi)| \leq 1$ for all $\xi \in [-\pi,\pi]$. The explicit heat scheme has $g = 1 - 4\lambda\sin^2(\xi/2)$ requiring $\lambda \leq 1/2$; implicit and Crank-Nicolson are unconditionally stable.
 
 ---
 
@@ -193,80 +145,23 @@ This implies $L^\infty$ stability.
 
 ## Issues with Non-Smooth Data
 
-### The Problem
-
-Option payoffs like $(S-K)^+$ are not smooth at $S = K$. This affects:
-
-1. **Consistency**: Taylor expansions assume smoothness
-2. **Convergence rate**: Observed order may be lower than theoretical
-
-### Observed vs Theoretical Convergence
-
-| Data Smoothness | Theoretical Order | Observed Order |
-|-----------------|-------------------|----------------|
-| $C^\infty$ | 2 (C-N) | 2 |
-| $C^0$ (continuous) | 2 | 1-1.5 |
-| Kink at strike | 2 | 0.5-1 |
-
-### Remedies
-
-1. **Rannacher smoothing**: Implicit steps near maturity
-2. **Payoff smoothing**: Replace $(S-K)^+$ with smooth approximation
-3. **Grid adaptation**: Fine grid near strike
-4. **Richardson extrapolation**: Improve convergence from multiple grids
+Option payoffs like $(S-K)^+$ are not smooth at $S = K$: Taylor expansions underlying consistency analysis break down, and observed convergence rates fall below theoretical (typically from 2 down to $0.5$–$1$ near the kink). Standard remedies: Rannacher smoothing, payoff smoothing, grid alignment at $K$, and Richardson extrapolation (see [§ Richardson Extrapolation — When Extrapolation Fails](richardson_extrapolation.md#when-richardson-extrapolation-fails)).
 
 ---
 
 ## The CFL Condition
 
-The **Courant-Friedrichs-Lewy (CFL) condition** is a necessary condition for stability of explicit schemes.
+Recall (see [§ CFL Condition and Time Step Restrictions](cfl_condition_and_time_step.md)): the CFL condition is the necessary stability constraint for explicit schemes, summarized by
 
-### For Advection Equation u_t + cu_x = 0
-
-$$
-\boxed{
-|c|\frac{\Delta t}{\Delta x} \leq 1
-}
-$$
-
-**Interpretation**: The numerical domain of dependence must contain the physical domain of dependence.
-
-### For Diffusion Equation u_t = Du_xx
-
-$$
-\boxed{
-D\frac{\Delta t}{(\Delta x)^2} \leq \frac{1}{2}
-}
-$$
-
-### For Black-Scholes (Variable Coefficients)
-
-The CFL condition involves the local diffusion coefficient $\frac{1}{2}\sigma^2 S^2$:
-
-$$
-\frac{\sigma^2 S_{\max}^2 \Delta\tau}{2(\Delta S)^2} \leq \frac{1}{2}
-$$
+- advection $u_t + cu_x = 0$: $|c|\Delta t/\Delta x \le 1$;
+- diffusion $u_\tau = Du_{xx}$: $D\Delta\tau/(\Delta x)^2 \le 1/2$;
+- Black-Scholes with variable coefficient $\tfrac{1}{2}\sigma^2 S^2$: $\sigma^2 S_{\max}^2 \Delta\tau / (2(\Delta S)^2) \le 1/2$.
 
 ---
 
 ## Convergence Study (Practical)
 
-To verify implementation, perform a **convergence study**:
-
-1. Compute solutions on grids with $M, 2M, 4M, \ldots$ points
-2. Compare to analytical solution (if available) or finest grid
-3. Plot error vs grid size on log-log scale
-4. Slope gives convergence order
-
-### Example Results
-
-| Grid | Error | Ratio |
-|------|-------|-------|
-| $M = 50$ | 0.0412 | — |
-| $M = 100$ | 0.0103 | 4.0 |
-| $M = 200$ | 0.0026 | 4.0 |
-
-Ratio $\approx 4$ confirms second-order convergence (error $\sim M^{-2}$).
+Recall (see [§ Grid Convergence and Error Analysis](grid_convergence_and_error_analysis.md)): refine on $M, 2M, 4M, \ldots$, compare to a reference, and read the order from the log-log slope. A ratio $\approx 4$ between successive errors confirms second-order convergence.
 
 ---
 

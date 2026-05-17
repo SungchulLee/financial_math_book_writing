@@ -80,25 +80,7 @@ This is the forward price and is **independent** of the volatility smile. All ar
 ### 3. Second Moment: Variance
 
 
-The second moment (variance) is related to the **model-free implied variance**:
-
-
-$$
-\text{Var}^{\mathbb{Q}}(S_T) = \mathbb{E}^{\mathbb{Q}}[S_T^2] - F^2
-$$
-
-
-
-Carr and Madan show this can be computed from option prices via:
-
-
-$$
-\text{Var}^{\mathbb{Q}}(S_T) = 2 e^{rT} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)
-$$
-
-
-
-This integral is the **variance swap** payoff, directly observable from the smile.
+The second moment (variance) is related to the **model-free implied variance** $\text{Var}^{\mathbb{Q}}(S_T) = \mathbb{E}^{\mathbb{Q}}[S_T^2] - F^2$. Recall (see [§ VIX Formula Derivation](vix_formula_derivation.md)): Carr-Madan expresses this as the variance-swap integral $2e^{rT}\bigl(\int_0^F P(K)/K^2\,dK + \int_F^\infty C(K)/K^2\,dK\bigr)$, directly observable from the smile.
 
 **Connection to ATM IV:**
 
@@ -373,23 +355,7 @@ While not true probabilities, IV reveals market sentiment and hedging demand.
 ### 2. Extracting Tail Probabilities
 
 
-Define the **implied tail probability** of large moves:
-
-
-$$
-\mathbb{Q}(S_T < K_{\text{low}}) = \int_0^{K_{\text{low}}} q(S) dS
-$$
-
-
-
-Using Breeden-Litzenberger:
-
-
-$$
-\mathbb{Q}(S_T < K) = 1 + e^{rT} \frac{\partial C}{\partial K}\bigg|_K
-$$
-
-
+Define the **implied tail probability** of large moves: $\mathbb{Q}(S_T < K_{\text{low}}) = \int_0^{K_{\text{low}}} q(S)\,dS$. Recall (see [§ Breeden-Litzenberger Formula](breeden_litzenberger_formula.md)): the CDF form gives $\mathbb{Q}(S_T < K) = 1 + e^{rT}\,\partial C/\partial K\big|_K$.
 
 **From IV:** Convert $\sigma_{\text{IV}}(K_{\text{low}}, T)$ to $C(K_{\text{low}})$ via Black-Scholes, then differentiate.
 
@@ -557,32 +523,15 @@ The choice depends on:
 Observe implied volatilities $\{\sigma_{\text{IV}}(K_i, T_j)\}$ from market quotes
 
 **Step 2: Convert IV to prices**  
-Use Black-Scholes formula:
-
-$$
-C(K_i, T_j) = C_{\text{BS}}(S_0, K_i, T_j, r, q, \sigma_{\text{IV}}(K_i, T_j))
-$$
-
-
+Use Black-Scholes formula $C(K_i, T_j) = C_{\text{BS}}(S_0, K_i, T_j, r, q, \sigma_{\text{IV}}(K_i, T_j))$
 
 **Step 3: Interpolate/Smooth**  
 Fit arbitrage-free surface $C(K, T)$ using splines or parametric models
 
 **Step 4: Extract density via B-L**  
+Recall (see [§ Breeden-Litzenberger Formula](breeden_litzenberger_formula.md)): $q(K, T) = e^{rT}\,\partial^2 C/\partial K^2$.
 
-$$
-q(K, T) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{(K, T)}
-$$
-
-
-
-**Step 5: Compute moments**  
-
-$$
-m_n(T) = \int_0^\infty K^n q(K, T) dK
-$$
-
-
+**Step 5: Compute moments** $m_n(T) = \int_0^\infty K^n q(K, T)\,dK$.
 
 **Step 6: Analyze distributional properties**  
 Compute skewness, kurtosis, tail probabilities, VaR, etc.

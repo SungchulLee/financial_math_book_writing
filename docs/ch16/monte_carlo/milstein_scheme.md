@@ -17,43 +17,19 @@ The Euler-Maruyama scheme achieves strong convergence order $\frac{1}{2}$, which
 
 ## The Ito-Taylor Expansion
 
-To understand the Milstein correction, consider a generic scalar SDE:
-
-$$
-dY_t = a(Y_t) \, dt + b(Y_t) \, dW_t
-$$
-
-The Euler-Maruyama scheme approximates the increment over $[t_n, t_{n+1}]$ by freezing the coefficients at $t_n$:
-
-$$
-Y_{n+1}^{\text{Euler}} = Y_n + a(Y_n) \Delta t + b(Y_n) \Delta W_n
-$$
-
-The **Ito-Taylor expansion** of $b(Y_t)$ around $Y_n$ gives the next-order correction. Applying Ito's formula to $b(Y_t)$:
-
-$$
-b(Y_t) = b(Y_n) + \int_{t_n}^{t} b'(Y_s) b(Y_s) \, dW_s + \text{higher order terms}
-$$
-
-Substituting this into the stochastic integral $\int_{t_n}^{t_{n+1}} b(Y_t) \, dW_t$ and retaining the leading correction yields the **Milstein scheme**:
+Recall (see [§ SDE Simulation](../../ch03/sde/sde_simulation.md)): for a scalar SDE $dY_t = a(Y_t)\,dt + b(Y_t)\,dW_t$, the Ito-Taylor expansion adds a correction to Euler-Maruyama, giving the **Milstein scheme**:
 
 $$
 Y_{n+1} = Y_n + a(Y_n) \Delta t + b(Y_n) \Delta W_n + \frac{1}{2} b(Y_n) b'(Y_n) \left[ (\Delta W_n)^2 - \Delta t \right]
 $$
 
-The additional term $\frac{1}{2} b(Y_n) b'(Y_n) [(\Delta W_n)^2 - \Delta t]$ is the **Milstein correction**. It captures the leading nonlinear effect of the diffusion and improves the strong convergence order from $\frac{1}{2}$ to $1$.
+The additional term $\frac{1}{2} b(Y_n) b'(Y_n) [(\Delta W_n)^2 - \Delta t]$ captures the leading nonlinear effect of the diffusion and improves the strong convergence order from $\frac{1}{2}$ to $1$.
 
 ---
 
 ## Milstein Applied to the CIR Variance Process
 
-The CIR variance process in the Heston model has the form:
-
-$$
-dv_t = \kappa(\theta - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^{(2)}
-$$
-
-Here the drift is $a(v) = \kappa(\theta - v)$ and the diffusion is $b(v) = \xi\sqrt{v}$. The derivative of the diffusion coefficient is:
+Recall (see [§ CIR Variance Process](../variance_dynamics/cir_variance_process_solution.md)): $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}$. Here the drift is $a(v) = \kappa(\theta - v)$ and the diffusion is $b(v) = \xi\sqrt{v}$. The derivative of the diffusion coefficient is:
 
 $$
 b'(v) = \frac{\xi}{2\sqrt{v}}
@@ -80,13 +56,7 @@ where $v_n^+ = \max(v_n, 0)$ applies the full truncation fix from the Euler sect
 
 ## Milstein for the Log-Price Process
 
-The log-price process $x_t = \ln S_t$ satisfies:
-
-$$
-dx_t = \left(r - q - \tfrac{1}{2} v_t\right) dt + \sqrt{v_t} \, dW_t^{(1)}
-$$
-
-Here the diffusion is $b(x, v) = \sqrt{v}$, which depends on $v$ rather than $x$. Since $\partial b / \partial x = 0$, the Milstein correction in the $x$-direction vanishes. The log-price update is:
+Recall (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)): $dx_t = (r - q - \tfrac{1}{2} v_t)\,dt + \sqrt{v_t}\,dW_t^{(1)}$. Here the diffusion is $b(x, v) = \sqrt{v}$, which depends on $v$ rather than $x$. Since $\partial b / \partial x = 0$, the Milstein correction in the $x$-direction vanishes. The log-price update is:
 
 $$
 x_{n+1} = x_n + \left(r - q - \tfrac{1}{2} v_n^+\right) \Delta t + \sqrt{v_n^+} \, \Delta W_n^{(1)}

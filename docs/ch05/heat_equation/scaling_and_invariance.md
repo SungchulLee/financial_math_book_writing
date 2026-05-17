@@ -1,6 +1,6 @@
 # Scaling and Invariance
 
-The heat equation possesses a characteristic **scaling symmetry** that reflects the fundamental nature of diffusion. This symmetry connects analytical properties of the PDE to probabilistic properties of Brownian motion.
+Photograph diffusing ink at time $t$, then again at time $4t$. The second snapshot is the first stretched horizontally by $2$ and compressed vertically by $1/2$ -- same shape, rescaled. This self-similarity, with space scaling like $\sqrt{\text{time}}$, is the defining symmetry of the heat equation and the geometric fingerprint of diffusion. From it we recover the heat kernel, the $\sqrt{t}$ spread of Brownian motion, and the $\sigma\sqrt{T-t}$ inside every Black-Scholes formula.
 
 ---
 
@@ -54,7 +54,7 @@ This means:
 
 ## Connection to Brownian Motion
 
-Brownian motion satisfies the identical scaling $(B_t) \overset{d}{=} (\lambda^{-1} B_{\lambda^2 t})$, which is why the same parabolic scaling governs both the heat equation and the diffusion of Brownian distributions. See [Heat Equation and Brownian Motion](heat_equation_and_brownian_motion.md).
+Recall (see [§ Scaling and Time Change](../../ch02/brownian_motion/scaling_and_time_change.md)): Brownian motion satisfies $(B_t) \overset{d}{=} (\lambda^{-1} B_{\lambda^2 t})$, the probabilistic mirror of parabolic scaling.
 
 ---
 

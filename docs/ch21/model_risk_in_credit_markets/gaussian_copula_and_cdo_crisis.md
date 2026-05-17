@@ -5,38 +5,13 @@ The Gaussian copula model, developed by David Li and widely used for pricing col
 ## Key Concepts
 
 **Copula Modeling Framework**
-A copula function $C(u_1, \ldots, u_n)$ separates marginal distributions from dependence:
-
-$$F(x_1, \ldots, x_n) = C(F_1(x_1), \ldots, F_n(x_n))$$
-
-For default times, the Gaussian copula models joint default probability through latent variables:
-
-$$X_i = \rho Z + \sqrt{1-\rho^2} \epsilon_i$$
-
-where $Z$ and $\epsilon_i$ are standard normal, and default occurs when $X_i < \Phi^{-1}(p_i)$.
+Recall (see [§ CDS Index and Tranches](../credit_derivatives/cds_index_and_tranches.md)): the one-factor Gaussian copula models joint defaults via latent variables $X_i = \sqrt{\rho}\,Z + \sqrt{1-\rho}\,\epsilon_i$ with default when $X_i < \Phi^{-1}(p_i)$, and tranche pricing follows the portfolio loss distribution.
 
 **Li's Innovation**
-Gaussian copula enabled:
+The Gaussian copula enabled closed-form portfolio default calculations through a single correlation parameter $\rho$, scalable to thousands of names — making rapid CDO tranche pricing feasible.
 
-1. Closed-form probability calculations for default events
-2. Modeling portfolio default correlation through single parameter $\rho$
-3. Rapid pricing of complex CDO tranches
-4. Scalability to thousands of names
-
-Default correlation: $\rho = \frac{\text{Cov}(X_i, X_j)}{\sqrt{\text{Var}(X_i)\text{Var}(X_j)}}$
-
-**CDO Structure Basics**
-CDOs pool mortgages/bonds; tranches absorb defaults in order:
-
-- **Equity**: first loss, highest risk, highest yield
-- **Mezzanine**: intermediate tranches
-- **Senior**: last loss, lowest risk, AAA-rated
-
-Tranche pricing depends on:
-
-- Portfolio default correlation (governs default clustering)
-- Individual default probabilities (marginal distributions)
-- Attachment/detachment points (tranche boundaries)
+**CDO Structure**
+Recall (see [§ CDS Index and Tranches](../credit_derivatives/cds_index_and_tranches.md)): CDOs slice portfolio losses into equity (first loss), mezzanine, and senior (last loss) tranches; tranche pricing depends on correlation, marginal default probabilities, and attachment/detachment points.
 
 **Critical Assumption: Constant Correlation**
 Gaussian copula assumes:

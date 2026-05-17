@@ -1,28 +1,22 @@
 # Intuitive Introduction and Motivation
 
-
-Girsanov’s theorem is one of the most important results in stochastic calculus,
-yet it is often misunderstood at first encounter.
+Girsanov's theorem is one of the most important results in stochastic calculus, yet it is often misunderstood at first encounter.
 
 At an intuitive level, the theorem resolves a seeming paradox:
 
 > *How can a stochastic process with drift become driftless, without changing its paths?*
 
-The resolution lies in understanding the difference between **paths** and
-**probability measures**.
+The resolution lies in understanding the difference between **paths** and **probability measures**. This page builds that distinction through a thought experiment, then names the mechanism that makes the next pages — the [theorem statement](girsanov_theorem.md), the [proof](girsanov_proof.md), and the [financial drift adjustment](girsanov_drift_adjustment.md) — feel inevitable rather than magical.
 
 ---
 
 ## Paths vs Probability Measures
 
-
-A probability measure does not create new paths — it assigns **weights** to paths.
-All measure changes here are between **equivalent measures**: no path is removed, only reweighted.
+A probability measure does not create new paths — it assigns **weights** to paths. All measure changes here are between **equivalent measures**: no path is removed, only reweighted.
 
 ---
 
 ## A Thought Experiment
-
 
 Imagine observing many random paths over time.
 Different measures assign different weights to the same paths, changing averages (drift) without changing trajectories.
@@ -38,6 +32,14 @@ Only the probability weights have changed.
 
 ## Continuous-Time Perspective
 
+!!! tip "Toy mechanism: biased coin reweighting"
+    The cleanest possible measure-change calculation: a single coin with $\mathbb{P}(H) = p$ reweighted to $\mathbb{Q}(H) = q$. The Radon–Nikodym derivative is $L(H) = q/p$ and $L(T) = (1-q)/(1-p)$, and for any function $X$:
+
+    $$
+    \mathbb{E}^{\mathbb{Q}}[X] = p\cdot\frac{q}{p}\,X(H) + (1-p)\cdot\frac{1-q}{1-p}\,X(T) = \mathbb{E}^{\mathbb{P}}[LX].
+    $$
+
+    No coin face was added or removed — just rebalanced. Girsanov's theorem is the continuous-time version of exactly this: the density $Z_T = d\mathbb{Q}/d\mathbb{P}$ replaces $L$, and the only nontrivial step is computing $Z_T$ for a Brownian filtration so that the drift disappears.
 
 Let $W_t$ be Brownian motion under a measure $\mathbb{P}$.
 The process
@@ -61,7 +63,6 @@ The answer is yes (under the [Novikov condition](../martingale/novikov_kazamaki_
 
 ## Why This Matters in Finance
 
-
 In financial markets:
 
 - under the **physical measure**, asset prices contain risk premia,
@@ -73,7 +74,6 @@ viewpoints.
 ---
 
 ## The Central Idea
-
 
 > **Drift lives in the probability measure, not in the paths.**
 

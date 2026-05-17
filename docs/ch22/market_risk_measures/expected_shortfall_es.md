@@ -82,24 +82,17 @@ Compare to $\text{VaR}_{0.99} \approx 2.326\sigma$. ES exceeds VaR by about 15%.
 |----------|-----|-----|
 | What it measures | Quantile (threshold) | Tail expectation (average) |
 | Tail information | Single point | Entire tail |
-| Subadditive | No (in general) | Yes |
-| Coherent | No | Yes |
+| Subadditive / Coherent | No / No | Yes / Yes |
 | Elicitable | Yes | No (directly) |
 | Sensitivity to tail | Low | High |
+
+(See [§ Coherent Risk Measures](coherent_risk_measures.md) for the coherence row in detail.)
 
 ---
 
 ## Coherence of ES
 
-Expected Shortfall satisfies all four coherence axioms:
-
-1. **Monotonicity:** If $L_1 \le L_2$ a.s., then $\text{ES}_\alpha(L_1) \le \text{ES}_\alpha(L_2)$
-
-2. **Translation invariance:** $\text{ES}_\alpha(L + c) = \text{ES}_\alpha(L) + c$
-
-3. **Positive homogeneity:** $\text{ES}_\alpha(\lambda L) = \lambda \, \text{ES}_\alpha(L)$ for $\lambda > 0$
-
-4. **Subadditivity:** $\text{ES}_\alpha(L_1 + L_2) \le \text{ES}_\alpha(L_1) + \text{ES}_\alpha(L_2)$
+Recall (see [§ Coherent Risk Measures](coherent_risk_measures.md)) the four axioms: monotonicity, translation invariance, positive homogeneity, subadditivity. Expected Shortfall satisfies all four.
 
 **Subadditivity proof sketch:** Using the integral representation:
 
@@ -113,11 +106,7 @@ The inequality follows because quantiles of sums are bounded by sums of quantile
 
 ## Elicitability and Backtesting Challenges
 
-Unlike VaR, **ES is not directly elicitable**. There is no scoring function $S$ such that:
-
-$$
-\text{ES}_\alpha(L) = \arg\min_x \mathbb{E}[S(x, L)]
-$$
+Recall (see [§ Value-at-Risk](value_at_risk_var.md)) the definition of elicitability. Unlike VaR, **ES is not directly elicitable** — no scoring function $S$ has ES as its expected-score minimizer.
 
 **Implications:**
 

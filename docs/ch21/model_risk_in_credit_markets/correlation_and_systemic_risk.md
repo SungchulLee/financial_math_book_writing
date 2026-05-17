@@ -23,9 +23,9 @@ These effects intensify during crises.
 
 Approaches include:
 
-- copula-based default correlation,
-- factor models for intensities,
-- structural multi-firm asset models.
+- copula-based default correlation — Recall (see [§ CDS Index and Tranches](../credit_derivatives/cds_index_and_tranches.md)),
+- factor models for intensities — Recall (see [§ Reduced-Form Intensity-Based Models](../reduced_form_intensity_based_models/affine_intensity_models.md)),
+- structural multi-firm asset models — Recall (see [§ Structural Credit Risk Models](../structural_credit_risk_models/black_cox_model.md)).
 
 Each approach balances tractability and realism.
 

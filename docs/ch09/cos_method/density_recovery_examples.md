@@ -21,19 +21,7 @@ Density recovery---reconstructing the probability density function from the char
 
 ## The COS Density Reconstruction Formula
 
-The COS method recovers the density $f(x)$ on $[a, b]$ using the formula
-
-$$
-\hat{f}_N(x) = \sum_{k=0}^{N-1}{}' F_k \cos\!\left(\frac{k\pi(x-a)}{b-a}\right)
-$$
-
-where
-
-$$
-F_k = \frac{2}{b-a}\,\text{Re}\!\left[\phi\!\left(\frac{k\pi}{b-a}\right)e^{-ik\pi a/(b-a)}\right]
-$$
-
-This formula requires only $N$ evaluations of the characteristic function $\phi$. The reconstruction is evaluated at any desired set of points $\{x_j\}$ using the precomputed coefficients.
+**Recall** (see [§ Cosine Coefficients via CF](cosine_coefficients_via_cf.md)): the COS reconstruction on $[a,b]$ is $\hat{f}_N(x) = \sum_{k=0}^{N-1}{}' F_k\cos(k\pi(x-a)/(b-a))$, requiring only $N$ characteristic function evaluations.
 
 ---
 
@@ -81,7 +69,7 @@ The log-normal density arises in the Black--Scholes model and provides a slightl
 !!! example "Log-Normal Density Recovery"
     **Model:** $X = \ln S_T$ where $S_T$ is log-normal with $\mu = \ln 100 + (0.05 - 0.04/2) \cdot 1 = \ln 100 + 0.03$ and $\sigma^2 = 0.04$ (corresponding to Black--Scholes with $S_0 = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$).
 
-    **Characteristic function:** $\phi(u) = \exp(i\mu u - \sigma^2 u^2 / 2)$
+    **Characteristic function:** **Recall** (see [§ Fourier Transform Solution to the BS PDE](../../ch06/bs_pde_analytic_solution/fourier_transform.md)): $\phi(u) = \exp(i\mu u - \sigma^2 u^2 / 2)$.
 
     **Truncation:** $[a, b] = [\mu - 10\sigma, \mu + 10\sigma] = [4.635 - 2.0, 4.635 + 2.0] = [2.635, 6.635]$
 
@@ -98,7 +86,7 @@ The Heston model is the primary application of COS density recovery, since its d
 !!! example "Heston Density Recovery"
     **Model parameters:** $S_0 = 100$, $r = 0.05$, $q = 0$, $T = 1$, $v_0 = 0.04$, $\kappa = 1.5$, $\theta = 0.04$, $\sigma_v = 0.3$, $\rho = -0.7$.
 
-    **Characteristic function:** The Heston CF of the log-price $X_T = \ln S_T$ is given by the Riccati-based formula. The cumulants are:
+    **Characteristic function:** **Recall** (see [§ Heston Characteristic Function](../../ch16/heston_cf/closed_form_characteristic_function.md)): the Heston CF of $X_T = \ln S_T$ is given by the Riccati-based formula. The cumulants are:
 
     - $c_1 \approx 4.635$ (mean log-price)
     - $c_2 \approx 0.040$ (variance, similar to BS but with stochastic vol correction)

@@ -169,66 +169,7 @@ Deep OTM options contribute heavily, reflecting tail risk.
 
 ## Smile Patterns and Distributional Shapes
 
-
-### 1. Flat Smile: Lognormal Distribution
-
-
-If $\sigma_{\text{IV}}(K, T) = \sigma_0$ (constant), the risk-neutral density is lognormal:
-
-
-$$
-q(S) = \frac{1}{S \sigma_0 \sqrt{2\pi T}} \exp\left( -\frac{(\ln S - \ln F - \sigma_0^2 T/2)^2}{2 \sigma_0^2 T} \right)
-$$
-
-
-
-This is the Black-Scholes assumption. Properties:
-
-- **Symmetric log-returns:** $\ln(S_T/F)$ is normally distributed
-- **Skewness:** Zero
-- **Kurtosis:** $3$ (mesokurtic, same as normal)
-
-### 2. Downward Skew: Negative Skewness
-
-
-If $\frac{\partial \sigma_{\text{IV}}}{\partial K} < 0$ (volatility decreases with strike), the density exhibits:
-
-- **Left tail fatter than lognormal:** Higher probability of large drops
-- **Right tail thinner:** Lower probability of large rises
-- **Negative skewness:** $\mathbb{E}[(S_T - F)^3] < 0$
-
-**Economic interpretation:** Markets price crash protection (OTM puts) higher than upside speculation (OTM calls).
-
-**Typical in:** Equity indices (S&P 500, etc.)
-
-### 3. Smile (U-shape): Excess Kurtosis
-
-
-If $\sigma_{\text{IV}}(K)$ is convex in $K$ (minimum at ATM, increases in wings), the density has:
-
-- **Fat tails:** Both extreme outcomes more likely than lognormal predicts
-- **Excess kurtosis:** $\text{Kurt} > 3$
-- **Potential for jumps:** Discontinuous price movements
-
-**Economic interpretation:** Markets price both tail risks (crash and rally) higher than Black-Scholes predicts.
-
-**Typical in:** FX markets, commodities
-
-### 4. Smirk (Asymmetric Smile)
-
-
-Combination of skew and smile:
-
-- OTM puts have much higher IV than ATM
-- OTM calls have moderately higher IV than ATM
-- Asymmetric U-shape
-
-Corresponds to:
-
-- Negative skewness (left tail dominates)
-- Moderate excess kurtosis (both tails fat, but left more so)
-
-**Typical in:** Equity options post-1987 crash
+Recall (see [§ Implied Volatility Surface](../../ch12/implied_volatility_surface/term_structure.md)) for the four canonical smile shapes — **flat** (lognormal density, zero skew, kurtosis $3$), **downward skew** (negative skewness, fat left tail; equity indices), **U-shaped smile** (excess kurtosis, fat tails on both sides; FX/commodities), and **smirk** (asymmetric; post-1987 equity) — together with their economic interpretations.
 
 ## Quantitative Relationships
 
@@ -495,57 +436,7 @@ The forward IV surface $\sigma_{\text{IV}}^{\text{fwd}}(K; t, T)$ encodes $q(S_T
 
 ## Model Consistency
 
-
-### 1. Implied Volatility in Different Models
-
-
-Different models generate different IV surfaces even with the same marginal density $q(S_T)$:
-
-**Black-Scholes:**
-
-$$
-\sigma_{\text{IV}}(K, T) = \sigma \quad \text{(flat)}
-$$
-
-
-
-**Local Volatility:**
-
-$$
-\sigma_{\text{IV}}(K, T) \text{ determined by } \sigma_{\text{loc}}(S, t) \text{ via Dupire}
-$$
-
-
-- Generates sticky-strike smile dynamics
-
-**Heston (Stochastic Volatility):**
-
-$$
-\sigma_{\text{IV}}(K, T) \text{ determined by } (\kappa, \theta, \xi, \rho, v_0)
-$$
-
-
-- Generates more realistic smile dynamics (sticky-delta)
-
-**Jump-Diffusion (Merton):**
-
-$$
-\sigma_{\text{IV}}(K, T) \text{ exhibits convexity from jumps}
-$$
-
-
-- Smile curvature increases with jump intensity
-
-### 2. Which Model to Use?
-
-
-The choice depends on:
-
-1. **Vanilla pricing:** All models can fit the smile (Dupire guarantees perfect fit)
-2. **Exotic pricing:** Models differ significantly for path-dependent options
-3. **Hedging:** Smile dynamics determine rehedging P&L
-
-**Recommendation:** Use model-free results (B-L, Dupire) for understanding the density, then select a dynamic model based on smile evolution and exotic pricing needs.
+Recall (see [§ Stochastic Volatility Models](../../ch14/index.md)) for how Heston, jump-diffusion, and other models generate IV surfaces with different smile dynamics (sticky-delta versus the local-vol sticky-strike), and (see [§ Limitations of Local Volatility](../limitations/static_vs_dynamic_smile.md)) for the trade-offs in choosing among them for exotic pricing and hedging.
 
 ## Practical Workflow: From Market Data to Density
 

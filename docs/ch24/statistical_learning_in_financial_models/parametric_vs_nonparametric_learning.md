@@ -174,14 +174,7 @@ $$
 
 This **minimax optimal rate** reveals the curse of dimensionality: as dimension $d$ increases, convergence slows dramatically.
 
-**Example.** For twice-differentiable functions ($\beta = 2$):
-
-- $d = 1$: Rate is $n^{-4/5}$
-- $d = 5$: Rate is $n^{-4/9}$  
-- $d = 10$: Rate is $n^{-2/7}$
-- $d = 20$: Rate is $n^{-1/6}$
-
-With 1,000 observations, effective estimation in 20 dimensions requires smoothness equivalent to $1000^{1/6} \approx 3$ observations in one dimension.
+**Example.** For twice-differentiable functions ($\beta = 2$): rate is $n^{-4/5}$ at $d=1$, $n^{-4/9}$ at $d=5$, $n^{-2/7}$ at $d=10$, $n^{-1/6}$ at $d=20$. Recall the effective sample size analysis (see [§ Curse of Dimensionality](curse_of_dimensionality.md)).
 
 ---
 
@@ -325,7 +318,7 @@ $$
 
 estimated via kernel methods or trees.
 
-**Empirical finding:** Due to low signal-to-noise ratios in returns (often $R^2 < 0.05$), nonparametric methods frequently underperform simple linear models out-of-sample. The flexibility that allows fitting complex patterns also fits noise.
+**Empirical finding:** Recall the low-SNR regime in financial returns (see [§ Bias–Variance Trade-Off](bias_variance_trade_off.md)). Nonparametric methods frequently underperform simple linear models out-of-sample: the flexibility that allows fitting complex patterns also fits noise.
 
 ---
 
@@ -335,11 +328,7 @@ estimated via kernel methods or trees.
 
 For parametric models with $d$ parameters and maximized log-likelihood $\ell_n(\hat{\theta})$:
 
-**Akaike Information Criterion:**
-
-$$
-\text{AIC} = -2\ell_n(\hat{\theta}) + 2d
-$$
+**Akaike Information Criterion** (Recall: $\text{AIC} = -2\ell_n(\hat{\theta}) + 2d$; see [§ Bias–Variance Trade-Off](bias_variance_trade_off.md)).
 
 **Bayesian Information Criterion:**
 

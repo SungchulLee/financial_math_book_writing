@@ -1,7 +1,9 @@
 # Theta Management and Time Decay
 
-
 Theta measures the rate of decline in an option's value with the passage of time, holding all else constant. Managing theta exposure is central to options portfolio construction and P&L forecasting.
+
+!!! tip "Toy mechanism: gamma pays for theta"
+    The cleanest way to read theta is through the BS PDE rearranged: $\Theta = -\tfrac{1}{2}\sigma^2 S^2\Gamma - rS\Delta + rV$. On a delta-hedged book ($\Delta = 0$), the formula collapses to $\Theta \approx -\tfrac{1}{2}\sigma^2 S^2\Gamma + rV$. For long options ($\Gamma > 0$), this forces $\Theta < 0$ — *the cost of holding gamma is paid in theta*. The realised P&L of a delta-hedged long-option position is $\tfrac{1}{2}\Gamma(\delta S)^2 + \Theta\,\delta t$, so profit requires realised volatility to exceed implied — exactly the gamma–theta balance the section explores. Time decay is not an isolated risk; it is the *price tag* on convexity.
 
 ---
 
@@ -100,29 +102,7 @@ The trade profits when:
 ### Dynamic hedging with short gamma
 
 
-#### Strategy
-
-Sell options to earn positive theta, then delta-hedge dynamically to manage directional exposure. The goal is to **harvest time decay** while staying market-neutral.
-
-#### P&L decomposition
-
-For a short ATM call position that is delta-hedged:
-
-$$
-\text{Daily P\&L} \approx \underbrace{|\Theta|\,\Delta t}_{\text{theta income}} - \underbrace{\frac{1}{2}|\Gamma|(\Delta S)^2}_{\text{gamma cost from moves}}
-$$
-
-The strategy is profitable when realized volatility is **below** implied volatility:
-
-$$
-\mathbb{E}[\text{P\&L}] > 0 \iff \sigma_{\text{realized}} < \sigma_{\text{implied}}
-$$
-
-#### Risks
-
-- **Large moves**: if the underlying gaps significantly, gamma losses can overwhelm theta income.
-- **Volatility spikes**: increasing implied vol raises the mark-to-market value of the short option, creating unrealized losses.
-- **Tail events**: this is a concave P&L strategy — small gains most of the time, occasional large losses.
+Recall (see [§ Gamma and Vega Hedging](gamma_and_vega_hedging.md#short-gamma-strategies)): sell options to earn positive theta, delta-hedge dynamically; daily P&L $\approx |\Theta|\,\Delta t - \tfrac{1}{2}|\Gamma|(\Delta S)^2$, profitable when $\sigma_{\text{realized}} < \sigma_{\text{implied}}$. Recall (see [§ Impact of Volatility Misspecification](../hedging_errors/impact_of_volatility_misspecification.md)): vol spikes raise the mark-to-market of the short option, creating unrealized losses.
 
 ---
 

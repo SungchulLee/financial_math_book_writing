@@ -59,15 +59,7 @@ The drift $\mu > 0$ creates an upward trend. $X$ is a submartingale.
 
 By Itô's formula (proved in *Itô's Formula*): $\mathbb{E}[S_t \mid \mathcal{F}_s] = S_s \cdot e^{(\mu + \sigma^2/2)(t-s)}$. This exceeds $S_s$ when $\mu + \sigma^2/2 > 0$, so $S_t$ is a submartingale.
 
-**Example 3: Convex function of a martingale**. If $M_t$ is a martingale and $\varphi$ is convex with $\mathbb{E}|\varphi(M_t)| < \infty$, then $\varphi(M_t)$ is a submartingale.
-
-**Proof**: By conditional Jensen's inequality:
-
-$$
-\mathbb{E}[\varphi(M_t) \mid \mathcal{F}_s] \ge \varphi(\mathbb{E}[M_t \mid \mathcal{F}_s]) = \varphi(M_s) \quad \square
-$$
-
-**Corollaries**: If $M_t$ is a martingale, then $|M_t|$, $M_t^2$, $(M_t)^+ = \max(M_t, 0)$, and $e^{M_t}$ (when integrable) are all submartingales.
+**Example 3: Convex function of a martingale**. Recall (see [§ Martingales — Convex Functions Produce Submartingales](martingale.md)): if $M$ is a martingale and $\varphi$ is convex (with integrability), then $\varphi(M)$ is a submartingale by conditional Jensen. Hence $|M_t|$, $M_t^2$, $(M_t)^+$, and $e^{M_t}$ (when integrable) are submartingales.
 
 ### Supermartingales
 
@@ -147,83 +139,19 @@ This justifies working with càdlàg paths throughout, which ensures that stoppe
 
 ## Relationship to the Doob–Meyer Decomposition
 
-The Doob–Meyer decomposition (treated fully in *Doob–Meyer Decomposition*) characterizes submartingales structurally:
-
-**Theorem**: A càdlàg adapted process $X_t$ is a submartingale if and only if it can be written as:
-
-$$
-X_t = M_t + A_t
-$$
-
-where $M_t$ is a local martingale and $A_t$ is a predictable, non-decreasing process with $A_0 = 0$.
-
-**The compensator $A_t$ is the cumulative drift** — it measures how much the process has risen on average up to time $t$.
-
-**Examples**:
-
-| Submartingale | Martingale part | Compensator |
-|---------------|-----------------|-------------|
-| $W_t + \mu t$, $\mu > 0$ | $W_t$ | $\mu t$ |
-| $W_t^2$ | $W_t^2 - t$ | $t$ |
-| $e^{\sigma W_t + \mu t}$, $\mu > -\sigma^2/2$ | (stochastic exponential) | (increasing) |
-| $|W_t|$ | $\int_0^t \text{sgn}(W_s)\,dW_s$ | $L_t^0$ (local time) |
-
----
-
-## Class (D)
-
-A special subclass of supermartingales plays a central role in optional sampling and the Doob–Meyer theorem.
-
-**Definition**: A càdlàg adapted process $X$ is of **class (D)** if:
-
-$$
-\{X_\tau : \tau \text{ bounded stopping time}\} \quad \text{is uniformly integrable}
-$$
-
-**Why class (D)?** The letter D stands for "Dirichlet" — class (D) processes arise naturally in potential theory as Dirichlet solutions. For supermartingales, class (D) is exactly the condition needed to apply optional sampling at unbounded stopping times.
-
-**Examples**:
-
-- Any uniformly integrable martingale is class (D).
-- Bounded supermartingales are class (D).
-- $W_t$ on $[0, T]$ is class (D) (by Doob's $L^2$ inequality: $\mathbb{E}[\sup_{t \le T} W_t^2] \le 4T$).
-- $W_t^2$ on $[0, \infty)$ is **not** class (D) (the expectation grows without bound).
+Recall (see [§ Doob–Meyer Decomposition](doob_meyer_decomposition.md)): a càdlàg submartingale of class (D) decomposes uniquely as $X_t = M_t + A_t$ with $M$ a martingale and $A$ predictable, non-decreasing, $A_0 = 0$. The compensator $A_t$ is the cumulative drift, and class (D) — uniform integrability of $\{X_\tau : \tau \text{ bounded stopping time}\}$ — is the condition that extends optional sampling and Doob–Meyer to unbounded times.
 
 ---
 
 ## Optional Sampling for Sub/Supermartingales
 
-The optional sampling theorem extends naturally to sub- and supermartingales.
-
-**Theorem**: Let $X$ be a supermartingale and $0 \le \sigma \le \tau \le T$ bounded stopping times. Then:
-
-$$
-\mathbb{E}[X_\tau \mid \mathcal{F}_\sigma] \le X_\sigma \quad \text{a.s.}
-$$
-
-For submartingales, the inequality reverses.
-
-**Consequence for supermartingales**: $\mathbb{E}[X_\tau] \le \mathbb{E}[X_0]$. The expected value can only decrease at random stopping times — stopping early is weakly beneficial for a supermartingale player.
-
-**Financial interpretation**: If a discounted portfolio process is a supermartingale (modeling transaction costs or fees), then no admissible stopping strategy can produce a positive expected gain over the initial value.
+Recall (see [§ Optional Sampling Theorem](optional_sampling_theorem.md)): for a supermartingale $X$ and bounded stopping times $\sigma \le \tau \le T$, $\mathbb{E}[X_\tau \mid \mathcal{F}_\sigma] \le X_\sigma$ a.s. (reversed for submartingales). In particular $\mathbb{E}[X_\tau] \le \mathbb{E}[X_0]$: no admissible stopping strategy can produce a positive expected gain, which is the financial content for portfolios eroded by transaction costs.
 
 ---
 
 ## Convergence of Non-Negative Supermartingales
 
-Non-negative supermartingales converge almost surely without any additional conditions — a powerful result.
-
-**Theorem**: Let $(X_t)_{t \ge 0}$ be a non-negative supermartingale (with càdlàg paths). Then:
-
-$$
-X_\infty := \lim_{t \to \infty} X_t \quad \text{exists a.s. and } \mathbb{E}[X_\infty] \le \mathbb{E}[X_0]
-$$
-
-**Proof**: Since $X_t \ge 0$, we have $\mathbb{E}[X_t] \le \mathbb{E}[X_0]$ (from the supermartingale property), so $\sup_t \mathbb{E}[X_t] \le \mathbb{E}[X_0] < \infty$. Since $-X_t$ is a submartingale and $L^1$-bounded (as $\mathbb{E}[-X_t] \ge -\mathbb{E}[X_0]$), Doob's a.s. convergence theorem applied to $-X_t$ yields that $-X_t$, hence $X_t$, converges a.s. $\square$
-
-**Important**: The inequality $\mathbb{E}[X_\infty] \le \mathbb{E}[X_0]$ may be strict (the limit has smaller expectation than the start). This happens when probability mass "escapes to infinity."
-
-**Example**: The exponential martingale $Z_t = e^{\theta W_t - \theta^2 t/2}$ is a non-negative martingale. It satisfies $Z_t \to 0$ a.s. even though $\mathbb{E}[Z_t] = 1$ for all $t$. As a positive supermartingale, the theorem says $Z_\infty$ exists a.s. (and equals 0), confirming $\mathbb{E}[Z_\infty] = 0 < 1 = \mathbb{E}[Z_0]$.
+Recall (see [§ Martingale Convergence](martingale_convergence.md)): non-negative supermartingales are automatically $L^1$-bounded (since $\mathbb{E}[X_t] \le \mathbb{E}[X_0]$), so Doob's a.s. convergence theorem applies: $X_\infty := \lim_{t\to\infty} X_t$ exists a.s. with $\mathbb{E}[X_\infty] \le \mathbb{E}[X_0]$. The inequality can be strict — mass may escape to infinity, as in the exponential martingale $Z_t = e^{\theta W_t - \theta^2 t/2}$, $\theta \ne 0$, where $Z_t \to 0$ a.s. while $\mathbb{E}[Z_t] = 1$.
 
 ---
 

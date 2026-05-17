@@ -6,23 +6,13 @@ The variance process in the Heston model is a **square-root diffusion** (CIR pro
 
 ## The CIR Variance Process
 
-### Dynamics
-
-The variance in the Heston model follows a Cox–Ingersoll–Ross (CIR) process:
+Recall (see [§ Variance Dynamics — CIR Process](../../ch16/variance_dynamics/cir_variance_process_solution.md)) the Heston variance SDE
 
 $$
-dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
+dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V, \qquad \kappa,\theta,\xi>0,
 $$
 
-with parameters $\kappa > 0$ (mean reversion), $\theta > 0$ (long-run level), and $\xi > 0$ (volatility of volatility).
-
-### Key Features
-
-1. **Mean reversion:** $V_t$ is pulled toward $\theta$
-2. **Square-root diffusion:** Volatility of $V$ vanishes as $V \to 0$
-3. **Non-negative:** $V_t \geq 0$ for all $t$ (almost surely)
-
-The challenge: ensuring the process stays strictly positive ($V_t > 0$) vs. merely non-negative ($V_t \geq 0$).
+which is mean-reverting, has vanishing diffusion as $V\to 0$, and stays non-negative a.s. The question addressed here is **strict positivity** vs. merely non-negativity.
 
 ---
 
@@ -136,76 +126,12 @@ Feller violation creates numerical difficulties:
 
 ## Simulation Schemes Under Feller Violation
 
-### Full Truncation
+Recall (see [§ Variance Dynamics — Simulation](../../ch16/variance_dynamics/cir_variance_process_solution.md) and [§ European Pricing — Monte Carlo](../../ch16/european_pricing/semi_closed_form_fourier_inversion.md)) the standard schemes:
 
-Replace $V_t^+ = \max(V_t, 0)$ in both drift and diffusion:
-
-$$
-V_{t+\Delta} = V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}\,Z
-$$
-
-**Properties:**
-
-- Simple to implement
-- Introduces positive bias (variance is inflated)
-- Bias is $O(\Delta)$
-
-### Reflection
-
-If $V_{t+\Delta} < 0$, set $V_{t+\Delta} = |V_{t+\Delta}|$:
-
-**Properties:**
-
-- Preserves variance distribution approximately
-- Can introduce spurious oscillations
-- Better than truncation for some metrics
-
-### Quadratic-Exponential (QE) Scheme
-
-Andersen's QE scheme matches moments of the exact transition density:
-
-**Step 1:** Compute $m = \theta + (V_t - \theta)e^{-\kappa\Delta}$ and $s^2 = \frac{V_t\xi^2 e^{-\kappa\Delta}}{\kappa}(1-e^{-\kappa\Delta}) + \frac{\theta\xi^2}{2\kappa}(1-e^{-\kappa\Delta})^2$
-
-**Step 2:** If $\psi = s^2/m^2 < \psi_c$ (typically $\psi_c = 1.5$), use quadratic:
-
-$$
-V_{t+\Delta} = a(b + Z)^2
-$$
-
-where $a, b$ are moment-matched.
-
-**Step 3:** If $\psi \geq \psi_c$, use exponential:
-
-$$
-V_{t+\Delta} = \Psi^{-1}(U; p, \beta)
-$$
-
-where $\Psi$ is a mixture of point mass at 0 and exponential.
-
-**Properties:**
-
-- Near-exact distribution matching
-- Robust under Feller violation
-- Industry standard
-
-### Exact Simulation
-
-The transition $V_{t+\Delta} | V_t$ is a scaled non-central chi-squared:
-
-$$
-V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2_{d,\lambda}
-$$
-
-where:
-
-- $d = \frac{4\kappa\theta}{\xi^2}$ (degrees of freedom)
-- $\lambda = \frac{4\kappa e^{-\kappa\Delta}}{\xi^2(1-e^{-\kappa\Delta})}V_t$ (non-centrality)
-
-**Properties:**
-
-- Exact in distribution
-- Computationally expensive (non-central chi-squared sampling)
-- Useful for benchmarking
+- **Full truncation Euler:** $V_{t+\Delta}=V_t+\kappa(\theta-V_t^+)\Delta+\xi\sqrt{V_t^+}\sqrt{\Delta}\,Z$ — simple, $O(\Delta)$ positive bias.
+- **Reflection:** $V_{t+\Delta}\mapsto|V_{t+\Delta}|$ — less bias than truncation, may oscillate.
+- **Andersen QE:** moment-match the exact non-central $\chi^2$, switching between a quadratic branch and an exponential-with-mass-at-zero branch at $\psi_c\approx 1.5$ — industry standard, robust under $\nu<1$.
+- **Exact non-central $\chi^2$:** $V_{t+\Delta}=\tfrac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\,\chi'^2_{d,\lambda}$ with $d=4\kappa\theta/\xi^2$, $\lambda=\tfrac{4\kappa e^{-\kappa\Delta}}{\xi^2(1-e^{-\kappa\Delta})}V_t$ — distributionally exact, costly.
 
 ---
 

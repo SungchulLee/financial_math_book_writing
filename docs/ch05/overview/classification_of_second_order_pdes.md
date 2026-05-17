@@ -102,7 +102,7 @@ Here $A = c^2$, $B = 0$, $C = -1$, so $\Delta = c^2 > 0$.
 
 ## Why Financial PDEs Are Parabolic
 
-The Black-Scholes PDE (see [Why PDEs in Finance](why_pdes_in_finance.md) for its full derivation and financial meaning) serves as the prototypical parabolic example:
+Recall (see [§ Why PDEs in Finance](why_pdes_in_finance.md)): the Black–Scholes PDE — used here only as the prototypical parabolic example for discriminant computation:
 
 $$
 \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
@@ -117,13 +117,7 @@ $$
 The equation is **parabolic** (provided $\sigma > 0$ and $S > 0$).
 
 !!! info "The Deep Reason"
-    Financial PDEs are parabolic because they arise from diffusion processes via the Feynman-Kac theorem. Any Ito diffusion
-
-    $$
-    dX_t = \mu\,dt + \sigma\,dW_t
-    $$
-
-    has a generator $\mathcal{L} = \mu\partial_x + \frac{1}{2}\sigma^2\partial_{xx}$ that is a **second-order operator with no mixed time-space second derivatives**. The resulting PDE $\partial_t u + \mathcal{L}u = 0$ is always parabolic. Parabolicity is the PDE signature of Brownian diffusion.
+    Recall (see [§ The SDE–PDE Bridge](sde_pde_bridge.md)): every Ito diffusion has a generator $\mathcal{L}$ that is second-order in space with no mixed time-space derivatives. Consequently $\partial_t u + \mathcal{L}u = 0$ is first-order in $t$, at most second-order in $x$, and has no $\partial_{tt}$ or $\partial_{tx}$ term — forcing the discriminant $\Delta = B^2 - AC$ to vanish. Parabolicity is therefore the PDE signature of Brownian diffusion, and this is *why* financial pricing PDEs are parabolic.
 
 ---
 
@@ -219,10 +213,10 @@ $$
 
 ## See Also
 
-- [Why PDEs in Finance](why_pdes_in_finance.md) -- motivation for the PDE approach
-- [Boundary Value Problems](boundary_value_problems.md) -- appropriate conditions for each PDE type
-- [The SDE-PDE Bridge](sde_pde_bridge.md) -- how diffusion generators produce parabolic PDEs
-- [Maximum Principle](../heat_equation/maximum_principle.md) -- the key property of parabolic equations
+- [§ Why PDEs in Finance](why_pdes_in_finance.md) — motivation for the PDE approach
+- [§ Boundary Value Problems](boundary_value_problems.md) — appropriate conditions for each PDE type
+- [§ The SDE–PDE Bridge](sde_pde_bridge.md) — how diffusion generators produce parabolic PDEs
+- [Maximum Principle](../heat_equation/maximum_principle.md) — the key property of parabolic equations
 
 ---
 

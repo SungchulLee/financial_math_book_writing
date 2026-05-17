@@ -58,25 +58,7 @@ Throughout this section, we maintain a clear distinction between discrete and co
 
 ## Binomial Model Setup
 
-### Discrete Time Structure
-
-Consider a time interval $[0, T]$ divided into $n$ equal steps:
-
-$$
-\Delta t = \frac{T}{n}
-$$
-
-At each time step, the stock price evolves multiplicatively:
-
-$$
-S_{i+1} = 
-\begin{cases}
-u S_i & \text{with probability } q \\[4pt]
-d S_i & \text{with probability } 1-q
-\end{cases}
-$$
-
-where $u > 1$ is the **up factor** and $0 < d < 1$ is the **down factor**.
+Recall (see [§ Binomial Model](../binomial_model/binomial_model.md)): with $\Delta t = T/n$, $S_{i+1} = uS_i$ (prob $q$) or $dS_i$ (prob $1-q$), with $u > 1 > d > 0$.
 
 ### Parameter Specification (Cox–Ross–Rubinstein)
 
@@ -145,28 +127,7 @@ $$
 
 ### Log-Price Representation
 
-After $n$ steps, starting from $S_0$, the stock price is:
-
-$$
-S_n = S_0 \cdot u^{N_u} \cdot d^{N_d}
-$$
-
-where:
-
-- $N_u$ = number of up moves
-- $N_d = n - N_u$ = number of down moves
-
-Taking logarithms:
-
-$$
-\ln S_n = \ln S_0 + N_u \ln u + N_d \ln d
-$$
-
-With $u = e^{\sigma\sqrt{\Delta t}}$ and $d = e^{-\sigma\sqrt{\Delta t}}$:
-
-$$
-\ln S_n = \ln S_0 + N_u \cdot \sigma\sqrt{\Delta t} - N_d \cdot \sigma\sqrt{\Delta t}
-$$
+Recall (see [§ Multi-Period Model](../multi_period_model/multi_period_binomial_model.md)): after $n$ steps, $S_n = S_0 u^{N_u} d^{N_d}$ with $N_u + N_d = n$. Under CRR, this gives:
 
 $$
 \ln S_n = \ln S_0 + \sigma\sqrt{\Delta t}(N_u - N_d)
@@ -273,32 +234,10 @@ $$
 
 ## The Itô Correction: Where Does -1/2σ² Come From?
 
-The discrepancy arises from a subtle point: the risk-neutral condition constrains the **arithmetic** return, not the **logarithmic** return.
-
-### The Martingale Condition
-
-The risk-neutral measure is defined so that the **discounted stock price** is a martingale:
+The discrepancy arises from a subtle point: the risk-neutral condition constrains the **arithmetic** return, not the **logarithmic** return. Recall (see [§ Risk-Neutral Measure](../binomial_model/risk_neutral_measure.md)): $\mathbb{Q}$ is fixed by $\mathbb{E}^{\mathbb{Q}}[S_{i+1} \mid S_i] = S_i e^{r\Delta t}$ — a statement about $S_{i+1}$, not $\ln S_{i+1}$. By Jensen's inequality (concavity of $\ln$):
 
 $$
-\mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i] = S_i \cdot e^{r\Delta t}
-$$
-
-This says something about $S_{i+1}$, not about $\ln S_{i+1}$.
-
-### Jensen's Inequality
-
-For a concave function $f(x) = \ln x$, Jensen's inequality states:
-
-$$
-\mathbb{E}[\ln X] \leq \ln \mathbb{E}[X]
-$$
-
-with equality only if $X$ is constant.
-
-Since $S_{i+1}/S_i$ is random (not constant), we have:
-
-$$
-\mathbb{E}^{\mathbb{Q}}\left[\ln\frac{S_{i+1}}{S_i}\right] < \ln \mathbb{E}^{\mathbb{Q}}\left[\frac{S_{i+1}}{S_i}\right] = \ln(e^{r\Delta t}) = r\Delta t
+\mathbb{E}^{\mathbb{Q}}\left[\ln\frac{S_{i+1}}{S_i}\right] < \ln \mathbb{E}^{\mathbb{Q}}\left[\frac{S_{i+1}}{S_i}\right] = r\Delta t
 $$
 
 The gap is the **Itô correction**.
@@ -420,11 +359,7 @@ $$
 $$
 
 !!! success "Itô Correction Derived"
-    The $-\frac{1}{2}\sigma^2$ term arises from the **convexity of the logarithm** (Jensen's inequality). In continuous time, this is captured by Itô's lemma:
-    
-    $$d\ln S_t = \frac{dS_t}{S_t} - \frac{1}{2}\frac{(dS_t)^2}{S_t^2} = \left(r - \frac{\sigma^2}{2}\right)dt + \sigma dW_t$$
-    
-    The discrete calculation reproduces this correction in the limit.
+    The $-\frac{1}{2}\sigma^2$ term arises from the **convexity of the logarithm** (Jensen's inequality). Recall (see [§ Itô's Lemma](../../ch03/ito_lemma/ito_lemma.md)): in continuous time, $d\ln S_t = (r - \sigma^2/2)\,dt + \sigma\,dW_t$. The discrete calculation reproduces this correction in the limit.
 
 ---
 
@@ -448,18 +383,10 @@ where $W_T \sim \mathcal{N}(0, T)$.
 
 ### Connection to Geometric Brownian Motion
 
-This log-normal distribution is exactly the solution to the **risk-neutral SDE**:
-
-$$
-\boxed{dS_t = rS_t \, dt + \sigma S_t \, dW_t}
-$$
-
-where $W_t$ is a standard Brownian motion under $\mathbb{Q}$.
+Recall (see [§ GBM SDE](../../ch03/sde/sde.md)): the log-normal distribution above is exactly the solution to the risk-neutral SDE $dS_t = rS_t\,dt + \sigma S_t\,dW_t$ with $W_t$ a standard Brownian motion under $\mathbb{Q}$.
 
 !!! note "Donsker's Theorem"
-    The convergence of the scaled random walk to Brownian motion is a special case of **Donsker's theorem** (the functional central limit theorem). See [Donsker's Theorem](../../ch02/simple_random_walk/donsker_theorem.md) for the general statement.
-    
-    Donsker's theorem gives convergence of the entire **path** $\{S_{[nt]/n}\}_{t \in [0,T]}$ to $\{S_t\}_{t \in [0,T]}$, not just the terminal distribution.
+    Recall (see [§ Donsker's Theorem](../../ch02/simple_random_walk/donsker_theorem.md)): the scaled random walk converges in the path-space sense to Brownian motion, so the entire trajectory $\{S_{\lfloor nt\rfloor}\}_{t\in[0,T]}$ — not just the terminal distribution — converges to $\{S_t\}_{t\in[0,T]}$.
 
 ---
 
@@ -510,21 +437,7 @@ $$
 
 ## Convergence of Option Pricing
 
-### Binomial Backward Recursion
-
-In the binomial model, the option value at node $i$ satisfies:
-
-$$
-V_i = e^{-r\Delta t}\left[q V_{i+1}^{u} + (1-q) V_{i+1}^{d}\right]
-$$
-
-with terminal condition:
-
-$$
-V_n = \text{Payoff}(S_n)
-$$
-
-where $V_{i+1}^u$ (resp. $V_{i+1}^d$) is the option value at the up (resp. down) successor node.
+Recall (see [§ Binomial Model](../binomial_model/binomial_model.md)): the backward recursion is $V_i = e^{-r\Delta t}[q V_{i+1}^{u} + (1-q) V_{i+1}^{d}]$ with terminal $V_n = \text{Payoff}(S_n)$.
 
 ### Taylor Expansion Approach
 
@@ -623,8 +536,8 @@ Taking $\Delta t \to 0$:
     $$
     \boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
     $$
-    
-    with terminal condition $V(S, T) = \text{Payoff}(S)$.
+
+    with terminal $V(S, T) = \text{Payoff}(S)$. Recall (see [§ BS PDE Derivation](../../ch06/bs_pde_derivation/replication.md)): continuous-time derivations via replication, change of numéraire, and equilibrium yield the same equation.
 
 ---
 
@@ -648,17 +561,7 @@ So the sum effectively runs from $k = \lceil k^* \rceil$ to $n$.
 
 ### Black–Scholes Formula
 
-The continuous limit is the **Black–Scholes formula**:
-
-$$
-C_{BS} = S_0 \mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
-$$
-
-where $\Phi$ is the standard normal CDF and:
-
-$$
-d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
-$$
+Recall (see [§ BS Formula](../../ch06/black_scholes_formula/bs_formula_statement.md)): the continuous limit is $C_{BS} = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ with $d_1 = [\ln(S_0/K) + (r + \tfrac{1}{2}\sigma^2)T]/(\sigma\sqrt{T})$ and $d_2 = d_1 - \sigma\sqrt{T}$.
 
 ### Convergence
 
@@ -668,25 +571,13 @@ $$
 C_n \to C_{BS}
 $$
 
-**Proof sketch:** The binomial sum is a Riemann sum approximation to:
-
-$$
-C_{BS} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = e^{-rT}\int_K^\infty (S - K) f_{S_T}(S) \, dS
-$$
-
-where $f_{S_T}$ is the log-normal density of $S_T$. By the CLT, the discrete distribution of $S_n$ converges to this log-normal, so the expectation converges.
+**Proof sketch:** Recall (see [§ Risk-Neutral Valuation](../../ch04/risk_neutral/risk_neutral_valuation_principle.md)): $C_{BS} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]$. The binomial sum is a Riemann-sum approximation to this expectation, and by the CLT the discrete distribution of $S_n$ converges to the log-normal density of $S_T$, so the expectation converges.
 
 ---
 
 ## Convergence of Delta Hedging
 
-### Discrete Delta
-
-In the binomial model, at node $(i, j)$ with stock price $S$, the replicating portfolio holds:
-
-$$
-\Delta_i = \frac{V_{i+1}^u - V_{i+1}^d}{S(u - d)} = \frac{V(uS, t+\Delta t) - V(dS, t+\Delta t)}{S(u - d)}
-$$
+Recall (see [§ Delta Hedging](../binomial_model/delta_hedging.md)): the discrete replicating portfolio holds $\Delta_i = (V_{i+1}^u - V_{i+1}^d)/(S(u-d))$.
 
 ### Taylor Expansion
 
@@ -710,11 +601,7 @@ $$
 \Delta_i \to \frac{\partial V}{\partial S}(S, t)
 $$
 
-For a European call, this is the **Black–Scholes delta**:
-
-$$
-\Delta = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
-$$
+Recall (see [§ BS Formula Properties](../../ch06/black_scholes_formula/properties_and_bounds.md)): for a European call this is the Black–Scholes delta $\partial C/\partial S = \mathcal{N}(d_1)$.
 
 !!! success "Hedging Convergence"
     The discrete binomial hedging strategy converges to continuous **delta hedging**. The replicating portfolio remains self-financing in the limit.
@@ -756,13 +643,7 @@ with **oscillations** between odd and even $n$.
 
 ### American Options
 
-The binomial method handles American options naturally:
-
-$$
-V_i^{American} = \max\left(\text{Payoff}(S_i), \, e^{-r\Delta t}[qV_{i+1}^u + (1-q)V_{i+1}^d]\right)
-$$
-
-The early exercise boundary emerges from the recursion. There is **no closed-form** Black–Scholes formula for American options.
+Recall (see [§ American Options on Trees](../multi_period_model/american_options_on_trees.md)): $V_i^{\text{Am}} = \max(\text{Payoff}(S_i),\, e^{-r\Delta t}[qV_{i+1}^u + (1-q)V_{i+1}^d])$. The early-exercise boundary emerges from the recursion; no closed-form Black–Scholes formula exists for American options.
 
 ### Dividends
 

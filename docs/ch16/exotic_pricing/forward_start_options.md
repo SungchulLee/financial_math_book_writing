@@ -97,13 +97,7 @@ The forward-start option price is simply the European call price (with unit spot
 
 ### Why Independence Fails
 
-Under Heston, the forward return depends on $\mathcal{F}_{T_1}$ through the **variance state** $v_{T_1}$:
-
-$$
-\ln R = \int_{T_1}^{T}\left(r - q - \frac{v_s}{2}\right) ds + \int_{T_1}^{T} \sqrt{v_s} \, dW_s^{(1)}
-$$
-
-The variance path $(v_s)_{s \in [T_1, T]}$ depends on $v_{T_1}$, which is $\mathcal{F}_{T_1}$-measurable. Consequently, the distribution of $R$ is **not independent** of $\mathcal{F}_{T_1}$ --- it depends on $v_{T_1}$.
+Recall (see [§ Variance Dynamics](../variance_dynamics/cir_variance_process_solution.md)): under Heston, the log-return on $[T_1, T]$ has diffusion $\sqrt{v_s}$, and the path $(v_s)_{s \geq T_1}$ depends on $v_{T_1} \in \mathcal{F}_{T_1}$. Hence $R = S_T/S_{T_1}$ is **not independent** of $\mathcal{F}_{T_1}$.
 
 ### The Conditional CF
 
@@ -132,7 +126,7 @@ where $\tau = T - T_1$ and $C, D$ are the standard Heston Riccati solutions with
 
 ### Pricing Algorithm
 
-**Step 1.** For a grid of variance values $v^{(1)}, v^{(2)}, \ldots, v^{(M)}$, compute the Heston call price $C_{\text{Heston}}(1, \alpha, \tau, v^{(m)})$ using the COS method or Gil-Pelaez inversion.
+**Step 1.** For a grid of variance values $v^{(1)}, \ldots, v^{(M)}$, compute the Heston call price $C_{\text{Heston}}(1, \alpha, \tau, v^{(m)})$ via Recall (see [§ European Pricing](../european_pricing/semi_closed_form_fourier_inversion.md), [§ Heston COS](../heston_cos/cos_applied_to_heston.md)).
 
 **Step 2.** Compute the outer expectation by integrating against the CIR transition density of $v_{T_1}$:
 

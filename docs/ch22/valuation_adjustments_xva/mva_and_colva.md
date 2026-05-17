@@ -167,42 +167,7 @@ These values depend on the funding spread and whether the trade is cleared or bi
 
 ## KVA Overview
 
-### Definition
-
-The **Capital Valuation Adjustment** represents the cost of holding regulatory capital over the trade's life:
-
-$$
-\text{KVA} = \int_0^T h \cdot K(t) \cdot S_B(t) \cdot D(0, t) \, dt
-$$
-
-where:
-
-- $h$ = hurdle rate (return on equity demanded by shareholders, typically 8--15%)
-- $K(t)$ = regulatory capital requirement
-- $S_B(t)$ = bank's survival probability
-- $D(0, t)$ = discount factor
-
-### Capital Components
-
-$$
-K(t) = K^{\text{default}}(t) + K^{\text{CVA}}(t) + K^{\text{market}}(t)
-$$
-
-- **Default risk capital:** Based on counterparty EAD and credit quality
-- **CVA capital:** Capital for CVA variability (SA-CVA or BA-CVA)
-- **Market risk capital:** FRTB-based capital for trading book risk
-
-### KVA and the Hurdle Rate
-
-The hurdle rate $h$ reflects the equity cost of capital. If $\text{ROE}_{\text{target}} = 12\%$ and the risk-free rate is 3\%, then $h = 12\% - 3\% = 9\%$ is the excess return demanded on regulatory capital.
-
-**KVA interpretation:** A trade that consumes \$10M of capital for 5 years at $h = 10\%$ has:
-
-$$
-\text{KVA} \approx 10\text{M} \times 0.10 \times 5 = \$5\text{M}
-$$
-
-(simplified; actual computation accounts for the time profile of $K(t)$.)
+Recall (see [§ FVA and KVA](fva_kva.md)).
 
 ---
 
@@ -247,21 +212,7 @@ For a 10-year uncollateralized interest rate swap with notional \$100M:
 
 ## BSDE Formulation Including MVA
 
-The unified BSDE framework extends to include MVA:
-
-$$
-V_t = \xi + \int_t^T f(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
-$$
-
-with an extended driver:
-
-$$
-f(t, V, Z) = -rV + \lambda_C \cdot \text{LGD}_C \cdot V^+ - \lambda_B \cdot \text{LGD}_B \cdot V^- + s_F(V - C)^+ + s_F \cdot \text{IM}(t, V, Z)
-$$
-
-The last term, $s_F \cdot \text{IM}(t, V, Z)$, represents the MVA contribution. Since IM depends on portfolio sensitivities (which relate to $Z$ in the BSDE), this creates additional nonlinearity in the driver.
-
-**Existence and uniqueness** still hold under standard Lipschitz conditions on $f$, but the IM dependence on $Z$ complicates numerical solution and may require iterative schemes.
+Recall (see [§ XVA as Semilinear PDE](xva_as_semilinear_pde.md)). The MVA driver term $s_F \cdot \text{IM}(t, V, Z)$ adds $Z$-dependence; existence/uniqueness deferred to [§ Second-order BSDEs](../../ch23/second_order_bsdes_and_nonlinear_expectations/2bsdes.md).
 
 ---
 

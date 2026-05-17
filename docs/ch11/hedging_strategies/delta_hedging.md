@@ -1,7 +1,9 @@
 # Delta Hedging
 
-
 Delta hedging is the most fundamental options risk management technique: maintain a portfolio whose net delta is zero to eliminate first-order directional exposure.
+
+!!! tip "Toy mechanism: cancel the linear term"
+    The whole construction is one line of Taylor expansion. The option value satisfies $\delta C \approx \Delta\,\delta S + \tfrac{1}{2}\Gamma(\delta S)^2 + \Theta\,\delta t$. Holding $-\Delta$ shares of the underlying *exactly cancels* the first term, leaving residual P&L $\tfrac{1}{2}\Gamma(\delta S)^2 + \Theta\,\delta t$ — quadratic in $\delta S$ instead of linear. The delta-neutral portfolio is the simplest possible "perfect first-order hedge" in financial markets, and every dynamic-hedging argument in the rest of this chapter is one variation on this single cancellation: rebalance shares as $\Delta$ drifts to keep the linear term zero. The residual gamma–theta tradeoff is what survives.
 
 ---
 
@@ -52,15 +54,9 @@ $$
 
 This term is always positive for long options ($\Gamma > 0$), meaning the hedged portfolio benefits from large moves — but the cost is theta.
 
-**Theta (time decay).** The Black–Scholes PDE implies:
+**Theta (time decay).** Recall (see [§ Gamma Risk and Convexity Effects](../hedging_errors/gamma_risk_and_convexity_effects.md)): the BS PDE gives $\Theta + \tfrac{1}{2}\sigma^2 S^2 \Gamma = r(V - S\Delta)$, so long-gamma positions pay theta when the stock is quiet.
 
-$$
-\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r(V - S\Delta)
-$$
-
-For a long gamma position, theta is negative: the portfolio loses value with the passage of time if the stock doesn't move.
-
-**Discrete rebalancing.** In practice, hedges are adjusted at discrete intervals, not continuously. The error between discrete and continuous hedging is proportional to $\Gamma \cdot \sigma^2 S^2 \cdot \Delta t$.
+**Discrete rebalancing.** Recall (see [§ Discrete-Time Hedging Error](../hedging_errors/discrete_time_hedging_error.md)): the per-step error is $\epsilon_k \approx \tfrac{1}{2}\Gamma_k[(\Delta S_k)^2 - \sigma^2 S_k^2 \Delta t]$, with cumulative standard deviation scaling as $\sqrt{\Delta t}$.
 
 ---
 
@@ -77,20 +73,14 @@ In practice, delta changes with $S$, so the hedge must be **rebalanced** over ti
 
 **Rebalancing cost** per step is approximately $|\Delta(t_{i+1}) - \Delta(t_i)| \times S \times \text{spread}$.
 
-The tradeoff: more frequent rebalancing reduces hedging error but increases transaction costs.
+Recall (see [§ Transaction Costs and Liquidity Effects](../model_risk/transaction_costs_and_liquidity_effects.md)): more frequent rebalancing reduces hedging error but increases transaction costs.
 
 ---
 
 ### P&L decomposition
 
 
-Over a rebalancing period $[t, t+\Delta t]$, the delta-hedged P&L decomposes as:
-
-$$
-P\&L \approx \underbrace{\Theta\,\Delta t}_{\text{time decay}} + \underbrace{\frac{1}{2}\Gamma(\Delta S)^2}_{\text{gamma P\&L}} + \underbrace{\nu\,\Delta\sigma}_{\text{vega P\&L}}
-$$
-
-where $\Delta S = S_{t+\Delta t} - S_t$ and $\Delta\sigma$ is any change in implied volatility. This decomposition is the workhorse of options P&L attribution.
+Recall (see [§ Gamma Risk and Convexity Effects](../hedging_errors/gamma_risk_and_convexity_effects.md)): over $[t, t+\Delta t]$ the delta-hedged P&L decomposes as $P\&L \approx \Theta\,\Delta t + \tfrac{1}{2}\Gamma(\Delta S)^2 + \nu\,\Delta\sigma$ — the workhorse of options P&L attribution.
 
 ---
 

@@ -176,19 +176,7 @@ The rigorous proof uses the theory of viscosity solutions: the super-replication
 ### 3. The Black-Scholes-Barenblatt Equation
 
 
-The super-replication price under uncertain volatility $\sigma \in [\underline{\sigma}, \overline{\sigma}]$ (a closely related problem) satisfies the **Black-Scholes-Barenblatt (BSB) equation**:
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2} \Sigma(\Gamma)^2 S^2 \Gamma + rS\frac{\partial V}{\partial S} - rV = 0
-$$
-
-where $\Gamma = \partial^2 V / \partial S^2$ and the effective volatility is:
-
-$$
-\Sigma(\Gamma) = \begin{cases} \overline{\sigma} & \text{if } \Gamma \geq 0 \\ \underline{\sigma} & \text{if } \Gamma < 0 \end{cases}
-$$
-
-Under transaction costs, the effective volatility interval widens, and in the limit of continuous rebalancing, $\overline{\sigma} \to \infty$, recovering the trivial super-replication bound.
+Recall (see [§ Robust Delta–Gamma Hedging](robust_delta_gamma_hedging.md)) for the BSB equation $V_t + \tfrac{1}{2}\Sigma(\Gamma)^2 S^2\Gamma + rSV_S - rV = 0$ with $\Sigma(\Gamma)=\overline\sigma$ if $\Gamma\geq 0$, else $\underline\sigma$. Transaction-cost specialization: the effective volatility interval widens with rebalancing frequency, and as $\overline\sigma\to\infty$ the trivial super-replication bound $V_0=S_0$ is recovered.
 
 ## Consistent Price Systems
 

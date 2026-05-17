@@ -22,37 +22,19 @@ For general processes, solving the PDE numerically is expensive---finite differe
 
 ## The Feynman-Kac Theorem
 
-### General Statement
-
-**Theorem (Feynman-Kac).** Let $X_t$ be an Ito diffusion on $\mathbb{R}^d$ with generator
-
-$$
-\mathcal{A} = \sum_{i=1}^d b_i(x)\frac{\partial}{\partial x_i} + \frac{1}{2}\sum_{i,j=1}^d a_{ij}(x)\frac{\partial^2}{\partial x_i \partial x_j}
-$$
-
-Let $c : \mathbb{R}^d \to \mathbb{R}$ be a continuous function (the "killing rate") and $h : \mathbb{R}^d \to \mathbb{R}$ a measurable terminal condition. Define
+Recall (see [§ Feynman-Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md)): for an Ito diffusion with generator $\mathcal{A}$, continuous killing rate $c(x)$, and terminal payoff $h$, the function
 
 $$
 V(t, x) = \mathbb{E}\!\left[e^{-\int_t^T c(X_s)\,ds}\,h(X_T) \mid X_t = x\right]
 $$
 
-Under suitable regularity conditions (Lipschitz coefficients, polynomial growth of $h$), $V$ is the unique classical solution of the PDE:
-
-$$
-\frac{\partial V}{\partial t}(t, x) + \mathcal{A}V(t, x) - c(x)\,V(t, x) = 0, \qquad V(T, x) = h(x)
-$$
-
-The term $-c(x)V$ is the "killing" or "discounting" term. In finance, $c(x) = r(x)$ is the short rate, and $V$ is the time-$t$ value of a claim paying $h(X_T)$ at time $T$.
-
-### Backward Formulation
-
-Switching to time-to-maturity $\tau = T - t$:
+is the unique classical solution of $\partial_t V + \mathcal{A}V - c(x)V = 0$ with $V(T, x) = h(x)$. In finance, $c(x) = r(x)$ is the short rate. Switching to time-to-maturity $\tau = T - t$, the backward form is
 
 $$
 \frac{\partial V}{\partial \tau}(\tau, x) = \mathcal{A}V(\tau, x) - c(x)\,V(\tau, x), \qquad V(0, x) = h(x)
 $$
 
-This is the form most convenient for the Riccati derivation, since $\tau$ increases from the terminal condition.
+which is most convenient for the Riccati derivation.
 
 ---
 
@@ -128,47 +110,7 @@ The Feynman-Kac PDE, which is a $(d+1)$-dimensional partial differential equatio
 
 ## Verification for the Black-Scholes Model
 
-### Setup
-
-In the Black-Scholes model, $X_t = \log S_t$ with $dX_t = (r - \frac{1}{2}\sigma^2)\,dt + \sigma\,dW_t$ and $c(x) = r$ (constant short rate). The affine parameters are $b_0 = r - \frac{1}{2}\sigma^2$, $b_1 = 0$, $a_0 = \sigma^2$, $a_1 = 0$, $\rho_0 = r$, $\rho_1 = 0$.
-
-### Riccati System
-
-$$
-\tilde{\psi}'(\tau) = 0, \qquad \tilde{\psi}(0) = u
-$$
-
-$$
-\tilde{\phi}'(\tau) = (r - \tfrac{1}{2}\sigma^2)\tilde{\psi} + \tfrac{1}{2}\sigma^2\tilde{\psi}^2 - r, \qquad \tilde{\phi}(0) = 0
-$$
-
-### Solution
-
-$\tilde{\psi}(\tau) = u$ (constant), and:
-
-$$
-\tilde{\phi}(\tau) = \left[(r - \tfrac{1}{2}\sigma^2)u + \tfrac{1}{2}\sigma^2 u^2 - r\right]\tau
-$$
-
-### The Discounted Characteristic Function
-
-Setting $u = iv$:
-
-$$
-\tilde{\phi}(\tau, iv) = \left[(r - \tfrac{1}{2}\sigma^2)iv - \tfrac{1}{2}\sigma^2 v^2 - r\right]\tau
-$$
-
-$$
-\tilde{\psi}(\tau, iv) = iv
-$$
-
-The discounted characteristic function is:
-
-$$
-\mathbb{E}\!\left[e^{-r\tau + iv\log S_T} \mid \log S_t = x\right] = \exp\!\left(\left[(r - \tfrac{1}{2}\sigma^2)iv - \tfrac{1}{2}\sigma^2 v^2 - r\right]\tau + ivx\right)
-$$
-
-This is the standard Black-Scholes result: under $\mathbb{Q}$, $\log S_T \sim N(x + (r - \frac{1}{2}\sigma^2)\tau, \sigma^2\tau)$, and the discount factor contributes $e^{-r\tau}$.
+Recall (see [§ Discounted Characteristic Function](discounted_characteristic_function.md)): the BS Riccati system with $b_0 = r - \tfrac{1}{2}\sigma^2$, $a_0 = \sigma^2$, $\rho_0 = r$, $\rho_1 = 0$ yields $\tilde{\psi}(\tau) = u$ and $\tilde{\phi}(\tau) = [(r - \tfrac{1}{2}\sigma^2)u + \tfrac{1}{2}\sigma^2 u^2 - r]\tau$, recovering the standard discounted Gaussian characteristic function with $\log S_T \sim N(x + (r - \tfrac{1}{2}\sigma^2)\tau, \sigma^2\tau)$ under $\mathbb{Q}$.
 
 ---
 

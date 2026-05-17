@@ -50,7 +50,7 @@ Each reduces to the bounded case via a truncation $\tau \wedge T$ followed by $T
 
 Optional sampling is a workhorse. The recipe:
 
-1. **Pick a martingale** encoding the quantity of interest. Standard choices for Brownian motion:
+1. **Pick a martingale** encoding the quantity of interest. Standard choices for Brownian motion (see [§ Brownian Motion Martingales](brownian_motion_martingales.md)):
    - $W_t$ itself,
    - $W_t^2 - t$,
    - the exponential martingale $\exp(\theta W_t - \theta^2 t / 2)$.
@@ -191,6 +191,11 @@ with the inequality reversed for submartingales. In particular, $|M|$ (submartin
     For the truncation $\tau_N = \tau \wedge N$: this is bounded by $N$, so the bounded-case theorem applies and $\mathbb{E}[S_{\tau_N}] = 0$ for every finite $N$. The limit $N \to \infty$ is where things break: $S_{\tau_N} \to S_\tau = 1$ a.s., but $\{S_{\tau_N}\}_N$ is not uniformly integrable, so expectations do not pass to the limit.
 
 ---
+
+!!! note "Local martingale"
+    A **local martingale** is an adapted process $M$ for which there exists a sequence of stopping times $\tau_n \uparrow \infty$ (a **localizing sequence**) such that each stopped process $M^{\tau_n} = (M_{t \wedge \tau_n})_{t \ge 0}$ is a (true) martingale.
+
+    Every martingale is a local martingale (take $\tau_n \equiv n$), but not every local martingale is a true martingale: the localization sequence may fail to extend to the whole time line in an integrable way. The canonical home for the theory is [§ Local martingales and stochastic exponential](../../ch04/martingale/stochastic_exponential.md); see Exercise 8 below for a concrete failure of optional sampling beyond the bounded case.
 
 **Exercise 7.**
 Let $M_t$ be a martingale and $\tau$ a bounded stopping time. Show that the stopped process $M_{t \wedge \tau}$ is also a martingale. Then explain in words why stopping prevents "bad behavior" in local martingales.

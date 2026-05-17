@@ -28,15 +28,13 @@ The result is a term structure of caplet volatilities $\{\sigma_1^{\text{cplt}},
 
 ## Hull-White Caplet Volatility
 
-Under the Hull-White model, a caplet with reset date $T_{k-1}$ and payment date $T_k$ is a put option on the zero-coupon bond $P(T_{k-1}, T_k)$. The Hull-White caplet price is given by the ZCB option formula, and the implied Black volatility can be expressed in terms of the model parameters.
-
-The Hull-White bond price volatility for the caplet is
+Recall (see [§ HW Caplet/Floorlet via Bond Option](../derivatives_pricing/caplet_floorlet_formula.md)): a caplet on $L(T_{k-1}, T_k)$ is a put option on the ZCB $P(T_{k-1}, T_k)$, priced by the Hull-White ZCB option formula. The bond price volatility entering that formula is
 
 $$
 \sigma_P(T_{k-1}, T_k) = \frac{\sigma}{\lambda}\left(1 - e^{-\lambda\delta_k}\right)\sqrt{\frac{1 - e^{-2\lambda T_{k-1}}}{2\lambda}}
 $$
 
-where $\delta_k = T_k - T_{k-1}$ is the accrual period.
+with $\delta_k = T_k - T_{k-1}$.
 
 The implied Black caplet volatility under Hull-White is approximately
 

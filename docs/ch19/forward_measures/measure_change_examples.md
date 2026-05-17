@@ -6,29 +6,13 @@ The abstract machinery of numéraire change and Girsanov's theorem becomes concr
 
 ## Recap of the General Framework
 
-### Numéraire Change Formula
-
-For any strictly positive numéraire $N_t$ with associated measure $\mathbb{Q}^N$, the price of a derivative with payoff $V_T$ at time $T$ is
+Recall (see [§ general numéraire framework](../../ch04/risk_neutral/numeraire.md) and [§ Girsanov](../../ch04/girsanov/girsanov_intuition.md)): for a strictly positive numéraire $N_t$ with associated measure $\mathbb{Q}^N$,
 
 $$
-V_t = N_t \, \mathbb{E}^{\mathbb{Q}^N}\!\left[\frac{V_T}{N_T} \;\middle|\; \mathcal{F}_t\right]
+V_t = N_t\,\mathbb{E}^{\mathbb{Q}^N}\!\left[\frac{V_T}{N_T}\,\middle|\,\mathcal{F}_t\right],\qquad \frac{d\mathbb{Q}^N}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{N_t/N_0}{B_t/B_0},\qquad dW_t^N = dW_t^{\mathbb{Q}} - \sigma_N(t)\,dt
 $$
 
-The Radon--Nikodym derivative connecting the risk-neutral measure $\mathbb{Q}$ (numéraire $B_t$) to $\mathbb{Q}^N$ is
-
-$$
-\frac{d\mathbb{Q}^N}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{N_t / N_0}{B_t / B_0}
-$$
-
-### Girsanov's Theorem
-
-If $W_t^{\mathbb{Q}}$ is a Brownian motion under $\mathbb{Q}$, then under $\mathbb{Q}^N$,
-
-$$
-W_t^N = W_t^{\mathbb{Q}} - \int_0^t \sigma_N(s) \, ds
-$$
-
-is a Brownian motion, where $\sigma_N(t)$ is the volatility of the numéraire process: $dN_t / N_t = (\cdots)\,dt + \sigma_N(t)\,dW_t^{\mathbb{Q}}$.
+with $\sigma_N(t)$ the volatility of $N_t$ under $\mathbb{Q}$.
 
 ---
 
@@ -220,99 +204,13 @@ The measure change has eliminated the need for stochastic discounting and produc
 
 ## Example 3: Swaption Under the Annuity Measure
 
-### Setup
-
-A **payer swaption** gives the right to enter a payer swap (pay fixed, receive floating) at time $T_0$ with payment dates $T_1, T_2, \ldots, T_n$. The payoff at $T_0$ is
+Recall (see [§ Swap Measure](swap_measure.md) and [§ Black swaption pricing](../../ch18/swaption_pricing/annuity_measure_and_change_of_numeraire.md)): the payer-swaption payoff $A(T_0)\max(S(T_0)-K,0)$ is priced by choosing the annuity $A(t)=\sum_j\delta_j P(t,T_j)$ as numéraire, under which the forward swap rate $S(t)$ is a driftless lognormal martingale and Black's formula
 
 $$
-\text{Payoff} = A(T_0) \max(S(T_0) - K, 0)
+V_0 = A(0)\bigl[S(0)\,N(d_1) - K\,N(d_2)\bigr],\qquad d_1=\tfrac{\ln(S(0)/K)+\tfrac12 v_S^2}{v_S},\ d_2=d_1-v_S
 $$
 
-where $S(t)$ is the forward swap rate and $A(t) = \sum_{j=1}^{n} \delta_j P(t, T_j)$ is the annuity factor.
-
-### Why the Annuity Measure?
-
-Under the risk-neutral measure, the swaption price is
-
-$$
-V_0 = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_0^{T_0} r_s \, ds} \, A(T_0) \max(S(T_0) - K, 0)\right]
-$$
-
-The product of the stochastic discount factor with $A(T_0)$ makes direct evaluation complicated. The annuity measure eliminates this difficulty.
-
-### Step 1: Choose the Numéraire
-
-Set $N_t = A(t)$, the present value of the annuity stream. The associated measure is the **swap (annuity) measure** $\mathbb{Q}^A$.
-
-### Step 2: Apply the Pricing Formula
-
-$$
-V_0 = A(0) \, \mathbb{E}^{\mathbb{Q}^A}\!\left[\max(S(T_0) - K, 0)\right]
-$$
-
-### Step 3: Swap Rate as Martingale
-
-The forward swap rate is
-
-$$
-S(t) = \frac{P(t, T_0) - P(t, T_n)}{A(t)}
-$$
-
-Under the annuity measure $\mathbb{Q}^A$, the swap rate $S(t)$ is a martingale because the numerator $P(t, T_0) - P(t, T_n)$ is the value of the floating leg, and dividing by the numéraire $A(t)$ produces a martingale.
-
-### Step 4: Dynamics Under the Swap Measure
-
-Assuming lognormal dynamics for the swap rate under $\mathbb{Q}^A$:
-
-$$
-\frac{dS(t)}{S(t)} = \sigma_S(t) \, dW_t^A
-$$
-
-The swap rate is a driftless geometric Brownian motion under the annuity measure.
-
-### Step 5: Swaption Price (Black's Formula)
-
-Since $S(T_0)$ is lognormally distributed:
-
-$$
-\boxed{V_0 = A(0)\bigl[S(0) \, N(d_1) - K \, N(d_2)\bigr]}
-$$
-
-$$
-d_1 = \frac{\ln(S(0)/K) + \tfrac{1}{2} v_S^2}{v_S}, \qquad d_2 = d_1 - v_S, \qquad v_S^2 = \int_0^{T_0} \sigma_S(t)^2 \, dt
-$$
-
-### Radon--Nikodym Derivative
-
-The explicit Radon--Nikodym derivative from $\mathbb{Q}$ to $\mathbb{Q}^A$ is
-
-$$
-\frac{d\mathbb{Q}^A}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{A(t) / A(0)}{B_t}
-$$
-
-where $B_t = \exp\left(\int_0^t r_s \, ds\right)$.
-
-The Girsanov drift adjustment from $\mathbb{Q}$ to $\mathbb{Q}^A$ involves the volatility of the annuity factor, which depends on all the bond price volatilities $\Sigma(t, T_j)$ weighted by the annuity contributions.
-
-??? example "Numerical Example"
-
-    **Parameters:** 2-year into 3-year payer swaption ($T_0 = 2$, annual payments at $T_1 = 3, T_2 = 4, T_3 = 5$), strike $K = 4\%$, $\sigma_S = 20\%$.
-
-    **Market data:** $P(0,2) = 0.94$, $P(0,3) = 0.91$, $P(0,4) = 0.87$, $P(0,5) = 0.83$.
-
-    **Step 1:** Annuity factor: $A(0) = 1 \times (0.91 + 0.87 + 0.83) = 2.61$.
-
-    **Step 2:** Forward swap rate: $S(0) = (0.94 - 0.83)/2.61 = 0.0421 = 4.21\%$.
-
-    **Step 3:** Integrated variance: $v_S = 0.20 \times \sqrt{2} = 0.2828$.
-
-    **Step 4:** $d_1 = [\ln(0.0421/0.04) + 0.5 \times 0.08]/0.2828 = [0.0513 + 0.04]/0.2828 = 0.323$.
-
-    **Step 5:** $d_2 = 0.323 - 0.2828 = 0.040$.
-
-    **Step 6:** $V_0 = 2.61 \times [0.0421 \times N(0.323) - 0.04 \times N(0.040)] = 2.61 \times [0.0421 \times 0.6267 - 0.04 \times 0.5160] = 2.61 \times [0.02638 - 0.02064] = 2.61 \times 0.00574 = 0.01498$.
-
-    The swaption is worth approximately 1.50% of notional, or \$150 per \$10,000 notional.
+follows directly. The Radon--Nikodym derivative is $d\mathbb{Q}^A/d\mathbb{Q}|_{\mathcal{F}_t} = (A(t)/A(0))/B_t$.
 
 ---
 

@@ -138,26 +138,7 @@ where $\phi: [0,1] \to \mathbb{R}_+$ is a **spectrum** (weight function) satisfy
 
 **Interpretation:** Spectral measures weight quantiles by $\phi(u)$, putting more weight on worse outcomes.
 
-### Expected Shortfall as a Spectral Measure
-
-ES is spectral with:
-
-$$
-\phi_\alpha(u) = \begin{cases}
-0 & u < \alpha \\
-\frac{1}{1-\alpha} & u \ge \alpha
-\end{cases}
-$$
-
-This assigns zero weight below the $\alpha$-quantile and uniform weight to the tail.
-
-### Exponential Spectral Measure
-
-$$
-\phi(u) = \frac{\gamma e^{\gamma u}}{e^\gamma - 1}
-$$
-
-gives increasing weight to worse outcomes, with $\gamma$ controlling the degree of risk aversion.
+Recall (see [§ Spectral Risk Measures](spectral_risk_measures.md)) the explicit spectra for ES and the exponential spectral measure.
 
 ---
 

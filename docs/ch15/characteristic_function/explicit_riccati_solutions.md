@@ -146,84 +146,19 @@ and checking that $B' = -\kappa B + \frac{\xi^2}{2}B^2 - 1$ (the extended Riccat
 
 ## Heston Model: Coupled Complex Riccati
 
-### The Two-Dimensional System
-
-The Heston model has state vector $X_t = (\log S_t, V_t) \in \mathbb{R} \times \mathbb{R}_+$ with dynamics:
+For the Heston state $X_t = (\log S_t, V_t)$, the log-price has trivial dynamics ($\psi_1'(\tau) = 0$, so $\psi_1 \equiv u_1 = iv$), reducing the system to a single scalar complex Riccati for $\psi_2$:
 
 $$
-d\log S_t = \left(r - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\,dW_t^{(1)}
+\psi_2' = \tfrac{1}{2}\xi^2\psi_2^2 + (\rho\xi iv - \kappa)\psi_2 - \tfrac{1}{2}(iv + v^2), \qquad \psi_2(0) = 0
 $$
 
-$$
-dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{(2)}
-$$
-
-where $\operatorname{Corr}(dW_t^{(1)}, dW_t^{(2)}) = \rho\,dt$.
-
-With $u = (u_1, u_2) \in \mathbb{C}^2$, the Riccati system is:
+i.e. $\psi_2' = \alpha + \beta\psi_2 + \tfrac12\gamma\psi_2^2$ with $\alpha = -\tfrac12(iv+v^2)$, $\beta = \rho\xi iv - \kappa$, $\gamma = \xi^2$. With discriminant $d = \sqrt{\beta^2 - 2\alpha\gamma}$ and $g = (\beta-d)/(\beta+d)$,
 
 $$
-\psi_1'(\tau) = 0, \qquad \psi_1(0) = u_1
+\psi_2(\tau) = \frac{\beta - d}{\xi^2}\cdot\frac{1 - e^{-d\tau}}{1 - g\,e^{-d\tau}}, \qquad \phi(\tau) = iv\,r\tau + \frac{\kappa\theta}{\xi^2}\!\left[(\beta-d)\tau - 2\log\!\frac{1 - g\,e^{-d\tau}}{1-g}\right]
 $$
 
-$$
-\psi_2'(\tau) = -\frac{1}{2}\psi_1(\tau) - \kappa\psi_2(\tau) + \frac{1}{2}\left(\psi_1(\tau)^2 + 2\rho\xi\psi_1(\tau)\psi_2(\tau) + \xi^2\psi_2(\tau)^2\right)
-$$
-
-with $\psi_2(0) = u_2$.
-
-$$
-\phi'(\tau) = r\,\psi_1(\tau) + \kappa\theta\,\psi_2(\tau), \qquad \phi(0) = 0
-$$
-
-### Solution for the Characteristic Function
-
-For the characteristic function, set $u_1 = iv$ and $u_2 = 0$. Since $\psi_1(\tau) = iv$ is constant, the $\psi_2$-equation becomes a scalar Riccati in $\psi_2$ with coefficients depending on $v$:
-
-$$
-\psi_2'(\tau) = -\frac{iv}{2} - \kappa\psi_2 + \frac{1}{2}\left(-v^2 + 2\rho\xi iv\,\psi_2 + \xi^2\psi_2^2\right)
-$$
-
-$$
-= \frac{1}{2}\xi^2\psi_2^2 + (\rho\xi iv - \kappa)\psi_2 - \frac{1}{2}(iv + v^2)
-$$
-
-This is a Riccati equation $\psi_2' = \alpha + \beta\psi_2 + \frac{1}{2}\gamma\psi_2^2$ with:
-
-$$
-\alpha = -\frac{1}{2}(iv + v^2), \qquad \beta = \rho\xi iv - \kappa, \qquad \gamma = \xi^2
-$$
-
-### Closed-Form Solution
-
-Define the discriminant:
-
-$$
-d = \sqrt{\beta^2 - 2\alpha\gamma} = \sqrt{(\rho\xi iv - \kappa)^2 + \xi^2(iv + v^2)}
-$$
-
-The solution is:
-
-$$
-\psi_2(\tau) = \frac{\alpha(1 - e^{-d\tau})}{d\cosh(d\tau/2) + \beta\sinh(d\tau/2)} \cdot \frac{1}{\xi^2/2}
-$$
-
-or equivalently, using the standard Heston notation:
-
-$$
-\psi_2(\tau) = \frac{\beta - d}{\xi^2} \cdot \frac{1 - e^{-d\tau}}{1 - g\,e^{-d\tau}}
-$$
-
-where $g = (\beta - d)/(\beta + d)$.
-
-The $\phi$-function integrates to:
-
-$$
-\phi(\tau) = iv\,r\tau + \frac{\kappa\theta}{\xi^2}\left[(\beta - d)\tau - 2\log\!\left(\frac{1 - g\,e^{-d\tau}}{1 - g}\right)\right]
-$$
-
-!!! warning "Branch Cut Convention"
-    The square root $d = \sqrt{(\rho\xi iv - \kappa)^2 + \xi^2(iv + v^2)}$ is complex-valued for real $v$. The convention $\operatorname{Re}(d) > 0$ ensures numerical stability of the formula. The logarithm uses the principal branch. Alternative formulations (Albrecher et al., 2007) avoid the branch cut issue entirely by reformulating in terms of the ratio $g$.
+Full derivation, branch-cut conventions ($\operatorname{Re}(d) > 0$, principal log), and the Albrecher et al. "Little Heston Trap" reformulation: Recall (see [Heston CF](../../ch16/heston_cf/heston_sde_and_affine_recap.md)).
 
 ---
 

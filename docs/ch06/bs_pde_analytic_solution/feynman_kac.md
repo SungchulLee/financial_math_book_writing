@@ -1,78 +1,126 @@
 # Feynman-Kac Formula and the Black-Scholes Solution
 
+Everything in this subsubsection follows from one sentence:
 
-The preceding sections derived the Black-Scholes formula by transforming the PDE --- into the heat equation, into frequency space via Fourier, Mellin, or Laplace transforms, or by exploiting scaling structure. All of these are ultimately PDE techniques: they manipulate the equation directly. The **Feynman-Kac formula** takes a fundamentally different approach. It establishes that the solution of a parabolic PDE can be written as a **probabilistic expectation**, bypassing the PDE entirely in favor of stochastic calculus.
+> **The discounted conditional expectation of a payoff is exactly the solution of a backward parabolic PDE.**
 
-This shift from differential equations to expectations is not merely a technical alternative --- it is the conceptual foundation of risk-neutral pricing. This section presents the general Feynman-Kac theorem, applies it rigorously to the Black-Scholes PDE, and derives the closed-form option pricing formulas through detailed probabilistic calculations.
+The preceding subsubsections derived the Black–Scholes formula by manipulating the PDE — into the heat equation, into frequency space, or by exploiting scaling structure. Feynman–Kac is the reverse direction: it shows that the very same answer is obtained as a *probabilistic expectation*, with no PDE manipulation. The two pictures are not parallel calculations of the same number; they are the **same calculation viewed in two notations**, related by a single elementary averaging identity.
 
----
-
-## The General Feynman-Kac Theorem
-
-
-### 1. **Statement**
-
-
-Consider a stochastic process $X_t$ satisfying the stochastic differential equation:
-
-$$
-dX_t = \mu(X_t, t)dt + \sigma(X_t, t)dW_t
-$$
-
-Let $u(x,t)$ be a function solving the parabolic PDE:
-
-$$
-\frac{\partial u}{\partial t} + \mu(x,t)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x,t)\frac{\partial^2 u}{\partial x^2} - r(x,t)u + f(x,t) = 0
-$$
-
-with terminal condition:
-
-$$
-u(x,T) = \Phi(x)
-$$
-
-**Then the Feynman-Kac formula states:**
-
-$$
-\boxed{u(x,t) = \mathbb{E}\left[\int_t^T e^{-\int_t^s r(X_\tau,\tau)d\tau}f(X_s,s)ds + e^{-\int_t^T r(X_\tau,\tau)d\tau}\Phi(X_T) \mid X_t = x\right]}
-$$
-
-### 2. **Interpretation of Terms**
-
-
-**1. Terminal condition term**:
-
-$$
-e^{-\int_t^T r(X_\tau,\tau)d\tau}\Phi(X_T)
-$$
-
-This represents the **discounted terminal payoff** at maturity $T$.
-
-**2. Running cost/reward term**:
-
-$$
-\int_t^T e^{-\int_t^s r(X_\tau,\tau)d\tau}f(X_s,s)ds
-$$
-
-This represents **accumulated discounted cash flows** between $t$ and $T$.
-
-**3. For option pricing**:
-
-- $f \equiv 0$ (no intermediate cash flows for European options)
-- $r$ is constant (risk-free rate)
-- $\Phi(X_T)$ is the option payoff at maturity
-
-The formula simplifies to:
-
-$$
-u(x,t) = \mathbb{E}\left[e^{-r(T-t)}\Phi(X_T) \mid X_t = x\right]
-$$
-
-This is the **risk-neutral valuation formula**.
+We build the picture in the same order a reader naturally builds intuition: a discrete random walk first (where the averaging is visible by inspection), then the general continuous-time theorem, and only then the Black–Scholes specifics.
 
 ---
 
-## Application to Black-Scholes
+## 1. Why Expectations Solve PDEs? A Random-Walk Toy
+
+Before any Itô integral or stochastic calculus, work the simplest possible averaging problem on a discrete lattice. The Feynman–Kac formula will appear in miniature, with no analytic machinery needed.
+
+### 1.1 Setup: A Symmetric Random Walk
+
+Let $X_n$ be a symmetric random walk on the integer lattice $\mathbb{Z}$: at each step $X_{n+1} = X_n \pm 1$ with probability $1/2$ each. Fix a terminal time $N$ and a terminal payoff $g(x)$. Define the **conditional-expectation function**
+
+$$
+u_n(x) := \mathbb{E}\bigl[g(X_N) \mid X_n = x\bigr]
+$$
+
+— what we expect to receive at time $N$, given that we are at position $x$ at time $n$. This is exactly the "value function" that option pricing computes, in the simplest possible setting.
+
+### 1.2 The Averaging Identity
+
+Condition on the next step. From $x$ at time $n$ the walk lands at $x \pm 1$ at time $n + 1$ with equal probability, and from there the expected payoff is $u_{n+1}(x \pm 1)$. Linearity of expectation gives
+
+$$
+u_n(x) = \tfrac{1}{2}\, u_{n+1}(x + 1) + \tfrac{1}{2}\, u_{n+1}(x - 1)
+$$
+
+**The function $u$ at $(x, n)$ equals the average of its neighbors at $(x \pm 1, n + 1)$.** That is the entire mechanism — no integrals, no Itô, just an averaging identity.
+
+### 1.3 The Averaging Identity Is a Discrete Heat Equation
+
+Subtract $u_{n+1}(x)$ from both sides:
+
+$$
+u_n(x) - u_{n+1}(x) = \tfrac{1}{2}\, \bigl[u_{n+1}(x + 1) - 2\, u_{n+1}(x) + u_{n+1}(x - 1)\bigr]
+$$
+
+The right-hand side is the **discrete spatial second difference** $\Delta_{xx} u_{n+1}(x)$. The left-hand side is the **negative discrete time difference** $-(u_{n+1}(x) - u_n(x)) = -\Delta_t u_n(x)$. Rewriting:
+
+$$
+-\Delta_t u_n(x) = \tfrac{1}{2}\, \Delta_{xx} u_{n+1}(x)
+$$
+
+This is a **backward discrete heat equation**. The conditional-expectation function $u_n(x) = \mathbb{E}[g(X_N) \mid X_n = x]$ literally *is* its solution.
+
+### 1.4 The Continuum Limit
+
+Send the lattice spacing to zero with the **diffusive scaling** $\Delta x = \sqrt{\Delta t}$ — the unique scaling that keeps the variance of a step bounded as $\Delta t \to 0$. The discrete time difference $\Delta_t / \Delta t$ becomes $\partial_t$, the discrete second difference $\Delta_{xx} / (\Delta x)^2$ becomes $\partial_{xx}$, and the symmetric random walk converges (Donsker's invariance principle) to standard Brownian motion $W_t$. The discrete identity becomes
+
+$$
+-\frac{\partial u}{\partial t} = \frac{1}{2}\, \frac{\partial^2 u}{\partial x^2}
+$$
+
+— the **backward heat equation**. Its solution is the conditional expectation
+
+$$
+u(x, t) = \mathbb{E}\bigl[g(W_T) \mid W_t = x\bigr]
+$$
+
+**The PDE is just the continuum-limit averaging identity.**
+
+### 1.5 Adding a Discount Rate
+
+In option pricing, future cashflows are discounted at rate $r$. The natural modification: each lattice step contributes a discount factor $e^{-r\Delta t}$, so the recursion becomes
+
+$$
+u_n(x) = e^{-r\Delta t}\, \bigl[\tfrac{1}{2}\, u_{n+1}(x + 1) + \tfrac{1}{2}\, u_{n+1}(x - 1)\bigr]
+$$
+
+Expanding $e^{-r\Delta t} \approx 1 - r\Delta t$ contributes an extra $-r u$ term, and the continuum limit becomes
+
+$$
+\frac{\partial u}{\partial t} + \tfrac{1}{2}\, \frac{\partial^2 u}{\partial x^2} - r u = 0
+$$
+
+— the discounted backward heat equation. Its solution is the **discounted conditional expectation**
+
+$$
+u(x, t) = \mathbb{E}\bigl[e^{-r(T - t)}\, g(W_T) \mid W_t = x\bigr]
+$$
+
+### 1.6 What Carries Forward to Black–Scholes
+
+Two ingredients lift to the general Feynman–Kac theorem without modification:
+
+- **The averaging identity becomes the generator of the diffusion.** Replace the symmetric next-step distribution with a general drift-diffusion $dX_t = \mu(X_t, t)\, dt + \sigma(X_t, t)\, dW_t$. By the same conditioning argument, the discrete recursion gives a continuum-limit PDE with second-order operator $\tfrac{1}{2}\sigma^2 \partial_{xx} + \mu \partial_x$ — the **infinitesimal generator** of $X_t$.
+- **The discount rate becomes a $-r u$ term in the PDE.** This generalizes to a state-dependent discount $r(X_t)$ or to source terms $f(X_t)$ via the obvious lattice modification.
+
+The result is the Feynman–Kac formula in its full generality, which §2 below states precisely.
+
+!!! tip "Core principle"
+    The **Feynman–Kac formula** is the rigorous form of an elementary averaging identity: *value at $(x, t)$ = discounted average of value at $(x', t + \Delta t)$ across the next-step distribution of the underlying process.* In the continuum limit this averaging-plus-discounting identity becomes a backward parabolic PDE generated by the process; the conditional expectation and the PDE solution are the *same function*.
+
+This is the mechanism. Black–Scholes is the application: the GBM stock dynamics under $\mathbb{Q}$ play the role of the underlying process, the discount rate is the risk-free rate, and the payoff $\Phi(S_T)$ replaces $g$.
+
+---
+
+## 2. The General Feynman-Kac Theorem
+
+Recall (see [§ Feynman-Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md) and [§ Discounted Feynman-Kac](../../ch05/feynman_kac/discounted_feynman_kac.md)): for a diffusion $dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dW_t$ and a function $u$ solving the parabolic PDE 
+
+$$
+u_t + \mu u_x + \tfrac{1}{2}\sigma^2 u_{xx} - r u + f = 0
+$$ 
+
+with terminal data $u(\cdot,T) = \Phi$,
+
+$$
+u(x,t) = \mathbb{E}\left[\int_t^T e^{-\int_t^s r\,d\tau}f(X_s,s)\,ds + e^{-\int_t^T r\,d\tau}\Phi(X_T) \,\Big|\, X_t = x\right].
+$$
+
+For option pricing ($f \equiv 0$, constant $r$) this reduces to the **risk-neutral valuation formula** $u(x,t) = \mathbb{E}[e^{-r(T-t)}\Phi(X_T) \mid X_t = x]$ (see also [§ Risk-Neutral Valuation Principle](../../ch04/risk_neutral/risk_neutral_valuation_principle.md)).
+
+---
+
+## 3. Application to Black-Scholes
 
 
 ### 1. **The Setup**
@@ -119,218 +167,67 @@ $$
 \boxed{V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]}
 $$
 
-**Interpretation**: The option value is the **expected discounted payoff** under the risk-neutral measure. This is the **probabilistic representation** of the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$ introduced in the chapter overview.
+**Interpretation**: The option value is the **expected discounted payoff** under the risk-neutral measure.
+
+**Semigroup viewpoint.** Let $\mathcal{L}$ denote the Black-Scholes generator
+
+$$
+\mathcal{L} = rS\frac{\partial}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2}{\partial S^2} - r
+$$
+
+and write $\tau = T - t$. Then the solution to the Black-Scholes PDE with terminal data $\Phi$ admits the **operator-exponential** representation
+
+$$
+V(\cdot, t) = e^{\tau\mathcal{L}}\Phi
+$$
+
+and the Feynman-Kac formula
+
+$$
+\left(e^{\tau\mathcal{L}}\Phi\right)(S) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]
+$$
+
+is precisely the **probabilistic representation of the pricing semigroup** $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$ acting on the terminal payoff. This is the same semigroup obtained in [§ Heat Equation](heat_equation.md) (as a Gaussian convolution operator) and in [§ Fourier Transform](fourier_transform.md) (as a Fourier multiplier); Feynman-Kac realises it as an expectation. The operator-exponential viewpoint is the unifying theme of this chapter, and Feynman-Kac is its probabilistic incarnation.
 
 This converts the PDE problem into a probabilistic expectation problem.
 
 ---
 
-## Rigorous Derivation of Feynman-Kac
+## 4. Rigorous Derivation of Feynman-Kac
 
+Recall (see [§ Feynman-Kac Proof Sketch](../../ch05/feynman_kac/feynman_kac_proof_sketch.md)): apply Itô's lemma to the discounted value $Y_t = e^{-\int_0^t r\,ds}u(X_t,t)$; if $u$ satisfies the parabolic PDE the drift vanishes and $Y_t$ is a martingale, so $\mathbb{E}[Y_T \mid \mathcal{F}_t] = Y_t$ yields the Feynman-Kac representation. (Exercise 7 below repeats this argument specialised to Black-Scholes for self-containment.)
 
-We now prove the Feynman-Kac formula rigorously using Itô's lemma and martingale theory.
-
-### 1. **Step 1: Apply Itô's Lemma to u(X_t, t)**
-
-
-For a function $u(X_t, t)$ where $dX_t = \mu dt + \sigma dW_t$, Itô's lemma gives:
-
-$$
-du = \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x}dX_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}(dX_t)^2
-$$
-
-Since $(dX_t)^2 = \sigma^2 dt$:
-
-$$
-du = \left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right]dt + \sigma\frac{\partial u}{\partial x}dW_t
-$$
-
-### 2. **Step 2: Introduce Discounting**
-
-
-Define the **discounted value**:
-
-$$
-Y_t = e^{-\int_0^t r(X_s,s)ds}u(X_t,t)
-$$
-
-Apply the product rule (Itô's lemma for products):
-
-$$
-dY_t = d\left(e^{-\int_0^t r ds}\right) \cdot u + e^{-\int_0^t r ds} \cdot du
-$$
-
-The discount factor satisfies:
-
-$$
-d\left(e^{-\int_0^t r ds}\right) = -r(X_t,t)e^{-\int_0^t r ds}dt
-$$
-
-Therefore:
-
-$$
-\begin{aligned}
-dY_t &= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right]dt \\
-&\quad + e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t
-\end{aligned}
-$$
-
-Combining:
-
-$$
-dY_t = e^{-\int_0^t r ds}\left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} - ru\right]dt + e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t
-$$
-
-### 3. **Step 3: Use the PDE Condition**
-
-
-If $u$ satisfies the Feynman-Kac PDE (with $f=0$):
-
-$$
-\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} - ru = 0
-$$
-
-Then the drift term vanishes:
-
-$$
-\boxed{dY_t = e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t}
-$$
-
-**Key observation**: $Y_t$ is a **martingale** (has no $dt$ term, only $dW_t$ term).
-
-### 4. **Step 4: Take Conditional Expectation**
-
-
-Since $Y_t$ is a martingale:
-
-$$
-\mathbb{E}[Y_T \mid \mathcal{F}_t] = Y_t
-$$
-
-Expanding:
-
-$$
-\mathbb{E}\left[e^{-\int_0^T r ds}u(X_T,T) \mid \mathcal{F}_t\right] = e^{-\int_0^t r ds}u(X_t,t)
-$$
-
-Using the terminal condition $u(X_T,T) = \Phi(X_T)$:
-
-$$
-e^{-\int_0^t r ds}u(X_t,t) = \mathbb{E}\left[e^{-\int_0^T r ds}\Phi(X_T) \mid \mathcal{F}_t\right]
-$$
-
-Multiply both sides by $e^{\int_0^t r ds}$:
-
-$$
-u(X_t,t) = \mathbb{E}\left[e^{-\int_t^T r ds}\Phi(X_T) \mid \mathcal{F}_t\right]
-$$
-
-**This is the Feynman-Kac representation.**
-
-### 5. **Application to Black-Scholes**
-
-
-For the Black-Scholes case with constant $r$:
-
-- $X_t = S_t$
-- $\mu(S_t, t) = rS_t$
-- $\sigma(S_t, t) = \sigma S_t$
-- $r(S_t, t) = r$
-
-The Feynman-Kac formula gives:
+For Black-Scholes ($X_t = S_t$, $\mu = rS$, $\sigma_X = \sigma S$, constant $r$), the formula gives
 
 $$
 V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]
 $$
 
-with terminal conditions:
-
-- European call: $\Phi(S) = (S-K)^+$
-- European put: $\Phi(S) = (K-S)^+$
-
-**Conclusion**: Any solution to the Black-Scholes PDE can be represented as a risk-neutral expectation.
+with $\Phi(S) = (S-K)^+$ (call) or $(K-S)^+$ (put). Any solution of the Black-Scholes PDE has this risk-neutral expectation representation.
 
 ---
 
-## Solving the SDE: Distribution of S_T
+## 5. Solving the SDE: Distribution of S_T
 
-
-To evaluate the expectation in the Feynman-Kac formula, we need the distribution of $S_T$. The result --- that $\ln S_T$ is normally distributed --- is exactly the lognormal transition density whose Gaussian kernel we already met in the heat equation section. We rederive it here via Ito's lemma, which is the natural probabilistic route and confirms that the two approaches yield the same object.
-
-### 1. **The Stochastic Differential Equation**
-
-
-Under the risk-neutral measure:
+Recall (see [§ Solving the SDE](../../ch03/sde/solving_sde.md) and [§ Itô Lemma](../../ch03/ito_lemma/ito_lemma.md)): applying Itô's lemma to $\ln S_t$ under $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$ gives $d(\ln S_t) = (r - \tfrac{1}{2}\sigma^2)\,dt + \sigma\,dW_t^{\mathbb{Q}}$, so
 
 $$
-dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
+\boxed{S_T = S_t \exp\left[(r - \tfrac{1}{2}\sigma^2)(T-t) + \sigma\sqrt{T-t}\,Z\right], \qquad Z \sim \mathcal{N}(0,1).}
 $$
 
-### 2. **Apply Itô's Lemma to ln S_t**
-
-
-Let $f(S) = \ln S$. Then:
+Equivalently, with $\tau = T - t$,
 
 $$
-\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}
+\ln S_T \mid S_t \sim \mathcal{N}\bigl(\ln S_t + (r - \tfrac{1}{2}\sigma^2)\tau,\ \sigma^2\tau\bigr).
 $$
 
-By Itô's lemma:
+The corresponding lognormal transition density $p(S_T \mid S_t)$ is the Gaussian kernel of [§ Heat Equation](heat_equation.md) expressed in $(S,t)$ coordinates rather than transformed $(x,\tau)$ coordinates.
 
-$$
-d(\ln S_t) = \frac{1}{S_t}dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
-$$
-
-Substituting $dS_t = rS_t dt + \sigma S_t dW_t$ and $(dS_t)^2 = \sigma^2 S_t^2 dt$:
-
-$$
-d(\ln S_t) = \frac{1}{S_t}(rS_t dt + \sigma S_t dW_t) - \frac{1}{2}\frac{1}{S_t^2}\sigma^2 S_t^2 dt
-$$
-
-$$
-= rdt + \sigma dW_t - \frac{1}{2}\sigma^2 dt
-$$
-
-$$
-= \left(r - \frac{1}{2}\sigma^2\right)dt + \sigma dW_t^{\mathbb{Q}}
-$$
-
-### 3. **Integrate from t to T**
-
-
-$$
-\ln S_T - \ln S_t = \left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma(W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}})
-$$
-
-Since $W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}} \sim \mathcal{N}(0, T-t)$, we can write:
-
-$$
-W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}} = \sqrt{T-t} \cdot Z
-$$
-
-where $Z \sim \mathcal{N}(0,1)$.
-
-### 4. **Explicit Solution**
-
-
-$$
-\boxed{S_T = S_t \exp\left[\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma\sqrt{T-t} \cdot Z\right]}
-$$
-
-### 5. **Distribution of S_T**
-
-
-Define $\tau = T - t$. Then:
-
-$$
-\ln S_T \mid S_t \sim \mathcal{N}\left(\ln S_t + \left(r - \frac{1}{2}\sigma^2\right)\tau, \sigma^2\tau\right)
-$$
-
-**Log-normal distribution**: $S_T$ is log-normally distributed with mean $\mathbb{E}[\ln S_T | S_t] = \ln S_t + (r - \frac{1}{2}\sigma^2)\tau$ and variance $\text{Var}[\ln S_T | S_t] = \sigma^2\tau$. The corresponding transition density $p(S_T \mid S_t)$ is the Gaussian kernel derived in the heat equation section --- expressed here in original $(S,t)$ coordinates rather than transformed $(x,\tau)$ coordinates.
+**Canonical role.** This subsubsection is the canonical home in the chapter for the probabilistic form of $(d_1, d_2)$ derived below; later subsubsections (change of numéraire, dividends, characteristic-function methods) reference back to these calculations rather than repeating them.
 
 ---
 
-## European Call Option: Detailed Derivation
+## 6. European Call Option: Detailed Derivation
 
 
 ### 1. **The Pricing Formula via Feynman-Kac**
@@ -442,37 +339,13 @@ $$
 I_1 = \int_{\ln K}^{\infty}e^y \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy
 $$
 
-**Key technique**: Complete the square in the exponent.
-
-Combine the exponents:
-
-$$
-y - \frac{(y-m)^2}{2v^2} = -\frac{1}{2v^2}\left[(y-m)^2 - 2v^2 y\right]
-$$
-
-Expand:
-
-$$
-(y-m)^2 - 2v^2 y = y^2 - 2ym + m^2 - 2v^2y = y^2 - 2y(m + v^2) + m^2
-$$
-
-Complete the square:
-
-$$
-= [y - (m+v^2)]^2 - (m+v^2)^2 + m^2
-$$
-
-$$
-= [y - (m+v^2)]^2 - 2mv^2 - v^4
-$$
-
-Therefore:
+**Key technique**: Complete the square in the exponent --- the same Gaussian-integration manoeuvre used in [§ Heat Equation](heat_equation.md). Combining the linear term $y$ with the quadratic $-(y-m)^2/(2v^2)$ and reorganising as a perfect square in $y$ around the shifted mean $m + v^2$ gives
 
 $$
 y - \frac{(y-m)^2}{2v^2} = -\frac{[y-(m+v^2)]^2}{2v^2} + m + \frac{v^2}{2}
 $$
 
-Substituting back:
+(The full step-by-step algebra is carried out in Exercise 2 below.) Substituting back:
 
 $$
 I_1 = e^{m + \frac{v^2}{2}}\int_{\ln K}^{\infty}\frac{1}{v\sqrt{2\pi}}e^{-\frac{[y-(m+v^2)]^2}{2v^2}}dy
@@ -542,7 +415,7 @@ $$
 
 ---
 
-## European Put Option
+## 7. European Put Option
 
 
 ### 1. **Method 1: Direct Calculation**
@@ -603,7 +476,7 @@ Both methods yield the same formula. ✓
 
 ---
 
-## Probabilistic Interpretation
+## 8. Probabilistic Interpretation
 
 
 ### 1. **The Two Terms in the Call Formula**
@@ -622,11 +495,6 @@ $$
 
 This is the **risk-neutral probability** that the option expires in-the-money.
 
-**Derivation**: From our calculation of $I_2$, we showed:
-
-$$
-\int_K^{\infty}p(S_T)dS_T = \mathbb{Q}(S_T > K) = \mathcal{N}(d_2)
-$$
 
 ### 3. **Meaning of N(d_1)**
 
@@ -637,96 +505,18 @@ $$
 \boxed{\mathcal{N}(d_1) = \mathbb{Q}^S(S_T > K \mid S_t = S)}
 $$
 
-**Change of numeraire interpretation**: Under the stock as numeraire, the stock price dynamics shift:
+---
 
-$$
-\frac{dS_t}{S_t} = (r + \sigma^2)dt + \sigma dW_t^{\mathbb{Q}^S}
-$$
+## 9. Connection to Kolmogorov Equations
 
-The drift changes by $\sigma^2$ (via Girsanov's theorem), which explains the relationship:
-
-$$
-d_1 = d_2 + \sigma\sqrt{\tau}
-$$
-
-**Alternative interpretation**: $\mathcal{N}(d_1)$ is also the **delta** (hedge ratio) of the call option:
-
-$$
-\Delta_{\text{call}} = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
-$$
-
-### 4. **Decomposition of Call Value**
-
-
-The call formula can be written as:
-
-$$
-C = S \cdot \mathbb{Q}^S(S_T > K) - Ke^{-r\tau} \cdot \mathbb{Q}(S_T > K)
-$$
-
-**Interpretation**:
-
-- First term: Expected value of stock received upon exercise (under stock measure)
-- Second term: Expected present value of strike paid upon exercise (under risk-neutral measure)
-
-The difference between the two measures accounts for the convexity of the payoff.
+Recall (see [§ Understanding SDE Solutions](../../ch03/sde/understanding_sde_solutions.md) and [§ Feynman-Kac Applications](../../ch05/feynman_kac/feynman_kac_applications.md)): the Black-Scholes PDE is the **Kolmogorov backward equation** for $S_t$ under $\mathbb{Q}$ (solved backward from terminal data $\Phi$), and the transition density $p(S_T,T \mid S_t,t)$ satisfies the dual **Kolmogorov forward (Fokker-Planck) equation** $\partial_T p = -\partial_{S_T}(rS_T p) + \tfrac{1}{2}\partial_{S_T S_T}(\sigma^2 S_T^2 p)$. Feynman-Kac is precisely the bridge $V(S,t) = e^{-r\tau}\int \Phi(S_T)\,p(S_T,T \mid S,t)\,dS_T$.
 
 ---
 
-## Connection to Kolmogorov Equations
+## 10. Why Feynman-Kac Works: Deep Intuition
 
 
-### 1. **Backward Equation**
-
-
-The Black-Scholes PDE is the **Kolmogorov backward equation** for the process $S_t$ under $\mathbb{Q}$:
-
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
-$$
-
-**"Backward"** because:
-
-- We start from terminal condition $V(S,T) = \Phi(S)$ at time $T$
-- We solve backward in time to find $V(S,t)$ for $t < T$
-- The PDE describes how the option value evolves as we move backward from maturity
-
-### 2. **Forward Equation (Fokker-Planck)**
-
-
-The transition density $p(S_T, T \mid S_t, t)$ satisfies the **Kolmogorov forward equation**:
-
-$$
-\frac{\partial p}{\partial T} = -\frac{\partial}{\partial S_T}(rS_T p) + \frac{1}{2}\frac{\partial^2}{\partial S_T^2}(\sigma^2 S_T^2 p)
-$$
-
-**"Forward"** because:
-
-- Given initial distribution at time $t$
-- We evolve forward in time to find distribution at time $T$
-- The PDE describes how the probability distribution evolves forward
-
-### 3. **Duality Relationship**
-
-
-The option value can be expressed as:
-
-$$
-V(S,t) = e^{-r\tau}\int_0^{\infty}\Phi(S_T)p(S_T, T \mid S, t)dS_T
-$$
-
-**Key insight**:
-
-- The backward equation (PDE for $V$) describes the evolution of functionals
-- The forward equation (PDE for $p$) describes the evolution of densities
-- They are **dual** to each other through the Feynman-Kac representation
-
----
-
-## Why Feynman-Kac Works: Deep Intuition
-
-
-The rigorous derivation in the previous sections established that the discounted value $e^{-\int_0^t r\,ds}\,u(X_t,t)$ is a martingale whenever $u$ satisfies the Feynman-Kac PDE. In the Black-Scholes setting this takes a particularly transparent form.
+The rigorous derivation in the previous subsubsections established that the discounted value $e^{-\int_0^t r\,ds}\,u(X_t,t)$ is a martingale whenever $u$ satisfies the Feynman-Kac PDE. In the Black-Scholes setting this takes a particularly transparent form.
 
 ### 1. **The Martingale Property**
 
@@ -752,7 +542,7 @@ The risk-neutral measure $\mathbb{Q}$ is the unique measure under which:
 
 ---
 
-## Extensions and Generalizations
+## 11. Extensions and Generalizations
 
 
 ### 1. **With Continuous Dividend Yield**
@@ -821,7 +611,7 @@ where $\mathbf{S}_T = (S_1^T, \ldots, S_n^T)$ follows a **multivariate log-norma
 
 ---
 
-## Summary
+## 12. Summary
 
 
 The Feynman-Kac formula establishes the fundamental connection:
@@ -873,7 +663,7 @@ The formula demonstrates that **PDE**, **probability**, and **stochastic process
 
 ### The three core methods are one object
 
-The expectation $\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$ is a convolution of the payoff with the transition density of $\ln S_T$ --- exactly the Green's function integral derived in the heat equation section. The heat equation *convolution* and the Feynman-Kac *expectation* are the same integral; the Green's function and the transition density are the same function. Conversely, writing the expectation as $\mathbb{E}^{\mathbb{Q}}[e^{i\omega \ln S_T}]$ in frequency space yields the **characteristic function** $\phi_T(\omega)$ that drives Fourier methods. The three core approaches of this chapter are therefore not independent techniques. They compute the same object --- the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$ applied to the payoff --- in three coordinate systems:
+The expectation $\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$ is a convolution of the payoff with the transition density of $\ln S_T$ --- exactly the Green's function integral derived in the heat equation subsubsection. The heat equation *convolution* and the Feynman-Kac *expectation* are the same integral; the Green's function and the transition density are the same function. Conversely, writing the expectation as $\mathbb{E}^{\mathbb{Q}}[e^{i\omega \ln S_T}]$ in frequency space yields the **characteristic function** $\phi_T(\omega)$ that drives Fourier methods. The three core approaches of this chapter are therefore not independent techniques. They compute the same object --- the pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$ applied to the payoff --- in three coordinate systems:
 
 | Method | Coordinate system | Key object |
 |---|---|---|

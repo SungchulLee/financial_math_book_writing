@@ -6,14 +6,7 @@ Calibration objective functions in stochastic volatility models frequently conta
 
 ## Why global search is needed
 
-Before detailing the algorithm, consider why local methods alone are insufficient. The Heston calibration landscape $\mathcal{L}(\Theta)$ exhibits several features that challenge local optimizers:
-
-1. **Multiple local minima.** The entanglement between $(\kappa, \theta)$ and between $(\sigma_v, v_0)$ creates 2--5 distinct local minima in typical equity index calibrations.
-2. **Flat valleys.** Near the Feller boundary $2\kappa\theta = \sigma_v^2$, the objective changes slowly in certain directions, causing slow convergence.
-3. **Parameter boundaries.** Constraints such as $\rho \in (-1, 1)$ create boundary effects where the gradient points outside the feasible set.
-4. **Initialization sensitivity.** Levenberg-Marquardt results can vary by 10--30% in objective value depending on the starting point.
-
-Global search methods address these challenges by maintaining a diverse population of candidate solutions that collectively explore the parameter space.
+Recall (see [§ Calibration as inverse problem](../calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md) and [§ General SV calibration](../../ch14/calibration_of_stochastic_volatility_models/identifiability_issues.md)): SV objectives are typically non-convex, with $(\kappa,\theta)$ and $(\sigma_v,v_0)$ entanglement producing 2--5 local minima, flat valleys near the Feller boundary, and starting-point sensitivity that lets LM vary by 10--30% in objective value. Global search addresses these by maintaining a diverse population that collectively explores the parameter space.
 
 ---
 

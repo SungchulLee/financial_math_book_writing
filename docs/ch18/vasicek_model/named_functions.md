@@ -6,23 +6,7 @@ In the Vasicek model the zero-coupon bond price takes the exponential-affine for
 
 ## Affine ansatz and the bond pricing PDE
 
-The zero-coupon bond price $P(t,T) = f(t, r_t)$ satisfies the bond pricing PDE derived in the previous section:
-
-$$
-f_t + \frac{1}{2}\sigma^2 f_{rr} + \kappa(\theta - r)\,f_r - r\,f = 0
-$$
-
-with terminal condition $f(T, r) = 1$ for all $r$. Here $\kappa$, $\theta$, $\sigma$ are the risk-neutral parameters (incorporating the market price of risk).
-
-We seek a solution of the **affine** form
-
-$$
-P(t,T) = A(\tau)\,e^{-B(\tau)\,r_t}
-$$
-
-where $\tau = T - t$ is the time to maturity, $A(\tau) > 0$, and $B(\tau)$ are deterministic functions with initial conditions $A(0) = 1$ and $B(0) = 0$ so that $P(T,T) = 1$.
-
-The key insight is that if the drift and diffusion of the short rate are affine in $r$, then the log-bond price is affine in $r$, and the PDE reduces to ordinary differential equations for $A$ and $B$.
+Recall (see [§ Zero-coupon bond pricing](zero_coupon_bond_pricing.md), [§ General affine bond pricing](../../ch15/affine_term_structure/bond_pricing_affine_framework.md)) the bond pricing PDE $f_t + \tfrac{1}{2}\sigma^2 f_{rr} + \kappa(\theta - r)f_r - rf = 0$ with $f(T,r) = 1$, and the affine ansatz $P(t,T) = A(\tau)e^{-B(\tau)r_t}$ with $A(0) = 1$, $B(0) = 0$.
 
 ---
 
@@ -279,13 +263,7 @@ The long-run yield converges to $R_\infty = \theta - \sigma^2/(2\kappa^2) = 0.04
 
 ## Connection to the general affine framework
 
-The Vasicek model is the simplest member of the affine term structure class. In the general one-factor affine model, the short rate satisfies
-
-$$
-dr_t = (\alpha_0 + \alpha_1 r_t)\,dt + \sqrt{\beta_0 + \beta_1 r_t}\,dW_t
-$$
-
-and bond prices take the form $P(t,T) = e^{A(\tau) - B(\tau) r_t}$ where $A$ and $B$ solve Riccati ODEs. For Vasicek: $\alpha_0 = \kappa\theta$, $\alpha_1 = -\kappa$, $\beta_0 = \sigma^2$, $\beta_1 = 0$. The Riccati ODE for $B$ is linear (not quadratic) because $\beta_1 = 0$, which is why $B$ has a simple closed form. In contrast, the CIR model has $\beta_1 > 0$, producing a genuinely quadratic Riccati equation and a more complex expression for $B$.
+Recall (see [§ General affine bond pricing](../../ch15/affine_term_structure/bond_pricing_affine_framework.md), [§ Vasicek-as-affine](../../ch15/examples/vasicek_cir_as_affine.md)) for the embedding into the affine class and the contrast with CIR's Riccati equation.
 
 ---
 

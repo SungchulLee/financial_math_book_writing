@@ -34,9 +34,9 @@ These instruments are liquid and sensitive to rate volatility.
 ## Model-dependent considerations
 
 
-- **Short-rate models:** limited flexibility, often need extensions or multi-factor versions.
-- **HJM models:** volatility functions calibrated directly to market data.
-- **Market models (LMM):** volatilities tied to forward LIBOR rates.
+- **Short-rate models:** limited flexibility, often need extensions or multi-factor versions. Recall (see [§ Short-rate models](../../ch18/short_rate_models/affine_term_structure.md)).
+- **HJM models:** volatility functions calibrated directly to market data. Recall (see [§ HJM](../hjm/forward_rate_dynamics.md)).
+- **Market models (LMM):** volatilities tied to forward LIBOR rates. Recall (see [§ LMM](../lmm/caplet_pricing_black_formula.md)).
 
 Model choice strongly affects calibration quality.
 
@@ -45,14 +45,7 @@ Model choice strongly affects calibration quality.
 ## Regularization and smoothing
 
 
-Volatility calibration is an inverse problem and often ill-posed.
-Stability is improved by:
-
-- smoothness penalties across maturity,
-- parsimonious parametrizations,
-- restricting factor dimensionality.
-
-Overfitting leads to poor out-of-sample behavior.
+Volatility calibration is an inverse problem and often ill-posed. Recall (see [§ Regularization and stability](../../ch17/regularization_and_stability/penalization_and_smoothness_constraints.md)) for the general framework; rates-specific stabilizers include smoothness penalties across maturity, parsimonious parametrizations, and restricting factor dimensionality.
 
 ---
 

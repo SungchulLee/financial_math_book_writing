@@ -1,28 +1,23 @@
 # Lipschitz Conditions and Linear Growth
 
-The existence and uniqueness theory for SDEs rests on two analytical conditions:
-the **Lipschitz condition** (controlling uniqueness) and the **linear growth condition**
-(preventing finite-time explosion). Together they guarantee a unique, globally-defined
-strong solution. The constructive proof is given in [Picard Iteration](picard_iteration.md);
-the distinction between strong and weak solutions is developed in
-[Strong vs Weak Solutions](strong_vs_weak.md).
+This file states the assumptions under which SDEs have a unique global strong solution: the **Lipschitz condition** (controlling uniqueness) and the **linear growth condition** (preventing finite-time explosion). The construction is given in the next section.
+
+!!! tip "Toy mechanism: two ODEs, two failure modes"
+    Both conditions are already visible in deterministic ODEs. Take $\dot x = x^p$ on $\mathbb{R}_+$:
+
+    - $p = 1/2$: two solutions start from $x_0 = 0$ — the trivial one and $x(t) = t^2/4$. *Uniqueness fails* because $x^{1/2}$ is not Lipschitz at $0$.
+    - $p = 2$: the solution $x(t) = x_0/(1 - x_0 t)$ blows up at $t^* = 1/x_0$. *Existence fails globally* because $x^2$ grows faster than linearly.
+    - $p = 1$: $x(t) = x_0 e^t$ — unique and finite for all $t$. Both pathologies disappear.
+
+    Lipschitz is the diffusion-process analogue of "ratio $|f(x) - f(y)|/|x - y|$ is bounded" — exactly what fails at $0$ in the $p = 1/2$ case. Linear growth is the diffusion analogue of $p = 1$. Everything that follows below — global Lipschitz, linear growth, Yamada–Watanabe, local Lipschitz with explosion times — is one of these two mechanisms generalised to the SDE setting.
 
 ---
 
 ## Setting
 
-Consider the $d$-dimensional SDE driven by an $m$-dimensional Brownian motion
-$W_t = (W_t^1, \ldots, W_t^m)$:
+Recall (see [§ Stochastic Differential Equations](../sde/sde.md)): the $d$-dimensional SDE is $dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t$ with $X_0 = x_0 \in \mathbb{R}^d$, $b : [0,T] \times \mathbb{R}^d \to \mathbb{R}^d$, $\sigma : [0,T] \times \mathbb{R}^d \to \mathbb{R}^{d \times m}$, and $W_t$ an $m$-dimensional Brownian motion.
 
-$$
-dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \qquad X_0 = x_0 \in \mathbb{R}^d
-$$
-
-where $b : [0,T] \times \mathbb{R}^d \to \mathbb{R}^d$ and
-$\sigma : [0,T] \times \mathbb{R}^d \to \mathbb{R}^{d \times m}$.
-
-Norms used throughout: $|\cdot|$ is the Euclidean norm on $\mathbb{R}^d$; for
-matrices $|\sigma|^2 = \sum_{i,\alpha}(\sigma^{i\alpha})^2$ (Frobenius norm).
+Norms used throughout: $|\cdot|$ is the Euclidean norm on $\mathbb{R}^d$; for matrices $|\sigma|^2 = \sum_{i,\alpha}(\sigma^{i\alpha})^2$ (Frobenius norm).
 
 ---
 
@@ -39,7 +34,7 @@ $$
 with the state $x$. The drift vector field has a uniformly bounded spatial slope,
 and each column of $\sigma$ varies at most proportionally to displacement.
 
-**Why Lipschitz implies uniqueness.** The Lipschitz bound controls the difference between any two solutions via the Itô isometry, Doob's maximal inequality, and Gronwall's inequality. The full proof is given in [Picard Iteration — Uniqueness](picard_iteration.md#uniqueness).
+**Why Lipschitz implies uniqueness (intuition).** The Lipschitz bound controls how the difference between two candidate solutions can grow; a Gronwall argument then forces the difference to remain zero. The full proof is given in the next section.
 
 ### Examples of Lipschitz coefficients
 
@@ -74,7 +69,7 @@ $$
 $$
 
 So no single constant $K$ bounds the ratio $|\sigma(x)-\sigma(y)|/|x-y|$ near
-the origin. Uniqueness here requires the Yamada–Watanabe condition; see below.
+the origin. Uniqueness for CIR requires the Yamada–Watanabe condition (below).
 
 ---
 
@@ -140,7 +135,7 @@ for a constant $C$ depending only on $K$ and dimension.
     listed separately only to highlight their distinct roles: Lipschitz controls
     *uniqueness*, linear growth controls *non-explosion*.
 
-The construction of this solution is carried out via [Picard Iteration](picard_iteration.md), while the broader distinction between strong and weak solutions is developed in [Strong vs Weak Solutions](strong_vs_weak.md).
+The construction will be given in the next section.
 
 ---
 
@@ -197,9 +192,7 @@ $$
 \int_0^\epsilon \frac{du}{\sigma_0^2\,u} = +\infty. \quad \checkmark
 $$
 
-Hence the CIR model has a pathwise unique solution despite non-Lipschitz diffusion.
-The relationship between pathwise uniqueness and strong existence is detailed in
-[Strong vs Weak Solutions](strong_vs_weak.md).
+Hence the CIR model has a pathwise unique solution despite non-Lipschitz diffusion. The relationship between pathwise uniqueness and strong existence is treated in [§ Strong and Weak Solutions](strong_vs_weak.md).
 
 ---
 

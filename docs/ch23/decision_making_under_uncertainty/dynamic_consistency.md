@@ -110,11 +110,7 @@ $$
 ### 1. Max-Min Expected Utility
 
 
-**MEU Preferences**: 
-
-$$
-V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[U(f)]
-$$
+Recall MEU $V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[U(f)]$ (see [§ Ambiguity-Averse Preferences](../ambiguity_averse_preferences/max_min_expected_utility.md)).
 
 **Problem**: The minimum may be achieved by different measures at different times.
 
@@ -295,15 +291,13 @@ $$
 ### 3. Multiplier Preferences (Hansen-Sargent)
 
 
-**Static**: $c(P) = \theta D_{\text{KL}}(P \| P_0)$
-
-**Dynamic**:
+Recall multiplier preferences and KL-tilted solutions (see [§ Ambiguity-Averse Preferences](../ambiguity_averse_preferences/max_min_expected_utility.md)). The dynamic form:
 
 $$
 V_t = \min_{P_t} \left\{\mathbb{E}_{P_t}[u_t + \beta V_{t+1} | \mathcal{F}_t] + \theta D_{\text{KL}}(P_t \| P_{0,t})\right\}
 $$
 
-**Solution**: Exponential tilting preserves dynamic consistency.
+inherits dynamic consistency from the chain rule of KL divergence (see Exercise 3).
 
 ## Alternative Approaches to Inconsistency
 
@@ -398,19 +392,7 @@ is a supermartingale under all $P \in \mathcal{P}$.
 ### 4. Risk Management Over Time
 
 
-**Consistent Risk Measures**: For multi-period risk assessment, require:
-
-$$
-\rho_0(X) = \rho_0(\rho_1(X | \mathcal{F}_1))
-$$
-
-**Time Consistency of CVaR**: Standard CVaR is NOT time-consistent.
-
-**Conditional Risk Measures**: Use recursive formulation:
-
-$$
-\rho_t(X) = \rho_t^{\text{1-period}}(\rho_{t+1}(X))
-$$
+Recall coherent/conditional risk measures (see [§ Coherent Risk Measures](../../ch22/market_risk_measures/value_at_risk_var.md)). Time consistency requires $\rho_0(X) = \rho_0(\rho_1(X | \mathcal{F}_1))$; standard CVaR fails this, while the entropic risk measure satisfies the recursion $\rho_t(X) = \rho_t^{\text{1-period}}(\rho_{t+1}(X))$ (see Exercise 5).
 
 ## Behavioral Implications
 

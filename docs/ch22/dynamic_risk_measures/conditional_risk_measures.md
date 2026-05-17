@@ -105,29 +105,9 @@ $$
 
 This is conditionally coherent but **risk-neutral** (no risk aversion).
 
-### Conditional VaR
+### Conditional VaR and ES
 
-$$
-\text{VaR}_\alpha^t(X) = \inf\{m \in L^\infty(\mathcal{F}_t) : \mathbb{P}(X \le m | \mathcal{F}_t) \ge \alpha\}
-$$
-
-The conditional $\alpha$-quantile of $X$ given $\mathcal{F}_t$.
-
-**Warning:** Conditional VaR is NOT conditionally subadditive in general.
-
-### Conditional ES
-
-$$
-\text{ES}_\alpha^t(X) = \mathbb{E}[X | X \ge \text{VaR}_\alpha^t(X), \mathcal{F}_t]
-$$
-
-Or using the integral representation:
-
-$$
-\text{ES}_\alpha^t(X) = \frac{1}{1-\alpha} \int_\alpha^1 \text{VaR}_u^t(X) \, du
-$$
-
-Conditional ES is conditionally coherent.
+The conditional versions $\text{VaR}_\alpha^t(X)$ and $\text{ES}_\alpha^t(X)$ replace unconditional quantities by their $\mathcal{F}_t$-conditional counterparts. Recall (see [VaR](../market_risk_measures/value_at_risk_var.md), [ES](../market_risk_measures/expected_shortfall_es.md)) that conditional VaR is not conditionally subadditive, while conditional ES is conditionally coherent.
 
 ### Conditional Entropic Risk
 

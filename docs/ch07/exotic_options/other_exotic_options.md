@@ -142,46 +142,7 @@ Under GBM assumptions, Geske (1979) derived a closed-form formula for compound o
 
 ## Digital (Binary) Options
 
-**Digital options** pay a fixed amount if a condition is met at expiry, regardless of the magnitude by which the condition is satisfied.
-
-### Cash-or-Nothing
-
-$$
-\boxed{
-\text{Payoff}_{\text{digital call}} = Q \cdot \mathbf{1}_{\{S_T > K\}}
-}
-$$
-
-where $Q$ is the fixed cash payment. Under Black–Scholes:
-
-$$
-V_{\text{digital call}} = Q\, e^{-rT}\, N(d_2)
-$$
-
-### Asset-or-Nothing
-
-$$
-\text{Payoff}_{\text{asset-or-nothing call}} = S_T \cdot \mathbf{1}_{\{S_T > K\}}
-$$
-
-Under Black–Scholes:
-
-$$
-V_{\text{asset-or-nothing call}} = S_0\, N(d_1)
-$$
-
-### Relationship to Vanilla Options
-
-A vanilla call is the difference between an asset-or-nothing call and $K$ units of a cash-or-nothing call:
-
-$$
-C_{\text{vanilla}} = S_0\, N(d_1) - K\, e^{-rT}\, N(d_2)
-$$
-
-This decomposition clarifies the probabilistic structure of the Black–Scholes formula.
-
-!!! warning "Hedging Difficulty"
-    Digital options have a **discontinuous payoff** at $S_T = K$. The delta approaches infinity near the strike as $T \to 0$, making hedging extremely difficult. In practice, digital options are often replicated approximately using tight call spreads.
+Recall (see [Digital Option Pricing](../../ch06/black_scholes_formula/digital_option_pricing.md)): a cash-or-nothing call pays $Q\cdot\mathbf{1}_{\{S_T>K\}}$ with BS price $Q e^{-rT} N(d_2)$; an asset-or-nothing call pays $S_T\cdot\mathbf{1}_{\{S_T>K\}}$ with BS price $S_0 N(d_1)$; the vanilla decomposition $C = S_0 N(d_1) - K e^{-rT} N(d_2)$ follows, and the discontinuous payoff at $S_T = K$ produces blow-up of delta near expiry, motivating tight call-spread replication.
 
 ---
 

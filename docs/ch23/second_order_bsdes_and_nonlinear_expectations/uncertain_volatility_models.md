@@ -176,17 +176,7 @@ $$
 
 ### 2. Viscosity Solutions
 
-
-**Definition**: Since $V$ may not be $C^2$ (especially at strike for digital options), solutions are understood in the **viscosity sense**.
-
-**Viscosity Solution**: A function $V$ satisfying:
-
-- At smooth points: PDE holds classically
-- At non-smooth points: Comparison with test functions
-
-**Uniqueness**: The viscosity solution is unique, ensuring well-posedness.
-
-**Comparison Principle**: If $V_1$ and $V_2$ are respectively sub- and supersolutions with $V_1(T, \cdot) \leq V_2(T, \cdot)$, then $V_1 \leq V_2$ everywhere.
+**Recall** (see [§ Viscosity Solutions](../../ch06/bs_pde_analytic_solution/viscosity_solutions.md)) for the test-function definition, comparison principle, and uniqueness theory. The BSB super-replication price is the unique viscosity solution, accommodating non-$C^2$ payoffs (e.g., digital options).
 
 ### 3. Examples
 

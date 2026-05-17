@@ -1,6 +1,6 @@
 # Accuracy and Grid Sensitivity
 
-The accuracy of Greek estimates from finite difference methods depends critically on the spatial and temporal grid resolution. This section analyzes how truncation errors propagate into Greek estimates, how to verify convergence through grid refinement studies, and how to mitigate accuracy degradation near the payoff kink.
+A Greek is the *derivative* of a numerical solution: $\Delta=(V_{i+1}-V_{i-1})/(2\Delta S)$. Dividing two nearby values by a small mesh size amplifies whatever truncation and round-off errors live in $V$ -- the option price might be accurate to $10^{-6}$, the Greek only to $10^{-4}$. Worse, near the payoff kink at $S=K$ the convergence order itself drops, because the solution is not smooth enough for the Taylor expansion that justified the finite-difference stencil. This page traces those error sources and shows how grid-refinement studies plus careful stencil placement rescue accuracy where it matters most.
 
 ---
 
@@ -128,13 +128,7 @@ Ratio $\approx 4$ confirms restored second-order convergence.
 
 ### Grid Placement: Node at the Strike
 
-Placing a spatial node exactly at $S = K$ dramatically improves accuracy for at-the-money Greeks.
-
-**With $K$ on a node**: The payoff kink is captured exactly, and the difference stencil for gamma at $S = K$ uses the correct values on both sides.
-
-**With $K$ between nodes**: Interpolation is needed, and the difference stencil "smears" the kink, reducing accuracy. The error can be $O((\Delta S)^{1/2})$ for gamma instead of $O((\Delta S)^2)$.
-
-To ensure $K$ falls on a node, choose $\Delta S = K / J$ for some integer $J$, giving $S_J = K$.
+Recall (see [§ Delta and Gamma via Finite Differences](delta_gamma_finite_differences.md)): placing a node at $S=K$ (choose $\Delta S = K/J$ for integer $J$) captures the kink exactly and is essential for at-the-money gamma accuracy.
 
 ### Non-Uniform Grids
 
@@ -196,28 +190,13 @@ The PDE-based theta formula $\Theta = rV - rS\Delta - \frac{1}{2}\sigma^2 S^2\Ga
 
 ## Richardson Extrapolation for Greeks
 
-Richardson extrapolation can be applied to Greek estimates, not just prices.
-
-### For Delta
-
-Compute delta on grids with $M$ and $2M$ spatial points:
+Recall (see [§ Richardson Extrapolation](../analysis/richardson_extrapolation.md)): given two $O((\Delta S)^2)$ Greek estimates on grids $M$ and $2M$,
 
 $$
-\Delta_{\text{ext}} = \frac{4\Delta(2M) - \Delta(M)}{3}
+\Delta_{\text{ext}} = \frac{4\Delta(2M) - \Delta(M)}{3}, \qquad \Gamma_{\text{ext}} = \frac{4\Gamma(2M) - \Gamma(M)}{3}
 $$
 
-This produces an $O((\Delta S)^4)$ accurate delta estimate from two $O((\Delta S)^2)$ estimates.
-
-### For Gamma
-
-Similarly:
-
-$$
-\Gamma_{\text{ext}} = \frac{4\Gamma(2M) - \Gamma(M)}{3}
-$$
-
-!!! tip "Cost-Effective Accuracy"
-    Extrapolating from two moderate-resolution grids often gives better accuracy than a single fine grid at comparable total cost. For Greeks, where accuracy is critical for hedging, this is a practical and recommended technique.
+each becomes $O((\Delta S)^4)$ accurate. Extrapolating from two moderate grids is often cheaper than one very fine grid — recommended for production Greek estimation.
 
 ---
 

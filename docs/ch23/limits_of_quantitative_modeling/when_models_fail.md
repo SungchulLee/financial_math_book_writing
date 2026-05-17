@@ -13,137 +13,17 @@ This section examines:
 3. **Early warning indicators**: Signs that a model may be failing
 4. **Mitigation strategies**: Designing systems resilient to model failure
 
-## Case Study: LTCM (1998)
+## Case Studies: LTCM and the Gaussian Copula
 
+Recall (see [§ Case Studies in Model Failure](case_studies_in_model_failure.md)) for detailed treatments of the LTCM convergence-trade failure (1998) and the Gaussian-copula CDO breakdown (2007--2009), including the correlation-breakdown mechanism, tranche sensitivity, and lessons on tail dependence.
 
-### 1. Background
-
-
-**Long-Term Capital Management**: Hedge fund founded in 1994 by John Meriwether with Nobel laureates Myron Scholes and Robert Merton.
-
-**Strategy**: Convergence trades exploiting small mispricings:
-
-- On-the-run vs. off-the-run Treasury bonds
-- Interest rate swap spreads
-- Equity volatility arbitrage
-
-**Leverage**: Approximately 25:1 on-balance sheet; much higher including derivatives.
-
-### 2. Model Assumptions
-
-
-**Correlation Stability**: Historical correlations between spread trades assumed stable.
-
-**Liquidity**: Ability to exit positions at reasonable prices assumed.
-
-**Normal Distribution**: Extreme events modeled using Gaussian assumptions.
-
-**Mean Reversion**: Spreads assumed to revert to historical averages.
-
-### 3. What Went Wrong
-
-
-**Russian Default** (August 1998): Sovereign default triggered global flight to quality.
-
-**Correlation Breakdown**: Previously uncorrelated trades became highly correlated.
-
-**Liquidity Evaporation**: Market makers withdrew; bid-ask spreads widened dramatically.
-
-**Feedback Effects**: LTCM's forced liquidations moved markets against its positions.
-
-### 4. Quantitative Analysis
-
-
-**VaR Failure**: 10-day 99% VaR substantially underestimated actual losses.
-
-**Correlation Assumption**: Pre-crisis correlation matrix:
-
-$$
-\rho_{ij}^{\text{normal}} \approx 0.2
-$$
-
-Crisis correlation:
-
-$$
-\rho_{ij}^{\text{crisis}} \approx 0.8
-$$
-
-**Loss Magnification**: With leverage $L$ and correlation increase $\Delta \rho$:
+The recurring quantitative signatures of these episodes — correlation rising from $\rho \approx 0.2$ to $\rho \approx 0.8$ under stress, and the loss-magnification factor
 
 $$
 \text{Loss Factor} \approx L \cdot \sqrt{1 + (n-1)\Delta \rho}
 $$
 
-### 5. Lessons
-
-
-1. **Tail Risk**: Extreme events are more frequent and severe than Gaussian models predict
-2. **Correlation Instability**: Correlations increase during stress
-3. **Liquidity Risk**: Cannot separate market risk from liquidity risk
-4. **Model Risk**: Sophisticated models create false confidence
-
-## Case Study: Gaussian Copula and the Financial Crisis (2007-2009)
-
-
-### 1. Background
-
-
-**CDO Pricing**: Collateralized Debt Obligations required modeling joint default probabilities.
-
-**Gaussian Copula** (Li, 2000): Elegant framework linking marginal default probabilities through correlation:
-
-$$
-\Phi_2^{-1}(P(D_1 \leq t_1, D_2 \leq t_2)) = N_2(\Phi^{-1}(P(D_1 \leq t_1)), \Phi^{-1}(P(D_2 \leq t_2)); \rho)
-$$
-
-### 2. Model Assumptions
-
-
-**Constant Correlation**: Single parameter $\rho$ governs all pairwise default dependence.
-
-**Normal Dependence**: Tail behavior follows bivariate normal copula.
-
-**Stationarity**: Correlation structure assumed time-invariant.
-
-**No Systemic Risk**: Model did not capture economy-wide factors.
-
-### 3. What Went Wrong
-
-
-**Underestimation of Joint Defaults**: Gaussian copula has **weak tail dependence**:
-
-$$
-\lambda_U = \lim_{u \to 1^-} P(U_2 > u | U_1 > u) = 0
-$$
-
-**Correlation Smile**: Market-implied correlations varied with tranche (base vs. senior), inconsistent with single-$\rho$ model.
-
-**Systemic Exposure**: House prices correlated nationally; defaults clustered.
-
-### 4. Quantitative Analysis
-
-
-**Tranche Sensitivity**: For equity tranche, small $\Delta \rho$ causes large price change:
-
-$$
-\frac{\partial V_{\text{equity}}}{\partial \rho} \gg \frac{\partial V_{\text{senior}}}{\partial \rho}
-$$
-
-**Implied Correlation Skew**: Market prices implied:
-
-$$
-\rho_{\text{equity}} < \rho_{\text{mezzanine}} < \rho_{\text{senior}}
-$$
-
-Inconsistent with single-factor Gaussian copula.
-
-### 5. Lessons
-
-
-1. **Model Simplicity vs. Reality**: Single-parameter model too parsimonious
-2. **Tail Dependence**: Gaussian copula inappropriate for extreme events
-3. **Calibration Warnings**: Correlation smile was a warning sign
-4. **Incentive Misalignment**: Model users had incentives to underestimate risk
+under leverage $L$ — are the prototypes for the failure modes catalogued below.
 
 ## Flash Crashes
 
@@ -295,46 +175,13 @@ Warning: Increasing MAE trend.
 
 ## Model Risk Management
 
-
-### 1. Model Validation
-
-
-**Independent Review**: Separate team validates model assumptions and implementation.
-
-**Backtesting**: Compare model predictions to realized outcomes.
-
-**Benchmarking**: Compare to alternative models.
-
-### 2. Stress Testing
-
-
-**Historical Scenarios**: Apply historical crisis periods to current portfolio.
-
-**Hypothetical Scenarios**: Construct extreme but plausible scenarios.
-
-**Reverse Stress Testing**: Find scenarios that would cause unacceptable losses.
-
-### 3. Model Reserves
-
-
-**Definition**: Additional capital held for model uncertainty.
-
-**Calculation**:
+Recall (see [§ Model Risk and Governance](../../ch22/model_risk_and_governance/model_validation.md)) for the validation, stress-testing, reserves, and governance machinery (independent review, benchmarking, model inventory, tiering, change control). For the model-reserve definition
 
 $$
 \text{Reserve} = V^{\text{worst-case}} - V^{\text{point estimate}}
 $$
 
-### 4. Model Governance
-
-
-**Inventory**: Maintain catalog of all models in use.
-
-**Tiering**: Classify models by materiality and complexity.
-
-**Review Cycle**: Regular review and recalibration schedule.
-
-**Change Control**: Formal process for model changes.
+and its calibration-driven variants, see also [§ Model Risk from Calibration](../../ch17/model_risk_from_calibration/sensitivity_of_prices_to_calibration_error.md).
 
 ## Designing Robust Systems
 

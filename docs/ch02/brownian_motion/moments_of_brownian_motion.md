@@ -1,25 +1,18 @@
 # Moments of Brownian Motion
 
-### Introduction
+## Introduction
 
-In **Brownian Motion Foundations**, we established that for standard Brownian motion $\{W_t\}_{t \ge 0}$:
+Recall (see [§ Brownian Motion](brownian_motion.md)): for standard Brownian motion $\{W_t\}_{t \ge 0}$, $\mathbb{E}[W_t] = 0$ and $\mathbb{E}[W_t^2] = t$. Higher moments $\mathbb{E}[W_t^k]$ are derived here. They underpin:
 
-$$\mathbb{E}[W_t] = 0, \quad \mathbb{E}[W_t^2] = t$$
-
-These are the first two moments. But what about higher moments? Can we find explicit formulas for $\mathbb{E}[W_t^k]$ for all $k$?
-
-Understanding the complete moment structure of Brownian motion provides:
-
-1. **Analytical tools** for computing expectations of functions of Brownian motion
-2. **Connections to combinatorics** (pairings and double factorials)
-3. **Moment-matching techniques** in option pricing and risk management
-4. **Verification tools** for numerical schemes and Monte Carlo estimators
+- analytical computation of expectations of functions of $W_t$,
+- the Isserlis / Wick combinatorics of Gaussian pairings,
+- moment-matching in option pricing and Monte Carlo verification.
 
 We derive the complete moment structure using the **moment generating function**.
 
-### Moment Generating Function
+## Moment Generating Function
 
-#### Definition
+### Definition
 
 For a random variable $X$, the **moment generating function** is:
 
@@ -31,7 +24,7 @@ The MGF determines all moments via differentiation:
 
 $$\mathbb{E}[X^k] = M_X^{(k)}(0)$$
 
-#### MGF of the Normal Distribution
+### MGF of the Normal Distribution
 
 **Theorem** (Gaussian MGF)
 
@@ -59,9 +52,9 @@ For Brownian motion at time $T$, $W_T \sim \mathcal{N}(0, T)$, so:
 
 $$M_{W_T}(\theta) = \mathbb{E}[e^{\theta W_T}] = \exp\left(\frac{1}{2} \theta^2 T\right)$$
 
-### Complete Moment Structure
+## Complete Moment Structure
 
-#### Main Result
+### Main Result
 
 **Theorem** (Moments of Brownian Motion)
 
@@ -79,7 +72,7 @@ $$\mathbb{E}[W_T^2] = T, \quad \mathbb{E}[W_T^4] = 3T^2, \quad \mathbb{E}[W_T^6]
 
 The moment sequence uniquely characterizes the Gaussian distribution.
 
-#### Intuition
+### Intuition
 
 Two key ideas explain the result.
 
@@ -118,7 +111,7 @@ flowchart TD
 
 This is known as **Isserlis' theorem** (or **Wick's theorem**).
 
-#### Proof
+### Proof
 
 Since $W_T \sim \mathcal{N}(0, T)$:
 
@@ -144,7 +137,7 @@ we obtain:
 
 $$\mathbb{E}[W_T^{2k}] = (2k-1)!! \cdot T^k \quad \square$$
 
-#### Direct Integration Proof
+### Direct Integration Proof
 
 $$\mathbb{E}[W_T^{2k}] = \int_{-\infty}^{\infty} x^{2k} \frac{1}{\sqrt{2\pi T}} e^{-x^2/(2T)} dx$$
 
@@ -154,7 +147,7 @@ $$= T^k \int_{-\infty}^{\infty} y^{2k} \frac{1}{\sqrt{2\pi}} e^{-y^2/2} \, dy = 
 
 where the integral can be evaluated recursively using integration by parts.
 
-#### Explicit Values
+### Explicit Values
 
 **Table of first few moments:**
 
@@ -178,7 +171,7 @@ $$1!! = 1, \quad 3!! = 3 \cdot 1 = 3, \quad 5!! = 5 \cdot 3 \cdot 1 = 15, \quad 
 
 The sequence $1, 3, 15, 105, \ldots$ reflects the combinatorial growth of pairings.
 
-### Simulation: Verifying Moment Formulas
+## Simulation: Verifying Moment Formulas
 
 Since $W_T \sim \mathcal{N}(0, T)$, we can simulate terminal values directly.
 
@@ -285,7 +278,7 @@ k    Empirical       Theoretical     Rel. Error
 - **Odd moments** (right plot): Values are near zero as expected (small deviations due to finite sample size)
 - **Relative error** increases with $k$ because the variance of the sample moment $\frac{1}{N}\sum W_T^{2k}$ grows rapidly with moment order, so higher moments require many more samples for accurate estimation
 
-### Growth of Higher Moments
+## Growth of Higher Moments
 
 Using Stirling's approximation,
 
@@ -305,9 +298,9 @@ $$\mathbb{E}[X_T^{2k}] \le M^{2k}$$
 
 The moment sequence is dominated by a geometric sequence, not factorials.
 
-### Applications
+## Applications
 
-#### Computing Expectations
+### Computing Expectations
 
 **Example:** Compute $\mathbb{E}\left[\left(\int_0^T W_s ds\right)^2\right]$.
 
@@ -323,19 +316,13 @@ Splitting the region:
 
 $$= 2\int_0^T \int_0^s t \, dt \, ds = 2\int_0^T \frac{s^2}{2} ds = \frac{T^3}{3}$$
 
-This uses $\mathbb{E}[W_s W_t] = \min(s,t)$ from the covariance structure, which is derivable from the second moment.
+This uses the covariance identity $\mathbb{E}[W_s W_t] = \min(s,t)$ (recall, see [§ Brownian Motion](brownian_motion.md)).
 
-#### Moment Matching in Finance
+### Moment Matching in Finance
 
-For geometric Brownian motion:
+For geometric Brownian motion (see [§ SDEs](../../ch03/sde/sde.md)) $S_T = S_0 e^{(\mu - \sigma^2/2)T + \sigma W_T}$, the MGF of $W_T$ at $\theta = k\sigma$ gives $\mathbb{E}[S_T^k] = S_0^k\,e^{k\mu T + k^2\sigma^2 T/2}$.
 
-$$S_T = S_0 e^{(\mu - \sigma^2/2)T + \sigma W_T}$$
-
-The moments $\mathbb{E}[W_T^k]$ determine $\mathbb{E}[S_T^k]$ via:
-
-$$\mathbb{E}[S_T^k] = S_0^k e^{k(\mu - \sigma^2/2)T} \mathbb{E}[e^{k\sigma W_T}] = S_0^k e^{k\mu T + k^2\sigma^2T/2}$$
-
-#### Variance of WT²
+### Variance of $W_T^2$
 
 Using the moment formulas:
 
@@ -343,7 +330,7 @@ $$\text{Var}(W_T^2) = \mathbb{E}[W_T^4] - (\mathbb{E}[W_T^2])^2 = 3T^2 - T^2 = 2
 
 In Monte Carlo simulation, $W_T^2 - T$ can serve as a **control variate** (zero mean, variance $2T^2$).
 
-#### Checking Numerical Schemes
+### Checking Numerical Schemes
 
 For Euler-Maruyama discretization of $dX_t = dW_t$:
 
@@ -351,11 +338,11 @@ $$X_N = \sum_{n=0}^{N-1} \sqrt{\Delta t} \, Z_n, \quad Z_n \sim \mathcal{N}(0,1)
 
 Checking $\mathbb{E}[X_N^2] = T$ and $\mathbb{E}[X_N^4] = 3T^2$ against the theoretical values verifies the scheme.
 
-### Further Connections
+## Further Connections
 
 The moment structure of Gaussian variables is closely related to **Hermite polynomials**, which form an orthogonal basis in $L^2(\mathbb{R}, e^{-x^2/2}dx)$. Expanding powers of Gaussian variables in this basis leads to the **Wiener chaos decomposition**, an important tool in stochastic analysis and Malliavin calculus. These ideas will appear later in the study of stochastic integrals.
 
-### Summary
+## Summary
 
 The complete moment structure of Brownian motion is:
 
@@ -511,7 +498,7 @@ These moment formulas will be used in:
     \mathbb{E}[(W_T - W_S)^4] = (T-S)^2 \mathbb{E}[Z^4] = (T-S)^2 \cdot 3 = 3(T-S)^2
     $$
 
-### References
+## References
 
 - Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Chapter 1)
 - Nualart, D. (2006). *The Malliavin Calculus and Related Topics*, 2nd ed. Springer. (Wiener chaos decomposition)

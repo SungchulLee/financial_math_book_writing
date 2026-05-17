@@ -7,8 +7,7 @@ A clean way to obtain PDEs for Greeks is to treat Greeks as solutions of **sensi
 
 ## Operator form
 
-
-Define the Black–Scholes operator
+**Recall** (see [§ Differentiating the Black–Scholes PDE](differentiating_black_scholes_pde.md)): the Black–Scholes operator is
 
 $$
 \mathcal{A}V
@@ -16,11 +15,10 @@ $$
 \frac{\partial V}{\partial t}
 +\frac{1}{2}\sigma^2 S^2 V_{SS}
 +rS V_S
--rV
+-rV,
 $$
 
-
-Then $V$ solves $\mathcal{A}V=0$.
+with $V$ solving $\mathcal{A}V = 0$.
 
 ---
 

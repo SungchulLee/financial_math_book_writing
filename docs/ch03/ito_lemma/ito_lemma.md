@@ -114,25 +114,7 @@ f(t, X_t) = f(0, X_0)
 + \int_0^t \sigma_s\frac{\partial f}{\partial x}(s, X_s)\,dB_s \quad \square
 $$
 
-**Quick example.** For $dS_t = \alpha S_t\,dt + \beta S_t\,dB_t$, where $\alpha \in \mathbb{R}$ and $\beta > 0$ are constants, apply Itô's lemma to $f(x) = \log x$:
-
-$$
-f_x = \frac{1}{x}, \qquad f_{xx} = -\frac{1}{x^2}
-$$
-
-Substituting into the general formula with drift $\alpha S_t$ and diffusion $\beta S_t$:
-
-$$
-d(\log S_t)
-= \frac{1}{S_t}(\alpha S_t\,dt + \beta S_t\,dB_t) - \frac{1}{2}\frac{1}{S_t^2}\,\beta^2 S_t^2\,dt
-= \left(\alpha - \frac{\beta^2}{2}\right)dt + \beta\,dB_t
-$$
-
-$$
-\boxed{S_t = S_0 \exp\!\left[\left(\alpha - \frac{\beta^2}{2}\right)t + \beta B_t\right]}
-$$
-
-The Itô correction $-\frac{\beta^2}{2}$ is the **convexity adjustment** between the arithmetic drift $\alpha$ and the geometric growth rate.
+Recall (see [§ Applications and Examples — Example 7: Geometric Brownian Motion](ito_calculus_applications.md)): applied to $f(x)=\log x$, Version 3 produces the GBM closed form with the convexity adjustment $-\sigma^2/2$.
 
 ---
 
@@ -151,8 +133,8 @@ The Itô correction $-\frac{\beta^2}{2}$ is the **convexity adjustment** between
 
 When computing $df(t, X_t)$ where $dX_t = \mu_t\,dt + \sigma_t\,dB_t$:
 
-1. Compute the partial derivatives $f_t,\; f_x,\; f_{xx}$
-2. Compute $(dX_t)^2 = \sigma_t^2\,dt$ using the Itô multiplication table (see [From Taylor to Itô](from_taylor_to_ito.md))
+1. Compute the partial derivatives $f_t,\; f_x,\; f_{xx}$.
+2. Recall (see [§ From Taylor to Itô](from_taylor_to_ito.md)): the multiplication table gives $(dX_t)^2 = \sigma_t^2\,dt$.
 3. Substitute into the formula:
 
 $$
@@ -161,7 +143,23 @@ $$
 
 4. Simplify; if the $dt$ coefficient vanishes, $f(t, X_t)$ is a **local martingale** (provided $\sigma_t f_x$ is locally square-integrable, so that the stochastic integral term is a well-defined local martingale). Under an additional integrability condition such as Novikov's condition, it is a true martingale.
 
-For a full set of worked examples — including $e^{B_t}$, geometric Brownian motion, and the Black-Scholes PDE — see [Applications and Examples](ito_calculus_applications.md).
+For a full set of worked examples — including $e^{B_t}$, geometric Brownian motion, and the Black–Scholes PDE — see [§ Applications and Examples](ito_calculus_applications.md). For the product, quotient, and integration-by-parts identities derived from Itô's lemma, see [§ Itô Rules](ito_rules.md). For the multidimensional extension, see [§ Multidimensional Itô's Lemma](ito_lemma_multidimensional_version.md). For motivation in the form of a Fundamental Theorem of Stochastic Calculus, see [§ Why Itô's Lemma Matters](ito_lemma_why_it_matters.md).
+
+---
+
+## 5. Role in the System
+
+Itô's lemma is the bridge between the basic stochastic objects (quadratic variation, the Itô integral) and the downstream apparatus that drives continuous-time finance (generators, Dynkin's formula, Feynman–Kac, PDE pricing):
+
+```mermaid
+flowchart LR
+    A[Quadratic Variation] --> B[Itô Integral]
+    B --> C[Itô's Lemma]
+    C --> D[Generator]
+    D --> E[Dynkin Formula]
+```
+
+The structural consequence to keep in mind: **convex functions create positive drift**. The toy example $d(B_t^2) = 2B_t\,dB_t + dt$ already shows it — even though $B_t$ has zero drift, $B_t^2$ does not, because $f''(x) = 2 > 0$ converts symmetric Brownian fluctuations into a deterministic upward push. Every Itô-correction term in the rest of the book is a quantitative version of this same effect.
 
 ---
 

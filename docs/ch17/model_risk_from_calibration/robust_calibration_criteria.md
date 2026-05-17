@@ -271,10 +271,7 @@ Robust calibration facilitates communication:
 
 ### Step 4: Validation
 
-- Check in-sample fit (residuals, patterns).
-- Perform perturbation analysis.
-- Compute out-of-sample error (hold-out or next-day).
-- Examine parameter stability over time.
+Recall (see [stability-based validation](robust_calibration_criteria.md#stability-based-validation)) — run perturbation analysis, cross-validation, day-over-day tracking, and instrument-subset consistency checks; flag fits whose residuals show systematic patterns.
 
 ### Step 5: Documentation and monitoring
 

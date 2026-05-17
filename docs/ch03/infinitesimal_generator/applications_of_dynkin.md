@@ -66,14 +66,7 @@ Boundary conditions give $C = a + b$ and $D = -ab$, so:
 
 $$\boxed{\mathbb{E}_x[\tau] = (x - a)(b - x)}$$
 
-!!! success "Verification"
-
-    - $x = a$: $\mathbb{E}_a[\tau] = 0$ $\checkmark$
-    - $x = b$: $\mathbb{E}_b[\tau] = 0$ $\checkmark$
-    - Maximum at $x = \frac{a+b}{2}$: $\mathbb{E}_{(a+b)/2}[\tau] = \frac{(b-a)^2}{4}$ $\checkmark$
-
-!!! note "Connection to Dynkin Formula Page"
-    [Dynkin's Formula](dynkin_formula.md) derives this same result directly from the formula using exit probabilities and $\mathbb{E}_x[X_\tau^2]$. The two approaches are equivalent; this page frames it as a PDE boundary value problem.
+Recall (see [§ Expected Exit Time from (a, b)](dynkin_formula.md#expected-exit-time-from-a-b)): the same answer is reached directly from Dynkin's formula using exit probabilities and $\mathbb{E}_x[X_\tau^2]$. The two routes are equivalent — here we cast it as a PDE boundary value problem.
 
 ---
 
@@ -184,9 +177,7 @@ $$\boxed{f(x) = \mathbb{E}_x\left[\int_0^\tau h(X_s)\,ds\right]}$$
 
 **Goal**: Compute $\mathbb{E}_x[e^{-\lambda\tau}]$ for $\lambda > 0$.
 
-The functional $e^{-\lambda\tau}$ is multiplicative in $\tau$, so Dynkin's formula ($\mathcal{L}f = -1$ or $\mathcal{L}f = 0$) does not apply directly. The correct framework is the **Feynman–Kac formula**: one shows that $v(x) = \mathbb{E}_x[e^{-\lambda\tau}]$ must satisfy $\mathcal{L}v = \lambda v$ by verifying that $e^{-\lambda t}v(X_t)$ is a local martingale — which requires $\tilde{\mathcal{L}}(e^{-\lambda t}v) = 0$, i.e.\ $-\lambda v + \mathcal{L}v = 0$. This is a Feynman–Kac eigenvalue equation, not a Dynkin equation. See [Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md) for the full derivation.
-
-**Strategy**: Find $v$ solving $\mathcal{L}v = \lambda v$ in $D$, $v = 1$ on target boundary. Then $v(x) = \mathbb{E}_x[e^{-\lambda\tau}]$.
+The functional $e^{-\lambda\tau}$ is multiplicative in $\tau$, so Dynkin's formula ($\mathcal{L}f = -1$ or $\mathcal{L}f = 0$) does not apply directly. Recall (see [§ Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md)): $v(x) = \mathbb{E}_x[e^{-\lambda\tau}]$ satisfies the eigenvalue equation $\mathcal{L}v = \lambda v$, with $v = 1$ on the target boundary.
 
 ### BM Hitting Time of Level a
 

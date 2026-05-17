@@ -117,19 +117,7 @@ $$
 \Delta \in \left[ \hat{\Delta} - z_\alpha \sigma_\Delta, \; \hat{\Delta} + z_\alpha \sigma_\Delta \right]
 $$
 
-### Bump-and-reprice for Greeks
-
-1. Compute $\Delta(\hat{\theta})$.
-2. Perturb each parameter: $\theta_i \to \theta_i + \delta_i$.
-3. Recompute $\Delta(\hat{\theta} + \delta e_i)$.
-4. Estimate $\partial \Delta / \partial \theta_i$.
-5. Combine with parameter uncertainty.
-
-### Monte Carlo Greek uncertainty
-
-1. Sample $\theta^{(j)} \sim p(\theta | \text{data})$.
-2. Compute $\Delta^{(j)} = \Delta(\theta^{(j)})$ for each sample.
-3. Examine distribution of $\{\Delta^{(j)}\}$.
+Recall (see [bump-and-reprice and Monte Carlo propagation for prices](sensitivity_of_prices_to_calibration_error.md#practical-measurement)) — the same procedures apply to Greeks by replacing $P$ with $\Delta$, $\Gamma$, etc.
 
 ---
 
@@ -251,13 +239,7 @@ Use robust, simple models for risk management even if pricing uses complex model
 
 ### 5. Regularization for stable Greeks
 
-Regularization that stabilizes parameters also stabilizes Greeks:
-
-$$
-\min_\theta \mathcal{L}(\theta) + \lambda \|\theta - \theta_{\text{prior}}\|^2
-$$
-
-Smaller parameter jumps → smaller Greek jumps.
+Recall (see [robust objective functions](robust_calibration_criteria.md#robust-objective-functions)) — regularization toward a prior or yesterday's parameters that stabilizes $\hat\theta$ likewise stabilizes Greeks, since smaller parameter jumps imply smaller Greek jumps.
 
 ---
 

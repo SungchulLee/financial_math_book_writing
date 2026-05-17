@@ -6,33 +6,7 @@ The LIBOR Market Model typically requires **Monte Carlo simulation** for pricing
 
 ## Continuous-Time Dynamics
 
-### Terminal Measure Dynamics
-
-Under the terminal measure $\mathbb{Q}^{T_n}$ (numéraire $P(t, T_n)$), the forward rate $L_i(t)$ satisfies
-
-$$
-\frac{dL_i(t)}{L_i(t)} = \mu_i^{(n)}(t)\,dt + \sigma_i(t)\,dW_i^{T_n}(t)
-$$
-
-with drift
-
-$$
-\mu_i^{(n)}(t) = -\sum_{j=i+1}^{n-1} \frac{\delta_j \rho_{ij} \sigma_i(t) \sigma_j(t) L_j(t)}{1 + \delta_j L_j(t)}
-$$
-
-### Spot Measure Dynamics
-
-Under the spot (rolling) measure $\mathbb{Q}^B$ (numéraire: discretely-compounded bank account), the drift reverses sign:
-
-$$
-\mu_i^{(B)}(t) = \sum_{j=\eta(t)}^{i} \frac{\delta_j \rho_{ij} \sigma_i(t) \sigma_j(t) L_j(t)}{1 + \delta_j L_j(t)}
-$$
-
-where $\eta(t) = \min\{k : T_k > t\}$.
-
-### Key Feature
-
-In both cases, the drift depends on the **current values** of all forward rates in the summation range. This state-dependence prevents closed-form solutions and necessitates simulation.
+Recall (see [§ LMM Drift in Terminal Measure](lmm_drift_terminal_measure.md)) the dynamics $dL_i/L_i = \mu_i\,dt + \sigma_i\,dW_i$ under both the terminal measure $\mathbb{Q}^{T_n}$ (drift $\mu_i^{(n)} = -\sum_{j=i+1}^{n-1}\delta_j\rho_{ij}\sigma_i\sigma_j L_j/(1+\delta_j L_j)$) and the spot measure $\mathbb{Q}^B$ (drift with opposite sign, summed over $j=\eta(t),\dots,i$). The state-dependence of the drift in both cases prevents closed-form solutions and necessitates simulation.
 
 ---
 

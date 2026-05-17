@@ -4,15 +4,11 @@ The trinomial tree from the previous section discretizes the zero-mean process $
 
 ## Arrow-Debreu Prices
 
-An Arrow-Debreu (state) price $Q_{ij}$ is the present value at time $0$ of receiving $\$1$ at node $(i, j)$ and nothing elsewhere. These prices encode all discount factor information in the tree.
-
-**Definition.** The Arrow-Debreu price at node $(i, j)$ is
+Recall (see [§ risk-neutral](../../ch04/risk_neutral/martingale_and_no_arbitrage.md)) that an Arrow-Debreu (state) price is the present value of a digital claim paying $\$1$ in one state. For the tree,
 
 $$
-Q_{ij} = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{\mathbf{1}_{\{x_{t_i} = j\Delta x\}}}{M(t_i)}\right]
+Q_{ij} = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{\mathbf{1}_{\{x_{t_i} = j\Delta x\}}}{M(t_i)}\right], \quad Q_{0,0} = 1.
 $$
-
-At the root node, $Q_{0,0} = 1$.
 
 ## Forward Propagation
 
@@ -110,13 +106,7 @@ for all $i = 1, \ldots, N$. The first equality holds because Arrow-Debreu prices
 
 ## Relationship to Continuous-Time Calibration
 
-The tree calibration of $\alpha_i$ is the discrete-time analogue of the continuous-time fitting formula
-
-$$
-\theta(t) = \frac{\partial f^M(0,t)}{\partial t} + \lambda\,f^M(0,t) + \frac{\sigma^2}{2\lambda}\left(1 - e^{-2\lambda t}\right)
-$$
-
-As $\Delta t \to 0$, the discrete shift $\alpha_i$ converges to $\tilde{r}(t_i) = f^M(0, t_i) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t_i})^2$, the deterministic component of the short rate decomposition.
+Recall (see [§ HW model](../model_definition/hull_white_sde_and_mean_reversion.md)) the continuous-time $\theta(t)$ formula and (see [§ HW short rate](../short_rate/short_rate_solution.md)) the decomposition $\alpha(t) = f^M(0,t) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda t})^2$. As $\Delta t \to 0$, the discrete shift $\alpha_i \to \alpha(t_i)$.
 
 ## Summary
 

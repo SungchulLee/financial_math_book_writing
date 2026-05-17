@@ -116,25 +116,7 @@ The humped shape arises from the competition between two effects: the positive c
 
 ## Forward rate curve and its relation to shape
 
-The instantaneous forward rate provides a finer view of term structure dynamics:
-
-$$
-f(t,T) = e^{-\kappa\tau}\,r_t + \theta\!\left(1 - e^{-\kappa\tau}\right) - \frac{\sigma^2}{2\kappa^2}\!\left(1 - e^{-\kappa\tau}\right)^2
-$$
-
-The forward rate has the following limits:
-
-$$
-f(t,t) = r_t, \qquad \lim_{\tau\to\infty} f(t,T) = \theta - \frac{\sigma^2}{2\kappa^2} = R_\infty
-$$
-
-The forward rate curve is monotonically decreasing if and only if $r_t > R_\infty$. Since the yield is an average of forward rates:
-
-$$
-R(t,T) = \frac{1}{\tau}\int_t^T f(t,s)\,ds
-$$
-
-a decreasing forward curve does not necessarily produce a decreasing yield curve---the yield averages over the forward rates, smoothing the decline.
+Recall (see [§ Named functions A and B](named_functions.md), [§ Yield curves](../yield_curves/bootstrapping_algorithms.md)) the forward rate formula $f(t,T) = e^{-\kappa\tau}r_t + \theta(1 - e^{-\kappa\tau}) - \tfrac{\sigma^2}{2\kappa^2}(1 - e^{-\kappa\tau})^2$ with $f(t,t) = r_t$ and $\lim_{\tau\to\infty}f = R_\infty$. The forward curve is monotonically decreasing iff $r_t > R_\infty$. Since $R(t,T) = \frac{1}{\tau}\int_t^T f(t,s)\,ds$, a decreasing forward curve does not always yield a decreasing yield curve — the average smooths the decline.
 
 ---
 

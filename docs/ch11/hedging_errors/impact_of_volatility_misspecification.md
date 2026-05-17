@@ -1,7 +1,9 @@
 # Impact of Volatility Misspecification
 
-
 If the hedger uses $\hat{\sigma}$ while true volatility is $\sigma$, replication fails systematically. Understanding this failure mode is central to practical options trading and motivates implied-vs-realized volatility strategies.
+
+!!! tip "Toy mechanism: the gamma term is paid in the *realized* $\sigma^2$"
+    The whole misspecification analysis is one substitution into the BS PDE. The hedger's portfolio is delta-neutral *under* $\hat\sigma$, so its theta satisfies $\hat\Theta + \tfrac{1}{2}\hat\sigma^2 S^2\hat\Gamma = r\hat V - rS\hat\Delta$. But the underlying actually moves with realized $\sigma$, so the hedged P&L picks up gamma at the *true* variance rate: $dP\&L = \hat\Theta\,dt + \tfrac{1}{2}\hat\Gamma\,\sigma^2 S^2\,dt$. Subtracting one from the other collapses to the single fundamental identity $dP\&L = \tfrac{1}{2}\hat\Gamma S^2(\sigma^2 - \hat\sigma^2)\,dt$. *The hedging P&L is proportional to the variance gap, weighted by gamma.* Implied–vs–realized vol strategies, robustness bounds, and the El Karoui–Jeanblanc result below are all corollaries of this one identity.
 
 ---
 

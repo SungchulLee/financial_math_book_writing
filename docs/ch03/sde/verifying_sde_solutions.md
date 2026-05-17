@@ -4,6 +4,9 @@ Given a stochastic differential equation and a proposed solution, we need to ver
 
 Verification is typically easier than solving an SDE itself. Once a candidate solution is known, checking it requires only Itô calculus.
 
+!!! tip "Toy mechanism: differentiate the guess and match"
+    The whole verification game is one line. Take the ODE analogue: claim $x(t) = e^t$ solves $\dot x = x$. To check, differentiate $e^t$ and see whether the result equals $x(t)$. For SDEs the differentiation is Itô's lemma instead of ordinary calculus — that single replacement is the only nontrivial step. The cleanest example: claim $S_t = S_0 e^{\sigma W_t}$ solves $dS_t = \tfrac{1}{2}\sigma^2 S_t\,dt + \sigma S_t\,dW_t$. Apply Itô to $f(x) = S_0 e^{\sigma x}$: the $\tfrac{1}{2}f''\sigma^2$ correction produces exactly the $\tfrac{1}{2}\sigma^2 S_t\,dt$ drift on the right-hand side, and the $f'$ term produces the $\sigma S_t\,dW_t$ diffusion. Match coefficients, check $S_0$, done. The three worked examples below are this same three-step procedure for the canonical models.
+
 !!! abstract "Learning Goals"
     After completing this section you should be able to:
 
@@ -27,30 +30,13 @@ The verification procedure is:
 
 ## 2. Itô's Lemma
 
-The central tool for verification is Itô's lemma.
-
-**Theorem (Itô's Lemma).** Let $X_t$ be an Itô process satisfying
-
-$$
-dX_t = \mu_t\,dt + \sigma_t\,dW_t
-$$
-
-and let $f(x, t) \in C^{2,1}(\mathbb{R} \times [0, T])$. Then the differential of $Y_t = f(X_t, t)$ is given by
+Recall (see [§ Itô's Lemma](../ito_lemma/ito_lemma.md)): for an Itô process $dX_t = \mu_t\,dt + \sigma_t\,dW_t$ and $f \in C^{2,1}$,
 
 $$
 df(X_t, t) = \left(\frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2}\sigma_t^2 \frac{\partial^2 f}{\partial x^2}\right)dt + \sigma_t \frac{\partial f}{\partial x}\,dW_t
 $$
 
-**Special case.** When $X_t = W_t$ (standard Brownian motion with $\mu_t = 0$, $\sigma_t = 1$):
-
-$$
-df(W_t, t) = \left(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right)dt + \frac{\partial f}{\partial x}\,dW_t
-$$
-
-!!! tip "Regularity Requirement"
-    Itô's lemma requires $f \in C^{2,1}$: twice continuously differentiable in $x$ and once in $t$. If the proposed solution does not satisfy this condition, the lemma cannot be applied directly.
-
-This formula replaces the ordinary chain rule when stochastic terms are present. The extra $\frac{1}{2}\sigma_t^2 f_{xx}$ term — the **Itô correction** — arises because $(dW_t)^2 = dt$ rather than zero.
+The extra $\frac{1}{2}\sigma_t^2 f_{xx}\,dt$ term — the **Itô correction** — arises because $(dW_t)^2 = dt$ rather than zero (see [§ Quadratic Variation](../ito_integral/quadratic_variation.md)). This formula is the central tool for verification: it replaces the ordinary chain rule when stochastic terms are present.
 
 ---
 
@@ -571,21 +557,83 @@ A proposed solution is $X_t = x_0\,e^{-\alpha t} + \sigma \int_0^t e^{-\alpha(t-
 
 ---
 
-**Exercise 7.** A student verifies a solution by applying the ordinary chain rule (without the Itô correction) and obtains a drift of $(\mu - \sigma^2/2) S_t$ instead of $\mu S_t$ for GBM. Explain precisely where the error occurs and why the correction $\frac{1}{2}\sigma^2 f_{xx}$ is not negligible in stochastic calculus.
+**Exercise 7.** Consider the time-varying linear SDE
+
+$$
+dX_t = [-a(t)X_t + b(t)]\,dt + c(t)\,dW_t.
+$$
+
+(a) Find an integrating factor $M(t)$ depending only on time such that $d(M(t)X_t)$ contains no term proportional to $X_t$.
+
+(b) Use this integrating factor to solve the SDE explicitly.
 
 ??? success "Solution to Exercise 7"
-    The student applied the ordinary chain rule to $S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$, treating $W_t$ as a smooth function. Using only the first-order terms:
+    **(a)** We seek an integrating factor $M(t)$ depending only on time. This is important because then $M$ is deterministic and of finite variation, so the Itô product rule is simple:
 
     $$
-    dS_t \stackrel{\text{ordinary}}{=} f_t\,dt + f_x\,dW_t = \left(\mu - \frac{\sigma^2}{2}\right)S_t\,dt + \sigma S_t\,dW_t
+    d(M(t)X_t) = M(t)\,dX_t + X_t\,dM(t)
     $$
 
-    This gives a drift of $(\mu - \sigma^2/2)S_t$ instead of $\mu S_t$.
+    with no quadratic covariation term.
 
-    The error is the omission of the **Ito correction term** $\frac{1}{2}\sigma_t^2 f_{xx}\,dt$. In stochastic calculus, the quadratic variation of Brownian motion satisfies $(dW_t)^2 = dt$, which is **not negligible** (unlike $(dx)^2 = 0$ in ordinary calculus). Since $f_{xx} = \sigma^2 S_t$ and $\sigma_t = 1$ (when the underlying process is $W_t$), the missing term is:
+    Substituting
 
     $$
-    \frac{1}{2} \cdot 1^2 \cdot \sigma^2 S_t\,dt = \frac{\sigma^2}{2}S_t\,dt
+    dX_t = [-a(t)X_t + b(t)]\,dt + c(t)\,dW_t,
     $$
 
-    Adding this to $(\mu - \sigma^2/2)S_t\,dt$ gives the correct drift $\mu S_t\,dt$. The correction is non-negligible because Brownian motion accumulates quadratic variation at a finite rate, a fundamental property that has no analogue in deterministic calculus.
+    we get
+
+    $$
+    d(MX) = M[-a(t)X_t + b(t)]\,dt + Mc(t)\,dW_t + X_t\,dM
+    $$
+
+    Rearranging,
+
+    $$
+    d(MX) = Mb(t)\,dt + Mc(t)\,dW_t + X_t\bigl(dM - a(t)M\,dt\bigr)
+    $$
+
+    We choose $M$ so that the coefficient of $X_t$ vanishes:
+
+    $$
+    dM = a(t)M\,dt
+    $$
+
+    Hence $M$ must solve the ODE
+
+    $$
+    \frac{dM}{dt} = a(t)M(t),
+    $$
+
+    so
+
+    $$
+    M(t) = \exp\!\left(\int_0^t a(u)\,du\right).
+    $$
+
+    **(b)** With this choice,
+
+    $$
+    d(M(t)X_t) = M(t)b(t)\,dt + M(t)c(t)\,dW_t.
+    $$
+
+    Integrating from $0$ to $t$ and using $M(0)=1$,
+
+    $$
+    M(t)X_t = X_0 + \int_0^t M(s)b(s)\,ds + \int_0^t M(s)c(s)\,dW_s.
+    $$
+
+    Therefore,
+
+    $$
+    X_t = M(t)^{-1}\left[X_0 + \int_0^t M(s)b(s)\,ds + \int_0^t M(s)c(s)\,dW_s\right]
+    $$
+
+    that is,
+
+    $$
+    X_t = \exp\!\left(-\int_0^t a(u)\,du\right)\left[X_0 + \int_0^t \exp\!\left(\int_0^s a(u)\,du\right)b(s)\,ds + \int_0^t \exp\!\left(\int_0^s a(u)\,du\right)c(s)\,dW_s\right]
+    $$
+
+    This is the explicit solution. The construction mirrors the integrating-factor idea used in Example 2 (OU process) and Exercise 3, generalized to time-varying coefficients $a(t)$, $b(t)$, $c(t)$.

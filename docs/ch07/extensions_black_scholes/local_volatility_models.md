@@ -123,21 +123,7 @@ Use the calibrated local volatility surface to price path-dependent options via 
 
 ## Smile Dynamics Problem
 
-### The Issue
-
-Local volatility predicts that the implied volatility smile **flattens** as time passes. Empirically, the smile **persists** or even steepens.
-
-### Comparison with Stochastic Volatility
-
-| Model | Forward Smile | Hedging |
-|-------|---------------|---------|
-| Local Vol | Flattens | Poor |
-| Stoch Vol | Persists | Better |
-
-### "Sticky Strike" vs "Sticky Delta"
-
-- **Local volatility**: Tends toward sticky strike behavior
-- **Market**: Closer to sticky delta behavior
+Local volatility predicts that the implied volatility smile **flattens** as time passes (sticky-strike behavior), while the market smile persists or steepens (closer to sticky-delta). Recall (see [§ Stochastic Volatility Models](stochastic_volatility_models.md)): stochastic-volatility models keep the forward smile alive because future variance is itself random, yielding better hedging and exotic pricing.
 
 ---
 

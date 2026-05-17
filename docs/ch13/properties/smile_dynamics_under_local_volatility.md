@@ -14,25 +14,7 @@ The local volatility model perfectly reproduces today's implied volatility surfa
 
 ## Smile Dynamics: Three Regimes
 
-### Sticky Strike
-
-Under **sticky strike** dynamics, the implied volatility of a fixed-strike option does not change when the spot price moves:
-
-$$
-\frac{\partial \sigma_{\text{imp}}(K, T)}{\partial S_0}\bigg|_{\text{sticky strike}} = 0
-$$
-
-The implied volatility is a function of the absolute strike $K$ alone. When the spot rises from $S_0$ to $S_0 + \Delta S$, the ATM strike shifts to $S_0 + \Delta S$, and the ATM implied volatility changes because the model reads off the smile at a new strike level. For a typical equity skew (downward-sloping in $K$), a spot increase shifts ATM to a higher strike, where implied volatility is lower.
-
-### Sticky Delta
-
-Under **sticky delta** (or sticky moneyness) dynamics, the implied volatility of a fixed-moneyness option does not change when the spot moves:
-
-$$
-\frac{\partial \sigma_{\text{imp}}(K/S_0, T)}{\partial S_0}\bigg|_{\text{sticky delta}} = 0
-$$
-
-The implied volatility depends on the relative strike $K/S_0$ (or equivalently, the delta of the option). When the spot rises, the entire smile shifts to the right, maintaining its shape relative to the new spot level. The ATM implied volatility remains unchanged.
+Recall (see [§ Smile Dynamics](../../ch12/smile_dynamics/forward_smile.md)) for the general definitions of **sticky strike** ($\partial_{S_0}\sigma_{\text{imp}}(K,T) = 0$) and **sticky delta** ($\partial_{S_0}\sigma_{\text{imp}}(K/S_0,T) = 0$).
 
 ### Sticky Local Volatility
 
@@ -158,13 +140,7 @@ This is because local volatility is deterministic: knowing the spot move complet
 
 ### Empirical Evidence
 
-Empirically, the spot-vol correlation is strong but not perfect:
-
-$$
-\rho_{S, \sigma}^{\text{market}} \approx -0.5 \text{ to } -0.8 \quad (\text{equity indices})
-$$
-
-The local volatility model overstates the magnitude of the spot-vol correlation. Stochastic volatility models naturally produce $|\rho_{S,\sigma}| < 1$ because the volatility has its own source of randomness.
+Empirically, $\rho_{S, \sigma}^{\text{market}} \approx -0.5 \text{ to } -0.8$ for equity indices. The local volatility model overstates the magnitude of the spot-vol correlation; recall (see [§ Stochastic Volatility](../../ch14/index.md)) that SV models naturally produce $|\rho_{S,\sigma}| < 1$ because the volatility has its own source of randomness.
 
 ## Comparison: LV vs Market vs Stochastic Volatility
 

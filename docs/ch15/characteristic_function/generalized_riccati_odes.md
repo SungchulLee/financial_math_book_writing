@@ -23,19 +23,13 @@ The exponential-affine ansatz $g(\tau, x) = \exp(\phi(\tau) + \langle \psi(\tau)
 
 ### Setup
 
-Consider a scalar affine diffusion:
+Consider a scalar affine diffusion $dX_t = (\kappa_0 + \kappa_1 X_t)\,dt + \sqrt{\sigma_0 + \sigma_1 X_t}\,dW_t$. The conditional MGF $g(\tau, x) = \mathbb{E}[e^{u X_{t+\tau}} \mid X_t = x]$ satisfies the backward Kolmogorov PDE
 
 $$
-dX_t = (\kappa_0 + \kappa_1 X_t)\,dt + \sqrt{\sigma_0 + \sigma_1 X_t}\,dW_t
+\frac{\partial g}{\partial \tau} = (\kappa_0 + \kappa_1 x)\frac{\partial g}{\partial x} + \frac{1}{2}(\sigma_0 + \sigma_1 x)\frac{\partial^2 g}{\partial x^2}, \qquad g(0,x) = e^{ux}
 $$
 
-The conditional expectation $g(\tau, x) = \mathbb{E}[e^{u X_{t+\tau}} \mid X_t = x]$ satisfies the backward Kolmogorov PDE:
-
-$$
-\frac{\partial g}{\partial \tau} = (\kappa_0 + \kappa_1 x)\frac{\partial g}{\partial x} + \frac{1}{2}(\sigma_0 + \sigma_1 x)\frac{\partial^2 g}{\partial x^2}
-$$
-
-with initial condition $g(0, x) = e^{ux}$.
+(Recall (see [generator](../generator/infinitesimal_generator_affine.md)) for the affine generator; (see [definition and setup](../definition_and_setup/state_space_and_regularity.md)) for the admissibility of $(\kappa_0,\kappa_1,\sigma_0,\sigma_1)$.)
 
 ### The Affine Ansatz
 
@@ -192,23 +186,7 @@ For the characteristic function, $u = iv$ with $v \in \mathbb{R}^d$ is always ad
 
 ## The Duffie-Pan-Singleton Formulation
 
-In the notation of Duffie, Pan, and Singleton (2000), the affine state vector $\mathbf{X}_t$ has dynamics under $\mathbb{Q}$:
-
-$$
-d\mathbf{X}_t = (a_0 + a_1 \mathbf{X}_t)\,dt + \bar{\sigma}(\mathbf{X}_t)\,d\mathbf{W}_t
-$$
-
-with short rate $r(\mathbf{X}_t) = r_0 + r_1^\top \mathbf{X}_t$. The discounted characteristic function $\varphi(\mathbf{X}_t, t, T, \mathbf{u}) = \mathbb{E}^\mathbb{Q}[e^{-\int_t^T r_s\,ds + i\mathbf{u}^\top \mathbf{X}_T} \mid \mathcal{F}_t]$ satisfies $\varphi = e^{A(\tau, \mathbf{u}) + \mathbf{B}(\tau, \mathbf{u})^\top \mathbf{X}_t}$ where:
-
-$$
-\frac{dA}{d\tau} = -r_0 + \mathbf{B}^\top a_0 + \frac{1}{2}\mathbf{B}^\top c_0 \mathbf{B}
-$$
-
-$$
-\frac{d\mathbf{B}}{d\tau} = -r_1 + a_1^\top \mathbf{B} + \frac{1}{2}c_1^\top \mathbf{B} \odot \mathbf{B}
-$$
-
-with $A(0) = 0$ and $\mathbf{B}(0) = i\mathbf{u}$. Here $c_0$ and $c_1$ encode the diffusion structure: $\bar{\sigma}\bar{\sigma}^\top = c_0 + c_1^\top \mathbf{X}_t$.
+The DPS (2000) discounted-CF system $A'(\tau) = -r_0 + B^\top a_0 + \tfrac12 B^\top c_0 B$, $B'(\tau) = -r_1 + a_1^\top B + \tfrac12 c_1^\top B\odot B$ (with $A(0)=0$, $B(0) = iu$) is the same Riccati system above with shifts $-r_0$, $-r_1$ from discounting. Full derivation and ATSM applications: Recall (see [discounted transform](../discounted_transform/discounted_characteristic_function.md), [affine term structure](../affine_term_structure/bond_pricing_affine_framework.md)).
 
 ??? example "Riccati System for a Two-Factor Model"
     Consider $X_t = (r_t, V_t) \in \mathbb{R} \times \mathbb{R}_+$ with:

@@ -13,10 +13,9 @@ $$
 
 where $[X,Y]_t$ is the **quadratic covariation** of $X_t$ and $Y_t$.
 
-The extra term $d[X,Y]_t$ has no classical counterpart. It arises because Brownian
-increments satisfy $(dW_t)^2 = dt$, so products of stochastic differentials do not
-vanish. The multiplication rules behind this are established in
-[From Taylor to Itô](from_taylor_to_ito.md).
+The extra term $d[X,Y]_t$ has no classical counterpart.
+
+Recall (see [§ From Taylor to Itô](from_taylor_to_ito.md)): Brownian increments satisfy $(dW_t)^2 = dt$, while $(dt)^2 = 0$ and $dt\,dW_t = 0$. This is the entire reason products of stochastic differentials do not vanish; this page applies that rule mechanically rather than rederiving it.
 
 From the product rule two further identities follow directly:
 
@@ -27,7 +26,7 @@ From the product rule two further identities follow directly:
 
 ## 2. Why the Classical Product Rule Gains an Extra Term
 
-Because $(dW_t)^2 = dt \neq 0$ (see [Quadratic Taylor Expansion](taylor_expansion_quadratic.md) for the scaling argument), products of stochastic differentials contribute at first order and cannot be dropped.
+Recall (see [§ Quadratic Approximation](taylor_expansion_quadratic.md) for the scaling argument and [§ From Taylor to Itô](from_taylor_to_ito.md) for the rule): $(dW_t)^2 = dt \neq 0$, so products of stochastic differentials contribute at first order and cannot be dropped.
 
 | | Classical calculus | Stochastic calculus |
 |---|---|---|
@@ -182,42 +181,7 @@ $$
 
 ### Example 2 — Solving the Ornstein–Uhlenbeck SDE
 
-Consider the SDE with initial condition $X_0 = x_0$:
-
-$$
-dX_t = -\theta X_t\,dt + \sigma\,dW_t, \qquad X_0 = x_0
-$$
-
-Multiply through by the integrating factor $e^{\theta t}$ and let $Y_t = e^{\theta t} X_t$.
-
-Apply the product rule to $Y_t = e^{\theta t} X_t$. Since $e^{\theta t}$ is
-deterministic, its quadratic covariation with $X_t$ is zero and the correction
-term vanishes:
-
-$$
-dY_t = e^{\theta t}\,dX_t + \theta e^{\theta t} X_t\,dt
-$$
-
-Substituting the SDE:
-
-$$
-dY_t = e^{\theta t}(-\theta X_t\,dt + \sigma\,dW_t) + \theta e^{\theta t} X_t\,dt
-= \sigma e^{\theta t}\,dW_t
-$$
-
-Integrating from $0$ to $t$:
-
-$$
-e^{\theta t} X_t = x_0 + \sigma \int_0^t e^{\theta s}\,dW_s
-$$
-
-Therefore
-
-$$
-\boxed{
-X_t = e^{-\theta t} x_0 + \sigma e^{-\theta t} \int_0^t e^{\theta s}\,dW_s
-}
-$$
+Recall (see [§ Applications and Examples — Exercise 3](ito_calculus_applications.md) and [§ Solving SDEs](../sde/solving_sde.md)): the integrating-factor trick $Y_t = e^{\theta t} X_t$ — a direct application of the product rule with $e^{\theta t}$ deterministic so $d[X,Y]_t = 0$ — solves $dX_t = -\theta X_t\,dt + \sigma\,dW_t$ to give $X_t = e^{-\theta t} x_0 + \sigma e^{-\theta t}\int_0^t e^{\theta s}\,dW_s$.
 
 ---
 

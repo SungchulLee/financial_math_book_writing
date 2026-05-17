@@ -2,85 +2,13 @@
 
 ## Hull-White Model
 
-$$\begin{array}{lllll}
-\displaystyle
+Recall (see [§ HW model definition](../model_definition/hull_white_sde_and_mean_reversion.md)): the Hull-White SDE is
+
+$$
 dr(t)=\lambda\left(\theta^\mathbb{Q}(t)-r(t)\right) dt+\sigma dW^{\mathbb{Q}}(t)
-\end{array}$$
-
-where
-
-$$
-\displaystyle
-\theta^\mathbb{Q}(t)
-=
-f^M(0,t)
-+\frac{1}{\lambda}\frac{\partial f^M(0,t)}{\partial t}
-+\frac{\sigma^2}{2\lambda^2}\left(1-e^{-2\lambda t}\right)
 $$
 
-???+ note "Proof"
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    \sigma(t)=\sigma(t,t)=\sigma
-    \end{array}$$
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    \mu(t)
-    &=&\displaystyle
-    \mu(t,t)+
-    \frac{\partial f(0,t)}{\partial t}
-    +\int_0^t\frac{\partial \mu(t',t)}{\partial t}dt'
-    +\int_0^t\frac{\partial \sigma(t',t)}{\partial t}dW^{\mathbb{Q}}(t')\\
-    &=&\displaystyle
-    \frac{\partial f(0,t)}{\partial t}
-    +\int_0^t\left[2\sigma^2e^{-2\lambda(t-t')}
-    -\sigma^2e^{-\lambda(t-t')}\right]dt'
-    -\lambda \int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')\\
-    &=&\displaystyle
-    \frac{\partial f(0,t)}{\partial t}
-    +\frac{\sigma^2}{\lambda}e^{-2\lambda t}\left(e^{\lambda t}-1\right)-\lambda \int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')\\
-    \end{array}$$
-
-    **Handling the stochastic integral term:**
-
-    $$\begin{array}{l}
-    \displaystyle
-    r(t)
-    =
-    f(t,t)
-    =
-    f(0,t)+\int_0^t\mu(t',t)dt'+\int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')
-    \end{array}$$
-
-    implies
-
-    $$\begin{array}{llllllll}
-    \displaystyle
-    \int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')
-    &=&\displaystyle
-    r(t)-f(0,t)-\frac{\sigma^2}{2\lambda^2}e^{-2\lambda t}\left(e^{\lambda t}-1\right)^2
-    \end{array}$$
-
-    Substituting back:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    \mu(t)
-    &=&\displaystyle
-    \lambda\left(
-    f(0,t)
-    +\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
-    +\frac{\sigma^2}{2\lambda^2}\left(1-e^{-2\lambda t}\right)
-    -r(t)
-    \right)\\
-    &:=&\displaystyle
-    \lambda\left(
-    \theta(t)
-    -r(t)
-    \right)\\
-    \end{array}$$
+with $\theta^\mathbb{Q}(t)=f^M(0,t)+\frac{1}{\lambda}\partial_t f^M(0,t)+\frac{\sigma^2}{2\lambda^2}(1-e^{-2\lambda t})$ derived from the HJM no-arbitrage drift condition.
 
 ## Hull-White Model Solution
 
@@ -114,45 +42,13 @@ r(s)e^{-\lambda (t-s)}+ \alpha(t)-\alpha(s)e^{-\lambda(t-s)}\\
 
 ???+ note "Proof"
 
-    $$\begin{array}{lllll}
-    \displaystyle
-    &&dr(t)=\lambda\left(\theta(t)-r(t)\right) dt+\sigma dW^{\mathbb{Q}}(t)\\
-    \\
-    &\Rightarrow&
-    \displaystyle
-    e^{\lambda t}dr(t) + \lambda r(t)e^{\lambda t}  dt=\lambda\theta(t)e^{\lambda t}  dt+\sigma e^{\lambda t} dW^{\mathbb{Q}}(t)\quad(y(t)=r(t)e^{\lambda t})\\
-    \\
-    &\Rightarrow&
-    \displaystyle
-    dy(t)=\lambda\theta(t)e^{\lambda t} dt+\sigma e^{\lambda t} dW^{\mathbb{Q}}(t)\\
-    \\
-    &\Rightarrow&
-    \displaystyle
-    r(t)
-    =
-    r(0)e^{-\lambda t}+ \lambda\int_0^t\theta(t')e^{-\lambda (t-t')} dt'+\sigma \int_0^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')\\
-    \end{array}$$
+    Apply the integrating factor $e^{\lambda t}$ to the linear SDE (Recall (see [§ OU SDE](../../ch03/ito_lemma/ito_calculus_applications.md))). With $y(t)=r(t)e^{\lambda t}$:
 
-    Therefore,
+    $$
+    dy(t)=\lambda\theta(t)e^{\lambda t} dt+\sigma e^{\lambda t} dW^{\mathbb{Q}}(t)
+    $$
 
-    $$\begin{array}{lllll}
-    \displaystyle
-    \mathbb{E}^\mathbb{Q}\left(r(t)\big|{\cal F}(0)\right)
-    =
-    r(0)e^{-\lambda t}+ \lambda\int_0^t\theta(t')e^{-\lambda (t-t')} dt'
-    =
-    \psi(t)\\
-    \end{array}$$
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    \mathbb{Var}^\mathbb{Q}\left(r(t)\big|{\cal F}(0)\right)
-    =
-    \sigma^2 \int_0^t e^{-2\lambda (t-t')} dt'
-    =
-    \frac{\sigma^2}{2\lambda} \left(1-e^{-2\lambda t}\right)
-    =-\frac{1}{2}\sigma^2 B(2t)
-    \end{array}$$
+    Integrating from $s$ to $t$ and dividing by $e^{\lambda t}$ yields the stated solution. The Gaussian mean and variance follow by taking expectation and applying the Ito isometry to $\sigma\int_s^t e^{-\lambda(t-t')}dW^{\mathbb{Q}}(t')$. Note $\mathbb{Var}=-\frac{1}{2}\sigma^2 B(2(t-s))$ with $B$ from [§ named functions](../named_functions/named_functions_definition.md).
 
 ## Hull-White Short Rate Sample Path
 

@@ -92,7 +92,7 @@ $$
 (J^\top W J + \lambda I) \Delta\theta = -J^\top W r
 $$
 
-The damping parameter $\lambda \ge 0$ is adjusted adaptively:
+The damping parameter $\lambda \ge 0$ is adjusted adaptively (note: the LM damping $\lambda I$ is algebraically identical to Tikhonov regularization of the linearized step; see [§ Tikhonov regularization](../regularization_and_stability/tikhonov_regularization.md)):
 
 - Large $\lambda$: behaves like gradient descent (safe but slow).
 - Small $\lambda$: behaves like Gauss–Newton (fast near a minimum).

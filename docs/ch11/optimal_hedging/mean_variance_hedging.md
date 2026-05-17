@@ -2,6 +2,9 @@
 
 In incomplete markets, perfect replication is generally impossible. **Mean-variance hedging** seeks the self-financing trading strategy that minimizes the expected squared hedging error at maturity. This criterion leads to elegant solutions via $L^2$ projection theory and the **Follmer-Schweizer decomposition**, connecting hedging to fundamental concepts in functional analysis.
 
+!!! tip "Toy mechanism: orthogonal projection in $L^2$"
+    The whole machinery is one geometric picture. Let $\mathcal{A}$ be the linear space of all attainable terminal wealths $\int_0^T\xi_t\,dS_t$ under self-financing strategies. Then minimising $\mathbb{E}[(H - V_T)^2]$ is exactly the question: *what is the closest point in $\mathcal{A}$ to $H$ in $L^2$?* That is orthogonal projection — the same operation as projecting a vector onto a subspace in finite-dimensional geometry. The Föllmer–Schweizer decomposition $H = H_0 + \int_0^T\xi^H\,dS + L_T$ is the projection theorem with $\int\xi^H\,dS$ being the projection onto $\mathcal{A}$ and $L_T$ the orthogonal residual. The "optimal hedge" is just "drop a perpendicular." Everything below — the minimal martingale measure, BSDE characterisations, the connection to risk-neutral pricing — is bookkeeping on this single projection.
+
 ---
 
 ## The Mean-Variance Hedging Problem

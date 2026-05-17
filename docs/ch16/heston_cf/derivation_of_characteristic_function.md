@@ -13,17 +13,7 @@ The characteristic function (CF) is the Fourier transform of the probability den
 
 ## Heston Model Specification
 
-The Heston (1993) model for asset price and volatility dynamics under the risk-neutral measure is:
-
-$$
-dS(t) = r S(t) dt + \sqrt{v(t)} S(t) dW_x^{\mathbb{Q}}(t)
-$$
-
-$$
-dv(t) = \kappa(\bar{v} - v(t)) dt + \gamma\sqrt{v(t)} dW_v^{\mathbb{Q}}(t)
-$$
-
-where the two Brownian motions are correlated: $d W_x^{\mathbb{Q}} dW_v^{\mathbb{Q}} = \rho dt$.
+Recall (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)) the Heston SDE under $\mathbb{Q}$ with vol-of-vol $\gamma$ and mean-reversion level $\bar v$.
 
 ---
 

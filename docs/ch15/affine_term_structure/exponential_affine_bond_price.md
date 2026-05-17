@@ -38,29 +38,13 @@ The exponential-affine bond price formula has three major consequences for fixed
 
 ## Setup and Assumptions
 
-### Affine Short-Rate Specification
-
-Let $X_t \in D \subseteq \mathbb{R}^d$ be a $d$-dimensional affine process under the risk-neutral measure $\mathbb{Q}$ with dynamics
+Recall (see [§ Affine Definition and Setup](../definition_and_setup/state_space_and_regularity.md)): under $\mathbb{Q}$ the state $X_t \in D \subseteq \mathbb{R}^d$ satisfies $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ with affine drift $\mu(x) = K_0 + K_1 x$ and affine instantaneous covariance $\sigma(x)\sigma(x)^\top = H_0 + \sum_{i=1}^d H_i\,x^{(i)}$. The short rate is
 
 $$
-dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t
+r(X_t) = \rho_0 + \rho_1^\top X_t,
 $$
 
-where the drift and instantaneous covariance are affine in the state:
-
-$$
-\mu(X_t) = K_0 + K_1 X_t, \qquad \sigma(X_t)\sigma(X_t)^\top = H_0 + \sum_{i=1}^d H_i\,X_t^{(i)}
-$$
-
-Here $K_0 \in \mathbb{R}^d$, $K_1 \in \mathbb{R}^{d \times d}$, $H_0 \in \mathbb{R}^{d \times d}$, and $H_i \in \mathbb{R}^{d \times d}$ for $i = 1, \ldots, d$.
-
-The **short rate** is affine in the state:
-
-$$
-r(X_t) = \rho_0 + \rho_1^\top X_t
-$$
-
-where $\rho_0 \in \mathbb{R}$ and $\rho_1 \in \mathbb{R}^d$ are constants.
+with constants $\rho_0 \in \mathbb{R}$, $\rho_1 \in \mathbb{R}^d$.
 
 ---
 
@@ -138,101 +122,10 @@ Since these equations must hold for **all** $x \in D$, the constant part and the
 
 ## Explicit Solutions for Classical Models
 
-### Vasicek Model
-
-The Vasicek model has a single state variable $X_t = r_t$ with dynamics
-
-$$
-dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t
-$$
-
-The affine parameters are $K_0 = \kappa\theta$, $K_1 = -\kappa$, $H_0 = \sigma^2$, $H_1 = 0$, $\rho_0 = 0$, and $\rho_1 = 1$.
-
-The Riccati equation for $B(\tau)$ becomes
-
-$$
-\frac{dB}{d\tau} = -1 - \kappa\,B(\tau), \qquad B(0) = 0
-$$
-
-This is a first-order linear ODE with the explicit solution
-
-$$
-B(\tau) = -\frac{1 - e^{-\kappa\tau}}{\kappa}
-$$
-
-!!! example "Derivation of $B(\tau)$ for Vasicek"
-    The ODE $B' = -1 - \kappa B$ has integrating factor $e^{\kappa\tau}$. Multiplying both sides:
-
-    $$
-    \frac{d}{d\tau}\!\left[e^{\kappa\tau}B\right] = -e^{\kappa\tau}
-    $$
-
-    Integrating from $0$ to $\tau$ with $B(0) = 0$:
-
-    $$
-    e^{\kappa\tau}B(\tau) = -\frac{e^{\kappa\tau} - 1}{\kappa}
-    $$
-
-    Dividing by $e^{\kappa\tau}$ gives $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$. $\square$
-
-The equation for $A(\tau)$ is
-
-$$
-\frac{dA}{d\tau} = \kappa\theta\,B(\tau) + \frac{1}{2}\sigma^2 B(\tau)^2
-$$
-
-Integrating explicitly:
-
-$$
-A(\tau) = \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)\!\bigl(B(\tau) + \tau\bigr) - \frac{\sigma^2}{4\kappa}B(\tau)^2
-$$
-
-The Vasicek bond price is therefore
-
-$$
-P(t,T) = \exp\!\left(A(\tau) + B(\tau)\,r_t\right)
-$$
-
-where $B(\tau) < 0$ for all $\tau > 0$, confirming that the bond price decreases when the short rate increases.
-
-### Cox-Ingersoll-Ross Model
-
-The CIR model has dynamics
-
-$$
-dr_t = \kappa(\theta - r_t)\,dt + \xi\sqrt{r_t}\,dW_t
-$$
-
-The affine parameters are $K_0 = \kappa\theta$, $K_1 = -\kappa$, $H_0 = 0$, $H_1 = \xi^2$, $\rho_0 = 0$, and $\rho_1 = 1$.
-
-The Riccati equation for $B(\tau)$ is now **nonlinear**:
-
-$$
-\frac{dB}{d\tau} = -1 - \kappa\,B(\tau) + \frac{1}{2}\xi^2 B(\tau)^2, \qquad B(0) = 0
-$$
-
-!!! info "Theorem: CIR Bond Price Coefficients"
-    Define $\gamma = \sqrt{\kappa^2 + 2\xi^2}$. The solution is
-
-    $$
-    B(\tau) = \frac{-2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}
-    $$
-
-    $$
-    A(\tau) = \frac{2\kappa\theta}{\xi^2}\ln\!\left(\frac{2\gamma\,e^{(\gamma+\kappa)\tau/2}}{(\gamma+\kappa)(e^{\gamma\tau}-1)+2\gamma}\right)
-    $$
-
-!!! example "Verification of the CIR Solution"
-    To verify, differentiate $B(\tau)$. Write $D(\tau) = (\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma$ so that $B = -2(e^{\gamma\tau} - 1)/D$. Then
-
-    $$
-    B'(\tau) = \frac{-2\gamma e^{\gamma\tau}\,D + 2(e^{\gamma\tau}-1)(\gamma+\kappa)\gamma e^{\gamma\tau}}{D^2}
-    $$
-
-    After simplification, one can verify that $B' = -1 - \kappa B + \frac{1}{2}\xi^2 B^2$ holds identically, with $B(0) = 0$ since the numerator vanishes at $\tau = 0$. $\square$
+Recall (see [§ Vasicek and CIR as Affine](../examples/gbm_as_affine.md), [§ Vasicek Model](../../ch18/vasicek_model/vasicek_sde_and_ou_process.md), [§ CIR Model](../../ch18/cir_model/cir_sde_and_square_root_process.md)): closed-form $A(\tau), B(\tau)$ are available for both canonical one-factor models. In each case $B(\tau) < 0$ for $\tau > 0$, so the bond price decreases in the state.
 
 !!! warning "Sign Convention"
-    Note that $B(\tau) < 0$ for all $\tau > 0$ in both models. Some references define $B$ with the opposite sign convention, writing $P = \exp(A - B\,r_t)$ with $B > 0$. Always check the sign convention when comparing across sources.
+    Some references define $B$ with the opposite sign convention, writing $P = \exp(A - B\,r_t)$ with $B > 0$. Always check the sign convention when comparing across sources.
 
 ---
 
@@ -285,13 +178,7 @@ If $r_t$ appears in the short-rate specification but $v_t$ does not (i.e., $\rho
 
 ## Connection to General Affine Transform
 
-The bond price formula is a special case of the general affine transform. Setting $u = \mathbf{0}$ in the discounted characteristic function
-
-$$
-\mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds + u^\top X_T}\;\Big|\; X_t = x\right] = \exp\!\bigl(\tilde{\phi}(\tau, u) + \tilde{\psi}(\tau, u)^\top x\bigr)
-$$
-
-recovers the bond price: $P(t,T) = \exp(\tilde{\phi}(\tau, \mathbf{0}) + \tilde{\psi}(\tau, \mathbf{0})^\top x)$, so $A(\tau) = \tilde{\phi}(\tau, \mathbf{0})$ and $B(\tau) = \tilde{\psi}(\tau, \mathbf{0})$. The Riccati system for $(A, B)$ is precisely the extended Riccati system evaluated at $u = \mathbf{0}$.
+Recall (see [§ Discounted Transform](../discounted_transform/discounted_characteristic_function.md)): setting $u = \mathbf{0}$ in the discounted transform recovers the bond price, so $A(\tau) = \tilde{\phi}(\tau, \mathbf{0})$ and $B(\tau) = \tilde{\psi}(\tau, \mathbf{0})$, and the bond pricing Riccati system is the extended Riccati system at $u = \mathbf{0}$.
 
 ---
 

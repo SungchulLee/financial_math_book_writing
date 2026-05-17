@@ -39,61 +39,15 @@ where the expectation is typically under the risk-neutral measure $\mathbb{Q}$.
 
 ---
 
-## Expected Positive Exposure (EPE)
+## Expected Positive Exposure and Effective EPE
 
-The **Expected Positive Exposure** is the time-averaged EE:
-
-$$
-\text{EPE} = \frac{1}{T} \int_0^T \text{EE}(t) \, dt
-$$
-
-**Discrete approximation:**
-
-$$
-\text{EPE} \approx \frac{1}{n} \sum_{i=1}^n \text{EE}(t_i)
-$$
-
-EPE is a single number summarizing average exposure over the portfolio's life.
-
----
-
-## Effective EPE and Effective EE
-
-Regulatory capital calculations use **non-decreasing** versions:
-
-**Effective EE:**
-
-$$
-\text{Effective EE}(t) = \max_{s \le t} \text{EE}(s)
-$$
-
-**Effective EPE:**
-
-$$
-\text{Effective EPE} = \frac{1}{\min(1\text{ year}, T)} \int_0^{\min(1\text{ year}, T)} \text{Effective EE}(t) \, dt
-$$
-
-**Rationale:** Prevents gaming by structuring trades to have low EE at measurement dates but high EE in between.
+Recall (see [§ Expected Positive Exposure (EPE)](expected_positive_exposure_epe.md)): EPE is the time-averaged EE, $\text{EPE} = \tfrac{1}{T}\int_0^T \text{EE}(t)\,dt$, summarizing the lifetime exposure in a single number. The regulatory **Effective EE** $= \max_{s\le t}\text{EE}(s)$ (running maximum) and **Effective EPE** (averaged over $\min(1\text{ yr}, T)$) prevent gaming by structuring low EE at measurement dates.
 
 ---
 
 ## Potential Future Exposure (PFE)
 
-**PFE** is a high-quantile measure of future exposure:
-
-$$
-\text{PFE}_\alpha(t) = \inf\{x : \mathbb{P}(E_t \le x) \ge \alpha\}
-$$
-
-Typically $\alpha = 0.95$ or $0.99$.
-
-**Interpretation:** With probability $\alpha$, exposure at time $t$ will not exceed $\text{PFE}_\alpha(t)$.
-
-**Relation to EE:**
-
-- EE measures average exposure
-- PFE measures tail exposure
-- $\text{PFE}_\alpha(t) \ge \text{EE}(t)$ always
+Recall (see [§ Potential Future Exposure (PFE)](potential_future_exposure_pfe.md)): PFE is the high-quantile measure $\text{PFE}_\alpha(t)=\inf\{x:\mathbb{P}(E_t\le x)\ge\alpha\}$ (typically $\alpha=0.95$ or $0.99$), capturing tail rather than average exposure, with $\text{PFE}_\alpha(t)\ge\text{EE}(t)$.
 
 ---
 
@@ -156,77 +110,15 @@ $$
 
 ---
 
-## Netting and Exposure
+## Netting and Collateralization
 
-Under a **netting agreement**, exposure is calculated at the portfolio level:
-
-$$
-E_t^{\text{netted}} = \left(\sum_{i=1}^n V_{i,t}\right)^+ \le \sum_{i=1}^n V_{i,t}^+ = \sum_{i=1}^n E_{i,t}
-$$
-
-**Netting benefit:**
-
-$$
-\text{Netting Benefit} = \frac{\sum_i \text{EE}_i - \text{EE}_{\text{netted}}}{\sum_i \text{EE}_i}
-$$
-
-Netting is most valuable when trades have:
-
-- Opposite signs (long and short)
-- Different maturities
-- Low correlation of values
-
----
-
-## Collateralization and Exposure
-
-**Collateral (margin)** reduces exposure:
-
-$$
-E_t^{\text{collateralized}} = \max(V_t - C_t, 0)
-$$
-
-where $C_t$ is the collateral held.
-
-### Margin Period of Risk (MPOR)
-
-Collateral is not instantaneously available. The **MPOR** is the time to:
-
-- Call for additional margin
-- Receive and process collateral
-- Close out the position if counterparty defaults
-
-Typical MPOR: 10 business days (bilateral), 5 days (CCP).
-
-**Effective exposure under collateral:**
-
-$$
-\text{EE}^{\text{coll}}(t) = \mathbb{E}[\max(V_t - C_{t-\text{MPOR}}, 0)]
-$$
+Recall (see [§ Netting and Collateral](netting_and_collateral.md)): netting reduces exposure from gross $\sum_i V_{i,t}^+$ to net $(\sum_i V_{i,t})^+$ (the netting inequality), most valuable for opposite-sign, low-correlation trades. Collateral further reduces exposure to $E_t^{\text{coll}}=(V_t-C_{t-\text{MPOR}})^+$; the **Margin Period of Risk** (typically 10 business days bilateral, 5 days CCP) drives the residual exposure even under daily margining.
 
 ---
 
 ## CVA and Exposure
 
-**Credit Valuation Adjustment (CVA)** depends directly on exposure profiles:
-
-$$
-\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot e^{-\int_0^t (r(s) + \lambda(s)) ds} \, dt
-$$
-
-where:
-
-- LGD = Loss Given Default (typically 60%)
-- $\lambda(t)$ = default intensity (hazard rate)
-- $r(t)$ = risk-free rate
-
-**Discrete approximation:**
-
-$$
-\text{CVA} \approx \text{LGD} \sum_{i=1}^n \text{EE}(t_i) \cdot [\mathbb{Q}(\tau \le t_i) - \mathbb{Q}(\tau \le t_{i-1})] \cdot D(t_i)
-$$
-
-where $D(t)$ is the discount factor and $\mathbb{Q}(\tau \le t)$ is the default probability.
+Recall (see [§ CVA and DVA](../valuation_adjustments_xva/cva_dva.md)): under the independence assumption, $\text{CVA} = \text{LGD}\int_0^T \text{EE}(t)\,\lambda(t)\,S(t)\,D(0,t)\,dt$, so the exposure profile $\text{EE}(t)$ is the central time-dependent input to CVA pricing.
 
 ---
 

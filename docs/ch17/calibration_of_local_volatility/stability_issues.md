@@ -8,7 +8,7 @@ Even with smoothing, local volatility calibration can be unstable. Instability c
 ## Structural instability in the Dupire formula
 
 
-The Dupire expression
+Recall (see [§ Dupire formula derivation](../../ch13/local_volatility_framework/dupire_formula_derivation.md)). The Dupire expression
 
 $$
 \sigma_{\text{loc}}^2(T,K)
@@ -20,7 +20,7 @@ $$
 has two built-in amplifiers:
 
 1. **Differentiation amplifies noise** (numerator and denominator).
-2. **Division by curvature**: if $\partial_{KK}C$ is small, errors explode.
+2. **Division by curvature**: if $\partial_{KK}C$ is small, errors explode (Recall (see [§ Breeden–Litzenberger](../../ch12/model_free_results/breeden_litzenberger_formula.md)): $\partial_{KK}C$ is the discounted density).
 
 The curvature is typically smallest in:
 
@@ -85,7 +85,7 @@ Stability improves when:
 ## Regularized local vol (post-processing)
 
 
-A common practical approach is to compute a “raw” local vol estimate and then solve a *regularized reconstruction* problem:
+A common practical approach is to compute a “raw” local vol estimate and then solve a *regularized reconstruction* problem (Recall (see [§ Regularization and stability](../regularization_and_stability/penalization_and_smoothness_constraints.md))):
 
 $$
 \min_{\sigma_{\text{loc}}} \; \|\text{Price}(\sigma_{\text{loc}}) - C^{\text{mkt}}\|^2

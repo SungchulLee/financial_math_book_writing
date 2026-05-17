@@ -16,7 +16,7 @@ In the Black-Scholes model, there is exactly one source of randomness (Brownian 
 
 ### Source Counting
 
-A market is complete when every contingent claim can be replicated by dynamic trading. The number of independent risk sources must equal the number of available hedging instruments.
+Recall (see [Extensions of Black-Scholes](../extensions_black_scholes/limitations_extensions.md)): a market is complete when every contingent claim can be replicated by dynamic trading; the number of independent risk sources must equal the number of available hedging instruments.
 
 | Model | Risk sources | Traded assets | Complete? |
 |-------|-------------|---------------|-----------|
@@ -53,7 +53,7 @@ An equivalent martingale measure (EMM) $\mathbb{Q}$ for the Merton model must sa
 
 The change of measure from $\mathbb{P}$ to $\mathbb{Q}$ can modify:
 
-- The **drift of Brownian motion** via Girsanov's theorem: $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$ for some market price of diffusion risk $\theta$
+- The **drift of Brownian motion** via Girsanov's theorem (see [Girsanov](../../ch04/girsanov/girsanov_intuition.md)): $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$
 - The **jump intensity**: $\lambda^{\mathbb{Q}} \neq \lambda^{\mathbb{P}}$
 - The **jump size distribution**: $\nu^{\mathbb{Q}} \neq \nu^{\mathbb{P}}$
 

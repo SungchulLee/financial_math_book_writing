@@ -72,43 +72,13 @@ This is the floating-minus-fixed payment of a payer swap.
 
 ## Black's Model for Caps
 
-### Model Assumption
-
-Under the $T_{i+1}$-forward measure, the forward rate $F_i(t) = F(t; T_i, T_{i+1})$ is a **martingale** with lognormal dynamics:
+Recall (see [§ Caplet Pricing and Black's Formula](../lmm/caplet_pricing_black_formula.md)): under the $T_{i+1}$-forward measure $F_i(t)$ is a martingale with lognormal volatility $\sigma_i$, and Black's caplet/floorlet formulae give
 
 $$
-\frac{dF_i(t)}{F_i(t)} = \sigma_i \, dW_t^{T_{i+1}}
+\text{Caplet}_i = N \delta_i P(0, T_{i+1}) [F_i N(d_1) - K N(d_2)], \qquad \text{Floorlet}_i = N \delta_i P(0, T_{i+1}) [K N(-d_2) - F_i N(-d_1)],
 $$
 
-where $\sigma_i$ is the **caplet volatility** for period $i$.
-
-### Black's Caplet Formula
-
-$$
-\boxed{\text{Caplet}_i = N \cdot \delta_i \cdot P(0, T_{i+1}) \cdot [F_i N(d_1) - K N(d_2)]}
-$$
-
-where:
-
-$$
-d_1 = \frac{\ln(F_i/K) + \frac{1}{2}\sigma_i^2 T_i}{\sigma_i \sqrt{T_i}}
-$$
-
-$$
-d_2 = d_1 - \sigma_i \sqrt{T_i}
-$$
-
-and:
-
-- $F_i = F(0; T_i, T_{i+1})$ is the current forward rate
-- $P(0, T_{i+1})$ is the discount factor
-- $\sigma_i$ is the Black (lognormal) volatility
-
-### Floorlet Formula
-
-$$
-\text{Floorlet}_i = N \cdot \delta_i \cdot P(0, T_{i+1}) \cdot [K N(-d_2) - F_i N(-d_1)]
-$$
+with $d_{1,2} = [\ln(F_i/K) \pm \tfrac{1}{2}\sigma_i^2 T_i] / (\sigma_i \sqrt{T_i})$.
 
 ---
 
@@ -134,19 +104,13 @@ This is $(1 + K\delta)$ times a **put option** on a zero-coupon bond with strike
 
 ### Caplet Formula (Hull-White)
 
-$$
-\text{Caplet} = (1 + K\delta) \cdot \left[K_P P(0, T_1) N(-d_2) - P(0, T_2) N(-d_1)\right]
-$$
-
-where:
+Recall (see [§ Bond Options](bond_options.md)): plugging the Vasicek/Hull-White bond put formula into the bond-put representation yields
 
 $$
-d_1 = \frac{1}{\sigma_P} \ln \frac{P(0, T_2)}{K_P P(0, T_1)} + \frac{\sigma_P}{2}
+\text{Caplet} = (1 + K\delta) \cdot \left[K_P P(0, T_1) N(-d_2) - P(0, T_2) N(-d_1)\right],
 $$
 
-$$
-\sigma_P = \sigma \cdot B(T_2 - T_1) \cdot \sqrt{\frac{1 - e^{-2\kappa T_1}}{2\kappa}}
-$$
+with $d_1,\sigma_P$ as in the bond option formula and $K_P=1/(1+K\delta)$.
 
 ---
 
@@ -187,35 +151,13 @@ Solve for $\sigma_n$.
 
 ## Normal (Bachelier) Model
 
-### Motivation
-
-With negative rates, lognormal models break down. The **Bachelier model** assumes normal (Gaussian) dynamics:
+Recall (see [§ Shifted and Normal Models](../interest_rate_model_risk/shifted_and_normal_models.md)): under Bachelier dynamics $dF_i(t) = \sigma_i^{(n)}\,dW_t$, the caplet price is
 
 $$
-dF_i(t) = \sigma_i^{(n)} \, dW_t
+\text{Caplet}_i = N \delta_i P(0, T_{i+1}) [(F_i - K) N(d) + \sigma_i^{(n)}\sqrt{T_i}\,\phi(d)], \qquad d = (F_i - K)/(\sigma_i^{(n)}\sqrt{T_i}),
 $$
 
-### Bachelier Caplet Formula
-
-$$
-\text{Caplet}_i = N \cdot \delta_i \cdot P(0, T_{i+1}) \cdot \left[(F_i - K) N(d) + \sigma_i^{(n)} \sqrt{T_i} \phi(d)\right]
-$$
-
-where:
-
-$$
-d = \frac{F_i - K}{\sigma_i^{(n)} \sqrt{T_i}}
-$$
-
-### Conversion
-
-For ATM options:
-
-$$
-\sigma^{(n)} \approx F \cdot \sigma^{(\text{Black})}
-$$
-
-This approximate relationship helps convert between conventions.
+with the ATM conversion $\sigma^{(n)} \approx F \sigma^{(\text{Black})}$.
 
 ---
 
@@ -230,20 +172,7 @@ The market provides:
 
 ### Calibration Procedure
 
-**For Black's model:**
-
-- Input: flat vol → strip to spot vols → use for pricing
-
-**For short-rate models (e.g., Hull-White):**
-
-1. Fix $\kappa$ (often from other considerations)
-2. Fit $\sigma$ (or $\sigma(t)$) to match market cap prices
-
-**Objective:**
-
-$$
-\min_{\sigma} \sum_{i} w_i \left(C_i^{\text{model}}(\sigma) - C_i^{\text{market}}\right)^2
-$$
+Recall (see [§ Calibration](../calibration/calibration_to_caps_and_swaptions.md)): for Black's model strip flat vols to spot vols; for Hull-White fix $\kappa$ and least-squares fit $\sigma(\cdot)$ to market cap prices.
 
 ### Term Structure of Volatility
 

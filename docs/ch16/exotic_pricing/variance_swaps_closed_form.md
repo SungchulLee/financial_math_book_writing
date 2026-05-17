@@ -63,28 +63,10 @@ where the last equality follows from $d\ln S_t = (r - q - v_t/2)\,dt + \sqrt{v_t
 
 ### Deriving the Expected Integrated Variance
 
-Under the Heston model, $v_t$ follows the CIR process:
+Recall (see [§ Variance Dynamics](../variance_dynamics/cir_variance_process_solution.md)): $\mathbb{E}^{\mathbb{Q}}[v_t \mid v_0] = \theta + (v_0 - \theta)e^{-\kappa t}$. Integrating over $[0, T]$:
 
 $$
-dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
-$$
-
-The conditional expectation of $v_t$ given $v_0$ is:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[v_t \mid v_0] = \theta + (v_0 - \theta)e^{-\kappa t}
-$$
-
-Integrating over $[0, T]$:
-
-$$
-\mathbb{E}^{\mathbb{Q}}\!\left[\int_0^T v_t \, dt \,\Big|\, v_0\right] = \int_0^T \left[\theta + (v_0 - \theta)e^{-\kappa t}\right] dt
-$$
-
-Evaluating the integral:
-
-$$
-= \theta T + (v_0 - \theta) \int_0^T e^{-\kappa t} \, dt = \theta T + (v_0 - \theta) \frac{1 - e^{-\kappa T}}{\kappa}
+\mathbb{E}^{\mathbb{Q}}\!\left[\int_0^T v_t \, dt \,\Big|\, v_0\right] = \theta T + (v_0 - \theta) \frac{1 - e^{-\kappa T}}{\kappa}
 $$
 
 !!! note "Theorem (Fair Variance Strike Under Heston)"

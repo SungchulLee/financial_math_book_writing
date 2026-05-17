@@ -4,19 +4,7 @@ The two-factor Hull-White model introduces richer dynamics through the interacti
 
 ## Two-Factor Short Rate Decomposition
 
-Recall that the two-factor Hull-White short rate decomposes as
-
-$$
-r_t = x_t + y_t + \varphi(t)
-$$
-
-where $x_t$ and $y_t$ are mean-reverting processes:
-
-$$
-dx_t = -\lambda_1\,x_t\,dt + \sigma_1\,dW_t^{(1)}, \quad dy_t = -\lambda_2\,y_t\,dt + \sigma_2\,dW_t^{(2)}
-$$
-
-with $d\langle W^{(1)}, W^{(2)}\rangle_t = \rho\,dt$, $x_0 = y_0 = 0$.
+Recall (see [§ Model Specification](two_factor_model_definition.md#model-specification)) that $r_t = x_t + y_t + \varphi(t)$ with correlated OU factors $(x_t, y_t)$ driven by $dW^{(1)}\,dW^{(2)} = \rho\,dt$.
 
 The factor $x_t$ with smaller $\lambda_1$ reverts slowly and drives long-term rate movements, while $y_t$ with larger $\lambda_2$ reverts quickly and drives short-term fluctuations. The deterministic function $\varphi(t)$ absorbs the initial term structure.
 
@@ -69,7 +57,7 @@ $$
 \Delta y(t, T) \approx \frac{B_x(t,T)}{T-t}\,\Delta x_t + \frac{B_y(t,T)}{T-t}\,\Delta y_t
 $$
 
-where $B_x(t,T) = (e^{-\lambda_1(T-t)}-1)/\lambda_1$ and $B_y(t,T) = (e^{-\lambda_2(T-t)}-1)/\lambda_2$.
+with $B_x, B_y$ as defined in [§ Two-Factor Bond Price Formula](bond_pricing_two_factor.md#two-factor-bond-price-formula).
 
 The instantaneous correlation between yield changes at maturities $T_1$ and $T_2$ is
 

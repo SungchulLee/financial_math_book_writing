@@ -4,15 +4,7 @@ The most compelling application of the Hull-White trinomial tree is pricing deri
 
 ## Optimal Stopping on a Tree
 
-The price of an American-style derivative is the solution to the optimal stopping problem
-
-$$
-V_0 = \sup_{\tau \in \mathcal{T}} \mathbb{E}^{\mathbb{Q}}\!\left[\frac{g(\tau, r_\tau)}{M(\tau)}\right]
-$$
-
-where $\mathcal{T}$ is the set of stopping times adapted to the filtration, and $g(\tau, r_\tau)$ is the exercise payoff at time $\tau$.
-
-On the tree, this becomes a discrete dynamic programming problem. At each node $(i, j)$, the holder compares the exercise value $E_{ij}$ with the continuation value $C_{ij}$ and chooses the maximum:
+Recall (see [§ BK trinomial tree](../../ch18/black_karasinski/log_normal_short_rate_sde.md)) the optimal stopping problem $V_0 = \sup_{\tau} \mathbb{E}^{\mathbb{Q}}[g(\tau, r_\tau)/M(\tau)]$. On the tree, at each node $(i, j)$ the holder compares the exercise value $E_{ij}$ with the continuation value $C_{ij}$:
 
 $$
 V_{ij} = \max\!\left(C_{ij},\; E_{ij}\right)

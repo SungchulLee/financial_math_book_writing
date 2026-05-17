@@ -58,7 +58,7 @@ where cross terms vanish by independence. Therefore:
 
 $$\text{Cov}(S^{(n)}(s), S^{(n)}(t)) = \frac{m}{n} = \frac{\lfloor ns \rfloor}{n} \xrightarrow{n\to\infty} s = \min(s,t). \quad\square$$
 
-These are exactly the moments of Brownian motion: $\mathbb{E}[W_t] = 0$, $\text{Var}(W_t) = t$, $\text{Cov}(W_s, W_t) = \min(s,t)$.
+Recall (see [§ Moments of Brownian Motion](../brownian_motion/moments_of_brownian_motion.md)): these are exactly $\mathbb{E}[W_t]=0$, $\text{Var}(W_t)=t$, $\text{Cov}(W_s,W_t)=\min(s,t)$.
 
 ---
 
@@ -82,7 +82,7 @@ are independent.
 
 ### Non-Differentiability
 
-The difference quotient at jump times $t = k/n$ is $\sqrt{n}\,\xi_{k+1}$, which diverges. Brownian motion is almost surely nowhere differentiable (Paley, Wiener, Zygmund, 1933).
+The difference quotient at jump times $t = k/n$ is $\sqrt{n}\,\xi_{k+1}$, which diverges as $n\to\infty$ — the discrete fingerprint of the limit's roughness. Recall (see [§ Hölder Continuity and Non-Differentiability](../brownian_motion/holder_continuity_and_non_differentiability.md)): Brownian paths are a.s. nowhere differentiable.
 
 ### Quadratic Variation of the Scaled Walk
 
@@ -91,7 +91,7 @@ From [Martingale Property](martingale_property.md), $[S]_n = n$ almost surely. F
 $$[S^{(n)}]_t = \sum_{i=1}^{\lfloor nt \rfloor} \!\left(S^{(n)}\!\left(\tfrac{i}{n}\right) - S^{(n)}\!\left(\tfrac{i-1}{n}\right)\right)^2
 = \frac{1}{n} \sum_{i=1}^{\lfloor nt \rfloor} \xi_i^2 = \frac{\lfloor nt \rfloor}{n} \xrightarrow{n\to\infty} t$$
 
-The quadratic variation of the scaled walk converges to $t$ — the same as Brownian motion's quadratic variation $\langle W\rangle_t = t$. This is the key quantity underlying Itô's formula: formally $(dW_t)^2 = dt$.
+The quadratic variation of the scaled walk converges to $t$. Recall (see [§ Quadratic Variation of Brownian Motion](../brownian_motion/quadratic_variation_of_brownian_motion.md)): $[W]_t = t$, and this is the quantity behind Itô's formula $(dW_t)^2 = dt$.
 
 ---
 

@@ -18,25 +18,7 @@
 
 ### Illiquidity Measures
 
-**Bid-ask spread:**
-
-$$
-\text{Spread} = P^{\text{ask}} - P^{\text{bid}}
-$$
-
-**Relative spread:**
-
-$$
-\text{Relative Spread} = \frac{P^{\text{ask}} - P^{\text{bid}}}{P^{\text{mid}}}
-$$
-
-**Amihud illiquidity measure:**
-
-$$
-\text{ILLIQ} = \frac{1}{D} \sum_{d=1}^D \frac{|r_d|}{V_d}
-$$
-
-where $r_d$ is the return and $V_d$ is dollar volume on day $d$.
+Recall (see [§ Market Impact](market_impact.md)) for bid-ask spread, the Amihud illiquidity measure $\text{ILLIQ}=\frac{1}{D}\sum_d |r_d|/V_d$, and the connection to Kyle's $\lambda$.
 
 ---
 
@@ -105,15 +87,7 @@ During stress:
 
 ### Liquidity Spirals
 
-**Brunnermeier-Pedersen (2009):**
-
-1. Negative shock → Asset prices fall
-2. → Margin calls → Forced selling
-3. → Further price decline → Reduced market liquidity
-4. → Wider funding spreads → Reduced funding liquidity
-5. → Back to step 2...
-
-**Feedback loop between market liquidity and funding liquidity.**
+Recall (see [§ Funding Constraints](funding_constraints.md) and [§ Systemic Risk and Network Effects](../systemic_risk_and_network_effects/clearing_and_central_counterparties.md)) for the Brunnermeier-Pedersen feedback loop between market liquidity and funding liquidity.
 
 ---
 

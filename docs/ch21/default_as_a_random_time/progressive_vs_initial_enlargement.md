@@ -8,53 +8,15 @@ There are two fundamentally different ways to enlarge a filtration to include a 
 
 In **progressive enlargement**, information about default is revealed only when it occurs. The market learns of default at the moment it happens—not before.
 
-### Definition
+### Definition and Measurability
 
-The progressively enlarged filtration is
-
-$$
-\mathcal{G}_t := \mathcal{F}_t \vee \sigma(\tau \wedge t) = \mathcal{F}_t \vee \sigma(H_s : s \le t)
-$$
-
-where $H_s = \mathbf{1}_{\{\tau \le s\}}$ is the default indicator.
-
-Equivalently, with right-continuous regularization:
+Recall (see [Stopping Times and Enlargement of Filtration](stopping_times_and_enlargement_of_filtration.md)): the progressively enlarged filtration $\mathcal{G}_t = \mathcal{F}_t \vee \sigma(H_s : s \le t)$ makes $\tau$ a stopping time, and every $\mathcal{G}_t$-measurable random variable splits as
 
 $$
-\mathcal{G}_t = \bigcap_{s > t} \left( \mathcal{F}_s \vee \sigma(\tau \wedge s) \right)
+X = Y\,\mathbf{1}_{\{\tau > t\}} + Z(\tau)\,\mathbf{1}_{\{\tau \le t\}}
 $$
 
-### Information Content
-
-At time $t$, a market participant observing $\mathcal{G}_t$ knows:
-
-- All market information up to time $t$ (contained in $\mathcal{F}_t$)
-- Whether default has occurred by time $t$
-- If default has occurred, the exact time $\tau$ when it happened
-
-Crucially, they do **not** know the future default time if $\tau > t$.
-
-### Key Properties
-
-1. **$\tau$ is a stopping time:** $\{\tau \le t\} \in \mathcal{G}_t$ by construction
-2. **Surprise default:** On $\{\tau > t\}$, there is no advance knowledge of $\tau$
-3. **Causality preserved:** Information arrives as events unfold
-4. **Natural for market models:** Reflects how default information actually propagates
-
-### Characterization of G_t-Measurability
-
-A random variable $X$ is $\mathcal{G}_t$-measurable if and only if it has the form
-
-$$
-X = Y \mathbf{1}_{\{\tau > t\}} + Z(\tau) \mathbf{1}_{\{\tau \le t\}}
-$$
-
-where:
-
-- $Y$ is $\mathcal{F}_t$-measurable
-- $Z: [0,t] \times \Omega \to \mathbb{R}$ is $\mathcal{B}([0,t]) \otimes \mathcal{F}_t$-measurable
-
-This decomposition shows that post-default, the exact timing $\tau$ becomes available information.
+with $Y$ being $\mathcal{F}_t$-measurable and $Z$ jointly measurable. On $\{\tau > t\}$, the future $\tau$ remains unknown — causality is preserved.
 
 ---
 
@@ -140,13 +102,7 @@ A critical question is whether $\mathcal{F}$-semimartingales remain semimartinga
 
 ### Progressive Enlargement
 
-Under mild conditions (the **density hypothesis** or **intensity hypothesis**), every $(\mathcal{F}, \mathbb{P})$-semimartingale remains a $(\mathcal{G}^{\text{prog}}, \mathbb{P})$-semimartingale. The decomposition involves:
-
-$$
-X_t = \tilde{X}_t + \int_0^{t \wedge \tau} \frac{d\langle X, G \rangle_s}{G_{s-}}
-$$
-
-where $\tilde{X}$ is a $\mathcal{G}$-martingale and $G_t = \mathbb{P}(\tau > t \mid \mathcal{F}_t)$.
+Under mild conditions (the **density hypothesis** or **intensity hypothesis**), every $(\mathcal{F}, \mathbb{P})$-semimartingale remains a $(\mathcal{G}^{\text{prog}}, \mathbb{P})$-semimartingale, with the drift-correction decomposition $X_t = \tilde{X}_t + \int_0^{t \wedge \tau} d\langle X, G\rangle_s / G_{s-}$ (see [Immersion (H-Hypothesis)](immersion_h_hypothesis.md) for the full discussion of when this correction vanishes).
 
 ### Initial Enlargement (Jacod's Criterion)
 
@@ -201,29 +157,10 @@ Under the density hypothesis:
 
 ## Worked Example: Exponential Default Time
 
-Let $\tau \sim \text{Exp}(\lambda)$ be independent of $(\mathcal{F}_t)$ with constant intensity $\lambda > 0$.
+Let $\tau \sim \text{Exp}(\lambda)$ be independent of $(\mathcal{F}_t)$ with constant intensity $\lambda > 0$. Then $G_t = e^{-\lambda t}$, and:
 
-### Progressive Enlargement
-
-The survival probability is $G_t = e^{-\lambda t}$ (deterministic since $\tau$ is independent of $\mathcal{F}$).
-
-On $\{\tau > t\}$:
-
-$$
-\mathbb{P}(\tau > T \mid \mathcal{G}_t) = \mathbb{P}(\tau > T \mid \tau > t) = e^{-\lambda(T-t)}
-$$
-
-This follows from the memoryless property of the exponential distribution.
-
-### Initial Enlargement
-
-Given $\mathcal{G}_t^{\text{init}} = \mathcal{F}_t \vee \sigma(\tau)$:
-
-$$
-\mathbb{P}(\tau > T \mid \mathcal{G}_t^{\text{init}}) = \mathbf{1}_{\{\tau > T\}}
-$$
-
-The uncertainty is completely resolved by knowing $\tau$.
+- **Progressive** on $\{\tau > t\}$: $\mathbb{P}(\tau > T \mid \mathcal{G}_t^{\text{prog}}) = e^{-\lambda(T-t)}$ by memorylessness.
+- **Initial**: $\mathbb{P}(\tau > T \mid \mathcal{G}_t^{\text{init}}) = \mathbf{1}_{\{\tau > T\}}$ — uncertainty fully resolved.
 
 ---
 

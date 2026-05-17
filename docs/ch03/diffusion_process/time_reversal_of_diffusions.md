@@ -2,7 +2,7 @@
 
 ## Concept Definition
 
-Given the [diffusion](diffusion_process_overview.md) $(X_t)_{0 \le t \le T}$ with drift $b^i(t,x)$ and covariance $a^{ij}(t,x) = \sigma^{i\alpha}\sigma^{j\alpha}$, time reversal asks: what SDE does the reversed process $\widetilde{X}_t := X_{T-t}$ satisfy? Assume $X_t$ admits a smooth positive density $p(t, x)$ for each $t \in (0, T]$.
+Using the [diffusion](diffusion_process_overview.md) defined earlier and its time-dependent density $p(t,x)$ (whose evolution is governed by the [Fokker–Planck equation](invariant_measures_and_stationarity.md#from-generator-to-densities-fokker-planck-duality)), we now ask: what SDE does the reversed process $\widetilde{X}_t := X_{T-t}$ satisfy? Throughout, the diffusion has drift $b^i(t,x)$ and covariance $a^{ij}(t,x) = \sigma^{i\alpha}\sigma^{j\alpha}$, and we assume $X_t$ admits a smooth positive density $p(t, x)$ for each $t \in (0, T]$.
 
 Define the **time-reversed process**:
 
@@ -46,7 +46,7 @@ $$
 + \underbrace{\frac{\partial a^{ij}}{\partial x_j}(T-t,x) + a^{ij}(T-t,x)\,\partial_{x_j} \log p(T-t, x)}_{\text{score correction}}
 $$
 
-The **score** $\nabla \log p(t,x) = \nabla_x \log p(t,x)$ is the gradient of the log-density of $X_t$. For constant $a = \sigma\sigma^\top$ (spatially homogeneous diffusion), the formula simplifies to
+Recall (see [§ The Score Function](invariant_measures_and_stationarity.md#the-score-function)): the **score** $\nabla \log p(t,x)$ measures how the density changes locally, pointing toward regions of higher probability mass. Time reversal makes the score *dynamically* visible — it is the correction that turns "running forward" into "running backward." For constant $a = \sigma\sigma^\top$ (spatially homogeneous diffusion), the formula simplifies to
 
 $$
 \widetilde{b}^{i}(t, x) = -b^{i}(T-t, x) + a^{ij}\,\partial_{x_j} \log p(T-t, x)
@@ -127,11 +127,7 @@ This is a **Brownian bridge** drift. To read the direction: $\widetilde{X}_0 = X
 
 We sketch the formal derivation of the reversed drift formula in the constant-$a$ case.
 
-**Step 1: Forward Fokker–Planck.** The density $p(t,x)$ satisfies
-
-$$
-\partial_t p = -\partial_{x_i}(b^i p) + \frac{1}{2} a^{ij}\,\partial_{x_i x_j} p
-$$
+**Step 1: Forward Fokker–Planck.** Recall (see [§ Kolmogorov Forward Equation](../../ch05/kolmogorov_equations/kolmogorov_forward.md)): $\partial_t p = \mathcal{L}^* p = -\partial_{x_i}(b^i p) + \frac{1}{2}a^{ij}\,\partial_{x_i x_j} p$ (with $a$ constant).
 
 **Step 2: Reversed process as backward semimartingale.** By the theory of backward stochastic calculus (see Pardoux 1986), $\widetilde{X}_t = X_{T-t}$ is a semimartingale under $\widetilde{\mathcal{F}}_t$ admitting a decomposition
 

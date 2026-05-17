@@ -228,55 +228,9 @@ $$
 
 
 
-### 2. Model-Free Upper Bound
+### 2. Model-Free Upper and Lower Bounds
 
-
-**Problem**: Price an exotic derivative with payoff $g(S_0, S_T)$ using only marginal information.
-
-**Upper Bound**:
-
-
-$$
-\overline{V}(g) = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)
-$$
-
-
-
-**Dual Formulation**: By MOT duality:
-
-
-$$
-\overline{V}(g) = \inf_{\phi} \left\{ \int \phi(x) \, d\mu(x) + \int \phi^*(y) \, d\nu(y) \right\}
-$$
-
-
-
-subject to $\phi(x) + \phi^*(y) \geq g(x, y)$ for all $x, y$.
-
-**Interpretation**: 
-
-- $\phi(x)$ is a "potential function" 
-- The bound is achieved by a static portfolio of vanilla options plus cash
-- This provides a super-replication strategy
-
-### 3. Model-Free Lower Bound
-
-
-**Lower Bound**:
-
-
-$$
-\underline{V}(g) = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)
-$$
-
-
-
-**Dual**: Replace $g$ with $-g$ in the upper bound problem:
-
-
-$$
-\underline{V}(g) = -\overline{V}(-g)
-$$
+**Recall** (see [§ Superhedging Duality](superhedging_duality.md)): the upper bound $\overline{V}(g) = \sup_{\pi \in \mathcal{M}(\mu,\nu)} \int g \, d\pi$ admits the dual $\inf_\phi \{\int \phi \, d\mu + \int \phi^* \, d\nu : \phi(x) + \phi^*(y) \geq g(x,y)\}$, providing a static super-replication portfolio of vanillas plus cash. The lower bound satisfies $\underline{V}(g) = -\overline{V}(-g)$.
 
 
 
@@ -683,17 +637,7 @@ where $\preceq_c$ denotes convex order.
 
 ### 5. Root and Barrier Embeddings
 
-
-**Root Embedding**: Given marginals $\mu$ and $\nu$ with $\mu \preceq_c \nu$, construct a martingale $(M_t)_{t \in [0, 1]}$ with:
-
-- $M_0 \sim \mu$
-- $M_1 \sim \nu$
-
-**Barrier Embedding**: Embedding stopped at a barrier level.
-
-**Application**: These embeddings provide specific martingale couplings achieving bounds in MOT problems.
-
-**Azéma-Yor Solution**: Classical solution to Skorokhod embedding, useful for constructing extremal couplings.
+**Recall** (see [§ Skorokhod Embedding Problem](skorokhod_embedding_problem.md)): the Root, barrier, and Azéma-Yor embeddings construct specific martingale couplings achieving extremal MOT bounds.
 
 ## Connections to Other Theories
 

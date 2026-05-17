@@ -39,17 +39,7 @@ This is **Geometric Brownian Motion (GBM)**.
 
 ## Why S_t is NOT Affine
 
-### Checking the Affine Conditions
-
-For $S_t$ to be affine, we need:
-
-$$
-\begin{array}{lll}
-\displaystyle \bar{\mu}(S_t) = a_0 + a_1 S_t & \quad & \text{(Drift linear in } S_t\text{)}\\
-\displaystyle \bar{\sigma}(S_t)\bar{\sigma}(S_t)^T = c_0 + c_1^T S_t & \quad & \text{(Diffusion linear in } S_t\text{)}\\
-\displaystyle r(S_t) = r_0 + r_1^T S_t & \quad & \text{(Short rate linear in } S_t\text{)}\\
-\end{array}
-$$
+Recall (see [affine definition](../definition_and_setup/definition_of_affine_process.md)) the linearity conditions on drift, diffusion, and short rate.
 
 ### Analysis
 
@@ -79,43 +69,13 @@ The diffusion matrix $\bar{\sigma}(S_t)\bar{\sigma}(S_t)^T = \sigma^2 S_t^2$ is 
 
 ## Transformation: X_t = log S_t
 
-### Applying Itô's Lemma
-
-Let $X_t = \log S_t$. By Itô's lemma:
+Recall (see [Itô calculus applications](../../ch03/ito_lemma/ito_calculus_applications.md)) the derivation of $d(\log S_t)$ under GBM. The result is:
 
 $$
-dX_t = \frac{\partial X_t}{\partial S_t} dS_t + \frac{1}{2}\frac{\partial^2 X_t}{\partial S_t^2} (dS_t)^2
+dX_t = \left(r - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
 $$
 
-Computing derivatives:
-
-$$
-\frac{\partial X_t}{\partial S_t} = \frac{1}{S_t}, \quad \frac{\partial^2 X_t}{\partial S_t^2} = -\frac{1}{S_t^2}
-$$
-
-The quadratic variation is:
-
-$$(dS_t)^2 = (\sigma S_t dW_t)^2 = \sigma^2 S_t^2 dt$$
-
-Substituting:
-
-$$
-dX_t = \frac{1}{S_t}(rS_t dt + \sigma S_t dW_t) - \frac{1}{2}\frac{1}{S_t^2}(\sigma^2 S_t^2 dt)
-$$
-
-$$
-= \left(r - \frac{\sigma^2}{2}\right)dt + \sigma dW_t
-$$
-
-### Result
-
-The log stock price follows:
-
-$$
-dX_t = \left(r - \frac{\sigma^2}{2}\right)dt + \sigma dW_t
-$$
-
-This is a simple arithmetic Brownian motion with drift.
+This is arithmetic Brownian motion with drift.
 
 ---
 
@@ -156,26 +116,7 @@ $$
 
 ## Characteristic Function
 
-### General Affine Characteristic Function
-
-For an affine process:
-
-$$
-\varphi(\mathbf{X}_t, t, T, \mathbf{u}) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r(\mathbf{X}_s)ds} e^{i\mathbf{u}^T \mathbf{X}_T} \Big| \mathcal{F}_t\right] = e^{A(\tau, \mathbf{u}) + \mathbf{B}^T(\tau, \mathbf{u})\mathbf{X}_t}
-$$
-
-### Riccati Equations for Our Case
-
-For the log stock price with parameters $(a_0, a_1=0, c_0, c_1=0, r_0, r_1=0)$:
-
-$$
-\begin{array}{lll}
-\displaystyle \frac{dA}{d\tau} &=& -r_0 + \mathbf{B}^T a_0 + \frac{1}{2}\mathbf{B}^T c_0 \mathbf{B}\\
-\displaystyle \frac{dB}{d\tau} &=& -r_1 + a_1^T \mathbf{B} + \frac{1}{2}c_1^T \mathbf{B} \mathbf{B}\\
-\end{array}
-$$
-
-Substituting our parameters:
+Recall (see [characteristic function](../characteristic_function/characteristic_function.md)) the general exponential-affine form and the Riccati system. For the log stock price with $(a_0, a_1=0, c_0, c_1=0, r_0, r_1=0)$, the Riccati system specializes to:
 
 $$
 \begin{array}{lll}

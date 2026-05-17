@@ -64,33 +64,13 @@ $$
 
 ## Application to CIR Process Transitions
 
-In the Cox–Ingersoll–Ross (CIR) process for interest rates:
-
-$$
-dr = \kappa(\bar{r} - r)dt + \gamma\sqrt{r}dW^{\mathbb{Q}}
-$$
-
-The transition distribution of $r(T)$ conditional on $r(t)$ follows a non-central chi-squared distribution (scaled). This is crucial for:
-
-- Pricing zero-coupon bonds
-- Computing transition probabilities
-- Simulating the variance process in Heston
+Recall (see [§ CIR short-rate model](../../ch18/cir_model/bond_options.md)) that the same square-root SDE describes the short rate, and its transition is also a scaled non-central chi-squared. For the Heston variance, the analogous statement and parameters $(c, \delta, \lambda)$ are stated in [CIR variance process solution](cir_variance_process_solution.md).
 
 ---
 
 ## Feller Condition and Boundary Behavior
 
-A critical property of CIR-type processes is the **Feller condition**, which controls whether the process can reach zero:
-
-$$
-2\kappa\bar{r} \geq \gamma^2 \quad \Rightarrow \quad r(t) \text{ stays strictly positive a.s.}
-$$
-
-$$
-2\kappa\bar{r} < \gamma^2 \quad \Rightarrow \quad r(t) \text{ may reach zero; probability mass accumulates at } 0
-$$
-
-When the Feller condition is violated, special care is needed in simulation and density recovery to avoid negative rates or variance values.
+Recall (see [§ CIR short-rate model](../../ch18/cir_model/bond_options.md)) the Feller condition $2\kappa\bar{r} \geq \gamma^2$ controlling whether the square-root process can reach zero. For the Heston variance, the same condition $2\kappa\theta \geq \sigma_v^2$ corresponds to $\delta \geq 2$ in the non-central chi-squared transition.
 
 ---
 

@@ -54,19 +54,7 @@ Understanding the role of each parameter is essential for efficient calibration.
 
 ### Term Structure of the Smile
 
-The jump contribution to implied volatility decays with maturity. The approximate implied variance is:
-
-$$
-\sigma_{\text{imp}}^2(T) \approx \sigma^2 + \frac{\lambda(\sigma_J^2 + \mu_J^2)}{1}
-$$
-
-for ATM options, while the skew contribution scales as:
-
-$$
-\text{skew} \propto \frac{\lambda\mu_J}{\sqrt{T}}
-$$
-
-This $1/\sqrt{T}$ decay matches the empirical observation that short-maturity smiles are much steeper than long-maturity smiles.
+The ATM implied variance is approximately $\sigma^2 + \lambda(\sigma_J^2 + \mu_J^2)$, while the skew contribution scales as $\lambda\mu_J/\sqrt{T}$. Recall (see [Jump-Diffusion SDE § Skewness and Kurtosis](jump_diffusion_sde.md#skewness-and-kurtosis)): this $T^{-1/2}$ skew decay follows directly from the cumulant scaling and matches the empirically steeper short-maturity smile.
 
 ---
 

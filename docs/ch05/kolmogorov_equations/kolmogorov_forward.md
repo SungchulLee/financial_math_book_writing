@@ -43,24 +43,16 @@ $$
 
 ### The Fokker–Planck Equation
 
+Recall (see [§ Forward–Backward Duality](forward_backward_duality.md)): $\mathcal{L}^* p = -\partial_x[\mu p] + \tfrac{1}{2}\partial_{xx}[\sigma^2 p]$ is the adjoint of the generator $\mathcal{L}$ defined in [§ Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md).
+
 !!! abstract "Theorem (Fokker–Planck Equation)"
-    The transition density satisfies:
+    The transition density satisfies
 
     $$
-    \boxed{
-    \frac{\partial p}{\partial t}(x, t \mid x_0, t_0) = \mathcal{L}_x^* p(x, t \mid x_0, t_0)
-    }
+    \boxed{\;\frac{\partial p}{\partial t}(x, t \mid x_0, t_0) = \mathcal{L}_x^* p(x, t \mid x_0, t_0)\;}
     $$
 
-    where $\mathcal{L}^*$ is the **adjoint** of the infinitesimal generator:
-
-    $$
-    \boxed{
-    \mathcal{L}^* p = -\frac{\partial}{\partial x}[\mu(x,t) p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x,t) p]
-    }
-    $$
-
-    **Initial condition**: $p(x, t_0 \mid x_0, t_0) = \delta(x - x_0)$
+    with initial condition $p(x, t_0 \mid x_0, t_0) = \delta(x - x_0)$.
 
 **Regularity conditions**: The theorem requires:
 
@@ -82,66 +74,38 @@ $$
 
 #### Expectation Form (Weak)
 
-For any smooth test function $f$ with suitable decay:
+Recall (see [§ Forward–Backward Duality](forward_backward_duality.md)): $\mathcal{L}^*$ is the adjoint of the generator $\mathcal{L}f = \mu\partial_x f + \tfrac{\sigma^2}{2}\partial_{xx}f$. Pairing $f$ against the density,
 
 $$
-\frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)]
+\frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)],
 $$
 
-where the infinitesimal generator is:
-
-$$
-\mathcal{L}f(x, t) = \mu(x, t)\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2(x, t)\frac{\partial^2 f}{\partial x^2}
-$$
-
-Equivalently:
-
-$$
-\frac{d}{dt}\int_{-\infty}^{\infty} f(x) p(x, t \mid x_0, t_0)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}f)(x) p(x, t \mid x_0, t_0)\,dx
-$$
-
-This formulation is **dual** to the density PDE: the generator $\mathcal{L}$ acts on test functions, while its adjoint $\mathcal{L}^*$ acts on densities.
+which is the **weak form** of the same forward PDE.
 
 ---
 
 ### Derivation
 
-??? abstract "Derivation via Integration by Parts"
+??? abstract "Derivation via Itô + Test Functions"
 
-    **Step 1**: Start with the expectation form. For any smooth test function $f$ with compact support:
-
-    $$
-    \frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)]
-    $$
-
-    **Step 2**: Write expectations as integrals against the density:
+    **Step 1**: Apply Itô's lemma to $f(X_t)$ for a smooth compactly supported $f$ and take expectations to obtain the weak form
 
     $$
-    \frac{d}{dt}\int_{-\infty}^{\infty} f(x) p(x,t \mid x_0, t_0)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}f)(x) p(x,t \mid x_0, t_0)\,dx
+    \frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)] = \int (\mathcal{L}f)(x)\,p(x,t \mid x_0, t_0)\,dx.
     $$
 
-    **Step 3**: The left side equals:
+    **Step 2**: Move the time derivative under the integral on the left:
 
     $$
-    \int_{-\infty}^{\infty} f(x) \frac{\partial p}{\partial t}(x,t \mid x_0, t_0)\,dx
+    \int f(x)\,\partial_t p\,(x,t \mid x_0, t_0)\,dx = \int (\mathcal{L}f)(x)\,p(x,t \mid x_0, t_0)\,dx.
     $$
 
-    **Step 4**: Integrate by parts on the right side. For the drift term:
+    **Step 3**: Recall (see [§ Forward–Backward Duality — Derivation of the Adjoint](forward_backward_duality.md#derivation-of-the-adjoint)): integration by parts transfers the derivatives in $\mathcal{L}f$ onto $p$ and produces $\mathcal{L}^* p = -\partial_x[\mu p] + \tfrac{1}{2}\partial_{xx}[\sigma^2 p]$ (boundary terms vanishing for compactly supported $f$).
+
+    **Step 4**: Since $\int f(\partial_t p - \mathcal{L}^* p)\,dx = 0$ holds for every test function $f$,
 
     $$
-    \int \mu(x) f'(x) p\,dx = -\int f(x) \frac{\partial}{\partial x}[\mu(x) p]\,dx
-    $$
-
-    For the diffusion term:
-
-    $$
-    \int \frac{\sigma^2(x)}{2} f''(x) p\,dx = \int f(x) \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p]\,dx
-    $$
-
-    **Step 5**: Since this holds for all test functions $f$:
-
-    $$
-    \frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu(x) p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p]
+    \frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu(x) p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p].
     $$
 
 ---
@@ -221,36 +185,18 @@ $$
 
 ---
 
-### Examples with Analytical Solutions
+### Forward Equations for Standard Processes
 
-#### Example 1: Brownian Motion
+Recall (see [§ Heat Equation](../heat_equation/heat_equation_overview.md)): for $dX_t = dW_t$ the forward equation is the heat equation $\partial_t p = \tfrac{1}{2}\partial_{xx}p$, with Gaussian fundamental solution.
 
-For $dX_t = dW_t$ (i.e., $\mu = 0$, $\sigma = 1$):
+For closed-form transition densities of BM with drift, OU, GBM, and CIR, see [§ Transition Densities for Standard SDEs](transition_densities_standard_sdes.md). The table below shows only the corresponding **forward PDEs**:
 
-$$
-\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}
-$$
-
-This is the **heat equation**. 
-
-**Solution** (heat kernel):
-
-$$
-p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi (t - t_0)}}\exp\left(-\frac{(x - x_0)^2}{2(t - t_0)}\right)
-$$
-
-For explicit transition densities of BM with drift, OU, GBM, and CIR,
-see [Transition Densities for Standard SDEs](transition_densities_standard_sdes.md).
-The following table records only their forward equations.
-
-#### Summary Table
-
-| Process | SDE | Forward Equation | Transition Density |
-|---------|-----|------------------|-------------------|
-| Brownian Motion | $dX_t = dW_t$ | $\partial_t p = \frac{1}{2}\partial_{xx} p$ | Gaussian, variance $= t$ |
-| BM with Drift | $dX_t = \mu\,dt + \sigma\,dW_t$ | $\partial_t p = -\mu\partial_x p + \frac{\sigma^2}{2}\partial_{xx} p$ | Gaussian, mean $= \mu t$ |
-| Ornstein–Uhlenbeck | $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ | $\partial_t p = \kappa\partial_x(xp) + \frac{\sigma^2}{2}\partial_{xx} p$ | Gaussian, mean-reverting |
-| GBM | $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ | $\partial_t p = -\mu\partial_S(Sp) + \frac{\sigma^2}{2}\partial_{SS}(S^2 p)$ | Log-normal |
+| Process | SDE | Forward Equation |
+|---------|-----|------------------|
+| Brownian Motion | $dX_t = dW_t$ | $\partial_t p = \tfrac{1}{2}\partial_{xx} p$ |
+| BM with Drift | $dX_t = \mu\,dt + \sigma\,dW_t$ | $\partial_t p = -\mu\partial_x p + \tfrac{\sigma^2}{2}\partial_{xx} p$ |
+| Ornstein–Uhlenbeck | $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ | $\partial_t p = \kappa\partial_x(xp) + \tfrac{\sigma^2}{2}\partial_{xx} p$ |
+| GBM | $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ | $\partial_t p = -\mu\partial_S(Sp) + \tfrac{\sigma^2}{2}\partial_{SS}(S^2 p)$ |
 
 ---
 
@@ -324,19 +270,7 @@ For delta initial condition $p(x, t_0) = \delta(x - x_0)$, we have $\hat{p}(k, t
 
 #### Similarity Solutions
 
-For the heat equation, exploit scale invariance by seeking solutions of the form:
-
-$$
-p(x, t) = \frac{1}{\sqrt{t - t_0}} F\left(\frac{x - x_0}{\sqrt{t - t_0}}\right)
-$$
-
-Substituting into the PDE yields an ODE for $F(\eta)$:
-
-$$
-\frac{1}{2}F'' + \frac{1}{2}\eta F' + \frac{1}{2}F = 0
-$$
-
-whose normalized solution is $F(\eta) = \frac{1}{\sqrt{2\pi}}e^{-\eta^2/2}$.
+Recall (see [§ Scaling and Invariance](../heat_equation/scaling_and_invariance.md)): the heat-equation case admits the self-similar ansatz $p(x,t) = (t-t_0)^{-1/2}F((x-x_0)/\sqrt{t-t_0})$ with $F(\eta) = (2\pi)^{-1/2}e^{-\eta^2/2}$.
 
 #### Separation of Variables
 
@@ -383,47 +317,7 @@ The exact solution satisfies $p \geq 0$ for all $t$. Numerical schemes should pr
 
 #### Monte Carlo Verification
 
-Simulate paths of the SDE and compare the empirical histogram to the PDE solution:
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-def simulate_sde(x0, t0, t_final, mu, sigma, n_paths=100000, n_steps=1000):
-    """Simulate SDE paths using Euler-Maruyama."""
-    dt = (t_final - t0) / n_steps
-    X = np.zeros((n_paths, n_steps + 1))
-    X[:, 0] = x0
-    
-    for i in range(n_steps):
-        dW = np.sqrt(dt) * np.random.randn(n_paths)
-        X[:, i+1] = X[:, i] + mu(X[:, i]) * dt + sigma(X[:, i]) * dW
-    
-    return X
-
-# Example: Ornstein-Uhlenbeck process
-kappa, sigma_val = 1.0, 0.5
-mu_func = lambda x: -kappa * x
-sigma_func = lambda x: sigma_val * np.ones_like(x)
-
-X = simulate_sde(x0=1.0, t0=0.0, t_final=2.0, mu=mu_func, sigma=sigma_func)
-
-# Compare histogram to analytical solution
-tau = 2.0
-m_tau = 1.0 * np.exp(-kappa * tau)
-v_tau = (sigma_val**2 / (2*kappa)) * (1 - np.exp(-2*kappa*tau))
-
-x_grid = np.linspace(-2, 2, 200)
-p_analytical = np.exp(-(x_grid - m_tau)**2 / (2*v_tau)) / np.sqrt(2*np.pi*v_tau)
-
-plt.hist(X[:, -1], bins=100, density=True, alpha=0.7, label='Monte Carlo')
-plt.plot(x_grid, p_analytical, 'r-', lw=2, label='Analytical')
-plt.xlabel('x')
-plt.ylabel('p(x, t)')
-plt.legend()
-plt.title('Fokker-Planck vs Monte Carlo')
-plt.show()
-```
+Recall (see [§ Forward–Backward Duality](forward_backward_duality.md)): the Monte Carlo histogram of simulated SDE paths approximates the same density that the forward PDE produces, providing a cross-check between particle and PDE methods.
 
 ---
 
@@ -454,48 +348,7 @@ $$
 
 ### Connection to Score Functions and Diffusion Models
 
-!!! tip "Relevance to Generative Models"
-    This section connects classical Fokker–Planck theory to modern machine learning. It can be skipped on first reading.
-
-Given a **marginal density** $p(x, t)$, the **score function** is:
-
-$$
-s(x, t) = \nabla_x \log p(x, t)
-$$
-
-This gradient of the log-density is fundamental to:
-
-- **Score matching** in machine learning
-- **Reverse-time SDEs** for diffusion generative models
-- **Denoising score matching** in modern generative AI
-
-#### Forward Process
-
-In diffusion models, the forward SDE typically adds noise:
-
-$$
-dX_t = f(X_t, t)\,dt + g(t)\,dW_t
-$$
-
-The marginal density $p(x, t)$ (starting from data distribution $p_0$) satisfies the Fokker–Planck equation.
-
-#### Reverse Process
-
-The remarkable result (Anderson, 1982) is that the **reverse-time SDE**:
-
-$$
-dX_t = \left[f(X_t, t) - g^2(t) \nabla_x \log p(X_t, t)\right] dt + g(t)\,d\bar{W}_t
-$$
-
-generates samples from $p(x, t)$ running backward in time, where $\bar{W}_t$ is a backward Brownian motion.
-
-This is the theoretical foundation for:
-
-- **Denoising Diffusion Probabilistic Models (DDPM)**
-- **Score-based Generative Models**
-- **Stochastic Differential Equation approaches to generation**
-
-The key insight is that the score $\nabla_x \log p$ can be learned from data via denoising score matching, enabling generation without knowing $p$ explicitly.
+Recall (see [§ Time Reversal of Diffusions](../../ch03/diffusion_process/time_reversal_of_diffusions.md)): the marginal density $p(x,t)$ of a forward SDE solves Fokker–Planck, and Anderson's reverse-time SDE involves the score $\nabla_x\log p$, which is the foundation of score-based diffusion generative models.
 
 ---
 

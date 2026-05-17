@@ -216,19 +216,7 @@ The driver $g$ and penalty $\alpha$ are connected via **convex duality**.
 
 ## Quadratic BSDEs
 
-When $g$ has quadratic growth in $z$:
-
-$$
-|g(t, y, z)| \le K(1 + |y| + |z|^2)
-$$
-
-the theory becomes more delicate:
-
-- Solutions may not exist for all terminal conditions
-- Uniqueness may fail
-- Special techniques (BMO martingales) are required
-
-**Relevance:** Quadratic BSDEs arise in entropic risk and exponential utility problems.
+Quadratic BSDEs ($|g(t,y,z)| \le K(1 + |y| + |z|^2)$) arise in entropic risk and exponential utility problems; the standard Lipschitz theory breaks down and BMO martingale techniques are required. Recall (see [2BSDEs](../../ch23/second_order_bsdes_and_nonlinear_expectations/2bsdes.md), [sublinear expectations](../../ch23/second_order_bsdes_and_nonlinear_expectations/sublinear_expectations.md)) for the broader nonlinear-expectation framework.
 
 ---
 
@@ -256,13 +244,7 @@ The driver can incorporate:
 BSDEs with suitable drivers price derivatives under portfolio constraints (no short-selling, funding costs).
 
 ### Valuation Adjustments (XVA)
-XVA calculations naturally formulate as BSDEs:
-
-$$
-V_t = \text{Payoff}_T + \int_t^T g(s, V_s, \nabla V_s) \, ds - \int_t^T \nabla V_s \cdot dW_s
-$$
-
-where $g$ incorporates CVA, DVA, FVA, KVA effects.
+Recall (see [XVA as semilinear PDE](../valuation_adjustments_xva/xva_as_semilinear_pde.md), [pricing with XVAs](../valuation_adjustments_xva/pricing_with_xvas.md)) that XVA calculations naturally formulate as BSDEs whose driver $g$ incorporates CVA, DVA, FVA, KVA effects.
 
 ### Dynamic Portfolio Optimization
 Risk-averse portfolio optimization leads to BSDE characterizations of value functions.

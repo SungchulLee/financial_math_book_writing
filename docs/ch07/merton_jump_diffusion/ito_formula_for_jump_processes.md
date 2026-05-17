@@ -42,13 +42,13 @@ where $T_1, T_2, \ldots$ are the jump times of $N$. This is a finite sum (almost
 
 ### The Compensated Poisson Integral
 
-The compensated Poisson process $\tilde{N}_t = N_t - \lambda t$ is a martingale, and the integral
+Recall (see [Poisson Process § The Compensated Poisson Process](poisson_process_and_jump_size.md#the-compensated-poisson-process)): $\tilde{N}_t = N_t - \lambda t$ is a martingale, and the integral
 
 $$
-\int_0^t H_s\,d\tilde{N}_s = \int_0^t H_s\,dN_s - \lambda\int_0^t H_s\,ds = \sum_{i=1}^{N_t} H_{T_i} - \lambda\int_0^t H_s\,ds
+\int_0^t H_s\,d\tilde{N}_s = \sum_{i=1}^{N_t} H_{T_i} - \lambda\int_0^t H_s\,ds
 $$
 
-is also a martingale (provided $H$ satisfies appropriate integrability conditions). The compensated integral plays the same role for jump processes that the Ito integral plays for diffusions: it is a centered, mean-zero building block.
+is the centered, mean-zero building block for jump stochastic calculus.
 
 !!! info "Proposition: Isometry of the Compensated Poisson Integral"
     If $\mathbb{E}\!\left[\int_0^t H_s^2\,ds\right] < \infty$, then

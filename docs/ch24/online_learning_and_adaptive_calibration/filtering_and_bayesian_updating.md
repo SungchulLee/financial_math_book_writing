@@ -5,47 +5,9 @@
 
 ---
 
-## State-space models
+## State-space models, Bayesian updating, and filter taxonomy
 
-
-Consider a state-space model:
-
-$$
-x_{t+1} = g(x_t) + \varepsilon_t, \quad
-y_t = h(x_t) + \eta_t
-$$
-
-
-
-The latent state $x_t$ evolves over time and must be inferred from observations.
-
----
-
-## Bayesian updating
-
-
-Bayesian inference updates beliefs via
-
-$$
-p(x_t \mid y_{1:t}) \propto p(y_t \mid x_t) p(x_t \mid y_{1:t-1})
-$$
-
-
-
-This recursion underlies all filtering methods.
-
----
-
-## Filtering techniques
-
-
-Common filters include:
-
-- Kalman filter (linear-Gaussian),
-- Extended and Unscented Kalman filters,
-- Particle filters for nonlinear/non-Gaussian models.
-
-Choice depends on model complexity and accuracy needs.
+Recall (see [§ State-Space Models](kalman_and_particle_filters.md#state-space-models)) the general state-space form $x_t = f(x_{t-1}, u_t)$, $y_t = h(x_t, v_t)$, the Bayesian recursion (see [§ Bayesian Derivation](kalman_and_particle_filters.md#bayesian-derivation)) decomposing into prediction $p(x_t \mid y_{1:t-1}) = \int p(x_t \mid x_{t-1}) p(x_{t-1} \mid y_{1:t-1})\,dx_{t-1}$ and update $p(x_t \mid y_{1:t}) \propto p(y_t \mid x_t)\,p(x_t \mid y_{1:t-1})$, and the standard filter taxonomy (Kalman for linear-Gaussian; EKF/UKF for mild nonlinearity; particle filters for arbitrary nonlinear, non-Gaussian models).
 
 ---
 

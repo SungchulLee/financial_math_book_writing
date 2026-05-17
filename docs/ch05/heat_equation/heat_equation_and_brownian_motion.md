@@ -1,22 +1,20 @@
 # Heat Equation and Brownian Motion
 
-The heat equation provides the **analytical description** of Brownian motion. This connection is one of the most beautiful correspondences in mathematics, linking probability theory to partial differential equations.
+Picture a particle taking a tiny random walk: at each time step $\Delta t$, it jumps by $\pm\sqrt{\Delta t}$ with equal probability. After many steps its position is approximately Gaussian, and the density spreads at rate $\sqrt{t}$. Pass to the continuum limit and the walk becomes Brownian motion -- whose density solves the heat equation. This concrete mechanism is the seed of every probabilistic representation of a PDE in this book.
 
 ---
 
 ## The Fundamental Connection
 
-Let $(B_t)_{t \geq 0}$ be a standard Brownian motion starting at $0$.
-
-**Theorem**: The density of $B_t$ is the heat kernel:
+Let $(B_t)_{t \geq 0}$ be a standard Brownian motion starting at $0$. The transition density of $B_t$ equals the heat kernel:
 
 $$
 \boxed{
-p_{B_t}(x) = \frac{1}{\sqrt{2\pi t}} \exp\left(-\frac{x^2}{2t}\right) = G(t,x)
+p_{B_t}(x) = G(t,x) = \frac{1}{\sqrt{2\pi t}} \exp\left(-\frac{x^2}{2t}\right)
 }
 $$
 
-This density **solves the heat equation** with initial condition $\delta_0$.
+Recall (see [§ Definition](fundamental_solution.md)): $G$ is the fundamental solution of $u_t = \tfrac{1}{2}u_{xx}$ with $G(0,\cdot) = \delta_0$. The identification $p_{B_t} = G$ is the bridge between probability and PDE: the same Gaussian plays both roles.
 
 ---
 
@@ -67,6 +65,8 @@ This generalizes: for any diffusion with generator $\mathcal{L}$, expected value
 | Smoothing | Averaging over paths |
 | Maximum principle | $B_t$ visits all points |
 | Conservation | Total probability = 1 |
+
+Recall (see [§ Probabilistic Interpretation](maximum_principle.md)): the maximum-principle row reflects $\mathbb{E}[f(x+B_t)] \leq \sup f$ -- a one-line consequence of "expectation does not exceed the supremum."
 
 ---
 
@@ -120,77 +120,21 @@ The probabilistic representation enables **Monte Carlo methods**:
 
 ---
 
-## Exit Problems and Boundary Conditions
+## Exit Problems and the Reflection Principle
 
-For Brownian motion in a domain $D$, define the **exit time**:
-
-$$
-\tau = \inf\{t > 0 : B_t \notin D\}
-$$
-
-**Theorem (Kakutani)**: The function:
-
-$$
-u(x) = \mathbb{E}_x[f(B_\tau)]
-$$
-
-solves the **Dirichlet problem**:
-
-$$
-\begin{cases}
-\frac{1}{2}\Delta u = 0 & \text{in } D \\
-u = f & \text{on } \partial D
-\end{cases}
-$$
-
-This connects harmonic functions (solutions to Laplace's equation) to Brownian motion.
-
----
-
-## The Reflection Principle
-
-For Brownian motion hitting a boundary, the **reflection principle** provides:
-
-$$
-\mathbb{P}\left(\max_{0 \leq s \leq t} B_s \geq a\right) = 2\mathbb{P}(B_t \geq a) = 2\Phi\left(-\frac{a}{\sqrt{t}}\right)
-$$
-
-for $a > 0$.
-
-**PDE interpretation**: This relates to boundary conditions for the heat equation on a half-line.
+Recall (see [§ First Passage Times](../../ch02/brownian_motion/first_passage_times.md)): exit times $\tau = \inf\{t > 0 : B_t \notin D\}$ give $u(x) = \mathbb{E}_x[f(B_\tau)]$ as the solution of the Dirichlet problem $\tfrac{1}{2}\Delta u = 0$ in $D$, $u = f$ on $\partial D$ (Kakutani). The [reflection principle](../../ch02/brownian_motion/reflection_principle.md) then yields $\mathbb{P}(\max_{0\leq s\leq t} B_s \geq a) = 2\Phi(-a/\sqrt{t})$, the basis for half-line boundary conditions of the heat equation.
 
 ---
 
 ## Heat Equation with Drift
 
-For Brownian motion with drift $dX_t = \mu\,dt + dB_t$:
-
-$$
-u(t,x) = \mathbb{E}[f(X_t) \mid X_0 = x]
-$$
-
-solves the **advection-diffusion equation**:
-
-$$
-\frac{\partial u}{\partial t} = -\mu\frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}
-$$
-
-The generator becomes $\mathcal{L} = \mu\partial_x + \frac{1}{2}\partial_{xx}$.
+Recall (see [§ Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md)): for $dX_t = \mu\,dt + dB_t$ the generator is $\mathcal{L} = \mu\partial_x + \tfrac{1}{2}\partial_{xx}$, and $u(t,x) = \mathbb{E}[f(X_t)\mid X_0 = x]$ solves the advection-diffusion PDE $u_t = \mathcal{L}u$.
 
 ---
 
 ## From Heat Equation to Feynman-Kac
 
-The connection extends naturally:
-
-| Equation | Probabilistic Representation |
-|----------|------------------------------|
-| $u_t = \frac{1}{2}u_{xx}$ | $\mathbb{E}[f(B_T) \mid B_0 = x]$ |
-| $u_t = \mathcal{L}u$ | $\mathbb{E}[f(X_T) \mid X_0 = x]$ (general diffusion) |
-| $u_t = \mathcal{L}u - ru$ | $\mathbb{E}[e^{-rT}f(X_T) \mid X_0 = x]$ (discounted) |
-| $u_t = \mathcal{L}u - ru + g$ | $\mathbb{E}[\int_0^T e^{-rs}g(X_s)ds + e^{-rT}f(X_T)]$ |
-
-This hierarchy leads to the **Feynman-Kac theorem**.
+Recall (see [§ Feynman-Kac Formula](../feynman_kac/feynman_kac_formula.md)): the heat-equation/BM correspondence $u_t = \tfrac{1}{2}u_{xx} \leftrightarrow \mathbb{E}[f(B_T) \mid B_0 = x]$ extends to general generators, discounting, and running payoffs — the full hierarchy is the Feynman-Kac theorem.
 
 ---
 

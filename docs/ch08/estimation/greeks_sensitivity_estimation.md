@@ -1,6 +1,6 @@
 # Greeks and Sensitivity Estimation
 
-The **Greeks** represent sensitivities of an option's value with respect to various parameters. When using finite difference methods to solve the Black-Scholes equation, we can estimate these sensitivities directly from the numerical solution grid.
+Once the FDM has solved the Black-Scholes PDE, every Greek is a partial derivative of the resulting price surface. Spatial Greeks ($\Delta$, $\Gamma$) come from differencing the grid in $S$; the time Greek ($\Theta$) comes from differencing in $t$ or from the PDE itself; parameter Greeks ($\mathcal{V}$, $\rho$) require re-solving the PDE with bumped inputs because the grid does not vary in $\sigma$ or $r$. This page is the orientation map; the per-Greek mechanics live in the companion pages.
 
 ---
 
@@ -14,37 +14,15 @@ The **Greeks** represent sensitivities of an option's value with respect to vari
 
 ---
 
-## Delta (First Derivative in Space)
+## Delta and Gamma (Spatial Greeks)
 
-Approximate Delta at node $i$ using central differences:
-
-$$
-\Delta_i \approx \frac{V_{i+1} - V_{i-1}}{2\Delta S}
-$$
-
-At the edges ($i = 0$ or $i = M$), use forward or backward difference instead.
-
----
-
-## Gamma (Second Derivative in Space)
-
-$$
-\Gamma_i \approx \frac{V_{i+1} - 2V_i + V_{i-1}}{(\Delta S)^2}
-$$
-
-High Gamma near the strike means small moves in $S$ cause big changes in Delta.
+Recall (see [§ Delta and Gamma via Finite Differences](delta_gamma_finite_differences.md)): central differences extract $\Delta = (V_{i+1}-V_{i-1})/(2\Delta S)$ and $\Gamma = (V_{i+1}-2V_i+V_{i-1})/(\Delta S)^2$ directly from the FDM grid, with one-sided formulas at boundaries.
 
 ---
 
 ## Theta (Time Derivative)
 
-Given two time levels ($V^{n+1}$ and $V^n$):
-
-$$
-\Theta_i \approx -\frac{V_i^{n+1} - V_i^n}{\Delta t}
-$$
-
-In practice, we often use the final two time steps for this estimate.
+Recall (see [§ Theta from Time Stepping](theta_from_time_stepping.md)): theta can be estimated by backward differencing across stored time levels, or — preferably — via the PDE relation $\Theta = rV - rS\Delta - \tfrac{1}{2}\sigma^2 S^2\Gamma$.
 
 ---
 

@@ -24,29 +24,13 @@ This section derives the full P&L decomposition for a delta-hedged option in the
 
 ## The Heston Pricing PDE
 
-### Two-Factor Dynamics
-
-Recall the Heston model under the risk-neutral measure $\mathbb{Q}$:
-
-$$
-dS_t = (r - q) S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1)}
-$$
-
-$$
-dv_t = \kappa(\theta - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^{(2)}
-$$
-
-with $d\langle W^{(1)}, W^{(2)} \rangle_t = \rho \, dt$, where $r$ is the risk-free rate, $q$ is the continuous dividend yield, $\kappa$ is the mean-reversion speed, $\theta$ is the long-run variance, $\xi$ is the vol-of-vol, and $\rho$ is the correlation.
-
-### The PDE
-
-The European option price $V(t, S, v)$ satisfies the **Heston PDE**:
+Recall (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)): under $\mathbb{Q}$, $dS_t = (r-q)S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^{(1)}$ and $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}$ with $d\langle W^{(1)}, W^{(2)}\rangle_t = \rho\,dt$. The European option price $V(t, S, v)$ satisfies the **Heston PDE**:
 
 $$
 \frac{\partial V}{\partial t} + \frac{1}{2} v S^2 \frac{\partial^2 V}{\partial S^2} + \rho \xi v S \frac{\partial^2 V}{\partial S \, \partial v} + \frac{1}{2} \xi^2 v \frac{\partial^2 V}{\partial v^2} + (r - q) S \frac{\partial V}{\partial S} + \kappa(\theta - v) \frac{\partial V}{\partial v} - r V = 0
 $$
 
-This PDE encodes the no-arbitrage condition under $\mathbb{Q}$. Each term in the PDE will correspond to a specific component of the P&L decomposition.
+Each term will correspond to a specific component of the P&L decomposition.
 
 ---
 
@@ -178,21 +162,7 @@ Under the risk-neutral measure with continuous hedging and correct model, the ex
 
 ## Comparison with Black--Scholes P&L
 
-### The Black--Scholes Decomposition
-
-In the Black--Scholes model ($v_t = \sigma^2$ constant), the delta-hedged P&L is:
-
-$$
-d\Pi_t^{\text{BS}} = \Theta^{\text{BS}} \, dt + \frac{1}{2} \Gamma^{\text{BS}} S_t^2 \, (dS_t / S_t)^2 - r(V^{\text{BS}} - \Delta^{\text{BS}} S_t) \, dt
-$$
-
-Using the Black--Scholes PDE ($\Theta^{\text{BS}} + \frac{1}{2} \sigma^2 S^2 \Gamma^{\text{BS}} + rS\Delta^{\text{BS}} - rV^{\text{BS}} = 0$), this reduces to the well-known **gamma P&L**:
-
-$$
-d\Pi_t^{\text{BS}} = \frac{1}{2} \Gamma^{\text{BS}} S_t^2 \left[\left(\frac{dS_t}{S_t}\right)^2 - \sigma^2 \, dt\right]
-$$
-
-The P&L is driven solely by the difference between **realized** and **implied** variance.
+Recall (see [§ Greeks in the Black-Scholes Model](../../ch10/greeks/greeks_in_black_scholes_model.md)): under Black-Scholes the delta-hedged residual reduces to the gamma P&L $d\Pi^{\text{BS}}_t = \tfrac{1}{2}\Gamma^{\text{BS}} S_t^2[(dS_t/S_t)^2 - \sigma^2\,dt]$, driven solely by realized minus implied variance.
 
 ### Additional Terms in Heston
 

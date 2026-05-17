@@ -66,24 +66,15 @@ Such penalties are common in spline-based volatility surfaces.
 ## Shape and financial constraints
 
 
-Regularization can enforce economically motivated shapes:
-
-- **monotonicity** (e.g., total variance in maturity),
-- **convexity** (call price in strike),
-- **positivity** (variance, intensities).
-
-These are often implemented as:
-
-- inequality constraints with slack variables,
-- barrier or penalty terms.
+Recall (see [§ Static Calibration to Vanilla Options](../static_calibration_to_vanilla_options/calibration_to_implied_volatility_surface.md)) the no-arbitrage shape requirements on option prices. Regularization can enforce these economically motivated shapes — **monotonicity** of total variance in maturity, **convexity** of call price in strike, and **positivity** of variance or intensities — as inequality constraints with slack variables, or as barrier/penalty terms.
 
 ---
 
 ## Penalization in stochastic and local volatility
 
 
-- **Local volatility:** strong smoothing needed to prevent noise amplification.
-- **Stochastic volatility:** mild penalties help stabilize weakly identified parameters.
+- **Local volatility:** strong smoothing prevents noise amplification (see [§ Calibration of Local Volatility](../calibration_of_local_volatility/dupire_equation_as_inverse_problem.md); for the numerical Tikhonov solve, see [§ Numerical Methods](../../ch13/numerical_methods/fdm_pricing_with_local_volatility.md)).
+- **Stochastic volatility:** mild penalties stabilize weakly identified parameters (see [§ SV Calibration](../sv_calibration/cross_model_calibration_comparison.md)).
 - **Term-structure models:** smoothness across maturity improves forward consistency.
 
 ---

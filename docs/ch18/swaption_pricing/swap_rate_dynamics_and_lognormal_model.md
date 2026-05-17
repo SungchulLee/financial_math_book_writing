@@ -59,33 +59,17 @@ where:
 
 ## Solution
 
-The solution to this SDE is:
+Recall (see [§ Black Formula](../../ch06/index.md)) the standard GBM/martingale solution. Applied here:
 
 $$
 S(T_m) = S(t)
 \exp\left(
 -\frac{1}{2}\sigma_S^2 (T_m - t)
-
 + \sigma_S \sqrt{T_m - t}\, Z
 \right)
 $$
 
-where $Z \sim N(0,1)$.
-
----
-
-## Distribution
-
-Thus:
-
-$$
-\ln S(T_m) \sim \mathcal{N}
-\left(
-\ln S(t) - \frac{1}{2}\sigma_S^2 (T_m - t),
-\;
-\sigma_S^2 (T_m - t)
-\right)
-$$
+with $Z \sim N(0,1)$, so $\ln S(T_m) \sim \mathcal{N}\!\bigl(\ln S(t) - \tfrac{1}{2}\sigma_S^2(T_m - t),\ \sigma_S^2(T_m - t)\bigr)$.
 
 ---
 
@@ -126,18 +110,7 @@ This leads to the **Bachelier formula** instead of Black.
 
 ## Connection to Black Formula
 
-Given lognormal dynamics:
-
-- payoff = call option on $S(T_m)$
-- distribution = lognormal
-
-Thus, pricing reduces to evaluating:
-
-$$
-\mathbb{E}[(S(T_m) - K)^+]
-$$
-
-which yields the Black formula.
+Recall (see [§ Black Formula](../../ch06/index.md)): for a lognormal martingale, $\mathbb{E}[(S(T_m) - K)^+]$ yields the Black formula. Applied to the swap rate under $\mathbb{Q}^A$, this gives swaption pricing in closed form.
 
 ---
 

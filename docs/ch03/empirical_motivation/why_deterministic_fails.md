@@ -1,10 +1,13 @@
 # Why Deterministic Models Fail
 
-Having documented the empirical properties of financial returns — heavy tails,
-volatility clustering, the leverage effect, and no return autocorrelation — we
-now ask a pointed question: **Can a deterministic ordinary differential equation
-adequately describe asset price dynamics?** The answer is no, and the reasons
-are structural, not a matter of calibration.
+Recall (see [§ Stylized Facts of Financial Returns](stylized_facts.md)): the
+five empirical constraints — heavy tails, volatility clustering, the leverage
+effect, absence of return autocorrelation, and aggregational Gaussianity —
+have been documented. Given these properties, we now test whether a
+deterministic ordinary differential equation can reproduce them. The answer
+is no, and the reasons are structural, not a matter of calibration. This is
+the logical hinge of the chapter: deterministic dynamics fail, so randomness
+is unavoidable.
 
 ---
 
@@ -88,52 +91,34 @@ realisation of a stochastic price process.
 
 ### Failure 3 — No Volatility Clustering
 
-Stylized fact 2 states that squared returns $r_t^2$ are strongly
-autocorrelated: $\operatorname{Corr}(r_t^2, r_{t+k}^2) > 0$ for lags $k$ up
-to several months.
-
-Under any deterministic ODE, volatility is identically zero at all times.
-There is nothing to cluster. A model that cannot generate variability in
-the first place cannot generate *time-varying* variability in the second place.
-
-Mathematically, GARCH-type dependence of the form
-
-$$
-\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
-$$
-
-where $r_{t-1}^2$ is the squared return at time $t-1$ feeding into the
-variance at time $t$, is simply not expressible within the ODE framework.
+Recall (see
+[§ Stylized Facts of Financial Returns — Stylized Fact 2](stylized_facts.md)):
+squared returns are strongly autocorrelated. Under any deterministic ODE,
+volatility is identically zero at all times — there is nothing to cluster.
+A model that cannot generate variability cannot generate *time-varying*
+variability.
 
 ### Failure 4 — Cannot Produce Heavy Tails
 
-The distribution of the log-return under the exponential-growth ODE concentrates
-all probability on the single value $\mu \Delta t$:
+Under the exponential-growth ODE the log-return distribution is a point mass:
 
 $$
 P(r_t = \mu \Delta t) = 1
 $$
 
-This distribution has no tails whatsoever. In contrast, S&P 500 daily returns
-exhibit excess kurtosis of roughly 7–10 (post-2000), with events beyond
-$5\sigma$ occurring roughly once every thousand days rather than once every
-several million days as a Gaussian distribution would predict.
-
+This distribution has no tails whatsoever. Real returns have heavy tails
+(see
+[§ Stylized Facts of Financial Returns — Stylized Fact 1](stylized_facts.md)).
 No reparametrisation of $\mu$ can resolve this; the issue is structural.
 
 ### Failure 5 — No Leverage Effect
 
-The leverage effect is the negative correlation between a signed return at time
-$t$ and the variance at time $t+1$:
-
-$$
-\operatorname{Corr}(r_t,\, \sigma_{t+1}^2) \approx -0.6
-\quad \text{(empirical estimate for large-cap equities)}
-$$
-
-Under a deterministic ODE, $r_t = \mu\Delta t$ is a constant and
-$\sigma_{t+1}^2 = 0$ identically, so the correlation is undefined. There is no
-mechanism by which a price decline can feed back into increased volatility.
+Recall (see
+[§ Stylized Facts of Financial Returns — Stylized Fact 3](stylized_facts.md)):
+$\operatorname{Corr}(r_t, \sigma_{t+1}^2) < 0$. Under a deterministic ODE,
+$r_t = \mu\Delta t$ is a constant and $\sigma_{t+1}^2 = 0$ identically, so
+the correlation is undefined. There is no mechanism by which a price decline
+can feed back into increased volatility.
 
 ---
 
@@ -173,78 +158,27 @@ noise has no consistent continuous-time interpretation.
 
 ## The Right Fix: Multiplicative Noise
 
-All three problems are resolved by making the noise proportional to the
-current price:
+All three problems above are resolved by making the noise proportional to
+the current price, so that the discrete update takes the multiplicative
+form
 
 $$
 S(t + \Delta t) = S(t)\exp\!\left(\mu \Delta t + \sigma\sqrt{\Delta t}\cdot Z\right),
 \qquad Z \sim \mathcal{N}(0,1)
 $$
 
-- **Positivity:** The exponential is always positive.
-- **Correct scaling:** Both drift and diffusion are proportional to $S(t)$.
-- **Finite limit:** Taking logarithms,
+This ensures positivity ($e^x > 0$), correct scaling (drift and diffusion
+both proportional to $S(t)$), and — as shown next — a non-degenerate
+continuous-time limit. The actual passage to that limit, the resulting SDE
+$dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$, and the Itô drift correction
+$-\sigma^2/2$ in the closed-form solution are taken up in
+[§ Bridge to Stochastic Differential Equations](bridge_to_sdes.md) and
+made rigorous in the Itô-calculus chapters.
 
-$$
-\frac{\log S(t + \Delta t) - \log S(t)}{\sqrt{\Delta t}}
-= \mu\sqrt{\Delta t} + \sigma Z \;\xrightarrow{\;\Delta t \to 0\;}\; \sigma Z
-$$
-
-which converges in distribution to $\mathcal{N}(0, \sigma^2)$. This is
-precisely a rescaled Brownian increment.
-
-Passing to the limit $\Delta t \to 0$ motivates the shorthand notation
-
-$$
-\boxed{dS_t = \mu S_t\,dt + \sigma S_t\,dW_t,}
-$$
-
-where $W_t$ is **Brownian motion**. The derivation above establishes the
-*log-price* SDE directly:
-
-$$
-d(\log S_t) = \mu\,dt + \sigma\,dW_t
-$$
-
-Recovering the *price-level* SDE $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ from
-it requires the stochastic chain rule — Itô's lemma — because the ordinary
-chain rule treats $W_t$ as a smooth path and applies the ordinary fundamental
-theorem of calculus, missing the non-zero quadratic variation of $W_t$ that
-generates an extra drift term. This is the subject of Section 2.2.
-
-!!! warning "Ordinary calculus gives the wrong drift"
-    Starting from the discrete model, naive integration of the log-price SDE
-    gives $\log S_t = \log S_0 + \mu t + \sigma W_t$, hence
-    $S_t = S_0 e^{\mu t + \sigma W_t}$. The correct solution, derived in
-    Section 2.2 via Itô's lemma, is
-
-    $$S_t = S_0 \exp\!\left[\left(\mu - \tfrac{\sigma^2}{2}\right)t
-
-    + \sigma W_t\right]$$
-    The $-\frac{\sigma^2}{2}$ correction comes from the second-order term
-    $(dW_t)^2 = dt \neq 0$ that is absent in ordinary calculus. It is not a
-    small correction: for $\sigma = 0.20$, it shifts the drift by $-0.02$
-    per year — comparable to a realistic risk-free rate.
-
----
-
-## Comparison Table
-
-| Property | Deterministic ODE | Real Returns | SDE (GBM) |
-|---|---|---|---|
-| Randomness | None | Unpredictable | Via $dW_t$ |
-| Path regularity | Smooth ($C^1$) | Nowhere differentiable | Nowhere differentiable |
-| Variance | 0 | $\sigma^2 \Delta t > 0$ | $\sigma^2 \Delta t$ ✓ |
-| Heavy tails | No tails | Kurtosis ≈ 7–10 | Log-normal; extensions needed |
-| Volatility clustering | Impossible | Yes (GARCH) | Requires stochastic-vol extensions |
-| Leverage effect | Impossible | $\operatorname{Corr}(r_t,\sigma_{t+1}^2)\approx -0.6$ | Requires correlated vol |
-| Positive prices | Yes | Yes | Yes (exponential) |
-| Mathematical framework | Ordinary calculus | — | Itô calculus |
-
-Basic GBM captures randomness, correct path regularity, and positive prices.
-Capturing volatility clustering and the leverage effect requires further
-extensions (Heston, GARCH diffusion) that are all built on the same Itô
-foundation.
+Recall (see [§ Itô Calculus Applications](../ito_lemma/ito_calculus_applications.md)):
+the correct GBM solution is $S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$;
+the $-\sigma^2/2$ correction arises from $(dW_t)^2 = dt$ and is absent in
+ordinary calculus.
 
 ---
 
@@ -261,11 +195,12 @@ empirical properties of financial returns:
 5. **No leverage effect** — no mechanism for asymmetric volatility response.
 
 The minimal resolution is multiplicative noise, which forces us out of ordinary
-calculus and into the framework of **stochastic differential equations**. The
-next section builds the conceptual bridge from these empirical conclusions to
-the continuous-time theory of SDEs.
+calculus and into the framework of **stochastic differential equations**.
+Randomness is no longer optional — it is the only way out. The continuous-time
+construction itself is carried out next.
 
-**Next:** Bridge to Stochastic Differential Equations. $\square$
+**Next:** [§ Bridge to Stochastic Differential Equations](bridge_to_sdes.md).
+$\square$
 
 ---
 

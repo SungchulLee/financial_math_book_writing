@@ -253,20 +253,7 @@ $$
 ### 1. Skew Stickiness Ratio (SSR)
 
 
-**Definition:**
-
-$$
-\text{SSR} = \frac{\Delta \sigma_{\text{ATM}}}{\Delta \sigma_{\text{ATM}}^{\text{sticky-strike}}}
-$$
-
-
-where the denominator is the ATM vol change predicted by sticky strike.
-
-**Interpretation:**
-
-- SSR = 0: Pure sticky strike
-- SSR = 1: Pure sticky delta/moneyness
-- SSR = 0.3-0.6: Typical empirical range
+Recall (see [§ Sticky-Strike vs Sticky-Delta](../implied_volatility_sensitivities/sticky_strike_vs_sticky_delta.md)) for the SSR definition. Typical empirical range: SSR $\approx$ 0.3-0.6.
 
 ### 2. Spot-Vol Correlation
 

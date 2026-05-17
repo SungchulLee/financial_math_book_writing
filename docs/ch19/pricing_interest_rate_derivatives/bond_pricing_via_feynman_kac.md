@@ -7,19 +7,11 @@ An alternative and often more intuitive approach to bond pricing uses the **Feyn
 
 ## Risk-neutral valuation
 
-
-The fundamental pricing relation is
+Recall (see [§ Risk-Neutral Pricing](../../ch04/risk_neutral/construction.md)): for any arbitrage-free short-rate model under $\mathbb{Q}$,
 
 $$
-P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[
-\exp\left(-\int_t^T r_s ds\right)
-\middle| \mathcal{F}_t
-\right]
+P(t,T) = \mathbb{E}^{\mathbb{Q}}\!\left[\exp\!\left(-\int_t^T r_s\,ds\right)\;\middle|\;\mathcal{F}_t\right].
 $$
-
-
-
-This holds for any arbitrage-free short-rate model under $\mathbb{Q}$.
 
 ---
 

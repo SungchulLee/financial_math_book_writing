@@ -4,13 +4,13 @@ When pricing a derivative that pays at a fixed future time $T$, the standard ris
 
 ## Numeraire and Measure Change
 
-The general change-of-numeraire theorem states that if $N(t)$ is a positive, tradable numeraire process, then the measure $\mathbb{Q}^N$ defined by
+Recall (see [§ T-Forward Measures](../../ch19/forward_measures/t_forward_measures.md) and [§ Numeraire Techniques](../../ch19/forward_measures/numeraire_techniques.md)): given a positive tradable numeraire $N(t)$, the associated measure $\mathbb{Q}^N$ with
 
 $$
 \frac{d\mathbb{Q}^N}{d\mathbb{Q}}\Bigg|_{\mathcal{F}(t)} = \frac{N(t)/N(0)}{M(t)/M(0)}
 $$
 
-makes the ratio $X(t)/N(t)$ a martingale for any tradable asset $X(t)$. Here $M(t) = \exp(\int_0^t r(s)\,ds)$ is the money market account.
+makes $X(t)/N(t)$ a martingale for every tradable $X$, where $M(t)=\exp(\int_0^t r(s)\,ds)$ is the money-market account.
 
 !!! info "Definition: T-Forward Measure"
     The $T$-forward measure $\mathbb{Q}^T$ is the probability measure obtained by choosing $N(t) = P(t,T)$ as numeraire. Its Radon–Nikodym derivative with respect to $\mathbb{Q}$ is
@@ -19,76 +19,13 @@ makes the ratio $X(t)/N(t)$ a martingale for any tradable asset $X(t)$. Here $M(
     \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\Bigg|_{\mathcal{F}(t)} = \frac{P(t,T)/P(0,T)}{M(t)/M(0)} = \frac{P(t,T)}{P(0,T)\,M(t)}
     $$
 
-## Radon–Nikodym Derivative in the Hull-White Model
+## Radon–Nikodym Derivative and Girsanov Transformation
 
-In the Hull-White model, the zero-coupon bond dynamics under $\mathbb{Q}$ are
-
-$$
-\frac{dP(t,T)}{P(t,T)} = r(t)\,dt + \sigma_P(t,T)\,dW^{\mathbb{Q}}(t)
-$$
-
-where the bond volatility is
+Recall (see [§ Change of Numeraire Q to T](change_of_numeraire_q_to_t.md)): the Hull-White bond volatility is $\sigma_P(t,T) = -\frac{\sigma}{\lambda}(1 - e^{-\lambda(T-t)}) = \sigma B(t,T)$, the Radon–Nikodym log is $\log\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\big|_{\mathcal{F}(t)} = -\frac{1}{2}\int_0^t \sigma_P^2(s,T)\,ds + \int_0^t \sigma_P(s,T)\,dW^{\mathbb{Q}}(s)$, and the Girsanov transformation is
 
 $$
-\sigma_P(t,T) = -\frac{\sigma}{\lambda}\left(1 - e^{-\lambda(T-t)}\right) = \sigma\,B(t,T)
+dW^{T}(t) = dW^{\mathbb{Q}}(t) - \sigma_P(t,T)\,dt.
 $$
-
-with $B(t,T) = -\frac{1}{\lambda}(1 - e^{-\lambda(T-t)})$ using the sign convention from the named functions. Taking the logarithm of the Radon–Nikodym derivative:
-
-$$\begin{array}{lllll}
-\displaystyle
-\log\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\Bigg|_{\mathcal{F}(t)}
-&=&\displaystyle
-\log P(t,T) - \log P(0,T) - \int_0^t r(s)\,ds
-\\[6pt]
-&=&\displaystyle
--\frac{1}{2}\int_0^t \sigma_P(s,T)^2\,ds + \int_0^t \sigma_P(s,T)\,dW^{\mathbb{Q}}(s)
-\end{array}$$
-
-???+ note "Proof"
-
-    From the bond price dynamics under $\mathbb{Q}$:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    d\log P(t,T)
-    &=&\displaystyle
-    \left(r(t) - \frac{1}{2}\sigma_P^2(t,T)\right)dt + \sigma_P(t,T)\,dW^{\mathbb{Q}}(t)
-    \end{array}$$
-
-    Integrating from $0$ to $t$:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    \log P(t,T) - \log P(0,T)
-    &=&\displaystyle
-    \int_0^t r(s)\,ds - \frac{1}{2}\int_0^t \sigma_P^2(s,T)\,ds + \int_0^t \sigma_P(s,T)\,dW^{\mathbb{Q}}(s)
-    \end{array}$$
-
-    Subtracting $\int_0^t r(s)\,ds$ yields the stated expression. $\square$
-
-## Girsanov Transformation
-
-By Girsanov's theorem, the process
-
-$$
-dW^{T}(t) = dW^{\mathbb{Q}}(t) - \sigma_P(t,T)\,dt
-$$
-
-is a standard Brownian motion under $\mathbb{Q}^T$. Equivalently,
-
-$$
-dW^{\mathbb{Q}}(t) = dW^{T}(t) + \sigma_P(t,T)\,dt
-$$
-
-!!! info "Theorem: Girsanov Change from Q to T-Forward"
-    Under the $T$-forward measure $\mathbb{Q}^T$, the Brownian motion is
-
-    $$
-    dW^{T}(t) = dW^{\mathbb{Q}}(t) - \sigma_P(t,T)\,dt
-    $$
-
-    where $\sigma_P(t,T) = -\frac{\sigma}{\lambda}(1 - e^{-\lambda(T-t)})$ is the Hull-White bond volatility.
 
 ## Pricing Formula Under the T-Forward Measure
 
@@ -131,25 +68,7 @@ A central property of the $T$-forward measure is that the instantaneous forward 
 
 ???+ note "Proof"
 
-    Under $\mathbb{Q}$, the HJM drift condition gives
-
-    $$
-    df(t,T) = \sigma(t,T)\!\left(\int_t^T \sigma(t,u)\,du\right)dt + \sigma(t,T)\,dW^{\mathbb{Q}}(t)
-    $$
-
-    Since $\int_t^T \sigma(t,u)\,du = -\sigma_P(t,T)$, substituting $dW^{\mathbb{Q}}(t) = dW^{T}(t) + \sigma_P(t,T)\,dt$:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    df(t,T)
-    &=&\displaystyle
-    -\sigma(t,T)\sigma_P(t,T)\,dt + \sigma(t,T)\bigl(dW^{T}(t) + \sigma_P(t,T)\,dt\bigr)
-    \\[4pt]
-    &=&\displaystyle
-    \sigma(t,T)\,dW^{T}(t)
-    \end{array}$$
-
-    The drift terms cancel exactly, confirming the martingale property. $\square$
+    Recall (see [§ Change of Numeraire Q to T](change_of_numeraire_q_to_t.md)): substituting $dW^{\mathbb{Q}} = dW^T + \sigma_P\,dt$ into the HJM forward-rate SDE and using $\int_t^T \sigma(t,u)\,du = -\sigma_P(t,T)$, the drift terms cancel. $\square$
 
 ## Forward Price Martingale
 

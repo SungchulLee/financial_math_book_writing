@@ -12,37 +12,13 @@ Implied volatility represents one of the most fundamental concepts in modern opt
 ### 1. Forward Direction: Price as Function of Volatility
 
 
-Consider the Black-Scholes pricing functional for a European call option:
-
-
-$$
-\mathcal{C}: \mathbb{R}_+ \to \mathbb{R}_+, \quad \sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma)
-$$
-
-
-
-where the Black-Scholes price is given explicitly by:
-
+Recall (see [§ Black-Scholes Formula](../../ch06/black_scholes_formula/asymptotic_behavior.md)): the Black-Scholes call price $C_{\text{BS}}(S, K, T, r, \sigma) = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ defines, for fixed $(S, K, T, r)$, a pricing functional
 
 $$
-C_{\text{BS}}(S, K, T, r, \sigma) = S \mathcal{N}(d_1) - K e^{-rT} \mathcal{N}(d_2)
+\mathcal{C}: \mathbb{R}_+ \to \mathbb{R}_+, \quad \sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma),
 $$
 
-
-
-with
-
-
-$$
-\begin{align}
-d_1 &= \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} \\
-d_2 &= d_1 - \sigma\sqrt{T} = \frac{\ln(S/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}
-\end{align}
-$$
-
-
-
-and $\Phi(\cdot)$ denoting the standard normal cumulative distribution function.
+with $d_1, d_2$ depending on $\sigma$ as in the standard formula and $\mathcal{N}$ the standard normal CDF.
 
 ### 2. Mathematical Properties of the Pricing Map
 
@@ -50,16 +26,7 @@ and $\Phi(\cdot)$ denoting the standard normal cumulative distribution function.
 **Proposition 4.1.1** (Monotonicity in Volatility)  
 The Black-Scholes call price $C_{\text{BS}}$ is strictly increasing in $\sigma$ for all $(S, K, T, r)$ with $S > 0$, $K > 0$, $T > 0$.
 
-*Proof.* Computing the derivative with respect to volatility (vega):
-
-
-$$
-\frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} > 0
-$$
-
-
-
-where $\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$ is the standard normal density. Since $\phi(d_1) > 0$ for all $d_1 \in \mathbb{R}$, we have strict positivity. □
+*Proof.* Recall (see [§ Vega and Implied Volatility Sensitivity](../implied_volatility_sensitivities/vega_and_implied_volatility_sensitivity.md) and [§ Greeks in Black-Scholes Model](../../ch10/greeks/greeks_in_black_scholes_model.md)): vega is $\partial C_{\text{BS}}/\partial \sigma = S \phi(d_1) \sqrt{T} > 0$, where $\phi$ is the standard normal density. Strict positivity is immediate. □
 
 **Proposition 4.1.2** (Range of the Pricing Map)  
 For fixed $(S, K, T, r)$, the pricing map $\sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma)$ satisfies:
@@ -168,16 +135,7 @@ Uniqueness follows from strict monotonicity. □
 **Theorem 4.1.2** (Smoothness of Implied Volatility)  
 The implied volatility map $\mathcal{C}^{-1}$ is $C^\infty$ smooth on its domain $(C_{\text{intrinsic}}, S)$.
 
-*Proof.* By the Inverse Function Theorem, since:
-
-
-$$
-\frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} > 0
-$$
-
-
-
-is strictly positive and smooth in $\sigma$, the inverse function is $C^\infty$ with derivative:
+*Proof.* By the Inverse Function Theorem, since vega $\partial C_{\text{BS}}/\partial\sigma = S\phi(d_1)\sqrt{T} > 0$ is strictly positive and smooth in $\sigma$, the inverse function is $C^\infty$ with derivative:
 
 
 $$
@@ -242,7 +200,7 @@ While we defined $\sigma_{\text{IV}}$ using the Black-Scholes formula, it's cruc
 
 Implied volatility is simply a **quoting convention**: given any price $C \in (C_{\text{intrinsic}}, S)$, we can solve for $\sigma_{\text{IV}}$ without asserting that the underlying asset follows geometric Brownian motion with constant volatility.
 
-This leads to the empirical phenomenon of **volatility smile**: if the market truly followed Black-Scholes, all options on the same underlying with the same maturity would have identical implied volatilities. The observation that $\sigma_{\text{IV}}(K, T)$ varies with strike $K$ and maturity $T$ indicates model misspecification.
+This leads to the empirical phenomenon of the **volatility smile** (see [§ Smile Dynamics](../smile_dynamics/dynamic_consistency.md) and [§ Implied Volatility Surface](../implied_volatility_surface/empirical_smile_spx.md)): observed variation of $\sigma_{\text{IV}}(K, T)$ with strike and maturity indicates Black-Scholes model misspecification.
 
 ### 2. Implied Volatility as Market Observable
 
@@ -251,7 +209,7 @@ From this perspective:
 
 - **Price** $C_{\text{market}}$ is the primitive observable
 - **Implied volatility** $\sigma_{\text{IV}}$ is a derived coordinate
-- The **volatility surface** $\sigma_{\text{IV}}(K, T)$ encodes all information in option prices through the lens of Black-Scholes
+- The **volatility surface** $\sigma_{\text{IV}}(K, T)$ (see [§ Implied Volatility Surface](../implied_volatility_surface/empirical_smile_spx.md)) encodes all information in option prices through the lens of Black-Scholes
 
 ## Mathematical Formalism: Pricing Functional in General
 

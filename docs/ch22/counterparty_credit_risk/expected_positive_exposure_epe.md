@@ -89,28 +89,7 @@ $$
 
 ## Potential Future Exposure (PFE)
 
-While EPE captures the average exposure, **Potential Future Exposure** captures the tail:
-
-$$
-\text{PFE}_\alpha(t) = \inf\{x : \mathbb{P}(E_t \le x) \ge \alpha\} = F_{E_t}^{-1}(\alpha)
-$$
-
-typically at $\alpha = 0.95$ or $0.99$.
-
-**Relationship between EE and PFE:**
-
-- $\text{PFE}_\alpha(t) \ge \text{EE}(t)$ for all $\alpha > 0.5$
-- The ratio $\text{PFE}_\alpha(t) / \text{EE}(t)$ is typically 2--4$\times$, depending on the distributional shape
-- PFE is used for **credit limit setting** (peak PFE $= \max_t \text{PFE}_\alpha(t)$)
-- EE is used for **CVA and capital** calculations
-
-**Non-additivity of PFE:** Unlike EE, PFE is generally not additive across portfolios:
-
-$$
-\text{PFE}_\alpha(A + B) \le \text{PFE}_\alpha(A) + \text{PFE}_\alpha(B)
-$$
-
-This subadditivity reflects the diversification benefit from netting.
+Recall (see [§ Potential Future Exposure (PFE)](potential_future_exposure_pfe.md)): PFE captures the tail of the exposure distribution, $\text{PFE}_\alpha(t)=F_{E_t}^{-1}(\alpha)$ (typically $\alpha=0.95$ or $0.99$), with $\text{PFE}_\alpha(t)\ge\text{EE}(t)$ and PFE/EE ratios of 2--4$\times$. PFE is used for credit limits; EE/EPE for CVA and capital. PFE is **sub-additive** across portfolios — $\text{PFE}_\alpha(A+B)\le\text{PFE}_\alpha(A)+\text{PFE}_\alpha(B)$ — reflecting netting diversification.
 
 ---
 
@@ -154,27 +133,13 @@ Combines IRS and FX profiles, with a large exposure spike at maturity due to not
 
 ## EPE and CVA
 
-The **Credit Valuation Adjustment** depends directly on the exposure profile:
-
-$$
-\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot S(t) \cdot D(0, t) \, dt
-$$
-
-where $\lambda(t)$ is the default intensity, $S(t) = e^{-\int_0^t \lambda(s) \, ds}$ is the survival probability, and $D(0, t)$ is the discount factor.
-
-Under the approximation of constant default intensity $\lambda$ and flat term structure with rate $r$:
-
-$$
-\text{CVA} \approx \text{LGD} \cdot \lambda \cdot \int_0^T \text{EE}(t) \cdot e^{-(\lambda + r)t} \, dt
-$$
-
-For short-maturity trades where the discount and survival factors are approximately 1:
+Recall (see [§ CVA and DVA](../valuation_adjustments_xva/cva_dva.md)): the unilateral CVA under independence is $\text{CVA} = \text{LGD}\int_0^T \text{EE}(t)\,\lambda(t)\,S(t)\,D(0,t)\,dt$. Specializing to constant hazard $\lambda$, flat rate $r$, and short maturity (so $\lambda(t)S(t)D(0,t)\approx \lambda$) gives
 
 $$
 \text{CVA} \approx \text{LGD} \cdot \lambda \cdot T \cdot \text{EPE}
 $$
 
-This shows the direct connection: **CVA is approximately proportional to EPE**.
+showing the direct connection: **CVA is approximately proportional to EPE**, which is why EPE is the standard single-number summary for CVA pricing.
 
 ---
 

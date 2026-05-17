@@ -72,49 +72,15 @@ $$
 ## Regularization Approaches
 
 
-### 1. Tikhonov Regularization
+### 1. Tikhonov, LASSO, Elastic Net
 
+**Recall** (see [§ Regularization and Stability](../../ch17/regularization_and_stability/tikhonov_regularization.md)): standard penalties applied to the calibration objective $\text{Error}(\theta)$:
 
-**Penalized Objective**:
+- **Tikhonov ($L^2$):** $+\lambda\|\theta - \theta_0\|^2$ — shrinks toward $\theta_0$; bias-variance tradeoff in $\lambda$.
+- **LASSO ($L^1$):** $+\lambda\|\theta\|_1$ — promotes sparsity (factor selection).
+- **Elastic Net:** $+\lambda_1\|\theta\|_1 + \lambda_2\|\theta\|_2^2$ — sparsity plus grouping.
 
-$$
-\hat{\theta}_{\lambda} = \arg\min_{\theta} \left\{\sum_{i=1}^m [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2 + \lambda \|\theta - \theta_0\|^2\right\}
-$$
-
-where $\theta_0$ is a prior or reference parameter.
-
-**Effect**: Shrinks parameters toward $\theta_0$, reducing sensitivity to noise.
-
-**Bias-Variance Trade-Off**:
-
-- $\lambda = 0$: Unbiased but high variance
-- $\lambda \to \infty$: Low variance but biased toward $\theta_0$
-
-### 2. LASSO Regularization
-
-
-**L1 Penalty**:
-
-$$
-\hat{\theta}_{\lambda} = \arg\min_{\theta} \left\{\text{CalibrationError}(\theta) + \lambda \|\theta\|_1\right\}
-$$
-
-**Effect**: Promotes sparsity; some parameters set to zero.
-
-**Application**: Variable selection in factor models.
-
-### 3. Elastic Net
-
-
-**Combined Penalty**:
-
-$$
-\hat{\theta} = \arg\min_{\theta} \left\{\text{Error}(\theta) + \lambda_1 \|\theta\|_1 + \lambda_2 \|\theta\|_2^2\right\}
-$$
-
-**Properties**: Combines sparsity (L1) with grouping (L2).
-
-### 4. Temporal Regularization
+### 2. Temporal Regularization
 
 
 **Smooth Parameter Evolution**:
@@ -127,49 +93,7 @@ $$
 
 ## Cross-Validation for Penalty Selection
 
-
-### 1. K-Fold Cross-Validation
-
-
-**Procedure**:
-
-1. Divide calibration instruments into $K$ folds
-2. For each fold $k$:
-   - Calibrate on remaining $K-1$ folds
-   - Evaluate error on held-out fold $k$
-3. Average error over folds
-
-**Select**: $\lambda^* = \arg\min_{\lambda} \text{CV}(\lambda)$
-
-### 2. Time-Series Cross-Validation
-
-
-**Rolling Window**:
-
-1. Calibrate on data up to time $t$
-2. Evaluate prediction at time $t+1$
-3. Roll forward and repeat
-
-**Metric**: Average out-of-sample error.
-
-### 3. Information Criteria
-
-
-**AIC**: 
-
-$$
-\text{AIC} = 2k - 2\ln(\hat{L})
-$$
-
-**BIC**:
-
-$$
-\text{BIC} = k \ln(n) - 2\ln(\hat{L})
-$$
-
-where $k$ is number of effective parameters.
-
-**Application**: Balance fit (likelihood) against complexity (parameters).
+**Recall** (see [§ Trade-Off Between Fit and Robustness](../../ch17/regularization_and_stability/trade_off_between_fit_and_robustness.md)): standard tools for choosing $\lambda$ are $K$-fold CV, time-series (rolling-window) CV, and information criteria AIC/BIC. For time-series calibration, rolling-window CV is preferred to preserve temporal ordering and avoid leakage.
 
 ## Pareto Frontier Analysis
 

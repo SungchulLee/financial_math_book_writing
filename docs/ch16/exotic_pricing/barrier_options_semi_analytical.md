@@ -54,25 +54,11 @@ A **continuously monitored** barrier is triggered if the barrier condition holds
 
 ### The Black--Scholes Case
 
-In the Black--Scholes model, the log-price $X_t = \ln S_t$ follows a drifted Brownian motion:
-
-$$
-X_t = X_0 + \left(r - q - \frac{\sigma^2}{2}\right) t + \sigma W_t
-$$
-
-For a down-and-out option with barrier $B < S_0$, let $b = \ln B$. The **reflection principle** for Brownian motion states that the probability of $W_t$ hitting a barrier can be computed using the density of the reflected process. After a drift adjustment (Girsanov), this yields the closed-form formula involving the standard normal CDF.
-
-The key property exploited is that $X_t - b$ and its reflection $2b - X_t + 2b$ have a known joint distribution under the Brownian filtration.
+Recall (see [§ Reflection Principle](../../ch02/brownian_motion/reflection_principle.md) and [§ Exotic Options under BS](../../ch07/exotic_options/exotic_options_overview.md)): under BS, $X_t = \ln S_t$ is drifted Brownian motion, and the reflection principle yields closed-form barrier prices via the symmetry of $X_t$ about $b = \ln B$.
 
 ### Breakdown Under Heston
 
-Under the Heston model, the log-price dynamics are:
-
-$$
-dX_t = \left(r - q - \frac{v_t}{2}\right) dt + \sqrt{v_t} \, dW_t^{(1)}
-$$
-
-The **instantaneous volatility** $\sqrt{v_t}$ is itself random and correlated with $X_t$. This destroys the reflection principle for two reasons:
+Recall (see [§ Heston SDE](../model_definition/heston_sde_and_parameters.md)): the Heston log-price has random, $X_t$-correlated diffusion $\sqrt{v_t}$. This destroys the reflection principle for two reasons:
 
 1. **Path-dependent volatility**: When $X_t$ approaches the barrier from above, the variance $v_t$ is in a specific state. The reflected path $2b - X_t$ would require the variance to be in the same state, but the correlation $\rho \neq 0$ means the variance path is entangled with the stock path.
 
@@ -165,7 +151,7 @@ where $c$ is the upper truncation bound. The payoff coefficients $H_k$ are modif
 
 ### Path Simulation
 
-Monte Carlo pricing of barrier options under Heston requires simulating the joint path $(S_{t_0}, v_{t_0}), (S_{t_1}, v_{t_1}), \ldots, (S_{t_m}, v_{t_m})$ and checking the barrier condition at each monitoring date. The QE scheme from Andersen (2008) provides efficient simulation of the variance process.
+Recall (see [§ Monte Carlo](../monte_carlo/euler_discretization_and_pitfalls.md)): simulate the joint path $(S_{t_k}, v_{t_k})$ via the QE scheme and check the barrier condition at each monitoring date.
 
 For a down-and-out call with discrete monitoring at dates $t_1, \ldots, t_m$:
 

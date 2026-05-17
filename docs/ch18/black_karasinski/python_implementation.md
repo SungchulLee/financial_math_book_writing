@@ -38,33 +38,9 @@ The market curve `P` is a callable $P^M: [0, \infty) \to (0, 1]$ satisfying $P^M
 
 ## Tree Construction
 
-### Grid parameters
+### Grid parameters and branching probabilities
 
-The tree discretizes the log-rate $x = \ln r$ on a uniform grid:
-
-$$
-\Delta x = \sigma\sqrt{3\Delta t}, \qquad j_{\max} = \left\lceil\frac{0.184}{a\,\Delta t}\right\rceil
-$$
-
-The time step $\Delta t = T_{\max}/N$ where $N$ is `n_steps` and $T_{\max}$ is the longest maturity to be priced.
-
-### Branching probabilities
-
-At node $(t_k, x_j)$ with conditional drift $\mu_j = \theta(t_k) - a\,x_j$, the standard branching probabilities are:
-
-$$
-p_u = \frac{1}{6} + \frac{(\mu_j\,\Delta t)^2 + \mu_j\,\Delta t\,\Delta x}{2\,\Delta x^2}
-$$
-
-$$
-p_m = \frac{2}{3} - \frac{(\mu_j\,\Delta t)^2}{\Delta x^2}
-$$
-
-$$
-p_d = \frac{1}{6} + \frac{(\mu_j\,\Delta t)^2 - \mu_j\,\Delta t\,\Delta x}{2\,\Delta x^2}
-$$
-
-When $|j| > j_{\max}$, the code switches to up-branching or down-branching geometry to keep all probabilities in $[0, 1]$.
+Recall (see [§ Trinomial Tree Implementation](trinomial_tree_implementation.md)) the grid spacing $\Delta x = \sigma\sqrt{3\Delta t}$ and width $j_{\max} = \lceil 0.184/(a\Delta t)\rceil$, with standard branching probabilities determined by mean/variance matching of the conditional OU increment. The code switches to up- or down-branching when $|j| > j_{\max}$ to keep probabilities in $[0,1]$.
 
 ```python
 def _branching_probs(self, j, theta_k, dt, dx):
@@ -89,22 +65,7 @@ def _branching_probs(self, j, theta_k, dt, dx):
 
 ### Forward induction
 
-The drift $\theta(t_k)$ at each time step is determined by matching the market discount factor $P^M(0, t_{k+1})$. The procedure is:
-
-1. At time $t_0 = 0$, the tree has a single node at $x_0 = \ln r(0)$ with Arrow-Debreu price $Q(0, 0) = 1$
-2. At each subsequent step $t_k$, the Arrow-Debreu prices $Q(k, j)$ propagate forward:
-
-$$
-Q(k+1, j') = \sum_{j} Q(k, j)\,e^{-e^{x_j}\Delta t}\,p(j \to j')
-$$
-
-3. Choose $\theta(t_k)$ so that
-
-$$
-\sum_j Q(k+1, j) = P^M(0, t_{k+1})
-$$
-
-This is a one-dimensional root-finding problem (bisection or Newton) at each time step because $\theta(t_k)$ affects the branching probabilities and hence the forward propagation.
+Recall (see [§ Trinomial Tree Implementation](trinomial_tree_implementation.md)) that $\theta(t_k)$ is found at each time step by propagating Arrow-Debreu prices $Q(k,j)$ forward and solving $\sum_j Q(k+1,j) = P^M(0,t_{k+1})$ for $\theta(t_k)$ (a one-dimensional root-find at each step).
 
 ```python
 def calibrate_theta(self, T_max):

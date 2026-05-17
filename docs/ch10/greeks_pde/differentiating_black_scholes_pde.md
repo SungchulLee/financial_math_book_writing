@@ -7,20 +7,15 @@ Greeks can be characterized by differentiating the Black–Scholes PDE satisfied
 
 ## Black–Scholes PDE
 
-
-For a European option $V(t,S)$,
+**Recall** (see [§ Replication](../../ch06/bs_pde_derivation/replication.md) and [§ Discounting and Killing Term](../../ch06/bs_pde_structure/discounting_and_killing_term.md)): a European option $V(t,S)$ satisfies
 
 $$
-\boxed{
 \frac{\partial V}{\partial t}
 +\frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}
 +rS\frac{\partial V}{\partial S}
 -rV=0,
-\qquad V(T,S)=\Phi(S)
-}
+\qquad V(T,S)=\Phi(S).
 $$
-
-
 
 ---
 

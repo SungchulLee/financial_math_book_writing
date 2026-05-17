@@ -2,6 +2,16 @@
 
 **Key idea**: Linear payoffs imply symmetric risk and static replication — no dynamic hedging is needed.
 
+## One Concrete Payoff
+
+Before any formula, picture a single contract with delivery price $K = 100$. Three possible outcomes at maturity:
+
+- $S_T = 120$ → the long buys at \$100 an asset worth \$120, gaining \$20; the short loses \$20.
+- $S_T = 100$ → both sides break even.
+- $S_T = 80$ → the long is forced to buy at \$100 an asset worth \$80, losing \$20; the short gains \$20.
+
+Plot these three points $(80, -20), (100, 0), (120, 20)$ for the long side: they lie on the straight line $y = S_T - 100$. Plot the short side: they lie on $y = 100 - S_T$. No matter how many additional values of $S_T$ are sampled — \$30, \$300, \$1,000 — the points stay on these same two lines. This single observation, that **every long-forward payoff sits on one straight line through $(K, 0)$ with slope $+1$**, is the entire content of the formulas below. The rest of this section just gives names to the line, its mirror image, and the consequences of being a line rather than a kinked curve.
+
 The previous sections defined forward and futures contracts and described their mechanics. We now turn to a precise question: what is a forward position worth at maturity? Unlike options, whose payoffs are kinked and bounded below by zero, the forward payoff is **linear** in the underlying price and can take negative values. This simplicity is both a strength and a risk: it makes pricing elegant but exposes both parties to losses in every state of the world.
 
 ---
@@ -86,33 +96,15 @@ Compare this with the long call payoff at the same strike. The call follows the 
 
 ## Connection to Put-Call Parity
 
-In the section on option payoffs, we established that
-
-$$
-(S_T - K)^+ - (K - S_T)^+ = S_T - K
-$$
-
-The left side is the payoff of a portfolio that is long a call and short a put, both with strike $K$. The right side is the long forward payoff. This identity reveals a deep structural fact: at the payoff level, a forward contract can be **replicated** by a long call and a short put with the same strike and maturity.
-
-$$
-\text{Long forward} = \text{Long call} + \text{Short put}
-$$
-
-Conversely, the call payoff can be decomposed as
-
-$$
-(S_T - K)^+ = (S_T - K) + (K - S_T)^+
-$$
-
-which says: a call equals a forward plus a put. This is the payoff-level version of **put-call parity**. The full pricing version, which accounts for discounting, will appear when we study the Black-Scholes formula.
+Recall (see [§ From Forwards to Options](bridge_to_options.md)): the payoff identity $(S_T - K)^+ - (K - S_T)^+ = S_T - K$ shows that a long call plus a short put replicates a long forward — the payoff-level version of put-call parity.
 
 ---
 
 ## Bridge to Pricing
 
-Because the forward payoff $S_T - K$ is linear in $S_T$, pricing a forward requires only **static replication**: buy the asset today and borrow the present value of $K$. At maturity, the asset is worth $S_T$ and the loan requires repayment of $K$, producing payoff $S_T - K$ exactly. No dynamic adjustment of the hedge is needed.
+Linearity of $S_T - K$ in $S_T$ is what makes forwards tractable: pricing reduces to **static replication** (buy the asset, borrow the present value of $K$). Recall (see [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md)): this replication pins down $F_0 = S_0 e^{rT}$ without any dynamic adjustment.
 
-This is fundamentally different from pricing options. The nonlinearity of $(S_T - K)^+$ means that no static portfolio of the stock and bond can replicate the option payoff in all states. Replicating an option requires continuous rebalancing — **dynamic hedging** — which is the heart of the Black-Scholes theory. The linearity of forward payoffs thus marks the boundary between problems solvable by simple no-arbitrage arguments and those requiring the full machinery of stochastic calculus.
+Nonlinear payoffs such as $(S_T - K)^+$ cannot be matched by any static stock-and-bond portfolio and demand dynamic hedging — see [§ From Forwards to Options](bridge_to_options.md) for the precise contrast.
 
 ---
 
@@ -192,3 +184,14 @@ This is fundamentally different from pricing options. The nonlinearity of $(S_T 
     $$
 
     This gives $F_0 = \text{PV}(S_T) / \text{PV}(1) = S_0 / B(0,T)$, where $B(0,T)$ is the discount factor. The linearity of the payoff is what makes this static argument work: we need only price two known quantities ($S_T$ and a constant $F_0$) separately, without any model for the distribution of $S_T$. This is precisely the simplification that linearity affords.
+
+---
+
+**Exercise 6.** A trader simultaneously holds a long call and a long put on the same underlying, both with strike $K$ and maturity $T$ (a **straddle**). Sketch the payoff at maturity, identify the minimum payoff, and compare to a long forward at delivery price $K$.
+
+??? success "Solution to Exercise 6"
+    The straddle payoff is $(S_T - K)^+ + (K - S_T)^+ = |S_T - K|$, which is non-negative everywhere and equals zero only at $S_T = K$. It is V-shaped with vertex at $S_T = K$, slope $-1$ to the left and slope $+1$ to the right.
+
+    The minimum payoff is $0$, attained at $S_T = K$.
+
+    A long forward at delivery price $K$ has payoff $S_T - K$ — a straight line that is negative for $S_T < K$ and positive for $S_T > K$. The straddle equals the **absolute value** of the forward payoff: it profits from movement in either direction but always pays at least $0$ (so it costs an upfront premium, unlike the forward which is free to enter).

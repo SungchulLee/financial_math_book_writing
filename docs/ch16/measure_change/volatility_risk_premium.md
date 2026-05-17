@@ -43,11 +43,7 @@ where $\tau = T - t$ and $(\kappa, \theta)$ are the measure-specific parameters.
 
 ## The Parameter Transformation
 
-Recall the Girsanov measure change with $\lambda_v(t) = \lambda\sqrt{v_t}$ gives
-
-$$
-\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \xi\lambda, \qquad \theta^{\mathbb{Q}} = \frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{Q}}}
-$$
+Recall (see [§ Risk-Neutral Measure](risk_neutral_measure.md)) the Girsanov measure change with $\lambda_v(t) = \lambda\sqrt{v_t}$ gives $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \xi\lambda$ and $\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}/\kappa^{\mathbb{Q}}$.
 
 !!! info "Proposition (VRP in Terms of Lambda)"
     The volatility risk premium is

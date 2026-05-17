@@ -196,15 +196,7 @@ $$
 
 ### 2. Fundamental Theorem of Asset Pricing
 
-
-**First Fundamental Theorem**: The market admits no arbitrage if and only if $\mathcal{M} \neq \emptyset$.
-
-**Second Fundamental Theorem**: The market is complete if and only if $\mathcal{M}$ is a singleton (unique EMM).
-
-**Implications**:
-
-- Existence of EMM $\Leftrightarrow$ No arbitrage
-- Uniqueness of EMM $\Leftrightarrow$ Market completeness
+**Recall** (see [§ Fundamental Theorem of Asset Pricing](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md)): no arbitrage $\Leftrightarrow \mathcal{M} \neq \emptyset$ (first FTAP), and the market is complete $\Leftrightarrow \mathcal{M}$ is a singleton (second FTAP).
 
 ## Dual Representation of Superhedging Price
 

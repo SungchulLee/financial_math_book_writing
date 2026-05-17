@@ -19,43 +19,7 @@ The mathematical framework draws from stochastic optimal control, robust optimiz
 ### 1. Greeks
 
 
-**Delta**: First-order price sensitivity:
-
-
-$$
-\Delta = \frac{\partial V}{\partial S}
-$$
-
-
-
-**Gamma**: Second-order price sensitivity (curvature):
-
-
-$$
-\Gamma = \frac{\partial^2 V}{\partial S^2}
-$$
-
-
-
-**Vega**: Sensitivity to volatility:
-
-
-$$
-\mathcal{V} = \frac{\partial V}{\partial \sigma}
-$$
-
-
-
-**Relationship**: Under Black-Scholes:
-
-
-$$
-\mathcal{V} = S^2 \Gamma \sqrt{T - t}
-$$
-
-
-
-connecting gamma and vega.
+Recall (see [§ Greeks](../../ch10/greeks/delta_gamma_vega_theta_rho.md)) for $\Delta = \partial V/\partial S$, $\Gamma = \partial^2 V/\partial S^2$, $\mathcal{V} = \partial V/\partial\sigma$, and the Black-Scholes identity $\mathcal{V} = S^2 \Gamma \sqrt{T-t}$.
 
 ### 2. Portfolio Dynamics
 
@@ -103,66 +67,7 @@ where subscripts denote the derivative or hedging instrument.
 ## Classical Delta-Gamma Hedging
 
 
-### 1. Black-Scholes Framework
-
-
-**Option PDE**: Under Black-Scholes with constant volatility $\sigma$:
-
-
-$$
-\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
-$$
-
-
-
-**Perfect Hedge**: With continuous delta-gamma hedging:
-
-
-$$
-dV - \Delta \, dS - \Theta \, dt = 0
-$$
-
-
-
-where $\Theta = \frac{\partial V}{\partial t}$ is theta.
-
-**Replication**: Portfolio value exactly replicates option value at all times.
-
-### 2. Discrete Hedging
-
-
-**Time Grid**: Rebalance at times $\{t_0, t_1, \ldots, t_N\}$ with spacing $\Delta t = t_{i+1} - t_i$.
-
-**Portfolio Dynamics**: Between rebalancing:
-
-
-$$
-dV_t = \theta_{t_i} \, dS_t + \phi_{t_i} \, dO_t
-$$
-
-
-
-for $t \in [t_i, t_{i+1})$.
-
-**Taylor Expansion**: Option value change:
-
-
-$$
-\Delta V \approx \Delta \cdot \Delta S + \frac{1}{2} \Gamma \cdot (\Delta S)^2 + \Theta \cdot \Delta t + \frac{1}{2} \mathcal{V} \cdot (\Delta \sigma)^2 + \ldots
-$$
-
-
-
-**Hedging Error**: With delta-gamma hedging:
-
-
-$$
-\text{Error} \approx \frac{1}{6} \frac{\partial^3 V}{\partial S^3} (\Delta S)^3 + \frac{1}{2} \frac{\partial^2 V}{\partial S \partial t} \Delta S \, \Delta t + \ldots
-$$
-
-
-
-Third and higher-order terms, which vanish as $\Delta t \to 0$.
+Recall (see [§ Hedging](../../ch11/index.md)) for the Black-Scholes PDE, continuous delta-gamma replication, the Taylor expansion $\Delta V \approx \Delta\cdot\Delta S + \tfrac{1}{2}\Gamma(\Delta S)^2 + \Theta\Delta t + \cdots$, and the third-order discrete-hedging residual $\tfrac{1}{6}\partial_S^3 V (\Delta S)^3$.
 
 ## Robust Hedging Under Volatility Uncertainty
 
@@ -264,30 +169,7 @@ $$
 ### 1. Stochastic Volatility
 
 
-**Model**: Volatility follows its own process:
-
-
-$$
-dS_t = \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S
-$$
-
-
-
-
-$$
-dV_t = \kappa(\theta - V_t) \, dt + \xi \sqrt{V_t} \, dW_t^V
-$$
-
-
-
-with correlation $\rho = \mathbb{E}[dW_t^S dW_t^V]$.
-
-**Greeks**:
-
-- $\Delta = \frac{\partial V}{\partial S}$
-- $\Gamma = \frac{\partial^2 V}{\partial S^2}$
-- $\mathcal{V} = \frac{\partial V}{\partial v}$ (vega)
-- $\mathcal{V}_{\Gamma} = \frac{\partial^2 V}{\partial v^2}$ (volga/vomma)
+Recall (see [§ Stochastic Volatility](../../ch14/index.md)) for the Heston-type joint $(S,V)$ dynamics and (see [§ Greeks](../../ch10/greeks/delta_gamma_vega_theta_rho.md)) for vega/volga.
 
 **Hedging Instruments**: 
 
@@ -409,76 +291,7 @@ clamped to $[\underline{\sigma}, \overline{\sigma}]$.
 ## Transaction Costs
 
 
-### 1. Discrete Rebalancing
-
-
-**Cost Model**: Proportional costs $\lambda$ per unit traded:
-
-
-$$
-\text{Cost} = \lambda |\Delta \theta| S + \lambda |\Delta \phi| O
-$$
-
-
-
-**Optimal Rebalancing**: Trade-off between hedging error and transaction costs:
-
-
-$$
-\min_{\{\Delta \theta_i, \Delta \phi_i\}} \mathbb{E}\left[(V_T - \Pi_T)^2 + \sum_{i=1}^N \lambda_i (|\Delta \theta_i| S_i + |\Delta \phi_i| O_i)\right]
-$$
-
-
-
-**No-Transaction Region**: Optimal to rebalance only when Greeks drift outside a band:
-
-
-$$
-|\Delta(S_t) - \Delta_{\text{portfolio}}| > \epsilon_{\Delta}, \quad |\Gamma(S_t) - \Gamma_{\text{portfolio}}| > \epsilon_{\Gamma}
-$$
-
-
-
-where $\epsilon_{\Delta}, \epsilon_{\Gamma}$ depend on $\lambda$ and $\sigma$.
-
-### 2. Asymptotic Analysis
-
-
-**Small Transaction Costs**: As $\lambda \to 0$:
-
-
-$$
-\epsilon_{\Delta} \sim \lambda^{1/3}, \quad \epsilon_{\Gamma} \sim \lambda^{1/3}
-$$
-
-
-
-**Hedging Error**: Expected squared error:
-
-
-$$
-\mathbb{E}[(V_T - \Pi_T)^2] \sim \lambda^{2/3}
-$$
-
-
-
-**Implication**: Even small transaction costs significantly impact optimal hedging strategy.
-
-### 3. Leland's Approach
-
-
-**Modified Volatility**: To account for transaction costs in delta-hedging, use:
-
-
-$$
-\tilde{\sigma}^2 = \sigma^2 + \sqrt{\frac{2}{\pi}} \lambda \frac{\sigma}{\sqrt{\Delta t}}
-$$
-
-
-
-**Interpretation**: Transaction costs effectively increase volatility used in Black-Scholes formula.
-
-**Gamma Adjustment**: With gamma hedging, modification is more complex, involving both delta and gamma adjustments.
+Recall (see [§ Hedging Under Transaction Costs](hedging_under_transaction_costs.md)) for the no-trade band $|\Delta(S_t)-\Delta_\text{portfolio}|>\epsilon_\Delta$, the asymptotic scalings $\epsilon\sim\lambda^{1/3}$ and $\mathbb{E}[(V_T-\Pi_T)^2]\sim\lambda^{2/3}$, and Leland's adjusted volatility $\tilde{\sigma}^2 = \sigma^2 + \sqrt{2/\pi}\,\lambda\sigma/\sqrt{\Delta t}$. The delta-gamma extension carries an analogous correction on both delta and gamma sleeves.
 
 ## Correlation Risk
 
@@ -821,29 +634,7 @@ $$
 ### 2. Rough Volatility
 
 
-**Model**: Volatility has Hölder regularity $H < 1/2$:
-
-
-$$
-\sigma_t = f\left(\int_0^t (t-s)^{H-1/2} dW_s\right)
-$$
-
-
-
-**Gamma Hedging**: Classical quadratic variation arguments don't apply directly.
-
-**Rough Path Hedging**: Use rough path theory to define gamma properly:
-
-
-$$
-\text{Gamma Cost} = \int_0^T \Gamma_t \, d[S]_t
-$$
-
-
-
-where $[S]_t$ is understood in rough path sense.
-
-**Practical Impact**: Need finer rebalancing frequency for rough volatility than smooth models suggest.
+Recall (see [§ Stochastic Volatility](../../ch14/index.md)) for rough vol with Hölder $H<1/2$, and (see [§ Pathwise Hedging](pathwise_hedging.md)) for the rough-path interpretation of gamma cost $\int_0^T \Gamma_t\,d[S]_t$. Practical impact: finer rebalancing than smooth models suggest.
 
 ### 3. Jump Diffusion
 

@@ -28,13 +28,7 @@ $$
 
 with terminal condition $u(T, x) = g(x)$.
 
-In compact notation:
-
-$$
-\partial_t u + \mathcal{L}u - r\,u = 0, \quad u(T, \cdot) = g
-$$
-
-where $\mathcal{L} = \mu\,\partial_x + \frac{1}{2}\sigma^2\,\partial_{xx}$ is the infinitesimal generator.
+In compact notation $\partial_t u + \mathcal{L}u - r\,u = 0$, $u(T,\cdot)=g$, where $\mathcal{L} = \mu\,\partial_x + \tfrac12\sigma^2\,\partial_{xx}$ — see [§ Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md).
 
 ### The Claimed Representation
 
@@ -247,25 +241,7 @@ u(t,x) = E[D·g]  ──Markov──▶  D(t,s)·u(s,Xₛ) is a martingale
 
 ## The Special Case r = 0 (Kolmogorov Backward)
 
-When $r \equiv 0$, the Feynman-Kac formula reduces to:
-
-$$
-u(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]
-$$
-
-and the PDE becomes the **Kolmogorov backward equation**:
-
-$$
-\partial_t u + \mathcal{L}u = 0, \quad u(T, x) = g(x)
-$$
-
-The proof simplifies: $Y_s = u(s, X_s)$ is directly a martingale (no discounting needed), and Ito's lemma gives:
-
-$$
-du(s, X_s) = (\partial_s u + \mathcal{L}u)\,ds + \sigma u_x\,dW_s
-$$
-
-The PDE forces the drift to vanish, so $u(s, X_s)$ is a martingale. Taking expectations: $u(t, x) = \mathbb{E}[u(T, X_T)] = \mathbb{E}[g(X_T)]$.
+Recall (see [§ Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md)): when $r \equiv 0$, the proof above simplifies to showing $u(s, X_s)$ is itself a martingale (no discount factor needed), and the PDE reduces to $\partial_t u + \mathcal{L}u = 0$ with $u(T,x)=g(x)$.
 
 ---
 

@@ -494,98 +494,23 @@ where $\Delta\sigma_K$ is the change in IV at the fixed strike $K$.
 ## Empirical Evidence
 
 
-### 1. Equity Markets
-
-
-Empirical studies of equity index options (S&P 500, EURO STOXX) show:
-
-**Short-term behavior:**
-
-- Closer to sticky strike than sticky delta
-- IV at fixed strikes relatively stable over short horizons
-- Skew steepens after large down moves
-
-**Medium-term behavior:**
-
-- Neither assumption holds perfectly
-- Spot-vol correlation (leverage effect) dominates
-- Smile dynamics are asymmetric: faster reaction to down moves
-
-**Quantitative finding:** The "skew stickiness ratio" (SSR):
+Recall (see [§ Empirical Stylized Facts](../smile_dynamics/empirical_stylized_facts.md)) for the empirical regularities of smile dynamics across equity indices, FX, and single stocks. The key quantitative summary statistic for the sticky-strike vs. sticky-delta question is the **skew stickiness ratio**
 
 $$
 \text{SSR} = \frac{\text{ATM IV change}}{\text{Predicted change under sticky strike}}
 $$
 
-
-Empirical SSR for SPX is typically 0.3-0.6, indicating behavior between sticky strike and sticky moneyness.
-
-### 2. FX Markets
-
-
-**Short-term:** Closer to sticky delta
-
-- Market makers quote at fixed delta levels
-- IV at 25-delta put/call relatively stable
-
-**Medium-term:** Mean reversion in both spot and volatility complicates the picture
-
-**Risk reversals:** The 25D risk reversal (IV of 25D call minus 25D put) is more stable than individual strike IVs.
-
-### 3. Single-Stock Options
-
-
-**Idiosyncratic behavior:**
-
-- More noise, less clear pattern
-- Event-driven (earnings, M&A) dominates
-- Sector effects matter
-
-**General tendency:** Between sticky strike and sticky delta, with significant variation.
+Empirical SSR for SPX is typically 0.3-0.6 (between sticky strike and sticky moneyness); FX markets sit closer to sticky delta; single-stock options are dominated by event risk.
 
 ## Model Implications
 
 
-### 1. Local Volatility Models
+Recall (see [§ Dynamic Consistency](../smile_dynamics/dynamic_consistency.md)) for the model-by-model classification of smile dynamics. Mapped to the sticky-strike vs. sticky-delta axis:
 
-
-Local volatility models produce **sticky strike** behavior by construction:
-
-- The local vol surface $\sigma_{\text{loc}}(S, t)$ is fixed
-- When spot moves, the path through local vol space changes
-- But implied volatility at each strike is determined by the same integral
-
-**Problem:** This implies unrealistic forward smiles and dynamics.
-
-### 2. Stochastic Volatility Models
-
-
-Stochastic volatility models (Heston, SABR) produce dynamics between sticky strike and sticky delta:
-
-- The spot-vol correlation ($\rho$) controls the leverage effect
-- Negative $\rho$ (typical for equities) produces skew that steepens when spot falls
-- This is neither pure sticky strike nor pure sticky delta
-
-**SABR:** The SABR model with backbone parameter $\beta$ interpolates:
-
-- $\beta = 1$: Normal SABR, sticky strike-like
-- $\beta = 0$: Lognormal SABR, sticky delta-like
-
-### 3. Bergomi's Variance Curve Models
-
-
-Bergomi's framework models the forward variance curve directly:
-
-$$
-d\xi_t^T = \xi_t^T \cdot \omega(T-t) \cdot dZ_t
-$$
-
-
-The resulting smile dynamics are:
-
-- More realistic than local vol
-- Capture term structure of skew
-- Can match empirical SSR observations
+- **Local volatility:** sticky-strike by construction (the fixed $\sigma_{\text{loc}}(S,t)$ surface pins the implied vol at each absolute strike).
+- **Stochastic volatility (Heston, SABR):** dynamics interpolate between the two; spot-vol correlation $\rho$ controls the deviation from sticky strike.
+- **SABR backbone:** $\beta=1$ is sticky strike-like; $\beta=0$ (normal) is sticky delta-like.
+- **Bergomi variance-curve models:** designed to match empirical SSR observations.
 
 ## Practical Hedging Implications
 

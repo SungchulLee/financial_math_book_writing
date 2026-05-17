@@ -76,24 +76,13 @@ where $\lambda_C, \lambda_B$ are default intensities, $c$ is collateral, and IM 
 
 ## The Nonlinear Feynman-Kac Formula
 
-### Statement
+Recall the (linear) Feynman-Kac formula (see [§ Feynman-Kac](../../ch05/feynman_kac/discounted_feynman_kac.md)). Its nonlinear extension states: if $(V_t, Z_t)$ solves the BSDE with driver $f$ and $u(t,x)$ solves
 
-!!! info "Theorem (Nonlinear Feynman-Kac)"
-    If $(V_t, Z_t)$ solves the BSDE with driver $f$, and if $u(t, x)$ is a smooth solution to the semilinear PDE:
+$$
+\partial_t u + \mathcal{L} u + f(t, x, u, \sigma^\top \nabla u) = 0, \qquad u(T, x) = \Phi(x),
+$$
 
-    $$
-    \partial_t u + \mathcal{L} u + f(t, x, u, \sigma^\top \nabla u) = 0
-    $$
-
-    with terminal condition $u(T, x) = \Phi(x)$, where $\mathcal{L}$ is the generator of $X_t$:
-
-    $$
-    \mathcal{L} u = \mu(t, x) \cdot \nabla u + \frac{1}{2} \text{tr}[\sigma \sigma^\top(t, x) \nabla^2 u]
-    $$
-
-    then $V_t = u(t, X_t)$ and $Z_t = \sigma^\top(t, X_t) \nabla u(t, X_t)$.
-
-This is the nonlinear extension of the classical Feynman-Kac formula. In the linear case ($f = -ru$), it reduces to the standard connection between the heat equation and conditional expectations.
+with $\mathcal{L} u = \mu \cdot \nabla u + \tfrac{1}{2} \text{tr}[\sigma \sigma^\top \nabla^2 u]$, then $V_t = u(t, X_t)$ and $Z_t = \sigma^\top(t, X_t) \nabla u(t, X_t)$. The linear case $f = -ru$ recovers classical Feynman-Kac.
 
 ### The XVA Semilinear PDE
 
@@ -153,40 +142,13 @@ The full nonlinear solution captures XVA interactions that the additive approxim
 
 ## Existence and Uniqueness
 
-### Pardoux-Peng Theory
-
-The foundational result of Pardoux and Peng (1990) establishes:
-
-!!! info "Theorem (Existence and Uniqueness)"
-    If the driver $f(t, x, v, z)$ satisfies:
-
-    1. **Lipschitz condition in $(v, z)$:** There exists $K > 0$ such that
-
-    $$
-    |f(t, x, v_1, z_1) - f(t, x, v_2, z_2)| \le K(|v_1 - v_2| + |z_1 - z_2|)
-    $$
-
-    2. **Square integrability:** $\mathbb{E}\left[\int_0^T |f(t, X_t, 0, 0)|^2 \, dt\right] < \infty$
-
-    3. **Terminal condition:** $\xi \in L^2(\mathcal{F}_T)$
-
-    then the BSDE has a unique adapted solution $(V_t, Z_t) \in \mathcal{S}^2 \times \mathcal{H}^2$.
-
-### Verification for XVA Driver
-
-The XVA driver components are Lipschitz:
-
-- $v \mapsto v^+$ and $v \mapsto v^-$ are Lipschitz with constant 1
-- $v \mapsto (v - c)^+$ and $v \mapsto (v - c)^-$ are Lipschitz with constant 1
-- Linear terms ($-rv$) are Lipschitz with constant $|r|$
-
-Therefore the XVA BSDE (without MVA's $z$-dependence) satisfies the Pardoux-Peng conditions with:
+Recall Pardoux-Peng BSDE existence/uniqueness (see [§ Second-order BSDEs](../../ch23/second_order_bsdes_and_nonlinear_expectations/2bsdes.md)). The XVA driver pieces $v^+, v^-, (v-c)^\pm$ are each 1-Lipschitz, giving Lipschitz constant
 
 $$
 K = r + \lambda_C \cdot \text{LGD}_C + \lambda_B \cdot \text{LGD}_B + s_F^+ + s_F^-
 $$
 
-The MVA term introduces $z$-dependence through $\text{IM}(t, v, z)$, which can violate standard Lipschitz conditions and may require regularization.
+so the standard XVA BSDE (without the $Z$-dependent MVA term) admits a unique solution $(V, Z) \in \mathcal{S}^2 \times \mathcal{H}^2$.
 
 ---
 
@@ -251,25 +213,7 @@ This approach scales to high dimensions, making it feasible for realistic multi-
 
 ## Connection to Dynamic Risk Measures
 
-The XVA BSDE is a special case of the $g$-expectation framework (Peng, 1997):
-
-$$
-\mathcal{E}_g[X \mid \mathcal{F}_t] := Y_t
-$$
-
-where $Y_t$ solves $Y_t = X + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s$.
-
-**Correspondence:**
-
-| XVA pricing | Dynamic risk measures |
-|-------------|----------------------|
-| Driver $f$ includes CVA, FVA | Driver $g$ encodes risk preferences |
-| Nonlinear pricing rule | Nonlinear expectation |
-| Comparison theorem | Monotonicity axiom |
-| $f = 0$: risk-free pricing | $g = 0$: conditional expectation |
-| Convex $f$: convex pricing | Convex $g$: convex risk measure |
-
-The XVA pricing rule is therefore a **nonlinear conditional expectation** that incorporates credit, funding, and capital costs as "risk preferences."
+Recall $g$-expectations / nonlinear conditional expectations (see [§ Dynamic Risk Measures](../dynamic_risk_measures/bsde_based_risk_measures.md)). The XVA BSDE is a $g$-expectation with driver $f$ encoding CVA, DVA, FVA, MVA; comparison theorem $\Leftrightarrow$ monotonicity, convex $f$ $\Leftrightarrow$ convex risk measure.
 
 ---
 

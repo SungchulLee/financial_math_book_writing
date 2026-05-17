@@ -6,35 +6,9 @@ Centuries later, option-like contracts appeared in European markets. During the 
 
 Modern listed options emerged much later. The Chicago Board Options Exchange (CBOE), founded in 1973, introduced standardized equity options and centralized clearing. In the same year, Black, Scholes, and Merton developed the mathematical framework that made systematic option pricing possible — transforming options from ad hoc agreements into a rigorously understood financial instrument.
 
-Suppose you own a stock worth \$100 and want to guarantee that you can sell it for at least \$95 over the next three months, no matter what happens in the market. How much should you pay for that protection? The surprising answer: it does not depend on what you think the stock will do. This is, at its core, an option pricing problem.
-
-Options are among the most important financial instruments in modern markets. They provide a mechanism for transferring risk, speculating on price movements, and — most critically for this text — they pose a deep mathematical question: **what is the correct price?**
-
-Unlike stocks or bonds, whose values are determined directly by cash flows, an option's value depends on the *future behavior* of an underlying asset. This makes option pricing inherently probabilistic and leads naturally to the theory of stochastic processes, partial differential equations, and measure-theoretic probability.
-
 In the [previous section](../futures_and_forwards/introduction.md), forwards and futures were defined by **obligation** — both parties must perform, payoffs are linear, and no premium changes hands. Options introduce **choice**: the holder decides whether to exercise, creating a nonlinear payoff. This single difference — from obligation to optionality — is what makes option pricing fundamentally harder and mathematically richer.
 
----
-
-## Why Options Exist
-
-Options serve three fundamental economic purposes:
-
-1. **Hedging**: A farmer can buy a put option to guarantee a minimum sale price for a crop, eliminating downside risk while retaining upside potential
-2. **Speculation**: A trader who believes a stock will rise can buy a call option, gaining leveraged exposure with limited downside (the premium paid)
-3. **Price discovery**: Option prices encode the market's collective view of future volatility and the probability distribution of asset returns
-
----
-
-## Why Pricing Is Hard
-
-A stock's current price is observable. An option's fair price is not — it must be *computed*. The difficulty arises from three sources:
-
-- The payoff depends on the **future** stock price, which is random
-- The option holder has a **choice** (exercise or not), introducing nonlinearity
-- The price must be **arbitrage-free**, consistent with the prices of all other traded instruments
-
-Resolving these difficulties requires a mathematical framework that connects probability, differential equations, and no-arbitrage economics. The **Black–Scholes model**, developed in the subsequent sections of this chapter, provides exactly this framework.
+Options serve three economic roles: **hedging** (a farmer buys a put to floor a crop price), **speculation** (leveraged directional exposure with downside capped at the premium), and **price discovery** (market quotes encode the implied distribution of future returns). The fair price is not observable; it must be *computed* under a no-arbitrage constraint. The development of that constraint into a usable formula is the subject of the rest of this chapter (see [§ Why Pricing Matters](why_pricing_matters.md)).
 
 ---
 
@@ -64,4 +38,20 @@ These concepts provide the foundation for the Black–Scholes formula and its ex
 
 ??? success "Solution to Exercise 2"
     Intrinsic value is the payoff if the option were exercised immediately: max(S - K, 0) = max(105 - 100, 0) = 5. Time value is the difference between the option price and intrinsic value: 8 - 5 = 3. The time value reflects the possibility that the stock may move further in the money before expiration.
+
+---
+
+**Exercise 3.** A forward contract obligates both parties to transact at a fixed price $K$ at maturity, while a call option gives the holder a right but no obligation. Explain why this single difference makes the call payoff $(S_T - K)^+$ nonlinear, whereas the forward payoff $S_T - K$ is linear.
+
+??? success "Solution to Exercise 3"
+    Under a forward, the holder must pay $K$ and receive the asset regardless of $S_T$, so the payoff $S_T - K$ is an affine (linear) function of $S_T$.
+
+    Under a call, the holder exercises only when $S_T > K$ and walks away otherwise. The payoff has a kink at $S_T = K$: it is $0$ to the left and $S_T - K$ to the right. The piecewise nature — a direct consequence of optionality — destroys linearity and is the source of the time value, the volatility dependence, and ultimately the convex Black-Scholes pricing problem.
+
+---
+
+**Exercise 4.** Suppose the market quotes the same European call at \$8 on Monday and at \$11 on Friday, with no change in the underlying stock price, strike, or interest rate. What single factor could most plausibly explain the increase in premium?
+
+??? success "Solution to Exercise 4"
+    With $S$, $K$, $r$, and time-to-maturity essentially unchanged, the most plausible driver is an increase in **implied volatility** $\sigma$. Higher volatility widens the distribution of possible terminal prices, which raises the option's time value because the holder benefits from upside while the downside payoff remains floored at zero. This sensitivity to volatility — vega — is one of the defining empirical features of option markets.
 

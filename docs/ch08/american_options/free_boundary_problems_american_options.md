@@ -1,78 +1,18 @@
 # Free Boundary Problems and American Options
 
-American options can be exercised at any time before expiration, leading to an **optimal stopping problem**. Numerically, this becomes a **free boundary problem** or equivalently a **variational inequality** (obstacle problem).
+An American option holder can exercise at any moment, so at every $(S,t)$ they compare "keep waiting" against "cash $\Phi(S)$ now" and pick whichever is larger. The "keep waiting" value follows the Black-Scholes PDE, the "cash now" value is $\Phi(S)$, and the actual price $V$ is the upper envelope of the two, glued along an unknown curve $S^*(t)$. That curve -- chosen by the option, not specified by us -- is the **free boundary**, and the resulting **variational inequality** (obstacle problem) is what every numerical method in this folder discretizes.
 
 ---
 
 ## The American Option Problem
 
-### Optimal Stopping Formulation
-
-Under risk-neutral dynamics $dS_t = rS_t\,dt + \sigma S_t\,dW_t$:
+Recall (see [§ American Options](../../ch07/american_options/american_option_definition.md)): under risk-neutral dynamics (see [§ Risk-neutral measure](../../ch04/risk_neutral/construction.md)) the price
 
 $$
-\boxed{
-V(t,S) = \sup_{\tau \in \mathcal{T}_{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S\right]
-}
+V(t,S) = \sup_{\tau \in \mathcal{T}_{t,T}} \mathbb{E}^{\mathbb{Q}}\!\left[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S\right]
 $$
 
-where $\mathcal{T}_{t,T}$ is the set of stopping times in $[t,T]$.
-
-### The Variational Inequality
-
-The American option price satisfies:
-
-$$
-\boxed{
-\min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
-}
-$$
-
-where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rS V_S$ is the Black-Scholes generator.
-
-### Two Regions
-
-1. **Continuation region** $\mathcal{C}$: $V > \Phi$, and the PDE holds:
-
-   $$\frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0$$
-
-2. **Exercise region** $\mathcal{E}$: $V = \Phi$ (immediate exercise is optimal)
-
----
-
-## The Free Boundary
-
-### Definition
-
-The **exercise boundary** $S^*(t)$ separates the two regions:
-
-- **American put**: $\mathcal{E} = \{S < S^*(t)\}$
-- **American call (no dividends)**: Never optimal to exercise early ($S^* = \infty$)
-- **American call (with dividends)**: $\mathcal{E} = \{S > S^*(t)\}$
-
-### Smooth Pasting Conditions
-
-At the free boundary $S = S^*(t)$:
-
-$$
-\boxed{
-V(t, S^*(t)) = \Phi(S^*(t)), \quad \frac{\partial V}{\partial S}(t, S^*(t)) = \Phi'(S^*(t))
-}
-$$
-
-For an American put with $\Phi(S) = (K-S)^+$:
-
-$$
-V(t, S^*) = K - S^*, \quad V_S(t, S^*) = -1
-$$
-
-### Early Exercise Premium
-
-$$
-V_{\text{American}} = V_{\text{European}} + \text{Early Exercise Premium}
-$$
-
-The premium is always non-negative and reflects the value of the exercise option.
+satisfies the variational inequality $\min(-\partial_t V - \mathcal{L}V + rV,\; V - \Phi) = 0$ with $\mathcal{L}V = \tfrac12\sigma^2 S^2 V_{SS} + rS V_S$, splitting the domain into a continuation region $\{V>\Phi\}$ (PDE holds) and an exercise region $\{V=\Phi\}$, separated by the free boundary $S^*(t)$ with smooth-pasting $V=\Phi$, $V_S=\Phi'$. The early-exercise premium $V_\text{Am}-V_\text{Eu}\ge 0$ is the value of this right.
 
 ---
 
@@ -106,84 +46,31 @@ $$
 
 ## Linear Complementarity Problem (LCP)
 
-### Formulation
-
-The discrete problem at each time step is:
+Recall (see [§ Linear Complementarity Formulation](linear_complementarity_formulation.md)): after implicit time stepping with $L = I + \Delta\tau A$ and $\mathbf{f} = \mathbf{u}^n$, the time step becomes
 
 $$
-\boxed{
-\begin{aligned}
-& L\mathbf{u} \geq \mathbf{f} \\
-& \mathbf{u} \geq \boldsymbol{\Phi} \\
-& (L\mathbf{u} - \mathbf{f})^T(\mathbf{u} - \boldsymbol{\Phi}) = 0
-\end{aligned}
-}
+L\mathbf{u}\ge\mathbf{f},\quad \mathbf{u}\ge\boldsymbol{\Phi},\quad (L\mathbf{u}-\mathbf{f})^T(\mathbf{u}-\boldsymbol{\Phi})=0,
 $$
 
-where $L = I - \Delta\tau A$ and $\mathbf{f} = \mathbf{u}^n$.
-
-### Interpretation
-
-- Either $u_j > \Phi_j$ (continuation) and the PDE holds: $(L\mathbf{u})_j = f_j$
-- Or $u_j = \Phi_j$ (exercise) and the constraint binds
+with the continuation / exercise dichotomy described there.
 
 ---
 
 ## PSOR Algorithm
 
-The **Projected Successive Over-Relaxation (PSOR)** method solves the LCP efficiently.
-
-### Algorithm
-
-For iteration $k+1$:
-
-$$
-\tilde{u}_j^{(k+1)} = (1-\omega)u_j^{(k)} + \frac{\omega}{l_{jj}}\left(f_j - \sum_{i<j} l_{ji}u_i^{(k+1)} - \sum_{i>j} l_{ji}u_i^{(k)}\right)
-$$
-
-$$
-u_j^{(k+1)} = \max(\tilde{u}_j^{(k+1)}, \Phi_j)
-$$
-
-### Parameters
-
-- $\omega \in (1, 2)$: over-relaxation parameter (typically $\omega \approx 1.2$)
-- Converges when $\|\mathbf{u}^{(k+1)} - \mathbf{u}^{(k)}\| < \epsilon$
-
-### Convergence
-
-- Linear convergence rate
-- Typically 5-20 iterations per time step
-- Total cost: $O(MN \cdot \text{iterations})$
+Recall (see [§ PSOR Algorithm](psor_algorithm.md)): **Projected SOR** solves the LCP by combining an SOR sweep with a componentwise projection $u_j \leftarrow \max(\tilde u_j, \Phi_j)$. With $\omega\in(1,2)$ (often $\omega\approx 1.2$), convergence is linear at typically 5-20 iterations per time step.
 
 ---
 
 ## Penalty Method
 
-### Idea
-
-Replace the hard constraint with a soft penalty:
+Recall (see [§ Penalty Method](penalty_method.md)): replacing the hard constraint by a soft penalty $\rho(V-\Phi)^-$ yields the nonlinear PDE
 
 $$
-\frac{\partial V}{\partial t} + \mathcal{L}V - rV + \rho(V - \Phi)^- = 0
+V_t + \mathcal{L}V - rV + \rho(V-\Phi)^- = 0,
 $$
 
-where $(x)^- = \min(x, 0)$ and $\rho \gg 1$ is the penalty parameter.
-
-### Discrete Form
-
-$$
-(I - \Delta\tau A + \Delta\tau \rho P)\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \rho P\boldsymbol{\Phi}
-$$
-
-where $P$ is a diagonal matrix with $P_{jj} = 1$ if $u_j < \Phi_j$, else $0$.
-
-### Properties
-
-- Smooth formulation (no explicit constraint)
-- Easy to implement with existing solvers
-- Error $\sim O(1/\rho)$ from penalty approximation
-- Typically $\rho = 10^6$ to $10^8$
+with error $O(1/\rho)$ and typical $\rho = 10^6$-$10^8$.
 
 ---
 

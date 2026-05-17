@@ -1,46 +1,30 @@
 # Basic Trading and Hedging Strategies
 
-
 Options trading strategies are built on Greek exposures. Each strategy expresses a specific view on direction, volatility, or time decay.
+
+!!! tip "Toy mechanism: every strategy is one Greek dialled in"
+    The cleanest reading: each named strategy below is just a Taylor expansion with a particular sign pattern. The portfolio P&L is $\delta\Pi \approx \Delta\,\delta S + \tfrac{1}{2}\Gamma(\delta S)^2 + \Theta\,\delta t + \nu\,\delta\sigma$, and a "strategy" is a position chosen to make one of those four terms dominant while zeroing or capping the others. Delta-neutral hedging kills $\Delta$ so the position lives on $\Gamma$ and $\Theta$; a long-vega trade buys $\nu > 0$ while accepting negative $\Theta$; a risk reversal trades the put–call skew. Every payoff diagram in this section is reverse-engineered from this single template — pick which Greek you want exposure to, sign the rest, and the strategy name follows.
 
 ---
 
 ### Delta-neutral hedging
 
 
-Continuously rebalance shares to offset directional moves. This is the foundation of all other strategies.
-
-Key properties:
-
-- Requires frequent adjustment in high-gamma positions.
-- Transaction costs from rebalancing scale with gamma and realized volatility.
-- Perfect only in the continuous-time, zero-cost limit of Black–Scholes.
+Recall (see [§ Delta Hedging](delta_hedging.md)): continuously rebalance shares to offset directional moves; this is the foundation of all other strategies. Rebalancing frequency trades hedging error against transaction costs (see [§ Transaction Costs and Liquidity Effects](../model_risk/transaction_costs_and_liquidity_effects.md)); the hedge is perfect only in the continuous-time, zero-cost limit of Black–Scholes (see [§ BS Delta-Hedging Derivation](../../ch06/bs_pde_derivation/delta_hedging.md)).
 
 ---
 
 ### Gamma-theta tradeoff
 
 
-#### Long gamma (buying options)
-
-Position: buy calls/puts or straddles. Greek profile: $\Gamma > 0$, $\Theta < 0$, $\nu > 0$.
-
-Profit when the underlying makes large moves (realized vol exceeds implied vol). The cost is daily theta bleed when the market is quiet. Best used ahead of anticipated events.
-
-#### Short gamma (selling options)
-
-Position: sell calls/puts or straddles. Greek profile: $\Gamma < 0$, $\Theta > 0$, $\nu < 0$.
-
-Profit when the market stays calm (realized vol below implied vol). Risk: large, sudden moves cause disproportionate losses (concave P&L). Best suited for range-bound markets with elevated implied vol.
+Recall (see [§ Gamma Risk and Convexity Effects](../hedging_errors/gamma_risk_and_convexity_effects.md)): long gamma ($\Gamma>0,\Theta<0,\nu>0$) profits when realized vol exceeds implied; short gamma ($\Gamma<0,\Theta>0,\nu<0$) profits when the market stays calm. Long gamma is best used ahead of anticipated events; short gamma is best for range-bound markets with elevated implied vol.
 
 ---
 
 ### Vega trades
 
 
-**Long vega:** buy options when expecting implied volatility to increase. Common before anticipated volatility events. Theta decay works against you while waiting.
-
-**Short vega:** sell options when expecting implied volatility to decrease. Common after volatility spikes expected to mean-revert. Risk: further vol increases lead to mark-to-market losses.
+**Long vega:** buy options expecting implied vol to rise (typical before vol events); theta decay works against you while waiting. **Short vega:** sell options expecting implied vol to fall (typical after vol spikes). Recall (see [§ Impact of Volatility Misspecification](../hedging_errors/impact_of_volatility_misspecification.md)) for the mark-to-market mechanics.
 
 ---
 

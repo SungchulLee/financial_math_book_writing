@@ -5,42 +5,25 @@ When classical smooth solutions fail (e.g. obstacle problems), **viscosity solut
 
 ---
 
-## Viscosity Solutions (Idea)
+This page is the orientation overview for the folder. The technical content lives in three companion pages:
 
-
-For a PDE $F(t,x,u,Du,D^2u)=0$, viscosity sub/supersolutions are defined via smooth test functions touching from above/below. Comparison principles yield uniqueness.
-
----
-
-## Monotone Schemes
-
-
-A scheme $\mathcal{S}_\Delta$ is monotone if increasing input data cannot decrease the output (discrete comparison). Practically this is tied to nonnegative stencil coefficients and discrete maximum principles.
+- Recall (see [§ Viscosity Solution Framework](viscosity_solution_framework.md)): viscosity sub/supersolutions are defined via smooth test functions touching $u$ from above/below.
+- Recall (see [§ Comparison Principle](comparison_principle.md)): sub-below-super on the parabolic boundary implies sub-below-super everywhere; this gives uniqueness.
+- Recall (see [§ Barles-Souganidis Theorem](barles_souganidis_theorem.md)): monotone + stable + consistent (with a comparison principle) implies convergence to the viscosity solution.
 
 ---
 
-## Consistency + Stability + Monotonicity
+## Monotone Schemes in One Picture
 
-
-A foundational convergence principle (orientation) is that:
+A scheme $\mathcal{S}_\Delta$ is **monotone** if increasing the input data cannot decrease the output. Concretely this is tied to nonnegative stencil coefficients and a discrete maximum principle. The pairing
 
 $$
 \boxed{
-\text{consistent} + \text{stable} + \text{monotone}
-\Longrightarrow
-\text{convergence to the viscosity solution}
+\text{viscosity solution (continuous notion)} \;\longleftrightarrow\; \text{monotone scheme (discrete notion)}
 }
 $$
 
-
-when a comparison principle holds.
-
----
-
-## Application to American Options
-
-
-Obstacle problems require monotone discretizations and constraint enforcement (projection/LCP) to ensure convergence to the correct viscosity solution.
+is what makes American option numerics reliable: the obstacle problem is well-posed only in the viscosity sense, and only monotone discretizations are guaranteed to converge to it.
 
 ---
 

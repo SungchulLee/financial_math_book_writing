@@ -84,7 +84,7 @@ For the CIR process with $\beta = -\kappa$ and $\gamma = \xi^2$, the critical th
 This phenomenon, called **moment explosion**, constrains the use of moment methods for heavy-tailed applications of CIR-type models.
 
 !!! warning "Moment Explosion in the Heston Model"
-    In the Heston stochastic volatility model, moment explosion of the variance process $V_t$ translates into restrictions on the moments of the stock price. Specifically, $\mathbb{E}[S_T^p] < \infty$ only for $p$ in a bounded interval $[p_-, p_+]$ that depends on $\kappa$, $\xi$, $\rho$, and $T$. This has practical consequences for the Lee moment formula, which relates the slope of the implied volatility smile at extreme strikes to the maximal finite moment.
+    Variance-process moment explosion bounds $\mathbb{E}[S_T^p] < \infty$ to $p \in [p_-, p_+]$, with implications for the Lee moment formula. Recall (see [Heston CF](../../ch16/heston_cf/heston_sde_and_affine_recap.md)).
 
 ---
 

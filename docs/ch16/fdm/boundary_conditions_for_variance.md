@@ -19,23 +19,17 @@ The Heston PDE is solved on a bounded domain $[x_{\min}, x_{\max}] \times [0, v_
 
 ### PDE Degeneracy
 
-The Heston PDE in $(x, v)$ coordinates is:
-
-$$
-\frac{\partial V}{\partial t} + \left(r - q - \frac{v}{2}\right)\frac{\partial V}{\partial x} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{v}{2}\frac{\partial^2 V}{\partial x^2} + \frac{\xi^2 v}{2}\frac{\partial^2 V}{\partial v^2} + \rho\xi v\frac{\partial^2 V}{\partial x \partial v} - rV = 0
-$$
-
-At $v = 0$, every term multiplied by $v$ vanishes, leaving the **reduced PDE**:
+Recall (see [§ Two-Dimensional PDE Formulation](two_dimensional_pde_formulation.md)) the Heston PDE in $(x, v)$. At $v = 0$, every term multiplied by $v$ vanishes, leaving the **reduced PDE**:
 
 $$
 \frac{\partial V}{\partial t} + (r - q)\frac{\partial V}{\partial x} + \kappa\theta\frac{\partial V}{\partial v} - rV = 0
 $$
 
-This is a **first-order** PDE in $v$---the diffusion in the variance direction disappears entirely. The drift term $\kappa\theta > 0$ pushes the variance away from zero (when the Feller condition $2\kappa\theta \geq \xi^2$ holds), so information flows **into** the domain from the $v = 0$ boundary.
+This is a **first-order** PDE in $v$---the diffusion in the variance direction disappears entirely. The drift term $\kappa\theta > 0$ pushes the variance away from zero (Feller-driven dynamics; see [§ Feller condition](../model_definition/feller_condition_and_boundary.md)), so information flows **into** the domain from the $v = 0$ boundary.
 
 ### Feller Condition Holds: No Boundary Condition Needed
 
-When $2\kappa\theta \geq \xi^2$, the continuous-time CIR process never reaches zero. The reduced PDE at $v = 0$ is a well-posed first-order equation with an outward-pointing drift ($\kappa\theta > 0$), meaning the characteristics flow from $v = 0$ into the interior. In this case:
+When $2\kappa\theta \geq \xi^2$, the continuous-time CIR process never reaches zero (see [§ CIR variance solution](../variance_dynamics/cir_variance_process_solution.md)). The reduced PDE at $v = 0$ is a well-posed first-order equation with an outward-pointing drift ($\kappa\theta > 0$), meaning the characteristics flow from $v = 0$ into the interior. In this case:
 
 - **No boundary condition is needed** at $v = 0$ in the PDE sense (the problem is well-posed without one)
 - The reduced PDE itself serves as the "boundary condition" by providing the equation that $V$ must satisfy on this edge

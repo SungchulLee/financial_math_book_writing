@@ -18,24 +18,7 @@ The key innovation is that 2BSDEs account for uncertainty in the **quadratic var
 
 ### 1. Classical BSDEs (Review)
 
-
-**Standard BSDE**: A pair $(Y_t, Z_t)$ satisfying:
-
-
-$$
-Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
-$$
-
-
-
-where $g$ is the generator (first-order in $z$).
-
-**Limitation**: Assumes fixed quadratic variation of the Brownian motion:
-
-
-$$
-d\langle W \rangle_t = dt
-$$
+**Recall** (see [§ g-Expectations](g_expectations.md)): a standard BSDE is a pair $(Y_t, Z_t)$ with $Y_t = \xi + \int_t^T g(s, Y_s, Z_s)\,ds - \int_t^T Z_s\,dW_s$, where $g$ is first-order in $z$ and $d\langle W \rangle_t = dt$ is fixed.
 
 
 
@@ -192,40 +175,11 @@ with terminal condition $u(T, x) = \Phi(x)$.
 
 ### 2. Viscosity Solutions
 
-
-**Definition**: A function $u$ is a viscosity solution if it satisfies:
-
-- **Subsolution**: For any smooth test function $\phi$ with $u - \phi$ attaining a local maximum at $(t_0, x_0)$:
-
-  $$
-  \frac{\partial \phi}{\partial t} + F(t, u, D\phi, D^2\phi) \leq 0
-  $$
-
-
-
-- **Supersolution**: For any smooth test function $\phi$ with $u - \phi$ attaining a local minimum at $(t_0, x_0)$:
-
-  $$
-  \frac{\partial \phi}{\partial t} + F(t, u, D\phi, D^2\phi) \geq 0
-  $$
-
-
-
-**Theorem**: The value function $Y_t = u(t, X_t)$ from the 2BSDE is the unique viscosity solution to the associated fully nonlinear PDE.
+**Recall** (see [§ Viscosity Solutions](../../ch06/bs_pde_analytic_solution/viscosity_solutions.md)) for the sub/supersolution test-function definition. The value function $Y_t = u(t, X_t)$ from the 2BSDE is the unique viscosity solution to the associated fully nonlinear PDE.
 
 ### 3. Examples of PDEs
 
-
-**Example 1** (Uncertain Volatility): For volatility $\sigma \in [\underline{\sigma}, \overline{\sigma}]$:
-
-
-$$
-\frac{\partial u}{\partial t} + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} \right\} + rS \frac{\partial u}{\partial S} - ru = 0
-$$
-
-
-
-**Solution**: Use $\sigma = \overline{\sigma}$ where $u_{SS} > 0$, and $\sigma = \underline{\sigma}$ where $u_{SS} < 0$.
+**Example 1** (Uncertain Volatility): The Black-Scholes-Barenblatt equation; **Recall** (see [§ Uncertain Volatility Models](uncertain_volatility_models.md)) for the explicit BSB PDE and the gamma-sign switching rule.
 
 **Example 2** (G-Expectation): For G-Brownian motion with $\langle W \rangle_t \in [\underline{\sigma}^2 t, \overline{\sigma}^2 t]$:
 
@@ -247,119 +201,30 @@ $$
 
 ## G-Brownian Motion and G-Expectations
 
-
-### 1. G-Brownian Motion
-
-
-**Definition**: A process $B_t$ is a **G-Brownian motion** if:
-
-1. $B_0 = 0$
-2. Independent increments (in a generalized sense)
-3. $B_t - B_s \sim N(\{0\} \times [\underline{\sigma}^2(t-s), \overline{\sigma}^2(t-s)])$ (G-normal distribution)
-
-**Quadratic Variation**: For G-Brownian motion:
+**Recall** (see [§ Sublinear Expectations](sublinear_expectations.md) for the full Peng framework): a G-Brownian motion $B_t$ has G-normal increments $B_t - B_s \sim N(\{0\} \times [\underline{\sigma}^2(t-s), \overline{\sigma}^2(t-s)])$ with uncertain quadratic variation $\langle B \rangle_t \in [\underline{\sigma}^2 t, \overline{\sigma}^2 t]$, and the sublinear G-expectation
 
 
 $$
-\langle B \rangle_t \in [\underline{\sigma}^2 t, \overline{\sigma}^2 t]
+\mathbb{E}^G[\xi] = \sup_{P \in \mathcal{P}_G} \mathbb{E}_P[\xi]
 $$
 
 
+is characterized by the generator $G(A) = \tfrac{1}{2}\sup_{\sigma \in \Sigma}\operatorname{tr}[\sigma\sigma^\top A]$.
 
-with exact value unknown (uncertain).
+### Embedding into 2BSDEs
 
-**G-Function**: The mapping:
-
-
-$$
-G: \mathbb{R}^{d \times d} \to \mathbb{R}
-$$
-
-
-
-defined by:
+The G-expectation arises as the value function of the 2BSDE with generator $F(t,y,z,\gamma) = G(\gamma)$:
 
 
 $$
-G(A) = \frac{1}{2} \sup_{\sigma \in \Sigma} \text{tr}[\sigma \sigma^\top A]
-$$
-
-
-
-characterizes the quadratic variation uncertainty.
-
-### 2. G-Expectation
-
-
-**Definition**: The **G-expectation** is defined as:
-
-
-$$
-\mathbb{E}^G[\xi] = Y_0
-$$
-
-
-
-where $Y_t$ solves the 2BSDE:
-
-
-$$
-Y_t = \sup_{P \in \mathcal{P}_G} E_P[\xi | \mathcal{F}_t]
-$$
-
-
-
-and $\mathcal{P}_G$ is the set of measures compatible with the G-Brownian motion.
-
-**Properties**:
-
-1. **Sublinearity**: $\mathbb{E}^G[\xi + \eta] \leq \mathbb{E}^G[\xi] + \mathbb{E}^G[\eta]$
-2. **Positive homogeneity**: $\mathbb{E}^G[\lambda \xi] = \lambda \mathbb{E}^G[\xi]$ for $\lambda \geq 0$
-3. **Monotonicity**: $\xi \geq \eta \implies \mathbb{E}^G[\xi] \geq \mathbb{E}^G[\eta]$
-4. **Constant preserving**: $\mathbb{E}^G[c] = c$
-
-**Representation**: Via the 2BSDE with generator:
-
-
-$$
-F(t, y, z, \gamma) = G(\gamma)
+Y_t = \sup_{P \in \mathcal{P}_G} \mathbb{E}_P[\xi | \mathcal{F}_t], \qquad \mathbb{E}^G[\xi] = Y_0.
 $$
 
 
 
 ### 3. Peng's G-Framework
 
-
-**G-Itô Formula**: For $f \in C^{1,2}$ and G-Brownian motion $B_t$:
-
-
-$$
-df(t, B_t) = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dB_t + G\left(\frac{\partial^2 f}{\partial x^2}\right) d\langle B \rangle_t
-$$
-
-
-
-where $\langle B \rangle_t$ is the G-quadratic variation.
-
-**G-Martingale**: A process $M_t$ is a G-martingale if:
-
-
-$$
-\mathbb{E}^G[M_t | \mathcal{F}_s] = M_s \quad \text{for } s \leq t
-$$
-
-
-
-**Theorem**: Every G-martingale can be represented as:
-
-
-$$
-M_t = M_0 + \int_0^t Z_s \, dB_s
-$$
-
-
-
-for some adapted process $Z_t$.
+**Recall** (see [§ Sublinear Expectations](sublinear_expectations.md)) for the G-Itô formula $df(t,B_t) = \partial_t f\,dt + \partial_x f\,dB_t + \tfrac{1}{2}\partial_{xx}f\,d\langle B \rangle_t$, the definition of G-martingales, and the martingale representation $M_t = M_0 + \int_0^t Z_s\,dB_s$.
 
 ## Robust Pricing and Hedging
 
@@ -792,37 +657,11 @@ satisfies a 2BSDE.
 
 ### 3. Robust CVA
 
-
-**Credit Valuation Adjustment**: Accounting for counterparty default risk under model uncertainty.
-
-**2BSDE Framework**: CVA satisfies:
-
-
-$$
-\text{CVA}_t = \sup_{P \in \mathcal{P}} E_P\left[\int_t^T e^{-\int_t^s r_u du} dL_s \bigg| \mathcal{F}_t\right]
-$$
-
-
-
-where $L_t$ is the loss process.
-
-**Uncertainty**: In default intensity, recovery rate, and correlation.
+**Recall** (see [§ XVA as Semilinear PDE](../../ch22/valuation_adjustments_xva/xva_as_semilinear_pde.md)) for the standard CVA/XVA semilinear-PDE framework. Under model uncertainty, CVA is lifted to the 2BSDE $\text{CVA}_t = \sup_{P \in \mathcal{P}} E_P[\int_t^T e^{-\int_t^s r_u du}\,dL_s \mid \mathcal{F}_t]$, with uncertainty in default intensity, recovery, and correlation.
 
 ### 4. Dynamic Risk Measures
 
-
-**Time-Consistent Risk**: For dynamic coherent risk measure $\rho_t$:
-
-
-$$
-\rho_t(X) = Y_t
-$$
-
-
-
-where $Y_t$ solves a 2BSDE with appropriate generator.
-
-**Regulatory Capital**: Basel III and Solvency II requirements can be formulated using 2BSDEs with volatility uncertainty.
+**Recall** (see [§ Dynamic Risk Measures](../../ch22/dynamic_risk_measures/time_consistency.md)) for the time-consistent / dynamic coherent risk measure framework. Replacing the BSDE generator with a 2BSDE generator yields $\rho_t(X) = Y_t$ robust to volatility uncertainty, suitable for Basel III / Solvency II model-risk capital.
 
 ## Connections to Other Theories
 

@@ -2,7 +2,7 @@
 
 ### 1. Concept Definition
 
-Having constructed the Itô integral $\int_0^t H_s\, dB_s$ for adapted square-integrable processes, we now establish its fundamental properties. These properties—**linearity**, **martingale structure**, **path continuity**, and **quadratic variation**—form the foundation for stochastic calculus and distinguish the Itô integral from classical integration.
+The left-endpoint sampling rule $\sum H_{t_k}(B_{t_{k+1}}-B_{t_k})$ is more than a technical choice -- it freezes $H_{t_k}$ before the increment $\Delta B$ arrives, making each summand a fair conditional bet. From this single feature, four properties of $I_t = \int_0^t H_s\,dB_s$ follow automatically: the sum of fair bets is a martingale (zero mean, conditional expectation preserved), the variance bookkeeping collapses to the **Itô isometry**, the $L^2$-Cauchy structure used in construction gives continuous sample paths, and quadratic variation reduces to $\int_0^t H_s^2\,ds$. These four facts are what make the Itô integral a usable object of calculus.
 
 The four core properties are summarized below. Let $I_t := \int_0^t H_s\, dB_s$ throughout.
 
@@ -36,29 +36,7 @@ $$
 
 **Theorem.** Let $H \in \mathcal{L}^2([0,T])$. Then $I_t = \int_0^t H_s\,dB_s$ is a **continuous square-integrable martingale** with respect to $\{\mathcal{F}_t\}$.
 
-**Proof.** We verify the three conditions.
-
-**Adaptedness.** $I_t$ is the $L^2$-limit of $\mathcal{F}_t$-measurable random variables, hence $\mathcal{F}_t$-measurable.
-
-**Integrability.** By the Itô isometry:
-
-$$
-\mathbb{E}[I_t^2]
-= \mathbb{E}\!\left[\int_0^t H_s^2\, ds\right]
-\le \mathbb{E}\!\left[\int_0^T H_s^2\, ds\right]
-< \infty
-$$
-
-So $\mathbb{E}[|I_t|] \le \sqrt{\mathbb{E}[I_t^2]} < \infty$.
-
-**Martingale condition.** For simple processes, $\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s$ was verified directly in the construction using the independence and mean-zero property of future Brownian increments. For general $H \in \mathcal{L}^2([0,T])$, approximate by simple processes $H^{(n)} \to H$. Since conditional expectation is $L^2$-continuous:
-
-$$
-\mathbb{E}[I_t \mid \mathcal{F}_s]
-= \lim_{n \to \infty} \mathbb{E}[I_t^{(n)} \mid \mathcal{F}_s]
-= \lim_{n \to \infty} I_s^{(n)}
-= I_s \quad \square
-$$
+Recall (see [§ Construction of the Itô Integral](ito_integral_construction.md)): the martingale identity $\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s$ is verified directly for simple processes using independence and mean-zero of future Brownian increments, then extended to general $H \in \mathcal{L}^2([0,T])$ by the $L^2$-continuity of conditional expectation applied to an approximating sequence $H^{(n)} \to H$. Adaptedness follows because $I_t$ is the $L^2$-limit of $\mathcal{F}_t$-measurable random variables, and square-integrability follows from the Itô isometry: $\mathbb{E}[I_t^2] \le \mathbb{E}[\int_0^T H_s^2\,ds] < \infty$.
 
 **Corollary (Zero mean).** $\mathbb{E}[I_t] = \mathbb{E}[I_0] = 0$ for all $t$.
 
@@ -97,21 +75,7 @@ $$
 }
 $$
 
-**Proof (heuristic).** Consider a partition $\pi: 0 = t_0 < t_1 < \cdots < t_n = t$. Each increment is:
-
-$$
-I_{t_{i+1}} - I_{t_i} = \int_{t_i}^{t_{i+1}} H_s\, dB_s \approx H_{t_i}(B_{t_{i+1}} - B_{t_i})
-$$
-
-for small intervals where $H_s \approx H_{t_i}$. Therefore:
-
-$$
-\sum_{i} (I_{t_{i+1}} - I_{t_i})^2
-\approx \sum_{i} H_{t_i}^2 (B_{t_{i+1}} - B_{t_i})^2
-\to \int_0^t H_s^2\,ds
-$$
-
-where the last step uses the quadratic variation of Brownian motion: $\sum_i (\Delta B_i)^2 \to t$. The convergence holds in probability. $\square$
+Recall (see [§ Quadratic Variation](quadratic_variation.md)): the identity is the canonical Itô-integral quadratic-variation formula. Its proof reduces partition sums $\sum_i (I_{t_{i+1}} - I_{t_i})^2 \approx \sum_i H_{t_i}^2 (\Delta B_i)^2$ to $\int_0^t H_s^2\,ds$ via $(\Delta B)^2 \sim \Delta t$.
 
 **Corollary.** The process $M_t := I_t^2 - \int_0^t H_s^2\,ds$ is a martingale. This follows from the Doob-Meyer decomposition: $I_t^2$ is a submartingale with compensator $\int_0^t H_s^2\,ds$.
 
@@ -130,14 +94,14 @@ $$
 
 Since $\mathbb{E}[I_t] = 0$, the left side equals $\operatorname{Var}(I_t)$, so the isometry is a **variance formula**.
 
-**Generalization (polarization).** For two processes $H, K \in \mathcal{L}^2([0,T])$:
+Recall (see [§ Itô Isometry](ito_isometry.md)): the isometry is the Hilbert-space identity that makes the $L^2$-extension of the integral well-defined. The polarized form
 
 $$
 \mathbb{E}\!\left[\int_0^t H_s\, dB_s \cdot \int_0^t K_s\, dB_s\right]
 = \mathbb{E}\!\left[\int_0^t H_s K_s\, ds\right]
 $$
 
-This follows by polarization: $\langle H, K \rangle_{L^2} = \tfrac{1}{4}(\|H+K\|^2 - \|H-K\|^2)$.
+follows from $\langle H, K \rangle_{L^2} = \tfrac{1}{4}(\|H+K\|^2 - \|H-K\|^2)$.
 
 ---
 
@@ -199,7 +163,7 @@ $$
 I_t = \int_0^t B_s\, dB_s = \frac{B_t^2 - t}{2}
 $$
 
-(from Itô's formula applied to $f(x) = x^2/2$).
+Recall (see [§ Itô's Lemma](../ito_lemma/ito_lemma.md)): this closed form follows by applying Itô's formula to $f(x) = x^2/2$.
 
 **Martingale**: $\frac{B_t^2 - t}{2}$ is indeed a martingale since $B_t^2 - t$ is the well-known martingale. ✓
 

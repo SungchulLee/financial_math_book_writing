@@ -15,11 +15,9 @@ $$
 
 ## Setup
 
-For the diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ with generator:
+Recall (see [§ Generator of a Diffusion Process](infinitesimal_generator.md#generator-of-a-diffusion-process)): for the diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator is $\mathcal{L}f = \mu f' + \tfrac{\sigma^2}{2}f''$.
 
-$$\mathcal{L}f = \mu f' + \frac{\sigma^2}{2}f''$$
-
-and stopping time $\tau$ with $\mathbb{E}_x[\tau] < \infty$.
+We fix a stopping time $\tau$ with $\mathbb{E}_x[\tau] < \infty$.
 
 !!! warning "Integrability Condition"
     Requires $\mathbb{E}_x\left[\int_0^\tau |(\mathcal{L}f)(X_s)|\,ds\right] < \infty$.
@@ -59,11 +57,7 @@ and stopping time $\tau$ with $\mathbb{E}_x[\tau] < \infty$.
 
 ## The Dynkin Martingale
 
-$$M_t := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds$$
-
-is a local martingale. Dynkin's formula follows from optional stopping: $\mathbb{E}_x[M_\tau] = 0$.
-
-See [Generator and Martingales](generator_and_martingales.md) for the full development.
+Recall (see [§ The Dynkin Martingale](generator_and_martingales.md#the-dynkin-martingale)): the martingale term $M_t$ in the decomposition is precisely the Itô integral $\int_0^t f'(X_s)\sigma(X_s)\,dW_s$. Dynkin's formula then follows from optional stopping applied to $M_t$.
 
 ---
 
@@ -99,7 +93,7 @@ $$\mathbb{E}_x[X_\tau^2] = x^2 + \mathbb{E}_x[\tau]$$
 
 $$\mathcal{L}f = \frac{1}{2}f'' = \frac{1}{2}(-2) = -1 \checkmark$$
 
-**Step 1 — Exit probabilities.** Since BM is a martingale, $\mathbb{E}_x[X_\tau] = x$ by optional stopping. The process exits only at $a$ or $b$:
+**Step 1 — Exit probabilities.** Recall (see [§ Hitting b Before a (Brownian Motion)](applications_of_dynkin.md#hitting-b-before-a-brownian-motion)):
 
 $$\mathbb{P}_x(X_\tau = b) = \frac{x-a}{b-a}, \qquad \mathbb{P}_x(X_\tau = a) = \frac{b-x}{b-a}$$
 
@@ -187,15 +181,11 @@ For a systematic treatment, see [Applications of Dynkin](applications_of_dynkin.
 
 $$\boxed{\text{Dynkin} = \mathbb{E}[\text{Itô}]}$$
 
-**Itô's formula** (pathwise): for $f \in C^2$:
+Recall (see [§ The Fundamental Decomposition](infinitesimal_generator.md#the-fundamental-decomposition)): Itô's formula gives the pathwise identity
 
-$$f(X_t) = f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds + \underbrace{\int_0^t f'(X_s)\sigma(X_s)\,dW_s}_{\text{martingale, zero mean}}$$
+$$f(X_t) = f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds + M_t$$
 
-**Taking expectations** — the Itô integral vanishes:
-
-$$\mathbb{E}_x[f(X_t)] = f(x) + \mathbb{E}_x\left[\int_0^t (\mathcal{L}f)(X_s)\,ds\right]$$
-
-This *is* Dynkin's formula. The stochastic integral disappears because it has zero mean.
+where $M_t$ is a martingale. Taking expectations kills $M_t$ and Dynkin's formula falls out.
 
 ### What Each Formula Sees
 
@@ -441,13 +431,7 @@ What are the harmonic functions for BM, and how does this result relate to the e
 (b) Give an example of a process (e.g., a jump process or weak solution) for which Dynkin's formula applies but Ito's pathwise formula does not. Explain why the stochastic integral term is not needed at the Dynkin level.
 
 ??? success "Solution to Exercise 7"
-    **(a)** By Ito's lemma for $f(X_t)$ where $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$:
-
-    $$
-    f(X_t) = f(X_0) + \int_0^t \!\left[\mu(X_s)f'(X_s) + \frac{1}{2}\sigma^2(X_s)f''(X_s)\right]ds + \int_0^t f'(X_s)\sigma(X_s)\,dW_s
-    $$
-
-    Recognizing $\mathcal{L}f = \mu f' + \frac{\sigma^2}{2}f''$:
+    **(a)** Recall (see [§ The Fundamental Decomposition](infinitesimal_generator.md#the-fundamental-decomposition)): Itô's lemma applied to $f(X_t)$ yields
 
     $$
     f(X_t) = f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds + \int_0^t f'(X_s)\sigma(X_s)\,dW_s

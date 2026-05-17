@@ -1,6 +1,6 @@
 # SVI Parameterization for Volatility Surfaces
 
-The **Stochastic Volatility Inspired (SVI)** parameterization is an industry-standard method for fitting implied volatility smiles. It provides a parsimonious, arbitrage-aware representation that serves as input for local volatility calibration and exotic pricing.
+The **Stochastic Volatility Inspired (SVI)** parameterization is an industry-standard method for fitting implied volatility smiles (Recall (see [§ Implied volatility surface](../../ch12/implied_volatility_surface/empirical_smile_spx.md)); for static vanilla-fit context Recall (see [§ Static calibration to vanilla options](../static_calibration_to_vanilla_options/calibration_to_implied_volatility_surface.md))). It provides a parsimonious, arbitrage-aware representation that serves as input for local volatility calibration and exotic pricing.
 
 ---
 
@@ -186,7 +186,7 @@ For SSVI, calibrate across all maturities simultaneously:
 
 ## From SVI to local volatility
 
-Once an arbitrage-free implied variance surface $w(k, T)$ is obtained, Dupire's formula yields local variance:
+Once an arbitrage-free implied variance surface $w(k, T)$ is obtained, Dupire's formula (Recall (see [§ Dupire formula derivation](../../ch13/local_volatility_framework/dupire_formula_derivation.md))) yields local variance:
 
 $$
 \sigma_{\text{loc}}^2(K, T) = \frac{\partial_T w}{1 - \frac{k}{w} \partial_k w + \frac{1}{4}\left( -\frac{1}{4} - \frac{1}{w} + \frac{k^2}{w^2} \right)(\partial_k w)^2 + \frac{1}{2} \partial_{kk} w}

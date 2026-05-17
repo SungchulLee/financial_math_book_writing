@@ -1,6 +1,6 @@
 # Penalty Method
 
-The **penalty method** replaces the hard early exercise constraint of the American option problem with a smooth penalty term. Instead of solving a linear complementarity problem directly, one solves a nonlinear PDE that approximates the free boundary problem with controllable accuracy. This approach is attractive for its simplicity and compatibility with standard PDE solvers.
+Solving the hard early-exercise constraint $V\ge\Phi$ exactly forces an LCP at every time step. The **penalty method** instead glues the constraint into the PDE: add a term $\rho(V-\Phi)^-$ that switches on only when $V$ dips below $\Phi$, pushing $V$ back up with force proportional to $\rho$. As $\rho\to\infty$ the penalty becomes infinitely stiff and the solution converges to the true American price. The payoff is a smooth nonlinear PDE solvable by standard methods -- no LCP solver required.
 
 ---
 
@@ -8,13 +8,7 @@ The **penalty method** replaces the hard early exercise constraint of the Americ
 
 ### From Complementarity to Penalization
 
-Recall the American option variational inequality in complementarity form:
-
-$$
-\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV\right) \geq 0, \quad V \geq \Phi, \quad \left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV\right)(V - \Phi) = 0
-$$
-
-The penalty method relaxes the hard constraint $V \geq \Phi$ by adding a **penalty term** that penalizes violations:
+Recall (see [§ LCP — From Variational Inequality to Complementarity](linear_complementarity_formulation.md)): the American option satisfies $(-\partial_t V - \mathcal{L}V + rV)\ge 0$, $V\ge\Phi$, with product zero. The penalty method relaxes the hard constraint $V \geq \Phi$ by adding a **penalty term** that penalizes violations:
 
 $$
 \boxed{

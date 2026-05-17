@@ -21,23 +21,9 @@ The Lewis (2001) formula provides the most elegant Fourier pricing representatio
 
 ## The Strip of Analyticity
 
-The characteristic function $\phi_T(z) = \mathbb{E}[e^{iz\ln S_T}]$ is defined for real $z$, but it extends to the complex plane in a strip $\{z \in \mathbb{C} : \text{Im}(z) \in (\underline{p}, \bar{p})\}$ where the expectation converges. The strip boundaries are determined by the exponential moments:
+Recall (see [§ From Characteristic Function to Density](../cos_method/characteristic_function_to_density.md)) that $\phi_T(z) = \mathbb{E}[e^{iz\ln S_T}]$ extends to a complex strip $\{z : \text{Im}(z) \in (\underline{p}, \bar{p})\}$ determined by exponential moments $\mathbb{E}[S_T^p] = \phi_T(-ip) < \infty \Leftrightarrow p \in (\underline{p}, \bar{p})$.
 
-$$
-\mathbb{E}[S_T^p] = \phi_T(-ip) < \infty \quad \Leftrightarrow \quad p \in (\underline{p}, \bar{p})
-$$
-
-For the call price to be well-defined, we need $\mathbb{E}[S_T] < \infty$, which requires $1 \in (\underline{p}, \bar{p})$. The Lewis formula integrates along $\text{Im}(z) = 1/2$, which lies inside this strip for any model where $\mathbb{E}[S_T^{1/2}] < \infty$ and $\mathbb{E}[S_T] < \infty$.
-
-!!! note "Definition: Strip of Analyticity"
-    The **strip of analyticity** of $\phi_T$ is the maximal open strip $\mathcal{S} = \{z \in \mathbb{C} : \text{Im}(z) \in (\underline{p}, \bar{p})\}$ where $\phi_T(z)$ is analytic. For the Lewis formula, we require $1/2 \in (\underline{p}, \bar{p})$, i.e., the critical line lies inside the strip.
-
-| Model | Strip $(\underline{p}, \bar{p})$ | Critical line $\text{Im}(z) = 1/2$ inside? |
-|---|---|---|
-| Black--Scholes | $(-\infty, \infty)$ | Always |
-| Heston | $(\underline{p}, \bar{p})$ depends on parameters | Yes for typical parameters |
-| Variance Gamma | $(-M/\sigma, G/\sigma)$ | Yes when $M > \sigma/2$ |
-| CGMY | $(-M, G)$ | Yes when $M > 1/2$ |
+For the Lewis formula we require $1/2 \in (\underline{p}, \bar{p})$, i.e., the critical line $\text{Im}(z) = 1/2$ lies inside the strip. Since $\mathbb{E}[S_T] < \infty$ is required for the call to be well-defined, Jensen gives $\mathbb{E}[S_T^{1/2}] < \infty$ automatically, so the critical line lies in the strip for any standard model. Model-specific strip data: BS (see [§ Fourier Transform of BS](../../ch06/bs_pde_analytic_solution/fourier_transform.md)), Heston (see [§ Heston Characteristic Function](../../ch16/heston_cf/closed_form_characteristic_function.md)), VG/CGMY (see [§ Beyond Heston](../beyond_heston/cos_for_interest_rate_models.md)).
 
 ---
 
@@ -146,9 +132,7 @@ $$
 !!! example "Lewis Pricing: Black--Scholes"
     Parameters: $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.20$, $T = 1$.
 
-    Characteristic function: $\phi_T(u) = \exp(i(r - \sigma^2/2)Tu - \sigma^2 Tu^2/2)$.
-
-    At $u - i/2$: $\phi_T(u - i/2) = \exp(i(r-\sigma^2/2)T(u - i/2) - \sigma^2 T(u-i/2)^2/2)$.
+    Recall (see [§ Fourier Transform of BS](../../ch06/bs_pde_analytic_solution/fourier_transform.md)) the BS characteristic function $\phi_T(u) = \exp(i(r - \sigma^2/2)Tu - \sigma^2 Tu^2/2)$; substitute $u \to u-i/2$ to obtain the Lewis integrand.
 
     The Lewis integral with $M = 64$ Gauss--Legendre points on $[0, 50]$:
 

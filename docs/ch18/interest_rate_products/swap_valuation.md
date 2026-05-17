@@ -3,23 +3,21 @@
 !!! tip "Key Idea"
     A swap is a portfolio of forward rate agreements. Its value is the difference between the present values of its fixed and floating legs. The swap rate is determined by no-arbitrage, not by forecasting future rates.
 
-An interest rate swap exchanges a sequence of fixed payments for a sequence of floating payments. To determine its value, we compute the present value of each leg separately and take their difference.
+All interest rate derivatives are ultimately priced using discount factors. Forward rates, swaps, and swaptions are simply different ways of organizing these discounted cash flows. An interest rate swap exchanges a sequence of fixed payments for a sequence of floating payments. To determine its value, we compute the present value of each leg separately and take their difference.
+
+Recall (see [§ Interest Rate Swap](interest_rate_swap.md)): the payer IRS admits the closed forms
+
+$$
+{\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K) = N A_{m,n}(t)(S_{m,n}(t) - K) = N(P(t,T_m) - P(t,T_n)) - N K A_{m,n}(t)
+$$
+
+The leg-by-leg derivation below recovers the second of these identities.
 
 ---
 
 ## Structure of a Swap
 
-Consider a plain vanilla interest rate swap with:
-
-- Notional: $N$
-- Fixed rate: $K$
-- Payment dates: $T_1, T_2, \dots, T_n$
-- Year fractions: $\tau_i = T_i - T_{i-1}$
-
-The two legs are:
-
-- **Fixed leg:** pays $N K \tau_i$ at each $T_i$
-- **Floating leg:** pays $N l(T_{i-1}, T_i) \tau_i$, where $l$ is the reference rate (simply compounded forward rate)
+Recall (see [§ Interest Rate Swap](interest_rate_swap.md)): the swap has notional $N$, fixed rate $K$, payment dates $T_1, \dots, T_n$ with year fractions $\tau_i$. The fixed leg pays $NK\tau_i$ at each $T_i$; the floating leg pays $NL(T_{i-1}, T_{i-1}, T_i)\tau_i$.
 
 ---
 
@@ -55,8 +53,7 @@ $$
 \text{PV}_{\text{floating}} = N \bigl(1 - P(0, T_n)\bigr)
 $$
 
-**Interpretation:**  
-The floating leg is equivalent to holding a floating-rate note, which always resets to par. Its value is therefore close to the notional, adjusted for the final discount factor.
+**Interpretation.** Recall (see [§ Coupon-Bearing Bond and Floating-Rate Note](coupon_bond_and_frn.md)): an FRN with notional repayment is worth par at each reset. The floating leg equals the FRN minus the present value of the terminal principal, $N \cdot P(0, T_n)$, yielding the formula above.
 
 ---
 
@@ -101,19 +98,13 @@ $$
 
 ## Connection to FRA
 
-A swap can be decomposed into a portfolio of forward rate agreements:
-
-$$
-\text{Swap} = \sum \text{FRA}_i
-$$
-
-Each payment period corresponds to one forward rate contract. This decomposition explains why swap valuation depends on forward rates derived from the yield curve.
+Recall (see [§ Forward Rate Agreement](forward_rate_agreement.md) and [§ Interest Rate Swap](interest_rate_swap.md)): a swap decomposes into a strip of FRAs, $\text{Swap} = \sum_k \text{FRA}_k$. Each payment period corresponds to one forward rate contract, which is why swap valuation depends on forward rates derived from the yield curve.
 
 ---
 
 ## Bridge to Options
 
-The swap value depends on the future evolution of interest rates through discount factors and forward rates. If we introduce optionality — the right but not the obligation to enter a swap — we obtain a **swaption**.
+The swap value depends on the future evolution of interest rates through discount factors and forward rates. If we introduce optionality — the right but not the obligation to enter a swap — we obtain a **swaption** (see [§ From Swaps to Swaptions](bridge_to_swaptions.md)).
 
 This transition from deterministic cash flow valuation to optionality mirrors the transition from forwards to options studied earlier.
 
@@ -179,7 +170,7 @@ This transition from deterministic cash flow valuation to optionality mirrors th
 **Exercise 3.** Explain why the floating leg of a swap with notional $N$ has present value $N(1 - P(0, T_n))$. Start from the fact that a floating-rate note that resets at each payment date is worth par immediately after a reset.
 
 ??? success "Solution to Exercise 3"
-    A floating-rate note (FRN) pays $N L(T_{i-1}, T_i) \tau_i$ at each $T_i$ plus the notional $N$ at $T_n$. Immediately after each coupon reset, the FRN reprices to par because its future coupons will reset to the prevailing market rate. Therefore at $t = 0$, a FRN paying coupons plus notional is worth $N$.
+    A floating-rate note (FRN) pays $N L(T_{i-1}, T_{i-1}, T_i) \tau_i$ at each $T_i$ plus the notional $N$ at $T_n$. Immediately after each coupon reset, the FRN reprices to par because its future coupons will reset to the prevailing market rate. Therefore at $t = 0$, a FRN paying coupons plus notional is worth $N$.
 
     The floating leg of the swap pays only the coupons, not the final notional. Its value is therefore the value of the full FRN minus the present value of the notional repayment:
 
@@ -209,3 +200,69 @@ This transition from deterministic cash flow valuation to optionality mirrors th
     $$
 
     This is analogous to holding a forward contract that is in- or out-of-the-money relative to the current forward price.
+
+---
+
+**Exercise 5.** A 5-year payer swap with semi-annual payments has notional $N = 10{,}000{,}000$ and fixed rate $K = 3\%$. The annuity factor is $A = 4.55$ and the par swap rate is $S = 3.4\%$. Use the identity $V_{\text{payer}} = N A (S - K)$ to compute the mark-to-market value. Then verify your answer by computing $V = N(1 - P(0, T_n)) - N K A$, assuming $P(0, T_n) = 0.845$.
+
+??? success "Solution to Exercise 5"
+
+    Using the compact identity:
+
+    $$
+    V_{\text{payer}} = N A (S - K) = 10{,}000{,}000 \times 4.55 \times (0.034 - 0.030) = 10{,}000{,}000 \times 4.55 \times 0.004 = 182{,}000
+    $$
+
+    Verifying with the leg-by-leg form, $V = N(1 - P(0,T_n)) - N K A$:
+
+    $$
+    N(1 - P(0, T_n)) = 10{,}000{,}000 \times (1 - 0.845) = 1{,}550{,}000
+    $$
+
+    $$
+    N K A = 10{,}000{,}000 \times 0.03 \times 4.55 = 1{,}365{,}000
+    $$
+
+    $$
+    V_{\text{payer}} = 1{,}550{,}000 - 1{,}365{,}000 = 185{,}000
+    $$
+
+    The two methods give $\$182{,}000$ vs $\$185{,}000$; the small discrepancy reflects rounding in the given annuity factor and terminal discount factor (the two are not exactly consistent with the stated par rate). In practice both identities hold exactly because $S = (1 - P(0,T_n))/A$ by definition.
+
+---
+
+**Exercise 6.** Show that the par swap rate $K^* = (1 - P(0,T_n))/A$ is a weighted average of forward rates. Using $L_1 = 2.5\%$, $L_2 = 3.0\%$, $L_3 = 3.5\%$ for three annual periods, compute the par swap rate two ways: (i) bootstrap discount factors then apply $K^* = (1-P(0,T_3))/A$; (ii) use the weighted-average representation $S_{m,n}(t) = \sum_k \omega_k(t) L_k$ from [§ Interest Rate Swap](interest_rate_swap.md). Verify the two answers agree.
+
+??? success "Solution to Exercise 6"
+
+    **Bootstrap discount factors.** With annual tenor $\tau_k = 1$ and $P(0,0) = 1$:
+
+    $$
+    P(0,1) = \frac{1}{1.025} = 0.97561, \quad P(0,2) = \frac{0.97561}{1.030} = 0.94720, \quad P(0,3) = \frac{0.94720}{1.035} = 0.91516
+    $$
+
+    **Method (i): direct formula.**
+
+    $$
+    A = P(0,1) + P(0,2) + P(0,3) = 0.97561 + 0.94720 + 0.91516 = 2.83797
+    $$
+
+    $$
+    K^* = \frac{1 - P(0,3)}{A} = \frac{1 - 0.91516}{2.83797} = \frac{0.08484}{2.83797} = 0.02990
+    $$
+
+    So $K^* \approx 2.990\%$.
+
+    **Method (ii): weighted average of forward rates.** The weights are $\omega_k = \tau_k P(0, T_k)/A$:
+
+    $$
+    \omega_1 = \frac{0.97561}{2.83797} = 0.34378, \quad \omega_2 = \frac{0.94720}{2.83797} = 0.33377, \quad \omega_3 = \frac{0.91516}{2.83797} = 0.32247
+    $$
+
+    Note $\sum_k \omega_k = 1.00002 \approx 1$ (rounding).
+
+    $$
+    S = 0.34378 \times 0.025 + 0.33377 \times 0.030 + 0.32247 \times 0.035 = 0.008594 + 0.010013 + 0.011286 = 0.02989
+    $$
+
+    Both methods give $K^* \approx 2.99\%$, confirming the par swap rate is a weighted average of forward rates with weights proportional to the present value of a basis point at each payment date.

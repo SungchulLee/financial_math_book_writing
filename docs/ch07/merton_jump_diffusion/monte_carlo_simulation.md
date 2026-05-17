@@ -16,13 +16,7 @@ The Merton series formula provides exact (up to truncation) European option pric
 
 ### The Key Insight
 
-The explicit solution of the Merton SDE is:
-
-$$
-S_T = S_0 \exp\!\left[\left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)T + \sigma W_T\right]\prod_{i=1}^{N_T}Y_i
-$$
-
-Since $W_T$, $N_T$, and $\{Y_i\}$ are independent, we can simulate each component separately without any time discretization. This produces exact samples from the terminal distribution $S_T$.
+Recall (see [Jump-Diffusion SDE § Solution of the SDE](jump_diffusion_sde.md#solution-of-the-sde)): $S_T = S_0 \exp[(r - \lambda\bar{k} - \tfrac{1}{2}\sigma^2)T + \sigma W_T]\prod_{i=1}^{N_T}Y_i$. Since $W_T$, $N_T$, and $\{Y_i\}$ are independent, each component can be simulated separately without time discretization, producing exact samples from $S_T$.
 
 ### Algorithm
 

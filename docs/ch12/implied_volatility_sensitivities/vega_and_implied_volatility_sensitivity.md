@@ -33,53 +33,7 @@ $$
 ### 2. Black-Scholes Vega
 
 
-In the Black-Scholes model, vega has a closed-form expression:
-
-$$
-\mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}
-$$
-
-
-where $\phi(\cdot)$ is the standard normal density and:
-
-$$
-d_1 = \frac{\ln(S_0/K) + (r - q + \sigma^2/2)T}{\sigma\sqrt{T}}
-$$
-
-
-**Key properties:**
-
-- **Positive for all options:** Both calls and puts have $\mathcal{V} > 0$
-- **Symmetric in $d_1$:** Since $\phi(-x) = \phi(x)$, vega depends on $|d_1|$
-- **Maximum at ATM:** Vega is largest when $d_1 \approx 0$ (at-the-money forward)
-
-**Equivalently:**
-
-$$
-\mathcal{V}_{\text{BS}} = K e^{-rT} \phi(d_2) \sqrt{T}
-$$
-
-
-where $d_2 = d_1 - \sigma\sqrt{T}$.
-
-### 3. Vega as Dual Delta
-
-
-There is a remarkable duality between vega and delta:
-
-$$
-\mathcal{V} = S_0 \sqrt{T} \cdot \frac{\partial C}{\partial d_1} \cdot \frac{\partial d_1}{\partial \sigma}
-$$
-
-
-Using the Black-Scholes formula:
-
-$$
-\frac{\partial C}{\partial d_1} = S_0 e^{-qT} \phi(d_1)
-$$
-
-
-This shows that vega can be interpreted as the "delta with respect to $d_1$" scaled appropriately.
+Recall (see [§ Greeks in Black-Scholes](../../ch10/greeks/greeks_in_black_scholes_model.md)): the closed-form BS vega is $\mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T} = K e^{-rT} \phi(d_2)\sqrt{T}$, with $d_1, d_2$ the standard BS quantities. It is positive for both calls and puts, symmetric in $d_1$ (since $\phi(-x)=\phi(x)$), and maximized when $d_1\approx 0$.
 
 ## Dependence on Strike and Maturity
 
@@ -557,67 +511,7 @@ $$
 ## Vega Hedging in Practice
 
 
-### 1. Single-Instrument Vega Hedges
-
-
-**Objective:** Neutralize vega exposure using a liquid hedging instrument.
-
-**Approach:**
-
-1. Compute portfolio vega: $\mathcal{V}_{\text{portfolio}}$
-2. Select hedging instrument with vega $\mathcal{V}_{\text{hedge}}$
-3. Trade $n = -\mathcal{V}_{\text{portfolio}} / \mathcal{V}_{\text{hedge}}$ units
-
-**Limitation:** Hedge ratio assumes parallel volatility moves. If the portfolio and hedge have different strike/maturity profiles, the hedge is imperfect.
-
-### 2. Vega-Weighted Hedging
-
-
-When hedging across different maturities, use **time-weighted vega**:
-
-$$
-\mathcal{V}_{\sqrt{T}} = \mathcal{V} / \sqrt{T}
-$$
-
-
-This normalizes for the $\sqrt{T}$ dependence:
-
-$$
-\text{Hedge ratio} = -\frac{\mathcal{V}_{\text{portfolio}} / \sqrt{T_{\text{portfolio}}}}{\mathcal{V}_{\text{hedge}} / \sqrt{T_{\text{hedge}}}}
-$$
-
-
-### 3. Multi-Instrument Hedging
-
-
-For complex portfolios, hedge using multiple instruments:
-
-**Objective:** Find hedge ratios $n_1, n_2, \ldots$ such that:
-
-$$
-\mathcal{V}_{\text{portfolio}} + \sum_j n_j \mathcal{V}_j^{(\text{hedge})} = 0
-$$
-
-
-**Extended objective (term structure):**
-
-$$
-\mathcal{V}_{\text{portfolio}}(T_k) + \sum_j n_j \mathcal{V}_j^{(\text{hedge})}(T_k) = 0 \quad \text{for each bucket } k
-$$
-
-
-This requires at least as many hedging instruments as buckets.
-
-### 4. Practical Considerations
-
-
-**Liquidity:** Not all strikes/maturities are equally liquid. Concentrate hedges in liquid options.
-
-**Transaction costs:** Frequent rehedging is costly. Balance hedge accuracy against costs.
-
-**Model risk:** Vega calculations depend on model assumptions. Use conservative (larger) hedge ratios in uncertain conditions.
-
-**Gamma/delta interaction:** Vega hedges may introduce delta and gamma exposure. Consider joint optimization.
+Recall (see [§ Gamma and Vega Hedging](../../ch11/hedging_strategies/gamma_and_vega_hedging.md) and [§ Portfolio Hedging and Cross-Greeks](../../ch11/hedging_strategies/portfolio_hedging_and_cross_greeks.md)) for the mechanics of single-instrument vega neutralization, $\sqrt{T}$-weighted hedging across maturities, multi-instrument bucket hedges, and the liquidity / transaction-cost / delta-gamma-interaction considerations. The application here is to use **vega buckets across the implied-volatility surface** (by strike and maturity) rather than a single aggregated vega.
 
 ## P&L Attribution
 

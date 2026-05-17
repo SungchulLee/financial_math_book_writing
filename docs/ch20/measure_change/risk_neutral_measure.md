@@ -27,13 +27,7 @@ To move from $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$, we introduce
 
     defines a standard Brownian motion $W^{\mathbb{Q}}(t)$ under the risk-neutral measure $\mathbb{Q}$.
 
-The Radon–Nikodym derivative that defines the change of measure is
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\Bigg|_{\mathcal{F}(t)} = \exp\!\left(-\int_0^t \gamma(s)\,dW^{\mathbb{P}}(s) - \frac{1}{2}\int_0^t \gamma(s)^2\,ds\right)
-$$
-
-By Girsanov's theorem, this is a valid change of measure provided the Novikov condition $\mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \gamma(s)^2\,ds\right)\right] < \infty$ is satisfied.
+Recall (see [§ Girsanov's Theorem](../../ch04/girsanov/girsanov_intuition.md)): the Radon–Nikodym derivative is $\frac{d\mathbb{Q}}{d\mathbb{P}}\big|_{\mathcal{F}(t)} = \exp(-\int_0^t \gamma(s)\,dW^{\mathbb{P}}(s) - \frac{1}{2}\int_0^t \gamma(s)^2\,ds)$, valid under the Novikov condition.
 
 ## Hull-White Dynamics Under Q
 
@@ -105,17 +99,7 @@ This implies that the risk-neutral mean reversion speed is $\lambda = \lambda^{\
 
 ## Bond Pricing Under Q
 
-Under $\mathbb{Q}$, the discounted bond price process $P(t,T)/M(t)$ is a martingale, where $M(t) = \exp(\int_0^t r(s)\,ds)$ is the money market account. This martingale property is the fundamental reason the risk-neutral measure is the natural setting for derivative pricing:
-
-$$
-P(t,T) = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t)}{M(T)}\,\Big|\,\mathcal{F}(t)\right] = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r(s)\,ds}\,\Big|\,\mathcal{F}(t)\right]
-$$
-
-Any derivative with payoff $V(T)$ at time $T$ is priced as
-
-$$
-V(t) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r(s)\,ds}\,V(T)\,\Big|\,\mathcal{F}(t)\right]
-$$
+Recall (see [§ Risk-Neutral Construction](../../ch04/risk_neutral/martingale_and_no_arbitrage.md) and [§ HW Bond Pricing](../bond_pricing/bond_price_formula.md)): under $\mathbb{Q}$, $P(t,T)/M(t)$ is a martingale, giving $P(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r(s)\,ds}\,|\,\mathcal{F}(t)]$ and $V(t) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r(s)\,ds}V(T)\,|\,\mathcal{F}(t)]$ for any $T$-payoff.
 
 ## Numerical Example
 
@@ -135,13 +119,7 @@ In practice, $\theta^{\mathbb{Q}}(t)$ is not set this way but is instead calibra
 
 ## From HJM to Risk-Neutral Hull-White
 
-An alternative route to the risk-neutral Hull-White SDE starts from the HJM framework. Under $\mathbb{Q}$, the HJM drift condition ensures no-arbitrage:
-
-$$
-\mu^{\mathbb{Q}}(t,T) = \sigma(t,T)\int_t^T \sigma(t,u)\,du
-$$
-
-For the Hull-White volatility specification $\sigma(t,T) = \sigma\,e^{-\lambda(T-t)}$, the HJM drift condition determines the forward rate dynamics uniquely under $\mathbb{Q}$, and the short rate process $r(t) = f(t,t)$ inherits the Hull-White SDE.
+Recall (see [§ HJM Drift Condition](../../ch19/hjm/forward_rate_dynamics.md)): under $\mathbb{Q}$, no-arbitrage requires $\mu^{\mathbb{Q}}(t,T) = \sigma(t,T)\int_t^T \sigma(t,u)\,du$. For the Hull-White volatility $\sigma(t,T) = \sigma e^{-\lambda(T-t)}$, this determines the forward rate dynamics, and $r(t) = f(t,t)$ inherits the Hull-White SDE.
 
 ---
 

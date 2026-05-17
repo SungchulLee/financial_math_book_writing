@@ -16,6 +16,8 @@ The short rate $r_t$ is the state variable directly. The drift is linear in $r_t
 
 ### Black-Karasinski model
 
+Recall (see [§ Log-Normal Short Rate SDE](log_normal_short_rate_sde.md)):
+
 $$
 d(\ln r_t) = [\theta^{BK}(t) - a\,\ln r_t]\,dt + \sigma\,dW_t
 $$

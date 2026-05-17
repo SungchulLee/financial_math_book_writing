@@ -1,6 +1,6 @@
 # Grid Convergence and Error Analysis
 
-Numerical methods must not only be stable and accurate on a single grid — they should also **converge** to the correct solution as the grid is refined. This section analyzes how finite difference solutions for the Black-Scholes equation improve as we reduce the time and space step sizes.
+Run a finite-difference solver on a coarse grid, then halve the mesh and run it again. If the scheme is consistent and stable, the error shrinks by a predictable factor -- $1/2^p$ for order $p$. Plot $\log\|\text{error}\|$ against $\log h$ and the slope reads off $p$ directly. This is the working diagnostic of **grid convergence**: the way we verify, from numerical output alone, that the FDM solution actually approaches the true Black-Scholes price as the mesh is refined.
 
 ---
 

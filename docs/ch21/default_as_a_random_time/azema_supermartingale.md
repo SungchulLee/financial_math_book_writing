@@ -235,25 +235,9 @@ Non-Cox default times arise in theoretical investigations of information-based m
 
 ## Role in Pricing Defaultable Claims
 
-### Pre-Default Pricing Formula
+### Pre-Default and Default-Contingent Claims
 
-For a $\mathcal{G}_T$-measurable claim $X$ payable at $T$ if no default, the pre-default price at time $t < T$ (on $\{\tau > t\}$) is:
-
-$$
-V_t = \frac{1}{G_t} \mathbb{E}\left[e^{-\int_t^T r_s ds} X \cdot G_T \mid \mathcal{F}_t\right]
-$$
-
-The factor $G_T / G_t$ represents the conditional survival probability from $t$ to $T$.
-
-### Default-Contingent Claims
-
-For a recovery payment $Z_\tau$ made at default:
-
-$$
-V_t = \frac{1}{G_t} \mathbb{E}\left[\int_t^T e^{-\int_t^s r_u du} Z_s \, dA_s \mid \mathcal{F}_t\right]
-$$
-
-This formula uses the compensator $A_s$ rather than the intensity directly, making it applicable even when no intensity exists.
+Pre-default and recovery pricing formulas built on $G_t$ and $A_t$ — including $V_t = G_t^{-1}\,\mathbb{E}[e^{-\int_t^T r_s\,ds}\,X\,G_T \mid \mathcal{F}_t]$ — are developed in [§ Pricing with Default Risk](../pricing_with_default_risk/defaultable_bonds.md). They remain valid even when no intensity exists, because they reference the compensator $A_s$ directly.
 
 ### Hazard-Process Approach
 

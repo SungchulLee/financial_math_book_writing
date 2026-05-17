@@ -63,7 +63,7 @@ $$
 c_k(\delta_k, \delta_{k-1}) = \lambda \, (\delta_k - \delta_{k-1})^\top \Sigma_k \, (\delta_k - \delta_{k-1})
 $$
 
-where $\Sigma_k$ captures the price impact matrix.
+where $\Sigma_k$ captures the price impact matrix (Recall (see [§ Endogenous Price Dynamics](../market_impact_and_feedback_effects/endogenous_price_dynamics.md)) for the microstructural foundation of quadratic impact).
 
 ---
 

@@ -55,45 +55,7 @@ For daily returns with $\mu \approx 0$, this simplifies to $\text{VaR}_{0.99} \a
 
 ## VaR Estimation Methods
 
-### Historical Simulation
-
-Order historical losses $L_{(1)} \le L_{(2)} \le \cdots \le L_{(n)}$ and estimate:
-
-$$
-\widehat{\text{VaR}}_\alpha = L_{(\lceil n\alpha \rceil)}
-$$
-
-**Advantages:** Model-free, captures fat tails if present in data.
-
-**Disadvantages:** Requires sufficient historical data, assumes stationarity.
-
-### Variance-Covariance (Parametric) Method
-
-Assume returns follow a multivariate normal distribution:
-
-$$
-\mathbf{R} \sim N(\boldsymbol{\mu}, \boldsymbol{\Sigma})
-$$
-
-For portfolio weights $\mathbf{w}$, the portfolio variance is $\sigma_P^2 = \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}$, giving:
-
-$$
-\text{VaR}_\alpha = -\mathbf{w}^\top \boldsymbol{\mu} + \sqrt{\mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}} \cdot \Phi^{-1}(\alpha)
-$$
-
-**Advantages:** Computationally efficient, analytically tractable.
-
-**Disadvantages:** Normality assumption often violated, underestimates tail risk.
-
-### Monte Carlo Simulation
-
-1. Specify a model for risk factors (returns, rates, volatilities)
-2. Simulate $N$ scenarios of portfolio value
-3. Compute losses and take the empirical $\alpha$-quantile
-
-**Advantages:** Flexible, handles nonlinearities and path-dependence.
-
-**Disadvantages:** Computationally intensive, model-dependent.
+Recall (see [§ VaR Computation Methods](var_computation_methods.md)) the three principal estimators — historical simulation, variance-covariance (parametric), and Monte Carlo — together with their formulas, full-revaluation extensions, and component VaR decomposition.
 
 ---
 

@@ -200,31 +200,7 @@ $$
 
 ## Key Rate Duration
 
-### Motivation
-
-Duration assumes **parallel shifts** in the yield curve. In reality, curves steepen, flatten, or twist.
-
-### Definition
-
-**Key rate duration** (KRD) measures sensitivity to a shift at a specific maturity:
-
-$$
-\text{KRD}_k = -\frac{1}{P} \frac{\partial P}{\partial y_k}
-$$
-
-where $y_k$ is the yield at key rate $k$.
-
-### Example Key Rates
-
-Typical key rates: 6M, 1Y, 2Y, 3Y, 5Y, 7Y, 10Y, 20Y, 30Y
-
-### Decomposition
-
-$$
-\sum_{k} \text{KRD}_k = D_{\text{mod}}
-$$
-
-The sum of key rate durations equals modified duration (for parallel shift).
+Recall (see [§ Key Rate Duration](key_rate_duration.md)): KRD$_k=-\tfrac{1}{P}\partial P/\partial y_k$ measures sensitivity to a shift at key maturity $k$ (typical key rates 6M, 1Y, 2Y, 3Y, 5Y, 7Y, 10Y, 20Y, 30Y), with $\sum_k\text{KRD}_k=D_{\text{mod}}$.
 
 ---
 

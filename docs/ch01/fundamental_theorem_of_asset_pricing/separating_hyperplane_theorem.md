@@ -1,11 +1,7 @@
 # The Separating Hyperplane Theorem
 
 
-This page is a **supporting result** for the [Fundamental Theorem of Asset Pricing](fundamental_theorem_of_asset_pricing.md): the separation of disjoint convex sets is the geometric mechanism that turns no-arbitrage into the existence of a strictly positive pricing functional, which then normalizes to an equivalent martingale measure.
-
-The **Separating Hyperplane Theorem** itself is a result in convex analysis: two disjoint convex sets can always be separated by a hyperplane. Beyond FTAP, it underpins Lagrange duality, KKT conditions, linear programming duality, and minimax theorems in game theory.
-
-This page states the three main versions (weak separation, strict separation, supporting hyperplanes), gives complete proofs of the first two, and develops the FTAP application in detail.
+This page collects the convex-analysis machinery used to prove the [First FTAP](fundamental_theorem_of_asset_pricing.md): two disjoint convex sets in $\mathbb{R}^n$ can be separated by a hyperplane, and the normal vector to that hyperplane is what — applied to the no-arbitrage setup — becomes the EMM. Beyond finance, the same theorem underpins Lagrange duality, KKT conditions, linear-programming duality, and minimax results. We state the three standard versions (weak, strict, supporting), prove the first two, and close with a single-paragraph link to FTAP. No finance interpretation is repeated here; that lives on the FTAP page.
 
 
 ## Statements of the Theorem
@@ -200,7 +196,7 @@ The proof uses Zorn's lemma (equivalently, the axiom of choice) to extend $f$ on
 
 This is the infinite-dimensional counterpart of Theorems 1 and 2. In applications to the FTAP, the relevant spaces are $L^p$ or $L^\infty$ function spaces.
 
-### The Kreps–Yan Extension
+### The Kreps–Yan Extension { #the-kreps-yan-extension }
 
 For the continuous-time FTAP, the standard Hahn–Banach theorem is not quite sufficient because the positive cone in $L^\infty$ has empty interior in many topologies. The **Kreps–Yan theorem** provides the needed refinement:
 
@@ -213,75 +209,9 @@ This is the functional-analytic engine behind the Delbaen–Schachermayer proof 
 ## Connection to the FTAP
 
 
-The separating hyperplane theorem is the core mathematical tool in the proof of the [First Fundamental Theorem of Asset Pricing](fundamental_theorem_of_asset_pricing.md). Here we spell out the connection explicitly.
+The separating hyperplane theorem is the engine of the [First FTAP](fundamental_theorem_of_asset_pricing.md): no-arbitrage means the attainable-payoff subspace $\mathcal{V} = \operatorname{Im}(X)$ and the open positive orthant $\mathbb{R}^n_{++}$ are disjoint convex sets in $\mathbb{R}^n$, and Theorem 1 (with the open-set refinement) yields a separating normal $q \in \mathbb{R}^n$ with $q_i > 0$ and $X^T q = 0$. After normalization, $q$ becomes the EMM. The full derivation — definition of the payoff matrix, the step from $q^T(X\theta) \leq 0$ to $X^T q = 0$, and the upgrade to strict positivity — is carried out in [§ Proof of the First FTAP](fundamental_theorem_of_asset_pricing.md#proof-of-the-first-ftap-finite-state-space).
 
-### Setup
-
-Consider the one-period finite-state model: states $\Omega = \{\omega_1, \ldots, \omega_n\}$ with $\mathbb{P}(\omega_i) > 0$, and $d$ risky assets with payoff matrix $X \in \mathbb{R}^{n \times d}$ where $X_{ij} = S^j_1(\omega_i) - S^j_0$. A portfolio $\theta \in \mathbb{R}^d$ generates the zero-cost payoff vector $X\theta \in \mathbb{R}^n$.
-
-### The two sets
-
-The no-arbitrage condition involves two convex subsets of $\mathbb{R}^n$:
-
-**Set 1: Attainable payoffs.**
-
-$$\mathcal{V} = \{X\theta : \theta \in \mathbb{R}^d\} = \operatorname{Im}(X) \subset \mathbb{R}^n$$
-
-This is a linear subspace (hence convex and closed).
-
-**Set 2: Strictly positive payoffs.**
-
-$$\mathbb{R}^n_{++} = \{v \in \mathbb{R}^n : v_i > 0 \text{ for all } i\}$$
-
-This is an open convex cone.
-
-### No-arbitrage as disjointness
-
-The no-arbitrage condition states that no zero-cost portfolio achieves a non-negative, non-zero payoff:
-
-$$\mathcal{V} \cap \mathbb{R}^n_+ = \{0\}$$
-
-Since $\mathbb{R}^n_{++} \subset \mathbb{R}^n_+ \setminus \{0\}$, this implies the stronger statement $\mathcal{V} \cap \mathbb{R}^n_{++} = \emptyset$. We now have two disjoint convex sets: the closed subspace $\mathcal{V}$ and the open cone $\mathbb{R}^n_{++}$.
-
-### Applying the theorem
-
-By Theorem 1 (with the open-set refinement), there exists a non-zero $q \in \mathbb{R}^n$ such that
-
-$$q^T(X\theta) \leq 0 \quad \text{for all } \theta \in \mathbb{R}^d, \qquad q^T v > 0 \quad \text{for all } v \in \mathbb{R}^n_{++}$$
-
-**From the first inequality** (applied to both $\theta$ and $-\theta$): since $q^T(X\theta) \leq 0$ and $q^T(X(-\theta)) = -q^T(X\theta) \leq 0$, we conclude $q^T(X\theta) = 0$ for all $\theta$. In matrix form:
-
-$$X^T q = 0$$
-
-**From the second inequality**: evaluating at the standard basis vectors $v = e_i \in \mathbb{R}^n_{++}$ gives $q_i = q^T e_i > 0$ for each $i$.
-
-### Constructing the EMM
-
-We have $q \in \mathbb{R}^n$ with $q_i > 0$ for all $i$ and $X^T q = 0$. Normalizing:
-
-$$\mathbb{Q}(\omega_i) = \frac{q_i}{\sum_{k=1}^n q_k}$$
-
-defines a probability measure with $\mathbb{Q} \sim \mathbb{P}$ (since $q_i > 0$ and $\mathbb{P}(\omega_i) > 0$). The condition $X^T q = 0$ expands to
-
-$$\sum_{i=1}^n q_i\bigl(S^j_1(\omega_i) - S^j_0\bigr) = 0 \quad \text{for all } j$$
-
-Dividing by $\sum_k q_k$:
-
-$$\mathbb{E}^{\mathbb{Q}}[S^j_1] = S^j_0 \quad \text{for all } j$$
-
-This is the **martingale condition**: discounted asset prices are $\mathbb{Q}$-martingales. Therefore $\mathbb{Q}$ is an equivalent martingale measure, completing the proof that no-arbitrage implies EMM existence.
-
-### Geometric summary
-
-The picture in $\mathbb{R}^n$ is clean:
-
-- $\mathcal{V} = \operatorname{Im}(X)$ is a subspace through the origin (the space of achievable payoffs).
-- $\mathbb{R}^n_{++}$ is the open positive orthant (desirable payoffs).
-- No-arbitrage says these are disjoint.
-- The separating hyperplane, defined by normal vector $q$, is a **state-price vector**: it assigns a positive "price" $q_i$ to each state $\omega_i$ such that all traded assets are fairly priced.
-- After normalization, $q$ becomes a probability measure—the risk-neutral measure.
-
-The elegance of the FTAP is that an economic condition (no free lunch) translates, via a geometric theorem (separation), into a probabilistic structure (martingale measure).
+The state-price interpretation is that the separating normal $q$ assigns a positive "price" $q_i$ to each state $\omega_i$ under which every traded asset is fairly priced; normalizing turns these state prices into the risk-neutral probabilities. The economic content of the FTAP is precisely that an absence-of-free-lunch condition translates, via separation, into this probabilistic representation.
 
 
 ## Related Results

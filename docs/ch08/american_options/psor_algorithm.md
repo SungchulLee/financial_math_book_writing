@@ -1,29 +1,18 @@
 # PSOR Algorithm
 
-The **Projected Successive Over-Relaxation (PSOR)** algorithm is the workhorse iterative method for solving the linear complementarity problems that arise in American option pricing. It combines the classical SOR iteration for linear systems with a projection step that enforces the early exercise constraint, yielding an efficient and robust solver.
+Take the standard SOR sweep that solves $L\mathbf{u}=\mathbf{q}$: update node $j$ from the latest values of its neighbors, overrelaxed by a factor $\omega\in(0,2)$. To enforce $\mathbf{u}\ge\boldsymbol\Phi$, simply project each updated $u_j$ up to $\Phi_j$ if it dipped below. That single extra `max(., Φ_j)` after every component update converts SOR into **PSOR** -- Projected Successive Over-Relaxation -- the workhorse LCP solver for American options.
 
 ---
 
 ## Motivation: From SOR to PSOR
 
-### SOR for Linear Systems
-
-Recall the **Successive Over-Relaxation (SOR)** method for solving $L\mathbf{u} = \mathbf{q}$. Decompose $L = D - E - F$ where $D$ is the diagonal, $-E$ is the strict lower triangle, and $-F$ is the strict upper triangle. The SOR iteration is:
+Recall (see [§ Implementation](../implementation/crank_nicolson_implementation.md)): SOR splits $L = D - E - F$ and updates
 
 $$
-u_j^{(k+1)} = (1 - \omega)\,u_j^{(k)} + \frac{\omega}{l_{jj}}\left(q_j - \sum_{i < j} l_{ji}\,u_i^{(k+1)} - \sum_{i > j} l_{ji}\,u_i^{(k)}\right)
+u_j^{(k+1)} = (1 - \omega)\,u_j^{(k)} + \frac{\omega}{l_{jj}}\Big(q_j - \sum_{i < j} l_{ji}\,u_i^{(k+1)} - \sum_{i > j} l_{ji}\,u_i^{(k)}\Big),
 $$
 
-where $\omega \in (0, 2)$ is the relaxation parameter. For $\omega = 1$ this reduces to Gauss-Seidel; for $\omega > 1$ it is over-relaxation (accelerated convergence for many problems).
-
-### Adding the Projection
-
-For the LCP, we must additionally enforce $\mathbf{u} \geq \boldsymbol{\Phi}$. The PSOR method achieves this by **projecting** after each component update:
-
-1. Compute the SOR update $\tilde{u}_j^{(k+1)}$ as above.
-2. Set $u_j^{(k+1)} = \max(\tilde{u}_j^{(k+1)}, \Phi_j)$.
-
-This projection ensures the constraint is satisfied at every iteration, and the complementarity condition emerges naturally at convergence.
+with $\omega\in(0,2)$ ($\omega=1$ is Gauss-Seidel). **PSOR** appends a componentwise projection $u_j^{(k+1)} = \max(\tilde u_j^{(k+1)}, \Phi_j)$ after each SOR update, enforcing $\mathbf{u}\ge\boldsymbol\Phi$ at every sweep and recovering complementarity at convergence (recall [§ LCP](linear_complementarity_formulation.md)).
 
 ---
 
@@ -229,13 +218,7 @@ Tracking which grid points are in the active set $\mathcal{A} = \{j : u_j = \Phi
 
 ### Extension to Crank-Nicolson
 
-When using Crank-Nicolson time stepping, the LCP becomes:
-
-$$
-\left(I + \tfrac{\Delta\tau}{2}A\right)\mathbf{u}^{n+1} \geq \left(I - \tfrac{\Delta\tau}{2}A\right)\mathbf{u}^n, \quad \mathbf{u}^{n+1} \geq \boldsymbol{\Phi}
-$$
-
-The PSOR algorithm applies with $L = I + \frac{\Delta\tau}{2}A$ and $\mathbf{q} = (I - \frac{\Delta\tau}{2}A)\mathbf{u}^n$. The M-matrix property of $L$ is preserved, ensuring convergence.
+Recall (see [§ LCP — Crank-Nicolson caveat](linear_complementarity_formulation.md)): PSOR applies unchanged with $L = I + \tfrac{\Delta\tau}{2}A$ and $\mathbf{q} = (I - \tfrac{\Delta\tau}{2}A)\mathbf{u}^n$ — the M-matrix property of $L$ is preserved.
 
 ---
 

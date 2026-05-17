@@ -80,14 +80,11 @@ $$
 
 ### 2. Likelihood-Based
 
-
-**Definition**:
+**Recall** (see [§ Likelihood-Based Confidence Regions](confidence_sets_for_models.md)): via Wilks' theorem,
 
 $$
-\Theta_{\alpha} = \left\{\theta: \ell(\hat{\theta}) - \ell(\theta) \leq \frac{1}{2}\chi^2_{p, 1-\alpha}\right\}
+\Theta_{\alpha} = \left\{\theta: \ell(\hat{\theta}) - \ell(\theta) \leq \tfrac{1}{2}\chi^2_{p, 1-\alpha}\right\}.
 $$
-
-**Interpretation**: Parameters within $(1-\alpha)$ confidence region.
 
 ### 3. Moment Matching
 
@@ -376,19 +373,13 @@ $$
 
 ### 1. Bayesian Averaging
 
-
-**Approach**: Average over parameter posterior:
-
-$$
-V^{\text{Bayes}} = \mathbb{E}_{\theta | \text{data}}[V(\theta)]
-$$
+**Recall** (see [§ Max-Min Expected Utility](../ambiguity_averse_preferences/max_min_expected_utility.md)): Bayesian averaging uses $V^{\text{Bayes}} = \mathbb{E}_{\theta | \text{data}}[V(\theta)]$.
 
 **Difference**: Worst-case uses extreme values; Bayesian uses weighted average.
 
 ### 2. Superhedging
 
-
-**Approach**: Price by worst-case over all martingale measures.
+**Recall** (see [§ Superhedging Duality](../robust_no_arbitrage_pricing/superhedging_duality.md)): price by worst-case over all (calibrated or arbitrage-free) martingale measures.
 
 **Difference**: Worst-case calibration restricts to calibrated models; superhedging allows all arbitrage-free models.
 

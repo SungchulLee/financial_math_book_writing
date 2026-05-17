@@ -20,52 +20,13 @@ The standard Fourier inversion formula recovers the probability density $f(x)$ f
 
 ## The Gil-Pelaez Formula
 
-!!! info "Theorem (Gil-Pelaez, 1951)"
-    Let $X$ be a real-valued random variable with characteristic function $\varphi(u) = \mathbb{E}[e^{iuX}]$. If $x$ is a continuity point of the CDF $F(x) = \mathbb{P}(X \leq x)$, then
-
-    $$
-    F(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty} \text{Re}\!\left[\frac{e^{-iux}\varphi(u)}{iu}\right] du
-    $$
-
-    Equivalently, the exceedance probability is
-
-    $$
-    \mathbb{P}(X > x) = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty} \text{Re}\!\left[\frac{e^{-iux}\varphi(u)}{iu}\right] du
-    $$
-
-**Proof.** Start from the Fourier inversion formula for the CDF. The CDF can be written as
+Recall (see [§ Characteristic Function to Density](../../ch09/cos_method/characteristic_function_to_density.md)): for a real-valued $X$ with CF $\varphi$ and any continuity point $x$ of $F$,
 
 $$
-F(x) = \frac{1}{2} + \frac{1}{2\pi}\lim_{\epsilon \to 0^+}\int_{-\infty}^{\infty}\frac{e^{-iux}\varphi(u) - e^{iux}\overline{\varphi(u)}}{iu + \epsilon} \, du
+\mathbb{P}(X > x) = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\operatorname{Re}\!\left[\frac{e^{-iux}\varphi(u)}{iu}\right] du,
 $$
 
-Since $\varphi(-u) = \overline{\varphi(u)}$ for real-valued $X$, the integrand satisfies
-
-$$
-\frac{e^{-iux}\varphi(u)}{iu} + \frac{e^{iux}\overline{\varphi(u)}}{-iu} = \frac{2}{iu}\text{Re}[e^{-iux}\varphi(u)] \cdot i = \frac{2}{u}\text{Im}[e^{-iux}\varphi(u)]
-$$
-
-Wait --- let us proceed more carefully. Write $\varphi(u) = A(u) + iB(u)$ with $A, B$ real. Then
-
-$$
-\text{Re}\!\left[\frac{e^{-iux}\varphi(u)}{iu}\right] = \text{Re}\!\left[\frac{(\cos(ux) - i\sin(ux))(A + iB)}{iu}\right]
-$$
-
-The numerator is $A\cos(ux) + B\sin(ux) + i(B\cos(ux) - A\sin(ux))$. Dividing by $iu$:
-
-$$
-\frac{1}{iu}[p + iq] = \frac{q - ip}{u} = \frac{q}{u} - i\frac{p}{u}
-$$
-
-where $p = A\cos(ux) + B\sin(ux)$ and $q = B\cos(ux) - A\sin(ux)$. Therefore:
-
-$$
-\text{Re}\!\left[\frac{e^{-iux}\varphi(u)}{iu}\right] = \frac{B(u)\cos(ux) - A(u)\sin(ux)}{u}
-$$
-
-The integral $\frac{1}{\pi}\int_0^\infty \frac{B(u)\cos(ux) - A(u)\sin(ux)}{u} \, du$ equals $F(x) - 1/2$ by the theory of characteristic functions (see Feller, Volume II, Section XV.3).
-
-An alternative proof uses the identity $\mathbf{1}_{X > x} = \frac{1}{2} + \frac{1}{\pi}\lim_{R\to\infty}\int_0^R \frac{\sin(u(X-x))}{u}\,du$ (the Dirichlet integral representation of the signum function) and takes expectations on both sides, exchanging expectation and integration by dominated convergence. $\square$
+proved via the Dirichlet identity and dominated convergence.
 
 ---
 
@@ -87,18 +48,15 @@ where $\varphi_2$ is the Heston CF under $\mathbb{Q}$ and $\varphi_1(u) = \varph
 
 ## Damping for Improved Convergence
 
-The integrand $\text{Re}[e^{-iux}\varphi(u)/(iu)]$ decays as $O(1/u) \cdot |\varphi(u)|$. For the Heston model, $|\varphi(u)|$ decays exponentially, so the integrand decays as $O(e^{-\alpha u}/u)$, which is fast. However, for distributions with heavier tails (or for robustness), a **damping factor** $e^{-\eta u}$ can be introduced.
+Recall (see [§ Carr-Madan FFT](../../ch09/alternative_fourier/carr_madan_fft.md)): a contour shift $u \mapsto u + i\eta$ (with $\mathbb{E}[e^{\eta X}] < \infty$) yields the damped form
 
-!!! info "Proposition (Damped Gil-Pelaez Formula)"
-    For $\eta > 0$ and $x$ such that $\mathbb{E}[e^{\eta X}] < \infty$:
+$$
+\mathbb{P}(X > x) = \frac{e^{\eta x}}{2\pi}\int_{-\infty}^{\infty}\frac{e^{-iux}\varphi(u+i\eta)}{iu - \eta}\,du,
+$$
 
-    $$
-    \mathbb{P}(X > x) = \frac{e^{\eta x}}{2\pi}\int_{-\infty}^{\infty}\frac{e^{-iux}\varphi(u + i\eta)}{iu - \eta} \, du
-    $$
+regularizing the $u = 0$ singularity to $1/(iu - \eta)$.
 
-    This shifts the integration contour into the complex plane, replacing the $1/u$ singularity with $1/(iu - \eta)$, which is bounded at $u = 0$.
-
-**When to use damping.** For the Heston model, the standard (undamped) Gil-Pelaez formula works well because the CF decays exponentially. Damping is useful for:
+For Heston, $|\varphi(u)|$ already decays exponentially, so undamped Gil-Pelaez works well. Damping is useful for:
 
 - Models with polynomial CF decay (e.g., variance gamma)
 - Deep OTM options where the undamped integrand oscillates rapidly

@@ -94,35 +94,7 @@ The independence of $E$ from $\mathcal{F}_\infty$ ensures that the **immersion p
 
 ## Compensator and Martingale
 
-### Default Indicator Process
-
-The default indicator $H_t = \mathbf{1}_{\{\tau \le t\}}$ is a submartingale. Its **Doob-Meyer decomposition** under $(\mathcal{G}_t, \mathbb{Q})$ is:
-
-$$
-H_t = M_t + A_t
-$$
-
-where the **compensator** is:
-
-$$
-A_t = \int_0^{t \wedge \tau} \lambda_s \, ds
-$$
-
-and the **compensated default process**:
-
-$$
-M_t = H_t - \int_0^{t \wedge \tau} \lambda_s \, ds = \mathbf{1}_{\{\tau \le t\}} - \int_0^{t \wedge \tau} \lambda_s \, ds
-$$
-
-is a $(\mathcal{G}_t, \mathbb{Q})$-martingale.
-
-### Interpretation
-
-- Before default ($t < \tau$): $M_t = -\int_0^t \lambda_s ds$ decreases continuously
-- At default ($t = \tau$): $M_t$ jumps by $+1$, partially offsetting the accumulated compensator
-- After default ($t > \tau$): $M_t = 1 - \int_0^\tau \lambda_s ds$ remains constant
-
-The martingale property of $M_t$ formalizes the idea that under the risk-neutral measure, the "surprise" component of default has zero expected value.
+Recall (see [§ Compensators and Martingales](compensators_and_martingales.md)) for the Doob-Meyer decomposition $H_t = M_t + A_t$ with compensator $A_t = \int_0^{t\wedge\tau}\lambda_s\,ds$, the compensated $(\mathcal{G}_t, \mathbb{Q})$-martingale $M_t = H_t - A_t$, and its pre-/post-default behavior.
 
 ---
 
@@ -155,98 +127,13 @@ When this holds, $\lambda_t > 0$ almost surely for all $t > 0$ (assuming $\lambd
 
 ### Survival Probability (Closed Form)
 
-The survival probability under CIR intensity has the **affine** form:
-
-$$
-S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right] = A(\tau_h) \exp\left(-B(\tau_h) \lambda_t\right)
-$$
-
-where $\tau_h = T - t$ and the functions are:
-
-$$
-B(\tau_h) = \frac{2(e^{\gamma \tau_h} - 1)}{(\gamma + \kappa)(e^{\gamma \tau_h} - 1) + 2\gamma}
-$$
-
-$$
-A(\tau_h) = \left[\frac{2\gamma \exp\left((\kappa + \gamma)\tau_h / 2\right)}{(\gamma + \kappa)(e^{\gamma \tau_h} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}
-$$
-
-with:
-
-$$
-\gamma = \sqrt{\kappa^2 + 2\sigma^2}
-$$
-
-??? info "Derivation via Riccati Equations"
-    The affine structure arises because we seek $S(t,T) = e^{-\alpha(\tau_h) - \beta(\tau_h)\lambda_t}$ satisfying the Kolmogorov backward equation:
-
-    $$
-    \frac{\partial S}{\partial t} + \kappa(\theta - \lambda)\frac{\partial S}{\partial \lambda} + \frac{1}{2}\sigma^2 \lambda \frac{\partial^2 S}{\partial \lambda^2} - \lambda S = 0
-    $$
-
-    Substituting the exponential-affine ansatz and matching powers of $\lambda$ yields two ODEs:
-
-    $$
-    \beta'(\tau_h) = 1 - \kappa \beta(\tau_h) - \frac{1}{2}\sigma^2 \beta(\tau_h)^2, \quad \beta(0) = 0
-    $$
-
-    $$
-    \alpha'(\tau_h) = \kappa\theta \beta(\tau_h), \quad \alpha(0) = 0
-    $$
-
-    The first is a Riccati equation with the solution given above for $B(\tau_h)$. The second integrates to give $\ln A(\tau_h) = \alpha(\tau_h)$.
-
-    $\square$
+Recall (see [§ Affine Intensity Models](affine_intensity_models.md)) for the closed-form affine survival $S(t,T) = A(\tau_h)\exp(-B(\tau_h)\lambda_t)$ under CIR intensity, the explicit $A$, $B$ with $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$, and the underlying Riccati derivation.
 
 ---
 
 ## Other Intensity Specifications
 
-### Vasicek (Ornstein-Uhlenbeck) Intensity
-
-$$
-d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma \, dW_t
-$$
-
-**Properties:**
-
-- Gaussian process: $\lambda_t$ can become **negative** (economically problematic)
-- Closed-form survival probability (affine structure)
-- Simple calibration
-
-**Survival probability:**
-
-$$
-S(t,T) = \exp\left(-B(\tau_h)\lambda_t - A(\tau_h)\right)
-$$
-
-with $B(\tau_h) = (1 - e^{-\kappa \tau_h})/\kappa$ and a corresponding $A(\tau_h)$.
-
-### Log-Normal Intensity
-
-$$
-d\ln\lambda_t = \kappa(\theta - \ln\lambda_t) \, dt + \sigma \, dW_t
-$$
-
-**Properties:**
-
-- Strictly positive intensity
-- Heavier tails than CIR
-- No closed-form survival probability (requires numerical methods)
-
-### Jump-Diffusion Intensity
-
-$$
-d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t + J \, dN_t
-$$
-
-where $N_t$ is a Poisson process and $J > 0$ is a random jump size.
-
-**Properties:**
-
-- Captures sudden credit deterioration (e.g., accounting fraud, rating downgrade)
-- If $J \sim \text{Exp}(\mu_J)$, survival probability remains in closed form (extended affine)
-- More realistic for crisis scenarios
+Recall (see [§ Affine Intensity Models](affine_intensity_models.md)) for Vasicek OU intensity (Gaussian, can be negative) and affine jump-diffusion extensions ($+ J\,dN_t$, extended affine when $J \sim \text{Exp}(\mu_J)$). A log-normal alternative $d\ln\lambda_t = \kappa(\theta - \ln\lambda_t)\,dt + \sigma\,dW_t$ is strictly positive with heavier tails but lacks a closed-form survival probability.
 
 ---
 

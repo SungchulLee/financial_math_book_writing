@@ -20,13 +20,7 @@ In the Black-Scholes model, the call formula $C = S_0 N(d_1) - K e^{-rT} N(d_2)$
 
 ## Numeraire Change: General Theory
 
-Let $N_t$ be a positive $\mathbb{Q}$-martingale (after discounting). The numeraire measure $\mathbb{Q}^N$ associated with numeraire $N_t$ is defined by the Radon–Nikodym derivative
-
-$$
-\frac{d\mathbb{Q}^N}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{N_T / N_0}{B_T / B_0}
-$$
-
-where $B_t = e^{rt}$ is the money-market account.
+Recall (see [§ Numéraire Framework](../../ch04/risk_neutral/numeraire.md) and [§ Forward Measure](../../ch04/risk_neutral/forward_measure.md)) that for a positive $\mathbb{Q}$-martingale numeraire $N_t$, the associated measure $\mathbb{Q}^N$ has $d\mathbb{Q}^N/d\mathbb{Q}|_{\mathcal{F}_T} = (N_T/N_0)/(B_T/B_0)$ where $B_t = e^{rt}$.
 
 !!! info "Proposition (Stock-Price Numeraire)"
     For the stock-price numeraire $N_t = S_t e^{qt}$ (the reinvested stock), the Radon–Nikodym derivative is
@@ -41,11 +35,7 @@ where $B_t = e^{rt}$ is the money-market account.
 
 ## Girsanov Shift for the Stock-Price Numeraire
 
-Under $\mathbb{Q}$, the stock dynamics are
-
-$$
-dS_t = (r - q)S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1), \mathbb{Q}}
-$$
+Recall (see [§ Risk-Neutral Measure](risk_neutral_measure.md)) the $\mathbb{Q}$-dynamics $dS_t = (r - q)S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1), \mathbb{Q}}$.
 
 The Radon–Nikodym density process is
 

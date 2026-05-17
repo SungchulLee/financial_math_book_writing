@@ -48,13 +48,7 @@ The fundamental result linking the characteristic function back to the density i
     f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\phi(u)\,du
     $$
 
-**Proof sketch.** Define $f_\varepsilon(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\phi(u)e^{-\varepsilon u^2/2}\,du$ as a regularized inversion. The Gaussian factor ensures absolute convergence. Substituting $\phi(u) = \int e^{iuy}f(y)\,dy$ and exchanging integrals (justified by Fubini's theorem since the Gaussian damping makes the double integral absolutely convergent):
-
-$$
-f_\varepsilon(x) = \int_{-\infty}^{\infty} f(y)\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} e^{iu(y-x)}e^{-\varepsilon u^2/2}\,du\right]dy
-$$
-
-The inner integral is a Gaussian in $u$, evaluating to $\frac{1}{\sqrt{2\pi\varepsilon}}e^{-(y-x)^2/(2\varepsilon)}$. Therefore $f_\varepsilon$ is the convolution of $f$ with a Gaussian kernel of variance $\varepsilon$, and $f_\varepsilon \to f$ pointwise at continuity points of $f$ as $\varepsilon \to 0$. When $\phi \in L^1$, the Gaussian regularization can be removed by dominated convergence. $\square$
+**Proof sketch.** Introduce the Gaussian regularization $f_\varepsilon(x) = \frac{1}{2\pi}\int e^{-iux}\phi(u)e^{-\varepsilon u^2/2}\,du$ and exchange integrals via Fubini. The inner integral is the Fourier transform of a Gaussian (Recall, see [§ Fundamental solution of the heat equation](../../ch05/heat_equation/fundamental_solution.md)), so $f_\varepsilon$ is the convolution of $f$ with a heat kernel of variance $\varepsilon$ and converges to $f$ at continuity points. Dominated convergence then removes the regularization when $\phi \in L^1$. $\square$
 
 !!! warning "Integrability Condition"
     The condition $\phi \in L^1(\mathbb{R})$ is not always satisfied. For example, the Cauchy distribution has $\phi(u) = e^{-|u|}$, which is $L^1$, so inversion works. But for distributions with atoms (point masses), $\phi$ does not decay to zero and inversion in the pointwise sense fails. For most financial models (where the log-price has a continuous density), $\phi \in L^1$ holds.
@@ -104,7 +98,7 @@ $$
 
 The first equality holds because $f(x) = 0$ outside $[a, b]$. Substituting into the cosine coefficient formula gives the result. When $f$ has mass outside $[a, b]$, the integral over $[a, b]$ differs from the full characteristic function by $\int_{\mathbb{R}\setminus[a,b]} f(x)e^{ik\pi x/(b-a)}\,dx$, which is the truncation error. $\square$
 
-This result is the central identity of the COS method. It says: **to compute the cosine coefficients of the density, evaluate the characteristic function at the discrete frequencies $k\pi/(b-a)$ and apply a phase rotation**. No numerical integration, no density evaluation, no inversion integral---just function evaluations of $\phi$.
+This result is the central identity of the COS method (Recall, see [§ COS method](../cos_method/characteristic_function_to_density.md)): to compute cosine coefficients of the density, evaluate $\phi$ at the discrete frequencies $k\pi/(b-a)$ and apply a phase rotation---no numerical integration or density evaluation is required.
 
 ---
 
@@ -135,40 +129,19 @@ The **series truncation error** is $\sum_{k=N}^{\infty} A_k \cos(\cdots)$, which
 The standard normal distribution provides a clean verification of the CF-based coefficient formula.
 
 !!! example "Cosine Coefficients of the Normal Density"
-    For $X \sim N(0, 1)$, the characteristic function is $\phi(u) = e^{-u^2/2}$. On $[a, b] = [-10, 10]$:
+    Recall (see [§ Fundamental solution of the heat equation](../../ch05/heat_equation/fundamental_solution.md)) that for $X \sim N(0,1)$ the characteristic function is $\phi(u) = e^{-u^2/2}$. On $[a,b]=[-10,10]$ the CF-based formula gives
 
     $$
-    A_k = \frac{2}{20}\,\text{Re}\!\left[\phi\!\left(\frac{k\pi}{20}\right)e^{-ik\pi(-10)/20}\right] = \frac{1}{10}\,\text{Re}\!\left[e^{-k^2\pi^2/800}\cdot e^{ik\pi/2}\right]
+    A_k = \frac{1}{10}\,\text{Re}\!\left[e^{-k^2\pi^2/800}\cdot i^k\right]
     $$
 
-    Since $e^{ik\pi/2} = i^k$:
-
-    - For $k = 0$: $A_0 = \frac{1}{10}\,\text{Re}[1] = 0.1$
-    - For $k = 1$: $A_1 = \frac{1}{10}\,\text{Re}[e^{-\pi^2/800}\cdot i] = 0$ (purely imaginary)
-    - For $k = 2$: $A_2 = \frac{1}{10}\,\text{Re}[e^{-4\pi^2/800}\cdot(-1)] = -\frac{1}{10}e^{-\pi^2/200}$
-
-    The coefficients with odd $k$ vanish (reflecting the symmetry of the standard normal about $x = 0$ and the symmetric placement of $[a, b]$), and the even coefficients decay as $e^{-ck^2}$---faster than exponential, consistent with the entire analyticity of the Gaussian.
+    Odd-$k$ coefficients vanish (by symmetry of $f$ and of $[a,b]$ about $0$), and even-$k$ coefficients decay as $e^{-ck^2}$, matching the entire analyticity of the Gaussian.
 
 ---
 
 ## Example: Log-Normal Density
 
-The log-normal density has no elementary Fourier series, but its characteristic function allows coefficient computation.
-
-!!! example "Log-Normal CF and Cosine Coefficients"
-    If $\ln S_T \sim N(\mu, \sigma^2)$, the characteristic function of the log-price $X = \ln S_T$ is
-
-    $$
-    \phi(u) = e^{i\mu u - \sigma^2 u^2/2}
-    $$
-
-    The cosine coefficients on any interval $[a, b]$ are computed by:
-
-    $$
-    A_k = \frac{2}{b-a}\,\text{Re}\!\left[e^{i\mu k\pi/(b-a) - \sigma^2 k^2\pi^2/(2(b-a)^2)}\cdot e^{-ik\pi a/(b-a)}\right]
-    $$
-
-    The Gaussian decay $e^{-\sigma^2 k^2 \pi^2/(2(b-a)^2)}$ ensures exponential convergence. For typical Black--Scholes parameters ($\sigma = 0.2$, $T = 1$), $N = 64$ terms yield option prices accurate to $10^{-10}$.
+Recall (see [§ GBM SDE](../../ch03/sde/index.md) and [§ Feynman--Kac](../../ch06/bs_pde_analytic_solution/feynman_kac.md)) that under Black--Scholes the log-price $X = \ln S_T$ has $\phi(u) = e^{i\mu u - \sigma^2 u^2/2}$. Substituting into the CF-based coefficient identity produces Gaussian decay $e^{-\sigma^2 k^2 \pi^2/(2(b-a)^2)}$ in $k$, so $N = 64$ terms yield option-pricing accuracy of order $10^{-10}$ for typical parameters ($\sigma = 0.2$, $T = 1$).
 
 ---
 

@@ -2,6 +2,8 @@
 
 The spectral decomposition expresses the [Green's function](greens_function_parabolic.md) as a sum over **eigenfunctions** of the spatial operator. Each eigenfunction is an independent mode that decays at its own characteristic rate, turning a single parabolic PDE into a family of uncoupled ODEs. This is the PDE analog of diagonalizing a matrix, and in finance it produces the term-structure modes that organize long-maturity pricing.
 
+This page is the **eigenstructure lens** on Green's functions; the operator/PDE lens is in [Green's Function for Parabolic PDEs](greens_function_parabolic.md), the probability lens in [Transition Density as Green's Function](transition_density_as_greens_function.md), and the geometry lens in [Free vs Bounded Domains](free_vs_bounded_domains.md).
+
 ---
 
 ## The Eigenvalue Problem
@@ -89,7 +91,7 @@ $$
 **Weighted inner product**: if $\mathcal{L}$ is self-adjoint in $L^2(m\,dx)$ for some speed measure $m$, the expansion uses $\phi_n$ orthonormal under that weight. This is the preferred route whenever a natural stationary measure exists.
 
 !!! example "Ornstein-Uhlenbeck: Hermite modes"
-    For $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ on $\mathbb{R}$, the stationary density $m(x) \propto e^{-\kappa x^2/\sigma^2}$ makes $\mathcal{L}$ self-adjoint in $L^2(m\,dx)$. The eigenfunctions are the **Hermite polynomials** $H_n$ with eigenvalues $\lambda_n = n\kappa$. The spectral gap is exactly the mean-reversion rate $\kappa$, and higher Hermite modes decay in integer multiples of it. The explicit Gaussian transition density and its probabilistic derivation are covered on the [Green's Function](greens_function_parabolic.md) and [Transition Density as Green's Function](transition_density_as_greens_function.md) pages; here the point is that the eigenstructure is exactly the Hermite basis.
+    Recall (see [§ Transition Density as Green's Function](transition_density_as_greens_function.md)): the Ornstein-Uhlenbeck transition density is explicitly Gaussian. Here we focus on the eigenstructure. For $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ on $\mathbb{R}$, the stationary density $m(x) \propto e^{-\kappa x^2/\sigma^2}$ makes $\mathcal{L}$ self-adjoint in $L^2(m\,dx)$. The eigenfunctions are the **Hermite polynomials** $H_n$ with eigenvalues $\lambda_n = n\kappa$. The spectral gap is exactly the mean-reversion rate $\kappa$, and higher Hermite modes decay in integer multiples of it.
 
 ---
 

@@ -23,12 +23,7 @@ Many financial models---including the Heston stochastic volatility model, varian
 
 The most direct route from characteristic function to density is the inverse Fourier transform.
 
-!!! note "Theorem: Fourier Inversion"
-    Let $X$ be a random variable with characteristic function $\phi(u) = \mathbb{E}[e^{iuX}]$. If $\phi \in L^1(\mathbb{R})$, then $X$ has a bounded continuous density
-
-    $$
-    f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\phi(u)\,du
-    $$
+**Recall** (see [§ Fourier Inversion Theorem](../fourier_series/fourier_series_of_densities.md#fourier-inversion-theorem)): if $\phi \in L^1(\mathbb{R})$, then $X$ has a bounded continuous density $f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\phi(u)\,du$.
 
 Since $\phi(-u) = \overline{\phi(u)}$ for real-valued $X$, the integral simplifies to a real form:
 
@@ -97,27 +92,9 @@ $\square$
 
 The COS method provides an alternative approach to density reconstruction that avoids numerical integration entirely. Instead of evaluating a Fourier integral, the density is expanded as a truncated cosine series with coefficients computed from the characteristic function.
 
-!!! note "Definition: COS Density Reconstruction"
-    The COS approximation to the density $f$ on $[a, b]$ using $N$ terms is
+**Recall** (see [§ Cosine Coefficients via CF](cosine_coefficients_via_cf.md)): the COS approximation $\hat{f}_N(x) = \sum_{k=0}^{N-1}{}' F_k \cos(k\pi(x-a)/(b-a))$ with $F_k$ from $\phi$. **Recall** (see [§ Cumulant-Based Truncation](truncation_to_finite_domain.md)): the interval $[a,b]$ is chosen from cumulants of $X$.
 
-    $$
-    \hat{f}_N(x) = \sum_{k=0}^{N-1}{}' A_k \cos\!\left(\frac{k\pi(x-a)}{b-a}\right)
-    $$
-
-    where the cosine coefficients are approximated by
-
-    $$
-    A_k \approx \frac{2}{b-a}\,\text{Re}\!\left[\phi\!\left(\frac{k\pi}{b-a}\right)e^{-ik\pi a/(b-a)}\right]
-    $$
-
-The computational procedure is:
-
-1. Choose truncation interval $[a, b]$ using cumulants of $X$
-2. Evaluate $\phi(k\pi/(b-a))$ for $k = 0, 1, \ldots, N-1$
-3. Compute $A_k$ via the formula above
-4. Sum the cosine series at desired points $x$
-
-This requires only $N$ evaluations of the characteristic function, with no quadrature or integration. For smooth densities, $N = 64$ to $128$ suffices for high accuracy.
+The computational procedure requires only $N$ evaluations of the characteristic function, with no quadrature or integration. For smooth densities, $N = 64$ to $128$ suffices for high accuracy.
 
 ---
 
@@ -295,23 +272,7 @@ plt.show()
 The Heston model provides a characteristic function in closed form but no elementary density, making it the prototypical use case for Fourier inversion.
 
 !!! example "Heston Density Inversion"
-    Under the Heston model, the log-price $X_T = \ln(S_T/S_0)$ has characteristic function
-
-    $$
-    \phi(u) = \exp\!\left(C(u, T) + D(u, T)v_0 + iux_0\right)
-    $$
-
-    where $C$ and $D$ satisfy Riccati ODEs depending on the parameters $(\kappa, \theta, \sigma_v, \rho, v_0)$ and $x_0 = \ln S_0$. The explicit forms are:
-
-    $$
-    D(u, T) = \frac{\kappa - \rho\sigma_v iu - d}{\sigma_v^2}\cdot\frac{1 - e^{-dT}}{1 - g\,e^{-dT}}
-    $$
-
-    $$
-    C(u, T) = (r - q)iuT + \frac{\kappa\theta}{\sigma_v^2}\left[(\kappa - \rho\sigma_v iu - d)T - 2\ln\!\left(\frac{1 - g\,e^{-dT}}{1-g}\right)\right]
-    $$
-
-    with $d = \sqrt{(\rho\sigma_v iu - \kappa)^2 + \sigma_v^2(iu + u^2)}$ and $g = (\kappa - \rho\sigma_v iu - d)/(\kappa - \rho\sigma_v iu + d)$.
+    **Recall** (see [§ Heston Characteristic Function](../../ch16/heston_cf/closed_form_characteristic_function.md)): the Heston log-price CF $\phi(u) = \exp(C(u,T) + D(u,T)v_0 + iux_0)$ has $C, D$ from Riccati ODEs.
 
     Using the COS method with $N = 128$ and a cumulant-based truncation interval, the density is recovered accurately for typical parameter sets. The density exhibits negative skew and excess kurtosis compared to the log-normal, reflecting the stochastic volatility and leverage effect.
 

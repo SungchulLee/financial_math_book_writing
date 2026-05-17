@@ -46,12 +46,7 @@ These are intrinsic inverse-problem features.
 ## Mitigation strategies
 
 
-Stability is improved by:
-
-- fixing recovery rates,
-- restricting parameter dynamics,
-- smoothing hazard rate curves,
-- prioritizing robust fits.
+Stability is improved by fixing recovery rates, restricting parameter dynamics, smoothing hazard rate curves, and prioritizing robust fits. Recall (see [§ Regularization](../../ch17/regularization_and_stability/tikhonov_regularization.md)) the general bias-variance trade-off underlying these choices.
 
 ---
 

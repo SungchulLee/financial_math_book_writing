@@ -1,6 +1,6 @@
 # Maximum Principle and Uniqueness
 
-The **maximum principle** is a fundamental property of parabolic equations that provides qualitative information about solutions without explicitly solving the equation. It is the key tool for establishing uniqueness and comparison results.
+Heat flows from hot to cold, so an interior hot spot cannot persist: heat leaks outward and cools it. Equivalently, the temperature anywhere inside the rod is at most the maximum of the initial data and the side-wall boundary values. Formalizing this geometric fact gives the **maximum principle** -- the qualitative tool that yields uniqueness, comparison results, and pointwise bounds without ever solving the equation.
 
 ---
 
@@ -167,21 +167,7 @@ The growth condition prevents pathological solutions (there exist non-unique sol
 
 ## Probabilistic Interpretation
 
-The maximum principle has a natural probabilistic meaning:
-
-**For Brownian motion**: If $f \leq M$, then:
-
-$$
-u(t,x) = \mathbb{E}[f(x + B_t)] \leq M
-$$
-
-The expected value of a bounded function is bounded by the same constant.
-
-**For killed Brownian motion**: With discounting $r > 0$:
-
-$$
-u(t,x) = \mathbb{E}[e^{-rT}f(B_T)] \leq e^{-rT}M \leq M
-$$
+Recall (see [§ Probabilistic Interpretation of PDE Concepts](heat_equation_and_brownian_motion.md)): the maximum principle is the analytical statement of "expectation is bounded by sup" -- $u(t,x) = \mathbb{E}[f(x+B_t)] \leq \sup f$, with the discounted version $\mathbb{E}[e^{-rT}f(B_T)] \leq e^{-rT}\sup f$.
 
 ---
 

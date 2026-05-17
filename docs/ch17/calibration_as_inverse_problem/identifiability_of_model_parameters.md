@@ -46,16 +46,7 @@ Practical identifiability depends on:
 ## Local identifiability via the Jacobian
 
 
-A standard local criterion: if the Jacobian
-
-$$
-J(\theta)=\nabla_\theta F(\theta)\in\mathbb{R}^{m\times d}
-$$
-
-
-has **full column rank** at $\theta$, then the parameters are locally identifiable (in a smooth setting).
-
-Equivalently, if $J^\top W J$ is nonsingular for a positive definite weight matrix $W$, the (linearized) least-squares problem has a unique local solution.
+Recall the Jacobian $J(\theta)=\nabla_\theta F(\theta)\in\mathbb{R}^{m\times d}$ (see [§ Local linearization and sensitivity](forward_pricing_map_vs_inverse_calibration_map.md#local-linearization-and-sensitivity)). A standard local criterion: if $J(\theta)$ has **full column rank**, then the parameters are locally identifiable (in a smooth setting). Equivalently, if $J^\top W J$ is nonsingular for a positive definite weight matrix $W$, the (linearized) least-squares problem has a unique local solution.
 
 ### 1. Singular values as an identifiability score
 
@@ -121,13 +112,7 @@ Choose parameters that are closer to what the market “sees”, e.g.:
 ### 3. Regularization and priors
 
 
-If parameters are weakly identifiable, regularization stabilizes estimation:
-
-- Tikhonov: penalize deviation from prior $\theta_{\text{prior}}$,
-- smoothness penalties (for functional parameters),
-- Bayesian priors to express beliefs and uncertainty.
-
-(See Chapter 5.3.)
+Recall (see [§ Tikhonov regularization](../regularization_and_stability/tikhonov_regularization.md)) that if parameters are weakly identifiable, Tikhonov penalties, smoothness penalties, and Bayesian priors stabilize estimation.
 
 ### 4. Report uncertainty, not just point estimates
 

@@ -1,22 +1,19 @@
 # Picard Iteration for SDEs
 
-**Picard iteration** (successive approximations) is the constructive proof of
-existence and uniqueness for SDEs under Lipschitz and linear growth conditions.
-It is the stochastic analogue of the classical Picard–Lindelöf theorem for ODEs.
-The conditions that make it work are stated in
-[Lipschitz Conditions and Linear Growth](lipschitz_conditions.md).
+Recall (see [§ Lipschitz Conditions and Linear Growth](lipschitz_conditions.md)): the coefficients $(b, \sigma)$ are assumed globally Lipschitz with constant $K$ and to satisfy the linear growth condition. Given these assumptions, we now construct the solution explicitly by **Picard iteration** (successive approximations), the stochastic analogue of the classical Picard–Lindelöf scheme for ODEs.
+
+!!! tip "Toy mechanism: contraction mapping"
+    Picard iteration is the Banach fixed-point theorem in disguise. The cleanest version: to solve $x = \tfrac{1}{2}x + 1$, iterate $x_{n+1} = \tfrac{1}{2}x_n + 1$ starting from any $x_0$; the errors $e_n = |x_n - 2|$ satisfy $e_{n+1} = \tfrac{1}{2}e_n$, so $e_n = 2^{-n}e_0 \to 0$ — geometric contraction. The SDE setting replaces the constant $\tfrac{1}{2}$ with a Lipschitz constant $K$ and the absolute value with an $L^2$-norm, but the engine is identical: a Lipschitz coefficient *contracts* the error between successive iterates, the geometric decay improves to *factorial* decay $(Ct)^n/n!$ after the time-integral, and completeness of the function space delivers the limit.
+
+**Roadmap.** The proof proceeds in four steps: bound the first iterate, derive a recursive inequality, obtain factorial decay, and conclude $L^2$ convergence. A separate Gronwall argument then yields uniqueness.
 
 ---
 
 ## The Iteration Scheme
 
-Given the SDE in integral form:
+Recall (see [§ Stochastic Differential Equations](../sde/sde.md)): the SDE in integral form is $X_t = x_0 + \int_0^t b(s, X_s)\,ds + \int_0^t \sigma(s, X_s)\,dW_s$.
 
-$$
-X_t = x_0 + \int_0^t b(s, X_s)\,ds + \int_0^t \sigma(s, X_s)\,dW_s
-$$
-
-define the sequence $\{X_t^{(n)}\}_{n \geq 0}$ by:
+Define the sequence $\{X_t^{(n)}\}_{n \geq 0}$ by:
 
 $$
 X_t^{(0)} = x_0
@@ -60,7 +57,7 @@ $$
 $$
 
 For the stochastic integral term, Doob's maximal inequality followed by the
-Itô isometry gives:
+[Itô isometry](../ito_integral/ito_isometry.md) gives:
 
 $$
 \mathbb{E}\!\left[\sup_{s \leq t}\left|\int_0^s \sigma(u,x_0)\,dW_u\right|^2\right]
@@ -95,7 +92,7 @@ The same three tools as Step 1, now applied to the *differences*, give:
 |---|---|---|
 | Cauchy–Schwarz | drift difference integral | $\leq t\int_0^t K^2\mathbb{E}|X_s^{(n)}-X_s^{(n-1)}|^2\,ds$ |
 | Doob's maximal inequality | stochastic integral sup | $\leq 4\,\mathbb{E}|M_t|^2$ where $M_t = \int_0^t(\sigma^{(n)}-\sigma^{(n-1)})\,dW$ |
-| Itô isometry | $\mathbb{E}|M_t|^2$ | $= \int_0^t\mathbb{E}|\sigma^{(n)}-\sigma^{(n-1)}|^2\,ds \leq 4K^2\int_0^t\mathbb{E}|X_s^{(n)}-X_s^{(n-1)}|^2\,ds$ |
+| [Itô isometry](../ito_integral/ito_isometry.md) | $\mathbb{E}|M_t|^2$ | $= \int_0^t\mathbb{E}|\sigma^{(n)}-\sigma^{(n-1)}|^2\,ds \leq 4K^2\int_0^t\mathbb{E}|X_s^{(n)}-X_s^{(n-1)}|^2\,ds$ |
 
 Applying the Lipschitz bound $|b(t,x)-b(t,y)| + |\sigma(t,x)-\sigma(t,y)| \leq K|x-y|$
 and combining:
@@ -196,7 +193,7 @@ X_t^{(2)} = x_0\!\left[
 \right]
 $$
 
-Both remaining integrals evaluate explicitly. By Itô's formula applied to $sW_s$:
+Both remaining integrals evaluate explicitly. By [Itô's formula](../ito_lemma/ito_lemma.md) applied to $sW_s$:
 
 $$
 \int_0^t s\,dW_s = tW_t - \int_0^t W_s\,ds

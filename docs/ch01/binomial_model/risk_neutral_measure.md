@@ -23,111 +23,42 @@ This section shows how the risk-neutral pricing formula emerges from no-arbitrag
     4. Price calls, puts, digitals, and forwards using expectation
     5. Understand what risk-neutral probability is (and is not)
 
-!!! note "Three Equivalent Approaches"
-    This section presents the **risk-neutral pricing approach**. The same prices are obtained via:
-    
-    - [Replicating Portfolio](replicating_portfolio.md): Match payoffs with stock + bond
-    - [Delta Hedging](delta_hedging.md): Construct risk-free hedged portfolio
-    
-    All three approaches yield identical prices.
-
 ---
 
 ## From Replication to Expectation
 
-In the replication approach, we:
-
-1. Find a portfolio $(\Delta, B)$ matching the payoff in all states
-2. Set the price equal to the portfolio cost: $V_0 = \Delta S_0 + B$
-
-Risk-neutral pricing asks a different question:
+In the replication approach (see [§ Replicating Portfolio](replicating_portfolio.md)) we find $(\Delta, B)$ matching the payoff in both states and set $V_0 = \Delta S_0 + B$. Risk-neutral pricing instead asks:
 
 > *Is there a probability measure under which prices can be computed by expectation alone?*
 
 The answer is **yes**, and that measure is uniquely determined by no-arbitrage.
 
-!!! abstract "Three views, one principle"
-    $$\boxed{\text{[Replication](replicating_portfolio.md)} \;=\; \text{[Delta hedging](delta_hedging.md)} \;=\; \text{Risk-neutral expectation}}$$
-
-    These are three equivalent perspectives on the same arbitrage-free price: matching payoffs by construction, eliminating risk by hedging, and computing expectations under a measure that turns discounted prices into martingales.
-
 ---
 
-## The Risk-Neutral Probability
+## The Risk-Neutral Probability and Measure
 
-### Definition
-
-In the one-period binomial model with:
-
-$$
-S_{\Delta t} \in \{uS_0, \, dS_0\}, \qquad B_{\Delta t} = e^{r\Delta t}
-$$
-
-the **risk-neutral probability** of an up move is:
-
-$$
-\boxed{q = \frac{e^{r\Delta t} - d}{u - d}}
-$$
-
-### Properties
-
-1. **Valid probability**: $0 < q < 1$ if and only if $d < e^{r\Delta t} < u$ (no-arbitrage condition)
-
-2. **Model-dependent only**: $q$ depends only on $(u, d, r, \Delta t)$, not on the payoff being priced
-
-3. **Unique**: There is exactly one value of $q$ satisfying the martingale condition
-
-### The Risk-Neutral Measure
-
-Define a probability measure $\mathbb{Q}$ on the state space $\{\text{up}, \text{down}\}$ by:
-
-$$
-\mathbb{Q}(\text{up}) = q, \qquad \mathbb{Q}(\text{down}) = 1 - q
-$$
-
-This is called the **risk-neutral measure** (or **equivalent martingale measure**).
-
----
-
-## The Martingale Property
-
-Under the risk-neutral measure $\mathbb{Q}$, the **discounted stock price** is a martingale.
-
-### Verification
-
-The expected stock price under $\mathbb{Q}$ is:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = q \cdot uS_0 + (1-q) \cdot dS_0 = S_0[qu + (1-q)d]
-$$
-
-Substituting $q = \frac{e^{r\Delta t} - d}{u - d}$:
-
-$$\begin{array}{lll}
-qu + (1-q)d 
-&=&\displaystyle \frac{e^{r\Delta t} - d}{u - d} \cdot u + \frac{u - e^{r\Delta t}}{u - d} \cdot d\\
-&=&\displaystyle \frac{(e^{r\Delta t} - d)u + (u - e^{r\Delta t})d}{u - d}\\ 
-&=&\displaystyle \frac{ue^{r\Delta t} - ud + ud - de^{r\Delta t}}{u - d}\\
-&=&\displaystyle \frac{e^{r\Delta t}(u - d)}{u - d} = e^{r\Delta t}
-\end{array}$$
-
-Therefore:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 \cdot e^{r\Delta t}
-$$
-
-Dividing both sides by $e^{r\Delta t}$:
-
-!!! success "Martingale Property"
-
+!!! note "Recall (see [§ Binomial Model](binomial_model.md))"
+    The **risk-neutral probability** is
+    
     $$
-    \boxed{\mathbb{E}^{\mathbb{Q}}\left[\frac{S_{\Delta t}}{e^{r\Delta t}}\right] = S_0}
+    q = \frac{e^{r\Delta t} - d}{u - d}, \qquad 1 - q = \frac{u - e^{r\Delta t}}{u - d},
     $$
     
-    The discounted stock price is a **martingale** under $\mathbb{Q}$.
+    and $q \in (0,1)$ iff $d < e^{r\Delta t} < u$. The associated measure $\mathbb{Q}$ assigns $\mathbb{Q}(\text{up}) = q$ and $\mathbb{Q}(\text{down}) = 1 - q$.
 
-**Interpretation**: Under $\mathbb{Q}$, the stock's expected return equals the risk-free rate. This is why $\mathbb{Q}$ is called "risk-neutral"—it's as if investors don't require any risk premium.
+In this section we elevate $q$ from a *number* to an *operator*: $V_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H]$.
+
+### The Martingale Property (Recall)
+
+Under $\mathbb{Q}$, the discounted stock price is a martingale:
+
+$$
+\mathbb{E}^{\mathbb{Q}}\!\left[\frac{S_{\Delta t}}{e^{r\Delta t}}\right] = S_0,
+\qquad \text{equivalently} \qquad
+\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 e^{r\Delta t}
+$$
+
+(Proof in [§ Binomial Model](binomial_model.md); we use the identity throughout below.)
 
 ---
 
@@ -141,52 +72,21 @@ $$
 \boxed{V_0 = e^{-r\Delta t} \mathbb{E}^{\mathbb{Q}}[H] = e^{-r\Delta t}(qH_u + (1-q)H_d)}
 $$
 
-### Proof of Equivalence to Replication
+### Equivalence to Replication (Brief)
 
-We show that the risk-neutral price equals the replication price.
-
-**Replication price** (from [Replicating Portfolio](replicating_portfolio.md)):
+The cleanest route is via state prices: from [§ Replicating Portfolio](replicating_portfolio.md), $\psi_u = e^{-r\Delta t} q$ and $\psi_d = e^{-r\Delta t}(1-q)$, hence
 
 $$
-V_0^{rep} = \Delta S_0 + B
+V_0 = \psi_u H_u + \psi_d H_d = e^{-r\Delta t}\bigl(qH_u + (1-q)H_d\bigr) = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H].
 $$
 
-where:
-
-$$
-\Delta = \frac{H_u - H_d}{(u-d)S_0}, \qquad B = e^{-r\Delta t}(H_u - \Delta \cdot uS_0)
-$$
-
-Substituting:
-
-$$\begin{array}{lll}
-V_0^{rep} 
-&=&\displaystyle \frac{H_u - H_d}{(u-d)S_0} \cdot S_0 + e^{-r\Delta t}\left(H_u - \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0\right)\\
-&=&\displaystyle \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(H_u - \frac{u(H_u - H_d)}{u-d}\right)\\
-&=&\displaystyle \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{(u-d)H_u - u(H_u - H_d)}{u-d}\right)\\
-&=&\displaystyle \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_u - dH_u - uH_u + uH_d}{u-d}\right)\\
-&=&\displaystyle \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u-d}\right)
-\end{array}$$
-
-**Risk-neutral price**:
-
-$$\begin{array}{lll}
-V_0^{RN} 
-&=&\displaystyle e^{-r\Delta t}(qH_u + (1-q)H_d)\\
-&=&\displaystyle e^{-r\Delta t}\left(\frac{e^{r\Delta t} - d}{u-d}H_u + \frac{u - e^{r\Delta t}}{u-d}H_d\right)\\
-&=&\displaystyle e^{-r\Delta t}\left(\frac{(e^{r\Delta t} - d)H_u + (u - e^{r\Delta t})H_d}{u-d}\right)\\
-&=&\displaystyle \frac{1}{u-d}\left(\frac{e^{r\Delta t} - d}{e^{r\Delta t}}H_u + \frac{u - e^{r\Delta t}}{e^{r\Delta t}}H_d\right)
-\end{array}$$
-
-To show $V_0^{rep} = V_0^{RN}$, we can verify algebraically (or more simply, note that both give the unique no-arbitrage price, so they must be equal).
+By completeness, this is the **unique** no-arbitrage price, so replication, hedging, and risk-neutral expectation must all coincide. (A direct algebraic verification, substituting $\Delta$ and $B$ from the replication formulas, is given as Exercise 3 in [§ Delta Hedging](delta_hedging.md).)
 
 !!! success "Equivalence Theorem"
 
     $$
-    V_0 = \Delta S_0 + B = e^{-r\Delta t}(qH_u + (1-q)H_d)
+    V_0 = \Delta S_0 + B = e^{-r\Delta t}(qH_u + (1-q)H_d).
     $$
-    
-    **Replication pricing and risk-neutral pricing give the same answer.**
 
 ---
 
@@ -219,67 +119,21 @@ $$
 
 ---
 
-## Example 1: European Call Option
+## Example 1: European Call and Put (Reference Check)
 
-### Payoffs
-
-$$
-S_{\Delta t}^{up} = 120, \quad S_{\Delta t}^{down} = 90
-$$
+The call and put with strike $K = 105$ are priced fully in [§ Replicating Portfolio](replicating_portfolio.md). Under the same parameters and using $V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)$:
 
 $$
-H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0
+C_0 = e^{-0.05}(0.5043 \times 15 + 0.4957 \times 0) = 7.19,
+\qquad
+P_0 = e^{-0.05}(0.5043 \times 0 + 0.4957 \times 15) = 7.07.
 $$
 
-### Risk-Neutral Price
-
-$$
-C_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
-= e^{-0.05}(0.5043 \times 15 + 0.4957 \times 0)
-= 7.19
-$$
-
-!!! success "European Call Price"
-
-    $$C_0 = 7.19$$
-    
-    This matches the replication price from [Replicating Portfolio Pricing](replicating_portfolio.md).
+Both values agree with the replication and hedging prices, illustrating that the expectation formula merely **repackages** the same arbitrage-free price.
 
 ---
 
-## Example 2: European Put Option
-
-### Payoffs
-
-$$
-H_u = (105 - 120)^+ = 0, \qquad H_d = (105 - 90)^+ = 15
-$$
-
-### Risk-Neutral Price
-
-$$
-P_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
-= e^{-0.05}(0.5043 \times 0 + 0.4957 \times 15)
-= 7.07
-$$
-
-!!! success "European Put Price"
-
-    $$P_0 = 7.07$$
-
-### Verification via Put–Call Parity
-
-$$
-C_0 - P_0 = 7.19 - 7.07 = 0.12
-$$
-
-$$
-S_0 - Ke^{-r\Delta t} = 100 - 105 \times 0.9512 = 100 - 99.88 = 0.12 \text{ ✓}
-$$
-
----
-
-## Example 3: Digital (Binary) Call Option
+## Example 2: Digital (Binary) Call Option
 
 A digital call pays $\$1$ if the stock is above the strike, and $\$0$ otherwise.
 
@@ -306,50 +160,15 @@ $$
 
 ---
 
-## Example 4: Forward Contract
+## Example 3: Forward Contract via the Martingale Trick
 
-A forward contract obligates the holder to buy the stock at price $F$ at maturity.
-
-### Payoff
+The forward payoff is $H = S_{\Delta t} - F$. Linearity plus the martingale identity $\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 e^{r\Delta t}$ gives, with **no algebra in states**:
 
 $$
-H = S_{\Delta t} - F
+V_0 = e^{-r\Delta t}\bigl(\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - F\bigr) = S_0 - F e^{-r\Delta t}.
 $$
 
-$$
-H_u = uS_0 - F = 120 - F, \qquad H_d = dS_0 - F = 90 - F
-$$
-
-### Risk-Neutral Price
-
-$$
-V_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - F]
-= e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - e^{-r\Delta t}F
-$$
-
-Using $\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 e^{r\Delta t}$ (martingale property):
-
-$$
-V_0 = e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Fe^{-r\Delta t} = S_0 - Fe^{-r\Delta t}
-$$
-
-### Forward Price
-
-A forward contract has zero initial value by definition. Setting $V_0 = 0$:
-
-$$
-0 = S_0 - Fe^{-r\Delta t}
-$$
-
-$$
-F = S_0 e^{r\Delta t} = 100 \times 1.0513 = 105.13
-$$
-
-!!! success "Forward Price"
-
-    $$F = S_0 e^{r\Delta t} = 105.13$$
-    
-    The forward price is the spot price grown at the risk-free rate.
+Setting $V_0 = 0$ recovers $F = S_0 e^{r\Delta t}$, the same forward price derived state-by-state in [§ Replicating Portfolio](replicating_portfolio.md). This is the first hint of the **power of expectation pricing**: collapsing a state-space calculation into a one-line identity.
 
 ---
 
@@ -449,35 +268,8 @@ V_0(\alpha H^{(1)} + \beta H^{(2)})\\
 
 ## Multi-Period Extension
 
-In an $N$-period binomial tree, the risk-neutral pricing formula generalizes naturally.
-
-### Terminal Payoffs
-
-Let $V_{N,j}$ denote the payoff at terminal node $(N, j)$ (after $j$ up moves):
-
-$$
-V_{N,j} = H(S_0 u^j d^{N-j})
-$$
-
-### Risk-Neutral Pricing Formula
-
-$$
-\boxed{V_0 = e^{-rN\Delta t} \sum_{j=0}^{N} \binom{N}{j} q^j (1-q)^{N-j} V_{N,j}}
-$$
-
-where $\binom{N}{j} q^j (1-q)^{N-j}$ is the risk-neutral probability of reaching node $(N, j)$.
-
-### Equivalence to Backward Induction
-
-This formula is equivalent to backward induction:
-
-$$
-V_{n,j} = e^{-r\Delta t}(qV_{n+1,j+1} + (1-q)V_{n+1,j})
-$$
-
-Both methods give the same price. Backward induction is computationally more efficient for path-independent options, while the direct formula is useful for analysis.
-
-See [Multi-Period Binomial Model](../multi_period_model/multi_period_binomial_model.md) for complete details.
+!!! note "Recall (see [§ Multi-Period Binomial Model](../multi_period_model/multi_period_binomial_model.md))"
+    Over $N$ periods the same formula iterates: $V_0 = e^{-rN\Delta t}\sum_{j=0}^{N}\binom{N}{j}q^j(1-q)^{N-j}\,H(S_0 u^j d^{N-j})$, equivalent to backward induction $V_{n,j} = e^{-r\Delta t}(qV_{n+1,j+1} + (1-q)V_{n+1,j})$.
 
 ---
 

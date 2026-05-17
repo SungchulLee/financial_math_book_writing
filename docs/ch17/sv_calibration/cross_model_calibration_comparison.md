@@ -5,11 +5,8 @@ Different stochastic volatility models—Heston, SABR, and local volatility—pr
 ## Key Concepts
 
 **Heston Model Calibration**
-The Heston SDE:
 
-$$dS_t = \mu S_t dt + \sqrt{v_t} S_t dB_t^S$$
-
-$$dv_t = \kappa(\theta - v_t) dt + \sigma_v \sqrt{v_t} dB_t^v$$
+Recall (see [§ Heston SDE and parameters](../../ch16/model_definition/heston_sde_and_parameters.md)): Heston specifies $dS_t = \mu S_t\,dt + \sqrt{v_t}\,S_t\,dB_t^S$ with mean-reverting variance $dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,dB_t^v$.
 
 Calibration targets entire option surface with 5 parameters. Strengths:
 
@@ -24,11 +21,8 @@ Weaknesses:
 - Assumption of constant parameters over time
 
 **SABR Model Calibration**
-The SABR SDE (for forward $F$):
 
-$$dF_t = \alpha_t (F_t)^{\beta} dB_t^F$$
-
-$$d\alpha_t = \nu \alpha_t dB_t^{\alpha}$$
+Recall (see [§ SABR SDE and parameters](../../ch14/sabr_model/sabr_sde_and_parameters.md)): for the forward $F$, $dF_t = \alpha_t F_t^{\beta}\,dB_t^F$ and $d\alpha_t = \nu\alpha_t\,dB_t^{\alpha}$.
 
 Hagan's closed-form approximation enables rapid calibration. Strengths:
 
@@ -44,9 +38,8 @@ Weaknesses:
 - Empirical nature of Hagan formula
 
 **Local Volatility Calibration**
-Dupire's local volatility:
 
-$$\sigma_{\text{LV}}(S, t)^2 = \frac{\partial C/\partial T + rK\partial C/\partial K}{(1/2)K^2 \partial^2 C/\partial K^2}$$
+Recall (see [§ Dupire formula](../../ch13/local_volatility_framework/dupire_formula_and_local_volatility_surface.md)): Dupire's formula expresses $\sigma_{\text{LV}}(K,T)^2$ as a ratio of call-price derivatives in $T$ and $K$.
 
 Strengths:
 

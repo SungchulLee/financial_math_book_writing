@@ -748,43 +748,7 @@ $$
 
 ### 1. Option Pricing Under Misspecification
 
-
-**Setup**: True stock dynamics unknown; use Black-Scholes as working model.
-
-**Black-Scholes Model**:
-
-
-$$
-dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-$$
-
-
-
-**True Dynamics** (e.g., with jumps):
-
-
-$$
-dS_t = \mu S_t \, dt + \sigma S_t \, dW_t + S_{t-} \, dJ_t
-$$
-
-
-
-where $J_t$ is a jump process.
-
-**Pricing Error**: 
-
-
-$$
-\text{Error} = |V_{\text{BS}}(S_0, K, \sigma) - V_{\text{true}}(S_0, K)|
-$$
-
-
-
-**Components**:
-
-1. **Misspecification**: Ignoring jumps creates systematic bias
-2. **Estimation Error**: Volatility $\sigma$ estimated from data
-3. **Interaction**: Estimated $\sigma$ may partially compensate for model misspecification
+**Recall** (see [§ Robust Calibration](../robust_calibration/confidence_sets_for_models.md) and [§ Robust No-Arbitrage Pricing](../robust_no_arbitrage_pricing/hobson_robust_bounds.md)): when fitting Black-Scholes $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ to truly jump-diffusive dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t + S_{t-}\,dJ_t$, the pricing error $|V_{\text{BS}}(S_0,K,\sigma) - V_{\text{true}}(S_0,K)|$ decomposes into (i) structural misspecification from ignoring jumps, (ii) estimation error in $\sigma$, and (iii) a compensating interaction where calibrated $\hat\sigma$ partly absorbs structural bias.
 
 ### 2. Risk Management
 

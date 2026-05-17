@@ -21,22 +21,7 @@ The Hull-White model is often called the "extended Vasicek model" because it gen
 
 ## The Vasicek Model
 
-The Vasicek model (1977) was the first equilibrium short-rate model to incorporate mean reversion.
-
-!!! note "Definition: Vasicek Model"
-    The **Vasicek model** specifies the risk-neutral short rate dynamics
-
-    $$
-    dr_t = a\bigl(\theta_{\infty} - r_t\bigr)\, dt + \sigma\, dW_t^{\mathbb{Q}}
-    $$
-
-    where:
-
-    - $\theta_{\infty} > 0$ is the constant long-run mean level
-    - $a > 0$ is the mean-reversion speed
-    - $\sigma > 0$ is the short rate volatility
-
-The parameters $a$, $\theta_{\infty}$, and $\sigma$ are all constants. The short rate reverts to the fixed level $\theta_{\infty}$ at speed $a$, regardless of the current time or market conditions.
+Recall (see [§ Vasicek SDE and OU Process](../../ch18/vasicek_model/vasicek_sde_and_ou_process.md)): the Vasicek model (1977) specifies $dr_t = a(\theta_{\infty} - r_t)\, dt + \sigma\, dW_t^{\mathbb{Q}}$ with constants $a,\theta_{\infty},\sigma>0$. The short rate reverts to the fixed level $\theta_{\infty}$ at speed $a$, regardless of current time or market conditions.
 
 ---
 
@@ -81,13 +66,13 @@ The connection between the two models becomes transparent when we write them sid
 
 Both models are Ornstein-Uhlenbeck processes with explicit solutions. The structural parallel is revealing.
 
-**Vasicek solution** (starting from $r_s$ at time $s$):
+Recall (see [§ Explicit Solution and Distribution](../../ch18/vasicek_model/explicit_solution_and_distribution.md)) the **Vasicek solution** starting from $r_s$ at time $s$:
 
 $$
 r_t = \theta_{\infty} + (r_s - \theta_{\infty})\, e^{-a(t-s)} + \sigma \int_s^t e^{-a(t-u)}\, dW_u^{\mathbb{Q}}
 $$
 
-**Hull-White solution** (starting from $r_s$ at time $s$):
+Recall (see [§ Hull-White SDE and Mean Reversion](hull_white_sde_and_mean_reversion.md)) the **Hull-White solution** starting from $r_s$ at time $s$:
 
 $$
 r_t = r_s\, e^{-a(t-s)} + \int_s^t e^{-a(t-u)}\, \theta(u)\, du + \sigma \int_s^t e^{-a(t-u)}\, dW_u^{\mathbb{Q}}
@@ -120,28 +105,7 @@ The stochastic parts of both solutions are identical. The only difference lies i
 
 A key qualitative difference between the two models concerns their long-time behavior.
 
-!!! note "Theorem: Vasicek Stationary Distribution"
-    The Vasicek model has a stationary distribution. As $t \to \infty$ with $s$ fixed:
-
-    $$
-    r_t \xrightarrow{d} r_{\infty} \sim \mathcal{N}\!\left(\theta_{\infty},\; \frac{\sigma^2}{2a}\right)
-    $$
-
-    The long-run mean is $\theta_{\infty}$ and the stationary variance is $\sigma^2/(2a)$.
-
-???+ note "Proof"
-    From the Vasicek solution, the conditional distribution is
-
-    $$
-    r_t \mid r_s \sim \mathcal{N}\!\left(\theta_{\infty} + (r_s - \theta_{\infty})e^{-a(t-s)},\; \frac{\sigma^2}{2a}(1 - e^{-2a(t-s)})\right)
-    $$
-
-    As $t - s \to \infty$:
-
-    - The conditional mean converges to $\theta_{\infty}$ since $e^{-a(t-s)} \to 0$
-    - The conditional variance converges to $\sigma^2/(2a)$ since $e^{-2a(t-s)} \to 0$
-
-    The limiting distribution $\mathcal{N}(\theta_{\infty}, \sigma^2/(2a))$ is independent of the initial condition $r_s$, confirming stationarity. $\square$
+Recall (see [§ Vasicek SDE and OU Process](../../ch18/vasicek_model/vasicek_sde_and_ou_process.md)): the Vasicek model has the stationary distribution $r_t \xrightarrow{d} \mathcal{N}(\theta_{\infty}, \sigma^2/(2a))$, with long-run mean $\theta_{\infty}$ and stationary variance $\sigma^2/(2a)$.
 
 The Hull-White model, by contrast, does **not** have a stationary distribution in general because $\theta(t)$ varies over time, so the mean-reversion target changes. The conditional variance still saturates at $\sigma^2/(2a)$ for large $t - s$ (the same as Vasicek), but the conditional mean $\mu(s,t)$ depends on the entire path of $\theta(u)$ over $[s,t]$ and does not converge to a fixed value.
 

@@ -152,20 +152,7 @@ Therefore:
 
 ### Heston (1993) Original Formulation
 
-The original Heston (1993) paper presented the characteristic function in a different but algebraically equivalent form. Define $\tilde{g} = 1/g$:
-
-$$
-D(\tau, u) = \frac{\kappa - i\rho\sigma_v u + \gamma}{\sigma_v^2}\cdot\frac{1 - e^{\gamma\tau}}{1 - \tilde{g}\,e^{\gamma\tau}}
-$$
-
-$$
-C(\tau, u) = (r-q)\,iu\,\tau + \frac{\kappa\theta}{\sigma_v^2}\left[(\kappa - i\rho\sigma_v u + \gamma)\tau - 2\ln\!\left(\frac{1-\tilde{g}\,e^{\gamma\tau}}{1-\tilde{g}}\right)\right]
-$$
-
-!!! warning "Branch-Cut Issue in the Heston (1993) Form"
-    The Heston (1993) formulation uses $e^{+\gamma\tau}$ (a growing exponential), which means the argument of the logarithm $\frac{1 - \tilde{g}\,e^{\gamma\tau}}{1 - \tilde{g}}$ can cross zero or become large, causing the complex logarithm to jump across branch cuts. This produces discontinuities in $\phi$ as a function of $u$ and leads to incorrect prices when integrating over $u$.
-
-    The Albrecher formulation uses $e^{-\gamma\tau}$ (a decaying exponential) and $|g| < 1$ (when $\text{Re}(\gamma) > 0$), which ensures $|g\,e^{-\gamma\tau}| < 1$ and the logarithm's argument stays away from the branch cut. This is why the Albrecher form is universally preferred in numerical implementations.
+Recall (see [§ Heston 1993 vs Albrecher](heston_1993_vs_albrecher.md)) the original $e^{+\gamma\tau}$ form with $\tilde g = 1/g$, and its branch-cut instability relative to the Albrecher form.
 
 ---
 
@@ -183,17 +170,7 @@ Multiplying numerator and denominator of the Heston form by $-\tilde{g}$ and sim
 
 ## The Complex Logarithm
 
-The term $\ln\!\left(\frac{1 - g\,e^{-\gamma\tau}}{1-g}\right)$ in $C(\tau, u)$ involves the complex logarithm, which requires care.
-
-!!! info "Definition: Principal Value and Continuous Extension"
-    The principal value of the complex logarithm is $\text{Log}(z) = \ln|z| + i\,\text{Arg}(z)$ with $\text{Arg}(z) \in (-\pi, \pi]$.
-
-    For the Heston characteristic function, the logarithm must be evaluated as a **continuous function of $u$** (the Fourier variable). If the argument $\frac{1-g\,e^{-\gamma\tau}}{1-g}$ crosses the negative real axis as $u$ varies, the principal-value logarithm jumps by $2\pi i$, producing a discontinuity in $\phi(u)$.
-
-    In the Albrecher formulation, $|g| < 1$ and $|g\,e^{-\gamma\tau}| < 1$ for $u \in \mathbb{R}$ (under standard parameter constraints), so the argument stays in the right half-plane and the principal-value logarithm is continuous. This is the primary advantage of the Albrecher form.
-
-!!! note "Rotation Count Method"
-    When the principal-value logarithm does exhibit jumps (e.g., for very large $\tau$ or extreme parameters), the **rotation count method** of Kahl and Jackel (2005) provides a systematic correction. It tracks the winding number of the complex argument as $u$ increases and adds the appropriate multiple of $2\pi i$ to maintain continuity. This technique is discussed in the [numerical stability section](numerical_stability_and_branch_cuts.md).
+Recall (see [§ Numerical Stability and Branch Cuts](numerical_stability_and_branch_cuts.md)) the principal-branch issue for $\ln\!\left(\frac{1-g\,e^{-\gamma\tau}}{1-g}\right)$, the Albrecher continuity argument, and the Kahl-Jackel rotation count safeguard.
 
 ---
 

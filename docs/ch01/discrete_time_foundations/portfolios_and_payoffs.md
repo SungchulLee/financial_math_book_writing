@@ -1,60 +1,41 @@
 # Portfolios and Payoffs
 
-Having established the one-period market model in the
-[previous section](one_period_market_model.md), we now formalize how
-investors interact with it. Investors make decisions at $t = 0$ by choosing a
-**portfolio** --- a vector of holdings across the available assets --- whose
-**payoff** at $t = 1$ depends on which state is realized. The key observation
-of this page is that both the cost map $\boldsymbol{\theta} \mapsto V_0$ and
-the payoff map $\boldsymbol{\theta} \mapsto V_1$ are **linear**, so the entire
-trading structure is an exercise in linear algebra.
+The [previous page](one_period_market_model.md) fixed the environment:
+states, prices $\mathbf{P}$, payoff matrix $\mathbf{X}$, and the risk-free
+bond. This page introduces the **trading mechanics** that operate inside
+that environment. Investors choose a **portfolio** $\boldsymbol{\theta}$ at
+$t = 0$, pay an initial cost $\boldsymbol{\theta}^\top \mathbf{P}$, and
+receive a state-contingent **payoff** $\mathbf{X}^\top \boldsymbol{\theta}$
+at $t = 1$. The central observation of this page is that both maps are
+**linear**, so the whole trading structure is an exercise in linear algebra.
 
-!!! tip "Key insight: markets are linear algebra"
-    The portfolio cost and payoff maps are linear functionals on
-    $\mathbb{R}^{d+1}$. This linearity is what makes the
-    [First Fundamental Theorem](one_period_market_model.md) possible:
-    no-arbitrage becomes a statement about separating hyperplanes, and the
-    state price vector $\boldsymbol{\phi}$ of the main theorem is precisely
-    the coefficient vector of the linear pricing rule on attainable payoffs.
+This linearity is the technical engine behind the rest of the chapter: it
+makes no-arbitrage a statement about a linear subspace and the
+non-negative orthant, and it is what allows the
+[FTAP](arbitrage_and_dominance.md) to express asset prices as a linear
+functional of payoffs.
 
-!!! abstract "Learning Objectives: Portfolios, Payoffs, and Attainability"
+!!! abstract "Learning Objectives"
     After completing this section, you should be able to:
 
     - Define a portfolio and compute its initial cost and terminal payoff
-    - Construct the payoff matrix for a given market model
+    - Recognise the payoff map $\boldsymbol{\theta} \mapsto \mathbf{X}^\top\boldsymbol{\theta}$ and the cost functional $\boldsymbol{\theta} \mapsto \boldsymbol{\theta}^\top \mathbf{P}$ as linear maps
     - Determine the attainable set and check whether a given claim is attainable
     - Relate the rank of the payoff matrix to market completeness
-    - Distinguish between long and short positions and interpret their financial meaning
+    - Distinguish long and short positions and interpret their financial meaning
 
 ---
 
-## Roadmap
+## Notation (recall)
 
-This page introduces the following concepts, building directly on the one-period market model:
-
-- **Portfolios**: a vector of holdings across the available assets
-- **Portfolio cost**: the initial outlay required to form a portfolio
-- **Payoffs**: the state-contingent terminal value of a portfolio
-- **The payoff matrix**: the matrix whose columns encode each asset's terminal values
-- **The attainable set**: the subspace of payoffs reachable by trading
-- **Linear pricing**: the linearity of the cost and payoff maps
-
----
-
-## Market Setup and Notation
-
-We work within the one-period market model established in the [One-Period Market Model](one_period_market_model.md) page. The economy has two dates, $t = 0$ (today) and $t = 1$ (the future), and a finite state space $\Omega = \{\omega_1, \omega_2, \ldots, \omega_K\}$ of $K$ possible states at time $t = 1$.
-
-There are $d + 1$ traded assets indexed by $j = 0, 1, \ldots, d$:
-
-- **Asset 0** ($S^0$): the **risk-free asset** (bond or money market account). It has initial price $S^0_0 = 1$ and pays $S^0_1 = 1 + r_f$ in every state, where $r_f \geq 0$ is the one-period risk-free interest rate.
-- **Assets 1 through $d$** ($S^1, \ldots, S^d$): the **risky assets**. Asset $j$ has initial price $S^j_0 > 0$ and state-contingent terminal value $S^j_1(\omega_k)$ for $k = 1, \ldots, K$.
-
-We collect all initial prices into a vector:
-
-$$
-\mathbf{p} = (S^0_0, \, S^1_0, \, \ldots, \, S^d_0)^\top \in \mathbb{R}^{d+1}
-$$
+Recall (see [§ One-Period Market Model](one_period_market_model.md)): the
+market has finite state space $\Omega = \{\omega_1, \ldots, \omega_S\}$,
+$N$ traded assets with price vector $\mathbf{P} \in \mathbb{R}^N$ and
+payoff matrix $\mathbf{X} \in \mathbb{R}^{N \times S}$, where row $j$ of
+$\mathbf{X}$ gives the payoff of asset $j$ across states. One of the
+assets is a risk-free bond with constant payoff $1 + r_f$ and price $1$;
+the discount factor is $\beta = 1/(1+r_f)$. We use this notation
+throughout without redefinition.
 
 ---
 
@@ -70,156 +51,86 @@ Before investing, an agent must decide how many units of each available asset to
     A **portfolio** (or **trading strategy**) is a vector
 
     $$
-    \boldsymbol{\theta} = (\theta^0, \theta^1, \ldots, \theta^d)^\top \in \mathbb{R}^{d+1}
+    \boldsymbol{\theta} = (\theta_1, \theta_2, \ldots, \theta_N)^\top \in \mathbb{R}^{N}
     $$
 
-    where $\theta^j$ denotes the number of units of asset $j$ held by the investor. The component $\theta^0$ represents the position in the risk-free asset and $\theta^1, \ldots, \theta^d$ represent positions in the risky assets.
+    where $\theta_j$ denotes the number of units of asset $j$ held by the investor.
 
 The entries of $\boldsymbol{\theta}$ are real numbers, which means:
 
-- **Fractional holdings** are permitted: $\theta^j = 2.5$ means holding 2.5 units of asset $j$.
-- **Short positions** are permitted: $\theta^j < 0$ means the investor has sold asset $j$ short (borrowed and sold it, with an obligation to return it later).
-- **Zero position**: $\theta^j = 0$ means no holdings in asset $j$.
+- **Fractional holdings** are permitted: $\theta_j = 2.5$ means holding 2.5 units of asset $j$.
+- **Short positions** are permitted: $\theta_j < 0$ means the investor has sold asset $j$ short (borrowed and sold it, with an obligation to return it later).
+- **Zero position**: $\theta_j = 0$ means no holdings in asset $j$.
 
 ### Long and Short Positions
 
 !!! tip "Long vs Short"
 
-    - A **long position** in asset $j$ means $\theta^j > 0$: the investor owns the asset and profits when its value rises.
-    - A **short position** in asset $j$ means $\theta^j < 0$: the investor has sold the asset without owning it (short selling) and profits when its value falls.
-    - Short selling the risk-free asset ($\theta^0 < 0$) corresponds to **borrowing** at the risk-free rate.
-    - A long position in the risk-free asset ($\theta^0 > 0$) corresponds to **lending** (depositing money at the risk-free rate).
+    - A **long position** in asset $j$ means $\theta_j > 0$: the investor owns the asset and profits when its value rises.
+    - A **short position** in asset $j$ means $\theta_j < 0$: the investor has sold the asset without owning it (short selling) and profits when its value falls.
+    - Short selling the risk-free bond corresponds to **borrowing** at the risk-free rate; a long position corresponds to **lending**.
 
 ---
 
-## Portfolio Cost
+## Portfolio Cost and Payoff
 
 ### Intuition
 
-Forming a portfolio requires an initial outlay: the investor must pay the market price for each unit of each asset purchased. The total cost at time $t = 0$ is the sum of the quantities held times their respective prices. This cost represents the investor's initial wealth commitment to the portfolio.
+Forming a portfolio requires an initial outlay at $t = 0$ — the market price of each unit purchased, summed over assets. At $t = 1$, once the state $\omega_s$ is realised, the portfolio pays the corresponding linear combination of asset payoffs. Both the cost and the payoff are inner products against the data $(\mathbf{P}, \mathbf{X})$ fixed by the one-period model.
 
 ### Formal Definition
 
-!!! info "Definition: Portfolio Cost (Initial Value)"
-    The **cost** (or **initial value**) of a portfolio $\boldsymbol{\theta}$ is
+!!! info "Definition: Cost and Payoff of a Portfolio"
+    Given the price vector $\mathbf{P} \in \mathbb{R}^N$ and payoff matrix $\mathbf{X} \in \mathbb{R}^{N \times S}$ from [§ One-Period Market Model](one_period_market_model.md), the **cost** of a portfolio $\boldsymbol{\theta}$ at $t = 0$ is
 
     $$
-    V_0(\boldsymbol{\theta}) = \sum_{j=0}^{d} \theta^j S^j_0 = \boldsymbol{\theta}^\top \mathbf{p}
+    V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{P} = \sum_{j=1}^{N} \theta_j P_j
     $$
 
-    This is the inner product of the portfolio vector with the price vector.
+    and its **payoff** at $t = 1$ is the vector in $\mathbb{R}^S$
+
+    $$
+    V_1(\boldsymbol{\theta}) = \mathbf{X}^\top \boldsymbol{\theta}, \qquad V_1(\boldsymbol{\theta})_s = \sum_{j=1}^{N} \theta_j X_{js}
+    $$
 
 The cost $V_0(\boldsymbol{\theta})$ can be positive, zero, or negative:
 
 - $V_0(\boldsymbol{\theta}) > 0$: the investor pays a net amount to form the portfolio.
-- $V_0(\boldsymbol{\theta}) = 0$: the portfolio is **self-financing at inception** --- long positions are funded entirely by short positions.
-- $V_0(\boldsymbol{\theta}) < 0$: the investor receives a net cash inflow at time $t = 0$.
+- $V_0(\boldsymbol{\theta}) = 0$: the portfolio is **self-financing at inception** — long positions are funded entirely by short positions.
+- $V_0(\boldsymbol{\theta}) < 0$: the investor receives a net cash inflow at $t = 0$.
+
+The payoff $V_1(\boldsymbol{\theta}) \in \mathbb{R}^S$ records the terminal wealth in each state, the object that pricing theory ultimately aims to value.
 
 ---
 
-## Payoff of a Portfolio
+## Linearity of Cost and Payoff
 
-### Intuition
+The compact matrix expressions
+$V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{P}$ and
+$V_1(\boldsymbol{\theta}) = \mathbf{X}^\top \boldsymbol{\theta}$ make the
+following almost a tautology, but it is the structural backbone of the rest
+of the chapter.
 
-Once the portfolio is formed at $t = 0$, the investor holds it until $t = 1$, when the uncertainty resolves. Each asset delivers its terminal value depending on which state $\omega_k$ is realized. The portfolio payoff is the total terminal wealth: the sum of all asset payoffs weighted by the number of units held.
+!!! success "Proposition: Linearity of Cost and Payoff"
+    For any portfolios $\boldsymbol{\theta}, \boldsymbol{\eta} \in \mathbb{R}^{N}$ and any scalar $\alpha \in \mathbb{R}$:
 
-### Formal Definition
+    1. $V_0(\boldsymbol{\theta} + \boldsymbol{\eta}) = V_0(\boldsymbol{\theta}) + V_0(\boldsymbol{\eta})$ and $V_0(\alpha\boldsymbol{\theta}) = \alpha V_0(\boldsymbol{\theta})$
+    2. $V_1(\boldsymbol{\theta} + \boldsymbol{\eta}) = V_1(\boldsymbol{\theta}) + V_1(\boldsymbol{\eta})$ and $V_1(\alpha\boldsymbol{\theta}) = \alpha V_1(\boldsymbol{\theta})$
 
-!!! info "Definition: Portfolio Payoff"
-    The **payoff** (or **terminal value**) of a portfolio $\boldsymbol{\theta}$ in state $\omega_k$ is
-
-    $$
-    V_1(\boldsymbol{\theta}, \omega_k) = \sum_{j=0}^{d} \theta^j S^j_1(\omega_k)
-    $$
-
-    The payoff across all states defines a random variable $V_1(\boldsymbol{\theta}) : \Omega \to \mathbb{R}$, which we can represent as a vector in $\mathbb{R}^K$:
-
-    $$
-    V_1(\boldsymbol{\theta}) = \bigl(V_1(\boldsymbol{\theta}, \omega_1), \, V_1(\boldsymbol{\theta}, \omega_2), \, \ldots, \, V_1(\boldsymbol{\theta}, \omega_K)\bigr)^\top
-    $$
-
-The payoff $V_1(\boldsymbol{\theta})$ tells us how much the investor will receive (or owe) in each possible state. This is the object that pricing theory ultimately aims to value.
-
----
-
-## The Payoff Matrix
-
-### Intuition
-
-To study all possible payoffs simultaneously, we organize the terminal values of every asset in every state into a single matrix. Each row of this matrix corresponds to a state, and each column corresponds to an asset. Multiplying this matrix by a portfolio vector produces the payoff vector, making the payoff map a simple matrix-vector product.
-
-### Formal Definition
-
-!!! info "Definition: Payoff Matrix"
-    The **payoff matrix** $\mathbf{D} \in \mathbb{R}^{K \times (d+1)}$ has entries
-
-    $$
-    D_{kj} = S^j_1(\omega_k)
-    $$
-
-    for $k = 1, \ldots, K$ (states) and $j = 0, 1, \ldots, d$ (assets). Explicitly:
-
-    $$
-    \mathbf{D} = \begin{pmatrix} S^0_1(\omega_1) & S^1_1(\omega_1) & \cdots & S^d_1(\omega_1) \\ S^0_1(\omega_2) & S^1_1(\omega_2) & \cdots & S^d_1(\omega_2) \\ \vdots & \vdots & \ddots & \vdots \\ S^0_1(\omega_K) & S^1_1(\omega_K) & \cdots & S^d_1(\omega_K) \end{pmatrix}
-    $$
-
-Since $S^0_1(\omega_k) = 1 + r_f$ for all $k$, the first column of $\mathbf{D}$ is the constant vector $(1 + r_f) \, \mathbf{1}_K$.
-
-With this notation, the payoff of a portfolio $\boldsymbol{\theta}$ is:
+**Proof.** Both follow directly from the linearity of matrix multiplication and inner products:
 
 $$
-V_1(\boldsymbol{\theta}) = \mathbf{D} \boldsymbol{\theta}
+V_0(\alpha\boldsymbol{\theta} + \boldsymbol{\eta}) = (\alpha\boldsymbol{\theta} + \boldsymbol{\eta})^\top \mathbf{P} = \alpha\boldsymbol{\theta}^\top \mathbf{P} + \boldsymbol{\eta}^\top \mathbf{P}
 $$
 
-This compact matrix expression is the key formula that connects portfolios to payoffs.
-
----
-
-## The Payoff Map and Linearity
-
-### The Payoff Map
-
-The mapping from portfolios to payoffs is given by
-
 $$
-\Phi : \mathbb{R}^{d+1} \to \mathbb{R}^K, \quad \Phi(\boldsymbol{\theta}) = \mathbf{D} \boldsymbol{\theta}
-$$
-
-This is the **payoff map**. It takes a portfolio and returns the vector of state-contingent terminal values.
-
-### Linearity of the Payoff Map
-
-!!! success "Proposition: Linearity of the Payoff Map"
-    The payoff map $\Phi$ is a **linear map**. That is, for any portfolios $\boldsymbol{\theta}, \boldsymbol{\eta} \in \mathbb{R}^{d+1}$ and any scalar $\alpha \in \mathbb{R}$:
-
-    1. **Additivity**: $\Phi(\boldsymbol{\theta} + \boldsymbol{\eta}) = \Phi(\boldsymbol{\theta}) + \Phi(\boldsymbol{\eta})$
-    2. **Homogeneity**: $\Phi(\alpha \boldsymbol{\theta}) = \alpha \, \Phi(\boldsymbol{\theta})$
-
-**Proof.** Both properties follow directly from the linearity of matrix multiplication:
-
-1. $\Phi(\boldsymbol{\theta} + \boldsymbol{\eta}) = \mathbf{D}(\boldsymbol{\theta} + \boldsymbol{\eta}) = \mathbf{D}\boldsymbol{\theta} + \mathbf{D}\boldsymbol{\eta} = \Phi(\boldsymbol{\theta}) + \Phi(\boldsymbol{\eta})$
-2. $\Phi(\alpha \boldsymbol{\theta}) = \mathbf{D}(\alpha \boldsymbol{\theta}) = \alpha \, \mathbf{D}\boldsymbol{\theta} = \alpha \, \Phi(\boldsymbol{\theta})$
-
-$\square$
-
-### Linearity of the Cost Functional
-
-!!! success "Proposition: Linearity of Portfolio Cost"
-    The cost functional $V_0 : \mathbb{R}^{d+1} \to \mathbb{R}$ defined by $V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p}$ is a **linear functional**:
-
-    1. $V_0(\boldsymbol{\theta} + \boldsymbol{\eta}) = V_0(\boldsymbol{\theta}) + V_0(\boldsymbol{\eta})$
-    2. $V_0(\alpha \boldsymbol{\theta}) = \alpha \, V_0(\boldsymbol{\theta})$
-
-**Proof.** Immediate from the linearity of the inner product:
-
-$$
-V_0(\boldsymbol{\theta} + \boldsymbol{\eta}) = (\boldsymbol{\theta} + \boldsymbol{\eta})^\top \mathbf{p} = \boldsymbol{\theta}^\top \mathbf{p} + \boldsymbol{\eta}^\top \mathbf{p} = V_0(\boldsymbol{\theta}) + V_0(\boldsymbol{\eta})
+V_1(\alpha\boldsymbol{\theta} + \boldsymbol{\eta}) = \mathbf{X}^\top(\alpha\boldsymbol{\theta} + \boldsymbol{\eta}) = \alpha\mathbf{X}^\top \boldsymbol{\theta} + \mathbf{X}^\top \boldsymbol{\eta}
 $$
 
 $\square$
 
 !!! tip "Financial Interpretation of Linearity"
-    Linearity of the cost functional means that the **price of a portfolio equals the portfolio of prices**. There are no transaction costs, no price impact, and no constraints on trade sizes in this model. This is a simplifying assumption that underlies the entire theory. In practice, transaction costs and market frictions break this linearity.
+    Linearity of the cost functional means the **price of a portfolio equals the portfolio of prices**: there are no transaction costs, no price impact, and no position limits. This frictionless-markets assumption is the linear-algebraic basis for everything that follows. In practice, transaction costs and market frictions break this linearity.
 
 ---
 
@@ -227,7 +138,7 @@ $\square$
 
 ### Intuition
 
-Not every conceivable payoff pattern across states can be achieved by trading the available assets. The set of payoffs that *can* be generated by some portfolio is called the attainable set. Since the payoff map is linear, this set has the structure of a linear subspace of $\mathbb{R}^K$. The dimension of this subspace determines how "rich" the market is in terms of the payoff profiles it can produce.
+Not every conceivable payoff pattern across states can be achieved by trading the available assets. The set of payoffs that *can* be generated by some portfolio is called the attainable set. Since the payoff map is linear, this set has the structure of a linear subspace of $\mathbb{R}^S$. The dimension of this subspace measures how "rich" the market is in terms of the payoff profiles it can produce.
 
 ### Formal Definition
 
@@ -235,121 +146,98 @@ Not every conceivable payoff pattern across states can be achieved by trading th
     The **attainable set** (or **marketed subspace**) is the set of all payoffs achievable by some portfolio:
 
     $$
-    \mathcal{M} = \{ \mathbf{D}\boldsymbol{\theta} : \boldsymbol{\theta} \in \mathbb{R}^{d+1} \} = \operatorname{Im}(\mathbf{D})
+    \mathcal{M} = \{ \mathbf{X}^\top \boldsymbol{\theta} : \boldsymbol{\theta} \in \mathbb{R}^{N} \} = \operatorname{Im}(\mathbf{X}^\top)
     $$
 
-    This is the **column space** (image) of the payoff matrix $\mathbf{D}$.
+    This is the **column space** (image) of $\mathbf{X}^\top$, equivalently the row space of $\mathbf{X}$.
 
 ### Structure of the Attainable Set
 
 !!! success "Proposition: The Attainable Set is a Linear Subspace"
-    The attainable set $\mathcal{M}$ is a linear subspace of $\mathbb{R}^K$ with
+    The attainable set $\mathcal{M}$ is a linear subspace of $\mathbb{R}^S$ with
 
     $$
-    \dim(\mathcal{M}) = \operatorname{rank}(\mathbf{D}) \leq \min(d + 1, K)
+    \dim(\mathcal{M}) = \operatorname{rank}(\mathbf{X}) \leq \min(N, S)
     $$
 
-**Proof.** The attainable set $\mathcal{M} = \operatorname{Im}(\mathbf{D})$ is the image of a linear map, which is always a linear subspace. To verify directly:
-
-- **Contains the zero vector**: $\mathbf{D} \cdot \mathbf{0} = \mathbf{0} \in \mathcal{M}$.
-- **Closed under addition**: If $\mathbf{y}_1 = \mathbf{D}\boldsymbol{\theta}_1 \in \mathcal{M}$ and $\mathbf{y}_2 = \mathbf{D}\boldsymbol{\theta}_2 \in \mathcal{M}$, then $\mathbf{y}_1 + \mathbf{y}_2 = \mathbf{D}(\boldsymbol{\theta}_1 + \boldsymbol{\theta}_2) \in \mathcal{M}$.
-- **Closed under scalar multiplication**: If $\mathbf{y} = \mathbf{D}\boldsymbol{\theta} \in \mathcal{M}$ and $\alpha \in \mathbb{R}$, then $\alpha \mathbf{y} = \mathbf{D}(\alpha\boldsymbol{\theta}) \in \mathcal{M}$.
-
-The dimension equals $\operatorname{rank}(\mathbf{D})$ by the rank-nullity theorem, and the rank is bounded by the minimum of the number of rows and columns. $\square$
+**Proof.** $\mathcal{M} = \operatorname{Im}(\mathbf{X}^\top)$ is the image of a linear map, hence a linear subspace. Its dimension equals $\operatorname{rank}(\mathbf{X}^\top) = \operatorname{rank}(\mathbf{X})$, which is bounded by the smaller of the matrix dimensions. $\square$
 
 ### Attainability and Market Completeness
 
-A contingent claim $\mathbf{c} = (c_1, \ldots, c_K)^\top \in \mathbb{R}^K$ is **attainable** (or **replicable**) if $\mathbf{c} \in \mathcal{M}$, that is, if there exists a portfolio $\boldsymbol{\theta}$ such that $\mathbf{D}\boldsymbol{\theta} = \mathbf{c}$.
+A contingent claim $\mathbf{c} = (c_1, \ldots, c_S)^\top \in \mathbb{R}^S$ is **attainable** (or **replicable**) if $\mathbf{c} \in \mathcal{M}$, that is, if there exists a portfolio $\boldsymbol{\theta}$ such that $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{c}$.
 
 !!! info "Definition: Complete Market"
     The market is **complete** if every contingent claim is attainable:
 
     $$
-    \mathcal{M} = \mathbb{R}^K
+    \mathcal{M} = \mathbb{R}^S
     $$
 
-    This requires $\operatorname{rank}(\mathbf{D}) = K$, which in turn requires at least $K$ assets: $d + 1 \geq K$.
+    This requires $\operatorname{rank}(\mathbf{X}) = S$, which in turn requires $N \geq S$.
 
-When the market is incomplete ($\operatorname{rank}(\mathbf{D}) < K$), some contingent claims cannot be replicated by any portfolio of the traded assets. This has deep consequences for pricing, which are explored in the [Arrow-Debreu Securities and State Prices](state_prices_arrow_debreu.md) section and the [Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md) section.
+When the market is incomplete ($\operatorname{rank}(\mathbf{X}) < S$), some contingent claims cannot be replicated by any portfolio of the traded assets. The pricing consequences are developed in [§ State prices](state_prices_arrow_debreu.md) and the chapter on [Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md).
 
 ---
 
-## Worked Example: A Two-Asset, Three-State Model
+## Worked Example: Replication and Incompleteness
 
-Consider a market with $K = 3$ states and $d + 1 = 2$ assets (one risk-free bond and one risky stock).
+This example focuses on the **mechanics** of trading: forming a portfolio,
+computing its payoff, and checking whether a target claim is replicable.
+(For an intuition-level walkthrough of the underlying market data see
+[§ One-Period Market Model](one_period_market_model.md).)
 
-**Market data:**
+Consider a market with $S = 3$ states (Boom, Flat, Bust) and $N = 2$ assets (bond and stock):
 
-| | $t = 0$ price | $\omega_1$ (Boom) | $\omega_2$ (Flat) | $\omega_3$ (Bust) |
+| Asset | $P_j$ | Boom | Flat | Bust |
 |:---|:---:|:---:|:---:|:---:|
-| Bond ($S^0$) | \$1.00 | \$1.05 | \$1.05 | \$1.05 |
-| Stock ($S^1$) | \$10.00 | \$14.00 | \$10.50 | \$7.00 |
+| Bond ($j=1$) | \$1.00 | \$1.05 | \$1.05 | \$1.05 |
+| Stock ($j=2$) | \$10.00 | \$14.00 | \$10.50 | \$7.00 |
 
-Here $r_f = 0.05$ (5% risk-free rate).
-
-**Step 1: Write down the price vector and payoff matrix.**
+so $r_f = 0.05$ and
 
 $$
-\mathbf{p} = \begin{pmatrix} 1 \\ 10 \end{pmatrix}, \qquad \mathbf{D} = \begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix}
+\mathbf{P} = \begin{pmatrix} 1 \\ 10 \end{pmatrix}, \qquad \mathbf{X} = \begin{pmatrix} 1.05 & 1.05 & 1.05 \\ 14 & 10.5 & 7 \end{pmatrix}
 $$
 
-**Step 2: Choose a portfolio and compute its cost and payoff.**
+**Step 1: Cost and payoff of a leveraged position.**
 
-Suppose an investor goes long 3 shares of stock and borrows \$20 at the risk-free rate. This corresponds to $\boldsymbol{\theta} = (-20, \, 3)^\top$.
-
-*Initial cost:*
+An investor goes long 3 shares of stock and borrows \$20 at the risk-free rate, i.e. $\boldsymbol{\theta} = (-20, 3)^\top$. Then
 
 $$
-V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p} = (-20)(1) + (3)(10) = -20 + 30 = \$10
+V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{P} = (-20)(1) + (3)(10) = 10
 $$
 
-The investor pays \$10 out of pocket (borrows \$20, uses it plus \$10 of own money to buy \$30 worth of stock).
-
-*Payoff in each state:*
-
 $$
-V_1(\boldsymbol{\theta}) = \mathbf{D}\boldsymbol{\theta} = \begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix} \begin{pmatrix} -20 \\ 3 \end{pmatrix} = \begin{pmatrix} -21 + 42 \\ -21 + 31.5 \\ -21 + 21 \end{pmatrix} = \begin{pmatrix} 21 \\ 10.5 \\ 0 \end{pmatrix}
+V_1(\boldsymbol{\theta}) = \mathbf{X}^\top \boldsymbol{\theta} = \begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix} \begin{pmatrix} -20 \\ 3 \end{pmatrix} = \begin{pmatrix} 21 \\ 10.5 \\ 0 \end{pmatrix}
 $$
 
 | State | Bond repayment | Stock proceeds | Net payoff |
 |:---|:---:|:---:|:---:|
-| Boom ($\omega_1$) | $-\$21.00$ | $+\$42.00$ | $\$21.00$ |
-| Flat ($\omega_2$) | $-\$21.00$ | $+\$31.50$ | $\$10.50$ |
-| Bust ($\omega_3$) | $-\$21.00$ | $+\$21.00$ | $\$0.00$ |
+| Boom | $-\$21.00$ | $+\$42.00$ | $\$21.00$ |
+| Flat | $-\$21.00$ | $+\$31.50$ | $\$10.50$ |
+| Bust | $-\$21.00$ | $+\$21.00$ | $\$0.00$ |
 
-The investor profits in boom and flat states but breaks even in the bust state. The leverage (borrowing) amplifies both gains and losses relative to a fully funded position.
+Leverage amplifies both upside and downside relative to a fully funded position.
 
-**Step 3: Characterize the attainable set.**
+**Step 2: The attainable set and incompleteness.**
 
-The payoff matrix $\mathbf{D}$ has 2 columns and 3 rows, so:
-
-$$
-\operatorname{rank}(\mathbf{D}) \leq \min(2, 3) = 2
-$$
-
-The two columns $(1.05, 1.05, 1.05)^\top$ and $(14, 10.5, 7)^\top$ are linearly independent (since the second is not a scalar multiple of the first), so $\operatorname{rank}(\mathbf{D}) = 2$.
-
-The attainable set $\mathcal{M}$ is a **2-dimensional subspace** of $\mathbb{R}^3$, which is a plane through the origin. Since $\dim(\mathcal{M}) = 2 < 3 = K$, the market is **incomplete**: there exist contingent claims in $\mathbb{R}^3$ that cannot be replicated.
-
-**Step 4: Check attainability of a specific claim.**
-
-Is the claim $\mathbf{c} = (1, 0, 0)^\top$ (an Arrow-Debreu security paying \$1 only in the boom state) attainable?
-
-We need to solve $\mathbf{D}\boldsymbol{\theta} = \mathbf{c}$:
+The two rows of $\mathbf{X}$ — equivalently the two columns of $\mathbf{X}^\top$ — are $(1.05, 1.05, 1.05)^\top$ and $(14, 10.5, 7)^\top$. They are not proportional, so $\operatorname{rank}(\mathbf{X}) = 2$ and
 
 $$
-\begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix} \begin{pmatrix} \theta^0 \\ \theta^1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+\dim(\mathcal{M}) = 2 < 3 = S
 $$
 
-From the second and third equations:
+Hence $\mathcal{M}$ is a plane through the origin in $\mathbb{R}^3$ and the market is **incomplete**.
+
+**Step 3: A non-attainable claim.**
+
+The Arrow–Debreu claim $\mathbf{c} = (1, 0, 0)^\top$ (paying \$1 only in Boom) requires solving $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{c}$, i.e.
 
 $$
-1.05 \, \theta^0 + 10.5 \, \theta^1 = 0 \quad \text{and} \quad 1.05 \, \theta^0 + 7 \, \theta^1 = 0
+\begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix}\begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
 $$
 
-Subtracting: $3.5 \, \theta^1 = 0$, so $\theta^1 = 0$, and then $\theta^0 = 0$. But $\mathbf{D}(0, 0)^\top = (0, 0, 0)^\top \neq (1, 0, 0)^\top$. The system is inconsistent, confirming that $\mathbf{c} \notin \mathcal{M}$.
-
-This Arrow-Debreu security **cannot** be replicated with only a bond and a stock --- a third independent asset would be needed to complete the market.
+Subtracting row 3 from row 2 gives $3.5\,\theta_2 = 0$, hence $\theta_2 = 0$ and then $\theta_1 = 0$, contradicting row 1. The system is inconsistent: $\mathbf{c} \notin \mathcal{M}$. Completing the market would require a third linearly independent asset.
 
 ---
 
@@ -358,21 +246,21 @@ This Arrow-Debreu security **cannot** be replicated with only a bond and a stock
 For many applications it is useful to work with the **net payoff** (profit/loss) and the **return** of a portfolio.
 
 !!! info "Definition: Net Payoff and Return"
-    The **net payoff** of a portfolio $\boldsymbol{\theta}$ in state $\omega_k$ is the profit or loss relative to the initial cost:
+    The **net payoff** of a portfolio $\boldsymbol{\theta}$ in state $\omega_s$ is the profit or loss relative to the initial cost:
 
     $$
-    \Pi(\boldsymbol{\theta}, \omega_k) = V_1(\boldsymbol{\theta}, \omega_k) - V_0(\boldsymbol{\theta})
+    \Pi(\boldsymbol{\theta}, \omega_s) = V_1(\boldsymbol{\theta})_s - V_0(\boldsymbol{\theta})
     $$
 
     When $V_0(\boldsymbol{\theta}) \neq 0$, the **gross return** is
 
     $$
-    R(\boldsymbol{\theta}, \omega_k) = \frac{V_1(\boldsymbol{\theta}, \omega_k)}{V_0(\boldsymbol{\theta})}
+    R(\boldsymbol{\theta}, \omega_s) = \frac{V_1(\boldsymbol{\theta})_s}{V_0(\boldsymbol{\theta})}
     $$
 
-    and the **net return** is $R(\boldsymbol{\theta}, \omega_k) - 1$.
+    and the **net return** is $R(\boldsymbol{\theta}, \omega_s) - 1$.
 
-For the portfolio in the worked example above ($\boldsymbol{\theta} = (-20, 3)^\top$ with $V_0 = \$10$):
+For the worked-example portfolio ($\boldsymbol{\theta} = (-20, 3)^\top$ with $V_0 = \$10$):
 
 | State | Net payoff | Net return |
 |:---|:---:|:---:|
@@ -380,26 +268,24 @@ For the portfolio in the worked example above ($\boldsymbol{\theta} = (-20, 3)^\
 | Flat | $\$10.50 - \$10 = \$0.50$ | $5\%$ |
 | Bust | $\$0 - \$10 = -\$10$ | $-100\%$ |
 
-The leveraged portfolio earns 110% in the boom but loses 100% (the entire initial investment) in the bust. For comparison, the risk-free bond returns exactly 5% in every state.
+Leverage earns 110% in the boom but loses the entire initial investment in the bust; the bond returns exactly 5% in every state.
 
 ---
 
 ## Redundant Assets
 
-An asset is **redundant** if its payoff vector can be replicated by a portfolio of the other assets. Formally, asset $j$ is redundant if the $j$-th column of $\mathbf{D}$ lies in the span of the remaining columns. Removing a redundant asset does not change the attainable set.
+An asset is **redundant** if its payoff vector can be replicated by a portfolio of the other assets. Formally, asset $j$ is redundant if row $j$ of $\mathbf{X}$ lies in the span of the remaining rows. Removing a redundant asset does not change the attainable set.
 
 !!! success "Proposition: Redundant Assets and the Attainable Set"
-    Let $\mathbf{D}$ be the payoff matrix for $d + 1$ assets and let $\widetilde{\mathbf{D}}$ be the matrix obtained by removing a redundant column. Then
+    Let $\mathbf{X}$ be the payoff matrix for $N$ assets and let $\widetilde{\mathbf{X}}$ be the matrix obtained by removing a redundant row. Then
 
     $$
-    \operatorname{Im}(\mathbf{D}) = \operatorname{Im}(\widetilde{\mathbf{D}})
+    \operatorname{Im}(\mathbf{X}^\top) = \operatorname{Im}(\widetilde{\mathbf{X}}^\top), \qquad \operatorname{rank}(\mathbf{X}) = \operatorname{rank}(\widetilde{\mathbf{X}})
     $$
 
-    In particular, $\operatorname{rank}(\mathbf{D}) = \operatorname{rank}(\widetilde{\mathbf{D}})$.
+**Proof.** Since the removed row lies in the span of the remaining rows, any portfolio combination involving the redundant asset can be replaced by an equivalent combination of the others, leaving the image unchanged. $\square$
 
-**Proof.** Since the removed column lies in the span of the remaining columns, any linear combination involving it can be rewritten using the remaining columns alone. Therefore the image is unchanged. $\square$
-
-This result implies that what matters for the richness of the market is not the total number of assets but the number of **linearly independent** payoff vectors. A market with 100 assets whose payoff vectors span only a 3-dimensional subspace of $\mathbb{R}^K$ is no more complete than a market with just 3 well-chosen assets.
+What matters for the richness of the market is therefore not the total number of assets but the number of **linearly independent** payoff vectors. A market with 100 assets spanning only a 3-dimensional subspace of $\mathbb{R}^S$ is no more complete than a market with 3 well-chosen assets.
 
 ---
 
@@ -407,15 +293,14 @@ This result implies that what matters for the richness of the market is not the 
 
 | Concept | Definition | Key Formula |
 |:---|:---|:---|
-| Portfolio | Vector of asset holdings | $\boldsymbol{\theta} \in \mathbb{R}^{d+1}$ |
-| Portfolio cost | Initial outlay at $t = 0$ | $V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p}$ |
-| Payoff | Terminal value at $t = 1$ | $V_1(\boldsymbol{\theta}) = \mathbf{D}\boldsymbol{\theta}$ |
-| Payoff matrix | Asset payoffs across states | $D_{kj} = S^j_1(\omega_k)$ |
-| Attainable set | Payoffs reachable by trading | $\mathcal{M} = \operatorname{Im}(\mathbf{D})$ |
-| Complete market | Every claim is attainable | $\operatorname{rank}(\mathbf{D}) = K$ |
-| Linear pricing | Price of portfolio = portfolio of prices | $V_0(\boldsymbol{\theta} + \boldsymbol{\eta}) = V_0(\boldsymbol{\theta}) + V_0(\boldsymbol{\eta})$ |
+| Portfolio | Vector of asset holdings | $\boldsymbol{\theta} \in \mathbb{R}^{N}$ |
+| Portfolio cost | Initial outlay at $t = 0$ | $V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{P}$ |
+| Payoff | Terminal value at $t = 1$ | $V_1(\boldsymbol{\theta}) = \mathbf{X}^\top \boldsymbol{\theta}$ |
+| Attainable set | Payoffs reachable by trading | $\mathcal{M} = \operatorname{Im}(\mathbf{X}^\top)$ |
+| Complete market | Every claim is attainable | $\operatorname{rank}(\mathbf{X}) = S$ |
+| Linearity | Price of portfolio = portfolio of prices | $V_0, V_1$ linear in $\boldsymbol{\theta}$ |
 
-With the portfolio and payoff structure in place, the [next section](arbitrage_and_dominance.md) introduces the concept of arbitrage and establishes when market prices are consistent with the absence of free profit opportunities.
+With the portfolio mechanics in place, [§ Arbitrage and dominance](arbitrage_and_dominance.md) introduces the economic restriction — no riskless profit — and proves the linear pricing rule $\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$.
 
 ---
 
@@ -424,192 +309,142 @@ With the portfolio and payoff structure in place, the [next section](arbitrage_a
 **Exercise 1.** Consider the two-asset, three-state model from the worked example. Compute the payoff vector $V_1(\boldsymbol{\theta})$ for the portfolio $\boldsymbol{\theta} = (10, -1)^\top$. In which states does the investor make a profit relative to the initial cost? In which states does the investor lose money?
 
 ??? success "Solution to Exercise 1"
-    From the worked example, the price vector and payoff matrix are:
+    With the price vector and payoff matrix of the worked example,
 
     $$
-    \mathbf{p} = \begin{pmatrix} 1 \\ 10 \end{pmatrix}, \qquad \mathbf{D} = \begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix}
+    \mathbf{P} = \begin{pmatrix} 1 \\ 10 \end{pmatrix}, \qquad \mathbf{X} = \begin{pmatrix} 1.05 & 1.05 & 1.05 \\ 14 & 10.5 & 7 \end{pmatrix}
     $$
 
-    For $\boldsymbol{\theta} = (10, -1)^\top$:
+    and $\boldsymbol{\theta} = (10, -1)^\top$:
 
     **Initial cost:**
 
     $$
-    V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p} = 10(1) + (-1)(10) = 10 - 10 = 0
+    V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{P} = 10(1) + (-1)(10) = 0
     $$
 
     **Payoff vector:**
 
     $$
-    V_1(\boldsymbol{\theta}) = \mathbf{D}\boldsymbol{\theta} = \begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix} \begin{pmatrix} 10 \\ -1 \end{pmatrix} = \begin{pmatrix} 10.5 - 14 \\ 10.5 - 10.5 \\ 10.5 - 7 \end{pmatrix} = \begin{pmatrix} -3.5 \\ 0 \\ 3.5 \end{pmatrix}
+    V_1(\boldsymbol{\theta}) = \mathbf{X}^\top \boldsymbol{\theta} = \begin{pmatrix} 1.05 & 14 \\ 1.05 & 10.5 \\ 1.05 & 7 \end{pmatrix} \begin{pmatrix} 10 \\ -1 \end{pmatrix} = \begin{pmatrix} -3.5 \\ 0 \\ 3.5 \end{pmatrix}
     $$
 
-    The initial cost is \$0, so profit equals the payoff:
+    Since $V_0 = 0$ the net payoff equals the payoff:
 
-    - **Boom ($\omega_1$):** payoff $= -3.5$, net profit $= -3.5 - 0 = -\$3.50$ (loss)
-    - **Flat ($\omega_2$):** payoff $= 0$, net profit $= 0 - 0 = \$0$ (break even)
-    - **Bust ($\omega_3$):** payoff $= 3.5$, net profit $= 3.5 - 0 = \$3.50$ (profit)
+    - **Boom:** $-\$3.50$ (loss)
+    - **Flat:** $\$0$ (break even)
+    - **Bust:** $\$3.50$ (profit)
 
-    The investor profits in the bust state and loses money in the boom state. This makes sense: the portfolio is long 10 bonds and short 1 stock, so it benefits when the stock performs poorly.
+    The portfolio is long bonds and short stock, so it benefits when the stock performs poorly.
 
 ---
 
-**Exercise 2.** In a market with $K = 2$ states and $d + 1 = 3$ assets (one bond and two stocks), the payoff matrix is
+**Exercise 2.** In a market with $S = 2$ states and $N = 3$ assets (one bond and two stocks), the payoff matrix is
 
 $$
-\mathbf{D} = \begin{pmatrix} 1.05 & 12 & 8 \\ 1.05 & 9 & 11 \end{pmatrix}
+\mathbf{X} = \begin{pmatrix} 1.05 & 1.05 \\ 12 & 9 \\ 8 & 11 \end{pmatrix}
 $$
 
-Determine $\operatorname{rank}(\mathbf{D})$ and decide whether the market is complete or incomplete.
+Determine $\operatorname{rank}(\mathbf{X})$ and decide whether the market is complete or incomplete.
 
 ??? success "Solution to Exercise 2"
-    The payoff matrix is:
+    The matrix has $N = 3$ rows and $S = 2$ columns, so
 
     $$
-    \mathbf{D} = \begin{pmatrix} 1.05 & 12 & 8 \\ 1.05 & 9 & 11 \end{pmatrix}
+    \operatorname{rank}(\mathbf{X}) \leq \min(3, 2) = 2
     $$
 
-    This matrix has 2 rows ($K = 2$ states) and 3 columns ($d + 1 = 3$ assets), so:
-
-    $$
-    \operatorname{rank}(\mathbf{D}) \leq \min(2, 3) = 2
-    $$
-
-    To check whether $\operatorname{rank}(\mathbf{D}) = 2$, we examine whether the two rows are linearly independent. The rows are $(1.05, 12, 8)$ and $(1.05, 9, 11)$. These are not proportional (since $12/9 \neq 8/11$), so the rows are linearly independent and $\operatorname{rank}(\mathbf{D}) = 2$.
-
-    Since $\operatorname{rank}(\mathbf{D}) = 2 = K$, the attainable set $\mathcal{M} = \mathbb{R}^2$. The market is **complete**: every contingent claim in $\mathbb{R}^2$ can be replicated by some portfolio of the three assets.
+    The two columns $(1.05, 12, 8)^\top$ and $(1.05, 9, 11)^\top$ are not proportional, so $\operatorname{rank}(\mathbf{X}) = 2 = S$. The attainable set is $\mathcal{M} = \mathbb{R}^2$ and the market is **complete**.
 
 ---
 
-**Exercise 3.** Prove that the cost functional $V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p}$ satisfies $V_0(\alpha \boldsymbol{\theta}) = \alpha V_0(\boldsymbol{\theta})$ for all $\alpha \in \mathbb{R}$. Explain why this property implies that scaling a portfolio by a constant scales both its cost and its payoff by the same constant.
+**Exercise 3.** Prove that the cost functional $V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{P}$ satisfies $V_0(\alpha \boldsymbol{\theta}) = \alpha V_0(\boldsymbol{\theta})$ for all $\alpha \in \mathbb{R}$. Explain why this property implies that scaling a portfolio by a constant scales both its cost and its payoff by the same constant.
 
 ??? success "Solution to Exercise 3"
-    We need to show $V_0(\alpha\boldsymbol{\theta}) = \alpha V_0(\boldsymbol{\theta})$. By definition:
+    By definition,
 
     $$
-    V_0(\alpha\boldsymbol{\theta}) = (\alpha\boldsymbol{\theta})^\top \mathbf{p} = \alpha(\boldsymbol{\theta}^\top \mathbf{p}) = \alpha \, V_0(\boldsymbol{\theta})
+    V_0(\alpha\boldsymbol{\theta}) = (\alpha\boldsymbol{\theta})^\top \mathbf{P} = \alpha(\boldsymbol{\theta}^\top \mathbf{P}) = \alpha \, V_0(\boldsymbol{\theta})
     $$
 
-    The second equality uses the property that scalar multiplication commutes with the transpose/inner product: $(\alpha \mathbf{v})^\top \mathbf{w} = \alpha(\mathbf{v}^\top \mathbf{w})$ for any scalar $\alpha$ and vectors $\mathbf{v}, \mathbf{w}$.
-
-    **Financial interpretation:** Scaling a portfolio $\boldsymbol{\theta}$ by $\alpha$ means multiplying every position by $\alpha$. By the homogeneity property just proved, the cost scales by $\alpha$:
+    using $(\alpha \mathbf{v})^\top \mathbf{w} = \alpha(\mathbf{v}^\top \mathbf{w})$. By linearity of the payoff map,
 
     $$
-    V_0(\alpha\boldsymbol{\theta}) = \alpha \, V_0(\boldsymbol{\theta})
+    V_1(\alpha\boldsymbol{\theta}) = \mathbf{X}^\top(\alpha\boldsymbol{\theta}) = \alpha \, V_1(\boldsymbol{\theta})
     $$
 
-    By linearity of the payoff map, the payoff also scales by $\alpha$:
-
-    $$
-    V_1(\alpha\boldsymbol{\theta}) = \mathbf{D}(\alpha\boldsymbol{\theta}) = \alpha \, \mathbf{D}\boldsymbol{\theta} = \alpha \, V_1(\boldsymbol{\theta})
-    $$
-
-    Together, these say that doubling all positions ($\alpha = 2$) doubles both the cost and the payoff, halving all positions ($\alpha = 0.5$) halves both, and so on. This is a direct consequence of the frictionless market assumption: there are no transaction costs, price impact, or position limits.
+    so both cost and payoff scale by $\alpha$ — a direct consequence of the frictionless-market assumption (no transaction costs, no price impact, no position limits).
 
 ---
 
-**Exercise 4.** Let $\mathbf{D} \in \mathbb{R}^{K \times (d+1)}$ be the payoff matrix. Show that if $\boldsymbol{\theta}_1$ and $\boldsymbol{\theta}_2$ are two portfolios with the same payoff vector ($\mathbf{D}\boldsymbol{\theta}_1 = \mathbf{D}\boldsymbol{\theta}_2$), then $\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2 \in \ker(\mathbf{D})$. If additionally the market satisfies the Law of One Price, what can you conclude about $V_0(\boldsymbol{\theta}_1)$ and $V_0(\boldsymbol{\theta}_2)$?
+**Exercise 4.** Let $\mathbf{X} \in \mathbb{R}^{N \times S}$ be the payoff matrix. Show that if $\boldsymbol{\theta}_1$ and $\boldsymbol{\theta}_2$ are two portfolios with the same payoff vector ($\mathbf{X}^\top\boldsymbol{\theta}_1 = \mathbf{X}^\top\boldsymbol{\theta}_2$), then $\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2 \in \ker(\mathbf{X}^\top)$. If additionally the market satisfies the Law of One Price (see [§ Arbitrage and dominance](arbitrage_and_dominance.md)), what can you conclude about $V_0(\boldsymbol{\theta}_1)$ and $V_0(\boldsymbol{\theta}_2)$?
 
 ??? success "Solution to Exercise 4"
-    If $\mathbf{D}\boldsymbol{\theta}_1 = \mathbf{D}\boldsymbol{\theta}_2$, then:
+    Linearity gives
 
     $$
-    \mathbf{D}(\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2) = \mathbf{D}\boldsymbol{\theta}_1 - \mathbf{D}\boldsymbol{\theta}_2 = \mathbf{0}
+    \mathbf{X}^\top(\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2) = \mathbf{0}
     $$
 
-    By definition of the kernel (null space), $\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2 \in \ker(\mathbf{D})$.
+    so $\boldsymbol{\theta}_1 - \boldsymbol{\theta}_2 \in \ker(\mathbf{X}^\top)$.
 
-    If the market satisfies the Law of One Price, then any two portfolios with the same payoff must have the same cost. Since $\mathbf{D}\boldsymbol{\theta}_1 = \mathbf{D}\boldsymbol{\theta}_2$ (same payoff), the LOP implies:
+    Under the Law of One Price, two portfolios with identical payoffs have identical costs, so
 
     $$
-    V_0(\boldsymbol{\theta}_1) = \boldsymbol{\theta}_1^\top \mathbf{p} = \boldsymbol{\theta}_2^\top \mathbf{p} = V_0(\boldsymbol{\theta}_2)
+    V_0(\boldsymbol{\theta}_1) = \boldsymbol{\theta}_1^\top \mathbf{P} = \boldsymbol{\theta}_2^\top \mathbf{P} = V_0(\boldsymbol{\theta}_2)
     $$
 
-    Equivalently, for any $\boldsymbol{\alpha} \in \ker(\mathbf{D})$, we must have $\boldsymbol{\alpha}^\top \mathbf{p} = 0$. The price vector $\mathbf{p}$ is orthogonal to the kernel of $\mathbf{D}$, which means $\mathbf{p}$ lies in the row space of $\mathbf{D}$. This is precisely the condition that ensures the cost functional is well-defined on the attainable set.
+    Equivalently, for any $\boldsymbol{\alpha} \in \ker(\mathbf{X}^\top)$ we must have $\boldsymbol{\alpha}^\top \mathbf{P} = 0$. The price vector $\mathbf{P}$ is therefore orthogonal to $\ker(\mathbf{X}^\top)$, i.e. lies in $\operatorname{Im}(\mathbf{X})$ — precisely the condition that the cost functional is well-defined on the attainable set.
 
 ---
 
-**Exercise 5.** A market has $K = 3$ states and $d + 1 = 3$ assets with prices $\mathbf{p} = (1, 20, 5)^\top$ and payoff matrix
+**Exercise 5.** A market has $S = 3$ states and $N = 3$ assets with prices $\mathbf{P} = (1, 20, 5)^\top$ and payoff matrix
 
 $$
-\mathbf{D} = \begin{pmatrix} 1.02 & 25 & 7 \\ 1.02 & 20 & 5 \\ 1.02 & 15 & 4 \end{pmatrix}
+\mathbf{X} = \begin{pmatrix} 1.02 & 1.02 & 1.02 \\ 25 & 20 & 15 \\ 7 & 5 & 4 \end{pmatrix}
 $$
 
 Determine whether the contingent claim $\mathbf{c} = (3, 1, 0)^\top$ is attainable. If it is, find the replicating portfolio and its cost.
 
 ??? success "Solution to Exercise 5"
-    We need to solve $\mathbf{D}\boldsymbol{\theta} = \mathbf{c}$:
+    We solve $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{c}$:
 
     $$
-    \begin{pmatrix} 1.02 & 25 & 7 \\ 1.02 & 20 & 5 \\ 1.02 & 15 & 4 \end{pmatrix} \begin{pmatrix} \theta^0 \\ \theta^1 \\ \theta^2 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \\ 0 \end{pmatrix}
+    \begin{pmatrix} 1.02 & 25 & 7 \\ 1.02 & 20 & 5 \\ 1.02 & 15 & 4 \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_2 \\ \theta_3 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \\ 0 \end{pmatrix}
     $$
 
-    Subtract equation (2) from equation (1):
+    Subtracting row 2 from row 1: $5\theta_2 + 2\theta_3 = 2$ (i). Subtracting row 3 from row 2: $5\theta_2 + \theta_3 = 1$ (ii). Then (i) − (ii) gives $\theta_3 = 1$, (ii) gives $\theta_2 = 0$, and row 3 gives $1.02\,\theta_1 + 4 = 0$, so $\theta_1 = -4/1.02 \approx -3.9216$.
+
+    The claim is **attainable** with replicating portfolio $\boldsymbol{\theta} = (-4/1.02,\; 0,\; 1)^\top$, and
 
     $$
-    5\theta^1 + 2\theta^2 = 2 \quad \cdots \text{(i)}
-    $$
-
-    Subtract equation (3) from equation (2):
-
-    $$
-    5\theta^1 + \theta^2 = 1 \quad \cdots \text{(ii)}
-    $$
-
-    Subtract (ii) from (i): $\theta^2 = 1$. Substituting into (ii): $5\theta^1 = 0$, so $\theta^1 = 0$. From equation (3): $1.02\,\theta^0 + 15(0) + 4(1) = 0$, so $\theta^0 = -4/1.02 \approx -3.9216$.
-
-    **Verification:**
-
-    $$
-    \mathbf{D}\boldsymbol{\theta} = \begin{pmatrix} 1.02(-3.9216) + 25(0) + 7(1) \\ 1.02(-3.9216) + 20(0) + 5(1) \\ 1.02(-3.9216) + 15(0) + 4(1) \end{pmatrix} = \begin{pmatrix} -4 + 7 \\ -4 + 5 \\ -4 + 4 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \\ 0 \end{pmatrix}
-    $$
-
-    The claim is **attainable** with replicating portfolio $\boldsymbol{\theta} = (-4/1.02,\; 0,\; 1)^\top$.
-
-    **Cost of the replicating portfolio:**
-
-    $$
-    V_0(\boldsymbol{\theta}) = \boldsymbol{\theta}^\top \mathbf{p} = \left(-\frac{4}{1.02}\right)(1) + 0(20) + 1(5) = -\frac{4}{1.02} + 5 = \frac{-4 + 5.10}{1.02} = \frac{1.10}{1.02} \approx 1.0784
+    V_0(\boldsymbol{\theta}) = -\tfrac{4}{1.02}(1) + 0(20) + 1(5) = -\tfrac{4}{1.02} + 5 = \tfrac{1.10}{1.02} \approx 1.0784
     $$
 
 ---
 
-**Exercise 6.** Explain why removing a redundant asset from the market does not change the set of attainable payoffs. Give a concrete example of two assets whose payoff vectors are linearly dependent and show that removing one does not reduce $\operatorname{rank}(\mathbf{D})$.
+**Exercise 6.** Explain why removing a redundant asset from the market does not change the set of attainable payoffs. Give a concrete example of two assets whose payoff vectors are linearly dependent and show that removing one does not reduce $\operatorname{rank}(\mathbf{X})$.
 
 ??? success "Solution to Exercise 6"
-    **Why removing a redundant asset preserves the attainable set:** An asset is redundant if its payoff column in $\mathbf{D}$ is a linear combination of the other columns. When we form a portfolio that includes the redundant asset, the contribution of that asset to the payoff can be exactly replicated by adjusting the holdings of the other assets. Therefore, any payoff achievable with the redundant asset included can also be achieved without it, and conversely. Formally, if column $j$ satisfies $\mathbf{d}_j = \sum_{i \neq j} \alpha_i \mathbf{d}_i$, then for any portfolio $\boldsymbol{\theta}$, define $\tilde{\boldsymbol{\theta}}$ by setting $\tilde{\theta}^j = 0$ and $\tilde{\theta}^i = \theta^i + \alpha_i \theta^j$ for $i \neq j$. Then $\mathbf{D}\tilde{\boldsymbol{\theta}} = \mathbf{D}\boldsymbol{\theta}$, so the same payoff is achieved.
+    **Why removing a redundant asset preserves the attainable set:** An asset is redundant if its row in $\mathbf{X}$ is a linear combination of the other rows. If row $j$ satisfies $\mathbf{x}_j = \sum_{i \neq j} \alpha_i \mathbf{x}_i$, then for any portfolio $\boldsymbol{\theta}$ set $\tilde\theta_j = 0$ and $\tilde\theta_i = \theta_i + \alpha_i \theta_j$ for $i \neq j$. Then $\mathbf{X}^\top \tilde{\boldsymbol{\theta}} = \mathbf{X}^\top \boldsymbol{\theta}$, so any payoff achievable with the redundant asset is achievable without it.
 
-    **Concrete example:** Suppose $K = 2$ states and we have three assets: a bond paying $(1.05, 1.05)^\top$, Stock A paying $(12, 6)^\top$, and Stock B paying $(7.05, 4.05)^\top$. Note that:
-
-    $$
-    \begin{pmatrix} 7.05 \\ 4.05 \end{pmatrix} = 2 \begin{pmatrix} 1.05 \\ 1.05 \end{pmatrix} + \frac{1}{2.4} \begin{pmatrix} 12 \\ 6 \end{pmatrix} - \frac{1}{2.4}\begin{pmatrix} 12 \\ 6 \end{pmatrix} + \frac{1}{2.4}\begin{pmatrix} 12 \\ 6 \end{pmatrix}
-    $$
-
-    Actually, let us use a simpler example. Take Stock B's payoff to be exactly twice the bond: $(2.10, 2.10)^\top = 2 \times (1.05, 1.05)^\top$. Then Stock B is redundant. The payoff matrix with all three assets is:
+    **Concrete example:** With $S = 2$ states, take a bond paying $(1.05, 1.05)$, a stock paying $(12, 6)$, and a redundant asset paying $(2.10, 2.10) = 2 \times (1.05, 1.05)$. Then
 
     $$
-    \mathbf{D} = \begin{pmatrix} 1.05 & 12 & 2.10 \\ 1.05 & 6 & 2.10 \end{pmatrix}
+    \mathbf{X} = \begin{pmatrix} 1.05 & 1.05 \\ 12 & 6 \\ 2.10 & 2.10 \end{pmatrix}, \qquad \widetilde{\mathbf{X}} = \begin{pmatrix} 1.05 & 1.05 \\ 12 & 6 \end{pmatrix}
     $$
 
-    The third column is $2$ times the first column, so $\operatorname{rank}(\mathbf{D}) = 2$. Removing Stock B:
-
-    $$
-    \widetilde{\mathbf{D}} = \begin{pmatrix} 1.05 & 12 \\ 1.05 & 6 \end{pmatrix}
-    $$
-
-    The two remaining columns are linearly independent, so $\operatorname{rank}(\widetilde{\mathbf{D}}) = 2 = \operatorname{rank}(\mathbf{D})$. The attainable set is unchanged.
+    Row 3 is twice row 1, so $\operatorname{rank}(\mathbf{X}) = 2 = \operatorname{rank}(\widetilde{\mathbf{X}})$, and the attainable set is unchanged.
 
 ---
 
-**Exercise 7.** In a market with $K = 4$ states and $d + 1 = 2$ assets, what is the maximum dimension of the attainable set $\mathcal{M}$? How many additional linearly independent assets would be needed to make the market complete?
+**Exercise 7.** In a market with $S = 4$ states and $N = 2$ assets, what is the maximum dimension of the attainable set $\mathcal{M}$? How many additional linearly independent assets would be needed to make the market complete?
 
 ??? success "Solution to Exercise 7"
-    With $K = 4$ states and $d + 1 = 2$ assets, the payoff matrix $\mathbf{D} \in \mathbb{R}^{4 \times 2}$. The maximum dimension of the attainable set is:
+    With $\mathbf{X} \in \mathbb{R}^{2 \times 4}$,
 
     $$
-    \dim(\mathcal{M}) = \operatorname{rank}(\mathbf{D}) \leq \min(4, 2) = 2
+    \dim(\mathcal{M}) = \operatorname{rank}(\mathbf{X}) \leq \min(2, 4) = 2
     $$
 
-    So the maximum dimension of $\mathcal{M}$ is $2$.
-
-    For the market to be complete, we need $\dim(\mathcal{M}) = K = 4$. Currently the maximum attainable dimension is $2$, so we need at least $4 - 2 = 2$ additional linearly independent assets to reach full rank $4$. In total, at least $4$ linearly independent assets are required, and we currently have at most $2$, so **2 additional assets** are needed.
+    Completeness requires $\dim(\mathcal{M}) = S = 4$, so at least $4 - 2 = 2$ additional linearly independent assets are needed.

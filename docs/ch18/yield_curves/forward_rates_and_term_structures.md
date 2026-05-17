@@ -112,36 +112,7 @@ This is the rate for infinitesimally short borrowing at time $t$.
 
 ## Forward Rate Agreement (FRA)
 
-A **Forward Rate Agreement** is a contract to exchange:
-
-- A fixed rate $K$ payment
-- A floating rate (typically LIBOR) payment
-
-at a future settlement date, based on a notional principal.
-
-### FRA Payoff
-
-At settlement time $T_1$, the FRA payoff (to the receiver of floating) is:
-
-$$
-\text{Payoff} = N \cdot (L(T_1; T_1, T_2) - K) \cdot (T_2 - T_1)
-$$
-
-discounted back to $T_1$, where $L(T_1; T_1, T_2)$ is the realized LIBOR rate.
-
-### FRA Pricing
-
-The fair fixed rate $K$ that makes the FRA have zero initial value is precisely the forward rate:
-
-$$
-K^* = F(0; T_1, T_2)
-$$
-
-The value of an existing FRA with rate $K$ is:
-
-$$
-V_{\text{FRA}}(0) = N \cdot (F(0; T_1, T_2) - K) \cdot (T_2 - T_1) \cdot P(0, T_2)
-$$
+Recall (see [§ Forward Rate Agreement](../interest_rate_products/forward_rate_agreement.md)): an FRA exchanges fixed $K$ for floating $L(T_1; T_1, T_2)$ on notional $N$ over $[T_1, T_2]$. The fair fixed rate is $K^* = F(0; T_1, T_2)$, and an existing contract is worth $V_{\text{FRA}}(0) = N(F(0;T_1,T_2) - K)(T_2 - T_1)P(0,T_2)$ — so the forward rate of this section is exactly the FRA breakeven.
 
 ---
 
@@ -192,13 +163,7 @@ $$
 
 ### Risk-Neutral Expectations
 
-Under the risk-neutral measure $\mathbb{Q}$, forward rates **do** equal expected future rates:
-
-$$
-F(0; T_1, T_2) = \mathbb{E}^{\mathbb{Q}}[L(T_1; T_1, T_2)]
-$$
-
-This is the foundation of forward measure pricing (Section 10.5).
+Recall (see [§ Forward Measure](../../ch04/risk_neutral/forward_measure.md)): under the $T_2$-forward measure, $F(0; T_1, T_2) = \mathbb{E}^{T_2}[L(T_1; T_1, T_2)]$ — forward rates are martingales under the appropriate forward measure.
 
 ---
 

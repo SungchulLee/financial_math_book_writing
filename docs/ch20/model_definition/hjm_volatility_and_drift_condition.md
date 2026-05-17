@@ -24,14 +24,13 @@ The Hull-White model is fully characterized within the HJM framework by the choi
 
 The defining feature of the Hull-White model within HJM is its volatility specification.
 
-!!! note "Definition: Hull-White Forward Rate Volatility"
-    The instantaneous forward rate volatility in the Hull-White model is
+Recall (see [§ Derivation from HJM](derivation_from_hjm.md)): the instantaneous forward rate volatility in the Hull-White model is
 
-    $$
-    \sigma_f(t,T) = \sigma\, e^{-a(T-t)}
-    $$
+$$
+\sigma_f(t,T) = \sigma\, e^{-a(T-t)},
+$$
 
-    where $\sigma > 0$ is a constant scaling parameter and $a > 0$ is the mean-reversion speed.
+where $\sigma > 0$ is a constant scaling parameter and $a > 0$ is the mean-reversion speed.
 
 The volatility depends on $t$ and $T$ only through the difference $\tau = T - t$ (time to maturity), making it a function of the "tenor" rather than of calendar time or maturity separately. Key properties:
 
@@ -59,27 +58,11 @@ The volatility depends on $t$ and $T$ only through the difference $\tau = T - t$
 
 The HJM drift condition applied to the Hull-White volatility yields the risk-neutral drift of the forward rate.
 
-!!! note "Theorem: HJM Drift Under Hull-White Volatility"
-    The no-arbitrage drift of the forward rate is
+Recall (see [§ Derivation from HJM](derivation_from_hjm.md)): applying the HJM drift condition to $\sigma_f(t,T) = \sigma e^{-a(T-t)}$ yields
 
-    $$
-    \alpha(t,T) = \sigma_f(t,T) \int_t^T \sigma_f(t,u)\, du = \frac{\sigma^2}{a}\, e^{-a(T-t)}\bigl(1 - e^{-a(T-t)}\bigr)
-    $$
-
-???+ note "Proof"
-    Compute the integral:
-
-    $$
-    \int_t^T \sigma_f(t,u)\, du = \sigma \int_t^T e^{-a(u-t)}\, du = \frac{\sigma}{a}\bigl(1 - e^{-a(T-t)}\bigr)
-    $$
-
-    Multiply by $\sigma_f(t,T) = \sigma e^{-a(T-t)}$:
-
-    $$
-    \alpha(t,T) = \sigma e^{-a(T-t)} \cdot \frac{\sigma}{a}(1 - e^{-a(T-t)}) = \frac{\sigma^2}{a}\, e^{-a(T-t)}(1 - e^{-a(T-t)})
-    $$
-
-    $\square$
+$$
+\alpha(t,T) = \sigma_f(t,T) \int_t^T \sigma_f(t,u)\, du = \frac{\sigma^2}{a}\, e^{-a(T-t)}\bigl(1 - e^{-a(T-t)}\bigr).
+$$
 
 The drift $\alpha(t,T)$ has the following properties:
 

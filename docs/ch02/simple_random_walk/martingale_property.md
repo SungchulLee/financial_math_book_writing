@@ -1,5 +1,7 @@
 # Martingale Property
 
+Recall (see [§ Martingale](../filtration_and_martingale/martingale.md)): a process $\{X_n\}$ adapted to $\{\mathcal{F}_n\}$ with $\mathbb{E}|X_n|<\infty$ is a **martingale** if $\mathbb{E}[X_{n+1}\mid\mathcal{F}_n]=X_n$.
+
 Let $\mathcal{F}_n = \sigma(\xi_1, \ldots, \xi_n)$ be the natural filtration. The process $S_n = \sum_{i=1}^n \xi_i$ is adapted to $\{\mathcal{F}_n\}$ and integrable.
 
 ---

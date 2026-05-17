@@ -8,10 +8,7 @@ CDS spreads encode market-implied default risk and can be mapped to **hazard rat
 ## Relationship between spreads and default risk
 
 
-Intuitively:
-
-- higher CDS spreads imply higher default intensity,
-- spreads compensate for expected default losses.
+Recall (see [§ Default Intensity and Hazard Rates](../reduced_form_intensity_based_models/default_intensity_and_hazard_rates.md)): higher hazard rate $\lambda$ implies more frequent defaults; spreads compensate for expected default losses.
 
 Under simplifying assumptions, spreads are approximately:
 
@@ -26,12 +23,12 @@ $$
 ## Formal link under intensity models
 
 
-Under recovery of face value and deterministic intensity $\lambda$,
+Recall (see [§ Credit Default Swaps (CDS)](credit_default_swaps_cds.md)): equating protection and premium legs under recovery of face value and deterministic intensity $\lambda$ gives
 
 $$
 s
 = \frac{(1-R) \int_0^T e^{-\int_0^t (r+\lambda) ds} \lambda \, dt}
-{\int_0^T e^{-\int_0^t (r+\lambda) ds} \, dt}
+{\int_0^T e^{-\int_0^t (r+\lambda) ds} \, dt}.
 $$
 
 

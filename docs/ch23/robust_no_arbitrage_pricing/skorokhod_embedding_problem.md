@@ -275,18 +275,7 @@ $$
 
 ### 3. Semi-Static Hedging Duality
 
-
-The dual side of the embedding optimization provides **semi-static superhedging strategies**.
-
-**Theorem** (Hobson-Neuberger, 2012): The robust upper bound satisfies:
-
-$$
-\overline{V} = \inf\left\{\int \phi(x) \, d\mu(x) : \phi(B_\tau) + \int_0^\tau h(B_s, \overline{B}_s) \, dB_s \geq \Phi(B_\tau, \overline{B}_\tau) \text{ for all } \tau \in \mathcal{T}(\mu)\right\}
-$$
-
-where $\phi$ represents the static position in vanilla options and $h$ represents the dynamic trading strategy. The infimum over superhedging strategies equals the supremum over model prices (strong duality).
-
-**Interpretation**: The cheapest portfolio of vanilla options (determined by $\phi$) plus a self-financing dynamic strategy (determined by $h$) that dominates the exotic payoff $\Phi$ in every model costs exactly $\overline{V}$.
+**Recall** (see [§ Hobson Robust Bounds](hobson_robust_bounds.md)): the embedding optimization is dual to a semi-static superhedge $\overline{V} = \inf\{\int \phi \, d\mu : \phi(B_\tau) + \int_0^\tau h \, dB_s \geq \Phi\}$ (Hobson-Neuberger 2012), where $\phi$ is the vanilla portfolio and $h$ the dynamic delta-hedge.
 
 ## Multi-Marginal Extensions
 
@@ -399,12 +388,7 @@ The SEP can be extended to other Markov processes:
 
 ### 3. Peacocks and Fake Brownian Motions
 
-
-**Definition**: A **peacock** (PCOC: Processus Croissant pour l'Ordre Convexe) is a family of measures $(\mu_t)_{t \geq 0}$ increasing in convex order.
-
-**Theorem** (Kellerer, 1972): Every peacock can be embedded into a martingale. Moreover, if the peacock matches the one-dimensional marginals of Brownian motion, the resulting process is called a **fake Brownian motion** --- it has the same one-dimensional distributions as Brownian motion but different path properties.
-
-**Financial Relevance**: Fake Brownian motions demonstrate that even knowing all marginal distributions (i.e., all vanilla option prices at all maturities) does not uniquely determine the model. Different fake Brownian motions give different prices for path-dependent options, and the range of these prices defines the robust bounds.
+**Recall** (see [§ Martingale Optimal Transport](martingale_optimal_transport.md)): peacocks $(\mu_t)_{t\geq 0}$ in convex order can be embedded into a martingale (Kellerer 1972). Fake Brownian motions match the one-dimensional marginals of $B$ but differ in path properties, showing that all vanilla prices do not pin down path-dependent option values --- the spread is the robust bound.
 
 ## Summary and Key Takeaways
 

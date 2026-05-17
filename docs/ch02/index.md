@@ -71,8 +71,8 @@ randomness.
 
 ### 3. Filtration and Martingale → Information and Dynamics
 
-A filtration $(\mathcal{F}_t)$ describes the flow of information. Martingale is a
-processe that evolve without predictable drift:
+A filtration $(\mathcal{F}_t)$ describes the flow of information. Martingales are
+processes that evolve without predictable drift:
 
 $$
 \mathbb{E}[M_t \mid \mathcal{F}_s] = M_s
@@ -81,8 +81,8 @@ $$
 This section develops:
 
 - conditional expectation (prediction)
-- adapted process (information consistency)
-- stopping time (random horizons)
+- adapted processes (information consistency)
+- stopping times (random horizons)
 - inequalities and convergence
 - structural decomposition (Doob–Meyer)
 

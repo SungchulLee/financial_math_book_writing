@@ -86,25 +86,7 @@ where $X_0$ is $\mathcal{F}_t$-measurable and $X_1(s)$ is $\mathcal{F}_t \otimes
 
 ## The Azéma Supermartingale
 
-A fundamental object in the theory is the **Azéma supermartingale**:
-
-$$
-G_t := \mathbb{P}(\tau > t \mid \mathcal{F}_t)
-$$
-
-This process represents the conditional probability of survival given market information. Key properties:
-
-1. $G_t$ is a **supermartingale** (survival probability cannot increase on average)
-2. $G_0 = \mathbb{P}(\tau > 0)$ (typically 1 if default cannot occur instantly)
-3. $G_t \to G_\infty = \mathbb{P}(\tau = \infty \mid \mathcal{F}_\infty)$ as $t \to \infty$
-
-The Azéma supermartingale admits the **Doob-Meyer decomposition**:
-
-$$
-G_t = M_t - A_t
-$$
-
-where $M_t$ is a martingale and $A_t$ is a predictable increasing process.
+Recall (see [Azema Supermartingale](azema_supermartingale.md)): the Azéma supermartingale $G_t = \mathbb{P}(\tau > t \mid \mathcal{F}_t)$ is the conditional survival probability, and its Doob–Meyer decomposition $G_t = M_t - A_t$ underlies the compensator of default.
 
 ---
 
@@ -139,25 +121,7 @@ The mathematical framework ensures that pricing and hedging are internally consi
 
 ## Connection to Cox Process Construction
 
-In reduced-form models, default is often constructed via a **doubly-stochastic** (Cox) process. Given an $\mathcal{F}$-adapted intensity process $\lambda_t \ge 0$, define
-
-$$
-\Lambda_t := \int_0^t \lambda_s \, ds
-$$
-
-and let $E \sim \text{Exp}(1)$ be independent of $\mathcal{F}_\infty$. The default time is
-
-$$
-\tau := \inf\{t \ge 0 : \Lambda_t \ge E\} = \Lambda^{-1}(E)
-$$
-
-Under this construction:
-
-- $\tau$ is a totally inaccessible stopping time in $(\mathcal{G}_t)$
-- The conditional survival probability is $G_t = \mathbb{P}(\tau > t \mid \mathcal{F}_t) = e^{-\Lambda_t}$
-- The Azéma supermartingale has an explicit form
-
-This construction is the workhorse of intensity-based credit models.
+Recall (see [§ Reduced-Form Intensity-Based Models](../reduced_form_intensity_based_models/affine_intensity_models.md)): the Cox (doubly-stochastic) construction $\tau = \inf\{t : \Lambda_t \ge E\}$ with $E \sim \text{Exp}(1)$ independent of $\mathcal{F}_\infty$ makes $\tau$ totally inaccessible in $(\mathcal{G}_t)$ and yields $G_t = e^{-\Lambda_t}$ in closed form — the workhorse of intensity-based credit models.
 
 ---
 

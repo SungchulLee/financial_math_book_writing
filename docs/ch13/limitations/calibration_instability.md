@@ -24,9 +24,7 @@ Instability arises from:
 - **Sparse data**: Few quotes at extreme strikes/maturities force extrapolation
 
 **Heston Model Calibration Issues**
-The Heston model has 5 parameters: $v_0, \kappa, \theta, \sigma_v, \rho$
-
-Common instabilities:
+Recall (see [§ Chapter 14](../../ch14/index.md)) for the Heston parameters $v_0, \kappa, \theta, \sigma_v, \rho$. Common instabilities:
 
 - **Flat boundaries**: Parameters at $\rho = -1$ or $\rho = 1$ cause numerical problems
 - **Parameter swapping**: Similar fits possible with different $(\kappa, \theta)$ combinations
@@ -43,7 +41,7 @@ Quantify stability through:
 
 **Practical Mitigation Strategies**
 
-- **Regularization**: penalize oscillatory $\sigma_{\text{LV}}$ surfaces via smoothness priors
+- **Regularization**: Tikhonov smoothness priors on $\sigma_{\text{LV}}$ — full formulation in [§ Local Volatility Surface Construction](../numerical_methods/local_volatility_surface_construction.md)
 - **Multi-stage calibration**: fit liquid instruments first (ATM volatility), then less liquid
 - **Parameter anchoring**: constrain parameters to realistic ranges from historical data
 - **Ensemble methods**: average across multiple stable solutions

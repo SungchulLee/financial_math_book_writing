@@ -6,27 +6,7 @@ Calibrating the Heston stochastic volatility model to market data requires a str
 
 ## The Heston model and its parameters
 
-Recall that under the risk-neutral measure $\mathbb{Q}$, the Heston (1993) model specifies the asset price $S_t$ and its instantaneous variance $v_t$ as
-
-$$
-dS_t = (r - q) S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^S
-$$
-
-$$
-dv_t = \kappa(\theta - v_t) \, dt + \sigma_v \sqrt{v_t} \, dW_t^v
-$$
-
-where $dW_t^S \, dW_t^v = \rho \, dt$. The five parameters to calibrate are:
-
-| Parameter | Symbol | Role | Typical range |
-|-----------|--------|------|---------------|
-| Initial variance | $v_0$ | Current volatility level | $(0.001, 1.0)$ |
-| Mean-reversion speed | $\kappa$ | Rate of reversion to $\theta$ | $(0.1, 10)$ |
-| Long-run variance | $\theta$ | Stationary variance level | $(0.001, 1.0)$ |
-| Vol-of-vol | $\sigma_v$ | Variance of the variance | $(0.01, 2.0)$ |
-| Correlation | $\rho$ | Skew parameter | $(-1, 0)$ typically |
-
-The Feller condition $2\kappa\theta \geq \sigma_v^2$ ensures that $v_t > 0$ almost surely. When the Feller condition is violated, $v_t$ can reach zero but is immediately reflected.
+Recall (see [§ Heston SDE and parameters](../../ch16/model_definition/heston_sde_and_parameters.md) and [§ Feller condition](../../ch16/model_definition/affine_structure_and_riccati.md)): the calibration target is $\Theta = (v_0, \kappa, \theta, \sigma_v, \rho)$, with typical bounds $v_0, \theta \in (0.001, 1.0)$, $\kappa \in (0.1, 10)$, $\sigma_v \in (0.01, 2.0)$, $\rho \in (-1, 0)$ for equities, and the Feller condition $2\kappa\theta \geq \sigma_v^2$ controlling positivity of $v_t$.
 
 !!! tip "Parameter interpretation"
     The parameters separate into **level** ($v_0$, $\theta$), **dynamics** ($\kappa$, $\sigma_v$), and **skew** ($\rho$). Short-dated options primarily constrain $v_0$ and $\rho$, while long-dated options identify $\kappa$, $\theta$, and $\sigma_v$. This separation motivates the hierarchical calibration strategies discussed below.
@@ -68,66 +48,7 @@ and express strikes in log-moneyness $k_{ij} = \ln(K_i / F_j)$. Working in log-m
 
 ## Characteristic function pricing
 
-The Heston model admits a semi-analytic pricing formula through the characteristic function of the log-price. This is the computational engine of the calibration pipeline.
-
-### Log-price characteristic function
-
-Let $x_T = \ln(S_T / K)$. The characteristic function of $x_T$ conditional on $(S_0, v_0)$ takes the form
-
-$$
-\phi(u) = \mathbb{E}^{\mathbb{Q}}\!\left[ e^{i u x_T} \right] = \exp\!\left( C(u, T) + D(u, T) v_0 + i u \ln(F_T / K) \right)
-$$
-
-where the functions $C$ and $D$ solve a system of Riccati ODEs. In the Heston model, the closed-form solutions are
-
-$$
-C(u, T) = \frac{\kappa \theta}{\sigma_v^2} \left[ (\kappa - i \rho \sigma_v u - d(u)) T - 2 \ln\!\left( \frac{1 - g(u) e^{-d(u) T}}{1 - g(u)} \right) \right]
-$$
-
-$$
-D(u, T) = \frac{\kappa - i \rho \sigma_v u - d(u)}{\sigma_v^2} \cdot \frac{1 - e^{-d(u) T}}{1 - g(u) e^{-d(u) T}}
-$$
-
-with auxiliary quantities
-
-$$
-d(u) = \sqrt{(i \rho \sigma_v u - \kappa)^2 + \sigma_v^2 (i u + u^2)}
-$$
-
-$$
-g(u) = \frac{\kappa - i \rho \sigma_v u - d(u)}{\kappa - i \rho \sigma_v u + d(u)}
-$$
-
-!!! warning "Branch cut and numerical stability"
-    The complex square root in $d(u)$ introduces branch cuts. The formulation above (sometimes called "Formulation 1" following Albrecher et al.) can suffer from discontinuities in $d(u)$ for large $u$ or long maturities. The alternative "Formulation 2," which replaces $g(u)$ with $1/g(u)$ and adjusts the logarithm accordingly, avoids this issue and should be preferred in production implementations.
-
-### Option pricing via Fourier inversion
-
-Given the characteristic function, the European call price is recovered through Fourier inversion. The Carr-Madan (1999) formula expresses the call price in terms of the log-strike $k = \ln K$:
-
-$$
-C(K, T) = \frac{e^{-\alpha k}}{\pi} \int_0^\infty \mathrm{Re}\!\left[ e^{-i v k} \, \psi(v) \right] dv
-$$
-
-where $\alpha > 0$ is a dampening parameter ensuring integrability, and
-
-$$
-\psi(v) = \frac{e^{-r T} \phi(v - (\alpha + 1)i)}{{\alpha^2 + \alpha - v^2 + i(2\alpha + 1)v}}
-$$
-
-The integral is evaluated numerically using the Fast Fourier Transform (FFT), which computes prices for an entire grid of $N$ strikes simultaneously in $\mathcal{O}(N \log N)$ operations.
-
-### FFT implementation
-
-The FFT discretization uses a uniform grid in the Fourier variable $v_j = j \Delta v$ for $j = 0, 1, \ldots, N-1$ and produces log-strikes $k_n = -b + n \Delta k$ where $\Delta v \cdot \Delta k = 2\pi / N$ and $b = N \Delta k / 2$. The trapezoidal rule with Simpson's weights improves accuracy:
-
-$$
-C(k_n) \approx \frac{e^{-\alpha k_n}}{\pi} \sum_{j=0}^{N-1} e^{-i v_j k_n} \, \psi(v_j) \, \Delta v \, w_j
-$$
-
-where $w_j$ are Simpson's rule weights. Typical settings are $N = 4096$, $\Delta v = 0.01$, and $\alpha = 1.5$.
-
-An alternative to the FFT is the **COS method** (Fang and Oosterlee, 2008), which expands the density in a cosine series and converges exponentially fast for smooth densities. For Heston calibration, the COS method often requires fewer terms than the FFT for comparable accuracy.
+Recall (see [§ Closed-form characteristic function](../../ch16/heston_cf/closed_form_characteristic_function.md), [§ Heston 1993 vs Albrecher](../../ch16/heston_cf/heston_1993_vs_albrecher.md), and the Carr-Madan / FFT and COS pricers in [§ ch16](../../ch16/index.md)): the log-price characteristic function $\phi(u)$ has the closed form $\exp(C(u,T) + D(u,T)v_0 + iu\ln(F_T/K))$ obtained from a Riccati ODE system, with Albrecher's "Formulation 2" preferred to avoid branch-cut discontinuities; European prices are recovered via Carr-Madan FFT or the COS method, with typical FFT settings $N = 4096$, $\Delta v = 0.01$, $\alpha = 1.5$. This is the computational engine on which every objective-function evaluation in the calibration pipeline rests.
 
 ---
 
@@ -213,29 +134,7 @@ Good starting values are critical for convergence. A standard initialization pro
 
 ### Levenberg-Marquardt algorithm
 
-The Levenberg-Marquardt (LM) algorithm is the standard workhorse for Heston calibration. It solves the damped normal equations at each iteration:
-
-$$
-(J^\top W J + \lambda I) \, \Delta\Theta = -J^\top W r(\Theta)
-$$
-
-where $J = \nabla_\Theta r(\Theta) \in \mathbb{R}^{m \times 5}$ is the Jacobian of the residual vector, $W$ is the weight matrix, and $\lambda > 0$ is the damping parameter.
-
-The adaptive damping strategy proceeds as follows:
-
-1. Evaluate the actual reduction $\Delta_{\mathrm{act}} = \mathcal{L}(\Theta^{(k)}) - \mathcal{L}(\Theta^{(k)} + \Delta\Theta)$.
-2. Evaluate the predicted reduction $\Delta_{\mathrm{pred}} = -\Delta\Theta^\top (J^\top W r + \frac{1}{2} (J^\top W J + \lambda I) \Delta\Theta)$.
-3. Compute the gain ratio $\varrho = \Delta_{\mathrm{act}} / \Delta_{\mathrm{pred}}$.
-4. If $\varrho > 0.75$: accept step, reduce $\lambda \to \lambda / 3$ (more Gauss-Newton-like).
-5. If $0.25 < \varrho \leq 0.75$: accept step, keep $\lambda$.
-6. If $\varrho \leq 0.25$: reject step, increase $\lambda \to 2\lambda$ (more gradient-descent-like).
-
-### Jacobian computation
-
-The Jacobian $J_{jk} = \partial r_j / \partial \Theta_k$ can be computed by:
-
-- **Finite differences.** $\partial r_j / \partial \Theta_k \approx (r_j(\Theta + h_k e_k) - r_j(\Theta)) / h_k$ with step size $h_k \sim 10^{-6} |\Theta_k|$. Requires $d+1 = 6$ pricing evaluations per iteration.
-- **Adjoint (algorithmic) differentiation.** Propagates sensitivities through the characteristic function evaluation in a single backward pass, with cost independent of the number of parameters. This is the preferred approach for production systems.
+Recall (see [§ Optimization algorithms](../calibration_as_inverse_problem/optimization_algorithms.md) and [§ Gradient-based vs gradient-free](gradient_based_vs_gradient_free.md)): LM solves $(J^\top W J + \lambda I)\,\Delta\Theta = -J^\top W r(\Theta)$ with adaptive damping driven by the gain ratio $\varrho = \Delta_{\mathrm{act}}/\Delta_{\mathrm{pred}}$ (reduce $\lambda$ when $\varrho > 0.75$, raise it when $\varrho \le 0.25$); the Jacobian is built by finite differences ($d+1 = 6$ pricings per step) or, preferably for production, by adjoint AD (cost independent of $d$).
 
 ### Convergence diagnostics
 

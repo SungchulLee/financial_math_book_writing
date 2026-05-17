@@ -1,18 +1,12 @@
 # Explicit, Implicit, and Crank-Nicolson Schemes
 
-After spatial discretization, the Black-Scholes PDE becomes an ODE system in time. The choice of **time-stepping scheme** determines stability, accuracy, and computational cost.
+After spatial discretization the Black-Scholes PDE becomes a coupled ODE system $d\mathbf{u}/d\tau=A\mathbf{u}$, with $A$ tridiagonal. Stepping that system from $\mathbf{u}^n$ to $\mathbf{u}^{n+1}$ comes down to one choice: where to evaluate $A\mathbf{u}$. At the *known* level $n$ gives **explicit** (cheap, conditionally stable). At the *unknown* level $n+1$ gives **implicit** (one linear solve per step, unconditionally stable). At the *average* of the two gives **Crank-Nicolson** (one linear solve, unconditionally stable, second-order in time). The three schemes are the three points of this trade-off.
 
 ---
 
 ## The Semi-Discrete System
 
-After spatial discretization:
-
-$$
-\frac{d\mathbf{u}}{d\tau} = A\mathbf{u}
-$$
-
-where $\mathbf{u} = (u_1, \ldots, u_{M-1})^T$ and $A$ is the tridiagonal spatial operator matrix.
+Recall (see [§ Finite Difference Methods](finite_difference_methods.md)): after spatial discretization of the Black-Scholes PDE one obtains $\dfrac{d\mathbf{u}}{d\tau} = A\mathbf{u}$, with $\mathbf{u} = (u_1, \ldots, u_{M-1})^T$ and $A$ a tridiagonal spatial operator.
 
 **Goal**: Advance from $\mathbf{u}^n$ at time $\tau_n$ to $\mathbf{u}^{n+1}$ at time $\tau_{n+1} = \tau_n + \Delta\tau$.
 
@@ -47,23 +41,7 @@ $$
 
 ### Stability Condition (CFL)
 
-For the heat equation, stability requires:
-
-$$
-\boxed{
-\Delta\tau \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}
-}
-$$
-
-This is often **very restrictive**, requiring many time steps.
-
-**Example**: $\sigma = 0.3$, $S_{\max} = 300$, $\Delta S = 1$:
-
-$$
-\Delta\tau \leq \frac{1}{0.09 \times 90000} \approx 0.000123
-$$
-
-For $T = 1$ year, this requires $N > 8000$ time steps!
+Recall (see [§ CFL Condition and Time Step Restrictions](../analysis/cfl_condition_and_time_step.md)): the explicit scheme is conditionally stable under $\Delta\tau \leq (\Delta S)^2/(\sigma^2 S_{\max}^2)$, often a very restrictive constraint.
 
 ---
 
@@ -96,7 +74,7 @@ $$
 
 ### Linear System
 
-The matrix $(I - \Delta\tau A)$ is tridiagonal and can be solved efficiently using the **Thomas algorithm** (tridiagonal matrix algorithm) in $O(M)$ operations.
+The matrix $(I - \Delta\tau A)$ is tridiagonal. Recall (see [§ Implicit Scheme Implementation](../implementation/implicit_scheme_implementation.md)): the Thomas algorithm solves such systems in $O(M)$ operations.
 
 ### Advantages
 
@@ -206,34 +184,6 @@ This damps high-frequency oscillations while maintaining overall second-order ac
 
 ---
 
-## Implementation: Thomas Algorithm
-
-For the tridiagonal system:
-
-$$
-\alpha_j u_{j-1} + \beta_j u_j + \gamma_j u_{j+1} = d_j
-$$
-
-**Forward sweep**:
-```
-c'_1 = γ_1 / β_1
-d'_1 = d_1 / β_1
-For j = 2, ..., M-1:
-    c'_j = γ_j / (β_j - α_j c'_{j-1})
-    d'_j = (d_j - α_j d'_{j-1}) / (β_j - α_j c'_{j-1})
-```
-
-**Back substitution**:
-```
-u_{M-1} = d'_{M-1}
-For j = M-2, ..., 1:
-    u_j = d'_j - c'_j u_{j+1}
-```
-
-**Cost**: $O(M)$ operations.
-
----
-
 ## Practical Recommendations
 
 ### For European Options
@@ -244,8 +194,7 @@ For j = M-2, ..., 1:
 
 ### For American Options
 
-1. Use **implicit** scheme (easier constraint enforcement)
-2. Project after each step: $u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)$
+Recall (see [§ American Options Early Exercise Implementation](../american_options/american_options_early_exercise_implementation.md)): the implicit scheme is preferred and the early-exercise constraint is enforced by projection $u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)$.
 
 ### For Barrier Options
 

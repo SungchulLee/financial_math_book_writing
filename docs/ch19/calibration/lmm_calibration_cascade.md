@@ -17,16 +17,7 @@ For a 30-year quarterly model ($n = 120$), the raw parameter count exceeds 7,000
 
 ### Separation of Concerns
 
-The key insight enabling the cascade is that in the LMM:
-
-- **Caplet prices depend only on individual volatilities:** The caplet on $L_i$ has price determined by $v_i^2 = \int_0^{T_i} \sigma_i(t)^2 \, dt$ alone, independent of $\rho_{ij}$
-- **Swaption prices depend on both volatilities and correlations:** Via Rebonato's formula,
-
-$$
-\sigma_S^2 T_\alpha = \sum_{i,j} \frac{w_i w_j L_i(0) L_j(0)}{S(0)^2} \rho_{ij} \int_0^{T_\alpha} \sigma_i(t) \sigma_j(t) \, dt
-$$
-
-This separation makes a two-stage approach natural and efficient.
+The key insight enabling the cascade is that in the LMM, caplet prices depend only on individual volatilities $v_i^2 = \int_0^{T_i} \sigma_i(t)^2 \, dt$, independent of $\rho_{ij}$, while swaption prices depend on both volatilities and correlations via Rebonato's formula. Recall (see [§ LMM](../lmm/caplet_pricing_black_formula.md)) and (see [§ Calibration to caps and swaptions](calibration_to_caps_and_swaptions.md)) for the formula. This separation makes a two-stage approach natural and efficient.
 
 ---
 
@@ -139,13 +130,13 @@ The cascade proceeds from $k = 1$ to $k = n-1$.
 
 ### Setup
 
-With the volatility matrix $\Lambda$ determined from Stage 1, the model swaption volatilities depend only on the correlation matrix $\rho$. Via Rebonato's formula:
+With the volatility matrix $\Lambda$ determined from Stage 1, the model swaption volatilities depend only on the correlation matrix $\rho$ via the piecewise-discretized Rebonato formula:
 
 $$
 (\sigma_S^{\text{model}})^2 T_\alpha = \sum_{i,j=\alpha}^{\beta-1} \frac{w_i w_j L_i(0) L_j(0)}{S(0)^2} \rho_{ij} \sum_{k=1}^{k_\alpha} \lambda_{ik} \lambda_{jk} \Delta_k
 $$
 
-where $\Delta_k = T_k - T_{k-1}$ and $k_\alpha$ is the index corresponding to $T_\alpha$.
+where $\Delta_k = T_k - T_{k-1}$ and $k_\alpha$ is the index corresponding to $T_\alpha$. Recall (see [§ Calibration to caps and swaptions](calibration_to_caps_and_swaptions.md)) for the continuous form.
 
 ### Parametric Correlation
 

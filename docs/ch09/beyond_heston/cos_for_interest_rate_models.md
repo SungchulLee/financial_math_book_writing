@@ -21,44 +21,27 @@ The COS method was originally developed for equity option pricing, but its chara
 
 ## Affine Short Rate Models
 
-In an affine short rate model, the short rate $r_t$ satisfies
+Recall (see [§ Vasicek/CIR as Affine](../../ch15/examples/vasicek_cir_as_affine.md)): Vasicek ($\alpha=1,\beta=0$, constant volatility) and CIR ($\alpha=0,\beta=1$, $\sigma\sqrt{r_t}$ volatility) are the standard one-factor affine short rate specifications of $dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{\alpha + \beta r_t}\,dW_t$.
+
+Recall (see [§ Exponential-Affine Bond Price](../../ch15/affine_term_structure/exponential_affine_bond_price.md)): the zero-coupon bond price is exponential-affine in $r_t$,
 
 $$
-dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{\alpha + \beta r_t}\,dW_t
+P(t, T) = \exp\!\left(A(t, T) - B(t, T)\,r_t\right),
 $$
 
-where the choice of $\alpha$ and $\beta$ distinguishes models:
-
-| Model | $\alpha$ | $\beta$ | Volatility structure |
-|---|---|---|---|
-| Vasicek | 1 | 0 | Constant ($\sigma$) |
-| CIR | 0 | 1 | $\sigma\sqrt{r_t}$ (level-dependent) |
-
-The key property is that the zero-coupon bond price $P(t, T) = \mathbb{E}^Q\!\left[\exp\!\left(-\int_t^T r_s\,ds\right)\bigg|\mathcal{F}_t\right]$ is an exponential-affine function of $r_t$:
-
-$$
-P(t, T) = \exp\!\left(A(t, T) - B(t, T)\,r_t\right)
-$$
-
-where $A$ and $B$ satisfy Riccati-type ODEs.
+with $A,B$ solving Riccati-type ODEs.
 
 ---
 
 ## Bond Option Pricing as a COS Problem
 
-A European call option on a zero-coupon bond with maturity $T_B$, option expiry $T < T_B$, and strike $K$ has payoff
+A European call on a zero-coupon bond with bond maturity $T_B$, option expiry $T<T_B$, and strike $K$ pays $\Phi=(P(T,T_B)-K)^+$. Recall (see [§ Forward Measure](../../ch04/risk_neutral/forward_measure.md)): pricing under the $T$-forward measure $\mathbb{Q}^T$ replaces stochastic discounting by the bond numeraire:
 
 $$
-\Phi = (P(T, T_B) - K)^+
+V = P(0, T)\,\mathbb{E}^{T}\!\left[(P(T, T_B) - K)^+\right].
 $$
 
-Under the risk-neutral measure, the option value at time $0$ is
-
-$$
-V = P(0, T)\,\mathbb{E}^{T}\!\left[(P(T, T_B) - K)^+\right]
-$$
-
-where $\mathbb{E}^T$ denotes expectation under the $T$-forward measure. Since $P(T, T_B) = \exp(A(T, T_B) - B(T, T_B)\,r_T)$, the payoff depends on $r_T$ through an exponential-affine transformation.
+Since $P(T, T_B) = \exp(A(T, T_B) - B(T, T_B)\,r_T)$, the payoff depends on $r_T$ through an exponential-affine transformation.
 
 !!! note "Definition: COS Pricing of Bond Options"
     Let $X = r_T$ be the short rate at option expiry. The bond option price is
@@ -193,15 +176,7 @@ Each bond put is priced independently using the COS method, so the total swaptio
 
 ## Summary
 
-The COS method extends to interest rate derivatives by substituting the appropriate characteristic function:
-
-| Derivative | State variable | CF needed | Payoff coefficients |
-|---|---|---|---|
-| Bond option | $r_T$ under forward measure | $\phi_{r_T}(u)$ | $\chi_k^{(-B)}$ and $\psi_k$ integrals |
-| Caplet | $r_{T_i}$ under forward measure | Same as bond option | Via cap-bond option parity |
-| Swaption (1-factor) | $r_{T_0}$ | Same | Jamshidian decomposition + bond options |
-
-**The COS method's characteristic-function-based framework extends directly to interest rate derivatives under affine short rate models, providing efficient pricing of bond options, caps, floors, and swaptions with the same exponential convergence enjoyed by equity options.**
+**The COS method's characteristic-function-based framework extends directly to interest rate derivatives under affine short rate models, providing efficient pricing of bond options, caps, floors, and swaptions with the same exponential convergence enjoyed by equity options.** The state variable is $r_T$ under the appropriate $T$-forward measure; payoff coefficients use $\chi_k^{(-B)}$ and $\psi_k$; caps reduce to bond puts via parity; one-factor swaptions reduce to portfolios of bond options via Jamshidian.
 
 ---
 

@@ -23,99 +23,27 @@ Jump-diffusion models augment the continuous diffusion of Black-Scholes with **d
 
 ## Merton's Jump-Diffusion Model
 
-### Dynamics
+Recall (see [§ Jump-Diffusion SDE](../merton_jump_diffusion/jump_diffusion_sde.md)): under $\mathbb{Q}$,
 
 $$
-\boxed{
-\frac{dS_t}{S_{t^-}} = (r - \lambda\kappa)\,dt + \sigma\,dW_t + dJ_t
-}
+\frac{dS_t}{S_{t^-}} = (r - \lambda\kappa)\,dt + \sigma\,dW_t + dJ_t,\qquad \log Y \sim N(\mu_J, \sigma_J^2),\quad \kappa = e^{\mu_J + \sigma_J^2/2} - 1,
 $$
 
-where:
-
-- $W_t$: Brownian motion (continuous part)
-- $J_t$: Compound Poisson process (jump part)
-- $\lambda$: Jump intensity (expected number of jumps per year)
-- $\kappa = \mathbb{E}[Y - 1]$: Expected relative jump size
-
-### Jump Structure
-
-Jumps arrive at Poisson times with intensity $\lambda$. At each jump:
-
-$$
-S_t = S_{t^-} \cdot Y
-$$
-
-where $Y$ is the random jump multiplier.
-
-**Merton's choice**: $\log Y \sim N(\mu_J, \sigma_J^2)$
-
-Then: $\kappa = \mathbb{E}[Y - 1] = e^{\mu_J + \sigma_J^2/2} - 1$
-
-### Drift Adjustment
-
-The term $-\lambda\kappa$ ensures the discounted price is a martingale:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt
-$$
+where $J_t$ is a compound Poisson process with intensity $\lambda$ and the compensator $-\lambda\kappa$ enforces the martingale condition $\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt$.
 
 ---
 
-## The PIDE (Partial Integro-Differential Equation)
+## The PIDE and Merton's Series Formula
 
-### Pricing Equation
+Recall (see [§ Finite Difference PIDE](../merton_jump_diffusion/finite_difference_pide.md)): the option price satisfies a partial integro-differential equation with a non-local integral term $\lambda\int [V(t,Sy)-V(t,S)]\,\nu(dy)$ added to the Black-Scholes operator.
 
-The option price $V(t, S)$ satisfies:
-
-$$
-\boxed{
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + (r - \lambda\kappa)S\frac{\partial V}{\partial S} - rV + \lambda\int_0^\infty [V(t, Sy) - V(t, S)]\nu(dy) = 0
-}
-$$
-
-where $\nu(dy)$ is the jump size distribution (for Merton: log-normal).
-
-### The Integral Term
+Recall (see [§ Merton Series Formula](../merton_jump_diffusion/merton_series_formula.md)): for European payoffs,
 
 $$
-\lambda\int_0^\infty [V(t, Sy) - V(t, S)]\nu(dy)
+C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!}\, C_{\text{BS}}(S, K, T, r_n, \sigma_n),
 $$
 
-represents the expected change in option value due to jumps.
-
-### Comparison with Black-Scholes
-
-| Term | Black-Scholes | Merton |
-|------|---------------|--------|
-| Diffusion | $\frac{1}{2}\sigma^2 S^2 V_{SS}$ | Same |
-| Drift | $rSV_S$ | $(r-\lambda\kappa)SV_S$ |
-| Discount | $-rV$ | Same |
-| Jump | — | $\lambda\int[V(Sy) - V]\nu(dy)$ |
-
----
-
-## Merton's Formula
-
-### Closed-Form Solution
-
-For European options, Merton derived a semi-analytical formula:
-
-$$
-\boxed{
-C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{\text{BS}}(S, K, T, r_n, \sigma_n)
-}
-$$
-
-where:
-
-- $\lambda' = \lambda(1 + \kappa)$
-- $r_n = r - \lambda\kappa + n(\mu_J + \sigma_J^2/2)/T$
-- $\sigma_n^2 = \sigma^2 + n\sigma_J^2/T$
-
-### Interpretation
-
-The option price is a weighted average of Black-Scholes prices, with weights given by Poisson probabilities for $n$ jumps occurring.
+a Poisson-weighted sum of Black-Scholes prices over the number of jumps in $[0,T]$.
 
 ---
 
@@ -170,87 +98,13 @@ $$
 
 ## Incomplete Markets
 
-### The Issue
-
-Jumps introduce another source of risk that cannot be hedged with the underlying alone.
-
-### Hedging in Jump-Diffusion
-
-- **Delta hedging**: Addresses diffusion risk only
-- **Gamma hedging**: Addresses diffusion convexity only
-- **Jump risk**: Requires options or other jump-sensitive instruments
-
-### Risk-Neutral Measure
-
-The jump intensity $\lambda$ and distribution $\nu$ under $\mathbb{Q}$ are not uniquely determined. Calibration to options implicitly selects a risk-neutral measure.
+Recall (see [§ Incomplete Market and Measure Choice](../merton_jump_diffusion/incomplete_market_and_measure_choice.md) and [§ Incomplete Markets and Pricing Bounds](incomplete_markets_and_pricing_bounds.md)): jump risk is unhedgeable with the underlying alone, the risk-neutral jump intensity $\lambda^{\mathbb{Q}}$ and size distribution $\nu^{\mathbb{Q}}$ are not pinned down by no-arbitrage, and calibration to option quotes implicitly selects a particular $\mathbb{Q}$.
 
 ---
 
-## Numerical Methods
+## Numerical Methods and Greeks
 
-### Fourier/FFT Methods
-
-The characteristic function for Merton is known:
-
-$$
-\phi(u) = \exp\left[iuX_0 + (iu\omega - \frac{1}{2}u^2\sigma^2 + \lambda(\phi_Y(u) - 1))T\right]
-$$
-
-where $\phi_Y$ is the characteristic function of $\log Y$.
-
-**FFT pricing**: Fast and accurate for European options.
-
-### PIDE Methods
-
-Discretize the integral term:
-
-$$
-\int V(Sy)\nu(dy) \approx \sum_k w_k V(Sy_k)
-$$
-
-Use implicit schemes for the differential part, explicit for the integral.
-
-### Monte Carlo
-
-```python
-for i in range(N):
-    # Diffusion part
-    dW = sqrt(dt) * randn()
-    S_diff = S[i] * exp((r - 0.5*sigma**2 - lambda*kappa)*dt + sigma*dW)
-    
-    # Jump part
-    n_jumps = poisson(lambda * dt)
-    if n_jumps > 0:
-        J = prod(exp(mu_J + sigma_J * randn(n_jumps)))
-    else:
-        J = 1
-    
-    S[i+1] = S_diff * J
-```
-
----
-
-## Impact on Greeks
-
-### Delta
-
-Jumps reduce delta near the money (smile effect):
-
-$$
-\Delta_{\text{Merton}} < \Delta_{\text{BS}} \quad \text{(for ATM calls)}
-$$
-
-### Gamma
-
-Concentrated near barriers and strikes due to jump risk.
-
-### Vega
-
-Decomposes into diffusion vega and jump vega:
-
-$$
-\mathcal{V}_{\text{total}} = \mathcal{V}_{\sigma} + \mathcal{V}_{\lambda} + \mathcal{V}_{\mu_J} + \mathcal{V}_{\sigma_J}
-$$
+For the characteristic function and FFT pricing, recall (see [§ Characteristic Function](../merton_jump_diffusion/characteristic_function.md)). For PIDE discretization, recall (see [§ Finite Difference PIDE](../merton_jump_diffusion/finite_difference_pide.md)). For path simulation, recall (see [§ Monte Carlo Simulation](../merton_jump_diffusion/monte_carlo_simulation.md)). Greek decomposition (delta, gamma, and a vega that splits into diffusion and jump components) is covered in [§ Greeks under Jump Diffusion](../merton_jump_diffusion/greeks_under_jump_diffusion.md).
 
 ---
 

@@ -34,41 +34,23 @@ The discounted Feynman-Kac formula tells us which PDE this expectation satisfies
 
 ### Statement
 
-Consider the SDE:
+This is the $f = 0$ special case of the general theorem. Recall (see [§ The Classical Feynman–Kac Formula](feynman_kac_formula.md#the-classical-feynmankac-formula)): for $dX_s = \mu\,ds + \sigma\,dW_s$ with $X_t = x$, the function
 
 $$
-dX_s = \mu(s, X_s)\,ds + \sigma(s, X_s)\,dW_s, \quad X_t = x
-$$
-
-Let $r(t, x) \geq 0$ be a discounting rate and $g$ a terminal payoff. Define:
-
-$$
-\boxed{
 u(t, x) = \mathbb{E}\!\left[e^{-\int_t^T r(s, X_s)\,ds}\,g(X_T) \,\Big|\, X_t = x\right]
-}
 $$
 
-Then $u$ satisfies the PDE:
+satisfies the **discounted FK PDE**
 
 $$
-\boxed{
-\frac{\partial u}{\partial t} + \mu(t,x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2 u}{\partial x^2} - r(t,x)\,u = 0
-}
+\partial_t u + \mathcal{L}u - r\,u = 0, \quad u(T, \cdot) = g,
 $$
 
-with terminal condition $u(T, x) = g(x)$.
+where $\mathcal{L} = \mu\,\partial_x + \tfrac12\sigma^2\,\partial_{xx}$.
 
-In compact notation:
+### The -ru Term: Three Equivalent Interpretations { #the--ru-term-three-equivalent-interpretations }
 
-$$
-\partial_t u + \mathcal{L}u - r\,u = 0, \quad u(T, \cdot) = g
-$$
-
-### The -ru Term
-
-The discounting appears as the **zeroth-order term** $-r\,u$ in the PDE. This term acts as a "sink" -- it continuously removes value from the solution at rate $r$.
-
-**Three equivalent interpretations:**
+The discounting appears as the **zeroth-order term** $-r\,u$ in the PDE — a "sink" that continuously removes value at rate $r$. This page is the canonical reference for the three interpretations:
 
 | Interpretation | Field | Description |
 |---|---|---|
@@ -80,61 +62,23 @@ The discounting appears as the **zeroth-order term** $-r\,u$ in the PDE. This te
 
 ## Constant Discounting
 
-When $r$ is a constant, the formula simplifies:
-
-$$
-u(t, x) = e^{-r(T-t)}\,\mathbb{E}[g(X_T) \mid X_t = x]
-$$
-
-The discount factor $e^{-r(T-t)}$ factors out of the expectation because it does not depend on the path.
-
-**PDE:**
-
-$$
-\partial_t u + \mathcal{L}u - r\,u = 0
-$$
-
-### Relationship to the Undiscounted Case
-
-Let $v(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]$ solve the backward equation $\partial_t v + \mathcal{L}v = 0$. Then $u = e^{-r(T-t)}v$ satisfies:
-
-$$
-\partial_t u = -r\,e^{-r(T-t)}v + e^{-r(T-t)}\partial_t v = -ru + e^{-r(T-t)}\partial_t v
-$$
-
-So $\partial_t u + \mathcal{L}u - ru = e^{-r(T-t)}(\partial_t v + \mathcal{L}v) = 0$. $\checkmark$
+Recall (see [§ Special Cases — Case 2](feynman_kac_formula.md#special-cases)): when $r$ is constant, $e^{-r(T-t)}$ factors out and $u(t,x) = e^{-r(T-t)}\,\mathbb{E}[g(X_T) \mid X_t = x]$, equivalent to $u = e^{-r(T-t)}v$ where $v$ solves the undiscounted backward equation $\partial_t v + \mathcal{L}v = 0$.
 
 ---
 
 ## State-Dependent Discounting
 
-When $r = r(t, X_t)$ depends on the stochastic process, the discount factor $e^{-\int_t^T r(s, X_s)\,ds}$ is **path-dependent** and cannot be factored out of the expectation.
+When $r = r(t, X_t)$ depends on the stochastic process, the discount factor $e^{-\int_t^T r(s, X_s)\,ds}$ is **path-dependent** and cannot be factored out of the expectation. Two canonical settings are worth distinguishing.
 
-### Example: Stochastic Interest Rates
+**Stochastic interest rates.** When $X_t = r_t$ is the short rate itself, the killing rate and the state variable coincide, and the FK expectation $u(t,r) = \mathbb{E}[e^{-\int_t^T r_s\,ds} \mid r_t = r]$ becomes the zero-coupon bond price. Recall (see [§ FK Formula — Application 2: Bond Pricing](feynman_kac_formula.md#application-2-bond-pricing-with-stochastic-interest-rates)) for the Vasicek model, the corresponding PDE, and the affine solution $P(t,r) = A(t,T)e^{-B(t,T)r}$.
 
-If $X_t = r_t$ is the short rate itself (e.g., Vasicek or CIR model), then:
-
-$$
-u(t, r) = \mathbb{E}\!\left[e^{-\int_t^T r_s\,ds} \,\Big|\, r_t = r\right]
-$$
-
-is the **zero-coupon bond price**, and it satisfies:
-
-$$
-\partial_t u + \mathcal{L}_r u - r\,u = 0, \quad u(T, r) = 1
-$$
-
-The terminal condition $g = 1$ reflects that the bond pays $\$1$ at maturity.
-
-### Example: State-Dependent Killing
-
-In credit risk, the default intensity $\lambda(X_t)$ depends on a credit quality process $X_t$. The survival probability is:
+**State-dependent killing.** In credit risk, the default intensity $\lambda(X_t)$ depends on a credit-quality process $X_t$ that is *not* the killing rate. The survival probability
 
 $$
 Q(t, x) = \mathbb{E}\!\left[e^{-\int_t^T \lambda(X_s)\,ds} \,\Big|\, X_t = x\right]
 $$
 
-This satisfies $\partial_t Q + \mathcal{L}Q - \lambda\,Q = 0$ with $Q(T, x) = 1$.
+satisfies $\partial_t Q + \mathcal{L}Q - \lambda\,Q = 0$ with $Q(T, x) = 1$. Here $\lambda$ and $X$ play distinct roles: $X$ drives the dynamics, $\lambda(X)$ controls the killing rate. This is the structural distinction missing from the bond case, where the two collapse.
 
 ---
 

@@ -8,19 +8,7 @@ The Vasicek model allows the short rate $r_t$ to take any real value because the
 
 ### Exact formula
 
-Recall the conditional distribution under the risk-neutral measure:
-
-$$
-r_t \mid r_0 \sim \mathcal{N}\!\left(\mu(t),\, v^2(t)\right)
-$$
-
-where
-
-$$
-\mu(t) = \theta + (r_0 - \theta)\,e^{-\kappa t}, \qquad v^2(t) = \frac{\sigma^2}{2\kappa}\!\left(1 - e^{-2\kappa t}\right)
-$$
-
-The probability of a negative rate at time $t$ is
+Recall (see [§ Explicit solution and distribution](explicit_solution_and_distribution.md)) the conditional Gaussian distribution $r_t \mid r_0 \sim \mathcal{N}(\mu(t), v^2(t))$. The probability of a negative rate at time $t$ is
 
 $$
 \boxed{\mathbb{P}(r_t < 0) = \Phi\!\left(-\frac{\mu(t)}{v(t)}\right)}
@@ -143,17 +131,11 @@ where $x_t$ follows the standard Vasicek dynamics. Since $x_t$ is Gaussian, $r_t
 
 ### CIR model
 
-The Cox-Ingersoll-Ross model
-
-$$
-dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
-$$
-
-ensures $r_t \geq 0$ when the Feller condition $2\kappa\theta \geq \sigma^2$ holds. The square-root diffusion vanishes at $r_t = 0$, creating a natural reflecting boundary. However, CIR cannot produce negative rates when they are empirically observed.
+Recall (see [§ CIR](../cir_model/bond_options.md)) that the square-root diffusion $\sigma\sqrt{r_t}$ enforces $r_t \geq 0$ under the Feller condition. CIR cannot reproduce empirically observed negative rates.
 
 ### Shifted log-normal models
 
-Black-Karasinski and shifted Black models ensure $r_t > \underline{r}$ by modeling $\ln(r_t - \underline{r})$ as a diffusion. These models sacrifice analytical tractability.
+Recall (see [§ Black-Karasinski](../black_karasinski/calibration_to_cap_volatilities.md)) that BK and shifted-Black specifications enforce $r_t > \underline{r}$ at the cost of analytical tractability.
 
 ### Absorbing or reflecting boundaries
 

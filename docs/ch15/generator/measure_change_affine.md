@@ -17,15 +17,7 @@ The passage from the physical measure $\mathbb{P}$ to the risk-neutral measure $
 
 ### The Pricing Problem
 
-Consider a short-rate model $r_t = \rho_0 + \rho_1^\top X_t$ where $X_t$ is an affine process under the physical measure $\mathbb{P}$. To price bonds, we need the risk-neutral expectation
-
-$$
-P(t,T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\;\Big|\;\mathcal{F}_t\right]
-$$
-
-For this to be computable via the Riccati machinery, $X_t$ must also be affine under $\mathbb{Q}$. If the measure change from $\mathbb{P}$ to $\mathbb{Q}$ broke the affine structure, we would lose the exponential-affine bond price formula and need to resort to Monte Carlo or PDE methods.
-
-The closure property guarantees that this does not happen: any measure change defined by an exponential-affine Radon–Nikodym derivative maps one set of affine parameters to another. The bond pricing formulas, characteristic functions, and Riccati equations all carry over to the new measure --- only the parameter values change.
+Recall (see [§ ATSM bond pricing](../affine_term_structure/bond_pricing_affine_framework.md)) that for $r_t = \rho_0 + \rho_1^\top X_t$, the bond price $P(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds} \mid \mathcal{F}_t]$ is exponential-affine only when $X_t$ remains affine under $\mathbb{Q}$. The closure property guarantees that any measure change with an exponential-affine Radon–Nikodym derivative preserves the affine class --- only the parameter values change, while bond pricing formulas, characteristic functions, and Riccati equations carry over.
 
 ---
 
@@ -138,55 +130,7 @@ The Esscher transform tilts the jump size distribution exponentially while shift
 
 ## Examples
 
-### Vasicek Model
-
-Under $\mathbb{P}$, the Vasicek model has $dr_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - r_t)\,dt + \sigma\,dW_t^{\mathbb{P}}$. With a constant market price of risk $\lambda$:
-
-$$
-dr_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - r_t)\,dt + \sigma\,dW_t^{\mathbb{P}}
-$$
-
-Under $\mathbb{Q}$ with $dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} + \lambda\,dt$:
-
-$$
-dr_t = \kappa^{\mathbb{P}}\bigl(\theta^{\mathbb{P}} - r_t\bigr)\,dt - \sigma\lambda\,dt + \sigma\,dW_t^{\mathbb{Q}}
-$$
-
-$$
-= \kappa^{\mathbb{P}}\!\left(\theta^{\mathbb{P}} - \frac{\sigma\lambda}{\kappa^{\mathbb{P}}} - r_t\right)dt + \sigma\,dW_t^{\mathbb{Q}}
-$$
-
-!!! example "Vasicek Parameter Transformation"
-    The risk-neutral parameters are:
-
-    - $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}}$ (mean-reversion speed unchanged)
-    - $\theta^{\mathbb{Q}} = \theta^{\mathbb{P}} - \sigma\lambda/\kappa^{\mathbb{P}}$ (long-run mean shifts)
-    - $\sigma^{\mathbb{Q}} = \sigma^{\mathbb{P}}$ (volatility unchanged)
-
-    The Vasicek model remains Vasicek under the measure change. Only the long-run mean $\theta$ is affected.
-
-### CIR Model
-
-Under $\mathbb{P}$, the CIR model has $dr_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - r_t)\,dt + \xi\sqrt{r_t}\,dW_t^{\mathbb{P}}$. The diffusion coefficient $\xi\sqrt{r_t}$ depends on the state, so the market price of risk must be chosen carefully.
-
-The standard CIR market price of risk is $\lambda(r_t) = \lambda_1\sqrt{r_t}/\xi$ for some constant $\lambda_1$, giving:
-
-$$
-dr_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - r_t)\,dt - \lambda_1 r_t\,dt + \xi\sqrt{r_t}\,dW_t^{\mathbb{Q}}
-$$
-
-$$
-= (\kappa^{\mathbb{P}} + \lambda_1)\!\left(\frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{P}} + \lambda_1} - r_t\right)dt + \xi\sqrt{r_t}\,dW_t^{\mathbb{Q}}
-$$
-
-!!! example "CIR Parameter Transformation"
-    The risk-neutral parameters are:
-
-    - $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda_1$ (mean-reversion speed increases if $\lambda_1 > 0$)
-    - $\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}/(\kappa^{\mathbb{P}} + \lambda_1)$ (long-run mean decreases if $\lambda_1 > 0$)
-    - $\xi^{\mathbb{Q}} = \xi^{\mathbb{P}}$ (volatility unchanged)
-
-    Crucially, $\kappa^{\mathbb{Q}}\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}$, so the product $\kappa\theta$ is invariant. If the Feller condition $2\kappa^{\mathbb{P}}\theta^{\mathbb{P}} \geq \xi^2$ holds under $\mathbb{P}$, it holds under $\mathbb{Q}$ as well.
+Recall (see [§ worked examples](../examples/gbm_as_affine.md)) for the explicit Vasicek transformation (only $\theta$ shifts to $\theta^{\mathbb{P}} - \sigma\lambda/\kappa^{\mathbb{P}}$) and the CIR transformation under $\lambda(r) = \lambda_1\sqrt{r}/\xi$ (jointly $\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda_1$, $\theta^{\mathbb{Q}} = \kappa^{\mathbb{P}}\theta^{\mathbb{P}}/\kappa^{\mathbb{Q}}$, with $\kappa\theta$ invariant so the Feller condition is preserved).
 
 ---
 

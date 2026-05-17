@@ -8,12 +8,7 @@ Regularization introduces an unavoidable **trade-off**: improving robustness and
 ## Bias–variance trade-off
 
 
-Regularization reduces variance at the cost of bias:
-
-- **Low regularization:** excellent fit, poor stability.
-- **High regularization:** stable parameters, biased fit.
-
-The optimal point depends on data quality, model purpose, and downstream use (pricing vs hedging).
+Recall (see [§ Statistical Learning in Financial Models](../../ch24/statistical_learning_in_financial_models/bias_variance_trade_off.md)) the bias–variance decomposition. In a calibration context, regularization reduces variance at the cost of bias: low $\lambda$ gives an excellent fit with poor stability, while high $\lambda$ gives stable but biased parameters. The optimal point depends on data quality, model purpose, and downstream use (pricing vs hedging).
 
 ---
 
@@ -32,13 +27,7 @@ Useful diagnostics include:
 ## Economic versus statistical fit
 
 
-A statistically optimal fit may be economically undesirable:
-
-- parameters may imply implausible dynamics,
-- hedging Greeks may be unstable,
-- scenario sensitivities may explode.
-
-Robust calibration prioritizes *economic behavior* over minimal residuals.
+A statistically optimal fit may be economically undesirable — parameters may imply implausible dynamics, hedging Greeks may be unstable, and scenario sensitivities may explode (see [§ Model Risk from Calibration](../model_risk_from_calibration/impact_on_greeks_and_hedging.md)). Robust calibration prioritizes *economic behavior* over minimal residuals.
 
 ---
 
@@ -63,6 +52,8 @@ Guiding principles:
 - start with strong regularization,
 - relax only when justified by stable, liquid data,
 - prefer bias you understand to variance you cannot hedge.
+
+For a worst-case formulation of "bias you understand," see [§ Distributionally Robust Optimization](../../ch24/learning_under_model_uncertainty/distributionally_robust_optimization.md).
 
 ---
 

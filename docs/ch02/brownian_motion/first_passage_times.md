@@ -2,6 +2,8 @@
 
 Let $\tau_a := \inf\{t \ge 0 : W_t = a\}$ be the first passage time of Brownian motion. We derive its distribution and key properties.
 
+Recall (see [§ Reflection Principle](reflection_principle.md)): $\{\tau_a \le t\} = \{M_t \ge a\}$ where $M_t = \sup_{s \le t} W_s$, and $\mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a)$. This is the bridge that makes every result below explicit.
+
 ---
 
 ## Definition and Basic Properties
@@ -21,6 +23,8 @@ first passage is from below.
 
 ### First Passage Time is a Stopping Time
 
+Recall (see [§ Stopping Time](../filtration_and_martingale/stopping_time.md)): a random time $\tau$ is a stopping time if $\{\tau \le t\}\in\mathcal{F}_t$ for all $t$.
+
 $\tau_a$ is measurable with respect to the natural filtration $\{\mathcal{F}_t\}$ of $W$,
 since $\{\tau_a \leq t\} = \{\sup_{s \leq t} W_s \geq a\} \in \mathcal{F}_t$ by
 continuity of paths. Hence $\tau_a$ is a stopping time and the strong Markov property
@@ -33,7 +37,7 @@ applies at $\tau_a$.
 
 **Proof.**
 
-By the reflection principle (Theorem 1.6.1 in the Reflection Principle chapter):
+By the [§ Reflection Principle](reflection_principle.md):
 
 $$\mathbb{P}(\tau_a \leq t) = \mathbb{P}(M_t \geq a) = 2\mathbb{P}(W_t \geq a) = 2\Phi\!\left(-\frac{a}{\sqrt{t}}\right)$$
 
@@ -91,7 +95,7 @@ $$f_{\tau_a}(t) = 2\phi(-a/\sqrt{t}) \cdot \frac{a}{2t^{3/2}} = \frac{a}{\sqrt{2
 
     $$\boxed{\mathbb{E}[e^{-\alpha\tau_a}] = e^{-a\sqrt{2\alpha}}.}$$
 
-**Method.** The Laplace transform follows from applying optional stopping to the exponential martingale $\mathcal{E}_t^\lambda = \exp(\lambda W_t - \tfrac{1}{2}\lambda^2 t)$ at the bounded stopping time $\tau_a \wedge T$, then letting $T \to \infty$ and substituting $\alpha = \tfrac{1}{2}\lambda^2$.
+**Method.** The Laplace transform follows from applying optional stopping (see [§ Optional Sampling Theorem](../filtration_and_martingale/optional_sampling_theorem.md)) to the exponential martingale $\mathcal{E}_t^\lambda = \exp(\lambda W_t - \tfrac{1}{2}\lambda^2 t)$ (see [§ Brownian Motion Martingales](../filtration_and_martingale/brownian_motion_martingales.md)) at the bounded stopping time $\tau_a \wedge T$, then letting $T \to \infty$ and substituting $\alpha = \tfrac{1}{2}\lambda^2$.
 
 ---
 

@@ -2,6 +2,9 @@
 
 Continuous delta hedging is an idealization that cannot be achieved in practice. Real hedging occurs at discrete times, introducing a random hedging error. This section analyzes how the **rebalancing frequency** affects hedging quality, derives the fundamental scaling laws, and studies the **cost-error tradeoff** that arises when transaction costs are included.
 
+!!! tip "Toy mechanism: error $\sim \sqrt{\Delta t}$, cost $\sim 1/\sqrt{\Delta t}$"
+    The whole cost–error tradeoff is one inequality. Hedging error scales as $\sqrt{\Delta t}$ (CLT on gamma residuals, see [§ Asymptotic Hedging Error Expansions](asymptotic_hedging_error_expansions.md)). Transaction cost per rebalance is proportional to $|\Delta \Delta_k| \sim \sqrt{\Delta t}$, summed over $N = T/\Delta t$ rebalances, giving total cost $\sim 1/\sqrt{\Delta t}$. The two go in opposite directions: hedge more often $\Rightarrow$ less error, more cost. Total loss $\sim a\sqrt{\Delta t} + b/\sqrt{\Delta t}$ is minimised when the two are balanced — at $\Delta t^* \sim b/a$. This single AM–GM-style balance fixes the optimal rebalancing frequency derived below.
+
 ---
 
 ## Setup: Discrete Hedging Framework
@@ -24,63 +27,25 @@ $$
 
 ### Taylor Expansion of the Error
 
-Using the Ito-Taylor expansion (ignoring discounting for clarity):
+Recall (see [§ Discrete-Time Hedging Error](discrete_time_hedging_error.md)): the per-step hedging error is
 
 $$
-V_{k+1} - V_k \approx \Delta_k\,\delta S_k + \Theta_k\,\delta t + \frac{1}{2}\Gamma_k\,(\delta S_k)^2
+\epsilon_k \approx \Theta_k\,\delta t + \tfrac{1}{2}\Gamma_k\,(\delta S_k)^2 = \tfrac{1}{2}\Gamma_k\bigl[(\delta S_k)^2 - \sigma^2 S_k^2\,\delta t\bigr],
 $$
 
-where $\delta S_k = S_{k+1} - S_k$. Since the hedge captures only $\Delta_k\,\delta S_k$:
-
-$$
-\boxed{\epsilon_k \approx \Theta_k\,\delta t + \frac{1}{2}\Gamma_k\,(\delta S_k)^2}
-$$
-
-Using the theta-gamma identity $\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma \approx r(V - S\Delta)$:
-
-$$
-\epsilon_k \approx \frac{1}{2}\Gamma_k\left[(\delta S_k)^2 - \sigma^2 S_k^2\,\delta t\right]
-$$
-
-This reveals that the hedging error is driven by the **difference between realized and expected squared price moves**.
+driven by the **difference between realized and expected squared price moves**. This section focuses on how the cumulative error scales with the number of rebalancing dates $N$.
 
 ---
 
 ## Variance of the Hedging Error
 
-### Single-Step Variance
-
-Under Black-Scholes dynamics with $\delta S_k = \sigma S_k \sqrt{\delta t}\, Z_k + O(\delta t)$ where $Z_k \sim \mathcal{N}(0,1)$:
-
-$$
-(\delta S_k)^2 = \sigma^2 S_k^2\,\delta t\, Z_k^2 + O(\delta t^{3/2})
-$$
-
-The conditional mean and variance of $\epsilon_k$ are:
-
-$$
-\mathbb{E}[\epsilon_k \mid \mathcal{F}_{t_k}] \approx 0
-$$
-
-$$
-\operatorname{Var}(\epsilon_k \mid \mathcal{F}_{t_k}) \approx \frac{1}{2}\Gamma_k^2 S_k^4 \sigma^4\,(\delta t)^2
-$$
-
-The factor $\frac{1}{2}$ comes from $\operatorname{Var}(Z^2) = 2$ for $Z \sim \mathcal{N}(0,1)$.
-
-### Cumulative Error Variance
-
-Summing over $N = T/\delta t$ independent steps:
+Recall (see [§ Discrete-Time Hedging Error](discrete_time_hedging_error.md)): the conditional per-step error has mean $\approx 0$ and variance $\frac{1}{2}\Gamma_k^2 S_k^4 \sigma^4 (\delta t)^2$, summing to
 
 $$
 \boxed{\operatorname{Var}(\mathrm{HE}) \approx \frac{1}{2}\,\overline{\Gamma^2 S^4 \sigma^4}\, T\,\delta t}
 $$
 
-where $\overline{\Gamma^2 S^4 \sigma^4}$ denotes the time-averaged quantity. The key scaling law is:
-
-$$
-\operatorname{Std}(\mathrm{HE}) \propto \sqrt{\delta t} = \frac{1}{\sqrt{N}} \cdot \sqrt{T}
-$$
+giving the scaling $\operatorname{Std}(\mathrm{HE}) \propto \sqrt{\delta t} = \sqrt{T/N}$.
 
 **Theorem (Hedging Error Scaling).** *Under Black-Scholes dynamics with $N$ equally spaced rebalancing dates, the standard deviation of the cumulative hedging error satisfies:*
 
@@ -100,25 +65,8 @@ $$
 
 ## Asymptotic Distribution
 
-### Central Limit Theorem for Hedging Error
 
-For large $N$, the cumulative hedging error is approximately Gaussian:
-
-$$
-\mathrm{HE}_N \xrightarrow{d} \mathcal{N}\!\left(0,\; \frac{1}{2}\int_0^T \Gamma^2 S_t^4 \sigma^4\,dt \cdot \delta t\right)
-$$
-
-More precisely, the normalized hedging error converges:
-
-$$
-\frac{\mathrm{HE}_N}{\sqrt{\delta t}} \xrightarrow{d} \mathcal{N}\!\left(0,\; \frac{1}{2}\int_0^T \Gamma^2 S_t^4 \sigma^4\,dt\right)
-$$
-
-This result, due to Bertsimas, Kogan, and Lo (2000), provides the basis for confidence intervals:
-
-$$
-\Pr\!\left(|\mathrm{HE}_N| \leq 1.96 \cdot \operatorname{Std}(\mathrm{HE})\right) \approx 0.95
-$$
+Recall (see [§ Discrete-Time Hedging Error](discrete_time_hedging_error.md)): by the CLT, $\mathrm{HE}_N/\sqrt{\delta t} \xrightarrow{d} \mathcal{N}(0, \tfrac{1}{2}\int_0^T \Gamma^2 S_t^4 \sigma^4\,dt)$ (Bertsimas–Kogan–Lo, 2000), supplying $\pm 1.96\,\operatorname{Std}(\mathrm{HE})$ confidence intervals.
 
 ---
 
@@ -222,19 +170,7 @@ $$
 
 ## Leland's Adjusted Volatility
 
-### Modified Hedging Strategy
-
-Leland (1985) proposed adjusting the implied volatility used for computing deltas to account for transaction costs. The **Leland volatility** is:
-
-$$
-\hat{\sigma}^2 = \sigma^2\left(1 + \sqrt{\frac{2}{\pi}} \cdot \frac{\kappa}{\sigma\sqrt{\delta t}}\right)
-$$
-
-By hedging with $\hat{\Delta} = \Delta(\hat{\sigma})$ instead of $\Delta(\sigma)$, the expected hedging cost (error plus transaction costs) is reduced. The adjustment widens the effective volatility, which systematically over-hedges to compensate for the discrete rebalancing.
-
-### Interpretation
-
-The Leland adjustment adds a correction term of order $O(1/\sqrt{\delta t})$ to the volatility. In the limit $\delta t \to 0$ (continuous hedging), $\hat{\sigma} \to \sigma$ and the adjustment vanishes. For finite $\delta t$, the adjustment accounts for the asymmetric impact of transaction costs on the hedging P&L.
+Recall (see [§ Transaction Costs and Liquidity Effects](../model_risk/transaction_costs_and_liquidity_effects.md)): Leland (1985) proposed hedging at $\hat{\Delta}=\Delta(\hat\sigma)$ with $\hat\sigma^2 = \sigma^2(1+\sqrt{2/\pi}\,\kappa/(\sigma\sqrt{\delta t}))$, widening volatility to absorb transaction costs. The correction is $O(1/\sqrt{\delta t})$ and vanishes in the continuous-hedging limit.
 
 ---
 

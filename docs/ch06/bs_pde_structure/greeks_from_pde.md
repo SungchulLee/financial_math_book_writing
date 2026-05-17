@@ -2,7 +2,7 @@
 
 The **Greeks** are sensitivities of option prices to various parameters. They are essential for hedging, risk management, and understanding option behavior. The pricing PDE provides a unified framework for computing and relating the Greeks.
 
-Since the option price is the Feynman-Kac expectation $V = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$, every Greek is ultimately a **derivative of this expectation** with respect to the corresponding variable or parameter, holding all others fixed. The PDE makes these relationships explicit and connects them algebraically.
+Recall (see [§ Discounting and the Killing Term](discounting_and_killing_term.md)): the option price is the Feynman-Kac expectation $V = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$. Every Greek is therefore a **derivative of this expectation** with respect to the corresponding variable or parameter, holding the others fixed. The PDE makes these relationships explicit and connects them algebraically.
 
 ---
 
@@ -20,15 +20,29 @@ For an option price $V(t, S)$:
 
 ---
 
+## A Toy: Greeks of a Forward Contract
+
+The simplest derivative whose Greeks can be computed by hand — and which already satisfies the Black-Scholes PDE — is the **forward contract** $V(t, S) = S - Ke^{-r(T-t)}$. Direct differentiation gives:
+
+$$
+\Delta = 1, \quad \Gamma = 0, \quad \Theta = -rKe^{-r(T-t)}, \quad \mathcal{V} = 0, \quad \rho = (T-t)Ke^{-r(T-t)}
+$$
+
+Substituting into the PDE in Greek form:
+
+$$
+\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = -rKe^{-r(T-t)} + rS + 0 = r\bigl(S - Ke^{-r(T-t)}\bigr) = rV
+$$
+
+The identity holds exactly. A linear function of $S$ uses only $\Delta$ and the $-rV$ term to balance the PDE; gamma and vega contribute nothing because the value has no convexity in $S$ and no dependence on $\sigma$. Vanilla options reactivate $\Gamma$ and $\mathcal{V}$ through their nonlinear payoff, but the PDE bookkeeping is the same. The rest of this section examines how each Greek participates in this single balance equation.
+
+---
+
 ## The Theta-Gamma Relationship
 
-The Black-Scholes PDE connects the Greeks:
+Recall (see [§ Discounting and the Killing Term](discounting_and_killing_term.md)): the Black-Scholes PDE reads $V_t + rSV_S + \tfrac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$, with $\mathcal{L}$ capturing market dynamics and $-rV$ representing discounting.
 
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV
-$$
-
-Rewriting in terms of Greeks:
+Rewriting each derivative term in terms of the Greeks:
 
 $$
 \boxed{
@@ -76,19 +90,7 @@ $$
 - Probability (under $\mathbb{Q}$) of finishing in-the-money (approximately)
 - Sensitivity to small price changes
 
-### Black-Scholes Formulas
-
-**Call**: $\Delta_C = \mathcal{N}(d_1)$
-
-**Put**: $\Delta_P = \mathcal{N}(d_1) - 1 = -\mathcal{N}(-d_1)$
-
-where $d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}$
-
-### Properties
-
-- Call: $0 \leq \Delta_C \leq 1$
-- Put: $-1 \leq \Delta_P \leq 0$
-- Put-call parity: $\Delta_C - \Delta_P = 1$
+Recall (see [§ BS Greeks](../../ch10/greeks/greeks_in_black_scholes_model.md)): closed-form Black-Scholes delta is $\Delta_C = \mathcal{N}(d_1)$ for calls and $\Delta_P = \mathcal{N}(d_1) - 1$ for puts.
 
 ---
 
@@ -106,26 +108,7 @@ $$
 - Curvature of the price function
 - Hedging error for discrete rebalancing
 
-### Black-Scholes Formula
-
-$$
-\Gamma = \frac{\phi(d_1)}{S\sigma\sqrt{T-t}}
-$$
-
-where $\phi$ is the standard normal PDF.
-
-### Properties
-
-- Always positive for vanilla options (convexity)
-- Maximum at-the-money
-- Increases as expiration approaches (for ATM)
-
-### Gamma and Hedging
-
-Gamma measures the **instability of the hedge**:
-
-- High gamma: Frequent rebalancing needed
-- Low gamma: Stable hedge
+Recall (see [§ BS Greeks](../../ch10/greeks/greeks_in_black_scholes_model.md)): closed-form $\Gamma = \phi(d_1)/(S\sigma\sqrt{T-t})$, always positive and peaked at the money — high gamma forces frequent rebalancing.
 
 ---
 
@@ -143,25 +126,7 @@ $$
 
 **Convention**: Often reported as daily decay ($\Theta/365$).
 
-### Black-Scholes Formulas
-
-**Call**:
-
-$$
-\Theta_C = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
-$$
-
-**Put**:
-
-$$
-\Theta_P = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} + rKe^{-r(T-t)}\mathcal{N}(-d_2)
-$$
-
-### Properties
-
-- Usually negative for long options (time decay)
-- Can be positive for deep ITM puts
-- Accelerates near expiration
+Recall (see [§ BS Greeks](../../ch10/greeks/greeks_in_black_scholes_model.md)): closed-form theta has two terms — a $\Gamma$-driven diffusion term and a discounted-strike term — typically negative for long vanilla options.
 
 ### Theta-Gamma Tradeoff
 
@@ -181,61 +146,13 @@ $$
 \mathcal{V} = \frac{\partial V}{\partial \sigma}
 $$
 
-**Note**: Vega is not a Greek letter!
-
-Unlike $\Delta$, $\Gamma$, and $\Theta$, vega cannot be read directly from the PDE because $\sigma$ is a **parameter** of the PDE, not one of its independent variables. Differentiating the entire Black-Scholes PDE with respect to $\sigma$ yields a PDE for $\mathcal{V}$:
-
-$$
-\frac{\partial \mathcal{V}}{\partial t} + rS\frac{\partial \mathcal{V}}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 \mathcal{V}}{\partial S^2} - r\mathcal{V} = -\sigma S^2 \Gamma
-$$
-
-This is the same Black-Scholes operator applied to $\mathcal{V}$, with a source term $-\sigma S^2\Gamma$ driven by gamma — confirming that vega and gamma are deeply linked.
-
-### Black-Scholes Formula
-
-$$
-\mathcal{V} = S\sqrt{T-t}\phi(d_1)
-$$
-
-Same for calls and puts (put-call parity).
-
-### Properties
-
-- Always positive for vanilla options
-- Maximum at-the-money
-- Proportional to $\sqrt{T-t}$
-
-### Vega and Implied Volatility
-
-Vega is essential for:
-
-- Converting between price and implied volatility
-- Volatility trading strategies
-- Model risk assessment
+Recall (see [§ Differentiating the BS PDE](../../ch10/greeks_pde/differentiating_black_scholes_pde.md)): because $\sigma$ is a PDE parameter (not an independent variable), vega cannot be read off the PDE directly. Differentiating the PDE in $\sigma$ yields the same BS operator on $\mathcal{V}$ with source $-\sigma S^2 \Gamma$, exhibiting the vega–gamma link. Closed-form $\mathcal{V} = S\sqrt{T-t}\,\phi(d_1)$ (see [§ BS Greeks](../../ch10/greeks/greeks_in_black_scholes_model.md)).
 
 ---
 
 ## Rho: Interest Rate Sensitivity
 
-### Definition
-
-$$
-\rho = \frac{\partial V}{\partial r}
-$$
-
-Like vega, rho measures sensitivity to a PDE parameter rather than an independent variable. Differentiating the PDE with respect to $r$ yields a PDE for $\rho$ with source terms involving $S\Delta$ and $V$ — reflecting that interest rate changes affect both the drift and the discounting.
-
-### Black-Scholes Formulas
-
-**Call**: $\rho_C = K(T-t)e^{-r(T-t)}\mathcal{N}(d_2)$
-
-**Put**: $\rho_P = -K(T-t)e^{-r(T-t)}\mathcal{N}(-d_2)$
-
-### Properties
-
-- Calls have positive rho (benefit from higher rates)
-- Puts have negative rho
-- Larger for longer maturities
+Rho $\rho = \partial V/\partial r$ is also a parameter-derivative; differentiating the PDE in $r$ produces a source involving $S\Delta$ and $V$. Recall (see [§ Differentiating the BS PDE](../../ch10/greeks_pde/differentiating_black_scholes_pde.md), [§ BS Greeks](../../ch10/greeks/greeks_in_black_scholes_model.md)) for the source-term PDE and closed-form rho.
 
 ---
 

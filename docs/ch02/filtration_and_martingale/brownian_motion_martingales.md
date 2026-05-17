@@ -2,19 +2,13 @@
 
 Brownian motion is the concrete testing ground for everything developed so far — [Martingales](martingale.md), [Martingale Convergence](martingale_convergence.md), [Uniform Integrability](uniform_integrability.md), and the Doob-Meyer structure. The abstract theory becomes calculable here: $W_t$ itself is a martingale, simple polynomial corrections produce more, and a single exponential object generates them all.
 
-Throughout, $(W_t)_{t\ge 0}$ is a standard Brownian motion on $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})$ with the usual conditions.
+Throughout, $(W_t)_{t\ge 0}$ is a standard Brownian motion on $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})$ with the usual conditions. Recall (see [§ Brownian Motion](../brownian_motion/brownian_motion.md)): $W_0=0$, paths are continuous, and increments $W_t-W_s\sim\mathcal{N}(0,t-s)$ are independent of $\mathcal{F}_s$.
 
 ---
 
 ## The Basic Martingale: W_t
 
-Independent increments make the martingale check immediate: for $s < t$, $W_t - W_s$ is independent of $\mathcal{F}_s$ with mean zero, so
-
-$$
-\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s + \mathbb{E}[W_t - W_s] = W_s.
-$$
-
-Integrability follows from $W_t \sim N(0,t)$. The martingale property is the formal statement that Brownian motion has no drift: the best prediction of the future is the present.
+Recall (see [§ Conditional Expectation](conditional_expectation.md)): $\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s$ for $s \le t$. The martingale property is the formal statement that Brownian motion has no drift: the best prediction of the future is the present.
 
 ---
 
@@ -33,7 +27,7 @@ Powers of $W_t$ are not themselves martingales, but the deterministic growth in 
 
 **Idea**. Write $W_t = W_s + \Delta$ with $\Delta = W_t - W_s \sim N(0, t-s)$ independent of $\mathcal{F}_s$. Expanding the power and taking conditional expectations replaces $\Delta^k$ by its moment — $\mathbb{E}\Delta = 0$, $\mathbb{E}\Delta^2 = t-s$, $\mathbb{E}\Delta^3 = 0$. The expansion of $W_t^2$ gives $\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + (t-s)$, so the compensation by $t$ yields a martingale. Similarly $\mathbb{E}[W_t^3 \mid \mathcal{F}_s] = W_s^3 + 3W_s(t-s)$, matched by the compensator $3tW_t$.
 
-The compensator of $W_t^2$ is $[W]_t = t$ — a foreshadowing of the Doob-Meyer decomposition (see [Doob-Meyer Decomposition](doob_meyer_decomposition.md)).
+The compensator of $W_t^2$ is $[W]_t = t$ (see [§ Quadratic Variation of Brownian Motion](../brownian_motion/quadratic_variation_of_brownian_motion.md)) — a foreshadowing of the Doob-Meyer decomposition (see [Doob-Meyer Decomposition](doob_meyer_decomposition.md)).
 
 ---
 
@@ -98,13 +92,7 @@ So a single exponential object encodes *all* moment-compensation martingales at 
 
 ## The Stochastic Exponential
 
-For any continuous local martingale $M$ with $M_0 = 0$,
-
-$$
-\mathcal{E}(M)_t = \exp\!\left(M_t - \tfrac{1}{2}[M]_t\right)
-$$
-
-is a local martingale (the **Doléans-Dade exponential**), the unique solution to $dZ_t = Z_t\,dM_t$, $Z_0 = 1$. For $M = \theta W$, $[M]_t = \theta^2 t$, recovering $Z_t^\theta$. This is developed fully alongside Itô calculus.
+Recall (see [§ Local martingales and stochastic exponential](../../ch04/martingale/stochastic_exponential.md)): for a continuous local martingale $M$ with $M_0 = 0$, the **Doléans-Dade exponential** $\mathcal{E}(M)_t = \exp(M_t - \tfrac{1}{2}[M]_t)$ is a local martingale solving $dZ_t = Z_t\,dM_t$, $Z_0 = 1$. Taking $M = \theta W$ with $[M]_t = \theta^2 t$ recovers $Z_t^\theta$.
 
 ---
 

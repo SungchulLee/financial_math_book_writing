@@ -1,6 +1,8 @@
 # Joint Calibration Across Strikes and Maturities
 
 
+Recall (see [§ Calibration to Implied Volatility Surface](../../ch17/static_calibration_to_vanilla_options/calibration_to_implied_volatility_surface.md), [§ Choice of Objective Function](../../ch17/static_calibration_to_vanilla_options/choice_of_objective_function.md), [§ Weighting and Market Liquidity](../../ch17/static_calibration_to_vanilla_options/weighting_and_market_liquidity.md)) the general framework for surface-wide objectives and weighting. The implied volatility surface itself is treated in [§ IV Surface](../../ch12/implied_volatility_surface/term_structure.md).
+
 Stochastic volatility parameters influence the **entire implied volatility surface**. Reliable calibration therefore requires fitting **jointly across strikes and maturities**, rather than focusing on individual slices.
 
 ---

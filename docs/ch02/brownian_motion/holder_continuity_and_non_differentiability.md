@@ -1,6 +1,6 @@
 # Hölder Continuity and Non-Differentiability
 
-In **Brownian Motion Foundations** we saw that Brownian increments satisfy
+Recall (see [§ Brownian Motion](brownian_motion.md)): Brownian increments satisfy
 $\mathbb{E}[(W_{t+h}-W_t)^2] = h$, so a typical increment has size $\sqrt{h}$ rather
 than $h$. This $\sqrt{h}$ scaling is the fingerprint of an unusual regularity class:
 the paths are continuous — in fact Hölder continuous of every order $\alpha < \tfrac{1}{2}$
@@ -122,7 +122,7 @@ The first factor is bounded by $(|L|+\varepsilon)\|\Pi_n\| \to 0$. The second fa
 total variation of $W$ over $[t_0, t_0+\eta]$, which is finite (since the increments are
 bounded by $(|L|+\varepsilon)\eta$). Therefore the left side converges to 0.
 
-But by the quadratic variation theorem (Section: Quadratic Variation of Brownian Motion), for any interval $[t_0, t_0+\eta]$:
+But by the quadratic variation theorem (see [§ Quadratic Variation of Brownian Motion](quadratic_variation_of_brownian_motion.md)), for any interval $[t_0, t_0+\eta]$:
 
 $$\sum_i (W_{t_{i+1}}-W_{t_i})^2 \xrightarrow{L^2} \eta > 0$$
 

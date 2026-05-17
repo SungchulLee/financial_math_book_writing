@@ -67,13 +67,7 @@ and returns the adjusted drift $r - \lambda\bar{k}$. This ensures that the disco
 
 ### Mathematical Basis
 
-The `simulate_paths` method implements the log-Euler scheme for the Merton SDE. At each time step $\Delta t = T/N$:
-
-$$
-S_{t+\Delta t} = S_t \exp\!\left[\left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)\Delta t + \sigma\sqrt{\Delta t}\,Z + \sum_{i=1}^{n}\ln Y_i\right]
-$$
-
-where $Z \sim N(0,1)$ and $n \sim \text{Poisson}(\lambda\Delta t)$.
+Recall (see [Monte Carlo Simulation § Path Simulation via Euler-Maruyama](monte_carlo_simulation.md#path-simulation-via-euler-maruyama)): the `simulate_paths` method implements the log-Euler scheme $S_{t+\Delta t} = S_t \exp[(r - \lambda\bar{k} - \tfrac{1}{2}\sigma^2)\Delta t + \sigma\sqrt{\Delta t}\,Z + \sum_{i=1}^{n}\ln Y_i]$ with $Z \sim N(0,1)$ and $n \sim \text{Poisson}(\lambda\Delta t)$.
 
 ### Implementation Details
 
@@ -119,17 +113,7 @@ The method accepts both `"call"` and `"put"` option types.
 
 ### Mathematical Basis
 
-The `option_price_series` method implements the Merton series formula:
-
-$$
-C = \sum_{n=0}^{n_{\max}}\frac{e^{-\lambda'T}(\lambda'T)^n}{n!}\,C_{\text{BS}}(S_0, K, T, r_n, \sigma_n)
-$$
-
-with conditional parameters:
-
-$$
-\sigma_n^2 = \sigma^2 + \frac{n\sigma_J^2}{T}, \qquad r_n = r - \lambda\bar{k} + \frac{n(\mu_J + \sigma_J^2/2)}{T}
-$$
+Recall (see [Merton Series Formula](merton_series_formula.md#step-3-poisson-averaging)): $C = \sum_{n} w_n\,C_{\text{BS}}(S_0, K, T, r_n, \sigma_n)$ with $w_n = e^{-\lambda'T}(\lambda'T)^n/n!$, $\sigma_n^2 = \sigma^2 + n\sigma_J^2/T$, and $r_n = r - \lambda\bar{k} + n\ln(1+\bar{k})/T$.
 
 ### Implementation Details
 

@@ -196,27 +196,9 @@ This is a special case of the convex dual with $\alpha(\mathbb{Q}) = 0$ for $\ma
 
 ## Key Examples
 
-### Value-at-Risk
+### Value-at-Risk and Expected Shortfall
 
-$$
-\text{VaR}_\alpha(X) = \inf\{x : \mathbb{P}(X \le x) \ge \alpha\}
-$$
-
-- Monetary: Yes (monotone and translation invariant)
-- Convex: **No** in general (fails convexity for non-elliptical distributions)
-- Coherent: **No** (fails subadditivity)
-- VaR is subadditive for elliptically distributed losses (e.g., multivariate normal)
-
-### Expected Shortfall
-
-$$
-\text{ES}_\alpha(X) = \frac{1}{1-\alpha} \int_\alpha^1 \text{VaR}_u(X) \, du
-$$
-
-- Monetary: Yes
-- Convex: Yes
-- Coherent: **Yes**
-- Dual set: $\mathcal{Q} = \left\{\mathbb{Q} : \frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha}\right\}$
+Recall (see [VaR](../market_risk_measures/value_at_risk_var.md), [ES](../market_risk_measures/expected_shortfall_es.md), [coherent risk measures](../market_risk_measures/coherent_risk_measures.md)) that VaR is monetary but fails subadditivity (hence not coherent), while ES is coherent with dual set $\mathcal{Q} = \{\mathbb{Q} : d\mathbb{Q}/d\mathbb{P} \le 1/(1-\alpha)\}$.
 
 ### Entropic Risk Measure
 

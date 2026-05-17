@@ -2,29 +2,38 @@
 
 The Black--Scholes equation occupies a central place in mathematical finance as a rare example of a financial pricing problem whose underlying partial differential equation (PDE) is linear and admits a complete analytical solution. While the final pricing formula for a European option is compact, the mathematical structures underlying it are remarkably rich.
 
-This chapter develops multiple analytic approaches to solving the Black--Scholes PDE, each revealing a different facet of the model:
+The central thesis of this section is simple:
 
-* **Diffusion viewpoint (heat equation):** option prices arise from the propagation of uncertainty, analogous to heat flow.
-* **Probabilistic viewpoint (Feynman--Kac):** prices are expectations under a risk-neutral measure.
-* **Spectral viewpoint (Fourier methods):** the PDE can be diagonalized in frequency space, turning differential operators into algebraic ones.
+> **There is one pricing operator. The chapter studies it through different mathematical representations.**
 
-Although all approaches ultimately lead to the same pricing formula, they are not redundant. Each method provides distinct insights:
+Each "method" below is not a separate derivation, but a different lens on the same object. The section is organized into a clear hierarchy:
 
-* The **heat equation transformation** exposes the Gaussian structure and connects option pricing to classical diffusion.
-* The **Feynman--Kac representation** establishes the deep link between PDEs and stochastic processes.
-* The **Fourier transform** reveals the role of characteristic functions and forms the foundation of modern computational methods.
+* **Central spine:** Heat equation, Feynman--Kac, and Fourier methods. These three carry the conceptual weight and yield the pricing formula directly.
+* **Secondary reinterpretations:** Similarity / scaling and change of numéraire, which re-explain the formula rather than re-derive it.
+* **Advanced or alternative representations:** Mellin, Laplace, and separation of variables, which offer complementary viewpoints useful in specialized settings.
+* **Theoretical foundation:** Viscosity solutions, which provide the rigorous framework when classical smoothness fails.
 
-Beyond these core techniques, the chapter also explores several alternative methods:
+The section develops each layer in turn. Across them all, a single identity does most of the unifying work, stated next.
 
-* **Separation of variables**, which highlights spectral decompositions and is particularly useful on bounded domains.
-* **Mellin transforms**, which exploit the multiplicative structure of asset prices.
-* **Laplace transforms in time**, which convert the PDE into an ordinary differential equation in the spatial variable.
+---
 
-Finally, we examine broader structural perspectives:
+!!! note "Core Identity"
+    Throughout this section, the **same object** appears under three different names. After the reduction to the heat equation on $(x,\tau)$,
 
-* **Scaling and similarity**, which explain the emergence of the dimensionless variables $d_1$ and $d_2$.
-* **Change of numeraire**, which interprets pricing formulas through measure changes.
-* **Viscosity solutions**, which provide the rigorous framework required when classical smoothness fails.
+    $$
+    G(x,\tau) \;=\; p(x,\tau) \;=\; \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{i\omega x}\,\varphi(\omega,\tau)\,d\omega
+    $$
+
+    where
+
+    * $G(x,\tau)$ is the **heat kernel** of the transformed PDE,
+    * $p(x,\tau)$ is the **transition density** of the underlying log-price (Feynman--Kac),
+    * $\varphi(\omega,\tau)$ is the **characteristic function**, and the right-hand side is its inverse Fourier transform.
+
+    These three are equivalent representations of the same object, under the standing assumptions of the chapter. Every later subsubsection --- heat kernel, probabilistic, Fourier, Mellin, Laplace --- can be read as a different way of computing or representing it. In more general settings (degenerate diffusions, jumps, boundary data) the distinctions between *distributional kernels*, *semigroup kernels*, *transition densities*, and *fundamental solutions* matter; here they coincide.
+
+!!! note "On rigor"
+    Different subsubsections of this chapter operate at different rigor levels: heuristic at the level of mechanisms and toy examples, analytic when the integrals are evaluated explicitly, probabilistic when the kernel is interpreted as a transition density, and semigroup/distributional when the operator viewpoint is invoked. Unless otherwise stated, formal manipulations can be justified in the standard semigroup/distribution frameworks; growth conditions, integrability, and contour assumptions are made tacitly where the construction is classical. The [§ Viscosity Solutions](viscosity_solutions.md) subsubsection supplies the rigorous foundation that ties the representations together when classical smoothness fails.
 
 ---
 
@@ -53,37 +62,42 @@ Understanding these perspectives is not only intellectually valuable, but also p
 
 ## Roadmap
 
-The chapter is organized into three layers:
+The section is organized into four layers, in descending order of conceptual centrality. The hierarchy matters: the first layer is foundational, while the third is genuinely alternative rather than equally fundamental.
 
-### 1. Core analytic solutions
+### 1. Central spine (the core methods)
 
-These form the backbone of the theory:
+These three subsections do the main work and yield the Black--Scholes formula directly:
 
-* Heat equation transformation
-* Feynman--Kac representation
-* Fourier transform methods
+* [§ Heat Equation](heat_equation.md) --- reduces the PDE to classical diffusion and exposes the Gaussian kernel.
+* [§ Feynman--Kac](feynman_kac.md) --- gives the probabilistic representation as a discounted expectation.
+* [§ Fourier Transform](fourier_transform.md) --- diagonalizes the operator in frequency space and underpins modern numerical schemes.
 
-### 2. Alternative transform and spectral methods
+The Core Identity above ties these three together: they compute the same kernel.
 
-These provide complementary techniques and deeper insight:
+### 2. Secondary reinterpretations
 
-* Separation of variables
-* Mellin transform
-* Laplace transform
+These do not solve the PDE again; they explain *why* the solution looks the way it does:
 
-### 3. Structural and theoretical perspectives
+* [§ Similarity Solutions](similarity_solutions.md) --- explains the emergence of $d_1$ and $d_2$ through dimensional analysis.
+* [§ Change of Numéraire](change_of_numeraire.md) --- reinterprets the two terms $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ as probabilities under different measures.
 
-These do not solve the Black--Scholes PDE directly. Instead, they illuminate the structure of the solution already obtained:
+### 3. Advanced or alternative representations
 
-* **Similarity and scaling** explains *why* the formula depends on $S/K$, $\sigma\sqrt{\tau}$, and $r\tau$ through dimensional analysis.
-* **Change of numeraire** reinterprets the two terms $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ as probabilities under different measures.
-* **Viscosity solutions** provide the rigorous foundation that justifies the PDE methods when classical smoothness fails.
+These offer complementary viewpoints, useful in specialized contexts but not central to the core derivation:
+
+* [§ Mellin Transform](mellin_transform.md) --- exploits the multiplicative structure of asset prices.
+* [§ Laplace Transform](laplace_transform_in_time.md) --- removes time dependence and yields a resolvent representation.
+* [§ Separation of Variables](separation_of_variables.md) --- reveals spectral structure on bounded domains.
+
+### 4. Theoretical foundation
+
+* [§ Viscosity Solutions](viscosity_solutions.md) --- provides the rigorous framework that justifies the PDE methods when classical smoothness fails.
 
 ---
 
 ## A Unifying View: One Operator, Three Representations
 
-Every method in this chapter describes the same phenomenon: the payoff evolves under uncertainty over time, and the option value is the result of that evolution. All methods compute the same mathematical object:
+Every method in this section describes the same phenomenon: the payoff evolves under uncertainty over time, and the option value is the result of that evolution. All methods compute the same mathematical object:
 
 > **the action of a linear pricing operator on the payoff function.**
 
@@ -93,9 +107,13 @@ $$
 V(S,t) = \mathcal{P}_{\tau}[\Phi](S)
 $$
 
-where $\Phi$ is the payoff, $\tau = T - t$, and $\mathcal{P}_{\tau}$ is a linear operator that propagates the payoff backward in time. Formally, $\mathcal{P}_{\tau} = e^{\tau \mathcal{L}}$, where $\mathcal{L}$ is the Black--Scholes differential operator. This **semigroup structure** is what makes the operator representations below consistent: the Fourier exponent $e^{\psi(\omega)\tau}$, the Mellin exponent $e^{-\Lambda(s)\tau}$, and the heat kernel are all manifestations of $e^{\tau \mathcal{L}}$ in different coordinate systems.
+where $\Phi$ is the payoff, $\tau = T - t$, and $\mathcal{P}_{\tau}$ is a linear operator that propagates the payoff backward in time.
 
-The apparent diversity of methods arises from representing this operator in different ways.
+Formally, one can write $\mathcal{P}_{\tau} = e^{\tau \mathcal{L}}$, where $\mathcal{L}$ is the Black--Scholes differential operator. This is the **semigroup structure** of pricing: composing two time intervals corresponds to applying the operator twice, just as $e^{(\tau_1+\tau_2)\mathcal{L}} = e^{\tau_1 \mathcal{L}} e^{\tau_2 \mathcal{L}}$.
+
+The semigroup viewpoint is what makes the central representations consistent. The heat kernel and the inverse Fourier transform of $e^{\psi(\omega)\tau}$ are simply two ways of computing the same $e^{\tau\mathcal{L}}$. The Mellin and Laplace representations encountered later are further alternatives, useful in their own right, but conceptually downstream of this same exponential.
+
+The apparent diversity of methods arises from representing this one operator in different coordinate systems.
 
 ```mermaid
 flowchart TB
@@ -184,31 +202,33 @@ Interpretation:
 
 ### Core Equivalence
 
-These representations are mathematically identical:
+The three representations above are mathematically identical. The **heat kernel**, the **transition density**, and the **inverse Fourier transform of the characteristic function** are all the same object expressed differently. This is precisely the **Core Identity** boxed at the top of this introduction, restated here in operator form. Every subsequent subsubsection refers back to it.
 
-* The **heat kernel**
-* The **transition density**
-* The **inverse Fourier transform of the characteristic function**
-
-are all the same object expressed differently.
-
-> **Heat kernel = transition density = Fourier-inverted characteristic function**
+<figure markdown="span">
+  ![Three representations of Black-Scholes pricing](./img/three_representations_of_bs_pricing.png)
+  <figcaption markdown="span">**Figure 1:** The same pricing operator $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$ acting on the payoff, viewed through three mathematically equivalent representations — convolution with the heat kernel $G$ ([§ Heat Equation](heat_equation.md)), risk-neutral expectation under the transition density $p_\tau$ ([§ Feynman–Kac](feynman_kac.md)), and Fourier diagonalization with eigenvalues $e^{\psi(\omega)\tau}$ ([§ Fourier Transform](fourier_transform.md)). The Core Identity $G = p_\tau = \mathcal{F}^{-1}[\phi_X(\,\cdot\,,\tau)]$ is the single fact that makes all three machineries mutually translatable.</figcaption>
+</figure>
 
 ---
 
 ### Extensions and Structure
 
-The remaining methods extend or interpret this operator:
+The three representations above form the central spine. The remaining subsections extend or reinterpret the same operator rather than add new fundamental pictures.
 
-* **Mellin transform:** diagonalizes multiplicative structure in $S$
-* **Laplace transform:** removes time dependence
-* **Separation of variables:** reveals spectral structure on bounded domains
+Alternative representations (useful in specialized contexts):
 
-Structural perspectives explain *why* the solution takes its form:
+* **Mellin transform:** diagonalizes multiplicative structure in $S$.
+* **Laplace transform:** removes time dependence and yields a resolvent.
+* **Separation of variables:** reveals spectral structure on bounded domains.
 
-* **Scaling:** explains the emergence of $d_1, d_2$
-* **Numeraire change:** explains the decomposition into two probability terms
-* **Viscosity solutions:** ensure the operator is well-defined without smoothness
+Structural reinterpretations (which explain *why* the solution takes its form):
+
+* **Scaling:** explains the emergence of $d_1, d_2$.
+* **Numéraire change:** explains the decomposition into two probability terms.
+
+Theoretical foundation:
+
+* **Viscosity solutions:** ensure the operator is well-defined without smoothness.
 
 ---
 
@@ -227,14 +247,14 @@ The diversity of methods is therefore not a complication, but a reflection of th
 
 ## Exercises
 
-**Exercise 1.** Summarize the main topics covered in this section in three to five sentences. Identify the key mathematical tools introduced.
+**Exercise 1.** Summarize the main topics covered in this subsubsection in three to five sentences. Identify the key mathematical tools introduced.
 
 ??? success "Solution to Exercise 1"
-    Answers will vary based on the specific content of the introductory section. A good summary should identify the central mathematical objects, the main theorems or results, and the connections to the broader theory developed in subsequent sections.
+    Answers will vary based on the specific content of the introductory subsubsection. A good summary should identify the central mathematical objects, the main theorems or results, and the connections to the broader theory developed in subsequent subsubsections.
 
 ---
 
-**Exercise 2.** List two open questions or extensions mentioned in this introduction that are addressed in later sections.
+**Exercise 2.** List two open questions or extensions mentioned in this introduction that are addressed in later subsubsections.
 
 ??? success "Solution to Exercise 2"
     Answers will vary. Students should identify specific claims or concepts that are stated without proof in the introduction and note where the full treatment appears later in the chapter.

@@ -71,23 +71,7 @@ Compare predictions to realized outcomes:
 
 ## Regulatory Guidance
 
-### SR 11-7 (Federal Reserve)
-
-Key principles:
-
-- Sound model development, implementation, use
-- Effective validation
-- Governance and controls
-- **Definition:** "Model risk is the potential for adverse consequences from decisions based on incorrect or misused model outputs."
-
-### Basel Framework
-
-Model approval requirements:
-
-- Internal validation
-- Supervisory approval for internal models
-- Use test (model must inform decisions)
-- Backtesting and documentation
+Recall (see [§ Model Validation Standards (SR 11-7)](regulatory_requirements_basel.md#model-validation-standards-sr-11-7)) the SR 11-7 definition of model risk and the Basel internal-model approval requirements (use test, backtesting, supervisory approval).
 
 ---
 

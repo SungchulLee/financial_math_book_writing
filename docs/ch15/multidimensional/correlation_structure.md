@@ -68,36 +68,7 @@ This is the situation in the Heston model, where the correlation $\rho$ between 
 
 ## The Heston Leverage Effect
 
-### Covariance Structure
-
-In the Heston model with state $X_t = (V_t, \log S_t)^\top$, the covariance matrix is
-
-$$
-a(X_t) = \alpha_1\,V_t = \begin{pmatrix} \xi^2 & \rho\xi \\ \rho\xi & 1 \end{pmatrix}V_t
-$$
-
-The instantaneous covariance between $d\log S_t$ and $dV_t$ is $\rho\xi\,V_t\,dt$, and the correlation is
-
-$$
-\rho_{12} = \frac{\rho\xi\,V_t}{\sqrt{\xi^2 V_t \cdot V_t}} = \frac{\rho\xi}{\xi} = \rho
-$$
-
-The correlation parameter $\rho$ in the Heston model is therefore the **instantaneous correlation** between the return $d\log S_t$ and the variance change $dV_t$.
-
-!!! example "Financial Interpretation of Leverage"
-    Empirically, $\rho < 0$ for equity markets (typically $\rho \in [-0.9, -0.5]$): when stock prices fall, volatility tends to rise. This negative correlation generates the **implied volatility skew** --- out-of-the-money puts are more expensive than out-of-the-money calls.
-
-    Setting $\rho = 0$ recovers a model where returns and volatility are independent, producing a symmetric implied volatility smile rather than a skew.
-
-### Admissibility Constraint on Correlation
-
-The matrix $\alpha_1$ must be positive semi-definite, requiring
-
-$$
-\det(\alpha_1) = \xi^2 \cdot 1 - (\rho\xi)^2 = \xi^2(1 - \rho^2) \geq 0
-$$
-
-This gives $|\rho| \leq 1$, which is the natural constraint on a correlation parameter. The admissibility condition automatically enforces this.
+Recall (see [§ Heston 2D affine](../../ch16/index.md)). Within this section's framework: the correlation $\rho_{12} = \rho$ is state-independent (the $V_t$ factor cancels), and admissibility ($\alpha_1 \succeq 0$) automatically enforces $|\rho| \leq 1$.
 
 ---
 

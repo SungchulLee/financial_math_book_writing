@@ -43,16 +43,10 @@ More generally, a ZCB maturing at $t_K$ ($K < N$) has payoff $1$ at time $t_K$. 
 
 ## Pricing Zero-Coupon Bond Options
 
-A European call option on a ZCB $P(T, S)$ with strike $K$ and expiry $T$ has payoff at time $T$:
+Recall (see [§ HW bond pricing](../bond_pricing/bond_price_formula.md)) the affine formula $P(T, S; r) = \exp(A(T, S) + B(T, S)\,r)$. A European call with strike $K$ and expiry $T$ has terminal payoff at node $(T, j)$:
 
 $$
-V_{T,j} = \max\!\left(P(T, S; r_{T,j}) - K,\; 0\right)
-$$
-
-where $P(T, S; r_{T,j})$ is the bond price at node $(T, j)$ computed from the affine formula:
-
-$$
-P(T, S; r_{T,j}) = \exp\!\bigl(A(T, S) + B(T, S)\,r_{T,j}\bigr)
+V_{T,j} = \max\!\left(P(T, S; r_{T,j}) - K,\; 0\right).
 $$
 
 Alternatively, if $S$ falls on a tree time step $t_M$, the bond price can be computed by a separate backward induction from $t_M$ (with terminal values $1$) back to $t_T$.
@@ -87,15 +81,7 @@ This is the tree analogue of Jamshidian's trick, though the tree approach does n
 
 ## Pricing Caps and Floors
 
-A caplet with reset date $T_{k-1}$ and payment date $T_k$ has payoff at $T_k$:
-
-$$
-\text{Caplet}_{T_k, j} = N\,\delta_k\,\max\!\left(\ell_k(r_{T_{k-1},j}) - K,\; 0\right)
-$$
-
-where $\ell_k(r) = \frac{1}{\delta_k}\left(\frac{1}{P(T_{k-1}, T_k; r)} - 1\right)$ is the forward rate determined at $T_{k-1}$, and $\delta_k = T_k - T_{k-1}$.
-
-On the tree, the caplet payoff is computed at the reset date $T_{k-1}$, discounted by one period:
+Recall (see [§ HW measure change](../measure_change/risk_neutral_measure.md)) the caplet payoff $N\delta_k\max(\ell_k - K, 0)$ at $T_k$, where $\ell_k(r) = \frac{1}{\delta_k}(1/P(T_{k-1}, T_k; r) - 1)$ and $\delta_k = T_k - T_{k-1}$. On the tree, the caplet payoff is computed at the reset date $T_{k-1}$, discounted by one period:
 
 $$
 \text{Caplet}_{T_{k-1}, j} = e^{-r_{T_{k-1},j}\,\delta_k} \cdot N\,\delta_k\,\max\!\left(\ell_k(r_{T_{k-1},j}) - K,\; 0\right)
@@ -107,13 +93,7 @@ A cap is the sum of caplets, and each caplet is priced independently on the tree
 
 ## Pricing Swaps on the Tree
 
-A payer swap with notional $N$, fixed rate $K$, and payment dates $T_1, \ldots, T_n$ has the value at time $t$:
-
-$$
-V_{\text{swap}}(t, r_t) = N\!\left[P(t, T_0) - P(t, T_n) - K \sum_{i=1}^{n} \delta_i\,P(t, T_i)\right]
-$$
-
-On the tree, this can be computed directly at any node using the affine bond price formula, or by backward induction treating each fixed leg payment as a negative coupon and the floating leg as the difference of two ZCBs.
+Recall (see [§ HW bond pricing](../bond_pricing/bond_price_formula.md)) the payer swap value $V_{\text{swap}}(t, r_t) = N[P(t, T_0) - P(t, T_n) - K\sum_i \delta_i P(t, T_i)]$. On the tree, this can be computed directly at any node using the affine bond price formula, or by backward induction treating each fixed leg payment as a negative coupon and the floating leg as the difference of two ZCBs.
 
 ## Pricing European Swaptions
 

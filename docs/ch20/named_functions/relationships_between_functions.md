@@ -22,19 +22,7 @@ The Hull-White model involves a collection of named functions -- $B(\tau)$, $A(t
 
 ## Catalog of Named Functions
 
-For reference, the complete set of named functions with $\tau = T - t$:
-
-| Function | Definition | Role |
-|:---|:---|:---|
-| $B(\tau)$ | $\dfrac{1-e^{-a\tau}}{a}$ | Duration-like function (note: positive convention) |
-| $\theta(t)$ | $f'(0,t) + af(0,t) + \dfrac{\sigma^2}{2a}(1-e^{-2at})$ | Time-dependent drift |
-| $\alpha(t)$ | $f(0,t) + \dfrac{\sigma^2}{2a^2}(1-e^{-at})^2$ | Deterministic mean of $r_t$ |
-| $\psi(t)$ | $r_0 e^{-at} + a\displaystyle\int_0^t \theta(u) e^{-a(t-u)}\, du$ | Expected short rate given $r_0$ |
-| $\sigma_r^2(t)$ | $\dfrac{\sigma^2}{2a}(1-e^{-2at})$ | Variance of $r_t$ given $r_0$ |
-| $V(t,T)$ | $\dfrac{\sigma^2}{a^2}\!\left[\tau - 2B(\tau) + \dfrac{1-e^{-2a\tau}}{2a}\right]$ | Variance of $\int_t^T r_s\, ds$ |
-| $A(t,T)$ | $\ln\dfrac{P(0,T)}{P(0,t)} + B(\tau) f(0,t) + \dfrac{\sigma^2}{4a} B(\tau)^2(1-e^{-2at})$ | Bond price intercept |
-
-Here $B(\tau)$ uses the **positive** convention $B(\tau) = (1-e^{-a\tau})/a > 0$, so the bond price is $P(t,T) = e^{A(t,T) - B(\tau) r_t}$.
+Recall (see [§ named functions definition](named_functions_definition.md)) the catalog of $B(\tau)$, $\theta(t)$, $\alpha(t)$, $\psi(t)$, $\sigma_r^2(t)$, $V(t,T)$, $A(t,T)$ with $\tau = T - t$. This section uses the **positive** convention $B(\tau) = (1-e^{-a\tau})/a > 0$, so the bond price is $P(t,T) = e^{A(t,T) - B(\tau) r_t}$.
 
 ---
 
@@ -147,21 +135,13 @@ The variance of the integrated rate $V(t,T)$ also relates to $B$:
 
 ## Bond Price in Named Function Notation
 
-Using the named functions with the positive-$B$ convention:
+Recall (see [Hull-White bond pricing](../bond_pricing/bond_price_formula.md)) the bond price formula. In the named-function, positive-$B$ form:
 
-!!! note "Theorem: Bond Price Formula"
+$$
+P(t,T) = \frac{P(0,T)}{P(0,t)}\, \exp\!\left(B(\tau)\bigl[\alpha(t) - r_t\bigr] + \frac{1}{2}\bigl[V(0,T) - V(0,t) - V(t,T)\bigr]\right).
+$$
 
-    $$
-    P(t,T) = \frac{P(0,T)}{P(0,t)}\, \exp\!\left(B(\tau)\bigl[f(0,t) - r_t\bigr] + \frac{\sigma^2}{4a}\, B(\tau)^2(1 - e^{-2at})\right)
-    $$
-
-    Equivalently, using $\alpha(t)$:
-
-    $$
-    P(t,T) = \frac{P(0,T)}{P(0,t)}\, \exp\!\left(B(\tau)\bigl[\alpha(t) - r_t\bigr] + \frac{1}{2}\bigl[V(0,T) - V(0,t) - V(t,T)\bigr]\right)
-    $$
-
-The second form is useful because $\alpha(t) - r_t = -\tilde{r}_t$ is the zero-mean stochastic part of the short rate from the decomposition $r_t = \alpha(t) + \tilde{r}_t$.
+This form is useful because $\alpha(t) - r_t = -\tilde{r}_t$ is the zero-mean stochastic part of the short rate (see [HW short rate](../short_rate/short_rate_solution.md)).
 
 ---
 

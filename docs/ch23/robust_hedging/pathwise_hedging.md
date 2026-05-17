@@ -120,46 +120,15 @@ where $A \subseteq \mathcal{C}([0,T], \mathbb{R}_+)$ is an event.
 ## Dupire-Type Formulas
 
 
-### 1. Dupire's Local Volatility (Probabilistic View)
+Recall (see [§ Local Volatility](../../ch13/index.md)) for the classical Dupire equation.
 
-
-**Classical Dupire Equation**: Under a diffusion model:
-
+**Pathwise interpretation**: Define realized local variance $\sigma^2_{\text{realized}}(S_t,t) = \lim_{\Delta t \to 0} (S_{t+\Delta t}-S_t)^2/\Delta t$. Then the pathwise Dupire identity
 
 $$
-\frac{\partial C}{\partial T} = \frac{1}{2} \sigma^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2} - r K \frac{\partial C}{\partial K} + rC
+\frac{\partial C}{\partial T}(K,T) = \tfrac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}(K,T) \cdot \mathbb{E}[\sigma^2_{\text{realized}}(K,T)]
 $$
 
-
-
-where $C(K, T)$ is the call price as a function of strike and maturity.
-
-### 2. Pathwise Interpretation
-
-
-**Realized Variance**: For a given path $S$, define the **realized local variance** at time $t$:
-
-
-$$
-\sigma^2_{\text{realized}}(S_t, t) = \lim_{\Delta t \to 0} \frac{(S_{t+\Delta t} - S_t)^2}{\Delta t}
-$$
-
-
-
-assuming the limit exists.
-
-**Pathwise Dupire Formula**: The function $C(K, T)$ satisfies:
-
-
-$$
-\frac{\partial C}{\partial T}(K, T) = \frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}(K, T) \cdot \mathbb{E}[\sigma^2_{\text{realized}}(K, T)]
-$$
-
-
-
-where the expectation is with respect to paths conditional on $S_T = K$.
-
-**Robustness**: This relationship holds regardless of the specific model, connecting market-observed option prices to realized path properties.
+holds model-free, linking market option prices to realized path properties.
 
 ## Robust Pathwise Hedging Strategies
 
@@ -235,39 +204,9 @@ reflects the inherent ambiguity in pathwise hedging.
 ### 3. Volatility-Robust Hedging
 
 
-**Volatility Uncertainty**: Assume only that:
+Recall (see [§ Robust Delta–Gamma Hedging](robust_delta_gamma_hedging.md)) for the Black-Scholes-Barenblatt HJB equation under volatility uncertainty $\underline{\sigma}^2 \leq \sigma^2_{\text{realized}}(S_t,t) \leq \overline{\sigma}^2$.
 
-
-$$
-\underline{\sigma}^2 \leq \sigma^2_{\text{realized}}(S_t, t) \leq \overline{\sigma}^2
-$$
-
-
-
-**Robust Hedging Problem**: Find minimal initial capital $V_0$ such that:
-
-
-$$
-V_0 + \int_0^T \theta_t \, dS_t \geq \Phi(S_T)
-$$
-
-
-
-for all paths with quadratic variation satisfying the bound.
-
-**Solution**: Use HJB equation with volatility uncertainty:
-
-
-$$
-V_t + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 V_{SS} \right\} + rSV_S - rV = 0
-$$
-
-
-
-**Pathwise Implementation**:
-
-- Monitor realized quadratic variation
-- Adjust hedge dynamically based on observed path regularity
+**Pathwise implementation**: monitor realized quadratic variation and adjust the hedge based on observed path regularity, rather than postulating a measure.
 
 ## Rough Path Theory
 
@@ -338,85 +277,14 @@ where $\theta_s$ is the delta position.
 ### 3. Pathwise Hedging with Rough Volatility
 
 
-**Rough Volatility Models**: Volatility exhibits Hölder regularity $H < 1/2$:
+Recall (see [§ Stochastic Volatility](../../ch14/index.md)) for rough volatility models with Hölder regularity $H<1/2$.
 
-
-$$
-\sigma_t = \sigma_0 + \int_0^t K(t-s) \, dW_s^H
-$$
-
-
-
-where $W^H$ is fractional Brownian motion with $H < 1/2$.
-
-**Challenge**: Classical Itô calculus does not apply directly.
-
-**Rough Path Solution**:
-
-1. Lift $(S, V)$ to rough path $(S, \mathbb{S})$ including second-order terms
-2. Define hedging strategy in controlled rough path sense
-3. Prove convergence of discrete hedging to continuous limit
-
-**Theorem** (Bayer-Friz-Gatheral): Under rough volatility, pathwise delta-hedging converges to the correct limit using rough path integration, without assuming specific stochastic model.
+**Rough path solution**: lift $(S,V)$ to a rough path including second-order terms, define the hedging strategy in the controlled rough path sense, and prove convergence of discrete hedging to the continuous limit (Bayer-Friz-Gatheral) without postulating a specific stochastic model.
 
 ## Robust Local Volatility
 
 
-### 1. Setup
-
-
-**Observed Data**: Market prices of European calls $C(K, T)$ for various strikes $K$ and maturities $T$.
-
-**Goal**: Construct local volatility function $\sigma(S, t)$ that is consistent with market prices and provides pathwise hedging.
-
-### 2. Dupire's Formula (Pathwise)
-
-
-**Forward Equation**: The local volatility surface satisfies:
-
-
-$$
-\sigma^2(K, T) = \frac{\frac{\partial C}{\partial T}(K, T) + rK \frac{\partial C}{\partial K}(K, T)}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}(K, T)}
-$$
-
-
-
-**Pathwise Interpretation**: 
-
-- This formula is **model-free** in the sense that it directly relates market observables
-- The resulting $\sigma(K, T)$ can be used to hedge pathwise, without assuming a specific SDE
-
-### 3. Robust Calibration
-
-
-**Optimization Problem**: Find $\sigma(S, t)$ that minimizes:
-
-
-$$
-\sum_{i,j} \left( C^{\text{model}}(K_i, T_j; \sigma) - C^{\text{market}}(K_i, T_j) \right)^2
-$$
-
-
-
-subject to:
-
-1. $\sigma(S, t) > 0$ (positivity)
-2. No calendar arbitrage
-3. No butterfly arbitrage
-
-**Pathwise Consistency**: The calibrated $\sigma$ must allow for pathwise hedging that replicates the option prices.
-
-**Regularization**: Add penalty for roughness:
-
-
-$$
-
-+ \lambda \int_0^T \int_0^{\infty} \left( \frac{\partial \sigma}{\partial S} \right)^2 dS \, dt
-$$
-
-
-
-to ensure smooth volatility surface amenable to pathwise analysis.
+Recall (see [§ Local Volatility](../../ch13/index.md)) for Dupire's formula $\sigma^2(K,T)$ from market call prices, and (see [§ Robust Calibration](../robust_calibration/confidence_sets_for_models.md)) for the calibration problem with positivity, no calendar/butterfly arbitrage, and roughness penalty. The model-free reading: the calibrated $\sigma$ enables pathwise hedging consistent with observed prices.
 
 ## Functional Itô Calculus
 
@@ -889,47 +757,12 @@ adjusting for realized variance.
 ### 2. Transaction Costs
 
 
-**Friction**: Each trade incurs cost proportional to transaction size:
-
-
-$$
-\text{Cost} = \lambda |\theta_{t_{i+1}} - \theta_{t_i}| S_{t_i}
-$$
-
-
-
-**Pathwise Problem**: Minimize hedging error subject to transaction cost penalty:
-
-
-$$
-\min_{\theta} \left\{ |V_T - F(S)| + \lambda \sum_{i=0}^{N-1} |\theta_{t_{i+1}} - \theta_{t_i}| S_{t_i} \right\}
-$$
-
-
-
-**Solution**: Leads to discrete adjustments (only rehedge when drift exceeds threshold).
-
-**Pathwise Optimality**: Find strategy that minimizes worst-case error over all paths, subject to cost constraints.
+Recall (see [§ Hedging Under Transaction Costs](hedging_under_transaction_costs.md)) and (see [§ Hedging](../../ch11/index.md)) for the trade-off between hedging error and proportional cost $\lambda \sum_i |\theta_{t_{i+1}}-\theta_{t_i}| S_{t_i}$. Pathwise specialization: minimize worst-case error over all paths subject to the cost penalty, yielding threshold-band rehedging.
 
 ### 3. Rough Bergomi Model
 
 
-**Model**: Fractional volatility with $H < 1/2$:
-
-
-$$
-dS_t = S_t \sqrt{V_t} \, dW_t, \quad V_t = \xi_t \mathcal{E}\left(\eta \int_0^t (t-s)^{H-1/2} dW_s^{\perp}\right)
-$$
-
-
-
-**Pathwise Interpretation**: 
-
-- Volatility path has roughness $H$
-- Delta-hedging requires rough path integration techniques
-- Convergence of discrete hedging strategies depends on regularity
-
-**Practical Implication**: Need finer time grid for rough volatility than for smooth Brownian models.
+Recall (see [§ Stochastic Volatility](../../ch14/index.md)) for the rough Bergomi model with fractional volatility $H<1/2$. Pathwise specialization: delta-hedging requires rough path integration, convergence of discrete schemes depends on regularity, and a finer time grid is needed than for smooth Brownian models.
 
 ## Case Studies
 

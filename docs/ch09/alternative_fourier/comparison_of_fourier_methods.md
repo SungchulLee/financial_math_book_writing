@@ -21,13 +21,11 @@ The three Fourier pricing methods developed in this chapter---COS, Carr--Madan F
 
 ## Mathematical Structure Comparison
 
-The three methods represent different decompositions of the same pricing integral $V = e^{-rT}\int \Phi(x)f(x)\,dx$:
+The three methods represent different decompositions of the same pricing integral $V = e^{-rT}\int \Phi(x)f(x)\,dx$. The canonical derivations live in the three method-specific sections:
 
-| Method | Representation | Key idea |
-|---|---|---|
-| COS | $V = e^{-rT}\sum_{k=0}^{N-1}{}' F_k V_k$ | Expand density in cosine series, integrate against payoff analytically |
-| Carr--Madan | $C(k) = \frac{e^{-\alpha k}}{\pi}\int_0^\infty e^{-iuk}\psi_T(u)\,du$ via FFT | Fourier transform of damped call, evaluated via FFT |
-| Lewis | $C = S_0 - \frac{\sqrt{S_0K}e^{-rT/2}}{\pi}\int_0^\infty \frac{\text{Re}[\cdots]}{u^2+1/4}\,du$ | Contour integral along critical line |
+- **COS** (see [§ COS Pricing Formula](../cos_method/cos_pricing_formula.md)): expand density in cosine series, integrate against payoff analytically.
+- **Carr--Madan** (see [§ Carr--Madan FFT Method](carr_madan_fft.md)): Fourier transform of damped call, evaluated via FFT.
+- **Lewis** (see [§ Lewis Integration Formula](lewis_integration_formula.md)): contour integral along the critical line $\text{Im}(z) = 1/2$.
 
 All three require the characteristic function as input. They differ in how many times $\phi$ is evaluated, at what arguments (real vs complex), and how the results are assembled into prices.
 

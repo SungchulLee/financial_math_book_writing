@@ -123,7 +123,7 @@ A barrier option priced on day $t$ with $\hat{\theta}_t$ may have a materially d
 
 ### Example: Heston model instability
 
-Suppose day 1 calibration yields $v_0 = 0.04$, $\kappa = 2$, $\bar{v} = 0.04$. Day 2 calibration yields $v_0 = 0.05$, $\kappa = 1.5$, $\bar{v} = 0.05$.
+Recall (see [§ Heston model](../../ch16/index.md)) the parameter set $(v_0, \kappa, \bar{v}, \sigma_v, \rho)$. Suppose day 1 calibration yields $v_0 = 0.04$, $\kappa = 2$, $\bar{v} = 0.04$; day 2 yields $v_0 = 0.05$, $\kappa = 1.5$, $\bar{v} = 0.05$.
 
 - The $25\%$ jump in $v_0$ implies a volatility spike not reflected in realized vol.
 - The $\kappa$ change affects term structure and exotic pricing.
@@ -163,7 +163,7 @@ Calibrate slowly-moving parameters (mean reversion, long-run levels) to historic
 
 ### 4. Regularization toward prior
 
-Use Tikhonov regularization pulling toward yesterday's parameters:
+Recall (see [§ Regularization](../regularization_and_stability/penalization_and_smoothness_constraints.md)) the Tikhonov penalty, here applied with yesterday's parameters as the prior:
 
 $$
 \min_\theta \; \mathcal{L}(\theta) + \lambda \|\theta - \hat{\theta}_{t-1}\|^2

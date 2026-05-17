@@ -16,24 +16,13 @@ this distinction precise.
 
 ## Pricing Is a Valuation Problem
 
-Pricing begins from a simple question: what is the fair value of a future payoff
-$X_T$ observed today? Under no-arbitrage, the answer is the discounted expectation
-under a risk-neutral measure.
+Pricing asks: what is the fair value of a future payoff $X_T$ observed today?
+Recall (see [§ Risk-Neutral Valuation Principle](../risk_neutral/risk_neutral_valuation_principle.md)):
+under no-arbitrage the answer is $V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-\int_0^T r_s\,ds}X_T]$,
+depending on the payoff $X_T$, the discount factor, and the $\mathbb{Q}$-dynamics
+of the underlying.
 
-$$
-V_0 = \mathbb{E}^{\mathbb{Q}}\!\left[ e^{-\int_0^T r_s\,ds}\, X_T \right]
-$$
-
-The formula depends on three ingredients:
-
-- the payoff structure $X_T$,
-- the risk-free rate $r$,
-- the risk-neutral dynamics of the underlying.
-
-Crucially, the physical drift $\mu$ does not appear. Girsanov's theorem absorbs the
-drift into the change of measure, so the pricing formula sees only $r$ and the
-volatility $\sigma$. This is why two traders who disagree about the stock's expected
-return nevertheless agree on the Black-Scholes price.
+The disappearance of the physical drift $\mu$ from the pricing formula follows from the [§ Risk Premium Decomposition](risk_premium_decomposition.md). Two traders who disagree about expected return still agree on the Black--Scholes price.
 
 ---
 

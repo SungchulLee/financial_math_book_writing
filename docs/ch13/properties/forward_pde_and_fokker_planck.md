@@ -55,13 +55,7 @@ with initial condition $p(S, 0) = \delta(S - S_0)$. $\square$
 
 ### General Form
 
-For a general Ito diffusion $dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t$, the Fokker-Planck equation takes the form:
-
-$$
-\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}\bigl[\mu(x, t) p(x, t)\bigr] + \frac{1}{2}\frac{\partial^2}{\partial x^2}\bigl[\sigma^2(x, t) p(x, t)\bigr]
-$$
-
-For the local volatility model with $\mu(S, t) = (r-q)S$ and $\sigma(S, t) = \sigma_{\text{loc}}(S, t) S$, the diffusion coefficient in the Fokker-Planck equation is $a(S, t) = \sigma_{\text{loc}}^2(S, t) S^2$.
+Recall (see [§ Forward Kolmogorov](../../ch05/kolmogorov_equations/kolmogorov_forward.md)) the general Fokker-Planck PDE for $dX_t = \mu\,dt + \sigma\,dW_t$. For the local volatility specialization with $\mu(S, t) = (r-q)S$ and $\sigma(S, t) = \sigma_{\text{loc}}(S, t) S$, the diffusion coefficient is $a(S, t) = \sigma_{\text{loc}}^2(S, t) S^2$.
 
 ## Duality: Forward vs Backward
 
@@ -111,45 +105,19 @@ This identity confirms that both equations encode the same information: one in t
 
 ## From Fokker-Planck to Dupire's Formula
 
-### Derivation via Density Integration
-
-The European call price is:
+Recall (see [§ Dupire Formula Derivation](../local_volatility_framework/dupire_formula_derivation.md)): integrating the call payoff $(S-K)^+$ against the Fokker-Planck equation, applying integration by parts, and using the Breeden-Litzenberger identities $e^{-rT}\int_K^{\infty} S p\,dS = C - KC_K$ and $e^{-rT} p(K, T) = C_{KK}$ yields
 
 $$
-C(K, T) = e^{-rT} \int_K^{\infty} (S - K) p(S, T) \, dS
+\frac{\partial C}{\partial T} = -qC - (r - q)KC_K + \frac{1}{2}\sigma_{\text{loc}}^2(K, T) K^2 C_{KK},
 $$
 
-Differentiating with respect to maturity $T$:
+which inverts to Dupire's formula
 
 $$
-\frac{\partial C}{\partial T} = -rC + e^{-rT} \int_K^{\infty} (S - K) \frac{\partial p}{\partial T}(S, T) \, dS
+\sigma_{\text{loc}}^2(K, T) = \frac{\partial_T C + (r - q)K \partial_K C + qC}{\frac{1}{2}K^2 \partial_{KK} C}.
 $$
 
-Substituting the Fokker-Planck equation and integrating by parts (as detailed in the Dupire Formula Derivation section):
-
-$$
-\frac{\partial C}{\partial T} = -rC + (r - q)e^{-rT}\int_K^{\infty} S \, p(S, T) \, dS + \frac{1}{2}\sigma_{\text{loc}}^2(K, T) K^2 e^{-rT} p(K, T)
-$$
-
-Using the identities:
-
-$$
-e^{-rT}\int_K^{\infty} S \, p \, dS = C - KC_K, \quad e^{-rT} p(K, T) = C_{KK}
-$$
-
-we obtain:
-
-$$
-\frac{\partial C}{\partial T} = -qC - (r - q)KC_K + \frac{1}{2}\sigma_{\text{loc}}^2(K, T) K^2 C_{KK}
-$$
-
-Solving for $\sigma_{\text{loc}}^2$:
-
-$$
-\sigma_{\text{loc}}^2(K, T) = \frac{\partial_T C + (r - q)K \partial_K C + qC}{\frac{1}{2}K^2 \partial_{KK} C}
-$$
-
-This is Dupire's formula. The Fokker-Planck equation is the theoretical engine behind it: the forward evolution of the density determines how call prices change with maturity, and inverting this relationship yields the local volatility.
+The Fokker-Planck equation is the theoretical engine behind Dupire: the forward evolution of the density determines how call prices change with maturity, and inverting this relationship yields the local volatility.
 
 ### Forward Equation in Call Price Space
 
@@ -303,7 +271,7 @@ The Dupire formula is the **algebraic inversion** of the Fokker-Planck equation:
 
 ### Transition to Numerical Methods
 
-In practice, the forward PDE is solved numerically using finite difference methods. The PDE is discretized on a $(S, T)$ grid, and the density (or equivalently, call prices) is propagated forward in time using Crank-Nicolson or implicit Euler schemes. The forward formulation is especially efficient for calibration, since a single forward sweep produces call prices at all strikes simultaneously.
+Recall (see [§ Numerical Methods](../numerical_methods/local_volatility_surface_construction.md)) for finite-difference discretization of the forward PDE. The forward formulation is especially efficient for calibration, since a single forward sweep produces call prices at all strikes simultaneously.
 
 ## Summary
 

@@ -8,9 +8,8 @@ section answers the next natural question:
 
 The answer is pricing. Under $\mathbb{Q}$, the value of any contingent claim
 is a discounted expectation, and the complex problem of derivative valuation
-reduces to computing an integral. Everything else in this section is
-commentary on that fact: what the formula means, why it works, and where
-it breaks down.
+reduces to computing an integral. The remaining pages of this section organize
+the conceptual, mechanical, practical, and theoretical implications.
 
 ---
 
@@ -79,13 +78,12 @@ The remaining topics extend the pricing framework in different directions:
 
 ## Guiding Principle
 
-> The physical measure describes reality.
-> The risk-neutral measure prices claims in it.
-
-The risk premium decomposition explains what the measure change removes;
-pricing vs hedging explains what it does and does not affect; the SDF
-explains why it works economically; and the failure modes show where
-it breaks down.
+The distinction between physical and risk-neutral measures is developed in
+[§ Physical vs Risk-Neutral World](physical_vs_risk_neutral.md); the mechanism
+by which $\mu$ is replaced by $r$ is established in
+[§ Risk Premium Decomposition](risk_premium_decomposition.md). All other pages
+in this section reference these canonical treatments rather than re-deriving
+them.
 
 ---
 
@@ -253,4 +251,32 @@ pricing model.
     $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] < S_0$ --- the discounted price is
     a strict local martingale rather than a true martingale, which is
     interpreted as an asset price bubble.
+
+---
+
+**Exercise 6.**
+List which subsection of this chapter is the canonical home for each of the
+following ideas, and explain why the assignment removes redundancy:
+(a) the meaning of $\mathbb{P}$ vs $\mathbb{Q}$;
+(b) the algebraic mechanism by which $\mu$ becomes $r$;
+(c) the contrast between expectation-based pricing and pathwise hedging;
+(d) the economic origin of risk-neutral reweighting.
+
+??? success "Solution to Exercise 6"
+    (a) [§ Physical vs Risk-Neutral World](physical_vs_risk_neutral.md) owns
+    the conceptual boundary between $\mathbb{P}$ (real-world dynamics) and
+    $\mathbb{Q}$ (pricing weights).
+
+    (b) [§ Risk Premium Decomposition](risk_premium_decomposition.md) owns
+    the identity $\mu = r + \sigma\theta$ and the Girsanov substitution that
+    replaces $\mu$ with $r$.
+
+    (c) [§ Pricing vs Hedging](pricing_vs_hedging.md) owns the contrast
+    between measure-dependent expectation and measure-invariant replication.
+
+    (d) [§ The Stochastic Discount Factor](sdf.md) owns the marginal-utility
+    explanation of why $\mathbb{Q}$ differs from $\mathbb{P}$.
+
+    Assigning each idea a single home eliminates redundancy: every other page
+    references the canonical treatment instead of re-deriving it.
 

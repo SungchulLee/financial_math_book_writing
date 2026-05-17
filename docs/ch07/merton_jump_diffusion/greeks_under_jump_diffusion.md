@@ -16,7 +16,7 @@ Risk management of option positions requires computing sensitivities (Greeks) wi
 
 ### Greeks in Incomplete Markets
 
-In the complete Black-Scholes market, delta hedging perfectly replicates the option payoff. The Greeks are deterministic functions of $(S, t, \sigma, r)$ and have clear hedging interpretations. Under jump-diffusion, the market is incomplete, and delta hedging leaves residual jump risk. Nevertheless, the Greeks remain essential for:
+Recall (see [Incomplete Market and Measure Choice](incomplete_market_and_measure_choice.md)): under jump-diffusion the market is incomplete and delta hedging leaves residual jump risk. Nevertheless, the Greeks remain essential for:
 
 - **Local risk management**: Delta and gamma control the P&L from small and moderate continuous moves
 - **Parameter sensitivity**: Vega measures exposure to changes in implied volatility levels
@@ -141,13 +141,7 @@ $$
 
 This controls the **smile convexity**: increasing $\sigma_J$ raises both OTM put and OTM call prices, making the implied volatility smile more curved.
 
-!!! tip "Parameter Impact on Implied Volatility"
-    | Parameter | Effect on IV smile |
-    |-----------|-------------------|
-    | $\sigma$ | Parallel shift up |
-    | $\lambda$ | Parallel shift up (more for short maturities) |
-    | $\mu_J$ | Controls skew (tilt) |
-    | $\sigma_J$ | Controls convexity (curvature) |
+Recall (see [Calibration to Smile § Parameter-to-Smile Mapping](calibration_to_smile.md#parameter-to-smile-mapping)): $\sigma$ shifts the level, $\lambda$ scales the amplitude, $\mu_J$ controls the skew, and $\sigma_J$ controls the convexity.
 
 ---
 

@@ -146,32 +146,7 @@ This expression shows that:
 
 ## Explicit Yield Curves
 
-### Vasicek Yield Curve
-
-Using $B(\tau) = -(1 - e^{-\kappa\tau})/\kappa$ from the [bond price formula](exponential_affine_bond_price.md), the Vasicek yield is
-
-$$
-y(t, T) = \frac{1 - e^{-\kappa\tau}}{\kappa\tau}\,r_t + \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)\!\left(1 - \frac{1 - e^{-\kappa\tau}}{\kappa\tau}\right) + \frac{\sigma^2}{4\kappa^3\tau}(1 - e^{-\kappa\tau})^2
-$$
-
-!!! example "Vasicek Yield Curve Properties"
-    The factor loading $b(\tau) = (1 - e^{-\kappa\tau})/(\kappa\tau)$ satisfies:
-
-    - $b(0^+) = 1$: the shortest yields have unit sensitivity to the short rate
-    - $b(\tau) \to 0$ as $\tau \to \infty$: very long yields are insensitive to the current short rate
-    - $b(\tau)$ is monotonically decreasing and convex
-
-    The **long rate** $y_\infty = \lim_{\tau \to \infty} y(t, T) = \theta - \sigma^2/(2\kappa^2)$ is deterministic and depends only on the long-run mean $\theta$ and the volatility-mean-reversion ratio $\sigma^2/\kappa^2$. This is a well-known limitation of the Vasicek model: the long end of the yield curve does not fluctuate.
-
-### CIR Yield Curve
-
-With $\gamma = \sqrt{\kappa^2 + 2\xi^2}$ and the CIR bond coefficients, the yield is
-
-$$
-y(t, T) = \frac{2(e^{\gamma\tau} - 1)}{[(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma]\,\tau}\,r_t - \frac{2\kappa\theta}{\xi^2\tau}\ln\!\left(\frac{2\gamma\,e^{(\gamma+\kappa)\tau/2}}{(\gamma+\kappa)(e^{\gamma\tau}-1)+2\gamma}\right)
-$$
-
-The CIR yield curve guarantees $y(t, T) \geq 0$ whenever $r_t \geq 0$, reflecting the non-negativity of CIR rates. The long rate is $y_\infty = 2\kappa\theta/(\gamma + \kappa)$, which is also deterministic but always positive.
+Recall (see [§ Vasicek Model](../../ch18/vasicek_model/vasicek_sde_and_ou_process.md), [§ CIR Model](../../ch18/cir_model/cir_sde_and_square_root_process.md), [§ Vasicek and CIR as Affine](../examples/gbm_as_affine.md)): explicit yield-curve closed forms follow from the $A(\tau), B(\tau)$ formulas in those sections. The Vasicek loading $b(\tau) = (1 - e^{-\kappa\tau})/(\kappa\tau)$ decreases monotonically from $1$ at $\tau = 0^+$ to $0$ as $\tau \to \infty$, and the long rate $y_\infty = \theta - \sigma^2/(2\kappa^2)$ is deterministic --- a structural limitation. The CIR yield curve guarantees $y(t,T) \geq 0$ whenever $r_t \geq 0$, with long rate $y_\infty = 2\kappa\theta/(\gamma+\kappa) > 0$.
 
 ---
 

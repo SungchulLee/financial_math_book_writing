@@ -38,7 +38,7 @@ The Hull-White model is the standard production model for vanilla rate derivativ
 2. **Closed-form pricing** for caps, floors, and European swaptions via Black-type formulas
 3. **Fast calibration** to at-the-money cap or swaption volatilities with only two parameters ($a$, $\sigma$)
 
-The cap price in the Hull-White model decomposes into a sum of caplets, each priced analytically:
+Recall the cap/caplet decomposition (see [§ Interest rate products](../interest_rate_products/coupon_bond_and_frn.md)). The cap price in the Hull-White model decomposes into a sum of caplets, each priced analytically:
 
 $$
 \text{Caplet}(T_{i-1}, T_i, K) = (1 + \delta K)\,\text{Put}\!\left(\frac{1}{1 + \delta K},\, T_{i-1},\, T_i\right)
@@ -133,7 +133,7 @@ When negative rates are economically meaningless (e.g., modeling real interest r
 2. **Level-dependent volatility** $\sigma\sqrt{r}$ ensures that volatility vanishes as rates approach zero, preventing the model from pushing rates negative
 3. The **non-central chi-squared** transition density provides exact simulation
 
-The variance of $r(t)$ in CIR is
+Recall the CIR variance formula (see [§ CIR, Feller, and non-central chi-squared](../cir_model/cir_sde_and_square_root_process.md)). The variance of $r(t)$ in CIR is
 
 $$
 \text{Var}^{\mathbb{Q}}[r(t)] = r(0)\,\frac{\sigma^2}{\kappa}(e^{-\kappa t} - e^{-2\kappa t}) + \theta\,\frac{\sigma^2}{2\kappa}(1 - e^{-\kappa t})^2

@@ -36,48 +36,17 @@ $$
 
 ### Deriving the Black-Scholes Formula
 
-For a European call with payoff $g(S) = (S - K)^+$, we compute the expectation directly.
-
-**Step 1**: Under $\mathbb{Q}$, $S_T = S\exp\!\left((r - \sigma^2/2)(T-t) + \sigma\sqrt{T-t}\,Z\right)$ where $Z \sim N(0,1)$.
-
-**Step 2**: The discounted expectation is:
+Recall (see [§ Geometric Brownian Motion](../kolmogorov_equations/transition_densities_standard_sdes.md#geometric-brownian-motion)): under $\mathbb{Q}$, $S_T \mid S_t = S$ is lognormal with $\log(S_T/S) \sim N((r-\sigma^2/2)(T-t),\,\sigma^2(T-t))$. Integrating the call payoff against this density (Exercise 6 of that page carries out the calculation) yields
 
 $$
-V(t, S) = e^{-r(T-t)}\,\mathbb{E}[(S_T - K)^+]
+V(t, S) = S\,\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2),
 $$
 
 $$
-= e^{-r(T-t)}\int_{-\infty}^{\infty}\left(Se^{(r-\sigma^2/2)(T-t)+\sigma\sqrt{T-t}\,z} - K\right)^+\frac{e^{-z^2/2}}{\sqrt{2\pi}}\,dz
+d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \qquad d_2 = d_1 - \sigma\sqrt{T-t}.
 $$
 
-**Step 3**: The integrand is positive when $z > z^*$, where:
-
-$$
-z^* = -\frac{\log(S/K) + (r - \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}} = -d_2
-$$
-
-**Step 4**: Split and evaluate:
-
-$$
-V(t, S) = S\,\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)
-$$
-
-where:
-
-$$
-d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
-$$
-
-!!! note "Verification"
-    One can verify that $V = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$ satisfies the Black-Scholes PDE by direct differentiation. The computation is involved but straightforward. The key identities are:
-
-    $$
-    S\phi(d_1) = Ke^{-r(T-t)}\phi(d_2)
-    $$
-
-    $$
-    \frac{\partial d_1}{\partial S} = \frac{\partial d_2}{\partial S} = \frac{1}{S\sigma\sqrt{T-t}}
-    $$
+The PDE and hedging derivations of the same formula live in [§ Why PDEs in Finance](../overview/why_pdes_in_finance.md); this page treats only the **option-pricing perspective** — payoff structure, boundary conditions, and extensions to barriers and American options.
 
 ### European Put
 
@@ -283,42 +252,6 @@ The Feynman-Kac formula establishes a **computational duality**: every option pr
     1. Write the PDE (identify the generator, discounting, boundary conditions)
     2. Write the expectation (identify the SDE, discount factor, payoff)
     3. Choose the more efficient approach based on dimensionality and complexity
-
----
-
-## Example: Complete Pricing Workflow
-
-### Problem
-
-Price a European put with $S_0 = \$100$, $K = \$100$, $r = 5\%$, $\sigma = 20\%$, $T = 1$ year.
-
-### Feynman-Kac PDE
-
-$$
-\partial_t V + 0.05\,S\,\partial_S V + \frac{1}{2}(0.04)\,S^2\,\partial_{SS}V - 0.05\,V = 0
-$$
-
-Terminal: $V(1, S) = (100 - S)^+$. Boundary: $V(t, 0) = 100\,e^{-0.05(1-t)}$, $V(t, \infty) = 0$.
-
-### Feynman-Kac Expectation
-
-$$
-V(0, 100) = e^{-0.05}\,\mathbb{E}^{\mathbb{Q}}[(100 - S_1)^+ \mid S_0 = 100]
-$$
-
-### Analytical Solution (Black-Scholes)
-
-$$
-d_1 = \frac{\log(1) + (0.05 + 0.02) \cdot 1}{0.2} = 0.35, \quad d_2 = 0.35 - 0.2 = 0.15
-$$
-
-$$
-P = 100\,e^{-0.05}\,\Phi(-0.15) - 100\,\Phi(-0.35)
-$$
-
-$$
-= 95.12 \times 0.4404 - 100 \times 0.3632 = 41.88 - 36.32 = \$5.57
-$$
 
 ---
 

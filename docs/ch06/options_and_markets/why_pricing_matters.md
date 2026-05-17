@@ -46,29 +46,7 @@ In both cases the profit is locked in at time zero with no risk. This is the hal
 
 The example above illustrates a profound idea: the option price is determined not by investors' views on whether the stock will go up or down, but by the cost of replicating the option's payoff using traded instruments. This replication perspective and the risk-neutral expectation $V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]$ introduced in the premium section are **mathematically equivalent** — two representations of the same no-arbitrage principle. The drift $\mu$ of the stock is irrelevant — only the volatility (which determines the range of possible outcomes) and the risk-free rate (which determines the cost of financing) matter.
 
-In continuous time, the stock price is modeled by geometric Brownian motion, and the replicating portfolio must be adjusted continuously. At each instant $t$, the portfolio holds $\Delta_t$ shares of stock and invests the remainder in the risk-free bond. The quantity
-
-$$
-\Delta_t = \frac{\partial V}{\partial S}(t, S_t)
-$$
-
-is called the **delta** of the option, where $V(t, S)$ denotes the option price as a function of time and stock price. This is the continuous-time analogue of the ratio $\Delta = 2/3$ computed above: it measures the sensitivity of the option price to movements in the underlying, and it tells the hedger exactly how many shares to hold.
-
-The strategy of continuously adjusting the stock position to maintain $\Delta_t$ shares is called **delta hedging**. If the option price function $V$ is correct, then the delta-hedged portfolio is locally riskless — its instantaneous return equals the risk-free rate. If $V$ is incorrect, the hedge leaks money (or prints it), creating arbitrage.
-
----
-
-## The Road to a Differential Equation
-
-The requirement that the delta-hedged portfolio earn the risk-free rate is not merely a financial condition — it is a **mathematical constraint** on the function $V(t, S)$. Applying Ito's lemma to $V$ and imposing the no-arbitrage condition produces a partial differential equation that $V$ must satisfy:
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
-$$
-
-This is the **Black-Scholes PDE**. Every arbitrage-free option price — call, put, digital, or otherwise — must satisfy this equation. The specific contract enters only through the terminal condition $V(T, S) = \text{payoff}(S)$ and, where applicable, boundary conditions.
-
-The next sections develop this derivation rigorously: we formalize the self-financing condition, apply Ito calculus to the hedged portfolio, and show that the no-arbitrage requirement leaves no room for the drift $\mu$ — only $r$, $\sigma$, and the payoff determine the price.
+Recall (see [§ Black-Scholes PDE Derivation](../bs_pde_derivation/change_of_numeraire.md)): in continuous time, the replicating portfolio holds $\Delta_t = \partial V/\partial S$ shares (the option's **delta**), and the requirement that the delta-hedged portfolio earn the risk-free rate translates into the Black-Scholes PDE. The drift $\mu$ drops out — only $r$, $\sigma$, $K$, and the payoff determine the price.
 
 !!! note "Big Picture"
     Options derive their value from asymmetric payoffs. Their prices are determined not by beliefs about the future, but by the cost of replicating those payoffs in the market. This equivalence between replication and expectation transforms pricing into a mathematical problem — leading directly to the Black-Scholes equation.

@@ -2,13 +2,13 @@
 
 ### 1. Concept Definition
 
-The Itô integral
+Try to define $\int_0^t H_s\,dB_s$ pathwise -- one sample path at a time, the way Riemann-Stieltjes handles $\int H_s\,dg_s$. The procedure collapses: almost every Brownian path has unbounded total variation, so the Stieltjes sums explode and the pathwise limit does not exist. The escape hatch comes from a single observation: although increments $\Delta B$ are wild, *squared* increments behave deterministically -- $\sum (\Delta B)^2 \to t$. Measuring errors in mean-square rather than pathwise turns the divergent sum into a convergent one, and that single substitution is the entire content of the Itô construction:
 
 $$
 \int_0^t H_s \, dB_s
 $$
 
-defines a stochastic integral with respect to Brownian motion. Unlike classical Riemann-Stieltjes integration, the pathwise construction fails because Brownian motion has infinite variation almost surely. Instead, the integral is defined first on **simple adapted processes**, then extended by continuity using the **Itô isometry**.
+is defined first on **simple adapted processes**, then extended by $L^2$-continuity using the **Itô isometry**.
 
 The construction exploits a special property of Brownian motion: although its total variation is infinite, its **quadratic variation** is finite. Because Brownian increments satisfy $(\Delta B)^2 \approx \Delta t$, squaring stochastic sums converts random fluctuations into deterministic time increments. This allows us to control the integral in the mean-square sense, leading to the Itô isometry
 
@@ -49,7 +49,7 @@ Since the expected total variation diverges, Brownian paths have unbounded varia
 !!! note
     The expected total variation diverging implies almost sure divergence via the following argument: if $\operatorname{Var}(B) < \infty$ a.s., then by the monotone convergence theorem the expectation would be finite—a contradiction.
 
-However, Brownian motion has **quadratic variation** equal to $t$, which suggests a different integration theory is possible.
+Recall (see [§ Quadratic Variation](quadratic_variation.md)): Brownian motion has **quadratic variation** $[B]_t = t$, which suggests a different integration theory is possible.
 
 ---
 

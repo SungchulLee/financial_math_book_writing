@@ -62,47 +62,7 @@ This captures the fraction of each institution's liabilities owed to others.
 
 ## Eisenberg-Noe Clearing Model
 
-### Setup
-
-**$n$ institutions** with:
-
-- External assets $e_i$ (assets outside the network)
-- Interbank liabilities $\bar{p}_i$ (nominal obligations to other banks)
-- Liability matrix $\Pi$ where $\Pi_{ij}$ = share of $i$'s liabilities owed to $j$
-
-### Clearing Payments
-
-A **clearing payment vector** $p = (p_1, \ldots, p_n)$ satisfies:
-
-$$
-p_i = \min\left(\bar{p}_i, \, e_i + \sum_{j=1}^n \Pi_{ji} p_j\right)
-$$
-
-**Interpretation:**
-
-- Institution $i$ pays the minimum of:
-  - What it owes ($\bar{p}_i$)
-  - What it has: external assets plus what it receives from others
-
-### Fixed-Point Characterization
-
-The clearing vector is a fixed point:
-
-$$
-p = \min(\bar{p}, \, e + \Pi^\top p)
-$$
-
-**Theorem (Eisenberg-Noe, 2001):** Under mild conditions, there exists a unique clearing vector that can be computed iteratively.
-
-### Default and Contagion
-
-Institution $i$ **defaults** if $p_i < \bar{p}_i$.
-
-**Contagion mechanism:**
-
-1. Institution $A$ receives shock, reduces payments
-2. $A$'s creditors receive less, may default themselves
-3. Cascade propagates through network
+Recall (see [§ Network Models: Eisenberg-Noe Clearing](systemic_risk_metrics.md#network-models-eisenberg-noe-clearing)) for the clearing-payment fixed point $p = \min(\bar{p},\, e + \Pi^\top p)$ and the contagion set $\mathcal{D} = \{i : p_i^* < \bar{p}_i\}$ that captures cascading defaults through reduced payments.
 
 ---
 
@@ -122,17 +82,7 @@ A 1% decline in assets causes $\frac{1}{\text{Equity/Assets}}$ % decline in equi
 
 ### Fire Sale Externality
 
-When institution $i$ sells assets:
-
-1. Price drops by amount proportional to sale
-2. Other holders suffer mark-to-market losses
-3. May trigger further sales
-
-**Price impact:**
-
-$$
-P' = P \cdot \left(1 - \alpha \cdot \frac{\text{Sales}}{\text{Market Cap}}\right)
-$$
+Recall (see [§ Fire Sale Models](contagion_models.md#fire-sale-models)) for the Greenwood-Landier-Thesmar price-impact model $\Delta P_a = -\lambda_a \cdot \text{Sales}_{ia}/D_a$ and the indirect-exposure / vulnerability index that quantify mark-to-market spillovers across overlapping portfolios.
 
 ### Margin Spirals
 
@@ -203,38 +153,7 @@ Many financial networks exhibit core-periphery structure:
 
 ## Systemic Risk Measures
 
-### CoVaR (Adrian-Brunnermeier)
-
-$$
-\text{CoVaR}_\alpha^{i|j} = \text{VaR}_\alpha(\text{System} \mid \text{Institution } j \text{ at VaR})
-$$
-
-**$\Delta$CoVaR:** Contribution of institution $j$ to system risk:
-
-$$
-\Delta\text{CoVaR}^j = \text{CoVaR}^{i|j=\text{VaR}} - \text{CoVaR}^{i|j=\text{median}}
-$$
-
-### Marginal Expected Shortfall (MES)
-
-$$
-\text{MES}_i = \mathbb{E}[R_i \mid R_{\text{market}} < \text{VaR}_\alpha^{\text{market}}]
-$$
-
-Expected loss of institution $i$ when the market is in distress.
-
-### SRISK
-
-$$
-\text{SRISK}_i = k \cdot D_i - (1-k) \cdot W_i \cdot (1 - \text{LRMES}_i)
-$$
-
-Capital shortfall in a crisis, where:
-
-- $k$ = prudential capital ratio
-- $D_i$ = debt
-- $W_i$ = market cap
-- $\text{LRMES}$ = long-run MES
+Recall (see [§ CoVaR](systemic_risk_metrics.md#covar-adrian-brunnermeier), [§ MES](systemic_risk_metrics.md#marginal-expected-shortfall-mes), [§ SRISK](systemic_risk_metrics.md#srisk-brownlees-engle)) for the formal definitions, estimation procedures, and capital-shortfall interpretation of the three primary market-based systemic risk metrics.
 
 ---
 

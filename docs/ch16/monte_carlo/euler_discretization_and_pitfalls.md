@@ -17,41 +17,13 @@ The simplest approach to simulating the Heston model is the Euler-Maruyama schem
 
 ## The Heston SDE System
 
-Under the risk-neutral measure $\mathbb{Q}$, the Heston model specifies two coupled SDEs:
-
-$$
-dS_t = (r - q) S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1)}
-$$
-
-$$
-dv_t = \kappa(\theta - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^{(2)}
-$$
-
-where $d\langle W^{(1)}, W^{(2)} \rangle_t = \rho \, dt$ with $\rho \in [-1, 1]$. The parameters are: risk-free rate $r$, dividend yield $q$, mean-reversion speed $\kappa > 0$, long-run variance $\theta > 0$, vol-of-vol $\xi > 0$, and correlation $\rho$.
-
-Working with the **log-price** $x_t = \ln S_t$ simplifies the stock equation:
-
-$$
-dx_t = \left(r - q - \tfrac{1}{2} v_t\right) dt + \sqrt{v_t} \, dW_t^{(1)}
-$$
-
-This formulation avoids the multiplicative noise in $S_t$ and is standard for Monte Carlo simulation.
+Recall (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)): the log-price form is $dx_t = (r - q - \tfrac{1}{2} v_t)\,dt + \sqrt{v_t}\,dW_t^{(1)}$ and $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}$, with $d\langle W^{(1)}, W^{(2)}\rangle_t = \rho\,dt$. The log-price formulation avoids multiplicative noise in $S_t$ and is standard for Monte Carlo simulation.
 
 ---
 
 ## Correlated Brownian Increments
 
-The two Brownian motions $W^{(1)}$ and $W^{(2)}$ are correlated with parameter $\rho$. To generate correlated increments on a discrete grid with step $\Delta t$, apply the **Cholesky decomposition**. Draw two independent standard normals $Z_1, Z_2 \sim N(0,1)$ and set:
-
-$$
-\Delta W^{(1)} = \sqrt{\Delta t} \, Z_1
-$$
-
-$$
-\Delta W^{(2)} = \sqrt{\Delta t} \left( \rho \, Z_1 + \sqrt{1 - \rho^2} \, Z_2 \right)
-$$
-
-This ensures $\text{Corr}(\Delta W^{(1)}, \Delta W^{(2)}) = \rho$ and both increments have variance $\Delta t$.
+Recall (see [§ SDE Simulation](../../ch03/sde/sde_simulation.md)): to generate correlated increments via Cholesky, draw $Z_1, Z_2 \sim N(0,1)$ and set $\Delta W^{(1)} = \sqrt{\Delta t}\,Z_1$ and $\Delta W^{(2)} = \sqrt{\Delta t}(\rho Z_1 + \sqrt{1-\rho^2}\,Z_2)$, giving $\text{Corr}(\Delta W^{(1)}, \Delta W^{(2)}) = \rho$.
 
 ---
 

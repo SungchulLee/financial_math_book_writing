@@ -16,18 +16,10 @@ risk-compensation component, revealing the financial content of Girsanov's theor
 ## The Decomposition
 
 Under $\mathbb{P}$, a risky asset follows
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
-$$
-
-The **market price of risk** is defined as
-
-$$
-\theta := \frac{\mu - r}{\sigma}
-$$
-
-Rearranging gives the **risk premium decomposition**:
+$dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$. Recall (see
+[§ Market Price of Risk](../risk_neutral/market_price_of_risk.md)):
+$\theta := (\mu - r)/\sigma$. Rearranging gives the **risk premium
+decomposition**:
 
 $$
 \mu = r + \sigma\theta
@@ -51,41 +43,26 @@ subtracts from the physical drift to produce the pricing measure.
 
 ## How Girsanov Removes the Premium
 
-Girsanov's theorem defines
-
-$$
-W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds
-$$
-
-Substituting $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta\,dt$ into the asset
-dynamics:
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\left(dW_t^{\mathbb{Q}} - \theta\,dt\right) = (\mu - \sigma\theta)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
-
-Since $\mu - \sigma\theta = r$, the $\mathbb{Q}$-dynamics are
+Recall (see [§ Drift Adjustment](../girsanov/girsanov_drift_adjustment.md)): the Girsanov shift $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds$ converts $\mathbb{P}$-dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$ into
 
 $$
 dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
 $$
 
-The drift changes from $\mu$ to $r$. The volatility $\sigma$ is **unchanged**
-because it is determined by the quadratic variation $\langle S \rangle_t = \sigma^2 S_t^2\,dt$---a path-by-path quantity unaffected by reweighting probabilities.
+precisely because $\sigma\theta = \mu - r$ cancels the excess drift. Volatility $\sigma$ is unchanged: it equals quadratic variation $\langle S\rangle_t = \sigma^2 S_t^2\,dt$, a pathwise quantity invariant under equivalent measure changes.
 
 !!! note "Drift changes, volatility does not"
     This is why option prices depend on $\sigma$ but not on $\mu$.
 
 ### The Radon--Nikodym Derivative
 
-The risk premium determines the density between measures. For constant $\theta$:
+Recall (see [§ The Exponential Martingale](../girsanov/girsanov_theorem.md#the-exponential-martingale)): for constant $\theta$,
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\!\left(-\theta W_T^{\mathbb{P}} - \frac{1}{2}\theta^2 T\right)
 $$
 
-A larger $|\theta|$ means more aggressive reweighting: the further $\mu$ is from
-$r$, the more the measure must be tilted.
+A larger $|\theta|$ means more aggressive reweighting: the further $\mu$ is from $r$, the more the measure must be tilted.
 
 ---
 

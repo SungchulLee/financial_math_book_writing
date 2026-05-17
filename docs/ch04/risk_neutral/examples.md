@@ -1,21 +1,18 @@
 # Examples: Constructing Risk-Neutral Measures
 
-Worked examples of constructing the risk-neutral measure across different models.
-Each follows the [standard construction](construction.md): identify
-$\mathbb{P}$-dynamics, compute $\boldsymbol{\theta}$, apply measure change, verify
-drift becomes risk-free.
+This page is a **catalog of how risk-neutral measures look in concrete models**.
+Each example follows the same template from [§ Construction of the Risk-Neutral
+Measure](construction.md):
 
-!!! abstract "Taxonomy: completeness and uniqueness"
+1. identify $\mathbb{P}$-dynamics,
+2. solve $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ for the
+   [market price of risk](market_price_of_risk.md),
+3. apply Girsanov,
+4. read off the risk-neutral dynamics.
 
-    The relationship between the number of traded assets $n$ and the number of independent
-    Brownian motions $d$ determines the market structure:
-
-    - **Complete market** ($n = d$): the volatility matrix $\Sigma$ is square and invertible,
-      so $\boldsymbol{\theta}$ is **unique** and $\mathbb{Q}$ is the **unique** risk-neutral measure.
-    - **Incomplete market** ($n < d$): $\Sigma$ is underdetermined, leaving $d - n$ free
-      parameters in $\boldsymbol{\theta}$ and a **family** of risk-neutral measures.
-    - **Overdetermined** ($n > d$): the system is consistent only if no-arbitrage
-      constraints are satisfied; otherwise arbitrage exists.
+Completeness vs incompleteness is determined by the rank of $\Sigma$ — see
+[§ Market Price of Risk, multi-asset case](market_price_of_risk.md#multi-asset-case)
+for the taxonomy.
 
 ---
 
@@ -51,7 +48,7 @@ $$
 
 ## Example 3: Two Correlated Stocks
 
-Two stocks driven by independent Brownian motions $W^1, W^2$ with correlation $\rho$:
+Two stocks driven by Brownian motions $W^1, W^2$ with correlation $\rho$:
 
 $$
 \begin{cases}
@@ -60,18 +57,15 @@ dS_t^2 = \mu_2 S_t^2\,dt + \sigma_2 S_t^2\,(\rho\,dW_t^{1,\mathbb{P}} + \sqrt{1-
 \end{cases}
 $$
 
-The [market price of risk](market_price_of_risk.md) generalises to a vector
-$\boldsymbol{\theta} = (\theta_1, \theta_2)$ satisfying:
-
-$$
-\begin{pmatrix} \mu_1 - r \\ \mu_2 - r \end{pmatrix} = \begin{pmatrix} \sigma_1 & 0 \\ \sigma_2\rho & \sigma_2\sqrt{1-\rho^2} \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix}
-$$
-
-Solving: $\theta_1 = (\mu_1 - r)/\sigma_1$ and
+Recall (see [§ Market Price of Risk](market_price_of_risk.md#multi-asset-case)) the
+vector equation $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$. Here
+$\Sigma$ is the $2 \times 2$ lower-triangular matrix with rows
+$(\sigma_1, 0)$ and $(\sigma_2\rho,\,\sigma_2\sqrt{1-\rho^2})$, giving
+$\theta_1 = (\mu_1 - r)/\sigma_1$ and
 $\theta_2 = [(\mu_2 - r) - \sigma_2\rho\theta_1]/(\sigma_2\sqrt{1-\rho^2})$.
 
-With 2 assets and 2 Brownian motions, the volatility matrix has full rank,
-$\boldsymbol{\theta}$ is **unique**, and the market is **complete**.
+With $n = d = 2$ and $\Sigma$ invertible, $\boldsymbol{\theta}$ is unique and the
+market is **complete**.
 
 ---
 
@@ -130,22 +124,22 @@ where $\kappa^* = \kappa$ and $\bar{r}^* = \bar{r} - \sigma\lambda/\kappa$.
 
 ## Summary Table
 
-| Model | # Assets | # BMs | Complete? | $\theta$ Unique? |
-|-------|----------|-------|-----------|------------------|
+| Model | # Assets | # BMs | Complete? | $\boldsymbol{\theta}$ unique? |
+|-------|----------|-------|-----------|-------------------------------|
 | Black-Scholes | 1 | 1 | Yes | Yes |
 | Multi-stock | $n$ | $n$ | Yes | Yes |
-| Stoch. vol. | 1 | 2 | No | No |
+| Stochastic volatility | 1 | 2 | No | No |
 | FX | 1 | 1 | Yes | Yes |
-| Interest rate | Many (bonds) | 1 | Often incomplete (state not directly spanned) | No |
+| Interest rate | Bonds | 1 | Often incomplete | No |
 
----
+The unifying structural insight, visible in every row of the table above:
 
-## Key Takeaways
+$$
+\boxed{\;\text{Only the drift changes under } \mathbb{Q};\quad \text{the volatility structure } \Sigma \text{ is preserved.}\;}
+$$
 
-1. **Complete markets** ($n = d$): unique $\boldsymbol{\theta}$, unique $\mathbb{Q}$.
-2. **Incomplete markets** ($n < d$): multiple $\boldsymbol{\theta}$, multiple $\mathbb{Q}$.
-3. **Volatility unchanged**: only drift changes under measure transformation.
-4. **Calibration**: in practice, $\mathbb{Q}$ is inferred from market prices.
+See [§ Market Price of Risk, Exercise 2](market_price_of_risk.md#exercises) for the
+Girsanov derivation.
 
 ---
 
@@ -345,24 +339,3 @@ In the Vasicek model with $\kappa = 0.5$, $\bar{r} = 0.04$, $\sigma = 0.01$, and
     P(0,5) = 0.89280 \cdot e^{-1.83583 \cdot 0.03} = 0.89280 \cdot e^{-0.05507} = 0.89280 \cdot 0.94645 \approx 0.84498
     $$
 
----
-
-**Exercise 7.**
-Consider a market with 3 stocks and 2 Brownian motions. Write the system $\boldsymbol{\mu} - r\mathbf{1} = \Sigma\boldsymbol{\theta}$ where $\Sigma$ is $3 \times 2$. This is an overdetermined system. State the condition for a solution to exist and interpret it as a no-arbitrage condition. If the condition is violated, construct a specific arbitrage strategy.
-
-??? success "Solution to Exercise 7"
-    With 3 stocks and 2 Brownian motions, each stock has dynamics $dS_t^i = \mu_i S_t^i\,dt + \sum_{j=1}^{2}\Sigma_{ij}S_t^i\,dW_t^{j,\mathbb{P}}$. The system is:
-
-    $$
-    \begin{pmatrix} \mu_1 - r \\ \mu_2 - r \\ \mu_3 - r \end{pmatrix} = \begin{pmatrix} \Sigma_{11} & \Sigma_{12} \\ \Sigma_{21} & \Sigma_{22} \\ \Sigma_{31} & \Sigma_{32} \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix}
-    $$
-
-    This is an **overdetermined** system: 3 equations, 2 unknowns. A solution exists if and only if the vector $\boldsymbol{\mu} - r\mathbf{1}$ lies in the column space of $\Sigma$. Equivalently, $\boldsymbol{\mu} - r\mathbf{1}$ must be orthogonal to the left null space of $\Sigma$. If $\mathbf{n}$ spans the left null space (so $\mathbf{n}^{\top}\Sigma = 0$), the condition is:
-
-    $$
-    \mathbf{n}^{\top}(\boldsymbol{\mu} - r\mathbf{1}) = 0
-    $$
-
-    **No-arbitrage interpretation:** The vector $\mathbf{n}$ represents portfolio weights. The condition $\mathbf{n}^{\top}\Sigma = 0$ means this portfolio has zero exposure to both Brownian motions (zero volatility, hence risk-free). No-arbitrage then requires its expected return to equal $r$, i.e., $\mathbf{n}^{\top}\boldsymbol{\mu} = r(\mathbf{n}^{\top}\mathbf{1})$, which is $\mathbf{n}^{\top}(\boldsymbol{\mu} - r\mathbf{1}) = 0$.
-
-    **Constructing arbitrage when violated:** If $\mathbf{n}^{\top}(\boldsymbol{\mu} - r\mathbf{1}) > 0$, hold the portfolio $\mathbf{n}$ (long/short the three stocks in proportions $n_1, n_2, n_3$) and finance it at rate $r$. The portfolio has zero volatility (deterministic returns) but earns more than $r$, producing a risk-free arbitrage profit.

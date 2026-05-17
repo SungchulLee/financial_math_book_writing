@@ -48,14 +48,7 @@ Models trained on past data may fail abruptly.
 ## Mitigation strategies
 
 
-Common approaches include:
-
-- rolling-window estimation,
-- adaptive and online learning,
-- regime-switching models,
-- stress testing beyond historical data.
-
-No method fully eliminates the problem.
+Common approaches: rolling-window estimation, adaptive / online learning (Recall (see [§ Online Learning and Adaptive Calibration](../online_learning_and_adaptive_calibration/filtering_and_bayesian_updating.md))), regime-switching models, and stress testing beyond historical data. No method fully eliminates the problem.
 
 ---
 

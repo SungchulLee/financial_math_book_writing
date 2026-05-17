@@ -3,7 +3,28 @@
 
 The Black-Scholes model, while revolutionary in its implications, relies on a set of **simplifying assumptions** that make the mathematics tractable and enable closed-form solutions. Understanding these assumptions is essential for both appreciating the model's elegance and recognizing its practical limitations.
 
-This section systematically examines each assumption, explains its role, and discusses its realism.
+The six assumptions below are not a wish list but the minimum set that lets the one-step binomial mechanism of the [§ Introduction](introduction.md) extend to continuous time without breaking.
+
+---
+
+## A Toy Market Where the Mechanism Just Barely Works
+
+Before listing assumptions abstractly, picture the smallest market in which the replication argument operates cleanly:
+
+- **One stock** whose price moves continuously and stays positive,
+- **One bond** earning a fixed rate $r$,
+- **A trader** who can rebalance at every instant at no cost.
+
+Now perturb each ingredient and watch where the mechanism fails:
+
+- if the stock can jump or its volatility shifts, the hedge fails to cancel the random component;
+- if trading costs anything, continuous rebalancing accumulates infinite fees;
+- if the trader can only rebalance at discrete dates, residual risk remains between updates;
+- if $r$ moves or is stochastic, the bond is no longer a deterministic numeraire;
+- if arbitrage exists, the replication price is not unique;
+- if the stock pays dividends, holders of the hedge lose cashflows the option does not.
+
+Each of the six assumptions below is exactly the minimal hypothesis that closes one of these gaps. Read the list as a diagnosis of what the toy mechanism needs to survive its passage to continuous time.
 
 ---
 
@@ -213,11 +234,7 @@ The risk-free interest rate $r$ is **constant and known** over the option's life
 
 **1. Deterministic discounting**: Future cash flows are discounted by $e^{-rT}$
 
-**2. Risk-neutral drift**: Under risk-neutral measure, stock grows at rate $r$:
-
-$$
-dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
-$$
+**2. Risk-neutral drift**: Recall (see [§ Risk-Neutral Measure](../../ch04/risk_neutral/martingale_and_no_arbitrage.md)) — under $\mathbb{Q}$, stock grows at constant rate $r$.
 
 **3. Simplified PDE**: The $-rV$ term in the Black-Scholes PDE is constant
 
@@ -614,15 +631,7 @@ $$
 - Stockholders receive a portion of total return through dividends rather than price appreciation
 - The asset's capital gains rate is $\mu - q$ instead of $\mu$
 
-**Modified Black-Scholes PDE**:
-
-From the hedging perspective, an option holder is exposed to the dividend-adjusted growth rate $(\mu - q)$ rather than $\mu$. Under the risk-neutral measure, the Black-Scholes PDE becomes:
-
-$$
-\boxed{\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r - q) S \frac{\partial V}{\partial S} - rV = 0}
-$$
-
-**Key change**: The drift term $rS\frac{\partial V}{\partial S}$ becomes $(r-q)S\frac{\partial V}{\partial S}$.
+**Modified Black-Scholes PDE**: Recall (see [§ BS PDE Derivation](../bs_pde_derivation/one_equation_five_perspectives.md)) — the drift term $rS\partial_S V$ becomes $(r-q)S\partial_S V$, giving $\partial_t V + \tfrac{1}{2}\sigma^2 S^2 \partial_{SS} V + (r-q)S\partial_S V - rV = 0$.
 
 ### 6. **Why Continuous Dividends May Not Hold**
 
@@ -745,25 +754,7 @@ For precise pricing around ex-dividend dates or for options highly sensitive to 
 ### 10. **Extensions to Include Dividends**
 
 
-**1. Continuous dividend yield $q$**:
-
-Replace $r$ with $r - q$ in the drift:
-
-$$
-dS_t = (r - q)S_t dt + \sigma S_t dW_t
-$$
-
-Black-Scholes formula becomes:
-
-$$
-C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
-$$
-
-with modified $d_1$:
-
-$$
-d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
-$$
+**1. Continuous dividend yield $q$**: Recall (see [§ Black-Scholes Formula](../black_scholes_formula/bs_formula_statement.md)) — replace $r$ by $r-q$ in the drift, giving $C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ with $d_1 = [\ln(S/K) + (r-q+\tfrac{1}{2}\sigma^2)T]/(\sigma\sqrt{T})$.
 
 **2. Discrete dividends $D_i$ at times $t_i$**:
 

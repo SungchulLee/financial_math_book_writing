@@ -37,19 +37,7 @@ A.s. convergence does **not** imply $L^1$ convergence. Mass can escape to rare h
 !!! warning "Canonical counterexample"
     Let $\xi_i$ be i.i.d. with $\mathbb{P}(\xi_i = 2) = \mathbb{P}(\xi_i = 0) = 1/2$ and $M_n = \prod_{i=1}^n \xi_i$. Then $(M_n)$ is a martingale, $M_n \to 0$ a.s. (some $\xi_i$ eventually vanishes), yet $\mathbb{E}[M_n] = 1$ for all $n$. The mass is carried by the event $\{\xi_1 = \cdots = \xi_n = 2\}$ of probability $2^{-n}$, on which $M_n = 2^n$.
 
-The missing condition is **uniform integrability**: the entire family has uniformly controlled tails. See [Uniform Integrability](uniform_integrability.md) for the full theory; we recall only what is needed here.
-
-A family $\{X_\alpha\}$ is UI if
-
-$$
-\lim_{K\to\infty} \sup_\alpha \mathbb{E}[|X_\alpha|\,\mathbf{1}_{\{|X_\alpha|>K\}}] = 0.
-$$
-
-Key UI examples:
-
-- any $L^p$-bounded family with $p > 1$;
-- $\{\mathbb{E}[Y \mid \mathcal{G}_\alpha]\}$ for $Y \in L^1$ and sub-$\sigma$-algebras $\mathcal{G}_\alpha$;
-- any family dominated by an integrable random variable.
+Recall (see [§ Uniform Integrability](uniform_integrability.md)): $\{X_\alpha\}$ is UI iff $\lim_{K\to\infty} \sup_\alpha \mathbb{E}[|X_\alpha|\,\mathbf{1}_{\{|X_\alpha|>K\}}] = 0$; sufficient conditions include $L^p$-boundedness ($p>1$), being a family of conditional expectations of a single $L^1$ variable, or domination by an integrable variable.
 
 ---
 

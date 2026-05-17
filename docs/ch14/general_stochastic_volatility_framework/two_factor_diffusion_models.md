@@ -78,21 +78,7 @@ $$
 
 ### Risk-Neutral Dynamics
 
-Under the risk-neutral measure $\mathbb{Q}$, the drift of $S$ is constrained by no-arbitrage:
-
-$$
-dS_t = (r - q)S_t\,dt + \sigma(t, S_t, V_t)\,S_t\,dW_t^{S,\mathbb{Q}}
-$$
-
-The volatility process drift changes via Girsanov:
-
-$$
-dV_t = a^{\mathbb{Q}}(t, V_t)\,dt + b(t, V_t)\,dW_t^{V,\mathbb{Q}}
-$$
-
-where $a^{\mathbb{Q}} = a - \lambda_V b$ and $\lambda_V$ is the market price of volatility risk.
-
-**Key insight:** The diffusion coefficient $b$ is unchanged by measure change; only the drift $a$ is modified.
+Recall (see [§ Risk-Neutral vs Physical Measure](risk_neutral_vs_physical_measure.md)): under $\mathbb{Q}$, the drift of $S$ is $(r-q)S$ by no-arbitrage, and the variance drift becomes $a^{\mathbb{Q}} = a - \lambda_V b$ via Girsanov; the diffusion coefficient $b$ is unchanged.
 
 ---
 
@@ -100,21 +86,7 @@ where $a^{\mathbb{Q}} = a - \lambda_V b$ and $\lambda_V$ is the market price of 
 
 ### Heston Model (1993)
 
-The most widely used stochastic volatility model:
-
-$$
-\begin{aligned}
-dS_t &= (r-q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S \\
-dV_t &= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
-\end{aligned}
-$$
-
-**Characteristics:**
-
-- $V_t$ is instantaneous variance (non-negative)
-- Square-root (CIR) volatility dynamics
-- Mean-reverting to $\theta$
-- Affine structure enables semi-closed-form pricing
+CIR variance with mean reversion and affine structure; see [§ The Heston Model](../the_heston_model/affine_structure.md). Most widely used SV model.
 
 ### Hull–White Model (1987)
 
@@ -172,21 +144,7 @@ $$
 
 ### SABR Model (Hagan et al., 2002)
 
-Stochastic alpha-beta-rho model:
-
-$$
-\begin{aligned}
-dF_t &= \sigma_t F_t^{\beta}\,dW_t^F \\
-d\sigma_t &= \nu \sigma_t\,dW_t^{\sigma}
-\end{aligned}
-$$
-
-**Characteristics:**
-
-- Forward price dynamics (driftless under forward measure)
-- $\beta$ controls backbone (normal vs. lognormal)
-- No mean reversion
-- Asymptotic implied volatility formula available
+Forward-price stochastic alpha-beta-rho dynamics with backbone parameter $\beta$ and asymptotic implied vol formula; see [§ SABR Model](../sabr_model/arbitrage_free_sabr.md).
 
 ---
 

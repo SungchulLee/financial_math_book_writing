@@ -1,6 +1,5 @@
 # Asymptotic Behavior of the Black-Scholes Formula
 
-
 The Black-Scholes formula exhibits well-defined **limiting behavior** as parameters approach extreme values. These limits give intuition for option behavior across market regimes and serve as sanity checks for numerical implementations.
 
 !!! info "Where this fits"
@@ -326,7 +325,6 @@ $$
 
 ## Summary Table
 
-
 | Limit | Call Behavior | Put Behavior |
 |-------|---------------|--------------|
 | $S \to \infty$ | $C \to S - Ke^{-rT}$ | $P \to 0$ |
@@ -344,68 +342,13 @@ $$
 
 ## Practical Implications
 
-*Section goal: how the limits inform numerical implementation and trader intuition.*
-
-### 1. **Sanity Checks**
-
-
-These limits provide **bounds** for option prices:
-
-- $0 \leq C \leq S$
-- $0 \leq P \leq Ke^{-rT}$
-
-Any pricing model violating these bounds is immediately suspect.
-
-### 2. **Numerical Stability**
-
-
-When implementing Black-Scholes:
-
-- For $S \gg K$ or $S \ll K$: Use asymptotic approximations rather than evaluating $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ with extreme arguments
-- For $T \approx 0$: Use intrinsic value directly
-- For $\sigma$ very small or large: Use limiting formulas
-
-### 3. **Greeks Behavior**
-
-
-Limiting behavior of prices determines Greeks:
-
-- As $S \to \infty$: $\Delta_{\text{call}} \to 1$, $\Gamma \to 0$ (option behaves linearly like stock)
-- As $T \to 0$ with $S \approx K$: $\Gamma \to \infty$ (curvature spikes), making delta-hedging near expiry extremely costly and unstable — this is the root cause of pin risk
-- As $\sigma \to 0$: Vega $\to 0$ (no sensitivity to volatility; option becomes deterministic)
-
-### 4. **Model Validation**
-
-
-Real market data should respect these asymptotic behaviors. Violations suggest:
-
-- Model misspecification
-- Market frictions (transaction costs, liquidity)
-- Early exercise features (American options)
+Recall (see [§ Properties and Bounds](properties_and_bounds.md) and [§ Common Numerical Issues](computational_examples.md#common-numerical-issues)): the bounds $0 \leq C \leq S$, $0 \leq P \leq Ke^{-rT}$ provide sanity checks, and the limiting formulas above motivate the special-case branches used near $T \approx 0$, $\sigma \to 0$, or $|d_i|$ large in production implementations. For the Greek-level limits ($\Delta \to 1$ deep ITM, $\Gamma \to \infty$ as $T \to 0$ near the strike — pin risk — and $\nu \to 0$ as $\sigma \to 0$), see [§ Greeks in Black-Scholes](../../ch10/greeks/greeks_in_black_scholes_model.md). Real-market violations of these asymptotics signal model misspecification, transaction-cost frictions, or American features.
 
 ---
 
 ## Summary
 
-
-The Black-Scholes formula exhibits well-defined limiting behavior:
-
-**Key insights**:
-
-1. **Deep ITM call** → Stock minus present value of strike (forward-like)
-2. **Near expiration** → Intrinsic value (payoff function)
-3. **Long maturity** → Call worth stock, put worthless
-4. **Zero volatility** → Forward value only
-5. **Infinite volatility** → Call worth stock, put worth PV of strike
-
-These limits provide:
-
-- Intuitive understanding of option behavior
-- Numerical stability checks
-- Model validation criteria
-- Bounds for arbitrage detection
-
-Understanding asymptotic behavior is essential for both theoretical analysis and practical implementation of option pricing models.
+The five regimes — deep ITM (forward-like), near expiration (intrinsic), long maturity (call $\to S$), zero/infinite $\sigma$ — are summarised in the table above and serve as bounds, sanity checks, and stability triggers in implementations.
 
 ---
 

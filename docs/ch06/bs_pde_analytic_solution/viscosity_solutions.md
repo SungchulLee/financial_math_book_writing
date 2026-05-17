@@ -1,663 +1,208 @@
 # Viscosity Solutions
 
-This section does not introduce another solution method. Instead, it provides the **rigorous mathematical foundation** that justifies every PDE-based derivation in this chapter.
-
-The heat equation, Fourier, Mellin, Laplace, and separation-of-variables approaches all assumed---implicitly or explicitly---that the solution is smooth enough to differentiate classically ($C^{2,1}$ in $S$ and $t$). The Feynman-Kac representation assumed the solution satisfies the PDE in the pointwise sense. For the standard European call with payoff $(S - K)^+$, these regularity assumptions hold and every derivation is valid.
-
-But many practically important cases fail this smoothness requirement. Discontinuous terminal data (digital options), American-style early exercise (free boundary problems), and degenerate diffusion coefficients all produce solutions that are **not** $C^2$. The question is: what does it *mean* to "solve" the PDE when classical derivatives do not exist? Viscosity solutions answer this question. They provide the framework that guarantees existence, uniqueness, and stability for these pricing PDEs --- ensuring that the pricing operator $\mathcal{P}_\tau$ is well-defined even without classical smoothness, and placing all the methods of this chapter on rigorous footing.
+This subsubsection does not introduce another solution method. Instead, it provides the **rigorous foundation** under which every representation in this chapter agrees. The heat-kernel, Fourier, Mellin, Laplace, separation-of-variables, and probabilistic ([§ Feynman-Kac](feynman_kac.md)) approaches all give formulas for the pricing operator $\mathcal{P}_\tau$ introduced in [§ Introduction](intro.md). When the payoff is smooth, these formulas coincide because the PDE has a unique classical solution. When the payoff is *not* smooth---digital options, American obstacles, degenerate diffusion at $S=0$---classical $C^{2,1}$ solutions do not exist, and one needs a weaker but still uniquely-defined notion of "solution" to make all the chapter's representations agree on the same object. Viscosity solutions are that notion. They guarantee existence, uniqueness, and stability of $\mathcal{P}_\tau$ on payoffs the classical theory cannot handle.
 
 ---
 
 ## 1. Motivation: Why Classical Solutions Fail
 
-### The Problem with Non-Smooth Payoffs
+### 1.1 A toy failure: the absolute-value kink
 
-Consider a digital option with payoff:
-
-$$
-\Phi(S) = \mathbb{1}_{S > K}
-$$
-
-The Black-Scholes PDE:
+Before any finance, work the simplest possible example of a function that "almost" solves a PDE. Consider
 
 $$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0
+u(x) = -|x|, \qquad x \in \mathbb{R}
 $$
 
-with terminal condition $V(S,T) = \mathbb{1}_{S > K}$ has **no classical solution**---the payoff is discontinuous!
-
-### American Options
-
-The free boundary problem:
+and ask whether it satisfies the trivial PDE $u''(x) = 0$. Classically the answer is partial: the equation holds at every point *except* $x = 0$, where the kink prevents the second derivative from existing.
 
 $$
-\max\left\{-\frac{\partial V}{\partial t} - rS\frac{\partial V}{\partial S} - \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} + rV, \, V - \Phi(S)\right\} = 0
+u''(x) = 0 \quad \text{for } x \neq 0; \qquad u''(0)\ \text{undefined (classically)}
 $$
 
-The solution $V$ is typically **not $C^2$** at the free boundary, so classical derivatives don't exist.
+In the language of distributions $u'' = -2\delta_0$ — a Dirac mass concentrated at the kink — but distributional derivatives are unwieldy under the *nonlinear* operators that arise in stochastic control and obstacle problems. What we want is a sharper question whose answer survives the kink.
 
-### The Gap
+**The viscosity move.** Instead of asking what $u''(0)$ *is* — undefined — ask what every smooth $\phi \in C^2$ *that touches $u$ from above at $0$* must satisfy there.
 
-**Classical theory**: Requires $C^2$ solutions.
+A test function $\phi$ touching $u = -|x|$ from above at $x_0 = 0$ obeys $\phi(0) = 0$ and $\phi(x) \geq -|x|$ in a neighborhood. The cusp opens downward, so $\phi$ is forced to be locally concave-at-the-top there: $\phi''(0) \leq 0$. We have **captured a one-sided constraint on the would-be second derivative without needing $u$ to be twice differentiable**. That is the entire mechanism.
 
-**Reality**: Financial PDEs rarely have $C^2$ solutions.
+!!! tip "The viscosity principle in one sentence"
+    Viscosity solutions replace **"having derivatives"** with **"being locally trapped by smooth test functions."** Where classical $u''$ would have been a single number, the viscosity definition delivers a one-sided inequality coming from every $\phi \in C^2$ that touches $u$.
 
-**Viscosity theory**: Fills this gap!
+Classical derivatives at $0$ do not exist — but *comparison* with smooth tangent functions still makes sense. Section 2 formalizes this for the parabolic Black–Scholes operator.
 
----
+### 1.2 The same failure in finance: digital and American options
 
-## 2. Fundamental Definitions
+The same gap shows up the moment we leave smooth European calls.
 
-### General Parabolic PDE
+**Digital payoffs.** A digital call has $\Phi(S) = \mathbb{1}_{S > K}$. The Black–Scholes PDE with this terminal data has **no classical solution**: the payoff is discontinuous at $S = K$, and any $C^{2,1}$ candidate up to $t = T$ would have to be continuous there. Yet the Gil–Pelaez / Fourier price $V(S, t) = e^{-r(T - t)}\mathcal{N}(d_2)$ exists, is smooth for $t < T$, and is unambiguously *the* price every practitioner uses. Some weaker solution concept must be making the formula well-defined.
 
-Consider:
+**American options.** For an American option the value satisfies an obstacle problem coupling the Black–Scholes operator $\mathcal{L}$ (recall [§ Introduction](intro.md)) with the payoff constraint $V \geq \Phi(S)$. The value $V$ is typically only $C^1$ — not $C^2$ — across the optimal exercise boundary, so classical second derivatives do not exist there. Trees and finite-difference solvers still converge to a well-defined price; what notion of solution are they converging to? The full variational inequality is written out in §6.
 
-$$
-F\left(x, t, u, Du, D^2u\right) = 0 \quad \text{in } \Omega \times (0,T)
-$$
+### 1.3 The gap
 
-where:
-
-- $u: \Omega \times [0,T] \to \mathbb{R}$ is the unknown
-- $Du = \nabla u$ is the gradient
-- $D^2u$ is the Hessian matrix
-- $F$ is the **PDE operator** (possibly nonlinear)
-
-**Boundary condition**: $u(x,T) = g(x)$
-
-### Upper and Lower Semicontinuity
-
-A function $u$ is:
-
-- **Upper semicontinuous (USC)** if $\limsup_{y \to x}u(y) \leq u(x)$
-- **Lower semicontinuous (LSC)** if $\liminf_{y \to x}u(y) \geq u(x)$
-
-**Intuition**: USC functions don't have upward jumps; LSC functions don't have downward jumps.
-
-### Test Functions
-
-A function $\phi \in C^2(\Omega \times [0,T])$ is a **test function** for $u$ at $(x_0, t_0)$ if:
-
-$$
-u(x,t) - \phi(x,t) \text{ has a local maximum (or minimum) at } (x_0,t_0)
-$$
+Classical theory requires $C^2$ solutions; the payoffs that matter in practice routinely violate this. Viscosity theory fills the gap by replacing pointwise derivatives with **test-function comparisons** (the §1.1 mechanism), while preserving uniqueness via a comparison principle. Every other representation in this chapter — heat kernel, Fourier, Feynman–Kac, separation, Mellin, Laplace — produces *some* candidate function for the pricing operator $\mathcal{P}_\tau\Phi$ even when $\Phi$ is non-smooth; viscosity theory is the structure that says all of those candidates are the same function.
 
 ---
 
-## 3. Viscosity Subsolutions
+## 2. Definitions via Test Functions
 
-### Definition
+Consider a general parabolic PDE $F(x,t,u,Du,D^2u) = 0$ with terminal data $u(x,T) = g(x)$. A **test function** is any $\phi \in C^2$, and one studies points where $u - \phi$ has a local maximum (touch from above) or local minimum (touch from below).
 
-A USC function $u$ is a **viscosity subsolution** of $F(x,t,u,Du,D^2u) = 0$ if:
-
-For every $(x_0,t_0) \in \Omega \times (0,T)$ and every $\phi \in C^2$ such that $u - \phi$ has a **local maximum** at $(x_0,t_0)$:
+A USC function $u$ is a **viscosity subsolution** if at every local maximum of $u - \phi$,
 
 $$
-F(x_0, t_0, u(x_0,t_0), D\phi(x_0,t_0), D^2\phi(x_0,t_0)) \leq 0
+F(x_0,t_0,u(x_0,t_0),D\phi(x_0,t_0),D^2\phi(x_0,t_0)) \leq 0.
 $$
 
-### Intuition
+An LSC function $u$ is a **viscosity supersolution** if at every local minimum of $u - \phi$, the same inequality reverses to $\geq 0$. A continuous $u$ that is both a subsolution and a supersolution is a **viscosity solution**.
 
-At points where we can "touch from above" with a smooth function, the PDE inequality $F \leq 0$ holds in the **viscosity sense**.
+**Why "viscosity"?** Historically the concept arises by adding artificial viscosity $-\epsilon\Delta u$ to $F$ (which makes solutions smooth) and sending $\epsilon \to 0$.
 
-### Why "Viscosity"?
+**Classical $\Rightarrow$ viscosity.** If $u \in C^2$ solves $F = 0$ pointwise, taking $\phi = u$ shows $F \leq 0$ and $F \geq 0$ at every point, so $u$ is automatically a viscosity solution. $\square$
 
-Historically, this notion arose from adding **artificial viscosity** $\epsilon \Delta u$ to make the equation:
+For the Black-Scholes operator $\mathcal{L}$ from [§ Introduction](intro.md), $u$ is a viscosity subsolution iff $\phi_t + \mathcal{L}\phi \leq 0$ at every point where a test function $\phi$ touches $u$ from above; the supersolution condition reverses the inequality for touches from below.
 
-$$
-F(x,t,u,Du,D^2u) - \epsilon \Delta u = 0
-$$
+??? note "Advanced Remark: Semijets"
 
-which has smooth solutions. Taking $\epsilon \to 0$ gives the viscosity solution.
+    The test-function formulation has an equivalent pointwise reformulation via **semijets**, the technical device used in the modern theory (Crandall--Ishii--Lions). The second-order superjet of $u$ at $(x_0,t_0)$ is
 
-### Black-Scholes Example
+    $$
+    \overline{D^2}u(x_0,t_0) = \big\{(p,A) : u(x,t) \leq u(x_0,t_0) + \langle p, (x-x_0,t-t_0)\rangle + \tfrac{1}{2}\langle A(x-x_0,t-t_0),(x-x_0,t-t_0)\rangle + o(|(x,t)-(x_0,t_0)|^2)\big\},
+    $$
 
-For the operator:
-
-$$
-F = \frac{\partial u}{\partial t} + rS\frac{\partial u}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 u}{\partial S^2} - ru
-$$
-
-A function $u$ is a viscosity subsolution if for every test function $\phi$ touching from above:
-
-$$
-\frac{\partial \phi}{\partial t} + rS\frac{\partial \phi}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 \phi}{\partial S^2} - r\phi \leq 0
-$$
-
-at the touching point.
+    and the subjet $\underline{D^2}u$ is defined with the reversed inequality. $u$ is a viscosity subsolution iff $F(x_0,t_0,u,p,A) \leq 0$ for every $(p,A) \in \overline{D^2}u$, and similarly a supersolution iff $F \geq 0$ on $\underline{D^2}u$. Semijets are essential for the *Crandall--Ishii lemma*, which underlies modern proofs of the comparison principle, but the test-function definition above is sufficient for everything we use in finance.
 
 ---
 
-## 4. Viscosity Supersolutions
+## 3. Comparison Principle and Uniqueness
 
-### Definition
+The **comparison principle** is the analytic cornerstone of the theory: it gives uniqueness essentially for free.
 
-A LSC function $u$ is a **viscosity supersolution** of $F(x,t,u,Du,D^2u) = 0$ if:
+**Theorem (comparison).** Suppose $F$ is *degenerate elliptic*, meaning $F(x,t,r,p,A) \geq F(x,t,r,p,B)$ whenever $A \geq B$, and continuous with suitable growth. If $u$ is a viscosity subsolution and $v$ a viscosity supersolution with $u(\cdot,T) \leq v(\cdot,T)$ and $u \leq v$ on the parabolic boundary, then $u \leq v$ in $\Omega \times [0,T]$.
 
-For every $(x_0,t_0) \in \Omega \times (0,T)$ and every $\phi \in C^2$ such that $u - \phi$ has a **local minimum** at $(x_0,t_0)$:
+For the Black-Scholes operator (see [§ Introduction](intro.md)), $\partial F / \partial u_{SS} = \sigma^2 S^2 / 2 \geq 0$, so degenerate ellipticity holds. (It is *degenerate* rather than uniformly elliptic precisely because the coefficient vanishes at $S = 0$.)
 
-$$
-F(x_0, t_0, u(x_0,t_0), D\phi(x_0,t_0), D^2\phi(x_0,t_0)) \geq 0
-$$
-
-### Intuition
-
-At points where we can "touch from below" with a smooth function, $F \geq 0$ in the viscosity sense.
+**Uniqueness.** If $u_1, u_2$ are both viscosity solutions with the same data, applying comparison both ways gives $u_1 \leq u_2$ and $u_2 \leq u_1$, hence $u_1 = u_2$.
 
 ---
 
-## 5. Viscosity Solutions
+## 4. Existence: Perron and Vanishing Viscosity
 
-### Definition
+Two constructions give existence.
 
-A continuous function $u$ is a **viscosity solution** if it is both:
-
-1. A viscosity subsolution
-2. A viscosity supersolution
+**Perron's method.** Define
 
 $$
-u \text{ is a viscosity solution} \iff \text{subsolution AND supersolution}
+\underline{u}(x,t) = \sup\{v : v \text{ subsolution with } v(\cdot,T) \leq g\}, \qquad \overline{u}(x,t) = \inf\{w : w \text{ supersolution with } w(\cdot,T) \geq g\}.
 $$
 
-### Equivalent Definition via Semijets
+Under standard hypotheses $\underline u$ is a subsolution and $\overline u$ a supersolution; when comparison forces $\underline u = \overline u$, the common function is the unique viscosity solution.
 
-Define the **second-order superdifferential**:
-
-$$
-\overline{D^2}u(x_0,t_0) = \{(p, A) : u(x,t) \leq u(x_0,t_0) + \langle p, (x-x_0,t-t_0) \rangle + \frac{1}{2}\langle A(x-x_0,t-t_0), (x-x_0,t-t_0)\rangle + o(|(x-x_0,t-t_0)|^2)\}
-$$
-
-Then $u$ is a viscosity subsolution if:
-
-$$
-F(x_0,t_0,u(x_0,t_0), p, A) \leq 0 \quad \forall (p,A) \in \overline{D^2}u(x_0,t_0)
-$$
-
-Similarly for supersolutions using the **subdifferential** $\underline{D^2}u$.
-
-### Classical Solutions are Viscosity Solutions
-
-**Proposition**: If $u \in C^2$ is a classical solution, then $u$ is a viscosity solution.
-
-**Proof**: At any point, $\phi(x,t) = u(x,t)$ is a test function, so:
-
-$$
-F(x,t,u,Du,D^2u) = 0
-$$
-
-This satisfies both $F \leq 0$ (subsolution) and $F \geq 0$ (supersolution). $\square$
+**Vanishing viscosity.** Solve the regularized equation $F(\cdot,u^\epsilon, Du^\epsilon, D^2u^\epsilon) - \epsilon \Delta u^\epsilon = 0$, which has smooth solutions, and pass $\epsilon \to 0$. The limit (under mild conditions) is the viscosity solution. This is also the origin of the name.
 
 ---
 
-## 6. Comparison Principle
+## 5. Connection to Stochastic Control (and a Word on HJB)
 
-### Statement
+The key bridge to probability: the discounted risk-neutral expectation of [§ Feynman-Kac](feynman_kac.md) is automatically a viscosity solution of the Black-Scholes PDE---no smoothness of the payoff required. This is why the probabilistic and PDE representations agree even for discontinuous data.
 
-The **comparison principle** is the cornerstone of uniqueness theory.
+The same machinery extends well beyond Black-Scholes to stochastic control, optimal stopping, and the nonlinear Hamilton--Jacobi--Bellman (HJB) equation. We do not pursue stochastic control here, but we record the result that motivates the entire modern theory.
 
-**Theorem**: Let $u$ be a viscosity subsolution and $v$ be a viscosity supersolution of:
+??? note "Advanced Remark: HJB equations and stochastic control"
 
-$$
-F(x,t,w,Dw,D^2w) = 0 \quad \text{in } \Omega \times (0,T)
-$$
+    For the controlled diffusion $dX_s = b(X_s,\alpha_s)\,ds + \sigma(X_s,\alpha_s)\,dW_s$ and the value function
 
-Assume:
+    $$
+    V(x,t) = \sup_{\alpha}\mathbb{E}\left[\int_t^T f(X_s^\alpha,\alpha_s)e^{-\int_t^s r\,d\tau}\,ds + g(X_T^\alpha)e^{-\int_t^T r\,d\tau}\,\Big|\,X_t = x\right],
+    $$
 
-1. $F$ is **degenerate elliptic**: $F(x,t,r,p,A) \geq F(x,t,r,p,B)$ whenever $A \geq B$
-2. $F$ is **continuous** and satisfies appropriate growth conditions
-3. $u(x,T) \leq v(x,T)$ for all $x \in \Omega$
-4. $u \leq v$ on the parabolic boundary
+    the dynamic programming principle, combined with Ito's formula on a smooth test function, yields the HJB equation
 
-Then:
+    $$
+    V_t + \sup_{\alpha \in A}\left[b(x,\alpha)\cdot DV + \tfrac{1}{2}\mathrm{tr}(\sigma\sigma^T(x,\alpha)D^2V) + f(x,\alpha)\right] - rV = 0.
+    $$
 
-$$
-u \leq v \quad \text{in } \Omega \times [0,T]
-$$
+    **Theorem.** $V$ is a viscosity solution of this HJB equation, and---when the comparison principle applies---the unique one.
 
-### Degenerate Ellipticity
-
-This means adding more "convexity" (larger $D^2u$) makes $F$ larger. For Black-Scholes:
-
-$$
-F = u_t + rSu_S + \frac{\sigma^2 S^2}{2}u_{SS} - ru
-$$
-
-We have $\frac{\partial F}{\partial u_{SS}} = \frac{\sigma^2 S^2}{2} \geq 0$, so it is degenerate elliptic.
-
-### Uniqueness Corollary
-
-If viscosity solutions exist, the comparison principle implies **uniqueness**:
-
-If $u_1$ and $u_2$ are both viscosity solutions with the same boundary data, then $u_1 \leq u_2$ and $u_2 \leq u_1$, so $u_1 = u_2$.
+    This is the historical reason viscosity solutions were developed: classical $C^2$ solutions of HJB equations rarely exist, but value functions of stochastic control problems are continuous and well-behaved. The Black-Scholes obstacle problem (American options, Section 6 below) is a special case in which the "control" is the binary decision to exercise or continue.
 
 ---
 
-## 7. Existence Theory
+## 6. American Options as an Obstacle Problem
 
-### Perron's Method
-
-Define:
+The American option is the canonical finance example in which viscosity solutions are unavoidable. With payoff $\Phi(S)$, the value admits an optimal-stopping representation (the Feynman--Kac formula generalized to a sup over stopping times $\tau$; see [§ Feynman-Kac](feynman_kac.md))
 
 $$
-\underline{u}(x,t) = \sup\{v(x,t) : v \text{ is a viscosity subsolution with } v(x,T) \leq g(x)\}
+V(S,t) = \sup_{\tau \in [t,T]}\mathbb{E}^{\mathbb{Q}}\!\left[e^{-r(\tau-t)}\Phi(S_\tau) \,\big|\, S_t = S\right]
 $$
 
-$$
-\overline{u}(x,t) = \inf\{w(x,t) : w \text{ is a viscosity supersolution with } w(x,T) \geq g(x)\}
-$$
-
-**Theorem**: Under appropriate conditions:
-
-1. $\underline{u}$ is a viscosity subsolution
-2. $\overline{u}$ is a viscosity supersolution
-3. If $\underline{u} = \overline{u}$, then $u = \underline{u} = \overline{u}$ is the **unique** viscosity solution
-
-### Vanishing Viscosity Method
-
-Add artificial viscosity:
+and equivalently solves the variational inequality
 
 $$
-F(x,t,u^\epsilon, Du^\epsilon, D^2u^\epsilon) - \epsilon \Delta u^\epsilon = 0
+\min\!\left\{-V_t - \mathcal{L}V,\; V - \Phi\right\} = 0
 $$
 
-This has smooth solutions $u^\epsilon$. Under suitable conditions:
+with $V(S,T) = \Phi(S)$, where $\mathcal{L}$ is the Black-Scholes operator of [§ Introduction](intro.md). The state space splits into
+
+- **Continuation region** $\mathcal{C} = \{V > \Phi\}$, where $-V_t - \mathcal{L}V = 0$;
+- **Stopping region** $\mathcal{S} = \{V = \Phi\}$, where $-V_t - \mathcal{L}V \leq 0$.
+
+The boundary $\partial \mathcal{C} = S^*(t)$ is the optimal exercise boundary. Across it the *smooth fit* condition gives $V \in C^1$ but $V_{SS}$ jumps, so $V$ is not $C^2$ and the classical PDE formulation fails on the boundary itself. $V$ is, however, the *unique* viscosity solution of the variational inequality, and by comparison
 
 $$
-u^\epsilon \to u \quad \text{as } \epsilon \to 0
+V_{\text{viscosity}} = V_{\text{probabilistic}} = \sup_{\tau} \mathbb{E}\!\left[e^{-r(\tau-t)}\Phi(S_\tau)\right].
 $$
 
-and $u$ is the viscosity solution.
-
-### Approximation by Smooth Functions
-
-Replace the terminal data $g(x)$ by smooth approximations $g_n \in C^\infty$ with $g_n \to g$ uniformly.
-
-Solve for smooth solutions $u_n$ with terminal data $g_n$.
-
-Then $u_n \to u$ where $u$ is the viscosity solution with terminal data $g$.
+This identification---two completely different definitions of the same object, agreeing by uniqueness---is the chapter's central theme in its sharpest form.
 
 ---
 
-## 8. Connection to Stochastic Control
+## 7. Regularity
 
-### Dynamic Programming Principle
+Under uniform ellipticity and smooth data, viscosity solutions coincide with classical $C^{2,1}$ solutions. For Black-Scholes the diffusion coefficient $\sigma^2 S^2$ vanishes at $S = 0$, so the equation is *degenerate*: even smooth payoffs can produce solutions that fail to be $C^2$ at $S = 0$.
 
-For the stochastic control problem:
-
-$$
-V(x,t) = \sup_{\alpha \in \mathcal{A}}\mathbb{E}\left[\int_t^T f(X_s^\alpha, \alpha_s)e^{-\int_t^s r(\tau)d\tau}ds + g(X_T^\alpha)e^{-\int_t^T r(\tau)d\tau} \mid X_t = x\right]
-$$
-
-where $X^\alpha$ satisfies:
+In the interior, away from boundaries and degeneracies, viscosity solutions are at least locally Holder continuous,
 
 $$
-dX_s = b(X_s, \alpha_s)ds + \sigma(X_s, \alpha_s)dW_s
+|u(x,t) - u(y,s)| \leq C\!\left(|x-y|^\alpha + |t-s|^{\alpha/2}\right),
 $$
 
-The DPP states:
-
-$$
-V(x,t) = \sup_{\alpha}\mathbb{E}\left[\int_t^{t+h}f(X_s^\alpha,\alpha_s)e^{-\int_t^s r\, d\tau}ds + V(X_{t+h}^\alpha, t+h)e^{-\int_t^{t+h}r\, d\tau} \mid X_t = x\right]
-$$
-
-### HJB Equation
-
-Taking $h \to 0$ formally gives the **Hamilton-Jacobi-Bellman equation**:
-
-$$
-\frac{\partial V}{\partial t} + \sup_{\alpha \in A}\left[b(x,\alpha) \cdot DV + \frac{1}{2}\text{tr}(\sigma\sigma^T(x,\alpha)D^2V) + f(x,\alpha)\right] - rV = 0
-$$
-
-### Viscosity Solution Connection
-
-**Theorem**: The value function $V$ defined via the stochastic control problem is a **viscosity solution** of the HJB equation.
-
-**Proof sketch**:
-
-- Use DPP with smooth test functions
-- For subsolution: if $\phi$ touches $V$ from above at $(x_0,t_0)$, then for small $h$:
-
-$$
-\phi(x_0,t_0) \geq \mathbb{E}[\cdots + \phi(X_{t_0+h}, t_0+h)e^{-rh}]
-$$
-
-- Ito's formula + supremum over $\alpha$ gives $F(\phi) \leq 0$
-- Similarly for supersolution
-
-This is why viscosity solutions are **natural** for finance!
+and typically $C^{2,\alpha}$. Singularities are confined to (i) boundaries, (ii) degeneracy points such as $S = 0$, (iii) free boundaries, and (iv) points where the terminal data is non-smooth.
 
 ---
 
-## 9. American Options
+## 8. Numerical Schemes: Barles-Souganidis
 
-### Obstacle Problem
+Viscosity theory delivers what is, for practitioners, its most concrete payoff: a clean convergence criterion for finite-difference and tree-based pricers.
 
-For an American option with payoff $\Phi(S)$:
+**Theorem (Barles-Souganidis).** A discretization that is *consistent* (locally approximates the PDE), *monotone* (the update is non-decreasing in each neighboring value), and *stable* (bounded under refinement) converges to the unique viscosity solution.
 
-$$
-V(S,t) = \sup_{\tau \in [t,T]}\mathbb{E}^{\mathbb{Q}}[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S]
-$$
+For Black-Scholes the standard explicit finite-difference discretization of $\mathcal{L}$ is monotone under a CFL condition on $\Delta t / (\Delta S)^2$ (see Exercise 5). For American options one imposes $V_j^{n+1} = \max\{\Phi(S_j),\text{continuation value}\}$ at each step, which enforces the obstacle. This is exactly the recipe behind binomial and trinomial trees, and Barles-Souganidis is what guarantees they converge to the right price.
 
-This is an **optimal stopping problem**.
-
-### Variational Inequality
-
-The value function satisfies:
+An equivalent regularization route is **penalization**: replace the obstacle problem with
 
 $$
-\min\left\{-\frac{\partial V}{\partial t} - \mathcal{L}V, \, V - \Phi\right\} = 0
+-u^\epsilon_t - \mathcal{L}u^\epsilon - \tfrac{1}{\epsilon}(u^\epsilon - \Phi)^- = 0,
 $$
 
-where $\mathcal{L}$ is the Black-Scholes operator:
-
-$$
-\mathcal{L}V = rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV
-$$
-
-### Regions
-
-- **Continuation region**: $\mathcal{C} = \{(S,t) : V(S,t) > \Phi(S)\}$
-    - Here: $-\frac{\partial V}{\partial t} - \mathcal{L}V = 0$
-
-- **Stopping region**: $\mathcal{S} = \{(S,t) : V(S,t) = \Phi(S)\}$
-    - Here: $-\frac{\partial V}{\partial t} - \mathcal{L}V \leq 0$
-
-### Free Boundary
-
-The boundary $\partial \mathcal{C}$ is the **optimal exercise boundary** $S^*(t)$.
-
-At $S = S^*(t)$, $V$ is typically **not $C^2$**---only $C^1$ (smooth fit).
-
-### Viscosity Solution
-
-$V$ is the unique viscosity solution of the variational inequality with terminal condition $V(S,T) = \Phi(S)$.
-
-**Key properties**:
-
-1. $V \geq \Phi$ (no-arbitrage)
-2. $V$ is continuous
-3. In $\mathcal{C}$: $V$ is $C^{2,1}$ and satisfies the PDE
-4. At the free boundary: only viscosity derivatives exist
+which has smooth solutions for $\epsilon > 0$ and converges to the viscosity solution as $\epsilon \to 0$. The penalty $-\tfrac{1}{\epsilon}(u^\epsilon - \Phi)^-$ acts as a strong restoring force whenever $u^\epsilon$ tries to fall below the payoff.
 
 ---
 
-## 10. Detailed Example: American Put
+## 9. Summary
 
-### Setup
+Three solution concepts coexist: classical (requires $C^2$), weak/Sobolev (uses integration against test functions, less convenient under nonlinearity), and viscosity (requires only continuity, handles degeneracy and free boundaries, comes with a comparison principle). For the smooth European payoffs of this chapter all three coincide; for digital and American payoffs only the viscosity notion applies.
 
-Payoff: $\Phi(S) = (K - S)^+$
-
-The variational inequality:
-
-$$
-\min\left\{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV, \, (K-S) - V\right\} = 0
-$$
-
-### Properties
-
-1. **Early exercise**: Optimal to exercise when $S \leq S^*(t)$ for some boundary $S^*(t)$
-2. **Smooth fit**: $V(S^*(t), t) = K - S^*(t)$ and $\frac{\partial V}{\partial S}(S^*(t), t) = -1$
-3. **Non-smooth second derivative**: $\frac{\partial^2 V}{\partial S^2}$ jumps at $S^*(t)$
-
-### Viscosity Formulation
-
-For $S > S^*(t)$ (continuation region):
-
-- Test functions touching from above: $F(\phi) \leq 0$
-- Test functions touching from below: $F(\phi) \geq 0$
-- Classical solution holds: $F = 0$
-
-At $S = S^*(t)$ (free boundary):
-
-- From above: $\phi$ satisfies $F(\phi) \leq 0$ (or $\phi = K - S$ which gives $V - \Phi = 0$)
-- From below: $\phi$ satisfies $F(\phi) \geq 0$
-
-For $S < S^*(t)$ (stopping region):
-
-- $V = K - S$ (payoff)
-- Any test function must satisfy the obstacle constraint
-
-### Comparison Principle
-
-Ensures uniqueness: any two viscosity solutions must coincide.
-
-This guarantees that:
-
-$$
-V_{\text{viscosity}} = V_{\text{probabilistic}} = \sup_\tau \mathbb{E}[e^{-r\tau}\Phi(S_\tau)]
-$$
-
----
-
-## 11. Regularity Theory
-
-### When is the Viscosity Solution Classical?
-
-**Theorem**: If:
-
-1. The payoff $\Phi$ is $C^2$
-2. The coefficients are smooth
-3. The operator is uniformly elliptic: $\sigma^2 S^2 \geq c > 0$
-
-Then the viscosity solution is **classical** ($C^{2,1}$).
-
-### Degenerate Case
-
-For Black-Scholes, $\sigma^2 S^2 \to 0$ as $S \to 0$ (**degeneracy**).
-
-The solution may fail to be $C^2$ at $S = 0$ even with smooth payoffs.
-
-### Holder Continuity
-
-**Theorem**: Under mild conditions, viscosity solutions are **locally Holder continuous**:
-
-$$
-|u(x,t) - u(y,s)| \leq C(|x-y|^\alpha + |t-s|^{\alpha/2})
-$$
-
-for some $\alpha \in (0,1)$.
-
-### Interior Regularity
-
-Away from boundaries and degeneracies, viscosity solutions are typically $C^{2,\alpha}$ (classical).
-
-Singularities only occur at:
-
-- Boundaries
-- Degeneracy points
-- Free boundaries
-- Non-smooth payoffs
-
----
-
-## 12. Numerical Methods
-
-### Finite Difference Schemes
-
-For the scheme:
-
-$$
-\frac{V_j^{n+1} - V_j^n}{\Delta t} + \mathcal{L}_h V_j^{n+1} = 0
-$$
-
-**Consistency**: The scheme approximates the PDE.
-
-**Monotonicity**: Increasing $V$ at neighboring points increases the scheme.
-
-**Stability**: Bounded growth of errors.
-
-**Theorem (Barles-Souganidis)**: A consistent, monotone, stable scheme **converges** to the viscosity solution.
-
-### Monotone Schemes
-
-For Black-Scholes, a **monotone scheme** might be:
-
-$$
-\frac{V_j^{n+1} - V_j^n}{\Delta t} + r S_j \frac{V_{j+1}^{n+1} - V_{j-1}^{n+1}}{2\Delta S} + \frac{\sigma^2 S_j^2}{2}\frac{V_{j+1}^{n+1} - 2V_j^{n+1} + V_{j-1}^{n+1}}{(\Delta S)^2} - rV_j^{n+1} = 0
-$$
-
-provided the **CFL condition** ensures monotonicity.
-
-### American Options
-
-At each time step:
-
-$$
-V_j^{n+1} = \max\left\{\Phi(S_j), \text{continuation value}\right\}
-$$
-
-This automatically enforces the obstacle constraint.
-
-### Convergence
-
-**Theorem**: The discrete scheme converges to the viscosity solution of the continuous variational inequality.
-
-This justifies **practical algorithms** like:
-
-- Finite differences
-- Binomial trees
-- Trinomial trees
-
----
-
-## 13. Obstacle Problems and Penalization
-
-### Penalization Method
-
-Replace the obstacle problem:
-
-$$
-\min\{-u_t - \mathcal{L}u, u - g\} = 0
-$$
-
-with the penalized equation:
-
-$$
--u_t^\epsilon - \mathcal{L}u^\epsilon - \frac{1}{\epsilon}(u^\epsilon - g)^- = 0
-$$
-
-where $(x)^- = \max(-x, 0)$.
-
-### Convergence
-
-As $\epsilon \to 0$:
-
-$$
-u^\epsilon \to u
-$$
-
-where $u$ is the viscosity solution of the obstacle problem.
-
-**Proof sketch**:
-
-- $u^\epsilon$ is smooth
-- Comparison principle for penalized equation
-- Stability under limits
-
-### Regularization by Penalty
-
-The penalty term $-\frac{1}{\epsilon}(u^\epsilon - g)^-$ acts as:
-
-- A large negative force when $u^\epsilon < g$ (pushing $u^\epsilon$ up)
-- Zero when $u^\epsilon \geq g$ (inactive)
-
-As $\epsilon \to 0$, this enforces $u \geq g$ exactly.
-
----
-
-## 14. Comparison with Other Solution Concepts
-
-### Classical Solutions
-
-- **Requires**: $C^2$ regularity
-- **Applies**: Smooth data, non-degenerate operators
-- **Unique**: Yes, when exists
-- **Finance**: European options with smooth payoffs
-
-### Weak Solutions
-
-- **Requires**: $H^1$ (Sobolev space)
-- **Applies**: Variational formulations
-- **Unique**: Not always
-- **Finance**: Less common
-
-### Viscosity Solutions
-
-- **Requires**: Only continuity
-- **Applies**: Non-smooth data, degenerate/singular operators, optimal control
-- **Unique**: Yes, under comparison principle
-- **Finance**: American options, stochastic control
-
-### Strong vs. Viscosity
-
-If $u \in C^2$ solves the PDE classically, then:
-
-$$
-\text{Classical} \implies \text{Viscosity} \implies \text{Weak}
-$$
-
-But the converse is false---viscosity solutions are **more general**.
-
----
-
-## 15. Probabilistic Interpretation
-
-### Perron-Frobenius Formula
-
-For the obstacle problem:
-
-$$
-u(x,t) = \sup_{\tau \leq T-t}\mathbb{E}\left[\int_t^\tau f(X_s)e^{-r(s-t)}ds + g(X_\tau)e^{-r(\tau-t)}\right]
-$$
-
-The viscosity solution $u$ **is** the value function.
-
-### Comparison via Probability
-
-To prove comparison, use:
-
-$$
-u(x,t) \leq \mathbb{E}[\cdots] \quad \text{for all strategies}
-$$
-
-$$
-v(x,t) \geq \mathbb{E}[\cdots] \quad \text{for optimal strategy}
-$$
-
-Therefore $u \leq v$.
-
-### Martingale Characterization
-
-A function $u$ is a viscosity solution iff the process:
-
-$$
-M_t = e^{-rt}u(X_t,t) + \int_0^t e^{-rs}f(X_s,s)ds
-$$
-
-is a **supermartingale** for all strategies and a **martingale** for optimal strategies.
-
----
-
-## 16. Summary
-
-| **Problem** | **Classical Approach** | **Viscosity Approach** |
+| **Problem** | **Classical** | **Viscosity** |
 |---|---|---|
-| European call (smooth) | PDE + Feynman-Kac | Same (viscosity = classical) |
-| Digital option | Fails (discontinuous) | Viscosity solution exists |
-| American put | Free boundary problem | Obstacle problem (viscosity) |
-| Stochastic control | Verify HJB formally | Value function is viscosity solution |
-| Numerical methods | Ad hoc convergence | Barles-Souganidis theorem |
+| European call (smooth payoff) | works | identical |
+| Digital option | fails (discontinuous payoff) | unique solution |
+| American put | free boundary, needs ad-hoc fit | obstacle problem, unique solution |
+| Stochastic control / HJB | typically no $C^2$ solution | value function is the unique solution |
+| Numerical convergence | case-by-case | Barles-Souganidis |
 
-For a stochastic control problem with value function $V$:
-
-1. $V$ is **continuous**
-2. $V$ is a **viscosity solution** of the HJB equation
-3. $V$ is the **unique** viscosity solution (comparison principle)
-4. Numerical approximations **converge** to $V$
-
-These four statements constitute the complete theoretical toolkit that places the PDE-based pricing methods of this chapter on rigorous footing. In particular, the heat equation derivation, the Feynman-Kac representation, and the Fourier inversion all rely on the pricing PDE having a unique solution that depends continuously on the data. Viscosity theory is what guarantees these properties --- even for the discontinuous payoffs and degenerate coefficients that arise routinely in practice.
-
-With this, the chapter is complete. Every section has presented a different representation of the same pricing semigroup $\mathcal{P}_\tau = e^{\tau\mathcal{L}}$: as a kernel, an expectation, a spectral transform, a resolvent, an eigenfunction expansion, a set of scaling invariants, a measure change, and finally a well-posed operator. The diversity of techniques is not redundancy --- it reflects different coordinate systems on a single mathematical object, and it is this unity that makes the Black--Scholes theory both deep and practical.
+This closes the chapter's central thread. Every preceding subsubsection produced a different representation of the same pricing operator $\mathcal{P}_\tau = e^{\tau \mathcal{L}}$ (see [§ Introduction](intro.md) for the operator framing, [§ Heat Equation](heat_equation.md) for the kernel form, and [§ Feynman-Kac](feynman_kac.md) for the probabilistic form). Viscosity theory is the rigorous foundation under which all of these representations are guaranteed to define the *same* function---even when the payoff is discontinuous or the diffusion degenerates. The diversity of techniques is not redundancy; it is the reflection of a single, well-posed operator viewed in different coordinates.
 
 ---
 

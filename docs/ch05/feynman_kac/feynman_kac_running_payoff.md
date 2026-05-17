@@ -1,103 +1,41 @@
-# Feynman Kac Running
+# Feynman–Kac with Running Payoff
 
+This page isolates what is *specific* to the source term $+f$ in the Feynman–Kac formula: the **intuition** for what it represents and the **cancellation** that makes the martingale argument go through. The full canonical statement (with all four ingredients $\mathcal{L}u$, $-ru$, $+f$, $g$) lives in [§ The Feynman–Kac Formula](feynman_kac_formula.md#the-classical-feynmankac-formula); the general martingale derivation lives in [§ Proof Sketch](feynman_kac_proof_sketch.md).
 
-Let $X_t$ be a diffusion with generator $L$. Let
-
-- $f(x)$: terminal payoff
-- $r(x,t)$: discount/killing rate
-- $g(x,t)$: running payoff (source term)
+Throughout: $X_t$ is a diffusion with generator $\mathcal{L}$, $g$ is the terminal payoff, $r$ is the discount/killing rate, and $f$ is the **running payoff** (source term).
 
 ---
 
-## Statement General
+## The Source-Term Specialization
 
-
-Define
-
-$$
-u(x,t)=\mathbb E\!\left[
-\exp\!\Big(-\int_t^T r(X_s,s)\,ds\Big)f(X_T)
-+
-\int_t^T \exp\!\Big(-\int_t^s r(X_\tau,\tau)\,d\tau\Big)g(X_s,s)\,ds
-\,\middle|\,X_t=x
-\right]
-$$
-
-
-
-Then $u$ solves
+Strip the discounting and the terminal payoff to isolate what the source term alone contributes:
 
 $$
-u_t + Lu - r\,u + g = 0,
-\qquad
-u(x,T)=f(x)
+u_t + \mathcal{L}u + f = 0, \qquad u(T,x) = 0, \qquad u(t,x) = \mathbb{E}\!\left[\int_t^T f(s, X_s)\,ds \,\Big|\, X_t = x\right].
 $$
 
-
+Read this as "accumulated cashflow (or accumulated heat generation) along the diffusion path." The full canonical formula reinstates discounting on each contribution and adds the terminal payoff back on top.
 
 ---
 
-## Proof augmented
+## Why the Source Term Cancels
 
+Recall (see [§ Proof Sketch — Direction 1](feynman_kac_proof_sketch.md#direction-1-pde-solution-implies-expectation-formula)): the unaugmented process $D(t,s)u(s,X_s)$ has drift $D(t,s)[\partial_s u + \mathcal{L}u - r\,u]\,ds$. With a source term in the PDE this drift equals $-D\,f\,ds$, which is **not** zero.
 
-Let
-
-$$
-Z_s=\exp\!\Big(-\int_t^s r(X_u,u)\,du\Big),\qquad dZ_s=-r(X_s,s)Z_s\,ds
-$$
-
-
-
-Assume $u\in C^{1,2}$ solves the PDE. Define
+The fix is to enrich the candidate martingale with the discounted running payoff already collected:
 
 $$
-Y_s := Z_s u(X_s,s) + \int_t^s Z_\tau\,g(X_\tau,\tau)\,d\tau
+Y_s := D(t,s)\,u(s,X_s) + \int_t^s D(t,\tau)\,f(\tau,X_\tau)\,d\tau, \qquad D(t,s) = e^{-\int_t^s r\,d\tau}.
 $$
 
-
-
-Compute $dY_s$. Using Itô + product rule:
-
-$$
-d(Z_su(X_s,s))
-=
-Z_s(u_t+Lu-r\,u)(X_s,s)\,ds
-+
-Z_s\sigma u_x\,dW_s
-$$
-
-
-Adding $d\left(\int_t^s Z_\tau g(X_\tau,\tau)\,d\tau\right)=Z_sg(X_s,s)\,ds$, we get
-
-$$
-dY_s
-=
-Z_s\big(u_t+Lu-r\,u+g\big)(X_s,s)\,ds
-+
-Z_s\sigma u_x\,dW_s
-$$
-
-
-By the PDE the drift is zero, hence $Y_s$ is a local martingale.
-
-Taking expectations from $t$ to $T$ yields
-
-$$
-u(x,t)=\mathbb E^{x,t}\!\left[
-Z_T f(X_T) + \int_t^T Z_s g(X_s,s)\,ds
-\right]
-$$
-
-
-which is exactly the stated representation.
+The integral contributes $+D(t,s)\,f(s,X_s)\,ds$ to $dY_s$, exactly cancelling the $-D\,f\,ds$ from the PDE. The drift of $Y_s$ vanishes, $Y_s$ becomes a martingale, and $Y_t=\mathbb{E}[Y_T\mid\mathcal{F}_t]$ gives the stated formula. $\square$
 
 ---
 
 ## Interpretation
 
-
-- $g$ acts as a **source term** (like heat generation).
-- $r$ acts as **discounting** (finance) or **killing** (probability/physics).
+- $f$ acts as a **source term** (heat generation, dividends, coupons).
+- $r$ acts as **discounting**, **killing**, or **absorption** — see [§ Discounted Feynman–Kac § The -ru Term: Three Equivalent Interpretations](discounted_feynman_kac.md#the--ru-term-three-equivalent-interpretations).
 
 ---
 

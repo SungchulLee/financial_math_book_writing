@@ -33,12 +33,7 @@ WWR is most severe during market stress.
 ## Modeling challenges
 
 
-Standard intensity models often assume:
-
-- independence between exposure and default,
-- constant or exogenous intensities.
-
-These assumptions underestimate tail losses when WWR is present.
+Recall (see [§ Reduced-Form Intensity-Based Models](../reduced_form_intensity_based_models/affine_intensity_models.md)): standard intensity models often assume independence between exposure and default, and constant or exogenous intensities. These assumptions underestimate tail losses when WWR is present.
 
 ---
 
@@ -48,7 +43,7 @@ These assumptions underestimate tail losses when WWR is present.
 Mitigation techniques include:
 
 - conservative exposure modeling,
-- stressed CVA calculations,
+- stressed CVA calculations — Recall (see [§ Pricing with Default Risk](../pricing_with_default_risk/defaultable_bonds.md)),
 - explicit dependence between market factors and intensity.
 
 Regulatory frameworks require explicit WWR consideration.

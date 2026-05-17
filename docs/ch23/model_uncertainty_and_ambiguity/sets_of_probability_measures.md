@@ -195,32 +195,7 @@ for constraint sets $\mathcal{C}_i \subseteq \mathbb{R}$.
 
 ### 4. Rectangularity
 
-
-A fundamental concept for dynamic consistency in multi-period models.
-
-**Definition** (Rectangular Set): A set $\mathcal{P}$ of probability measures on $(\Omega, \mathcal{F}_T)$ is **rectangular** with respect to a filtration $\{\mathcal{F}_t\}_{t \leq T}$ if for any $P, Q \in \mathcal{P}$, the "pasted" measure:
-
-
-$$
-R(A) = \mathbb{E}_P[\mathbb{1}_A \cdot \mathbb{1}_B + \mathbb{1}_A \cdot \mathbb{1}_{B^c} \cdot P(A|\mathcal{F}_t) / Q(B|\mathcal{F}_t) \cdot Q(A|\mathcal{F}_t)]
-$$
-
-
-
-also belongs to $\mathcal{P}$ for all $B \in \mathcal{F}_t$ and $A \in \mathcal{F}_T$.
-
-**Intuitive Characterization**: $\mathcal{P}$ is rectangular if:
-
-
-$$
-\mathcal{P} = \left\{ P: P(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t \leq T \right\}
-$$
-
-
-
-where $\mathcal{P}_t$ are measurable families of conditional distributions.
-
-**Importance**: Rectangularity ensures that optimal decisions under maxmin preferences remain optimal when reconsidered at intermediate times (dynamic consistency).
+**Recall** (see [§ Dynamic Consistency](../decision_making_under_uncertainty/dynamic_consistency.md)): $\mathcal{P}$ is rectangular w.r.t. $\{\mathcal{F}_t\}$ iff $\mathcal{P} = \{P: P(\cdot|\mathcal{F}_t) \in \mathcal{P}_t\ \forall t\}$ for measurable families $\mathcal{P}_t$ of conditional distributions; equivalently, conditionals may be freely pasted across $\mathcal{F}_t$-events without leaving $\mathcal{P}$. This is necessary and sufficient for time-consistent maxmin preferences.
 
 ## Convexity and Compactness Properties
 
@@ -377,71 +352,11 @@ can be reformulated using the conjugate of the indicator function of $\mathcal{P
 
 ### 4. Robust Mean-Variance Portfolio
 
-
-**Problem**: 
-
-
-$$
-\max_{w} \min_{P \in \mathcal{P}} \left\{ w^\top \mathbb{E}_P[R] - \frac{\lambda}{2} w^\top \text{Cov}_P(R) w \right\}
-$$
-
-
-
-**KL Uncertainty**: For $\mathcal{P} = \mathcal{P}_{\text{KL}}(\theta)$:
-
-
-$$
-\min_{P \in \mathcal{P}} \mathbb{E}_P[w^\top R] = \mathbb{E}_{P_0}[w^\top R] - \sqrt{2\theta \cdot w^\top \Sigma_0 w}
-$$
-
-
-
-where $\Sigma_0 = \text{Cov}_{P_0}(R)$.
-
-**Robust Portfolio**:
-
-
-$$
-w^* = \frac{1}{\lambda + \sqrt{2\theta/\mu^\top \Sigma_0^{-1} \mu}} \Sigma_0^{-1} \mu_0
-$$
-
-
-
-where $\mu_0 = \mathbb{E}_{P_0}[R]$.
+**Recall** (see [§ Robust Portfolio Selection](../ambiguity_averse_preferences/entropy_penalization.md)): for $\mathcal{P} = \mathcal{P}_{\text{KL}}(\theta)$, the inner minimization gives $\min_{P \in \mathcal{P}} \mathbb{E}_P[w^\top R] = \mathbb{E}_{P_0}[w^\top R] - \sqrt{2\theta \cdot w^\top \Sigma_0 w}$, leading to $w^* \propto \Sigma_0^{-1} \mu_0$ with an inflated risk-aversion coefficient.
 
 ### 5. Robust Option Pricing
 
-
-**Problem**: Price a European option with payoff $\Phi(S_T)$ under model uncertainty.
-
-**Setup**: Consider equivalent martingale measures $\mathbb{Q}$ with bounded market price of risk:
-
-
-$$
-\mathcal{Q} = \left\{ \mathbb{Q}: \left\| \frac{d\mathbb{Q}}{d\mathbb{P}} \right\|_{\infty} \leq K \right\}
-$$
-
-
-
-**Robust Price**:
-
-
-$$
-V_0 = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}\left[ e^{-rT} \Phi(S_T) \right]
-$$
-
-
-
-**PDE Formulation**: The value function $V(t, S)$ satisfies the Hamilton-Jacobi-Bellman equation:
-
-
-$$
-\frac{\partial V}{\partial t} + \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathcal{L}^{\sigma} V = 0
-$$
-
-
-
-where $\mathcal{L}^{\sigma}$ is the Black-Scholes operator with volatility $\sigma$.
+**Recall** (see [§ Robust No-Arbitrage Pricing](../robust_no_arbitrage_pricing/hobson_robust_bounds.md) and [§ Uncertain Volatility Models](../robust_no_arbitrage_pricing/hobson_robust_bounds.md)): under uncertain volatility $\sigma_t \in [\sigma_{\min}, \sigma_{\max}]$, the upper price $V_0 = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_\mathbb{Q}[e^{-rT}\Phi(S_T)]$ solves the Black-Scholes-Barenblatt HJB equation $\partial_t V + \sup_\sigma \mathcal{L}^\sigma V = 0$.
 
 ## Contraction and Expansion of Uncertainty Sets
 
@@ -566,37 +481,7 @@ where:
 
 ### 3. Connection to Exponential Utility
 
-
-**Entropic Risk Measure**:
-
-
-$$
-\rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}_{P_0}\left[ e^{\beta X} \right]
-$$
-
-
-
-**Dual Representation**:
-
-
-$$
-\rho_{\beta}(X) = \sup_{P \ll P_0} \left\{ \mathbb{E}_P[X] - \frac{1}{\beta} D_{\text{KL}}(P \| P_0) \right\}
-$$
-
-
-
-**Interpretation**: The supremum is over all measures $P$ in the entropic ball, trading off expected value against model distance.
-
-**Exponential Utility**: For utility $u(x) = -e^{-\beta x}$:
-
-
-$$
--\frac{1}{\beta} \log(-\mathbb{E}[u(X)]) = \rho_{\beta}(X)
-$$
-
-
-
-linking risk-sensitive preferences to model uncertainty.
+**Recall** (see [§ Coherent Risk Measures](../../ch22/market_risk_measures/coherent_risk_measures.md) and [§ Entropy Penalization](../ambiguity_averse_preferences/entropy_penalization.md)): the entropic risk measure $\rho_\beta(X) = \beta^{-1}\log \mathbb{E}_{P_0}[e^{\beta X}]$ has dual $\rho_\beta(X) = \sup_{P \ll P_0}\{\mathbb{E}_P[X] - \beta^{-1} D_{\text{KL}}(P \| P_0)\}$ and equals $-\beta^{-1}\log(-\mathbb{E}[u(X)])$ for exponential utility $u(x) = -e^{-\beta x}$.
 
 ## Applications in Continuous Time
 
@@ -671,37 +556,7 @@ $$
 
 ### 3. Stochastic Control with Model Uncertainty
 
-
-**Controlled SDE**:
-
-
-$$
-dX_t = b(X_t, u_t) \, dt + \sigma(X_t) \, dW_t + \gamma(X_t) \, dB_t
-$$
-
-
-
-where $B_t$ represents model misspecification.
-
-**Robust Control Problem**:
-
-
-$$
-\inf_{u} \sup_{B} \mathbb{E}\left[ \int_0^T e^{-\rho t} \left( c(X_t, u_t) + \frac{\theta}{2} \left(\frac{dB_t}{dt}\right)^2 \right) dt \right]
-$$
-
-
-
-**Worst-Case Process**: The optimal misspecification $B^*$ satisfies:
-
-
-$$
-\frac{dB_t^*}{dt} = \frac{1}{\theta} \gamma(X_t)^\top \nabla V(t, X_t)
-$$
-
-
-
-where $V$ is the value function.
+**Recall** (see [§ Multiplier Preferences](../ambiguity_averse_preferences/multiplier_preferences.md)): Hansen-Sargent continuous-time robust control on $dX_t = b(X_t,u_t)\,dt + \sigma(X_t)\,dW_t + \gamma(X_t)\,dB_t$ with quadratic distortion penalty $(\theta/2)(dB_t/dt)^2$ yields worst-case drift $dB_t^*/dt = \theta^{-1}\gamma(X_t)^\top \nabla V(t, X_t)$.
 
 ## Comparison of Uncertainty Specifications
 
@@ -856,39 +711,7 @@ $$
 
 ### 1. Wasserstein Distance and Optimal Transport
 
-
-**Wasserstein Distance**: For $p \geq 1$:
-
-
-$$
-W_p(P, Q) = \left( \inf_{\pi \in \Pi(P, Q)} \int_{\Omega \times \Omega} d(x, y)^p \, d\pi(x, y) \right)^{1/p}
-$$
-
-
-
-where $\Pi(P, Q)$ is the set of couplings with marginals $P$ and $Q$.
-
-**Wasserstein Ball**:
-
-
-$$
-\mathcal{P}_W(\delta) = \{ P: W_p(P, P_0) \leq \delta \}
-$$
-
-
-
-**Advantages**: 
-
-- Metrizes weak convergence
-- Respects the geometry of $\Omega$
-- Leads to smooth optimization problems
-
-**Robust Optimization with Wasserstein**:
-
-
-$$
-\inf_x \sup_{P \in \mathcal{P}_W(\delta)} \mathbb{E}_P[f(x, \cdot)]
-$$
+**Recall** (see [§ Wasserstein Balls and Distributional Robustness](wasserstein_balls_distributional_robustness.md)): the $p$-Wasserstein distance $W_p(P,Q) = (\inf_\pi \int d(x,y)^p d\pi)^{1/p}$ over couplings with prescribed marginals defines balls $\mathcal{P}_W(\delta)$ that metrize weak convergence, respect the geometry of $\Omega$, and admit tractable DRO duality.
 
 
 

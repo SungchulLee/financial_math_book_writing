@@ -57,7 +57,7 @@ $$\begin{array}{lllllllll}
 N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)
 \end{array}$$
 
-The Hull-White model computes each $P(t,T_k)=e^{A(t,T_k)+B(t,T_k)r(t)}$ using the calibrated functions $A$ and $B$, which by construction match the market ZCB curve. Therefore, the Hull-White swap price agrees with the market swap price.
+Recall (see [§ HW Bond Pricing](../bond_pricing/bond_price_formula.md)): the Hull-White ZCB price $P(t,T_k)=e^{A(t,T_k)+B(t,T_k)r(t)}$ is affine and by construction matches the market ZCB curve, so the Hull-White swap price agrees with the market swap price.
 
 ---
 

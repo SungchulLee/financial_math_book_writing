@@ -4,15 +4,7 @@ Spectral risk measures generalize Value-at-Risk (VaR) and Expected Shortfall (ES
 
 ## Key Concepts
 
-**Coherent Risk Measures**
-A risk measure $\rho: \mathcal{L} \to \mathbb{R}$ is coherent if it satisfies:
-
-1. **Monotonicity**: $X \leq Y$ ⟹ $\rho(X) \leq \rho(Y)$
-2. **Subadditivity**: $\rho(X + Y) \leq \rho(X) + \rho(Y)$ (diversification benefit)
-3. **Positive homogeneity**: $\rho(\lambda X) = \lambda \rho(X)$ for $\lambda > 0$ (scaling)
-4. **Translation invariance**: $\rho(X + c) = \rho(X) - c$ (cash adds linearly)
-
-VaR violates subadditivity (not coherent). Expected Shortfall is coherent.
+Recall (see [§ Coherent Risk Measures](coherent_risk_measures.md)) the four coherence axioms. VaR violates subadditivity (not coherent); Expected Shortfall is coherent.
 
 **Spectral Risk Measure Definition**
 A spectral risk measure applies weight function $\phi(\alpha)$ across quantiles:
@@ -43,11 +35,7 @@ The weight function $\phi(\alpha)$ encodes:
 | Omega ratio | Specific choice for return/risk tradeoff | Gain/loss focus |
 
 **Kusuoka Representation**
-Kusuoka showed any spectral risk measure can be expressed as:
-
-$$\rho_\phi(X) = \max_{p \in \mathcal{P}} \mathbb{E}_p[-X]$$
-
-where the maximum is over distributions consistent with marginal constraints. This connects spectral measures to robust optimization.
+Recall (see [§ Coherent Risk Measures](coherent_risk_measures.md)) the law-invariant Kusuoka representation: every law-invariant coherent measure (in particular every spectral measure) is a supremum of mixtures of ES, linking spectral measures to robust optimization.
 
 **Parametric Approaches**
 For common distributions, spectral measures have closed forms:

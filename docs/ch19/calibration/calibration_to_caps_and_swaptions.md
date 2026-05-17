@@ -190,25 +190,13 @@ In **local (instrument-by-instrument) calibration**, the model is calibrated to 
 
 ### Global Calibration
 
-In **global calibration**, the model parameters are chosen to minimize a weighted objective function across all available instruments simultaneously:
+Recall (see [§ Calibration as inverse problem](../../ch17/calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md)) for the general weighted-least-squares formulation. For rates, $\theta$ is split across cap and swaption residuals:
 
 $$
 \min_{\theta} \sum_{i \in \text{caps}} w_i^c \left(\sigma_i^{\text{model}}(\theta) - \sigma_i^{\text{mkt}}\right)^2 + \sum_{j \in \text{swaptions}} w_j^s \left(\sigma_j^{\text{model}}(\theta) - \sigma_j^{\text{mkt}}\right)^2
 $$
 
-where $\theta$ denotes the full parameter vector (volatilities, correlations, mean reversion, etc.).
-
-**Advantages:**
-
-- Consistent parameter set across all instruments
-- Better out-of-sample behavior
-- Statistically optimal use of market information
-
-**Disadvantages:**
-
-- No single instrument is priced exactly
-- Computationally expensive (requires iterative optimization)
-- Sensitive to the choice of weights $w_i$
+with $\theta$ collecting volatilities, correlations, and mean reversion. Advantages: consistent parameters across all instruments, better out-of-sample behavior, statistically optimal use of market information. Disadvantages: no exact fit, iterative cost, sensitivity to weight choice.
 
 ### Weighting Schemes
 
@@ -228,33 +216,21 @@ The weights $w_i$ and $w_j$ in the global objective function can be chosen as:
 
 ### Hull--White (One-Factor)
 
-The Hull--White model has two parameters: mean reversion $\kappa$ and volatility $\sigma$ (or a time-dependent $\sigma(t)$).
-
-**To caps:** With piecewise-constant $\sigma(t)$, caplet prices via the bond option formula can be matched exactly by choosing $\sigma(t)$ period by period. This is analogous to caplet stripping.
-
-**To swaptions:** One-factor models have limited ability to match the full swaption matrix because all bond prices are driven by a single factor. Calibrating to co-terminal swaptions (fixed final maturity) is common.
+Recall (see [§ Short-rate models](../../ch18/short_rate_models/affine_term_structure.md)) and (see [§ Swaption pricing](../../ch18/swaption_pricing/annuity_measure_and_change_of_numeraire.md)). To caps, piecewise-constant $\sigma(t)$ matches caplet prices period by period (analogous to caplet stripping). To swaptions, one-factor models have limited ability to match the full matrix because all bond prices are driven by a single factor; calibrating to co-terminal swaptions (fixed final maturity) is common.
 
 ### LIBOR Market Model (LMM)
 
-The LMM has forward rate volatilities $\sigma_i(t)$ and correlations $\rho_{ij}$:
-
-**To caps (exact):** Each caplet depends only on $\sigma_i$, so caplet volatilities from the bootstrap directly determine the forward rate volatilities:
-
-$$
-\sigma_i^{\text{Black}} = \sqrt{\frac{1}{T_i}\int_0^{T_i} \sigma_i(t)^2 \, dt}
-$$
-
-**To swaptions (approximate):** Using Rebonato's formula:
+Recall (see [§ LMM](../lmm/caplet_pricing_black_formula.md)). The LMM has forward rate volatilities $\sigma_i(t)$ and correlations $\rho_{ij}$. To caps (exact): each caplet depends only on $\sigma_i$, so the Black caplet vol is $\sigma_i^{\text{Black}} = \sqrt{T_i^{-1}\int_0^{T_i}\sigma_i(t)^2\,dt}$. To swaptions (approximate): Rebonato's formula
 
 $$
 \sigma_S^2 T_\alpha = \sum_{i,j} \frac{w_i w_j L_i(0) L_j(0)}{S(0)^2} \rho_{ij} \int_0^{T_\alpha} \sigma_i(t) \sigma_j(t) \, dt
 $$
 
-the swaption volatility depends on the correlation parameters $\rho_{ij}$, which are then optimized to match market swaption volatilities.
+makes the swaption vol depend on $\rho_{ij}$, optimized to match market swaption vols.
 
 ### Multi-Factor Short-Rate Models
 
-Models such as the two-factor Hull--White (G2++) have additional parameters that improve the fit to the swaption matrix but introduce correlation and identifiability challenges.
+Models such as the two-factor Hull--White (G2++) have additional parameters that improve the fit to the swaption matrix but introduce correlation and identifiability challenges. Recall (see [§ Short-rate models](../../ch18/short_rate_models/affine_term_structure.md)).
 
 ---
 

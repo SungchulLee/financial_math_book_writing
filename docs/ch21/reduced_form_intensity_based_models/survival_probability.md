@@ -47,23 +47,7 @@ $$
 
 where $\lambda_s$ is the default intensity process.
 
-**Derivation:** On $\{\tau > t\}$, using the Cox construction with $\tau = \Lambda^{-1}(E)$ where $E \sim \text{Exp}(1)$ independent of $\mathcal{F}$:
-
-$$
-\mathbb{Q}(\tau > T \mid \mathcal{F}_t, \tau > t) = \mathbb{Q}(E > \Lambda_T \mid E > \Lambda_t, \mathcal{F}_t) = \frac{\mathbb{Q}(E > \Lambda_T \mid \mathcal{F}_t)}{\mathbb{Q}(E > \Lambda_t \mid \mathcal{F}_t)}
-$$
-
-Since $E$ is independent of $\mathcal{F}_\infty$:
-
-$$
-S(t,T) = \frac{e^{-\Lambda_T}}{e^{-\Lambda_t}} = \exp\left(-\int_t^T \lambda_s ds\right) \quad \text{(given } \mathcal{F}_t\text{)}
-$$
-
-Taking expectation over future intensity:
-
-$$
-S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T \lambda_s ds} \middle| \mathcal{F}_t\right]
-$$
+Recall (see [§ Cox Process Models](cox_process_models.md)) for the derivation from $\tau = \Lambda^{-1}(E)$ with $E \perp \mathcal{F}_\infty$, yielding $S(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T \lambda_s\,ds} \mid \mathcal{F}_t]$.
 
 ### Deterministic Intensity Case
 
@@ -134,45 +118,9 @@ $$
 S(0,5) = e^{-0.01 \times 1 - 0.015 \times 2 - 0.02 \times 2} = e^{-0.08} = 0.9231
 $$
 
-### CIR Intensity Model
+### CIR and Vasicek Intensity Models
 
-With $d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma\sqrt{\lambda_t}dW_t$, the survival probability has affine form:
-
-$$
-S(t,T) = A(t,T) \exp(-B(t,T) \lambda_t)
-$$
-
-where $A(t,T)$ and $B(t,T)$ satisfy Riccati ODEs:
-
-$$
-B(t,T) = \frac{2(e^{\gamma(T-t)} - 1)}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}
-$$
-
-$$
-A(t,T) = \left[\frac{2\gamma e^{(\kappa + \gamma)(T-t)/2}}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}
-$$
-
-with $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$.
-
-### Vasicek Intensity Model
-
-With $d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma dW_t$ (Gaussian OU process):
-
-$$
-S(t,T) = \exp\left(-B(t,T)\lambda_t - A(t,T)\right)
-$$
-
-where:
-
-$$
-B(t,T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa}
-$$
-
-$$
-A(t,T) = \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(t,T) - (T-t)) - \frac{\sigma^2}{4\kappa}B(t,T)^2
-$$
-
-**Note:** Vasicek intensity can become negative, which is economically problematic but sometimes used for analytical convenience.
+Recall (see [§ Affine Intensity Models](affine_intensity_models.md)) for the affine closed-form survival $S(t,T) = A(t,T)\exp(-B(t,T)\lambda_t)$ under CIR with $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$ and the analogous Vasicek (OU) formula $S(t,T) = \exp(-B(t,T)\lambda_t - A(t,T))$ with $B(t,T) = (1 - e^{-\kappa(T-t)})/\kappa$. Vasicek intensity can become negative.
 
 ---
 

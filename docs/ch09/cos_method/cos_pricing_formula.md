@@ -35,13 +35,7 @@ $$
 V \approx e^{-rT}\int_a^b \Phi(x)\, f(x)\, dx
 $$
 
-**Step 2: Expand $f$ in a cosine series.** Substitute the truncated cosine expansion:
-
-$$
-f(x) \approx \sum_{k=0}^{N-1}{}' F_k \cos\!\left(\frac{k\pi(x-a)}{b-a}\right)
-$$
-
-where $F_k = \frac{2}{b-a}\,\text{Re}[\phi(k\pi/(b-a))\,e^{-ik\pi a/(b-a)}]$.
+**Step 2: Expand $f$ in a cosine series.** **Recall** (see [§ Cosine Coefficients via CF](cosine_coefficients_via_cf.md)): substitute the truncated cosine expansion $f(x) \approx \sum_{k=0}^{N-1}{}' F_k \cos(k\pi(x-a)/(b-a))$ with $F_k$ given by the CF formula.
 
 **Step 3: Exchange sum and integral.** Since the cosine series converges uniformly for smooth $f$:
 
@@ -186,7 +180,7 @@ The COS method must reproduce the Black--Scholes formula exactly (up to truncati
 
     The Black--Scholes call price is $C_{\text{BS}} = 3.6593$ (to four decimal places).
 
-    The log-moneyness $x = \ln(S_T/K)$ has CF $\phi(u) = \exp(i(r - \sigma^2/2)Tu - \sigma^2 Tu^2/2)$.
+    **Recall** (see [§ Fourier Transform Solution to the BS PDE](../../ch06/bs_pde_analytic_solution/fourier_transform.md)): the log-moneyness $x = \ln(S_T/K)$ has CF $\phi(u) = \exp(i(r - \sigma^2/2)Tu - \sigma^2 Tu^2/2)$.
 
     COS prices with truncation $[a,b] = [-1, 1]$:
 
@@ -206,7 +200,7 @@ The COS method must reproduce the Black--Scholes formula exactly (up to truncati
 For the Heston model, no closed-form option price exists, making the COS method a primary pricing tool.
 
 !!! example "COS Pricing Under Heston"
-    Parameters: $S_0 = 100$, $K = 100$, $r = 0$, $T = 1$, $\kappa = 1.5768$, $\theta = 0.0398$, $\sigma_v = 0.5751$, $\rho = -0.5711$, $v_0 = 0.0175$.
+    Parameters: $S_0 = 100$, $K = 100$, $r = 0$, $T = 1$, $\kappa = 1.5768$, $\theta = 0.0398$, $\sigma_v = 0.5751$, $\rho = -0.5711$, $v_0 = 0.0175$. The Heston CF is recalled in [§ Heston Characteristic Function](../../ch16/heston_cf/closed_form_characteristic_function.md).
 
     Using cumulant-based truncation with $L = 10$ and $N = 128$:
 

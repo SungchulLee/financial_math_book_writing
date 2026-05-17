@@ -17,13 +17,7 @@ A fully implicit discretization of the two-dimensional Heston PDE produces a lar
 
 ## The ADI Principle
 
-Recall the semi-discrete Heston PDE in backward time $\tau = T - t$:
-
-$$
-\frac{\partial V}{\partial \tau} = (\mathcal{L}_x + \mathcal{L}_v + \mathcal{L}_{xv} - rI) V
-$$
-
-where $\mathcal{L}_x$, $\mathcal{L}_v$ are the directional operators and $\mathcal{L}_{xv}$ is the mixed derivative operator. Denote the discrete matrix representations as $A_x$, $A_v$, and $A_{xv}$, and let $A_0 = A_x + A_v + A_{xv} - rI$ be the full spatial operator.
+Recall (see [§ Two-Dimensional PDE Formulation](two_dimensional_pde_formulation.md)) the operator splitting $\mathcal{L} = \mathcal{L}_x + \mathcal{L}_v + \mathcal{L}_{xv}$. In backward time $\tau = T - t$, $\partial_\tau V = (\mathcal{L}_x + \mathcal{L}_v + \mathcal{L}_{xv} - rI) V$. Denote the discrete matrix representations as $A_x$, $A_v$, $A_{xv}$, and let $A_0 = A_x + A_v + A_{xv} - rI$.
 
 A **fully implicit** step would solve:
 

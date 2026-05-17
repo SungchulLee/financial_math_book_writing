@@ -22,42 +22,23 @@ The named functions $A(t,T)$ and $B(t,T)$ that define the Hull-White bond price 
 
 ## Bond Pricing PDE
 
-The zero-coupon bond price $P(t,T)$ satisfies the backward Kolmogorov equation with discounting.
+Recall (see [Hull-White bond pricing](../bond_pricing/bond_price_formula.md)) that the ZCB price satisfies
 
-!!! note "Theorem: Hull-White Bond Pricing PDE"
-    Under the Hull-White model, the ZCB price satisfies
+$$
+\frac{\partial P}{\partial t} + [\theta(t) - ar]\,\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2\,\frac{\partial^2 P}{\partial r^2} - rP = 0, \qquad P(T,T) = 1
+$$
 
-    $$
-    \frac{\partial P}{\partial t} + [\theta(t) - ar]\,\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2\,\frac{\partial^2 P}{\partial r^2} - rP = 0
-    $$
-
-    with terminal condition $P(T,T) = 1$.
-
-???+ note "Derivation"
-    By the Feynman-Kac theorem, $P(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\, ds} \mid r_t = r]$ satisfies the PDE
-
-    $$
-    \frac{\partial P}{\partial t} + \mu(t,r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2(t,r)\frac{\partial^2 P}{\partial r^2} - rP = 0
-    $$
-
-    where $\mu(t,r) = \theta(t) - ar$ is the drift and $\sigma^2(t,r) = \sigma^2$ is the diffusion coefficient of the Hull-White model. The terminal condition $P(T,T) = 1$ states that a zero-coupon bond pays \$1 at maturity. $\square$
+via Feynman-Kac applied to the Hull-White SDE (see [HW model](../model_definition/hull_white_sde_and_mean_reversion.md)).
 
 ---
 
 ## The Exponential-Affine Ansatz
 
-We seek a solution of the form:
+Recall (see [§ general affine bond pricing](../../ch15/affine_term_structure/bond_pricing_affine_framework.md)) the exponential-affine ansatz
 
-!!! note "Ansatz"
-    Assume the bond price has the exponential-affine form
-
-    $$
-    P(t,T) = \exp\!\bigl(A(t,T) + B(t,T)\, r\bigr)
-    $$
-
-    where $A(t,T)$ and $B(t,T)$ are functions to be determined, with $A(T,T) = 0$ and $B(T,T) = 0$.
-
-The motivation for this ansatz comes from the general theory of affine term structure models: when the drift is affine in $r$ and the diffusion coefficient is independent of $r$ (or affine in $r$), the bond price PDE separates cleanly.
+$$
+P(t,T) = \exp\!\bigl(A(t,T) + B(t,T)\, r\bigr), \qquad A(T,T) = B(T,T) = 0.
+$$
 
 ---
 
@@ -268,17 +249,7 @@ This formula is the key computational result: it expresses $A(t,T)$ entirely in 
 
 ## Connection to General Affine Models
 
-The Hull-White Riccati system is a special case of the general affine framework. For a model $dr = (\alpha + \beta r)\, dt + \sqrt{\gamma + \delta r}\, dW$, the Riccati system is:
-
-$$
-\frac{d\tilde{B}}{d\tau} = -\beta \tilde{B} - \frac{1}{2}\delta \tilde{B}^2 - 1
-$$
-
-$$
-\frac{d\tilde{A}}{d\tau} = \alpha(T-\tau) \tilde{B} + \frac{1}{2}\gamma \tilde{B}^2
-$$
-
-For Hull-White: $\beta = -a$, $\delta = 0$, $\alpha(t) = \theta(t)$, $\gamma = \sigma^2$. The $\delta = 0$ condition eliminates the quadratic term in the $B$-equation, making it linear (hence "degenerate Riccati"). For the CIR model ($\delta > 0$), the $B$-equation becomes a true Riccati equation with a different (non-exponential) solution.
+Recall (see [§ general affine bond pricing](../../ch15/affine_term_structure/bond_pricing_affine_framework.md)) the affine Riccati system for $dr = (\alpha + \beta r)\,dt + \sqrt{\gamma + \delta r}\,dW$. Hull-White corresponds to $\beta = -a$, $\delta = 0$, $\alpha(t) = \theta(t)$, $\gamma = \sigma^2$; the $\delta = 0$ condition makes the $B$-equation linear (degenerate Riccati).
 
 ---
 

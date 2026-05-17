@@ -25,7 +25,7 @@ $$
 dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t
 $$
 
-with $\kappa > 0$, $\theta > 0$, $\sigma_v > 0$, and $v_0 > 0$. This is the Cox-Ingersoll-Ross (1985) process, originally proposed for modeling the short rate of interest.
+with $\kappa > 0$, $\theta > 0$, $\sigma_v > 0$, and $v_0 > 0$. Recall (see [§ CIR short-rate model](../../ch18/cir_model/bond_options.md)) the same SDE was originally proposed by Cox-Ingersoll-Ross (1985) for the short rate; affine-class membership is treated in [§ Vasicek/CIR as affine](../../ch15/examples/vasicek_cir_as_affine.md).
 
 ### Integral Form
 

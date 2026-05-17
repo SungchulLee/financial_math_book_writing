@@ -2,6 +2,16 @@
 
 In the previous chapter we discussed what it means to solve an SDE and why explicit solutions are rare. We now examine the main techniques used to solve the classes of SDEs that do admit tractable analytical representations.
 
+!!! tip "Toy mechanism: match the structure, pick the transform"
+    Solving an SDE is rarely a calculation — it is a *recognition* followed by a substitution. The four canonical structures each have a canonical transformation:
+
+    - additive noise ($\sigma$ constant) → integrate the noise directly;
+    - multiplicative noise ($\sigma \propto X$) → take $\log X$, which has constant diffusion;
+    - linear mean-reverting drift → multiply by $e^{at}$, which cancels the drift;
+    - state-dependent diffusion → Lamperti transform $h'(x) = 1/\sigma(x)$, which forces the diffusion to be $1$.
+
+    Each transformation is engineered to make *one specific term* disappear, leaving a simpler SDE underneath. The toy version is GBM: the multiplicative noise problem $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ becomes the additive-noise problem $d(\log S_t) = (\mu - \tfrac{1}{2}\sigma^2)\,dt + \sigma\,dW_t$ in one step. The four solved examples below are the same one-step routine applied to BM-with-drift, GBM, Vasicek, and CIR.
+
 !!! abstract "Learning Goals"
     After completing this chapter you should be able to:
 
@@ -35,7 +45,7 @@ This is the stochastic analogue of integrating an ordinary differential equation
 
 A central idea in solving SDEs is to choose a transformed variable $Y_t = f(X_t)$ so that the new SDE becomes simpler.
 
-The governing rule is **Itô's lemma**:
+Recall (see [§ Itô's Lemma](../ito_lemma/ito_lemma.md)): the governing rule is
 
 $$
 dY_t = \left(f_t + b\,f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma\,f_x\,dW_t
@@ -160,52 +170,17 @@ $$
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \qquad S_0 > 0
 $$
 
-This model describes stock prices in the Black–Scholes framework.
+### Method
 
-### Key Idea
+Multiplicative noise rules out direct integration. Apply the **log transform** $Y_t = \log S_t$.
 
-The equation contains **multiplicative noise**, so naive direct integration is not sufficient. Instead we apply the transformation $Y_t = \log S_t$.
-
-### Apply Itô's Lemma
-
-For $f(S) = \log S$, we have $f'(S) = 1/S$ and $f''(S) = -1/S^2$. Itô's lemma gives
+Recall (see [§ Itô Calculus Applications](../ito_lemma/ito_calculus_applications.md)): applying Itô's lemma to $\log S_t$ yields $d(\log S_t) = (\mu - \tfrac{\sigma^2}{2})\,dt + \sigma\,dW_t$, so
 
 $$
-d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
+S_t = S_0 \exp\!\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right], \qquad \log S_t \sim \mathcal{N}\!\left(\log S_0 + \left(\mu - \tfrac{1}{2}\sigma^2\right)t,\; \sigma^2 t\right)
 $$
 
-Substituting $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ and using $(dS_t)^2 = \sigma^2 S_t^2\,dt$:
-
-$$
-d(\log S_t) = \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2}\frac{1}{S_t^2}(\sigma^2 S_t^2\,dt)
-$$
-
-$$
-= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt = \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
-$$
-
-This is Brownian motion with drift.
-
-### Solution
-
-Integrating and exponentiating:
-
-$$
-S_t = S_0 \exp\!\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
-$$
-
-### Distribution
-
-$$
-\log S_t \sim \mathcal{N}\!\left(\log S_0 + \left(\mu - \tfrac{1}{2}\sigma^2\right)t,\; \sigma^2 t\right)
-$$
-
-!!! success "Result"
-    $S_t$ follows a **log-normal distribution**.
-
-### Why the Itô Correction Appears
-
-In stochastic calculus $(dW_t)^2 = dt$, so squaring the diffusion term produces $(\sigma S_t\,dW_t)^2 = \sigma^2 S_t^2\,dt$. This generates the additional drift correction $-\frac{\sigma^2}{2}\,dt$ in the logarithmic equation.
+The Itô correction $-\sigma^2/2$ arises because $(dW_t)^2 = dt$ produces an extra drift when expanding $d(\log S_t)$ — the source of the log-normal law.
 
 ---
 
@@ -329,40 +304,12 @@ If the equation does not simplify after standard transformations, switch to:
 
 ---
 
-## 8. Common Mistakes When Solving SDEs
+## 8. Common Mistakes
 
-### Mistake 1 — Forgetting the Itô Correction Term
+Recall (see [§ Verifying SDE Solutions § Common Pitfalls](verifying_sde_solutions.md#5-common-pitfalls)): forgetting the Itô correction $\tfrac{1}{2}\sigma^2 f_{xx}$, treating $dW_t/dt$ as a derivative, and skipping verification are the recurring traps. Two further pitfalls specific to solving:
 
-When applying Itô's lemma, the second-derivative term must be included:
-
-$$
-dY_t = \left(f_t + b\,f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma\,f_x\,dW_t
-$$
-
-Students often incorrectly use the ordinary chain rule and omit $\frac{1}{2}\sigma^2 f_{xx}$.
-
-!!! warning "Key Difference from Ordinary Calculus"
-    In stochastic calculus $(dW_t)^2 = dt$, which produces the additional second-derivative term.
-
-### Mistake 2 — Treating Brownian Motion Like an Ordinary Function
-
-Brownian motion is **not differentiable**. Expressions like $dW_t/dt$ do not exist in the classical sense. The correct object is the stochastic differential $dW_t$.
-
-### Mistake 3 — Confusing Additive and Multiplicative Noise
-
-Compare $dX_t = \mu\,dt + \sigma\,dW_t$ (additive) with $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ (multiplicative). The second equation naturally suggests $Y_t = \log S_t$.
-
-### Mistake 4 — Ignoring State-Dependent Diffusion
-
-Some SDEs contain diffusion terms like $\sigma\sqrt{X_t}$. These usually cannot be solved by direct integration. One instead looks for the **Lamperti transform** or for known structural representations such as the CIR–Bessel connection.
-
-### Mistake 5 — Forgetting to Verify the Solution
-
-After solving an SDE, the result should always be checked by applying Itô's lemma.
-
-### Mistake 6 — Assuming Closed-Form Solutions Always Exist
-
-Most SDEs do not admit elementary explicit pathwise solutions. When standard transformations fail, appropriate alternatives include numerical simulation, PDE methods, moment analysis, and characteristic-function techniques.
+- **Confusing additive and multiplicative noise.** Compare $dX_t = \mu\,dt + \sigma\,dW_t$ with $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ — only the second suggests $Y_t = \log S_t$.
+- **Assuming closed forms always exist.** Most SDEs do not admit elementary pathwise solutions; switch to numerical simulation, PDE methods, moment analysis, or characteristic functions.
 
 ---
 

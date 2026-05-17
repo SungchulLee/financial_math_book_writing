@@ -116,11 +116,7 @@ $\square$
 
 ### Financial Application
 
-Under the risk-neutral measure ($\mu \to r$), the GBM transition density gives the **Black-Scholes formula** when integrated against the payoff:
-
-$$
-C(0, s_0) = e^{-rT}\int_K^{\infty}(S - K)\,p^{\mathbb{Q}}(T, S \mid 0, s_0)\,dS = s_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
-$$
+Recall (see [§ Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md)): integrating the GBM lognormal density (with $\mu \to r$) against the call payoff yields $C(0, s_0) = s_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$.
 
 ---
 

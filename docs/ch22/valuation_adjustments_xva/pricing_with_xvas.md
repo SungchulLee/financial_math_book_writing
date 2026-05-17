@@ -72,63 +72,9 @@ Asymmetric borrowing/lending rates.
 
 ---
 
-## BSDE Formulation
+## BSDE and PDE Formulation
 
-XVA pricing naturally fits the **backward stochastic differential equation** framework:
-
-$$
-V_t = \xi + \int_t^T f(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
-$$
-
-where:
-
-- $\xi$ = terminal payoff
-- $f$ = driver incorporating XVA effects
-- $Z$ = hedging process
-
-### Generic XVA Driver
-
-$$
-f(t, V, Z) = -rV + \underbrace{\lambda_C \cdot \text{LGD}_C \cdot V^+}_{\text{CVA}} - \underbrace{\lambda_B \cdot \text{LGD}_B \cdot V^-}_{\text{DVA}} + \underbrace{s_F \cdot (V - C)^+}_{\text{FVA}} + \cdots
-$$
-
-where:
-
-- $\lambda_C, \lambda_B$ = default intensities
-- $C$ = collateral
-- $s_F$ = funding spread
-
-### Recursive Structure
-
-The BSDE approach captures the **recursive nature** of XVA:
-
-- Today's value depends on future exposures
-- Future exposures depend on future values
-- Creates feedback loops
-
----
-
-## PDE Formulation
-
-For Markovian models, XVA pricing satisfies a **nonlinear PDE**:
-
-$$
-\frac{\partial V}{\partial t} + \mathcal{L}V + f(t, x, V, \sigma^\top \nabla V) = 0
-$$
-
-with terminal condition $V(T, x) = \text{Payoff}(x)$.
-
-**Example (simplified CVA):**
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r - q)S\frac{\partial V}{\partial S} - rV + \lambda \cdot \text{LGD} \cdot V^+ = 0
-$$
-
-### Numerical Methods
-
-- Finite difference schemes (explicit, implicit, Crank-Nicolson)
-- Tree methods with XVA adjustments
-- Monte Carlo with regression (LSM-style)
+Recall (see [§ XVA as Semilinear PDE](xva_as_semilinear_pde.md)). Feynman-Kac connection deferred to [§ Feynman-Kac](../../ch05/feynman_kac/discounted_feynman_kac.md); BSDE theory to [§ Second-order BSDEs](../../ch23/second_order_bsdes_and_nonlinear_expectations/2bsdes.md).
 
 ---
 

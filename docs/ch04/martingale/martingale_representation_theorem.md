@@ -1,6 +1,6 @@
 # Martingale Representation Theorem
 
-The **Martingale Representation Theorem (MRT)** states that, under a Brownian filtration, every square-integrable martingale can be expressed as a stochastic integral with respect to the driving Brownian motion. In the [unifying framework](unifying_principle.md), this represents **full control** — every contingent claim can be hedged.
+On a Brownian filtration the only randomness available is the path of $W$. So if $M_t$ is a martingale -- a process whose updates are pure surprise -- those surprises must themselves come from increments of $W$. Reassembling the surprises gives a predictable integrand $\phi$ such that $M_t = M_0 + \int_0^t \phi_s\,dW_s$. This is the **Martingale Representation Theorem (MRT)**: every square-integrable Brownian martingale is a stochastic integral against $W$. In the [unifying framework](unifying_principle.md) it is **full control** -- the algebraic engine of hedging and the bridge between expectations and PDEs.
 
 Rather than repeating basic definitions already covered in earlier chapters, this section focuses on:
 
@@ -38,32 +38,7 @@ $$
 
 which is the form most commonly used in textbooks. The equivalence follows from the martingale property: $M_t = \mathbb{E}[M_T \mid \mathcal{F}_t]$, so by Jensen's inequality $\mathbb{E}[M_t^2] \leq \mathbb{E}[M_T^2]$ for all $t \leq T$. In fact, Doob's $L^2$ inequality gives the stronger uniform bound $ \mathbb{E}[\sup_{t \leq T} M_t^2] \leq 4\,\mathbb{E}[M_T^2]$.
 
-### Recall: Itô Integrals Are Martingales
-
-Before stating the main theorem, recall the converse direction (proved in [Itô Integral Construction](../../ch03/ito_integral/ito_integral_construction.md)):
-
-!!! note "Itô Integrals Are Martingales"
-    If $\phi_s$ is a predictable process with 
-    
-    $$\mathbb{E}\left[\int_0^T \phi_s^2 \, ds\right] < \infty$$
-    
-    then the Itô integral
-
-    $$
-    I_t = \int_0^t \phi_s \, dW_s
-    $$
-
-    is a **square-integrable martingale** with $I_0 = 0$.
-
-    **Why square-integrable:** By the Itô isometry, for every $t \leq T$:
-
-    $$
-    \mathbb{E}[I_t^2] = \mathbb{E}\!\left[\int_0^t \phi_s^2\,ds\right] \leq \mathbb{E}\!\left[\int_0^T \phi_s^2\,ds\right] < \infty
-    $$
-
-    where the inequality uses $\int_0^t \phi_s^2\,ds \leq \int_0^T \phi_s^2\,ds$ a.s. and monotonicity of expectation. In particular, $\sup_{t \leq T}\mathbb{E}[I_t^2] \leq \mathbb{E}[\int_0^T \phi_s^2\,ds] < \infty$, confirming uniform $L^2$ boundedness.
-
-This tells us that stochastic integrals produce martingales. The Martingale Representation Theorem is the **converse**: every martingale arises this way.
+Recall (see [§ Itô Integral Properties](../../ch03/ito_integral/ito_integral_properties.md)): if $\phi$ is predictable with $\mathbb{E}[\int_0^T \phi_s^2\,ds] < \infty$, then $I_t = \int_0^t \phi_s\,dW_s$ is a square-integrable martingale. The Martingale Representation Theorem is the **converse**: every such martingale arises this way.
 
 ### Martingale Representation Theorem
 
@@ -162,61 +137,9 @@ This is why stochastic calculus has such strong parallels with Fourier analysis 
 
 ---
 
-## Connection to Hedging and Black–Scholes
+## Connection to Hedging
 
-In a complete market, the MRT provides the mathematical foundation for hedging.
-
-### Setup
-
-Under the risk-neutral measure $\mathbb{Q}$, the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ is a martingale. For a European claim with payoff $\Phi(S_T)$, the discounted claim value:
-
-$$
-\tilde{V}_t = e^{-rt}V_t = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t]
-$$
-
-is also a martingale.
-
-### Applying MRT
-
-By the Martingale Representation Theorem:
-
-$$
-\tilde{V}_t = \tilde{V}_0 + \int_0^t \psi_s \, dW_s^{\mathbb{Q}}
-$$
-
-for some predictable process $\psi_t$.
-
-### Identifying the Hedge
-
-Since $d\tilde{S}_t = \sigma \tilde{S}_t \, dW_t^{\mathbb{Q}}$ (under $\mathbb{Q}$), we can write:
-
-$$
-dW_t^{\mathbb{Q}} = \frac{d\tilde{S}_t}{\sigma \tilde{S}_t}
-$$
-
-Substituting:
-
-$$
-d\tilde{V}_t = \psi_t \, dW_t^{\mathbb{Q}} = \frac{\psi_t}{\sigma \tilde{S}_t} \, d\tilde{S}_t
-$$
-
-The **hedging strategy** (number of shares) is:
-
-$$
-\boxed{\Delta_t = \frac{\psi_t}{\sigma \tilde{S}_t} = \frac{\psi_t}{\sigma S_t} e^{rt}}
-$$
-
-### Connection to Delta
-
-For the Black–Scholes model, one can show:
-
-$$
-\Delta_t = \frac{\partial V}{\partial S}(t, S_t)
-$$
-
-The MRT integrand $\psi_t$ encodes the sensitivity of the option value to Brownian shocks, which translates to delta hedging.
-
-**This is the mathematical statement of market completeness**: every contingent claim can be replicated by dynamic trading in the underlying asset.
+The MRT supplies the integrand $\psi_t$ in $\tilde{V}_t = \tilde{V}_0 + \int_0^t \psi_s\,dW_s^{\mathbb{Q}}$ for the discounted claim value; matching against $d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}$ identifies the share holding $\Delta_t = \psi_t/(\sigma \tilde{S}_t)$. The MRT thus delivers **existence and uniqueness** of the hedge; the full pricing/hedging construction is developed in [§ Risk-Neutral Construction](../risk_neutral/construction.md) and [§ Risk-Neutral Valuation Principle](../risk_neutral/risk_neutral_valuation_principle.md).
 
 ---
 

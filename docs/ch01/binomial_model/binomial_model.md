@@ -160,18 +160,8 @@ We will answer this question through three equivalent perspectives:
 
 ### Definition of Arbitrage
 
-An **arbitrage** is a trading strategy that generates profit without risk. Formally:
-
-!!! info "Arbitrage"
-    A portfolio $(\Delta, \beta)$ is an **arbitrage** if:
-    
-    1. $V_0 \leq 0$ (zero or negative initial cost)
-    2. $V_{\Delta t} \geq 0$ in **all** states (no possibility of loss)
-    3. $\mathbb{P}(V_{\Delta t} > 0) > 0$ (positive probability of profit)
-    
-    A market is **arbitrage-free** if no such portfolio exists.
-
-The no-arbitrage principle is the foundation of modern financial theory: in a well-functioning market, arbitrage opportunities should not persist.
+!!! note "Recall (see [§ Arbitrage and Dominance](../discrete_time_foundations/arbitrage_and_dominance.md))"
+    A portfolio $(\Delta, \beta)$ is an **arbitrage** if $V_0 \leq 0$, $V_{\Delta t} \geq 0$ in all states, and $\mathbb{P}(V_{\Delta t} > 0) > 0$. A market is **arbitrage-free** if no such portfolio exists.
 
 ### Derivation of the No-Arbitrage Condition
 

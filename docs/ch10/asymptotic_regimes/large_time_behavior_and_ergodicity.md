@@ -32,21 +32,7 @@ since $N(d_1) \to 1$ and $Ke^{-rT}N(d_2) \to 0$.
 ## Large-time behavior of Greeks in Black–Scholes
 
 
-As $T \to \infty$ (equivalently $\tau \to \infty$):
-
-$$
-\Delta_{\text{call}} = N(d_1) \to 1, \quad \Gamma \to 0, \quad \nu \to 0
-$$
-
-The option behaves increasingly like the underlying itself. This is intuitive: with enough time, any OTM call becomes ATM in expectation, and the option's optionality premium vanishes relative to the forward price.
-
-For theta:
-
-$$
-\Theta_{\text{call}} \to rKe^{-rT}N(d_2) \to 0
-$$
-
-So time decay vanishes for very long-dated options — they are dominated by their delta exposure.
+Recall (see [§ Scaling Laws for Greeks](../greeks_asympt/scaling_laws_for_greeks.md)): as $T\to\infty$ the call's Greeks degenerate — $\Delta\to 1$, $\Gamma\to 0$, $\nu\to 0$, $\Theta\to 0$ — so the option becomes the underlying and time decay vanishes.
 
 ---
 
@@ -82,13 +68,7 @@ $$
 
 This suggests that long-dated options are approximately priced by Black–Scholes with $\sigma = \sqrt{\bar{v}}$, plus corrections that decay with maturity.
 
-**Implied volatility term structure.** As $T \to \infty$, implied volatility for ATM options converges to
-
-$$
-\sigma_{\text{implied}}(T) \to \sqrt{\bar{v}} + \mathcal{O}(T^{-1})
-$$
-
-The rate of convergence depends on the speed of mean reversion $\kappa$.
+**Implied volatility term structure.** Recall (see [§ ATM Expansions](../../ch12/asymptotics_of_implied_volatility/atm_expansions.md)): ATM implied vol converges to $\sqrt{\bar{v}}$ as $T\to\infty$, with $\mathcal{O}(T^{-1})$ correction whose magnitude is controlled by $1/\kappa$.
 
 ---
 

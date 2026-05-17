@@ -180,48 +180,15 @@ Appropriate boundary conditions depend on the model:
 
 ## Physical vs. Risk-Neutral Dynamics
 
-### Physical Measure P
+Recall (see [§ Risk-Neutral Measure](../../ch04/risk_neutral/martingale_and_no_arbitrage.md)): the general Girsanov change of measure $dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} + \lambda(t, r_t)\,dt$ and the role of the market price of risk are developed in full generality there.
 
-Under the real-world (physical) measure, the short rate follows:
-
-$$
-dr_t = \mu^{\mathbb{P}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{P}}
-$$
-
-The drift $\mu^{\mathbb{P}}$ reflects actual rate dynamics observed historically.
-
-### Risk-Neutral Measure Q
-
-Under $\mathbb{Q}$, the dynamics become:
+Applied to the short rate, this gives:
 
 $$
-dr_t = \mu^{\mathbb{Q}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{Q}}
+\mu^{\mathbb{Q}}(t, r) = \mu^{\mathbb{P}}(t, r) - \lambda(t, r)\,\sigma(t, r)
 $$
 
-where:
-
-$$
-\mu^{\mathbb{Q}}(t, r) = \mu^{\mathbb{P}}(t, r) - \lambda(t, r) \sigma(t, r)
-$$
-
-and $\lambda(t, r)$ is the **market price of interest rate risk**.
-
-### Girsanov Transformation
-
-The relationship between Brownian motions is:
-
-$$
-dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} + \lambda(t, r_t) \, dt
-$$
-
-### Implications
-
-| Measure | Use | Drift |
-|---------|-----|-------|
-| $\mathbb{P}$ | Simulation, forecasting, risk management | Historical |
-| $\mathbb{Q}$ | Pricing, no-arbitrage valuation | Risk-adjusted |
-
-The volatility $\sigma(t, r)$ is the same under both measures.
+with $\sigma(t, r)$ unchanged across measures. Use $\mathbb{P}$ for simulation/forecasting and $\mathbb{Q}$ for no-arbitrage pricing.
 
 ---
 
@@ -253,31 +220,7 @@ Not all HJM models are driven by a finite-dimensional short rate. Short-rate mod
 
 ## Classification of Short-Rate Models
 
-### By Volatility Structure
-
-| Model Class | Volatility $\sigma(t, r)$ | Example |
-|-------------|---------------------------|---------|
-| Gaussian | $\sigma(t)$ (constant in $r$) | Vasicek, Hull-White |
-| Square-root | $\sigma \sqrt{r}$ | CIR |
-| Lognormal | $\sigma r$ | Black-Karasinski |
-| CEV | $\sigma r^\gamma$ | General |
-
-### By Tractability
-
-| Level | Property | Examples |
-|-------|----------|----------|
-| Closed-form bonds | Analytic $P(t, T, r)$ | Vasicek, CIR |
-| Affine | $\log P$ linear in $r$ | Vasicek, CIR, Gaussian multi-factor |
-| Quasi-affine | Fast numerical methods | Hull-White |
-| General | Requires PDE/Monte Carlo | Black-Karasinski |
-
-### By Number of Factors
-
-| Type | State Variable | Flexibility |
-|------|----------------|-------------|
-| One-factor | $r_t$ | Limited yield curve dynamics |
-| Two-factor | $(r_t, x_t)$ | Richer dynamics, steepening/flattening |
-| Multi-factor | $(r_t, x_t^{(1)}, x_t^{(2)}, \ldots)$ | Full curve dynamics |
+Recall (see [§ Vasicek vs CIR vs Hull-White](../model_comparison/vasicek_vs_cir_vs_hull_white.md)): side-by-side comparisons by volatility structure (Gaussian, square-root, lognormal, CEV), tractability (closed-form, affine, quasi-affine), and number of factors are tabulated in the model comparison page.
 
 ---
 

@@ -1,35 +1,18 @@
 # American Options and Early Exercise: Implementation
 
-European options can only be exercised at expiration, but **American options** may be exercised **at any time before maturity**. This flexibility introduces the **early exercise premium** and turns the problem into a **free boundary problem**.
-
----
-
-## The Early Exercise Constraint
-
-The payoff of an American option must always satisfy:
-
-$$
-V(S, t) \geq \Phi(S)
-$$
-
-where $\Phi(S)$ is the intrinsic (payoff) value:
-
-- Call: $\Phi(S) = \max(S - K, 0)$
-- Put: $\Phi(S) = \max(K - S, 0)$
-
-At each time step, enforce: $V(S, t) = \max\left( \text{Continuation Value}, \text{Payoff} \right)$.
+At every time step an American option must satisfy two things at once: the Black-Scholes PDE in the continuation region and the floor $V(S,t)\ge\Phi(S)$ everywhere. The cheapest implementation enforces this by alternation -- solve the unconstrained linear system for one step, then snap each node up to the payoff $\Phi$ if it dipped below. That single line of code, the **projection step**, is the splitting-error approximation to the underlying linear complementarity problem and the practical heart of every American-option scheme in this section. Recall (see [§ Free Boundary Problems](free_boundary_problems_american_options.md)): $\Phi(S)=(S-K)^+$ for a call and $\Phi(S)=(K-S)^+$ for a put.
 
 ---
 
 ## Modifying the FDM Approach
 
-After solving the linear system at each time step, **project** the solution to satisfy the constraint:
+The simplest treatment is the **projection method**: solve the unconstrained linear system at each time step, then enforce
 
 ```python
 V_new[i] = max(V_new[i], payoff[i])
 ```
 
-This turns the PDE into a **Linear Complementarity Problem (LCP)**. The projection approach is effective and easy to implement.
+Recall (see [§ Linear Complementarity Formulation](linear_complementarity_formulation.md)): the underlying discrete problem is an **LCP**, and the projection step here is the easy-to-implement (splitting-error) approximation to it.
 
 ---
 

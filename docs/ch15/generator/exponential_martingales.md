@@ -33,17 +33,7 @@ This martingale perspective is more than a technical convenience. Every conditio
 
 ### The Riccati Solutions
 
-Let $X_t$ be a $d$-dimensional affine process with generator characterized by the functions $F(u)$ and $R(u)$ defined in the [previous section](infinitesimal_generator_affine.md). Define $\phi : \mathbb{R}_+ \times \mathcal{U} \to \mathbb{C}$ and $\psi : \mathbb{R}_+ \times \mathcal{U} \to \mathbb{C}^d$ as the solutions to the Riccati system
-
-$$
-\frac{\partial \psi}{\partial \tau}(\tau, u) = R\bigl(\psi(\tau, u)\bigr), \qquad \psi(0, u) = u
-$$
-
-$$
-\frac{\partial \phi}{\partial \tau}(\tau, u) = F\bigl(\psi(\tau, u)\bigr), \qquad \phi(0, u) = 0
-$$
-
-where $\mathcal{U} \subseteq \mathbb{C}^d$ is the domain on which the Riccati system has a solution up to time $T - t$.
+Recall (see [§ Riccati system](../characteristic_function/characteristic_function.md)) that $\phi(\tau,u)$ and $\psi(\tau,u)$ solve $\partial_\tau\psi = R(\psi)$, $\psi(0,u)=u$ and $\partial_\tau\phi = F(\psi)$, $\phi(0,u)=0$ on the domain $\mathcal{U} \subseteq \mathbb{C}^d$, with $F, R$ read off from the generator (see [§ generator action](infinitesimal_generator_affine.md)).
 
 ### The Martingale Process
 
@@ -154,44 +144,9 @@ This is the **log-affine expectation property** that defines the affine class. T
 
 ---
 
-## Example: Vasicek Exponential Martingale
+## Examples
 
-For the Vasicek model $dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$ with $F(u) = \kappa\theta u + \frac{1}{2}\sigma^2 u^2$ and $R(u) = -\kappa u$, the Riccati solutions are
-
-$$
-\psi(\tau, u) = u\,e^{-\kappa\tau}
-$$
-
-$$
-\phi(\tau, u) = \kappa\theta u\,\frac{1 - e^{-\kappa\tau}}{\kappa} + \frac{\sigma^2 u^2}{4\kappa}(1 - e^{-2\kappa\tau})
-$$
-
-The exponential martingale is
-
-$$
-M_t = \exp\!\left(\phi(T-t, u) + u\,e^{-\kappa(T-t)} X_t\right)
-$$
-
-!!! example "Verification for Vasicek"
-    The volatility of $M_t$ is $M_t \cdot \psi(T-t, u) \cdot \sigma = M_t \cdot u\,e^{-\kappa(T-t)} \cdot \sigma$, which is deterministic in the sense that the random factor is only through $M_t$ itself. The Novikov condition is satisfied for all $u \in \mathbb{C}$ since the integrand $|u\,e^{-\kappa(T-t)}\sigma|^2$ is deterministic and bounded.
-
----
-
-## Example: CIR Exponential Martingale
-
-For the CIR model $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ with $F(u) = \kappa\theta u$ and $R(u) = -\kappa u + \frac{1}{2}\xi^2 u^2$, the Riccati solutions involve
-
-$$
-\psi(\tau, u) = \frac{u\,e^{-\kappa\tau/2}}{D(\tau, u)}
-$$
-
-where $D(\tau, u)$ depends on $u$ and $\tau$ through the discriminant $\gamma = \sqrt{\kappa^2 - 2\xi^2 u}$. The exponential martingale is
-
-$$
-M_t = \exp\!\bigl(\phi(T-t, u) + \psi(T-t, u)\,X_t\bigr)
-$$
-
-The state-dependent volatility $M_t \cdot \psi(T-t, u) \cdot \xi\sqrt{X_t}$ means the Novikov condition is not automatically satisfied. For purely imaginary $u = iv$, the modulus $|e^{iv X_T}| = 1$, and the martingale property holds. For real $u > 0$, the Riccati solution exists only up to the explosion time $\tau^* = \tau^*(u)$, limiting the time horizon over which $M_t$ is a martingale.
+Recall (see [§ worked examples](../examples/gbm_as_affine.md)) for the explicit Vasicek martingale $M_t = \exp(\phi(T-t,u) + ue^{-\kappa(T-t)}X_t)$ (deterministic integrand, Novikov holds for all $u \in \mathbb{C}$) and the CIR martingale with state-dependent volatility (Novikov can fail; explosion at finite $\tau^*$ for large real $u$).
 
 ---
 
@@ -203,7 +158,7 @@ $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = M_t^{(u,T)}
 $$
 
-defines a new probability measure $\mathbb{Q}$. Under $\mathbb{Q}$, the process $X_t$ remains affine but with modified parameters. This **closure property** --- that the affine class is preserved under exponential-affine measure changes --- is developed in detail in the [next section](measure_change_affine.md).
+defines a new probability measure $\mathbb{Q}$. Under $\mathbb{Q}$, the process $X_t$ remains affine but with modified parameters --- the **closure property** developed in the [next section](measure_change_affine.md).
 
 ---
 

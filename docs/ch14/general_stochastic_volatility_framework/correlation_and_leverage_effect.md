@@ -6,29 +6,7 @@ A defining feature of equity markets is the **leverage effect**: negative return
 
 ## Correlated Brownian Motions
 
-### Mathematical Setup
-
-In two-factor stochastic volatility models, we allow the driving Brownian motions to be correlated:
-
-$$
-d\langle W^S, W^V \rangle_t = \rho\,dt
-$$
-
-with correlation coefficient $\rho \in [-1, 1]$.
-
-**Decomposition:** The correlated pair can be written as:
-
-$$
-W_t^V = \rho W_t^S + \sqrt{1-\rho^2}\, W_t^{\perp}
-$$
-
-where $W^S$ and $W^{\perp}$ are independent standard Brownian motions.
-
-**Joint increment distribution:**
-
-$$
-\begin{pmatrix} \Delta W^S \\ \Delta W^V \end{pmatrix} \sim \mathcal{N}\left(\begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{pmatrix} \Delta t & \rho\Delta t \\ \rho\Delta t & \Delta t \end{pmatrix}\right)
-$$
+Recall (see [§ Two-Factor Diffusion Models](two_factor_diffusion_models.md)): $d\langle W^S, W^V\rangle_t = \rho\,dt$ with $\rho \in [-1,1]$, equivalently $W_t^V = \rho W_t^S + \sqrt{1-\rho^2}\,W_t^{\perp}$.
 
 ### Instantaneous Covariation
 

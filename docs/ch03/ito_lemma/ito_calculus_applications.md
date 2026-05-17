@@ -2,7 +2,9 @@
 
 Once the main rules of stochastic calculus have been developed — Itô's lemma, the product rule, and integration by parts — we can use them to compute stochastic integrals, construct martingales, and solve stochastic differential equations (SDEs).
 
-This section presents a collection of worked examples illustrating how these tools are applied in practice. For the theorem statements being applied throughout, see [Itô's Lemma](ito_lemma.md). For the multiplication rules used in SDE substitutions, see [Itô Rules](ito_rules.md).
+This page is the **canonical home of worked examples**: every concrete computation referenced elsewhere in this section is derived here in full.
+
+Recall (see [§ Itô's Lemma](ito_lemma.md)) for the theorem statements being applied throughout, and [§ Itô Rules](ito_rules.md) for the multiplication rules and product/quotient/integration-by-parts identities used in SDE substitutions.
 
 ---
 

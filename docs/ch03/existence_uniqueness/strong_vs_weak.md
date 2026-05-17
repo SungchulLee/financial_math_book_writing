@@ -1,20 +1,17 @@
 # Strong and Weak Solutions of SDEs
 
-The theory of SDEs distinguishes two fundamentally different notions of solution:
-**strong** and **weak**. The distinction turns on what is prescribed in advance
-and what must be constructed. The existence of strong solutions under Lipschitz
-conditions is established via [Picard Iteration](picard_iteration.md); the conditions
-themselves are in [Lipschitz Conditions and Linear Growth](lipschitz_conditions.md).
+Having constructed solutions under regularity conditions (see [§ Lipschitz Conditions and Linear Growth](lipschitz_conditions.md) and [§ Picard Iteration](picard_iteration.md)), we now distinguish two fundamentally different notions of solution: **strong** and **weak**. The distinction turns on what is prescribed in advance and what must be constructed.
+
+!!! tip "Toy mechanism: build X from W vs build (X, W) together"
+    The split is captured by a single question. Given the SDE $dX_t = b\,dt + \sigma\,dW_t$, are you handed a Brownian motion $W_t$ and asked to construct $X_t$ from its trajectories — or are you given just the coefficients $(b, \sigma)$ and asked to build the *whole package* $(\Omega, \mathbb{P}, W_t, X_t)$ together so that the equation holds in distribution?
+
+    The first is a **strong** solution: $X_t = F(t, W_s : s \leq t)$ is a measurable functional of the prescribed Brownian path. The second is **weak**: only the joint law of $(X, W)$ is determined, and different probability spaces can yield genuinely different pathwise relationships. Tanaka's SDE $dX_t = \mathrm{sgn}(X_t)\,dW_t$ is the canonical example where the weak version exists ($X_t = |B_t|$) but no measurable $F$ can recover the sign — so strong fails. Everything below — pathwise vs in-law uniqueness, the Yamada–Watanabe bridge, and the classification table — turns on this single distinction.
 
 ---
 
 ## The Core Question
 
-Consider the SDE:
-
-$$
-dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \qquad X_0 = x
-$$
+Recall (see [§ Stochastic Differential Equations](../sde/sde.md)): the SDE is $dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t$ with $X_0 = x$.
 
 **What is given, and what must be built?**
 
@@ -103,7 +100,7 @@ Neither converse holds in general.
 
 ## The Yamada–Watanabe Theorem
 
-This theorem is the central bridge between the two levels of the theory.
+This theorem records the structural relationship between the two levels of the theory.
 
 **Theorem (Yamada–Watanabe, 1971).**
 
@@ -115,22 +112,13 @@ $$
 More precisely: if pathwise uniqueness holds and at least one weak solution
 exists, then a strong solution exists and it is unique in law.
 
-**Strategic value.** To establish strong existence it suffices to:
-
-1. Verify pathwise uniqueness (often via Gronwall or the Yamada–Watanabe
-   $\rho$-condition; see [Lipschitz Conditions](lipschitz_conditions.md)).
-2. Construct *any* weak solution — often easier, since one has freedom to choose
-   the probability space. Girsanov's theorem (measure change to introduce drift)
-   and the Stroock–Varadhan martingale problem (characterising the law of $X_t$
-   directly) are the standard tools, both treated in later sections of this chapter.
-
 ---
 
 ## Examples
 
 ### Example 1: Lipschitz Coefficients (Strong Solution)
 
-For $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$ with globally Lipschitz coefficients, the [Lipschitz conditions](lipschitz_conditions.md) guarantee a unique strong solution via [Picard iteration](picard_iteration.md). Uniqueness in law follows from pathwise uniqueness by [Yamada–Watanabe](#the-yamadawatanabe-theorem).
+Recall (see [§ Lipschitz Conditions and Linear Growth](lipschitz_conditions.md) and [§ Picard Iteration](picard_iteration.md)): under global Lipschitz and linear growth a unique strong solution exists. Uniqueness in law then follows from pathwise uniqueness by Yamada–Watanabe.
 
 ### Example 2: Tanaka's SDE (Weak but Not Strong)
 
@@ -184,7 +172,7 @@ For a general weak solution (which need not be non-negative a priori), uniquenes
 of the law follows from the martingale characterisation of reflected Brownian
 motion: any continuous semimartingale $X_t$ with $\langle X \rangle_t = t$,
 $X_0 = 0$, satisfying the SDE, has the same law as $|B_t|$ by uniqueness of the
-solution to the corresponding martingale problem. Hence
+solution to the corresponding [martingale problem](../diffusion_process/martingale_problem_stroock_varadhan.md). Hence
 $\mathrm{Law}(X_t) = \mathrm{Law}(|B_t|)$ for all weak solutions.
 
 ### Example 3: No Weak Solution (Tsirelson, 1975)
@@ -198,14 +186,16 @@ Revuz–Yor, Chapter IX, or Rogers–Williams, Volume II.
 
 ---
 
-## When Does Strong Existence Hold?
+## Classification of Solution Types
 
-| Hypothesis | Conclusion |
+The following table situates the examples above on the strong/weak axis. The Lipschitz and Yamada–Watanabe rows recall results stated in [§ Lipschitz Conditions and Linear Growth](lipschitz_conditions.md); the third row is Yamada–Watanabe as above.
+
+| Hypothesis | Solution type |
 |---|---|
-| Lipschitz + linear growth | Strong existence and pathwise uniqueness |
-| Yamada–Watanabe $\rho$-condition + Lipschitz drift (1D) | Pathwise uniqueness |
-| Pathwise uniqueness + weak existence | Strong existence + uniqueness in law |
-| Weak existence only, pathwise uniqueness unknown | Uniqueness in law may or may not hold (holds for Tanaka; vacuous for Tsirelson since no weak solution exists) |
+| Lipschitz + linear growth | Strong + pathwise unique |
+| Yamada–Watanabe $\rho$-condition + Lipschitz drift (1D) | Pathwise unique |
+| Pathwise uniqueness + weak existence | Strong + unique in law |
+| Weak existence only, pathwise uniqueness fails | Weak only (e.g. Tanaka); Tsirelson lacks even weak existence |
 
 ---
 

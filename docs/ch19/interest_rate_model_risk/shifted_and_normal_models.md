@@ -8,17 +8,7 @@ Classical interest rate option models assume lognormal dynamics, which confine r
 
 ### Black's Model (Lognormal)
 
-In Black's (1976) framework, the forward rate $F(t)$ follows geometric Brownian motion:
-
-$$
-dF(t) = \sigma_{\text{LN}} \, F(t) \, dW(t)
-$$
-
-where $\sigma_{\text{LN}}$ is the lognormal (Black) volatility. This implies:
-
-- $F(t) > 0$ almost surely for all $t$
-- The distribution of $F(T)$ is lognormal
-- The call (caplet) price is given by Black's formula
+Recall (see [§ Caplet Pricing and Black's Formula](../lmm/caplet_pricing_black_formula.md)): in Black's (1976) framework $dF(t) = \sigma_{\text{LN}}\,F(t)\,dW(t)$ under the relevant forward measure, so $F(t) > 0$ a.s., $F(T)$ is lognormal, and the caplet price is given by Black's formula.
 
 ### Why It Fails for Negative Rates
 

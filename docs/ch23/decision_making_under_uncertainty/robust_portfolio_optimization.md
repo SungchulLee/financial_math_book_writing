@@ -195,48 +195,18 @@ def robust_portfolio(mu_hat, Sigma_hat, Sigma_mu, delta1, lambda_risk):
 ### 1. Ambiguity Sets
 
 
-**Definition**: Instead of parameter uncertainty, consider uncertainty over the entire distribution:
-
-$$
-\max_w \min_{P \in \mathcal{P}} \mathbb{E}_P[u(w^\top R)]
-$$
-
-**Common Ambiguity Sets**:
-
-1. **Moment Constraints**:
-   
-$$
-\mathcal{P} = \{P: \mathbb{E}_P[R] \in \mathcal{U}_{\mu}, \, \mathbb{E}_P[RR^\top] \in \mathcal{U}_{\Sigma}\}
-$$
-
-2. **Wasserstein Ball**:
-
-$$
-\mathcal{P} = \{P: W_p(P, \hat{P}) \leq \epsilon\}
-$$
-
-3. **Relative Entropy Ball**:
-
-$$
-\mathcal{P} = \{P: D_{\text{KL}}(P \| \hat{P}) \leq \eta\}
-$$
+Recall the Knightian setup $\max_w \min_{P \in \mathcal{P}} \mathbb{E}_P[u(w^\top R)]$ and standard ambiguity sets — moment, Wasserstein, KL — (see [§ Model Uncertainty and Ambiguity](../model_uncertainty_and_ambiguity/knightian_uncertainty.md)).
 
 ### 2. Worst-Case CVaR
 
 
-**Distributionally Robust CVaR**:
-
-$$
-\max_w \min_{P \in \mathcal{P}} \text{CVaR}_{\alpha}^P(w^\top R)
-$$
-
-**Theorem** (Zhu-Fukushima, 2009): For Wasserstein ambiguity:
+Recall CVaR (see [§ Coherent Risk Measures](../../ch22/market_risk_measures/value_at_risk_var.md)). The distributionally robust version $\max_w \min_{P \in \mathcal{P}} \text{CVaR}_{\alpha}^P(w^\top R)$ admits a tractable bound under Wasserstein ambiguity:
 
 $$
 \sup_{P: W_1(P, \hat{P}) \leq \epsilon} \text{CVaR}_{\alpha}^P(X) = \text{CVaR}_{\alpha}^{\hat{P}}(X) + \frac{\epsilon}{\alpha}
 $$
 
-**Implication**: Wasserstein robustness adds a penalty proportional to the Lipschitz constant of the loss function.
+(Zhu-Fukushima, 2009): Wasserstein robustness adds a penalty proportional to the Lipschitz constant of the loss.
 
 ### 3. Tractable Reformulations
 
@@ -304,49 +274,7 @@ $$
 ## Black-Litterman Model
 
 
-### 1. Bayesian Framework
-
-
-**Prior**: Market equilibrium returns are the prior:
-
-$$
-\pi = \lambda \Sigma w_{\text{mkt}}
-$$
-
-where $w_{\text{mkt}}$ is the market capitalization weighted portfolio.
-
-**Views**: Investor views are expressed as:
-
-$$
-P \mu = q + \epsilon, \quad \epsilon \sim N(0, \Omega)
-$$
-
-where $P$ is the pick matrix and $q$ is the view vector.
-
-### 2. Posterior Returns
-
-
-**Bayesian Update**:
-
-$$
-\mathbb{E}[\mu | \text{views}] = [(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1} [(\tau \Sigma)^{-1} \pi + P^\top \Omega^{-1} q]
-$$
-
-**Posterior Covariance**:
-
-$$
-\text{Cov}[\mu | \text{views}] = [(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1}
-$$
-
-### 3. Robust Interpretation
-
-
-**Connection**: Black-Litterman shrinks extreme views toward market equilibrium:
-
-- High confidence views ($\Omega$ small): Posterior close to views
-- Low confidence ($\Omega$ large): Posterior close to equilibrium
-
-**Implicit Robustness**: The model is robust to specification errors in views through the uncertainty parameter $\Omega$.
+Recall the Black-Litterman Bayesian framework — equilibrium prior $\pi = \lambda \Sigma w_{\text{mkt}}$, views $P\mu = q + \epsilon$, and posterior $\mathbb{E}[\mu|\text{views}] = [(\tau\Sigma)^{-1} + P^\top\Omega^{-1}P]^{-1}[(\tau\Sigma)^{-1}\pi + P^\top\Omega^{-1}q]$ (see [§ Black-Litterman and Bayesian Robustness](black_litterman_bayesian_robustness.md)). High-confidence views ($\Omega$ small) tilt the posterior toward views; low confidence keeps it near equilibrium — implicit robustness through $\Omega$.
 
 ## Resampled Efficiency
 
@@ -448,17 +376,7 @@ $$
 ### 2. Rectangularity
 
 
-**Time Consistency**: For dynamic consistency, require **rectangular** ambiguity sets:
-
-$$
-\mathcal{P} = \{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t\}
-$$
-
-**Bellman Equation**:
-
-$$
-V_t(w) = \max_{w_t} \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[V_{t+1}(W_{t+1}) | \mathcal{F}_t]
-$$
+Recall that rectangularity $\mathcal{P} = \{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t\}$ is necessary and sufficient for dynamic consistency under MEU, enabling Bellman recursion $V_t(w) = \max_{w_t} \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[V_{t+1}(W_{t+1}) | \mathcal{F}_t]$ (see [§ Dynamic Consistency](dynamic_consistency.md)).
 
 ### 3. Model Predictive Control
 

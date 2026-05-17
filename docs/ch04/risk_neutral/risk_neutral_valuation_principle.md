@@ -40,23 +40,9 @@ $$
 
 ## Why This Works
 
-By the [Fundamental Theorem of Asset Pricing](martingale_and_no_arbitrage.md),
-no-arbitrage implies the existence of $\mathbb{Q}$ under which discounted prices are
-martingales. For any replicable claim with price $V_t$, the discounted price
-$\tilde{V}_t = e^{-\int_0^t r_s\,ds}V_t$ is also a $\mathbb{Q}$-martingale.
-The martingale property at terminal time gives the pricing formula.
+Recall (see [§ FTAP](martingale_and_no_arbitrage.md#the-fundamental-theorem-of-asset-pricing)): no-arbitrage gives $\mathbb{Q}\sim\mathbb{P}$ under which discounted traded prices are martingales. For a replicable claim $V_t$, the discounted price $\tilde V_t = e^{-\int_0^t r_s\,ds}V_t$ is therefore also a $\mathbb{Q}$-martingale, and applying the martingale property at $T$ yields the pricing formula.
 
-See [Construction of Q](construction.md) for how $\mathbb{Q}$ is built and
-[Market Price of Risk](market_price_of_risk.md) for the economic content of the
-measure change.
-
-
----
-
-## What Changes Under Q
-
-Under $\mathbb{Q}$, discounted prices are martingales — see
-[Construction of Q](construction.md) for the mechanism.
+Recall (see [§ Construction of $\mathbb{Q}$](construction.md)): the Girsanov shift driven by $\theta_t=(\mu_t-r_t)/\sigma_t$ replaces the physical drift with $r$ while preserving volatility.
 
 ---
 

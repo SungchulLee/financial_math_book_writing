@@ -8,17 +8,7 @@
 
 ### Classical Parametric SDEs
 
-Traditional financial models specify drift and diffusion through parametric families. For example, the Heston model:
-
-$$
-dS_t = \mu S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^S
-$$
-
-$$
-dv_t = \kappa(\bar{v} - v_t) \, dt + \xi\sqrt{v_t} \, dW_t^v
-$$
-
-has 5 parameters $(\mu, \kappa, \bar{v}, \xi, \rho)$. The functional forms are fixed by modeling assumptions, which may be misspecified.
+Traditional financial models specify drift and diffusion through parametric families (Recall the Heston model $dS_t = \mu S_t \, dt + \sqrt{v_t}\, S_t\, dW_t^S$, $dv_t = \kappa(\bar v - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^v$ with 5 parameters $(\mu,\kappa,\bar v,\xi,\rho)$; see [§ BS PDE Structure](../../ch06/bs_pde_structure/greeks_from_pde.md) for the BS baseline). The functional forms are fixed by modeling assumptions, which may be misspecified.
 
 ### The Neural SDE Idea
 

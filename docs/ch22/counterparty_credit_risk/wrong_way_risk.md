@@ -52,18 +52,7 @@ Arises from **correlation between market factors and credit quality** not specif
 
 ### Standard CCR Model (Independence Assumption)
 
-The standard CVA formula assumes independence:
-
-$$
-\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot dPD(t)
-$$
-
-where:
-
-- $\text{EE}(t) = \mathbb{E}[E_t]$ is computed independently of default
-- $PD(t) = \mathbb{Q}(\tau \le t)$ is the cumulative default probability
-
-**This understates CVA when WWR is present.**
+Recall (see [§ CVA and DVA](../valuation_adjustments_xva/cva_dva.md)): the standard unilateral CVA formula $\text{CVA} = \text{LGD}\int_0^T \text{EE}(t)\,dPD(t)$ treats $\text{EE}(t)=\mathbb{E}[E_t]$ as independent of the default time $\tau$. **This understates CVA when WWR is present.**
 
 ### WWR-Adjusted CVA
 
@@ -116,24 +105,7 @@ where $\rho$ captures the correlation structure.
 
 ### 3. Intensity-Based Models
 
-Let default intensity $\lambda_t$ depend on market factors $X_t$:
-
-$$
-\lambda_t = \lambda_0 \cdot e^{\beta \cdot X_t}
-$$
-
-If $X_t$ also drives exposure:
-
-- Positive $\beta$ with positive exposure sensitivity → WWR
-- Negative $\beta$ with positive exposure sensitivity → RWR
-
-**Example:** For FX exposure with EM counterparty:
-
-$$
-\lambda_t = \lambda_0 \cdot e^{\beta \cdot (S_t - S_0)/S_0}
-$$
-
-where $S_t$ is the FX rate (domestic per foreign). Depreciation ($S_t$ increases) raises default intensity.
+Recall (see [§ Default intensity and hazard rates](../../ch21/reduced_form_intensity_based_models/default_intensity_and_hazard_rates.md)): let the default intensity $\lambda_t = \lambda_0 e^{\beta\cdot X_t}$ depend on a market factor $X_t$ that also drives exposure. Positive $\beta$ with positive exposure sensitivity gives WWR; negative $\beta$ gives RWR. For FX exposure with an EM counterparty, $\lambda_t = \lambda_0 e^{\beta(S_t-S_0)/S_0}$: depreciation ($S_t$ up) raises default intensity.
 
 ### 4. Hull-White WWR Model
 

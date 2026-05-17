@@ -14,13 +14,7 @@ where $P(T_m, T_k)$ is the price at $T_m$ of a zero-coupon bond maturing at $T_k
 
 ## Key Observation: Monotonicity
 
-In the Hull-White model, the bond price at $T_m$ for maturity $T_k$ is
-
-$$
-P(T_m, T_k) = \exp\!\left(A(T_k - T_m) + B(T_k - T_m)\,r(T_m)\right)
-$$
-
-Since $B(\tau) = -\frac{1}{\lambda}(1 - e^{-\lambda\tau}) < 0$ for all $\tau > 0$, each bond price $P(T_m, T_k)$ is a **strictly decreasing** function of $r(T_m)$.
+Recall (see [§ HW Bond Pricing](../bond_pricing/bond_price_formula.md)): $P(T_m, T_k) = \exp(A(T_k - T_m) + B(T_k - T_m)\,r(T_m))$, and (Recall, see [§ Named Functions](../named_functions/named_functions_definition.md)) $B(\tau)<0$ for $\tau>0$. Hence each $P(T_m, T_k)$ is **strictly decreasing** in $r(T_m)$.
 
 !!! tip "Why Monotonicity Matters"
     When all bond prices move in the same direction as a function of a single state variable $r(T_m)$, the exercise decision at $T_m$ reduces to comparing $r(T_m)$ to a single threshold $r^*$. This is the essential insight that makes the decomposition possible.

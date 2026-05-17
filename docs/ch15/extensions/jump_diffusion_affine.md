@@ -34,23 +34,13 @@ The answer is yes, provided the jump intensity and the jump size distribution sa
 ### General Specification
 
 !!! info "Definition: Affine Jump-Diffusion"
-    A $d$-dimensional affine jump-diffusion $X_t$ on $D = \mathbb{R}_+^m \times \mathbb{R}^{d-m}$ satisfies
-
-    $$
-    dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t + dJ_t
-    $$
-
-    where:
-
-    - $\mu(x) = b_0 + Bx$ is the affine drift (including jump compensation)
-    - $\sigma(x)\sigma(x)^\top = a_0 + \sum_i \alpha_i x^{(i)}$ is the affine diffusion
-    - $J_t$ is a jump process with **affine compensator**:
+    Recall (see [affine drift/diffusion structure](../definition_and_setup/definition_of_affine_process.md)). A $d$-dimensional affine jump-diffusion on $D = \mathbb{R}_+^m \times \mathbb{R}^{d-m}$ satisfies $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t + dJ_t$ with $\mu(x) = b_0 + Bx$, $\sigma\sigma^\top = a_0 + \sum_i \alpha_i x^{(i)}$, and $J_t$ a jump process with **affine compensator**:
 
     $$
     \nu(X_t, dz, dt) = \left(\lambda_0\,\nu_0(dz) + \sum_{i=1}^d \lambda_i\,X_t^{(i)}\,\nu_i(dz)\right)dt
     $$
 
-    Here $\lambda_0 \geq 0$ and $\lambda_i \geq 0$ are intensity coefficients, and $\nu_0, \nu_1, \ldots, \nu_d$ are probability distributions on $\mathbb{R}^d \setminus \{0\}$ describing jump sizes.
+    Here $\lambda_0, \lambda_i \geq 0$ are intensity coefficients, and $\nu_0, \ldots, \nu_d$ are jump-size distributions on $\mathbb{R}^d \setminus \{0\}$.
 
 The total jump intensity is $\Lambda(x) = \lambda_0 + \sum_i \lambda_i x^{(i)}$, which is affine in the state. The jump size distribution can depend on which component triggers the jump (through the index $i$) but not on the state value $x$.
 
@@ -159,17 +149,7 @@ where $N_t$ is the point process and $\delta > 0$ is the jump in intensity cause
 
 ### Specification
 
-The Bates (1996) model combines the Heston stochastic volatility model with Merton-type log-normal jumps in the log-price:
-
-$$
-d\log S_t = \left(r - \tfrac{1}{2}V_t - \lambda\bar{k}\right)dt + \sqrt{V_t}\left(\rho\,dW_t^{(1)} + \sqrt{1-\rho^2}\,dW_t^{(2)}\right) + Z_t\,dN_t
-$$
-
-$$
-dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{(1)}
-$$
-
-where $N_t$ is a Poisson process with constant intensity $\lambda$, $Z_t \sim N(\mu_J, \sigma_J^2)$ i.i.d., and $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$ is the expected jump size.
+Recall (see [Bates SDE specification](../../ch07/merton_jump_diffusion/connection_to_bates_model.md)): Heston stochastic volatility plus Merton-type log-normal jumps in the log-price, with Poisson intensity $\lambda$, $Z_t \sim N(\mu_J, \sigma_J^2)$, and $\bar{k} = e^{\mu_J + \sigma_J^2/2} - 1$.
 
 ### Affine Structure
 

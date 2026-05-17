@@ -310,18 +310,9 @@ The integral $\int_0^t f(s,B_s)\,ds$ is an ordinary time integral, constructed p
 
 ### 9. Why Ordinary Calculus Breaks for Brownian Motion
 
-Although Brownian motion is continuous, its **total variation is infinite on every interval** while its **quadratic variation is finite**. This unusual combination is the fundamental reason stochastic calculus differs from ordinary calculus.
+The time integral works because $ds$ is smooth. The integrator $dB_s$ is not.
 
-The time integral works because $ds$ is smooth. Now suppose we try to define
-
-$$
-\int_0^t f(s, B_s)\, dB_s
-\approx \sum f(t_k, B_{t_k})(B_{t_{k+1}} - B_{t_k})
-$$
-
-Because Brownian paths have infinite variation, summing absolute increments $\sum |B_{t_{k+1}} - B_{t_k}|$ diverges as the partition becomes finer. Moreover, unlike the time integral, the limit of discrete sums **depends on where the integrand is sampled**—left endpoint, midpoint, and right endpoint give different limits. Different conventions lead to different stochastic integrals: most notably the **Itô integral** (left endpoint) and the **Stratonovich integral** (midpoint).
-
-To make sense of $\int_0^t f(s, B_s)\, dB_s$, we must introduce a new definition of integration specifically designed for stochastic processes—the Itô integral studied in the next section.
+Recall (see [§ Quadratic Variation](quadratic_variation.md)): Brownian motion has **infinite total variation** but **finite quadratic variation $[B]_t = t$** on every interval. The first fact makes pathwise Riemann-Stieltjes integration impossible (absolute increment sums diverge); the second fact creates the correction terms in Itô's formula. Unlike the time integral, the limit of discrete sums for $\int f(s,B_s)\,dB_s$ **depends on where the integrand is sampled** — left endpoint gives the [§ Itô Integral](ito_integration_intuitive.md), midpoint gives the [§ Stratonovich Integral](stratonovich_integration.md).
 
 ---
 

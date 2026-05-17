@@ -7,20 +7,7 @@ Feynman–Kac represents prices as expectations and can yield expectation repres
 
 ## Price as expectation
 
-
-Under the risk-neutral measure $\mathbb{Q}$,
-
-$$
-\mathrm{d}S_t = rS_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t
-$$
-
-and the Feynman–Kac theorem gives
-
-$$
-V(t,S) = \mathbb{E}^{t,S}\!\left[e^{-r(T-t)}\Phi(S_T)\right]
-$$
-
-where $\mathbb{E}^{t,S}$ denotes expectation conditional on $S_t = S$. This is the probabilistic counterpart of the Black–Scholes PDE: $V$ solves the PDE if and only if it equals this conditional expectation.
+Recall (see [§ Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md)): under $\mathbb{Q}$ with $dS_t=rS_t\,dt+\sigma S_t\,dW_t$, $V(t,S)=\mathbb{E}^{t,S}[e^{-r(T-t)}\Phi(S_T)]$ solves the Black–Scholes PDE.
 
 ---
 
@@ -43,75 +30,29 @@ This ratio is key: it converts differentiation with respect to the initial condi
 
 ---
 
-## Delta via pathwise differentiation
+## Delta and vega via pathwise differentiation
 
-
-For sufficiently smooth payoff $\Phi$, we can interchange differentiation and expectation:
-
-$$
-\Delta(t,S) = \frac{\partial}{\partial S}\mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi(S_T)\right]
-= \mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi'(S_T)\frac{\partial S_T}{\partial S}\right]
-$$
-
-Using the stochastic flow:
+**Recall** (see [§ Pathwise Differentiation](pathwise_differentiation.md)): for smooth $\Phi$, the Feynman–Kac representation gives
 
 $$
-\boxed{
-\Delta(t,S) = \mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi'(S_T)\frac{S_T}{S}\right]
-}
+\Delta(t,S) = \mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi'(S_T)\frac{S_T}{S}\right],
+\qquad
+\nu(t,S) = \mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi'(S_T)\,S_T(\sqrt{\tau}Z - \sigma\tau)\right],
 $$
 
-**Verification for the European call.** With $\Phi(x) = (x - K)^+$, we have $\Phi'(x) = \mathbf{1}_{x > K}$ (a.e.), so
-
-$$
-\Delta = \frac{e^{-r\tau}}{S}\mathbb{E}^{t,S}\!\left[S_T \mathbf{1}_{S_T > K}\right]
-$$
-
-Computing this expectation under the log-normal distribution recovers $\Delta = N(d_1)$.
-
----
-
-## Vega via Feynman–Kac
-
-
-The sensitivity to volatility requires differentiating through the distribution of $S_T$. Writing $S_T = S\exp((r - \frac{1}{2}\sigma^2)\tau + \sigma\sqrt{\tau}\,Z)$ where $Z \sim N(0,1)$:
-
-$$
-\frac{\partial S_T}{\partial \sigma} = S_T\left(-\sigma\tau + \sqrt{\tau}\,Z\right)
-$$
-
-For smooth $\Phi$:
-
-$$
-\nu(t,S) = \mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi'(S_T)\cdot S_T(-\sigma\tau + \sqrt{\tau}\,Z)\right]
-$$
-
-This is the **pathwise vega estimator**, valid when $\Phi$ is differentiable. It provides an unbiased Monte Carlo estimator for vega.
+with $Z$ the standard normal driver of $S_T$. For a call with $\Phi(x) = (x-K)^+$, the pathwise delta evaluates to $N(d_1)$; integrability and the interchange of $\partial_\theta$ and $\mathbb{E}$ are discussed there.
 
 ---
 
 ## Rho via Feynman–Kac
 
-
-Differentiating with respect to $r$ affects both the discount factor and the drift:
-
-$$
-\rho = \frac{\partial}{\partial r}\mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi(S_T)\right]
-$$
-
-This gives two terms:
+Differentiating $V(t,S)=\mathbb{E}^{t,S}[e^{-r\tau}\Phi(S_T)]$ in $r$ produces two terms — the discount factor and the drift contribution $\partial_r S_T=\tau S_T$:
 
 $$
-\rho = -\tau\,V(t,S) + e^{-r\tau}\mathbb{E}^{t,S}\!\left[\Phi'(S_T)\frac{\partial S_T}{\partial r}\right]
+\rho = -\tau V + e^{-r\tau}\tau\,\mathbb{E}^{t,S}\!\left[\Phi'(S_T)S_T\right].
 $$
 
-Since $\frac{\partial S_T}{\partial r} = \tau S_T$:
-
-$$
-\rho = -\tau V + e^{-r\tau}\tau\,\mathbb{E}^{t,S}\!\left[\Phi'(S_T)S_T\right]
-$$
-
-For a call, this simplifies to $\rho = K\tau e^{-r\tau}N(d_2)$.
+Recall (see [§ Pathwise Differentiation](pathwise_differentiation.md)): the same expression is the pathwise rho estimator; the BS call closed form $\rho=K\tau e^{-r\tau}N(d_2)$ is recorded in [§ Greeks in the Black–Scholes Model](../greeks/greeks_in_black_scholes_model.md).
 
 ---
 

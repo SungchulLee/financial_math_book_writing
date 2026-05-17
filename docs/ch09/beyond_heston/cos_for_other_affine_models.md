@@ -21,49 +21,25 @@ The COS method requires only one model-specific input: the characteristic functi
 
 ## The COS Method Is Model-Agnostic
 
-Recall the COS pricing formula:
-
-$$
-V_{\text{COS}} = e^{-rT}\sum_{k=0}^{N-1}{}' F_k\, V_k
-$$
-
-The payoff coefficients $V_k$ depend only on the payoff function and the truncation interval $[a, b]$. The density coefficients $F_k$ depend only on the characteristic function:
-
-$$
-F_k = \frac{2}{b-a}\,\text{Re}\!\left[\phi\!\left(\frac{k\pi}{b-a}\right)e^{-ik\pi a/(b-a)}\right]
-$$
-
-To apply COS to a new model, we need only:
-
-1. The characteristic function $\phi(u)$ (plug into $F_k$)
-2. The first four cumulants $c_1, c_2, c_3, c_4$ (for the truncation interval)
+**Recall** (see [§ COS Pricing Formula](../cos_method/cos_pricing_formula.md)): the COS price separates CF-dependent density coefficients $F_k$ from payoff-dependent coefficients $V_k$. To apply COS to a new model, we need only (i) the characteristic function $\phi(u)$ and (ii) the first four cumulants $c_1,\dots,c_4$ for the truncation interval (see [§ Truncation to Finite Domain](../cos_method/truncation_to_finite_domain.md)).
 
 ---
 
 ## Bates Model (Stochastic Volatility with Jumps)
 
-The Bates (1996) model combines the Heston stochastic volatility with Merton-style log-normal jumps.
+The Bates (1996) model combines Heston stochastic volatility with Merton-style log-normal jumps $J\sim N(\mu_J,\sigma_J^2)$ of intensity $\lambda$ and compensator $\bar\mu = e^{\mu_J+\sigma_J^2/2}-1$.
 
-!!! note "Definition: Bates Model"
-    Under the risk-neutral measure:
+Recall (see [§ Heston SDE and Parameters](../../ch16/model_definition/heston_sde_and_parameters.md)): the variance follows $dv_t = \kappa(\theta-v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t^v$ with $\text{Corr}(dW^S,dW^v)=\rho$.
 
-    $$
-    \frac{dS_t}{S_t} = (r - q - \lambda\bar{\mu})\,dt + \sqrt{v_t}\,dW_t^S + (e^J - 1)\,dN_t
-    $$
+Recall (see [§ Jump Diffusion SDE](../../ch07/merton_jump_diffusion/jump_diffusion_sde.md)): the Merton jump component contributes a Poisson-Gaussian factor with compensator $\bar\mu$.
 
-    $$
-    dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t^v
-    $$
-
-    where $\text{Corr}(dW^S, dW^v) = \rho$, $N_t$ is a Poisson process with intensity $\lambda$, and $J \sim N(\mu_J, \sigma_J^2)$. The compensator is $\bar{\mu} = e^{\mu_J + \sigma_J^2/2} - 1$.
-
-The characteristic function of the log-price is the product of the Heston CF and the Merton jump CF:
+By independence of the Heston diffusion and the jump component, the Bates log-price CF factors as
 
 $$
 \phi_{\text{Bates}}(u) = \phi_{\text{Heston}}(u)\cdot\exp\!\left(\lambda T\left[e^{i\mu_J u - \sigma_J^2 u^2/2} - 1 - i\bar{\mu} u\right]\right)
 $$
 
-The jump component adds a multiplicative factor to the Heston CF, making the implementation straightforward: compute the Heston CF as before, then multiply by the jump factor.
+where $\phi_{\text{Heston}}$ is the closed-form Heston CF (see [§ Closed-Form Heston CF](../../ch16/heston_cf/closed_form_characteristic_function.md)).
 
 **COS considerations:**
 
@@ -179,15 +155,7 @@ The Normal Inverse Gaussian (NIG) model (Barndorff-Nielsen, 1998) is a special c
 
 ## Implementation Pattern
 
-The model-agnostic nature of COS allows a clean software architecture:
-
-!!! tip "Software Design"
-    A generic COS pricer takes a characteristic function as input (a callable), plus the truncation parameters. Model-specific code is isolated to:
-
-    1. A function that evaluates $\phi(u)$ given model parameters
-    2. A function that computes cumulants $c_1, \ldots, c_4$ given model parameters
-
-    Everything else (payoff coefficients, summation, truncation interval) is shared across all models. This separation simplifies testing, validation, and the addition of new models.
+Recall (see [§ COS Pricing Formula](../cos_method/cos_pricing_formula.md)): model-specific code is isolated to two callables --- $\phi(u)$ and the cumulants $c_1,\dots,c_4$ --- while payoff coefficients, summation, and truncation logic are shared across all models, so adding a new Levy or affine model means writing only these two functions.
 
 ---
 
@@ -208,16 +176,7 @@ The model-agnostic nature of COS allows a clean software architecture:
 
 ## Summary
 
-The COS method extends to any model with a known characteristic function:
-
-| Requirement | How it is satisfied |
-|---|---|
-| Characteristic function | Closed-form for affine and Levy models |
-| Cumulants for truncation | Computed from derivatives of $\ln\phi$ at $u = 0$ |
-| Smoothness for convergence | Most financial densities are $C^\infty$ or analytic |
-| Implementation | Only $\phi(u)$ and cumulants are model-specific |
-
-**The COS method's model-agnostic architecture---requiring only the characteristic function as input---makes it a universal pricing engine for the entire family of affine and Levy models, with exponential convergence guaranteed whenever the risk-neutral density is smooth.**
+**The COS method's model-agnostic architecture---requiring only the characteristic function and cumulants as input---makes it a universal pricing engine for the entire family of affine and Levy models, with exponential convergence guaranteed whenever the risk-neutral density is smooth.** The Comparative Summary table above captures the model-specific tuning ($N$, branch handling, density width); everything else is shared infrastructure.
 
 ---
 

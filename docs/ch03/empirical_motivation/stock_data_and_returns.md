@@ -1,11 +1,14 @@
 # Stock Data and Return Computation
 
-Before constructing stochastic models of asset prices we must establish a
-rigorous empirical foundation: what does real financial data look like, how do
-we extract meaningful return series from it, and what statistical summaries
-characterise those series? This section answers all three questions and sets up
-the empirical patterns — the **stylized facts** — that motivate everything in
-Chapter 3.
+This section establishes the empirical foundation: what real price data look
+like, how to extract a meaningful return series, and what statistical summaries
+characterise it. The goal is purely descriptive — *here is the data and how we
+measure it*. The empirical regularities documented in
+[§ Stylized Facts of Financial Returns](stylized_facts.md), the structural
+critique in [§ Why Deterministic Models Fail](why_deterministic_fails.md), and
+the continuous-time construction in
+[§ Bridge to Stochastic Differential Equations](bridge_to_sdes.md) all build on
+the quantities defined here.
 
 ---
 
@@ -89,19 +92,6 @@ Discrete returns multiply rather than add: $1 + r_{[t,t+n]}^{(D)} =
 probabilistically — central limit theorem, variance formulas, and stationarity
 arguments all apply cleanly to additive quantities.
 
-**Connection to Brownian motion.** Geometric Brownian Motion (GBM) predicts
-that log returns over a period $\Delta t$ are Gaussian:
-
-$$
-r_t^{(C)} \sim \mathcal{N}\!\left(\mu\Delta t,\;\sigma^2\Delta t\right)
-$$
-
-Log returns are thus the natural observation equation for GBM and for any SDE
-of the form $dS = \mu S\,dt + \sigma S\,dW$. Because of this additive Gaussian
-structure, maximum likelihood estimation of the GBM parameters $(\mu, \sigma)$
-is performed directly on the log-return series. The stylized facts in the next
-section show precisely how real returns deviate from this Gaussian prediction.
-
 **Convention used in this book:** Theory and estimation use log returns.
 Portfolio attribution uses discrete returns.
 
@@ -136,23 +126,22 @@ $$
 $$
 
 Mean scales linearly with horizon; volatility scales with the **square root**
-of horizon — a direct consequence of the independent-increments structure
-of Brownian motion.
+of horizon — a direct consequence of variance additivity across independent
+increments.
 
 !!! warning "The i.i.d. assumption understates true annual volatility"
-    Because volatility clusters (Stylized Fact 2), daily returns are not
-    independent. The $\sqrt{N}$ rule assumes zero serial correlation in
-    squared returns, which is empirically violated. In the presence of GARCH
-    effects, the true annualised volatility exceeds $\sqrt{252}\,\hat\sigma$
-    by an amount that depends on the persistence of volatility. For
+    The $\sqrt{N}$ rule assumes zero serial correlation in squared returns.
+    That assumption is empirically violated (see
+    [§ Stylized Facts of Financial Returns](stylized_facts.md) for the
+    volatility-clustering evidence), so in the presence of GARCH effects the
+    true annualised volatility exceeds $\sqrt{252}\,\hat\sigma$. For
     back-of-the-envelope estimates the $\sqrt{N}$ rule is standard practice,
     but treat it as a lower bound in risk applications.
 
 !!! note "Higher moments do not annualise simply"
     Under i.i.d. normality, skewness decreases as $\sim N^{-1/2}$ and excess
-    kurtosis as $\sim N^{-1}$ with horizon — which is the mathematical content
-    of Stylized Fact 5 (aggregational Gaussianity). Do not annualise skewness
-    or kurtosis point estimates directly.
+    kurtosis as $\sim N^{-1}$ with horizon. Do not annualise skewness or
+    kurtosis point estimates directly.
 
 ---
 
@@ -278,7 +267,8 @@ positive returns — the distribution is left-skewed. **Positive excess kurtosis
 means the distribution is leptokurtic; extreme daily moves occur far more
 frequently than a Gaussian with the same mean and variance would predict.
 
-These are the first hints of the stylized facts examined in the next section.
+These observations are documented systematically in
+[§ Stylized Facts of Financial Returns](stylized_facts.md).
 
 !!! warning "Sample-size caveat on higher moments"
     With $T \approx 1000$ observations, the standard error of the sample
@@ -313,15 +303,12 @@ established in this section:
 1. **Adjusted prices** ensure that computed returns reflect only genuine
    economic change, free from the distortions introduced by dividends and
    splits.
-2. **Log returns** are time-additive, compatible with Brownian motion, and
-   the natural input for MLE of GBM parameters — making them the correct
-   basis for both statistical analysis and continuous-time theory.
+2. **Log returns** are time-additive and the natural input for downstream
+   statistical analysis.
 3. **Annualised moments** — in particular the $\sqrt{N}$ volatility scaling —
-   encode the independent-increments structure of Brownian motion. That
-   assumption is itself violated by the stylized facts, which the next section
-   documents in detail.
+   express how dispersion grows with horizon under i.i.d. assumptions.
 
-**Next:** Stylized Facts of Financial Returns. $\square$
+**Next:** [§ Stylized Facts of Financial Returns](stylized_facts.md). $\square$
 
 ---
 

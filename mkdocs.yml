@@ -28,6 +28,11 @@ extra_javascript:
 extra_css:
   - stylesheets/extra.css
 
+exclude_docs: |
+  review.md
+  *_score.md
+  *_v[0-9]*.md
+
 nav:
     - Home: index.md
 
@@ -101,6 +106,7 @@ nav:
                 - Why Deterministic Fails: ch03/empirical_motivation/why_deterministic_fails.md
                 - Bridge to Stochastic Differential Equations: ch03/empirical_motivation/bridge_to_sdes.md
             - 3.2 Itô Integration:
+                - Section Overview: ch03/ito_integral/index.md
                 - Quadratic Variation: ch03/ito_integral/quadratic_variation.md
                 - High School Integral (Intuitive): ch03/ito_integral/high_school_integration_intuitive.md
                 - Itô Integral (Intuitive): ch03/ito_integral/ito_integration_intuitive.md
@@ -119,6 +125,7 @@ nav:
                 - Itô Rules: ch03/ito_lemma/ito_rules.md
                 - Applications and Examples: ch03/ito_lemma/ito_calculus_applications.md
             - 3.4 Stochastic Differential Equations:
+                - Section Overview: ch03/sde/index.md
                 - SDE: ch03/sde/sde.md
                 - Understanding SDE: ch03/sde/understanding_sde_solutions.md
                 - Verifying SDE Solutions: ch03/sde/verifying_sde_solutions.md
@@ -290,9 +297,10 @@ nav:
             - 6.6 BS Analytic Solutions:
                 - BS Analytic Solutions Introduction: ch06/bs_pde_analytic_solution/intro.md
                 - Heat Equation: ch06/bs_pde_analytic_solution/heat_equation.md
-                - Separation of Variables: ch06/bs_pde_analytic_solution/separation_of_variables.md
-                - Similarity Solutions: ch06/bs_pde_analytic_solution/similarity_solutions.md
                 - Fourier Transform: ch06/bs_pde_analytic_solution/fourier_transform.md
+                - "Green's Function and Fundamental Solution": ch06/bs_pde_analytic_solution/greens_function.md
+                - Similarity Solutions: ch06/bs_pde_analytic_solution/similarity_solutions.md
+                - Separation of Variables: ch06/bs_pde_analytic_solution/separation_of_variables.md
                 - Mellin Transform: ch06/bs_pde_analytic_solution/mellin_transform.md
                 - Laplace Transform (Time): ch06/bs_pde_analytic_solution/laplace_transform_in_time.md
                 - Feynman–Kac Formula: ch06/bs_pde_analytic_solution/feynman_kac.md

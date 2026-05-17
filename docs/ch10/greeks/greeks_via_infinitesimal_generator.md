@@ -33,17 +33,7 @@ $$
 ## Pricing PDE
 
 
-For a European payoff $\Phi$, the price
-
-
-$$
-V(t,S)=\mathbb{E}^{t,S}\!\left[e^{-r(T-t)}\Phi(S_T)\right]
-$$
-
-
-
-solves the backward equation
-
+Recall (see [§ BS PDE structure](../../ch06/bs_pde_structure/discounting_and_killing_term.md)): for a European payoff $\Phi$, the price $V(t,S)=\mathbb{E}^{t,S}\!\left[e^{-r(T-t)}\Phi(S_T)\right]$ solves the backward equation
 
 $$
 \boxed{
@@ -79,8 +69,7 @@ $$
 
 
 
-This suggests a PDE for $\nu$ of the form
-
+This suggests a PDE for $\nu$ (Recall — see [§ Greeks via PDE](../greeks_pde/differentiating_black_scholes_pde.md) for the full derivation and boundary conditions):
 
 $$
 \boxed{

@@ -30,7 +30,7 @@ $$
 
 where $\mathcal{L}^u$ is the controlled generator.
 
-This is the continuous-time analogue of Bellman equations.
+This is the continuous-time analogue of Bellman equations (Recall (see [§ Bellman equations](markov_decision_processes.md#bellman-equations))).
 
 ---
 
@@ -50,9 +50,9 @@ Reinforcement learning can be viewed as:
 
 Connections appear in:
 
-- optimal trading and execution,
+- optimal trading and execution (Recall (see [§ RL for Optimal Execution](rl_for_optimal_execution.md))),
 - portfolio optimization,
-- market making and hedging.
+- market making and hedging (Recall (see [§ RL for Option Hedging](rl_for_option_hedging.md))).
 
 RL generalizes stochastic control to unknown environments.
 

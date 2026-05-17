@@ -27,13 +27,9 @@ This approach is particularly valuable because:
 - A risky asset (stock) with price process $S_t$
 - European options with various strikes and maturities
 
-**No-Arbitrage Assumption**: There exists no trading strategy that:
+**No-Arbitrage Assumption**: There exists no trading strategy that requires no initial investment, has non-negative payoff with probability 1, and has positive payoff with positive probability.
 
-1. Requires no initial investment
-2. Has non-negative payoff with probability 1
-3. Has positive payoff with positive probability
-
-**Fundamental Theorem of Asset Pricing**: Under no-arbitrage, there exists a probability measure $\mathbb{Q}$ equivalent to the physical measure $\mathbb{P}$ such that discounted asset prices are $\mathbb{Q}$-martingales:
+**Recall** (see [§ Fundamental Theorem of Asset Pricing](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md)): under no-arbitrage there exists an equivalent measure $\mathbb{Q}$ such that the discounted price $\tilde{S}_t = S_t/B_t$ is a $\mathbb{Q}$-martingale,
 
 
 $$
@@ -280,79 +276,7 @@ $$
 
 ## Breeden-Litzenberger Formula
 
-
-### 1. Risk-Neutral Density Recovery
-
-
-**Theorem** (Breeden-Litzenberger, 1978): The risk-neutral density is given by:
-
-
-$$
-q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K)
-$$
-
-
-
-**Proof**: Starting from the call option formula:
-
-
-$$
-C(K) = e^{-rT} \int_K^{\infty} (S - K) q(S) \, dS
-$$
-
-
-
-Differentiate once with respect to $K$:
-
-
-$$
-\frac{\partial C}{\partial K} = e^{-rT} \int_K^{\infty} (-1) q(S) \, dS = -e^{-rT} \int_K^{\infty} q(S) \, dS
-$$
-
-
-
-Differentiate again:
-
-
-$$
-\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
-$$
-
-
-
-**Implications**:
-
-1. Convexity of $C(K)$ ensures $q(K) \geq 0$ (probability density)
-2. The integral $\int_0^{\infty} q(K) \, dK = 1$ (normalization)
-3. The forward price:
-
-   $$
-   F_0 = \int_0^{\infty} K q(K) \, dK = S_0 e^{rT}
-   $$
-
-
-
-### 2. Practical Implementation
-
-
-**Discrete Approximation**: With observed call prices $\{C(K_i)\}_{i=1}^n$:
-
-
-$$
-q(K_i) \approx e^{rT} \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(K_{i+1} - K_i)(K_i - K_{i-1})}
-$$
-
-
-
-**Interpolation**: Use splines or other smooth interpolation methods to obtain a continuous function $C(K)$, then differentiate numerically.
-
-**Regularization**: In practice, raw market prices may violate no-arbitrage constraints due to:
-
-- Bid-ask spreads
-- Discrete strikes
-- Market microstructure noise
-
-Regularized approaches project observed prices onto the space of arbitrage-free prices.
+**Recall** (see [§ Model-Free Results](../../ch12/model_free_results/breeden_litzenberger_formula.md)): the risk-neutral density satisfies $q(K) = e^{rT} \partial^2 C / \partial K^2 (K)$, with discrete approximation $q(K_i) \approx e^{rT}[C(K_{i-1}) - 2C(K_i) + C(K_{i+1})]/(\Delta K)^2$. Convexity of $C(K)$ ensures $q \geq 0$, and the forward $F_0 = \int K q(K) dK = S_0 e^{rT}$.
 
 ## Carr-Madan Formula
 
@@ -546,85 +470,7 @@ $$
 
 ## Fundamental Duality
 
-
-### 1. Primal and Dual Problems
-
-
-**Primal Problem** (Buyer's Perspective): Minimize the super-replication cost:
-
-
-$$
-\pi^{\text{sup}}(g) = \inf \left\{ V_0: \exists \text{ trading strategy with } V_T \geq g(S_T) \text{ a.s.} \right\}
-$$
-
-
-
-**Dual Problem**: Maximize over all equivalent martingale measures:
-
-
-$$
-\pi^{\text{dual}}(g) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
-$$
-
-
-
-where $\mathcal{M}$ is the set of equivalent martingale measures.
-
-**Fundamental Duality Theorem**: Under appropriate technical conditions:
-
-
-$$
-\pi^{\text{sup}}(g) = \pi^{\text{dual}}(g)
-$$
-
-
-
-**Interpretation**: 
-
-- The minimum cost to super-replicate equals the maximum expected discounted payoff over all martingale measures
-- This provides a dual characterization of derivative prices
-- Strong duality holds in frictionless markets
-
-### 2. Sub-Replication
-
-
-**Sub-Replication Cost**:
-
-
-$$
-\pi^{\text{sub}}(g) = \sup \left\{ V_0: \exists \text{ trading strategy with } V_T \leq g(S_T) \text{ a.s.} \right\}
-$$
-
-
-
-**Dual Characterization**:
-
-
-$$
-\pi^{\text{sub}}(g) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
-$$
-
-
-
-**Complete Markets**: When the market is complete (unique martingale measure):
-
-
-$$
-\pi^{\text{sup}}(g) = \pi^{\text{sub}}(g) = \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
-$$
-
-
-
-**Incomplete Markets**: 
-
-
-$$
-\pi^{\text{sub}}(g) \leq \pi^{\text{sup}}(g)
-$$
-
-
-
-with strict inequality reflecting model uncertainty.
+**Recall** (see [§ Superhedging Duality](superhedging_duality.md)): the super-replication cost $\pi^{\text{sup}}(g) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]$ and the sub-replication cost $\pi^{\text{sub}}(g) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]$, with strict inequality $\pi^{\text{sub}} < \pi^{\text{sup}}$ in incomplete markets and equality in complete markets.
 
 ## Advanced Model-Free Results
 

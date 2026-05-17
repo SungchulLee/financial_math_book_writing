@@ -1,6 +1,8 @@
 # Forward Rate Agreement
 
-Forward rate agreements (FRAs) are the simplest building blocks of interest rate derivatives. They allow two parties to lock in an interest rate for a future period, just as forward contracts lock in a future asset price. Every interest rate swap can be decomposed into a strip of FRAs, making them the atomic unit of the swap market.
+All interest rate derivatives are ultimately priced using discount factors. Forward rate agreements (FRAs) are the simplest building blocks: they let two parties lock in an interest rate for a future period, just as forward contracts lock in a future asset price. Every interest rate swap can be decomposed into a strip of FRAs (see [§ Interest Rate Swap](interest_rate_swap.md)), making FRAs the atomic unit of the swap market.
+
+Throughout this section we write $L(t, T_{k-1}, T_k)$ for the simply compounded forward rate over $[T_{k-1}, T_k]$ with accrual $\tau_k = T_k - T_{k-1}$.
 
 ---
 
@@ -8,24 +10,24 @@ Forward rate agreements (FRAs) are the simplest building blocks of interest rate
 
 $$\begin{array}{lllllllllllllll}
 &&\text{Time}&&\text{Action}&&\text{Value}\\
-\text{Now}&&t&&\text{Enter Payer FRA with Fixed Rate $K$ and Principle $N$}&&{\bf\text{FRA}}^{\text{Payer}}(t,T_{k-1},T_k,N,K)=N\left(l_k(t)-K\right)\tau_k P(t,T_k)\\
-&&&&\text{Enter Receiver FRA with Fixed Rate $K$ and Principle $N$}&&{\bf\text{FRA}}^{\text{Receiver}}(t,T_{k-1},T_k,N,K)=N\left(K-l_k(t)\right)\tau_k P(t,T_k)\\
+\text{Now}&&t&&\text{Enter Payer FRA with Fixed Rate $K$ and Principal $N$}&&{\bf\text{FRA}}^{\text{Payer}}(t,T_{k-1},T_k,N,K)=N\left(L(t,T_{k-1},T_k)-K\right)\tau_k P(t,T_k)\\
+&&&&\text{Enter Receiver FRA with Fixed Rate $K$ and Principal $N$}&&{\bf\text{FRA}}^{\text{Receiver}}(t,T_{k-1},T_k,N,K)=N\left(K-L(t,T_{k-1},T_k)\right)\tau_k P(t,T_k)\\
 \\
-\text{Reset Date}&&T_{k-1} > t&&\text{Observe Float Rate}\ l_k(T_{k-1})\ \text{and Fix Payer FRA Payment at $T_k$}&&\displaystyle {\bf\text{FRA}}^{\text{Payer}}(T_{k-1},T_{k-1},T_k,N,K)=\frac{N\tau_k(l_k(T_{k-1})-K)}{1+\tau_kl_k(T_{k-1})}=N\left(l_k(T_{k-1})-K\right)\tau_kP(T_{k-1},T_k)\\
+\text{Reset Date}&&T_{k-1} > t&&\text{Observe Float Rate}\ L(T_{k-1},T_{k-1},T_k)\ \text{and Fix Payer FRA Payment at $T_k$}&&\displaystyle {\bf\text{FRA}}^{\text{Payer}}(T_{k-1},T_{k-1},T_k,N,K)=\frac{N\tau_k(L(T_{k-1},T_{k-1},T_k)-K)}{1+\tau_k L(T_{k-1},T_{k-1},T_k)}=N\left(L(T_{k-1},T_{k-1},T_k)-K\right)\tau_kP(T_{k-1},T_k)\\
 \\
-\text{Payment Date}&&T_k > T_{k-1} > t&&\text{Exchange Fixed and Float Interest on Principle}&&{\bf\text{FRA}}^{\text{Payer}}(T_{k-1},T_{k-1},T_k,N,K)=N(l_k(T_{k-1})-K)\tau_k\\
+\text{Payment Date}&&T_k > T_{k-1} > t&&\text{Exchange Fixed and Float Interest on Principal}&&{\bf\text{FRA}}^{\text{Payer}}(T_{k-1},T_{k-1},T_k,N,K)=N(L(T_{k-1},T_{k-1},T_k)-K)\tau_k
 \end{array}$$
 
 where
 
 $$\begin{array}{lll}
 \tau_k&=&\tau(T_{k-1},T_k)\\
-l_k(t)&=&\displaystyle\frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)}-1\right)\\
+L(t,T_{k-1},T_k)&=&\displaystyle\frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)}-1\right)
 \end{array}$$
 
 ## Forward Rate from FRA
 
-If we have a traded FRA, meaning ${\bf\text{FRA}}(t, T_{k-1}, T_k, N, K)=0$ or $l_k(t)=K$, then we can extract the forward rate from this market data:
+If we have a traded FRA, meaning ${\bf\text{FRA}}(t, T_{k-1}, T_k, N, K)=0$ or $L(t,T_{k-1},T_k)=K$, then we can extract the forward rate from this market data:
 
 $$
 \displaystyle
@@ -34,72 +36,35 @@ $$
 R(t,T_{k-1},T_k)=\frac{1}{T_k-T_{k-1}}\log(1+\tau_kK)
 $$
 
-## Libor Rate l_k(t) is a T_k-Martingale (Advanced)
-
-With tenor $\tau_k=T_k-T_{k-1}$
-
-$$\begin{array}{lll}
-\displaystyle
-l_k(t)=l(t;T_{k-1},T_k)=\frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)}-1\right)
-=\frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})-P(t,T_k)}{P(t,T_k)}\right)
-\end{array}$$
-
-is a $\mathbb{T_k}$-martingale.
-
-???+ note "Proof"
-
-    $$\begin{array}{lll}
-    \displaystyle
-    \mathbb{E}^{\mathbb{T_k}}\left[l\left(T_{k-1};T_{k-1},T_k\right)|{\cal F}(t)\right]
-    &=&\displaystyle
-    \frac{1}{\tau_k}\mathbb{E}^{\mathbb{T_k}}\left[\frac{P(T_{k-1},T_{k-1})-P(T_{k-1},T_k)}{P(T_{k-1},T_k)}\Big{|}{\cal F}(t)\right]\\
-    &=&\displaystyle
-    \frac{1}{\tau_k}\frac{P(t,T_{k-1})-P(t,T_k)}{P(t,T_k)}\\
-    &=&\displaystyle
-    l\left(t;T_{k-1},T_k\right)\\
-    \end{array}$$
-
 ## FRA Valuation via Change of Numeraire
 
-$$\begin{array}{lll}
-\displaystyle
-{\bf\text{FRA}}(t,T_{k-1},T_k,N,K)=N\tau_k\left(l_k(t)-K\right) P(t,T_k)\\
-\end{array}$$
+$$
+{\bf\text{FRA}}(t,T_{k-1},T_k,N,K)=N\tau_k\left(L(t,T_{k-1},T_k)-K\right) P(t,T_k)
+$$
 
 The fair value $K$, which makes $V(t)=0$, is given by
 
-$$\begin{array}{lll}
-\displaystyle
-K=l_k(t)=l(t,T_{k-1},T_k)
-\end{array}$$
+$$
+K=L(t,T_{k-1},T_k)
+$$
 
 ???+ note "Proof"
 
-    Since $l_k(t)=\frac{1}{\tau_k}(\frac{P(t,T_{k-1})}{P(t,T_k)}-1)$,
-    we have
-
-    $$
-    \displaystyle
-    \frac{1}{1+\tau_k l_k(T_{k-1})}= P(T_{k-1},T_k)
-    $$
-
-    Therefore,
+    Recall (see [§ Risk-Neutral Valuation Principle](../../ch04/risk_neutral/risk_neutral_valuation_principle.md)): a $T_k$-payoff $X$ has time-$t$ price $M(t)\mathbb{E}^{\mathbb{Q}}[X/M(T_k)\mid\mathcal{F}(t)]$, and the rebate identity $\frac{1}{1+\tau_k L(T_{k-1},T_{k-1},T_k)}=P(T_{k-1},T_k)$ lets us settle the FRA at $T_{k-1}$. Applying this to the FRA payoff and telescoping $P(T_{k-1},T_{k-1})-P(T_{k-1},T_k)$:
 
     $$\begin{array}{lll}
     \displaystyle
     {\bf\text{FRA}}(t,T_{k-1},T_k,N,K)
     &=&\displaystyle
     NM(t)
-    \mathbb{E^{\mathbb{Q}}}\left[\frac{P(T_{k-1},T_k)\tau_k(l(T_{k-1};T_{k-1},T_k)-K)}{M(T_{k-1})}\Big{|}{\cal F}(t)\right]\\
-    &=&\displaystyle
-    NM(t)
     \mathbb{E^{\mathbb{Q}}}\left[\frac{\left(P(T_{k-1},T_{k-1})-P(T_{k-1},T_k)\right)-K\tau_k P(T_{k-1},T_k)}{M(T_{k-1})}\Big{|}{\cal F}(t)\right]\\
     &=&\displaystyle
-    NM(t)
-    \frac{\left(P(t,T_{k-1})-P(t,T_k)\right)-K\tau_k P(t,T_k)}{M(t)}\\
-    &=&\displaystyle
-    N\tau_k \left(l_k(t)-K\right)P(t,T_k)\\
+    N\tau_k \left(L(t,T_{k-1},T_k)-K\right)P(t,T_k)
     \end{array}$$
+
+## Forward Rate is a $T_k$-Martingale (Advanced)
+
+Recall (see [§ Forward Measure](../../ch04/risk_neutral/forward_measure.md)): under the $T_k$-forward measure $\mathbb{Q}^{T_k}$ (numeraire $P(t,T_k)$), any traded-asset price divided by $P(t,T_k)$ is a martingale. Since $L(t,T_{k-1},T_k)=\frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})-P(t,T_k)}{P(t,T_k)}\right)$ is a constant multiple of the traded portfolio $P(t,T_{k-1})-P(t,T_k)$ over $P(t,T_k)$, it is a $\mathbb{Q}^{T_k}$-martingale. This is the key property exploited by LIBOR market models and by the swap-rate analogue under the annuity measure (see [§ From Swaps to Swaptions](bridge_to_swaptions.md)).
 
 ---
 
@@ -135,90 +100,90 @@ K=l_k(t)=l(t,T_{k-1},T_k)
 
 ---
 
-**Exercise 2.** Show that the fair fixed rate $K$ of a FRA (the rate making its initial value zero) equals the forward rate $l_k(t)$. Starting from $\text{FRA}(t, T_{k-1}, T_k, N, K) = N\tau_k(l_k(t) - K)P(t, T_k) = 0$, derive $K = l_k(t)$.
+**Exercise 2.** Show that the fair fixed rate $K$ of a FRA (the rate making its initial value zero) equals the forward rate $L(t,T_{k-1},T_k)$. Starting from $\text{FRA}(t, T_{k-1}, T_k, N, K) = N\tau_k(L(t,T_{k-1},T_k) - K)P(t, T_k) = 0$, derive $K = L(t,T_{k-1},T_k)$.
 
 ??? success "Solution to Exercise 2"
 
     Starting from the FRA valuation formula:
 
     $$
-    \text{FRA}(t, T_{k-1}, T_k, N, K) = N\tau_k(l_k(t) - K)P(t, T_k)
+    \text{FRA}(t, T_{k-1}, T_k, N, K) = N\tau_k(L(t,T_{k-1},T_k) - K)P(t, T_k)
     $$
 
     Setting the value to zero:
 
     $$
-    N\tau_k(l_k(t) - K)P(t, T_k) = 0
+    N\tau_k(L(t,T_{k-1},T_k) - K)P(t, T_k) = 0
     $$
 
     Since $N > 0$, $\tau_k > 0$, and $P(t, T_k) > 0$, the equation reduces to:
 
     $$
-    l_k(t) - K = 0 \implies K = l_k(t)
+    L(t,T_{k-1},T_k) - K = 0 \implies K = L(t,T_{k-1},T_k)
     $$
 
     The fair fixed rate is:
 
     $$
-    K = l_k(t) = \frac{1}{\tau_k}\left(\frac{P(t, T_{k-1})}{P(t, T_k)} - 1\right)
+    K = L(t,T_{k-1},T_k) = \frac{1}{\tau_k}\left(\frac{P(t, T_{k-1})}{P(t, T_k)} - 1\right)
     $$
 
-    This result is intuitive: the fair fixed rate in a FRA equals the market's implied forward rate for the same period. If $K > l_k(t)$, the fixed payer would overpay relative to the forward, giving the FRA negative value to the payer. If $K < l_k(t)$, the payer underpays, and the FRA has positive value. Equilibrium requires $K = l_k(t)$.
+    This result is intuitive: the fair fixed rate in a FRA equals the market's implied forward rate for the same period. If $K > L(t,T_{k-1},T_k)$, the fixed payer would overpay relative to the forward, giving the FRA negative value to the payer. If $K < L(t,T_{k-1},T_k)$, the payer underpays, and the FRA has positive value. Equilibrium requires $K = L(t,T_{k-1},T_k)$.
 
 ---
 
-**Exercise 3.** Prove that the simply compounded forward rate $l_k(t) = \frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)} - 1\right)$ is a martingale under the $T_k$-forward measure. Identify the numeraire and explain the economic intuition.
+**Exercise 3.** Prove that the simply compounded forward rate $L(t,T_{k-1},T_k) = \frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)} - 1\right)$ is a martingale under the $T_k$-forward measure. Identify the numeraire and explain the economic intuition.
 
 ??? success "Solution to Exercise 3"
 
-    We need to show that $l_k(t)$ is a martingale under the $T_k$-forward measure $\mathbb{Q}^{T_k}$, whose numeraire is the zero-coupon bond $P(t, T_k)$.
+    We need to show that $L(t,T_{k-1},T_k)$ is a martingale under the $T_k$-forward measure $\mathbb{Q}^{T_k}$, whose numeraire is the zero-coupon bond $P(t, T_k)$.
 
     **Proof.** The forward rate can be written as:
 
     $$
-    l_k(t) = \frac{1}{\tau_k}\left(\frac{P(t, T_{k-1})}{P(t, T_k)} - 1\right) = \frac{1}{\tau_k}\left(\frac{P(t, T_{k-1}) - P(t, T_k)}{P(t, T_k)}\right)
+    L(t,T_{k-1},T_k) = \frac{1}{\tau_k}\left(\frac{P(t, T_{k-1})}{P(t, T_k)} - 1\right) = \frac{1}{\tau_k}\left(\frac{P(t, T_{k-1}) - P(t, T_k)}{P(t, T_k)}\right)
     $$
 
-    The numerator $P(t, T_{k-1}) - P(t, T_k)$ is the price of a portfolio long a $T_{k-1}$-bond and short a $T_k$-bond, which is a traded asset. Dividing any traded asset price by the numeraire $P(t, T_k)$ yields a martingale under $\mathbb{Q}^{T_k}$ (by the fundamental theorem of asset pricing). Since $l_k(t) = \frac{1}{\tau_k} \cdot \frac{P(t,T_{k-1}) - P(t,T_k)}{P(t,T_k)}$ is a constant multiple of such a ratio, it is also a $\mathbb{Q}^{T_k}$-martingale.
+    The numerator $P(t, T_{k-1}) - P(t, T_k)$ is the price of a portfolio long a $T_{k-1}$-bond and short a $T_k$-bond, which is a traded asset. Dividing any traded asset price by the numeraire $P(t, T_k)$ yields a martingale under $\mathbb{Q}^{T_k}$ (by the fundamental theorem of asset pricing). Since $L(t,T_{k-1},T_k) = \frac{1}{\tau_k} \cdot \frac{P(t,T_{k-1}) - P(t,T_k)}{P(t,T_k)}$ is a constant multiple of such a ratio, it is also a $\mathbb{Q}^{T_k}$-martingale.
 
     Formally, for $s < t$:
 
     $$
-    \mathbb{E}^{T_k}[l_k(t) \mid \mathcal{F}(s)] = \frac{1}{\tau_k}\mathbb{E}^{T_k}\!\left[\frac{P(t, T_{k-1}) - P(t, T_k)}{P(t, T_k)} \;\Big|\; \mathcal{F}(s)\right] = \frac{1}{\tau_k} \cdot \frac{P(s, T_{k-1}) - P(s, T_k)}{P(s, T_k)} = l_k(s)
+    \mathbb{E}^{T_k}[L(t,T_{k-1},T_k) \mid \mathcal{F}(s)] = \frac{1}{\tau_k}\mathbb{E}^{T_k}\!\left[\frac{P(t, T_{k-1}) - P(t, T_k)}{P(t, T_k)} \;\Big|\; \mathcal{F}(s)\right] = \frac{1}{\tau_k} \cdot \frac{P(s, T_{k-1}) - P(s, T_k)}{P(s, T_k)} = L(s, T_{k-1}, T_k)
     $$
 
-    **Economic intuition.** The $T_k$-forward measure corresponds to using the $T_k$-maturity zero-coupon bond as numeraire. Under this measure, all asset prices expressed in units of this bond are martingales. The forward rate $l_k(t)$ determines the FRA payoff at $T_k$, and since the FRA payoff is settled at $T_k$ (the maturity of the numeraire bond), the natural pricing measure for this payoff is precisely $\mathbb{Q}^{T_k}$. The forward rate being a martingale under this measure means that its current value is the best (unbiased) predictor of its future value---no drift adjustment is needed when pricing FRA-related derivatives under $\mathbb{Q}^{T_k}$.
+    **Economic intuition.** The $T_k$-forward measure corresponds to using the $T_k$-maturity zero-coupon bond as numeraire. Under this measure, all asset prices expressed in units of this bond are martingales. The forward rate $L(t,T_{k-1},T_k)$ determines the FRA payoff at $T_k$, and since the FRA payoff is settled at $T_k$ (the maturity of the numeraire bond), the natural pricing measure for this payoff is precisely $\mathbb{Q}^{T_k}$. The forward rate being a martingale under this measure means that its current value is the best (unbiased) predictor of its future value---no drift adjustment is needed when pricing FRA-related derivatives under $\mathbb{Q}^{T_k}$.
 
 ---
 
-**Exercise 4.** At the reset date $T_{k-1}$, the payer FRA payoff is $N\tau_k(l_k(T_{k-1}) - K)$ paid at $T_k$, or equivalently $\frac{N\tau_k(l_k(T_{k-1}) - K)}{1 + \tau_k l_k(T_{k-1})}$ paid at $T_{k-1}$. Verify that these two expressions are consistent by discounting the $T_k$ payoff back to $T_{k-1}$ using $P(T_{k-1}, T_k) = \frac{1}{1 + \tau_k l_k(T_{k-1})}$.
+**Exercise 4.** At the reset date $T_{k-1}$, the payer FRA payoff is $N\tau_k(L(T_{k-1},T_{k-1},T_k) - K)$ paid at $T_k$, or equivalently $\frac{N\tau_k(L(T_{k-1},T_{k-1},T_k) - K)}{1 + \tau_k L(T_{k-1},T_{k-1},T_k)}$ paid at $T_{k-1}$. Verify that these two expressions are consistent by discounting the $T_k$ payoff back to $T_{k-1}$ using $P(T_{k-1}, T_k) = \frac{1}{1 + \tau_k L(T_{k-1},T_{k-1},T_k)}$.
 
 ??? success "Solution to Exercise 4"
 
-    At the reset date $T_{k-1}$, the floating rate $l_k(T_{k-1})$ is observed. The payer FRA payoff at $T_k$ is:
+    At the reset date $T_{k-1}$, the floating rate $L(T_{k-1},T_{k-1},T_k)$ is observed. The payer FRA payoff at $T_k$ is:
 
     $$
-    \text{Payoff at } T_k = N\tau_k(l_k(T_{k-1}) - K)
+    \text{Payoff at } T_k = N\tau_k(L(T_{k-1},T_{k-1},T_k) - K)
     $$
 
-    To express this as a payment at $T_{k-1}$, we discount using $P(T_{k-1}, T_k)$. At $T_{k-1}$, the simply compounded rate for the period $[T_{k-1}, T_k]$ is $l_k(T_{k-1})$, so:
+    To express this as a payment at $T_{k-1}$, we discount using $P(T_{k-1}, T_k)$. At $T_{k-1}$, the simply compounded rate for the period $[T_{k-1}, T_k]$ is $L(T_{k-1},T_{k-1},T_k)$, so:
 
     $$
-    P(T_{k-1}, T_k) = \frac{1}{1 + \tau_k l_k(T_{k-1})}
+    P(T_{k-1}, T_k) = \frac{1}{1 + \tau_k L(T_{k-1},T_{k-1},T_k)}
     $$
 
     The present value at $T_{k-1}$ of the $T_k$ payoff is:
 
     $$
-    \text{Payoff at } T_{k-1} = N\tau_k(l_k(T_{k-1}) - K) \cdot P(T_{k-1}, T_k) = \frac{N\tau_k(l_k(T_{k-1}) - K)}{1 + \tau_k l_k(T_{k-1})}
+    \text{Payoff at } T_{k-1} = N\tau_k(L(T_{k-1},T_{k-1},T_k) - K) \cdot P(T_{k-1}, T_k) = \frac{N\tau_k(L(T_{k-1},T_{k-1},T_k) - K)}{1 + \tau_k L(T_{k-1},T_{k-1},T_k)}
     $$
 
-    This confirms that the two expressions are consistent: the payment $N\tau_k(l_k(T_{k-1}) - K)$ at $T_k$ has the same economic value as $\frac{N\tau_k(l_k(T_{k-1}) - K)}{1 + \tau_k l_k(T_{k-1})}$ at $T_{k-1}$.
+    This confirms that the two expressions are consistent: the payment $N\tau_k(L(T_{k-1},T_{k-1},T_k) - K)$ at $T_k$ has the same economic value as $\frac{N\tau_k(L(T_{k-1},T_{k-1},T_k) - K)}{1 + \tau_k L(T_{k-1},T_{k-1},T_k)}$ at $T_{k-1}$.
 
     We can also verify using the FRA valuation formula at $t = T_{k-1}$:
 
     $$
-    \text{FRA}^{\text{Payer}}(T_{k-1}, T_{k-1}, T_k, N, K) = N\tau_k(l_k(T_{k-1}) - K) \cdot P(T_{k-1}, T_k) = \frac{N\tau_k(l_k(T_{k-1}) - K)}{1 + \tau_k l_k(T_{k-1})}
+    \text{FRA}^{\text{Payer}}(T_{k-1}, T_{k-1}, T_k, N, K) = N\tau_k(L(T_{k-1},T_{k-1},T_k) - K) \cdot P(T_{k-1}, T_k) = \frac{N\tau_k(L(T_{k-1},T_{k-1},T_k) - K)}{1 + \tau_k L(T_{k-1},T_{k-1},T_k)}
     $$
 
     This is the market-standard "discounted FRA" settlement: rather than waiting until $T_k$, the FRA is settled at $T_{k-1}$ by discounting the $T_k$ payoff at the just-observed floating rate.
@@ -274,30 +239,30 @@ K=l_k(t)=l(t,T_{k-1},T_k)
     **Payer FRA value:**
 
     $$
-    \text{FRA}^{\text{Payer}}(t, T_{k-1}, T_k, N, K_1) = N\tau_k(l_k(t) - K_1)P(t, T_k)
+    \text{FRA}^{\text{Payer}}(t, T_{k-1}, T_k, N, K_1) = N\tau_k(L(t,T_{k-1},T_k) - K_1)P(t, T_k)
     $$
 
     **Receiver FRA value:**
 
     $$
-    \text{FRA}^{\text{Receiver}}(t, T_{k-1}, T_k, N, K_2) = N\tau_k(K_2 - l_k(t))P(t, T_k)
+    \text{FRA}^{\text{Receiver}}(t, T_{k-1}, T_k, N, K_2) = N\tau_k(K_2 - L(t,T_{k-1},T_k))P(t, T_k)
     $$
 
     **Portfolio value:**
 
     $$
-    V(t) = N\tau_k(l_k(t) - K_1)P(t, T_k) + N\tau_k(K_2 - l_k(t))P(t, T_k)
+    V(t) = N\tau_k(L(t,T_{k-1},T_k) - K_1)P(t, T_k) + N\tau_k(K_2 - L(t,T_{k-1},T_k))P(t, T_k)
     $$
 
     $$
-    = N\tau_k P(t, T_k)\bigl[(l_k(t) - K_1) + (K_2 - l_k(t))\bigr]
+    = N\tau_k P(t, T_k)\bigl[(L(t,T_{k-1},T_k) - K_1) + (K_2 - L(t,T_{k-1},T_k))\bigr]
     $$
 
     $$
     = N\tau_k(K_2 - K_1)P(t, T_k)
     $$
 
-    The forward rate $l_k(t)$ cancels completely. The portfolio value depends only on the fixed rates $K_1$, $K_2$ and the discount factor $P(t, T_k)$.
+    The forward rate $L(t,T_{k-1},T_k)$ cancels completely. The portfolio value depends only on the fixed rates $K_1$, $K_2$ and the discount factor $P(t, T_k)$.
 
     **Interpretation.** The portfolio generates a deterministic cash flow of $N\tau_k(K_2 - K_1)$ at time $T_k$, regardless of where the floating rate fixes. Since $K_2 > K_1$, this cash flow is strictly positive.
 

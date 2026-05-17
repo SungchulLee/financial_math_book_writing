@@ -21,40 +21,23 @@ Limited data and heavy noise exacerbate the problem.
 ## Multiple testing and data snooping
 
 
-Financial research often involves:
+Financial research often involves testing many strategies, selecting the best, and ignoring failed experiments — leading to false discoveries.
 
-- testing many strategies,
-- selecting the best-performing ones,
-- ignoring failed experiments.
-
-This leads to false discoveries.
+Recall (see [§ Multiple Testing Correction](multiple_testing_correction.md)) for the formal FWER/FDR machinery (Bonferroni, Holm, Benjamini-Hochberg) and Harvey-Liu-Zhu / deflated Sharpe / haircut adjustments.
 
 ---
 
 ## Consequences
 
 
-False discoveries result in:
-
-- spurious trading strategies,
-- inflated backtest performance,
-- real-world losses when deployed.
-
-They undermine confidence in models.
+False discoveries produce spurious strategies, inflated backtests, and real-world losses when deployed.
 
 ---
 
 ## Mitigation techniques
 
 
-Common defenses include:
-
-- out-of-sample validation,
-- cross-validation adapted to time series,
-- statistical corrections for multiple testing,
-- economic plausibility checks.
-
-Discipline is crucial.
+Common defenses: out-of-sample validation, time-series cross-validation, multiple-testing correction (see [§ Multiple Testing Correction](multiple_testing_correction.md)), and economic plausibility checks.
 
 ---
 

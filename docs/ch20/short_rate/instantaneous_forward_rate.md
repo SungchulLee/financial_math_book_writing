@@ -191,43 +191,13 @@ The most useful representation expresses $f(t,T)$ as an affine function of $r_t$
 
 ## Forward Rate Under the T-Forward Measure
 
-Under the $T$-forward measure $\mathbb{Q}^T$, the forward rate dynamics simplify dramatically.
+Recall (see [§ HW measure change](../measure_change/risk_neutral_measure.md)): under the $T$-forward measure $\mathbb{Q}^T$, the Girsanov shift $dW_t^T=dW_t^\mathbb{Q}+\sigma B(t,T)\,dt$ cancels the HJM drift, so $f(t,T)$ is a $\mathbb{Q}^T$-martingale:
 
-!!! note "Theorem: Forward Rate Under $\mathbb{Q}^T$"
-    Under the $T$-forward measure, the forward rate $f(t,T)$ is a martingale:
+$$
+df(t,T) = \sigma\, e^{-a(T-t)}\, dW_t^T
+$$
 
-    $$
-    df(t,T) = \sigma\, e^{-a(T-t)}\, dW_t^T
-    $$
-
-    where $W_t^T = W_t^{\mathbb{Q}} + \int_0^t \sigma B(s,T)\, ds$ is the Brownian motion under $\mathbb{Q}^T$.
-
-???+ note "Proof"
-    Under $\mathbb{Q}^T$, the Girsanov transformation gives $dW_t^T = dW_t^{\mathbb{Q}} + \sigma B(t,T)\, dt$ where $B(t,T) = -(1-e^{-a(T-t)})/a$. Substituting into the $\mathbb{Q}$-dynamics:
-
-    $$
-    df(t,T) = \mu^{\mathbb{Q}}(t,T)\, dt + \sigma e^{-a(T-t)}(dW_t^T - \sigma B(t,T)\, dt)
-    $$
-
-    $$
-    = \left[\mu^{\mathbb{Q}}(t,T) - \sigma^2 e^{-a(T-t)} B(t,T)\right] dt + \sigma e^{-a(T-t)}\, dW_t^T
-    $$
-
-    Now $\sigma^2 e^{-a(T-t)} B(t,T) = -\frac{\sigma^2}{a} e^{-a(T-t)}(1 - e^{-a(T-t)}) = -\mu^{\mathbb{Q}}(t,T)$, so the drift becomes
-
-    $$
-    \mu^{\mathbb{Q}}(t,T) + \mu^{\mathbb{Q}}(t,T) = 2\mu^{\mathbb{Q}}(t,T)?
-    $$
-
-    Careful with signs: $B(t,T) = -(1-e^{-a(T-t)})/a < 0$, so
-
-    $$
-    -\sigma^2 e^{-a(T-t)} B(t,T) = \frac{\sigma^2}{a} e^{-a(T-t)}(1-e^{-a(T-t)}) = \mu^{\mathbb{Q}}(t,T)
-    $$
-
-    The total drift is $\mu^{\mathbb{Q}} - \mu^{\mathbb{Q}} = 0$, confirming that $f(t,T)$ is a $\mathbb{Q}^T$-martingale. $\square$
-
-The martingale property of $f(t,T)$ under $\mathbb{Q}^T$ is a fundamental result: it says that the forward rate is an unbiased estimator of the future spot rate under the $T$-forward measure.
+This is the foundational unbiased-estimator property used in forward-measure pricing.
 
 ---
 

@@ -53,38 +53,14 @@ The delta-function initial condition of $G$ reflects the point-mass initial law 
 
 ## Forward and Backward Equations
 
-The transition density satisfies **two** PDEs -- one in each pair of variables.
+Recall (see [§ Kolmogorov Forward Equation](../kolmogorov_equations/kolmogorov_forward.md) and [§ Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md)): $p(t,x\mid s,y)$ satisfies $\partial_t p = \mathcal{L}_x^* p$ in the destination $(t,x)$ and $-\partial_s p = \mathcal{L}_y p$ in the origin $(s,y)$, each with the delta initial/terminal condition. The forward operator $\mathcal{L}^* p = -\partial_x[\mu p] + \tfrac12\partial_{xx}[\sigma^2 p]$ is the formal adjoint of the generator; this adjoint structure is what enforces conservation of probability.
 
 | Equation | Varies | Fixed | Operator | Role |
 |---|---|---|---|---|
-| **Forward** (Fokker-Planck) | $(t, x)$ destination | $(s, y)$ origin | $\mathcal{L}_x^*$ (adjoint) | Density evolution |
-| **Backward** (Kolmogorov) | $(s, y)$ origin | $(t, x)$ destination | $\mathcal{L}_y$ (generator) | Expectation / pricing |
+| Forward (Fokker-Planck) | $(t, x)$ destination | $(s, y)$ origin | $\mathcal{L}_x^*$ | Density evolution |
+| Backward (Kolmogorov) | $(s, y)$ origin | $(t, x)$ destination | $\mathcal{L}_y$ | Expectation / pricing |
 
-### Forward (Fokker-Planck)
-
-$$
-\boxed{\;\partial_t\,p(t, x \mid s, y) = \mathcal{L}_x^*\,p(t, x \mid s, y)\;}
-$$
-
-with initial condition $p(s, x \mid s, y) = \delta(x - y)$, where
-
-$$
-\mathcal{L}^* p = -\partial_x[\mu(x)\,p] + \tfrac{1}{2}\partial_{xx}[\sigma^2(x)\,p]
-$$
-
-The structure $\partial_t p + \partial_x J = 0$ (advective flux $\mu p$, diffusive flux $-\tfrac{1}{2}\partial_x(\sigma^2 p)$) is a conservation law: $\tfrac{d}{dt}\int p\,dx = 0$.
-
-### Backward (Kolmogorov)
-
-$$
-\boxed{\;-\partial_s\,p(t, x \mid s, y) = \mathcal{L}_y\,p(t, x \mid s, y)\;}
-$$
-
-with terminal condition $p(t, x \mid t, y) = \delta(x - y)$.
-
-!!! info "Why adjoint on the forward side"
-    Integration by parts against a test function $g$:
-    $\int g(\mathcal{L}p)\,dx = \int (\mathcal{L}^* g)\,p\,dx$ moves derivatives off $p$ and onto $g$, producing $-\partial_x[\mu\,p] + \tfrac{1}{2}\partial_{xx}[\sigma^2 p]$ -- exactly the forward operator. The adjoint structure is what enforces conservation of probability.
+Here the Green's-function lens adds one observation: the **same** kernel $G = p$ solves both PDEs simultaneously -- forward in $(t,x)$, backward in $(s,y)$ -- because the delta-source condition is symmetric in the two variable pairs. The two Kolmogorov equations are thus two views of one object, not two unrelated facts.
 
 ---
 
@@ -112,39 +88,19 @@ The pricing analogue is the **law of iterated expectations**: $\mathbb{E}[\,\cdo
 
 ## Brownian Motion with Drift
 
-For $dX_t = \mu\,dt + \sigma\,dW_t$ (constants), the increment $X_t - X_s \sim N(\mu(t-s), \sigma^2(t-s))$, so
+Recall (see [§ Fundamental Solution](../heat_equation/fundamental_solution.md) and [§ Transition Densities for Standard SDEs](../kolmogorov_equations/transition_densities_standard_sdes.md)): for $dX_t = \mu\,dt + \sigma\,dW_t$ with $X_t - X_s \sim N(\mu(t-s), \sigma^2(t-s))$,
 
 $$
 p(t, x \mid s, y) = \frac{1}{\sigma\sqrt{2\pi(t-s)}}\exp\!\left(-\frac{(x - y - \mu(t-s))^2}{2\sigma^2(t-s)}\right)
 $$
 
-**Forward-equation check.** Set $\tau = t - s$, $w = x - y - \mu\tau$, so $p = (\sigma\sqrt{2\pi\tau})^{-1}\exp(-w^2/(2\sigma^2\tau))$. Direct differentiation:
-
-$$
-\partial_t p = p\!\left(-\frac{1}{2\tau} + \frac{w^2}{2\sigma^2\tau^2} + \frac{\mu w}{\sigma^2\tau}\right)
-$$
-
-$$
--\mu\partial_x p + \tfrac{1}{2}\sigma^2\partial_{xx}p = p\!\left(\frac{\mu w}{\sigma^2\tau} + \frac{w^2}{2\sigma^2\tau^2} - \frac{1}{2\tau}\right)
-$$
-
-The two sides match. This is the **Gaussian heat kernel (fundamental solution)** shifted by the drift.
+is the heat kernel translated by the drift -- and identifying it as $G$ makes the Black-Scholes operator's fundamental solution an Arrow-Debreu kernel.
 
 ---
 
 ## Ornstein-Uhlenbeck
 
-For $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, the solution $X_t = y e^{-\kappa(t-s)} + \sigma\int_s^t e^{-\kappa(t-u)}\,dW_u$ is Gaussian with
-
-$$
-\mathbb{E}[X_t \mid X_s = y] = y e^{-\kappa\tau}, \qquad \mathrm{Var}(X_t \mid X_s = y) = v(\tau) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\tau})
-$$
-
-Hence
-
-$$
-p(t, x \mid s, y) = \frac{1}{\sqrt{2\pi\,v(\tau)}}\exp\!\left(-\frac{(x - y e^{-\kappa\tau})^2}{2v(\tau)}\right)
-$$
+Recall (see [§ Transition Densities for Standard SDEs](../kolmogorov_equations/transition_densities_standard_sdes.md)): for $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$, $p(t,x\mid s,y)$ is Gaussian with mean $ye^{-\kappa\tau}$ and variance $v(\tau) = \sigma^2(1-e^{-2\kappa\tau})/(2\kappa)$, $\tau = t-s$.
 
 As $\tau \to \infty$, $p \to N(0, \sigma^2/(2\kappa))$ independent of $y$: the process **forgets** its initial condition and relaxes to the stationary density. The same phenomenon appears in [Spectral Decomposition](spectral_decomposition.md) as the decay of all non-zero eigenmodes -- and in [Free vs Bounded Domains](free_vs_bounded_domains.md) as the contrast between free-space dissipation and bounded-domain equilibration.
 
@@ -174,13 +130,7 @@ This is the basis of implied-density estimation and non-parametric calibration f
 
 ### Black-Scholes
 
-For $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$, Itô on $X_t = \ln S_t$ gives $dX_t = (r - \sigma^2/2)\,dt + \sigma\,dW_t^{\mathbb{Q}}$. The Gaussian density in $X_T$ transforms to the lognormal
-
-$$
-p^{\mathbb{Q}}(T, S_T \mid t, S) = \frac{1}{S_T\,\sigma\sqrt{2\pi(T-t)}}\exp\!\left(-\frac{(\ln(S_T/S) - (r - \sigma^2/2)(T-t))^2}{2\sigma^2(T-t)}\right)
-$$
-
-with the Jacobian $1/S_T$ from the exponential change of variables.
+Recall (see [§ Geometric Brownian Motion](../kolmogorov_equations/transition_densities_standard_sdes.md#geometric-brownian-motion) and [§ Black-Scholes via Heat Equation](../../ch06/bs_pde_analytic_solution/heat_equation.md)): the risk-neutral GBM transition density is the lognormal $p^{\mathbb{Q}}(T,S_T\mid t,S)$, and integrating any payoff against $e^{-r(T-t)}p^{\mathbb{Q}}$ reproduces the Black-Scholes price. The Green's-function lens identifies this kernel as the Arrow-Debreu state-price density for the Black-Scholes operator.
 
 ---
 
@@ -219,16 +169,10 @@ The identification collapses two parallel theories into one. Probabilistic quest
 ## Exercises
 
 **Exercise 1.**
-For $dX_t = \mu\,dt + \sigma\,dW_t$, verify the forward equation $\partial_t p = -\mu\partial_x p + \tfrac{1}{2}\sigma^2\partial_{xx}p$ from the explicit Gaussian density.
+The direct verification of the forward equation $\partial_t p = -\mu\partial_x p + \tfrac12\sigma^2\partial_{xx}p$ for the Gaussian density of $dX_t = \mu\,dt + \sigma\,dW_t$ is carried out in [§ Kolmogorov Forward Equation](../kolmogorov_equations/kolmogorov_forward.md). Explain why this same Gaussian must **also** solve the backward equation $-\partial_s p = \mu\partial_y p + \tfrac12\sigma^2\partial_{yy}p$, without redoing the differentiation.
 
 ??? success "Solution to Exercise 1"
-    With $\tau = t - s$ and $w = x - y - \mu\tau$, $p = (\sigma\sqrt{2\pi\tau})^{-1}\exp(-w^2/(2\sigma^2\tau))$.
-
-    $$
-    \partial_t p = p\!\left(-\frac{1}{2\tau} + \frac{w^2}{2\sigma^2\tau^2} + \frac{\mu w}{\sigma^2\tau}\right)
-    $$
-
-    $\partial_x p = -p\,w/(\sigma^2\tau)$ gives $-\mu\partial_x p = p\,\mu w/(\sigma^2\tau)$. And $\partial_{xx}p = p(w^2/(\sigma^4\tau^2) - 1/(\sigma^2\tau))$ gives $\tfrac{1}{2}\sigma^2\partial_{xx}p = p(w^2/(2\sigma^2\tau^2) - 1/(2\tau))$. Sum equals $\partial_t p$.
+    The Gaussian depends on $(t,x,s,y)$ only through $\tau = t-s$ and $w = x - y - \mu\tau$. Under the symmetry $(t,x) \leftrightarrow (s,y)$, $\tau \to -\tau$ and $w \to -w$, but the density depends only on $\tau$ and $w^2$, so the forward operator in $(t,x)$ and the backward operator in $(s,y)$ produce identical actions on $p$. This is the Green's-function identity at work: one kernel, two PDEs.
 
 ---
 
@@ -267,22 +211,12 @@ State the forward and backward equations for the Ornstein-Uhlenbeck process $dX_
 ---
 
 **Exercise 4.**
-For geometric Brownian motion, use the lognormal transition density to derive the risk-neutral pricing integral for a European call and show that it yields $V = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$.
+The full derivation of $V = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)$ from the lognormal transition density of geometric Brownian motion is carried out in [§ Black-Scholes PDE: Analytic Solutions](../../ch06/bs_pde_analytic_solution/heat_equation.md). In the Green's-function language of this page, state which object $G$ is being integrated against and identify the financial role of the prefactor $e^{-r(T-t)}$.
 
 ??? success "Solution to Exercise 4"
-    With $p^{\mathbb{Q}}(T, S_T \mid t, S) = (S_T\sigma\sqrt{2\pi(T-t)})^{-1}\exp(-(\ln(S_T/S) - (r-\sigma^2/2)(T-t))^2/(2\sigma^2(T-t)))$,
+    $G$ is the **risk-neutral lognormal transition density** $p^{\mathbb{Q}}(T,S_T \mid t,S)$ for GBM under $\mathbb{Q}$; the pricing integral $V(t,S) = e^{-r(T-t)}\int (S_T - K)^+ G\,dS_T$ integrates the payoff against $G$ over the in-the-money region.
 
-    $$
-    V(t, S) = e^{-r(T-t)}\int_K^\infty (S_T - K)\,p^{\mathbb{Q}}(T, S_T \mid t, S)\,dS_T
-    $$
-
-    Change to $z = (\ln(S_T/S) - (r - \sigma^2/2)(T-t))/(\sigma\sqrt{T-t}) \sim N(0,1)$. The integration domain becomes $z > -d_2$ with $d_2 = (\ln(S/K) + (r - \sigma^2/2)(T-t))/(\sigma\sqrt{T-t})$.
-
-    The $K$-piece gives $-Ke^{-r(T-t)}\mathcal{N}(d_2)$. The $S_T$-piece uses $S_T = S\exp(\sigma\sqrt{T-t}\,z + (r - \sigma^2/2)(T-t))$, completing the square in the integrand (shift $z \to z + \sigma\sqrt{T-t}$) to produce $S\mathcal{N}(d_1)$ with $d_1 = d_2 + \sigma\sqrt{T-t}$. Combining:
-
-    $$
-    V = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)
-    $$
+    The prefactor $e^{-r(T-t)}$ converts the kernel into the **Arrow-Debreu state-price density**: $e^{-r(T-t)}G(T,S_T;t,S)\,dS_T$ is the price today of \$1 delivered if $S_T \in [S_T, S_T+dS_T]$. The Black-Scholes formula is then the integral of the call payoff against this state-price density.
 
 ---
 

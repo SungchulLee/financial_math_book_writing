@@ -2,6 +2,9 @@
 
 Quadratic hedging encompasses a family of approaches that minimize hedging error measured by a quadratic criterion. The two principal variants --- **local risk minimization** and **variance-optimal hedging** --- differ in whether the optimization is performed incrementally at each time step or globally over the entire horizon. Both rely on deep connections to martingale theory and lead to distinct pricing measures in incomplete markets.
 
+!!! tip "Toy mechanism: instantaneous vs cumulative least-squares"
+    The whole local-vs-global distinction is one calculus question. Given a target $H$ and a hedge path $V_t$, you can minimise either $\mathbb{E}[(H - V_T)^2]$ (one global least-squares problem) or $\sum_t \mathbb{E}[(dC_t)^2]$ where $dC_t$ is the *cost increment* at each step (myopic least-squares at each instant). In the discrete toy case — predict next period's price with a linear regression — local risk minimisation is OLS on each one-step return; variance-optimal hedging is OLS on the *cumulative* P&L. The two coincide only when the price process is a martingale under $\mathbb{P}$; otherwise they pick different measures (minimal martingale vs variance-optimal). Everything below is the continuous-time version of this single regression choice.
+
 ---
 
 ## Two Quadratic Criteria
@@ -111,15 +114,7 @@ This contrasts with risk-neutral pricing under an arbitrary EMM, which would mod
 
 ## Variance-Optimal Hedging (Global Criterion)
 
-### Recap
-
-The variance-optimal (mean-variance) hedge minimizes the global criterion:
-
-$$
-\min_{c, \xi} \mathbb{E}\!\left[\left(H - c - \int_0^T \xi_t\,d\tilde{S}_t\right)^2\right]
-$$
-
-over **self-financing** strategies. The solution uses the Follmer-Schweizer decomposition and the variance-optimal measure $\mathbb{Q}^*$.
+Recall (see [§ Mean-Variance Hedging](mean_variance_hedging.md)): the global criterion $\min_{c,\xi}\mathbb{E}[(H-c-G_T(\xi))^2]$ over self-financing strategies is solved via the Follmer-Schweizer decomposition and the variance-optimal measure $\mathbb{Q}^*$.
 
 ### Key Differences from Local Risk Minimization
 
@@ -141,11 +136,7 @@ More generally, the two approaches agree when the mean-variance tradeoff process
 
 ## Explicit Formulas: Geometric Brownian Motion with Basis Risk
 
-Consider hedging a claim $H = h(Y_T)$ on an untraded asset $Y$ using a correlated traded asset $S$:
-
-$$
-dS_t = \mu_S S_t\,dt + \sigma_S S_t\,dW_t^1, \qquad dY_t = \mu_Y Y_t\,dt + \sigma_Y Y_t(\rho\,dW_t^1 + \sqrt{1-\rho^2}\,dW_t^2)
-$$
+Recall the basis-risk setup (see [§ Mean-Variance Hedging](mean_variance_hedging.md)) with traded $S$ and untraded $Y$ correlated through $\rho$, and claim $H = h(Y_T)$.
 
 **Locally risk-minimizing hedge:**
 
@@ -169,28 +160,7 @@ In this particular model (GBM with constant parameters), the mean-variance trade
 
 ## Residual Risk Decomposition
 
-### Decomposition of Hedging Error
-
-For both approaches, the minimum achievable risk can be decomposed:
-
-$$
-\text{Min hedging error}^2 = \underbrace{\operatorname{Var}(L_T^H)}_{\text{unhedgeable risk}} = \underbrace{(1 - R^2)}_{\text{hedge inefficiency}} \cdot \operatorname{Var}(H)
-$$
-
-where $R^2$ is the **coefficient of determination** measuring the fraction of the claim's variance that can be explained by trading. In the basis risk model:
-
-$$
-R^2 = \rho^2
-$$
-
-### Interpretation
-
-The residual risk has two sources:
-
-1. **Market incompleteness**: Risk factors not spanned by traded assets (e.g., $W^2$ above).
-2. **Correlation structure**: The strength of the link between the claim and traded instruments.
-
-No quadratic hedging strategy can reduce the error below $\sqrt{1 - R^2} \cdot \operatorname{Std}(H)$, regardless of how sophisticated the dynamic strategy is.
+Recall (see [§ Mean-Variance Hedging](mean_variance_hedging.md)): the minimum achievable hedging error decomposes as $\operatorname{Var}(L_T^H) = (1 - R^2)\operatorname{Var}(H)$, where $R^2$ is the fraction of variance explained by trading and, in the basis-risk model, $R^2 = \rho^2$. The residual risk arises from (i) unspanned risk factors and (ii) imperfect correlation; no quadratic strategy can reduce the error below $\sqrt{1-R^2}\,\operatorname{Std}(H)$.
 
 ---
 

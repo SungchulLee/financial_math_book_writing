@@ -8,13 +8,9 @@ Intensity-based models provide tractable pricing formulas for defaultable claims
 ## Pricing framework
 
 
-Assume:
+Recall (see [§ Default Intensity and Hazard Rates](../reduced_form_intensity_based_models/default_intensity_and_hazard_rates.md), [§ Survival Probability](../reduced_form_intensity_based_models/survival_probability.md), and [§ Immersion (H-Hypothesis)](../default_as_a_random_time/immersion_h_hypothesis.md)): the intensity $\lambda_t$, survival probability $S(0,t) = e^{-\int_0^t \lambda_s ds}$, and the immersion/progressive enlargement framework are introduced in the canonical references.
 
-- default intensity $\lambda_t$,
-- recovery scheme specified,
-- immersion and progressive enlargement hold.
-
-Pricing reduces to computing discounted expectations involving survival probabilities.
+Assume a recovery scheme is specified. Pricing then reduces to computing discounted expectations involving survival probabilities.
 
 ---
 

@@ -40,23 +40,15 @@ This follows from $\max(L - K, 0) - \max(K - L, 0) = L - K$.
 
 ### The Natural Measure for Caplet Pricing
 
-The forward LIBOR rate $L_i(t)$ for period $[T_i, T_{i+1}]$ is defined by
-
-$$
-L_i(t) = \frac{1}{\delta_i}\left(\frac{P(t, T_i)}{P(t, T_{i+1})} - 1\right)
-$$
-
-Under the $T_{i+1}$-forward measure $\mathbb{Q}^{T_{i+1}}$ (numéraire $P(t, T_{i+1})$), the forward rate $L_i(t)$ is a **martingale**. This follows because $\delta_i L_i(t) P(t, T_{i+1}) = P(t, T_i) - P(t, T_{i+1})$ is the price of a tradable portfolio, so dividing by the numéraire $P(t, T_{i+1})$ produces a martingale.
+Recall (see [§ Forward LIBOR Dynamics](forward_libor_dynamics.md)) the LIBOR definition $L_i(t) = \delta_i^{-1}(P(t,T_i)/P(t,T_{i+1}) - 1)$ and the fact that $L_i(t)$ is a martingale under the $T_{i+1}$-forward measure $\mathbb{Q}^{T_{i+1}}$ (numéraire $P(t,T_{i+1})$), since $\delta_i L_i(t) P(t,T_{i+1}) = P(t,T_i) - P(t,T_{i+1})$ is a tradable price.
 
 ### Lognormal Dynamics
 
-In the standard LIBOR Market Model, the forward rate follows geometric Brownian motion under $\mathbb{Q}^{T_{i+1}}$:
+In the standard LMM, the forward rate follows driftless geometric Brownian motion under $\mathbb{Q}^{T_{i+1}}$:
 
 $$
 \frac{dL_i(t)}{L_i(t)} = \sigma_i(t) \, dW_i^{T_{i+1}}(t)
 $$
-
-where $\sigma_i(t)$ is the instantaneous volatility of $L_i$ and $W_i^{T_{i+1}}$ is a Brownian motion under $\mathbb{Q}^{T_{i+1}}$. The drift is zero because $L_i$ is a martingale.
 
 ### Solution
 
@@ -84,17 +76,15 @@ $$
 
 ### Caplet Pricing Under the Forward Measure
 
-The caplet price at time $0$ is
+By risk-neutral pricing under the $T_{i+1}$-forward measure (recall (see [§ Forward Measure](../../ch04/risk_neutral/forward_measure.md))):
 
 $$
 \text{Caplet}_i = P(0, T_{i+1}) \, \mathbb{E}^{\mathbb{Q}^{T_{i+1}}}\!\left[\delta_i \max(L_i(T_i) - K, 0)\right]
 $$
 
-The factor $P(0, T_{i+1})$ comes from the numéraire change: $V_0 = P(0, T_{i+1}) \, \mathbb{E}^{\mathbb{Q}^{T_{i+1}}}[V_{T_{i+1}} / P(T_{i+1}, T_{i+1})]$ with $P(T_{i+1}, T_{i+1}) = 1$.
-
 ### Evaluating the Expectation
 
-Since $L_i(T_i)$ is lognormal under $\mathbb{Q}^{T_{i+1}}$ with $\mathbb{E}^{\mathbb{Q}^{T_{i+1}}}[L_i(T_i)] = L_i(0)$ (martingale property), the expectation of $\max(L_i(T_i) - K, 0)$ is computed by the standard Black--Scholes lognormal integral:
+Since $L_i(T_i)$ is lognormal under $\mathbb{Q}^{T_{i+1}}$ with mean $L_i(0)$, the standard Black--Scholes lognormal integral (recall (see [§ Black's Formula](../../ch06/index.md))) gives:
 
 $$
 \mathbb{E}^{\mathbb{Q}^{T_{i+1}}}\!\left[\max(L_i(T_i) - K, 0)\right] = L_i(0) \, N(d_1) - K \, N(d_2)

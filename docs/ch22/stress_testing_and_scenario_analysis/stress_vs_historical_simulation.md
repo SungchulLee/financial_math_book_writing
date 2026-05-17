@@ -85,31 +85,7 @@ Stress testing evaluates portfolio losses under **hypothetical or extreme scenar
 
 ### Types of Stress Tests
 
-**1. Historical Scenarios**
-Replay specific historical events:
-
-- 2008 Global Financial Crisis
-- 2020 COVID-19 market crash
-- 1998 LTCM crisis
-- 1987 Black Monday
-
-**2. Hypothetical Scenarios**
-Economically motivated but not historically observed:
-
-- Sovereign default of major economy
-- Simultaneous equity crash and interest rate spike
-- Cyberattack on financial infrastructure
-
-**3. Sensitivity Analysis**
-Single-factor shocks:
-
-- Equity indices down 20%
-- Interest rates up 200 bps
-- Credit spreads widen 500 bps
-- FX depreciation 30%
-
-**4. Reverse Stress Testing**
-Work backward from failure threshold (see [Reverse Stress Testing](reverse_stress_testing.md)).
+Recall (see [§ Scenario Categories](extreme_scenarios.md#scenario-categories)) for the full taxonomy: historical (2008 GFC, COVID, LTCM, 1987), hypothetical (geopolitical, sovereign default, cyber), regulatory (CCAR, EBA), and single-factor sensitivity shocks. A fourth complementary mode is **reverse stress testing**: work backward from a failure threshold (see [Reverse Stress Testing](reverse_stress_testing.md)).
 
 ---
 
@@ -175,17 +151,7 @@ $$
 
 ## Correlation Under Stress
 
-A critical consideration is that **correlations change under stress**:
-
-- Diversification benefits erode
-- "Correlation breakdown": assets that seem uncorrelated become highly correlated
-- Liquidity correlations spike
-
-**Approaches:**
-
-1. **Stressed correlation matrices:** Increase correlations uniformly or selectively
-2. **Copula-based stress:** Use different copulas for normal vs. stressed conditions
-3. **Factor models:** Increase factor loadings under stress
+Recall (see [§ Correlation Under Stress](extreme_scenarios.md#correlation-under-stress)): diversification benefits erode as correlations spike, with stressed-correlation modeling via scaling $\boldsymbol{\Sigma}^{\text{stress}} = \mathbf{D}\boldsymbol{\Sigma}\mathbf{D}$, blending $\boldsymbol{\rho}^{\text{stress}} = \alpha\boldsymbol{\rho} + (1-\alpha)\mathbf{1}\mathbf{1}^\top$, or regime-switching copulas. The key point for historical simulation is that calm-period data embeds **normal-regime correlations**, so VaR estimates miss the correlation breakdown that defines a crisis.
 
 ---
 

@@ -2,6 +2,9 @@
 
 Most SDEs lack closed-form solutions, making **numerical simulation** essential for practical applications. This section develops simulation methods from first principles, starting with an intuitive discrete approximation and progressing to rigorous numerical schemes.
 
+!!! tip "Toy mechanism: discretise the SDE one step at a time"
+    Every scheme on this page is one substitution applied recursively. Replace $dt$ by $\Delta t$, replace $dW_t$ by an independent Gaussian increment $\Delta W \sim \mathcal{N}(0, \Delta t)$, and the SDE $dX_t = b\,dt + \sigma\,dW_t$ becomes the explicit update $X_{t+\Delta t} \approx X_t + b(X_t)\Delta t + \sigma(X_t)\Delta W$. That is the Euler–Maruyama scheme, and the cheapest sanity check is the random-walk approximation below: replace the Gaussian increment by $\pm\sqrt{\Delta t}$ coin flips and watch GBM emerge as the limit. Milstein adds one Itô-correction term, exact simulation uses the closed-form solution where it exists, and multidimensional schemes carry the same update applied componentwise — but the core mechanism is always "one step of $\Delta t$ plus one Gaussian kick."
+
 Every Python code block on this page is fully standalone: a reader can copy any single block into a fresh Python file or notebook cell and run it immediately without relying on earlier blocks.
 
 !!! abstract "Learning Goals"
@@ -463,17 +466,7 @@ Euler-Maruyama has strong order 0.5. Can we do better? The idea is to include mo
 
 ### Itô-Taylor Expansion
 
-For $Y_t = X_{t+\Delta t}$, expand using Itô's lemma:
-
-$$
-\begin{align}
-dX_t &= b(X_t)\,dt + \sigma(X_t)\,dW_t \\
-d\sigma(X_t) &= \sigma'(X_t)\,dX_t + \frac{1}{2}\sigma''(X_t)(dX_t)^2 \\
-&= \sigma'(X_t)[b(X_t)\,dt + \sigma(X_t)\,dW_t] + \frac{1}{2}\sigma''(X_t)\sigma^2(X_t)\,dt
-\end{align}
-$$
-
-Keeping terms up to order $\Delta t$:
+Recall (see [§ Itô's Lemma](../ito_lemma/ito_lemma.md)): expanding $\sigma(X_t)$ via Itô's lemma and keeping terms up to order $\Delta t$ yields
 
 $$
 X_{t+\Delta t} = X_t + b(X_t)\Delta t + \sigma(X_t)\Delta W + \frac{1}{2}\sigma(X_t)\sigma'(X_t)[(\Delta W)^2 - \Delta t]

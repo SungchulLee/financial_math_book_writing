@@ -14,14 +14,7 @@ While the spot smile $\sigma_{\text{IV}}(K, T)$ reflects the marginal distributi
 ### 1. The Spot Smile
 
 
-The **spot implied volatility surface** $\sigma_{\text{IV}}(K, T)$ prices options on the current spot:
-
-$$
-C(K, T) = C_{\text{BS}}(S_0, K, T, r, q, \sigma_{\text{IV}}(K, T))
-$$
-
-
-This surface reflects the risk-neutral marginal distribution of $S_T$:
+Recall (see [§ Definition of Implied Volatility](../definition_of_implied_volatility/implied_volatility_as_inverse_pricing_map.md)) and [§ Implied Volatility Surface](../implied_volatility_surface/term_structure.md)). The spot surface $\sigma_{\text{IV}}(K, T)$ encodes the risk-neutral marginal law of $S_T$:
 
 $$
 \sigma_{\text{IV}}(K, T) \leftrightarrow \text{Law}^{\mathbb{Q}}(S_T)
@@ -128,14 +121,7 @@ $$
 ### 1. Local Volatility Models
 
 
-In local volatility models:
-
-$$
-dS_t = (r-q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
-$$
-
-
-**Critical issue:** Local vol models imply that the forward smile **flattens rapidly**:
+Recall (see [§ Local Volatility Dynamics](../../ch13/index.md)). Local vol models imply that the forward smile **flattens rapidly**:
 
 $$
 \sigma_{\text{fwd}}(m, T_1, T_2) \to \text{flat as } T_1 \to \infty
@@ -144,30 +130,15 @@ $$
 
 This contradicts empirical evidence of persistent forward skew.
 
-### 2. Stochastic Volatility Models (Heston)
+### 2. Stochastic Volatility Models (Heston / SABR)
 
 
-The Heston model produces:
+Recall (see [§ Stochastic Volatility Dynamics](../../ch14/index.md)). Key forward-smile features:
 
-- **Persistent skew:** Forward skew remains non-zero due to spot-vol correlation
-- **Level depends on $\mathbb{E}[v_{T_1}]$:** Expected future variance determines ATM level
+- **Heston:** persistent skew (via $\rho \neq 0$); ATM level set by $\mathbb{E}[v_{T_1}]$, with approximation $\sigma_{\text{fwd, ATM}}^2(T_1, T_2) \approx \mathbb{E}[v_{T_1}] + \frac{\xi^2}{4\kappa}(1 - e^{-\kappa(T_2-T_1)})$.
+- **SABR:** forward-smile shape depends on backbone $\beta$ ($\beta=1$ preserves shape; $\beta=0$ flattens faster).
 
-**Approximate forward ATM volatility:**
-
-$$
-\sigma_{\text{fwd, ATM}}^2(T_1, T_2) \approx \mathbb{E}[v_{T_1}] + \frac{\xi^2}{4\kappa}(1 - e^{-\kappa(T_2-T_1)})
-$$
-
-
-### 3. SABR Model
-
-
-The forward smile in SABR depends on the backbone parameter $\beta$:
-
-- $\beta = 1$: Forward smile similar to spot smile
-- $\beta = 0$: Forward smile flattens faster
-
-### 4. Bergomi's Variance Curve Model
+### 3. Bergomi's Variance Curve Model
 
 
 Bergomi models forward variance directly, providing direct control over forward smile dynamics and realistic behavior.

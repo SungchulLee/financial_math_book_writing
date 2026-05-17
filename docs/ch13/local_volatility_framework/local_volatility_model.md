@@ -94,33 +94,23 @@ Then the SDE admits a unique strong solution $S_t > 0$ for all $t \in [0, T^*]$.
 
 ### The Breeden-Litzenberger Formula
 
-The price of a European call option with strike $K$ and maturity $T$ is:
+Recall (see [Breeden-Litzenberger Theorem](../../ch12/model_free_results/breeden_litzenberger_formula.md) and [Digital Option Pricing](../../ch06/black_scholes_formula/digital_option_pricing.md)) that the risk-neutral density of $S_T$ is recovered from European call prices via
 
 $$
-C(K, T) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = e^{-rT} \int_K^{\infty} (S - K) p(S, T) \, dS
+\frac{\partial^2 C}{\partial K^2} = e^{-rT} p(K, T), \qquad \frac{\partial C}{\partial K} = -e^{-rT}\,\mathbb{Q}(S_T > K).
 $$
 
-where $p(S, T)$ is the risk-neutral transition density of $S_T$ given $S_0$. Differentiating twice with respect to the strike:
-
-$$
-\frac{\partial C}{\partial K} = -e^{-rT} \int_K^{\infty} p(S, T) \, dS = -e^{-rT} \mathbb{Q}(S_T > K)
-$$
-
-$$
-\frac{\partial^2 C}{\partial K^2} = e^{-rT} p(K, T)
-$$
-
-This is the **Breeden-Litzenberger formula**: the risk-neutral density is proportional to the butterfly spread (the second derivative of the call price with respect to strike). The formula is model-free -- it holds for any model that generates the call price surface $C(K, T)$.
+This model-free identity holds for any arbitrage-free call surface $C(K, T)$ and is the bridge between observable prices and the density that appears in the local volatility analysis below.
 
 ### Local Volatility Determines the Density
 
-The transition density $p(S, T)$ satisfies the **forward Kolmogorov (Fokker-Planck) equation**:
+Recall (see [Forward Kolmogorov / Fokker-Planck Equation](../../ch05/kolmogorov_equations/kolmogorov_forward.md)) that the transition density of the SDE in Definition 13.1.1 satisfies
 
 $$
-\frac{\partial p}{\partial T} = -\frac{\partial}{\partial S}\bigl[(r - q)S \, p\bigr] + \frac{1}{2}\frac{\partial^2}{\partial S^2}\bigl[\sigma_{\text{loc}}^2(S, T) S^2 \, p\bigr]
+\frac{\partial p}{\partial T} = -\frac{\partial}{\partial S}\bigl[(r-q)S\,p\bigr] + \frac{1}{2}\frac{\partial^2}{\partial S^2}\bigl[\sigma_{\text{loc}}^2(S, T) S^2\,p\bigr],
 $$
 
-with initial condition $p(S, 0) = \delta(S - S_0)$. The local volatility function $\sigma_{\text{loc}}(S, T)$ enters the diffusion term and determines how the density spreads over time. Different local volatility surfaces produce different density evolutions and hence different option prices.
+with $p(S, 0) = \delta(S - S_0)$. The local volatility function enters only through the diffusion coefficient, so it fully determines how the density evolves and hence how option prices depend on $(K, T)$.
 
 **Proposition 13.1.1** (Dupire's Insight).
 The local volatility at $(K, T)$ is determined by the ratio of the time decay of the call price to the convexity with respect to strike:
@@ -169,13 +159,13 @@ Defining the hedge ratio $\Delta_t = \phi_t / (\sigma_{\text{loc}}(S_t, t) S_t)$
 
 ### The Pricing PDE
 
-By Ito's lemma and the no-arbitrage condition, the price $V(S, t)$ of any European derivative satisfies the **backward Kolmogorov equation**:
+Recall (see [Black-Scholes PDE Structure](../../ch06/bs_pde_structure/discounting_and_killing_term.md)) that by Ito's lemma and no-arbitrage, the price $V(S, t)$ of any European derivative satisfies the backward Kolmogorov equation; in the local volatility setting, the same derivation gives
 
 $$
-\frac{\partial V}{\partial t} + (r - q)S \frac{\partial V}{\partial S} + \frac{1}{2}\sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+\frac{\partial V}{\partial t} + (r - q)S \frac{\partial V}{\partial S} + \frac{1}{2}\sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0,
 $$
 
-with terminal condition $V(S, T) = h(S)$. This PDE is the analogue of the Black-Scholes PDE with $\sigma$ replaced by $\sigma_{\text{loc}}(S, t)$. It can be solved by finite difference methods using the calibrated local volatility surface.
+with terminal condition $V(S, T) = h(S)$ -- the Black-Scholes PDE with constant $\sigma$ replaced by $\sigma_{\text{loc}}(S, t)$.
 
 ## The Dupire Surface and Its Properties
 

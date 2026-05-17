@@ -38,31 +38,7 @@ Risk-neutral default probabilities **exceed** physical default probabilities. Th
 
 ### Intensity Under Both Measures
 
-Let $\lambda_t^{\mathbb{P}}$ and $\lambda_t^{\mathbb{Q}}$ denote the default intensity under the physical and risk-neutral measures, respectively.
-
-The **Girsanov theorem** relates them. Under a change of measure from $\mathbb{P}$ to $\mathbb{Q}$, the intensity transforms as:
-
-$$
-\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} \cdot \eta_t
-$$
-
-where $\eta_t > 0$ is the **market price of default risk** (or default risk premium factor). Equivalently:
-
-$$
-\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \theta_t
-$$
-
-with $\theta_t = \lambda_t^{\mathbb{P}}(\eta_t - 1)$ being the **additive risk premium**.
-
-### Radon–Nikodym Derivative
-
-The measure change for the default component is characterized by:
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{G}_t} = \mathcal{E}\left(\int_0^{\cdot} (\eta_s - 1)(dH_s - \lambda_s^{\mathbb{P}} ds)\right)_t \cdot L_t^{\text{diff}}
-$$
-
-where $\mathcal{E}(\cdot)$ denotes the stochastic exponential, $H_t = \mathbf{1}_{\{\tau \le t\}}$, and $L_t^{\text{diff}}$ accounts for the Girsanov change in diffusion components.
+Recall (see [§ Measure change](../change_of_measure_and_credit_risk/girsanov_for_jump_processes.md)) that under $\mathbb{P}\to\mathbb{Q}$ the intensity transforms multiplicatively, $\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} \eta_t$ (equivalently $\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \theta_t$ with $\theta_t=\lambda_t^{\mathbb{P}}(\eta_t-1)$), where $\eta_t>0$ is the **market price of default risk**.
 
 ### Survival Probabilities
 
@@ -238,37 +214,13 @@ Investors require a premium because:
 
 ## Structural Model Perspective
 
-### Merton Model Under Both Measures
-
-In the Merton model, the default probability depends on the asset drift:
-
-**Physical measure:**
+Recall (see [§ Structural models](../structural_credit_risk_models/black_cox_model.md)) the Merton default probability $N(-DD)$. Replacing the asset drift $\mu$ by $r$ gives the $\mathbb{Q}$-version $N(-d_2)$, so
 
 $$
-\mathbb{P}(\tau \le T) = N\left(-\frac{\ln(V_0/D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}\right) = N(-DD)
+DD^{\mathbb{P}} - DD^{\mathbb{Q}} = \frac{(\mu - r)\sqrt{T}}{\sigma_V},
 $$
 
-**Risk-neutral measure:**
-
-$$
-\mathbb{Q}(\tau \le T) = N\left(-\frac{\ln(V_0/D) + (r - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}\right) = N(-d_2)
-$$
-
-The difference arises because $\mu > r$ (the equity risk premium):
-
-$$
-DD - d_2 = \frac{(\mu - r)T}{\sigma_V\sqrt{T}} = \frac{\mu - r}{\sigma_V}\sqrt{T}
-$$
-
-Since the market price of asset risk $(\mu - r)/\sigma_V > 0$, we have $DD > d_2$ and thus $N(-DD) < N(-d_2)$, confirming $\mathbb{P}(\text{default}) < \mathbb{Q}(\text{default})$.
-
-### Distance to Default vs Risk-Neutral Distance
-
-$$
-DD^{\mathbb{P}} = \frac{\ln(V_0/D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}, \quad DD^{\mathbb{Q}} = d_2 = \frac{\ln(V_0/D) + (r - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}
-$$
-
-The gap $DD^{\mathbb{P}} - DD^{\mathbb{Q}} = (\mu - r)\sqrt{T}/\sigma_V$ grows with $\sqrt{T}$ and with the Sharpe ratio of firm assets.
+i.e., the gap grows with $\sqrt{T}$ times the Sharpe ratio of firm assets, confirming $\mathbb{P}(\text{default}) < \mathbb{Q}(\text{default})$.
 
 ---
 

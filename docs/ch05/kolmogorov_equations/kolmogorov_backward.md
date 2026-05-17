@@ -13,25 +13,7 @@ The **Kolmogorov backward equation** describes how expected values of functions 
 
 ## Setting
 
-### Time-Homogeneous Case
-
-Consider the diffusion:
-
-$$dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$$
-
-with generator:
-
-$$\mathcal{L} = \mu(x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2}{\partial x^2}$$
-
-### Time-Inhomogeneous Case
-
-For time-dependent coefficients:
-
-$$dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t$$
-
-the generator becomes time-dependent:
-
-$$\mathcal{L}_t = \mu(x,t)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(x,t)\frac{\partial^2}{\partial x^2}$$
+Recall (see [§ Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md)): for the Itô diffusion $dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t$ the generator is $\mathcal{L}_t = \mu(x,t)\partial_x + \tfrac{1}{2}\sigma^2(x,t)\partial_{xx}$ (time-homogeneous when $\mu,\sigma$ have no explicit $t$ dependence).
 
 ---
 
@@ -113,12 +95,7 @@ $$\mathcal{L}_x p = \mu(x)\frac{\partial p}{\partial x} + \frac{1}{2}\sigma^2(x)
 
 **Initial condition**: $p(0; x, y) = \delta(x - y)$.
 
-This is a remarkable fact: the transition density satisfies *two different PDEs*:
-
-| Equation | Variables | Operator |
-|----------|-----------|----------|
-| Backward | $(t, x)$ with $y$ fixed | $\mathcal{L}_x$ |
-| Forward | $(t, y)$ with $x$ fixed | $\mathcal{L}_y^*$ |
+Recall (see [§ Forward–Backward Duality — The Transition Density Satisfies Both](forward_backward_duality.md#the-transition-density-satisfies-both)): the same $p$ also solves the forward equation $\partial_t p = \mathcal{L}_y^* p$ in the destination variables $(t, y)$. One density, two PDEs, in disjoint variable pairs.
 
 ---
 
@@ -203,111 +180,21 @@ This confirms $v(0,x) = u(T, x) = \mathbb{E}_x[g(X_T)]$. ✓
 
 ## Connection to Forward Equation (Fokker–Planck)
 
-The backward and forward equations are **adjoints** of each other.
-
-| Equation | Acts on | Variable | PDE |
-|----------|---------|----------|-----|
-| Backward | Initial point | $x$ | $\partial_t p = \mathcal{L}_x p$ |
-| Forward | Terminal point | $y$ | $\partial_t p = \mathcal{L}_y^* p$ |
-
-where the **adjoint generator** is:
-
-$$\mathcal{L}^* p = -\frac{\partial}{\partial y}[\mu(y) p] + \frac{1}{2}\frac{\partial^2}{\partial y^2}[\sigma^2(y) p]$$
-
-**Duality**: For test functions $f, g$:
-
-$$\int f(x) (\mathcal{L}g)(x)\,dx = \int (\mathcal{L}^* f)(x) g(x)\,dx$$
-
-(plus boundary terms)
-
-!!! info "Physical Interpretation"
-
-    - **Backward**: "From which starting points do we reach a given target?" (Value function perspective)
-    - **Forward**: "Where does the probability mass flow over time?" (Distribution perspective)
-
-See [Forward–Backward Duality](forward_backward_duality.md) for the detailed adjoint relationship.
+Recall (see [§ Forward–Backward Duality](forward_backward_duality.md)): $\mathcal{L}^*$ is the adjoint of $\mathcal{L}$, and the same transition density satisfies the backward equation in $(t, x)$ and the forward equation in $(t, y)$. The detailed adjoint derivation, comparison table, and computational trade-offs live on that page.
 
 ---
 
 ## Examples
 
-### Example 1: Brownian Motion
+Recall (see [§ Transition Densities for Standard SDEs](transition_densities_standard_sdes.md)): explicit transition densities for BM, OU, GBM, and CIR are catalogued in one place. Here we record only one minimal backward example to anchor the formulas, plus the financial specialization to Black–Scholes.
 
-**SDE**: $dX_t = dW_t$ (so $\mu = 0$, $\sigma = 1$)
+### Minimal Example: Brownian Motion
 
-**Backward equation**:
+For $dX_t = dW_t$, the backward equation is the heat equation $\partial_t u = \tfrac{1}{2}\partial_{xx}u$ and $u(t, x) = \mathbb{E}_x[g(X_t)]$ is given by convolution with the heat kernel. For $g(x) = x^2$: $u(t, x) = x^2 + t$ (check: $\partial_t u = 1 = \tfrac{1}{2}\cdot 2 = \tfrac{1}{2}\partial_{xx}u$).
 
-$$\frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2}$$
+### Specialization to Black–Scholes
 
-This is the **heat equation**.
-
-**Solution** with $u(0,x) = g(x)$:
-
-$$u(t, x) = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi t}} e^{-(y-x)^2/2t} g(y)\,dy$$
-
-The kernel $\frac{1}{\sqrt{2\pi t}} e^{-(y-x)^2/2t}$ is the **heat kernel** = transition density of Brownian motion.
-
-**Explicit example**: For $g(x) = x^2$:
-
-$$u(t, x) = \mathbb{E}_x[X_t^2] = \mathbb{E}_x[(x + W_t)^2] = x^2 + t$$
-
-Verification: $\partial_t u = 1$, $\partial_{xx} u = 2$, so $\partial_t u = \frac{1}{2}\partial_{xx} u$. ✓
-
----
-
-### Example 2: Brownian Motion with Drift
-
-**SDE**: $dX_t = \mu\,dt + \sigma\,dW_t$
-
-**Backward equation**:
-
-$$\frac{\partial u}{\partial t} = \mu\frac{\partial u}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 u}{\partial x^2}$$
-
-This is the **advection-diffusion equation**.
-
-**Solution** with $u(0,x) = g(x)$:
-
-$$u(t, x) = \int_{-\infty}^{\infty} \frac{1}{\sigma\sqrt{2\pi t}} \exp\left(-\frac{(y - x - \mu t)^2}{2\sigma^2 t}\right) g(y)\,dy$$
-
----
-
-### Example 3: Ornstein–Uhlenbeck
-
-**SDE**: $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$
-
-**Backward equation**:
-
-$$\frac{\partial u}{\partial t} = -\kappa x\frac{\partial u}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 u}{\partial x^2}$$
-
-**Explicit example**: For $g(x) = x$ (expected position):
-
-$$u(t, x) = \mathbb{E}_x[X_t] = x e^{-\kappa t}$$
-
-Verification: $\partial_t u = -\kappa x e^{-\kappa t}$, $\partial_x u = e^{-\kappa t}$, $\partial_{xx} u = 0$
-
-$-\kappa x \cdot e^{-\kappa t} + 0 = -\kappa x e^{-\kappa t}$. ✓
-
----
-
-### Example 4: Geometric Brownian Motion
-
-**SDE**: $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$
-
-**Generator**: $\mathcal{L} = \mu s\frac{\partial}{\partial s} + \frac{\sigma^2 s^2}{2}\frac{\partial^2}{\partial s^2}$
-
-**Backward equation**:
-
-$$\frac{\partial u}{\partial t} = \mu s\frac{\partial u}{\partial s} + \frac{\sigma^2 s^2}{2}\frac{\partial^2 u}{\partial s^2}$$
-
-### Connection to Black–Scholes
-
-Under the **risk-neutral measure** ($\mu \to r$), the terminal value form with discounting:
-
-$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} = rV$$
-
-is the **Black–Scholes PDE**.
-
-This follows from Feynman–Kac: the discounted price $e^{-r(T-t)}V(t,S)$ should be a martingale.
+Recall (see [§ Black–Scholes PDE Derivation](../../ch06/bs_pde_derivation/replication.md)): under $\mathbb{Q}$, the backward equation for GBM plus a killing potential $rV$ yields the Black–Scholes PDE $\partial_t V + rS\partial_S V + \tfrac{\sigma^2 S^2}{2}\partial_{SS}V = rV$ — the canonical financial application of the backward equation.
 
 ---
 
@@ -332,28 +219,7 @@ See [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md).
 
 ## Connection to Dynkin's Formula
 
-Dynkin's formula is the **integrated form** of the backward equation.
-
-**Backward equation** (differential):
-
-$$\frac{\partial}{\partial t}\mathbb{E}_x[g(X_t)] = \mathcal{L}_x \mathbb{E}_x[g(X_t)]$$
-
-**Dynkin's formula** (integral):
-
-$$\mathbb{E}_x[g(X_t)] = g(x) + \mathbb{E}_x\left[\int_0^t (\mathcal{L}g)(X_s)\,ds\right]$$
-
-Differentiating Dynkin at $t = 0$:
-
-$$\frac{\partial}{\partial t}\mathbb{E}_x[g(X_t)]\Big|_{t=0} = (\mathcal{L}g)(x)$$
-
-recovers the backward equation at $t = 0$.
-
-!!! info "Dynkin = E[Itô]"
-    Dynkin's formula is simply Itô's formula with the martingale part averaged out:
-    
-    $$g(X_t) = g(X_0) + \int_0^t (\mathcal{L}g)(X_s)\,ds + \int_0^t g'(X_s)\sigma(X_s)\,dW_s$$
-    
-    Taking expectations eliminates the stochastic integral (which is a martingale).
+Recall (see [§ Dynkin's Formula](../../ch03/infinitesimal_generator/dynkin_formula.md)): $\mathbb{E}_x[g(X_t)] = g(x) + \mathbb{E}_x[\int_0^t (\mathcal{L}g)(X_s)\,ds]$ is the integrated form of the backward equation; differentiating at $t=0$ recovers $\partial_t u = \mathcal{L}u$ at the origin.
 
 ---
 
@@ -416,33 +282,15 @@ For irregular data or degenerate diffusions (where $\sigma$ can vanish), **visco
 
 ## Numerical Methods
 
-### Finite Differences (Explicit Scheme)
-
-For Form 1 ($\partial_t u = \mathcal{L}u$), discretize on grid $(x_i, t_n)$:
-
-$$\frac{u_i^{n+1} - u_i^n}{\Delta t} = \mu(x_i)\frac{u_{i+1}^n - u_{i-1}^n}{2\Delta x} + \frac{\sigma^2(x_i)}{2}\frac{u_{i+1}^n - 2u_i^n + u_{i-1}^n}{\Delta x^2}$$
-
-**Stability** (CFL condition): $\Delta t \leq \frac{\Delta x^2}{\sigma^2}$
-
 ### Finite Differences (Terminal Value Problem)
 
 For Form 2 ($\partial_t v + \mathcal{L}v = 0$), march **backward** from $v(T, \cdot) = g$:
 
 $$v_i^{n} = v_i^{n+1} + \Delta t \cdot (\mathcal{L}v)_i^{n+1}$$
 
-This is the standard approach for option pricing.
+This is the standard backward-march used for option pricing; the explicit scheme inherits the CFL constraint $\Delta t \leq \Delta x^2/\sigma^2$.
 
-### Monte Carlo
-
-The probabilistic representation provides a natural Monte Carlo method:
-
-$$u(t, x) = \mathbb{E}_x[g(X_t)] \approx \frac{1}{N}\sum_{j=1}^N g(X_t^{(j)})$$
-
-where $X_t^{(j)}$ are simulated paths starting from $x$.
-
-**Advantages**: Works in high dimensions, handles complex payoffs
-
-**Disadvantages**: Slow convergence ($O(1/\sqrt{N})$), gives answer at one point only
+Recall (see [§ Forward–Backward Duality](forward_backward_duality.md)): the Monte Carlo alternative $u(t,x) \approx \tfrac{1}{N}\sum_j g(X_t^{(j)})$ is preferred in high dimensions, while PDE methods dominate in low dimensions and when the full value surface is needed.
 
 ---
 

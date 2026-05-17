@@ -35,7 +35,10 @@ Both approaches yield the same prices.
 
 ## The Payoff Space
 
-Using the [one-period setup](binomial_model.md) with up/down states $uS_0$ and $dS_0$, any derivative payoff is a vector $H = (H_u, H_d) \in \mathbb{R}^2$.
+!!! note "Recall (see [§ Binomial Model](binomial_model.md))"
+    One-period setup with stock $S_{\Delta t} \in \{uS_0, dS_0\}$ and bond $B_{\Delta t} = e^{r\Delta t}$, under the no-arbitrage condition $d < e^{r\Delta t} < u$.
+
+Any derivative payoff is a vector $H = (H_u, H_d) \in \mathbb{R}^2$.
 
 ### The Payoff Space Is Two-Dimensional
 
@@ -216,7 +219,8 @@ $$
 
 ### Arrow-Debreu Securities
 
-An **Arrow-Debreu security** (or **state-contingent claim**) pays \$1 in exactly one state and \$0 in all other states.
+!!! note "Recall (see [§ State Prices and Arrow-Debreu](../discrete_time_foundations/state_prices_arrow_debreu.md))"
+    An **Arrow-Debreu security** pays \$1 in exactly one state and \$0 elsewhere; its time-0 price is the **state price** $\psi_s$, and any payoff prices linearly as $V_0 = \sum_s \psi_s H_s$.
 
 In the binomial model, there are two Arrow-Debreu securities:
 
@@ -252,24 +256,13 @@ $$
 
 This is trivially true—you just hold $H_u$ units of the up-state digital and $H_d$ units of the down-state digital.
 
-### State Prices
+### State Prices in the Binomial Model
 
-Let $\psi_u$ and $\psi_d$ denote the **prices** of the Arrow-Debreu securities:
-
-- $\psi_u$ = price of up-state digital (price today of receiving \$1 if up)
-- $\psi_d$ = price of down-state digital (price today of receiving \$1 if down)
-
-These are called **state prices** (or **Arrow-Debreu prices**).
-
-### Universal Pricing Formula
-
-Since any payoff is a linear combination of Arrow-Debreu securities:
+Let $\psi_u$ and $\psi_d$ denote the binomial state prices (the prices today of the up- and down-state digitals). Specialising the general formula $V_0 = \sum_s \psi_s H_s$ to two states:
 
 $$
 \boxed{V_0 = \psi_u H_u + \psi_d H_d}
 $$
-
-**This is the fundamental pricing formula.** Once you know the state prices, you can price any derivative by simple multiplication.
 
 ---
 
@@ -478,22 +471,10 @@ Setting $V_0 = 0$: $F = 100/0.9512 = 105.13$ ✓
 
 ## The Fundamental Theorems (Preview)
 
-The replication results connect to the **Fundamental Theorems of Asset Pricing**:
+!!! note "Recall (see [§ FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md))"
+    No-arbitrage $\Leftrightarrow$ positive state prices $(\psi_u, \psi_d) > 0$ (equivalently, an equivalent martingale measure $\mathbb{Q}$ exists); the market is **complete** $\Leftrightarrow$ $(\psi_u, \psi_d)$ (equivalently, $\mathbb{Q}$) is unique.
 
-!!! info "First Fundamental Theorem"
-    The market is **arbitrage-free** if and only if there exist positive state prices $(\psi_u, \psi_d) > 0$.
-    
-    Equivalently: there exists a risk-neutral measure $\mathbb{Q}$.
-
-!!! info "Second Fundamental Theorem"  
-    The market is **complete** if and only if the state prices (equivalently, $\mathbb{Q}$) are unique.
-
-In the one-period binomial model:
-
-- No-arbitrage ($d < e^{r\Delta t} < u$) guarantees positive state prices
-- Two assets for two states guarantees uniqueness
-
-See [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) for the general theory.
+In the one-period binomial model, $d < e^{r\Delta t} < u$ guarantees positive state prices, and two assets for two states gives uniqueness.
 
 ---
 

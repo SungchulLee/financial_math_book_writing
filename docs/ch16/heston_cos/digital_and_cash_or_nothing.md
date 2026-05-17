@@ -38,7 +38,7 @@ The standard European call decomposes as $C = \text{Asset-or-nothing call} - K \
 
 ## COS Payoff Coefficients for Cash-or-Nothing Options
 
-The COS payoff coefficients for digital options follow from direct integration of the indicator payoff against cosine basis functions.
+Recall (see [§ Cosine Coefficients via CF](../../ch09/cos_method/cosine_coefficients_via_cf.md) and [§ European Call/Put Pricing](european_call_put_pricing.md)): the chi/psi auxiliary functions and the general $V_k = \int_a^b v(y)\cos(k\pi\frac{y-a}{b-a})\,dy$ form. The digital payoff coefficients below follow from direct integration of the indicator against cosine basis functions.
 
 !!! info "Proposition (Cash-or-Nothing Call Coefficients)"
     The COS payoff coefficients for a cash-or-nothing call with notional $B$ and strike $K$ are

@@ -30,12 +30,7 @@ provides higher-order accuracy for smooth paths.
 
 ## Path generation
 
-Each path is generated using one of the simulation schemes from the exact simulation section:
-
-1. **Exact simulation**: At each step, sample $r_{t_{k+1}} \mid r_{t_k}$ from the non-central chi-squared distribution. No discretization bias.
-2. **Euler with truncation**: Use the Euler-Maruyama recursion with full truncation to prevent negative rates. Simple but biased.
-
-For bond pricing, exact simulation is strongly preferred because it eliminates the systematic bias from time discretization, leaving only the statistical error from finite sample size.
+Recall (see [§ Exact Simulation and Euler Pitfalls](exact_simulation_and_euler_pitfalls.md)) the two simulation schemes: exact non-central chi-squared sampling (no discretization bias) and Euler-Maruyama with truncation (simple, biased). For bond pricing, exact simulation is strongly preferred.
 
 ### Time grid design
 

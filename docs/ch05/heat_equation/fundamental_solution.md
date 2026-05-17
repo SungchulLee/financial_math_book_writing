@@ -1,6 +1,6 @@
 # The Fundamental Solution (Heat Kernel)
 
-The heat equation admits an explicit **fundamental solution**, also called the **heat kernel** or **Gaussian kernel**. This function is central to both the analytical theory and its probabilistic interpretation.
+Concentrate a unit of heat at a single point and release it. How does it spread? The answer is the **fundamental solution** $G(t,x)$ -- a Gaussian that broadens like $\sqrt{t}$ -- and every other solution is built from it by superposing point sources weighted by the initial data. This single object carries the entire analytical content of the heat equation and is also the transition density of Brownian motion.
 
 ---
 
@@ -144,7 +144,7 @@ $$
 \int_{\mathbb{R}} x^{2n} G(t,x)\,dx = (2n-1)!! \cdot t^n = \frac{(2n)!}{2^n n!} t^n
 $$
 
-In particular: mean $= 0$, variance $= t$.
+In particular: mean $= 0$, variance $= t$. Recall (see [§ The Scaling Relation: x ~ √t](scaling_and_invariance.md)): the resulting $\sqrt{t}$ spread is the conceptual fingerprint of diffusion.
 
 ---
 

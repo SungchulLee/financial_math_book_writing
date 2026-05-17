@@ -80,19 +80,7 @@ Consequence: $|M_t|$, $M_t^2$, $(M_t)^+$, and $(M_t)^-$ are all submartingales w
 
 ## $L^p$ Martingales and Uniform Integrability
 
-A martingale $M$ is **$L^p$-bounded** if $\sup_t \mathbb{E}|M_t|^p < \infty$. A family $\{X_\alpha\}$ is **uniformly integrable** (UI) if
-
-$$
-\lim_{K \to \infty} \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] = 0
-$$
-
-**Key facts** (used later):
-
-1. Every $L^p$-bounded martingale with $p > 1$ is UI.
-2. $L^1$-boundedness alone does **not** imply UI.
-3. UI is the hypothesis for $L^1$ martingale convergence and for optional sampling at unbounded stopping times.
-
-These will be used in the sections on Doob convergence and optional sampling.
+A martingale $M$ is **$L^p$-bounded** if $\sup_t \mathbb{E}|M_t|^p < \infty$. Recall (see [§ Uniform Integrability](uniform_integrability.md)): a family is UI if $\lim_{K \to \infty} \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] = 0$; $L^p$-boundedness with $p>1$ implies UI, $L^1$-boundedness alone does not, and UI is the hypothesis for $L^1$ convergence and unbounded optional sampling.
 
 ---
 

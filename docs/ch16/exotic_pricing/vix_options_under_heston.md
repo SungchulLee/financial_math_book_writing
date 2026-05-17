@@ -46,14 +46,10 @@ The factor of 100 converts from decimal to percentage, matching the market conve
 
 ### VIX Squared as Affine in vₜ
 
-Under Heston, $v_t$ is a CIR process with conditional expectation $\mathbb{E}^{\mathbb{Q}}[v_s \mid \mathcal{F}_t] = \theta + (v_t - \theta)e^{-\kappa(s-t)}$ for $s \geq t$. Integrating:
+Recall (see [§ Variance Dynamics](../variance_dynamics/cir_variance_process_solution.md) and [§ Variance Swaps](variance_swaps_closed_form.md)): $\mathbb{E}^{\mathbb{Q}}[v_s \mid \mathcal{F}_t] = \theta + (v_t - \theta)e^{-\kappa(s-t)}$. Integrating over $[t, t+\tau]$:
 
 $$
-\text{VIX}_t^2 = \frac{1}{\tau}\int_t^{t+\tau}\left[\theta + (v_t - \theta)e^{-\kappa(s-t)}\right] ds
-$$
-
-$$
-= \theta + (v_t - \theta)\frac{1 - e^{-\kappa\tau}}{\kappa\tau}
+\text{VIX}_t^2 = \theta + (v_t - \theta)\frac{1 - e^{-\kappa\tau}}{\kappa\tau}
 $$
 
 !!! note "Theorem (Affine Representation of VIX Squared)"
@@ -119,19 +115,7 @@ The expectation on the right is the characteristic function of $v_T$ evaluated a
     with $w = iub$.
 
 ??? example "Proof sketch"
-    The moment generating function of $v_T$ for the CIR process is:
-
-    $$
-    \mathbb{E}[e^{w v_T} \mid v_0] = \exp(C(T, w) + D(T, w) v_0)
-    $$
-
-    where $D$ and $C$ solve the Riccati system $D' = -\kappa D + \frac{1}{2}\xi^2 D^2$, $D(0) = w$ and $C' = \kappa\theta D$, $C(0) = 0$. The ODE for $D$ is a Bernoulli equation with solution:
-
-    $$
-    D(T, w) = \frac{w e^{-\kappa T}}{1 - \frac{\xi^2 w}{2\kappa}(1 - e^{-\kappa T})}
-    $$
-
-    Integrating $C' = \kappa\theta D$ gives the formula for $C$. Setting $w = iub$ and prepending the factor $e^{iua}$ gives the VIX$^2$ characteristic function. $\square$
+    Recall (see [§ Heston CF](../heston_cf/heston_sde_and_affine_recap.md)): the CIR MGF $\mathbb{E}[e^{w v_T} \mid v_0] = \exp(C(T,w) + D(T,w) v_0)$ with $C, D$ from the Riccati system. Setting $w = iub$ and prepending $e^{iua}$ gives the VIX$^2$ characteristic function. $\square$
 
 ### Characteristic Function of VIX
 

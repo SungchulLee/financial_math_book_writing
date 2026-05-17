@@ -1,6 +1,6 @@
 # The Stochastic Exponential
 
-The **stochastic exponential** (or **Doléans-Dade exponential**) converts additive local martingales into multiplicative densities for measure change (see [Unifying Principle](unifying_principle.md)). It is central to Girsanov's theorem and risk-neutral pricing.
+Take a driftless process $M_t$ and ask: which strictly positive process $Z_t$ grows in proportion to $M$, that is, $dZ_t = Z_t\,dM_t$ with $Z_0 = 1$? The naive guess $Z_t = e^{M_t}$ overshoots, because Itô's lemma adds an unwanted $\tfrac{1}{2}\,d\langle M\rangle_t$ term. Subtracting that correction inside the exponent gives the **stochastic exponential** $\mathcal{E}(M)_t = \exp\!\bigl(M_t - \tfrac{1}{2}\langle M\rangle_t\bigr)$ -- the additive-to-multiplicative converter at the heart of Girsanov's theorem, risk-neutral pricing, and every change of measure in this book (see [Unifying Principle](unifying_principle.md)).
 
 !!! info "Prerequisites"
     This section assumes familiarity with:
@@ -257,15 +257,7 @@ The term $\mu - \frac{\sigma^2}{2}$ is the **drift-adjusted growth rate**—the 
 
 ## Connection to Girsanov's Theorem
 
-The stochastic exponential is the **Radon–Nikodym derivative** for measure change: $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$ where the density process is
-
-$$
-Z_t = \mathcal{E}\!\left(\int_0^\cdot \theta_s\,dW_s\right)_t = \exp\!\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
-$$
-
-and $\theta_t$ is the **Girsanov kernel** (market price of risk in finance). Under $\mathbb{Q}$, the process $\tilde{W}_t = W_t - \int_0^t \theta_s\,ds$ is a standard Brownian motion. For this to be valid, $Z_t$ must be a true martingale with $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$, guaranteed by [Novikov or Kazamaki](novikov_kazamaki_conditions.md).
-
-See [Girsanov's Theorem](../girsanov/girsanov_theorem.md) for the complete treatment.
+Recall (see [§ Girsanov's Theorem](../girsanov/girsanov_theorem.md)): $\mathcal{E}(M)_t$ serves as the Radon–Nikodym density $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_t}$ for a measure change, valid when it is a true martingale (Novikov/Kazamaki).
 
 ---
 
@@ -305,55 +297,23 @@ The correction $-\frac{1}{2}\langle X \rangle_t$ precisely removes the drift int
 
 ## When Is E(X) a True Martingale?
 
-The stochastic exponential of a local martingale is always a local martingale, but may be a **strict local martingale** (local martingale that is not a true martingale).
+The stochastic exponential of a local martingale is always a local martingale, but may be a **strict local martingale**.
 
-### Sufficient Conditions
+Recall (see [§ Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md)): two sufficient tests upgrade $\mathcal{E}(X)$ to a true martingale —
 
-**Novikov's Condition**: If
+- **Novikov**: $\mathbb{E}[\exp(\tfrac{1}{2}\langle X \rangle_T)] < \infty$.
+- **Kazamaki** (weaker): $\mathcal{E}(X/2)$ is a submartingale.
 
-$$
-\mathbb{E}\left[\exp\left(\frac{1}{2}\langle X \rangle_T\right)\right] < \infty
-$$
-
-then $\mathcal{E}(X)$ is a true martingale on $[0,T]$.
-
-**Kazamaki's Condition** (weaker): If $\mathcal{E}(X/2)$ is a submartingale, then $\mathcal{E}(X)$ is a true martingale.
-
-For details and proofs, see [Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md).
-
-### When Conditions Fail
-
-If neither condition holds, $\mathcal{E}(X)$ may satisfy $\mathbb{E}[\mathcal{E}(X)_T] < 1$. In finance, this corresponds to **asset price bubbles**. See [Local Martingales](local_martingale.md) for examples.
+When both fail, $\mathbb{E}[\mathcal{E}(X)_T] < 1$ is possible — in finance, this is the signature of **asset price bubbles** (see [§ Local Martingales](local_martingale.md#strict-local-martingales-and-financial-bubbles)).
 
 ---
 
 ## Applications in Finance
 
-### 1. Risk-Neutral Measure Construction
+The stochastic exponential is the building block for measure-change densities in finance:
 
-The density process for the risk-neutral measure $\mathbb{Q}$:
-
-$$
-Z_t = \mathcal{E}\left(-\int_0^\cdot \frac{\mu - r}{\sigma}\,dW_s\right)_t
-$$
-
-where $(\mu - r)/\sigma$ is the **market price of risk** (Sharpe ratio).
-
-### 2. Change of Numéraire
-
-When changing from numéraire $M$ to numéraire $N$:
-
-$$
-\frac{d\mathbb{Q}^N}{d\mathbb{Q}^M}\bigg|_{\mathcal{F}_T} = \frac{N_T/N_0}{M_T/M_0}
-$$
-
-This ratio involves stochastic exponentials of the volatility difference between the two numéraires.
-
-### 3. Forward Measure
-
-The $T$-forward measure uses the zero-coupon bond $P(t,T)$ as numéraire. The density involves stochastic exponentials of bond volatilities.
-
-See [Forward Measure](../risk_neutral/forward_measure.md) for details.
+- **Risk-neutral measure**: $Z_t = \mathcal{E}(-\int_0^\cdot \tfrac{\mu-r}{\sigma}\,dW_s)_t$ — see [§ Risk-Neutral Construction](../risk_neutral/construction.md).
+- **Change of numéraire** and **forward measure** — see [§ Numéraire](../risk_neutral/numeraire.md) and [§ Forward Measure](../risk_neutral/forward_measure.md).
 
 ---
 

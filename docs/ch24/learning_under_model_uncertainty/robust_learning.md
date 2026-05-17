@@ -21,16 +21,7 @@ Robust learning seeks stability rather than optimality under idealized assumptio
 ## Robust optimization perspective
 
 
-Robust learning often adopts a min–max formulation:
-
-$$
-\min_{\pi} \max_{\mathbb{P} \in \mathcal{P}} \mathbb{E}_{\mathbb{P}}[L(\pi)]
-$$
-
-
-where $\mathcal{P}$ represents a set of plausible models.
-
-This guards against worst-case scenarios.
+Robust learning often adopts a min–max formulation over a set $\mathcal{P}$ of plausible models that guards against worst-case scenarios. Recall (see [§ DRO Framework](distributionally_robust_optimization.md#the-dro-framework)) for the general $\min_\pi \sup_{\mathbb{P} \in \mathcal{P}} \mathbb{E}_\mathbb{P}[L(\pi)]$ formulation and its relation to stochastic and robust optimization.
 
 ---
 

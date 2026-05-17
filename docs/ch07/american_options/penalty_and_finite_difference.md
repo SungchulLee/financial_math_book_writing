@@ -30,7 +30,7 @@ $$
 \max\left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV, \; \Phi(S) - V\right) = 0
 $$
 
-where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ and $\Phi$ is the payoff function.
+where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ (Recall (see [§ BS PDE structure](../../ch06/bs_pde_structure/discounting_and_killing_term.md))) and $\Phi$ is the payoff function. For projection-style free-boundary numerics, Recall (see [§ American options implementation](../../ch08/american_options/american_options_early_exercise_implementation.md)); for the viscosity-solution interpretation, Recall (see [§ Viscosity solutions](../../ch06/bs_pde_analytic_solution/viscosity_solutions.md)).
 
 Equivalently, at each time step the discrete solution must satisfy:
 

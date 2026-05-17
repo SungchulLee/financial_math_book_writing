@@ -57,13 +57,13 @@ For the Heston model, $\mathcal{M}$ is parameterized by the variance risk premiu
 
 ## Entropy Computation for the Heston Model
 
-The Radon–Nikodym derivative from $\mathbb{P}$ to $\mathbb{Q}_\lambda$ (the EMM with variance risk premium $\lambda$) is
+Recall (see [§ Risk-Neutral Measure](risk_neutral_measure.md)) the Radon–Nikodym derivative from $\mathbb{P}$ to $\mathbb{Q}_\lambda$ with $\lambda_S(t) = (\mu - r)/\sqrt{v_t}$ and $\lambda_v(t) = \lambda\sqrt{v_t}$:
 
 $$
 \frac{d\mathbb{Q}_\lambda}{d\mathbb{P}} = \exp\!\left(-\int_0^T \lambda_S(t) \, dW_t^{(1),\mathbb{P}} - \int_0^T \lambda\sqrt{v_t} \, dW_t^{(2),\mathbb{P}} - \frac{1}{2}\int_0^T(\lambda_S^2(t) + \lambda^2 v_t)\,dt\right)
 $$
 
-where $\lambda_S(t) = (\mu - r)/\sqrt{v_t}$ is fixed by no-arbitrage. The relative entropy is
+The relative entropy is
 
 $$
 H(\mathbb{Q}_\lambda | \mathbb{P}) = \mathbb{E}^{\mathbb{Q}_\lambda}\!\left[\log\frac{d\mathbb{Q}_\lambda}{d\mathbb{P}}\right]

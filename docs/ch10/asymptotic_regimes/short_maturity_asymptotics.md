@@ -124,15 +124,7 @@ $$
 
 ## Greeks near expiry
 
-
-**ATM Greeks** as $\tau \to 0$:
-
-| Greek | ATM behavior | Scaling |
-|:------|:-------------|:--------|
-| $\Delta$ | $\to \frac{1}{2}$ | $\mathcal{O}(1)$ |
-| $\Gamma$ | $\frac{1}{S\sigma\sqrt{2\pi\tau}}$ | $\tau^{-1/2}$ |
-| $\Theta$ | $-\frac{S\sigma}{2\sqrt{2\pi\tau}}$ | $\tau^{-1/2}$ |
-| $\nu$ | $\frac{S\sqrt{\tau}}{\sqrt{2\pi}}$ | $\sqrt{\tau}$ |
+**Recall** (see [§ Scaling Laws for Greeks](../greeks_asympt/scaling_laws_for_greeks.md)): for ATM Greeks as $\tau \to 0$, $\Delta \to \tfrac12$, $\Gamma \sim \tau^{-1/2}$, $\Theta \sim -\tau^{-1/2}$, and $\nu \sim \sqrt{\tau}$.
 
 ---
 

@@ -1,48 +1,14 @@
 # Discounted Characteristic Function
 
-## Theorem (Duffie-Pann-Singleton)
+## Theorem (Duffie-Pan-Singleton)
 
-
-
-If ${\bf X}_t$ is affine, the discounted characteristic function (ChF) has the following affine form:
+Recall (see [§ Generalized Riccati ODEs](../characteristic_function/generalized_riccati_odes.md) and [§ Extended Riccati System with Discounting](extended_riccati_with_discounting.md)): if $\mathbf{X}_t$ is affine, the discounted characteristic function
 
 $$
-\begin{array}{lll}
-\displaystyle
-\varphi({\bf X}_t,t,T,{\bf u})
-:=
-\mathbb{E^Q}\left[e^{-\int_t^Tr\left({\bf X}_{t'}\right)dt'}e^{i{\bf u}^T{\bf X}_T}\Big{|}F(t)\right]
-=
-e^{A({\bf u},\tau)+{\bf B}({\bf u},\tau)^T{\bf X}_t}
-\end{array}
+\varphi(\mathbf{X}_t,t,T,\mathbf{u}) := \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r(\mathbf{X}_s)\,ds}\,e^{i\mathbf{u}^T\mathbf{X}_T}\,\big|\,\mathcal{F}_t\right] = e^{A(\mathbf{u},\tau) + \mathbf{B}(\mathbf{u},\tau)^T\mathbf{X}_t}
 $$
 
-where $\tau=T−t$. Furthermore,
-The coefficients $A$ and ${\bf B}$ satisfy the following Riccati Equation:
-
-$$\begin{array}{lll}
-\displaystyle
-\frac{dA}{d\tau}
-&=&\displaystyle
--r_0+{\bf B}^Ta_0+\frac{1}{2}{\bf B}^Tc_0{\bf B}\\
-\displaystyle
-\frac{d{\bf B}}{d\tau}
-&=&\displaystyle
--r_1+a_1^T{\bf B}+\frac{1}{2}{\bf B}^Tc_1{\bf B}\\
-\end{array}$$
-
-with the initial condition
-
-$$\begin{array}{lll}
-\displaystyle
-A({\bf u},0)
-&=&\displaystyle
-0\\
-\displaystyle
-{\bf B}({\bf u},0)
-&=&\displaystyle
-i{\bf u}^T\\
-\end{array}$$
+with $\tau = T-t$. The coefficients $A,\mathbf{B}$ satisfy the DPS Riccati system $\frac{dA}{d\tau} = -r_0 + \mathbf{B}^T a_0 + \tfrac{1}{2}\mathbf{B}^T c_0\mathbf{B}$ and $\frac{d\mathbf{B}}{d\tau} = -r_1 + a_1^T\mathbf{B} + \tfrac{1}{2}\mathbf{B}^T c_1\mathbf{B}$ with initial data $A(\mathbf{u},0)=0$, $\mathbf{B}(\mathbf{u},0) = i\mathbf{u}$. The remainder of this page specializes this result to Black-Scholes as a worked example.
 
 
 ## Example - BS Model

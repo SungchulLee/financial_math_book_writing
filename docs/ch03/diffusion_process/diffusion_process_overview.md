@@ -82,7 +82,7 @@ That is, **quadratic covariation grows linearly in time at a rate determined by 
 
 ### Infinitesimal Generator
 
-For $f \in C^{1,2}([0,\infty)\times\mathbb{R}^d)$ (once differentiable in $t$, twice in $x$), the **infinitesimal generator** acting on the spatial variables is
+Recall (see [§ The Infinitesimal Generator](../infinitesimal_generator/infinitesimal_generator.md)): for $f \in C^{1,2}([0,\infty)\times\mathbb{R}^d)$, the **infinitesimal generator** acting on the spatial variables is
 
 $$
 (\mathcal{L}f)(t, x)
@@ -91,9 +91,7 @@ $$
 + \frac{1}{2}\,a^{ij}(t, x)\,\frac{\partial^2 f}{\partial x_i \partial x_j}(x)
 $$
 
-Here $\mathcal{L}$ acts on the *spatial* argument of $f$; the coefficients $b^i, a^{ij}$ carry the time dependence. For time-homogeneous coefficients one may restrict to $f \in C^{2}(\mathbb{R}^d)$; the full Itô formula requires $C^{1,2}$ regularity.
-
-By Itô's formula,
+By Itô's formula (see [§ Itô's Lemma](../ito_lemma/ito_lemma.md)),
 
 $$
 f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(s, X_s)\,\mathrm{d}s
@@ -158,7 +156,7 @@ $$
 
 ## Proof / Derivation
 
-The SDE integral equation is well-defined under standard conditions. We verify the semimartingale decomposition and the quadratic covariation identity.
+We verify the quadratic covariation identity; the Itô-formula step is invoked from its canonical home.
 
 **Quadratic covariation.** By bilinearity of quadratic covariation and $\langle W^{\alpha}, W^{\beta} \rangle_t = \delta^{\alpha\beta} t$:
 
@@ -166,36 +164,11 @@ $$
 \langle X^i, X^j \rangle_t
 = \left\langle \int_0^{\cdot} \sigma^{i\alpha}(s, X_s)\,\mathrm{d}W_s^{\alpha},\;
 \int_0^{\cdot} \sigma^{j\beta}(s, X_s)\,\mathrm{d}W_s^{\beta} \right\rangle_t
-= \int_0^t \sigma^{i\alpha}(s, X_s)\,\sigma^{j\beta}(s, X_s)\,\mathrm{d}\langle W^\alpha, W^\beta \rangle_s
 = \int_0^t \sigma^{i\alpha}(s, X_s)\,\sigma^{j\alpha}(s, X_s)\,\mathrm{d}s
 = \int_0^t a^{ij}(s, X_s)\,\mathrm{d}s
 $$
 
-(The Itô isometry gives $\mathbb{E}[\langle M \rangle_t] = \mathbb{E}[\int_0^t h_s^2\,\mathrm{d}s]$ for an $L^2$ martingale $M = \int h\,\mathrm{d}W$; it is the bilinearity identity above that yields the pathwise quadratic covariation.)
-
-**Itô's formula.** For $f \in C^{1,2}([0,\infty) \times \mathbb{R}^d)$, the chain rule for semimartingales gives:
-
-$$
-\mathrm{d}f(t, X_t)
-= \frac{\partial f}{\partial t}\,\mathrm{d}t
-
-+ \frac{\partial f}{\partial x_i}\,\mathrm{d}X_t^i
-+ \frac{1}{2}\,\frac{\partial^2 f}{\partial x_i \partial x_j}\,\mathrm{d}\langle X^i, X^j \rangle_t
-$$
-
-Substituting $\mathrm{d}X_t^i = b^i\,\mathrm{d}t + \sigma^{i\alpha}\,\mathrm{d}W_t^\alpha$ and $\mathrm{d}\langle X^i,X^j\rangle_t = a^{ij}\,\mathrm{d}t$, and collecting all $\mathrm{d}t$ terms:
-
-$$
-\mathrm{d}f(t, X_t)
-= \underbrace{\left(\frac{\partial f}{\partial t} + b^i\frac{\partial f}{\partial x_i} + \frac{1}{2}a^{ij}\frac{\partial^2 f}{\partial x_i\partial x_j}\right)}_{= \,\partial_t f \,+\, \mathcal{L}f}\mathrm{d}t
-
-+ \frac{\partial f}{\partial x_i}\,\sigma^{i\alpha}\,\mathrm{d}W_t^{\alpha}
-= \left(\frac{\partial f}{\partial t} + \mathcal{L}f\right)\mathrm{d}t
-
-+ \frac{\partial f}{\partial x_i}\,\sigma^{i\alpha}\,\mathrm{d}W_t^{\alpha}
-$$
-
-The stochastic integral term is a local martingale; the remaining term is finite variation. $\square$
+**Generator identity via Itô.** Recall (see [§ Itô's Lemma — Multidimensional Version](../ito_lemma/ito_lemma_multidimensional_version.md)): applying the multidimensional Itô formula to $f \in C^{1,2}$ with $\mathrm{d}X_t^i = b^i\,\mathrm{d}t + \sigma^{i\alpha}\,\mathrm{d}W_t^\alpha$ and $\mathrm{d}\langle X^i,X^j\rangle_t = a^{ij}\,\mathrm{d}t$ collects the $\mathrm{d}t$-terms into $(\partial_t f + \mathcal{L}f)\,\mathrm{d}t$ and the stochastic-integral term $\partial_i f\,\sigma^{i\alpha}\,\mathrm{d}W_t^\alpha$, which is a local martingale. $\square$
 
 ---
 

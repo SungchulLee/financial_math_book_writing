@@ -109,37 +109,7 @@ $$
 
 ## Margin Valuation Adjustment (MVA)
 
-### Motivation
-
-Post-crisis regulations require initial margin (IM) for both cleared and uncleared derivatives. This margin must be funded, creating costs.
-
-### Definition
-
-MVA is the cost of funding initial margin over the life of the trade:
-
-$$
-\text{MVA} = \int_0^T s_F(t) \cdot \mathbb{E}[\text{IM}(t)] \cdot D(0,t) \, dt
-$$
-
-where $\text{IM}(t)$ is the initial margin requirement at time $t$.
-
-### Initial Margin Calculation
-
-**ISDA SIMM (Standard Initial Margin Model):**
-
-- Risk-sensitive margin based on sensitivities
-- Aggregates across risk classes with diversification
-
-**Regulatory IM:**
-
-- Schedule-based or grid approaches
-- Less risk-sensitive but simpler
-
-### MVA Characteristics
-
-- MVA is always a cost (IM must be posted, not received net)
-- MVA can be substantial for long-dated trades
-- IM profile depends on trade structure and model
+Recall (see [§ MVA and ColVA](mva_and_colva.md)).
 
 ---
 
@@ -198,29 +168,7 @@ where XVA is the total adjustment.
 
 ## BSDE Framework for XVA
 
-XVA pricing can be formulated as a **backward stochastic differential equation**:
-
-$$
-V_t = \text{Payoff}_T + \int_t^T g(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
-$$
-
-where the driver $g$ incorporates:
-
-- Credit risk (CVA/DVA)
-- Funding costs (FVA)
-- Collateral effects
-
-**Example driver:**
-
-$$
-g(t, V, Z) = -r V + s_F V^+ - s_L V^- + \lambda_C (V^+ - \text{collateral}) + \cdots
-$$
-
-### Advantages of BSDE Approach
-
-- Unified framework for all XVAs
-- Handles interactions consistently
-- Connects to hedging strategies
+Recall (see [§ XVA as Semilinear PDE](xva_as_semilinear_pde.md)). BSDE/2BSDE theory deferred to [§ Second-order BSDEs](../../ch23/second_order_bsdes_and_nonlinear_expectations/2bsdes.md).
 
 ---
 

@@ -60,19 +60,7 @@ where:
 
 ## Connection to Ornstein-Uhlenbeck Process
 
-The Vasicek SDE is precisely an **Ornstein-Uhlenbeck (OU) process**, one of the most important stochastic processes in quantitative finance. The OU process is defined as:
-
-$$dx_t = -\lambda x_t dt + \sigma dW_t$$
-
-where $x_t$ is mean zero. The Vasicek model can be rewritten in OU form by defining the deviation from the long-run mean:
-
-$$y_t = r_t - \theta$$
-
-Then:
-
-$$dy_t = d(r_t - \theta) = dr_t = \alpha(\theta - r_t)dt + \sigma dW_t = -\alpha y_t dt + \sigma dW_t$$
-
-This is exactly the Ornstein-Uhlenbeck form with $\lambda = \alpha$.
+Recall (see [§ OU SDE general](../../ch03/sde/index.md), [§ Ito calculus applications](../../ch03/ito_lemma/ito_calculus_applications.md)) that the OU process satisfies $dx_t = -\lambda x_t dt + \sigma dW_t$. Defining $y_t = r_t - \theta$, the Vasicek SDE becomes $dy_t = -\alpha y_t dt + \sigma dW_t$ — exactly OU form with $\lambda = \alpha$.
 
 ### Properties of the OU Process
 
@@ -140,34 +128,7 @@ The magnitude of the expected change is proportional to the deviation from equil
 
 ## Comparison with Other Models
 
-| Model | SDE | Key Feature | Limitation |
-|-------|-----|-------------|-----------|
-| **Vasicek** | $dr_t = \alpha(\theta - r_t)dt + \sigma dW_t$ | Mean reversion | Allows negative rates |
-| **Merton** | $dr_t = \mu dt + \sigma dW_t$ | Simple, closed-form | No mean reversion |
-| **CIR** | $dr_t = \alpha(\theta - r_t)dt + \sigma\sqrt{r_t} dW_t$ | Positive rates | More complex |
-| **Hull-White** | $dr_t = (\theta(t) - ar_t)dt + \sigma dW_t$ | Calibratable | Time-varying parameters |
-
----
-
-## Extensions and Variants
-
-**Time-Dependent Parameters**:
-
-- $\alpha(t)$, $\theta(t)$, $\sigma(t)$ can be made time-dependent
-- Allows calibration to initial term structure
-- Hull-White model is Vasicek with time-varying $\theta(t)$
-
-**Multi-Factor Vasicek**:
-
-- Multiple correlated short-rate factors
-- Better captures term structure dynamics
-- More parameters but more flexibility
-
-**Negative Rate Handling**:
-
-- Original Vasicek allows negative rates (problematic pre-2008)
-- Modern implementations may add lower bounds
-- Alternative: CIR model prevents negative rates
+Recall (see [§ General SR framework](../short_rate_models/affine_term_structure.md), [§ CIR](../cir_model/bond_options.md), [§ Hull-White](../../ch20/index.md)) for full comparisons with CIR, Merton, and Hull-White extensions.
 
 ---
 

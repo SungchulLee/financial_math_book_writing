@@ -32,13 +32,13 @@ This measures the parallel shift to the risk-free zero curve that equates the di
 
 ### CDS Spread
 
-The **CDS spread** for maturity $T$ is the par coupon rate on a credit default swap:
+Recall (see [§ Credit Default Swaps (CDS)](../credit_derivatives/credit_default_swaps_cds.md) and [§ CDS Spreads and Hazard Rates](../credit_derivatives/cds_spreads_and_hazard_rates.md)): the **CDS spread** for maturity $T$ is the par coupon rate equating the protection and premium legs,
 
 $$
-s_{\text{CDS}}(T) = \frac{(1-R)\int_0^T D(0,u) S(0,u) \lambda_u \, du}{\sum_{i=1}^n \Delta_i D(0,t_i) S(0,t_i)}
+s_{\text{CDS}}(T) = \frac{(1-R)\int_0^T D(0,u) S(0,u) \lambda_u \, du}{\sum_{i=1}^n \Delta_i D(0,t_i) S(0,t_i)},
 $$
 
-Under the constant-intensity approximation: $s_{\text{CDS}} \approx (1-R)\lambda$.
+with the constant-intensity approximation $s_{\text{CDS}} \approx (1-R)\lambda$.
 
 ### Relationship Between Spreads
 
@@ -56,35 +56,21 @@ Deviations (the CDS-bond basis) reflect funding costs, liquidity, and counterpar
 
 ### Merton Model
 
-Under the Merton model with $V_T / D$ log-normally distributed:
+Recall (see [§ Firm Value Models (Merton)](../structural_credit_risk_models/firm_value_models_merton.md)): the Merton model treats equity as a call option on the firm value $V_T$ with strike equal to the debt face value $D$, with default at maturity when $V_T < D$. Under that framework, the Merton credit spread is
 
 $$
-s_{\text{Merton}}(T) = -\frac{1}{T}\ln\left[N(d_2) + \frac{1}{L}N(-d_1)\right]
+s_{\text{Merton}}(T) = -\frac{1}{T}\ln\left[N(d_2) + \frac{1}{L}N(-d_1)\right], \quad L = De^{-rT}/V_0.
 $$
 
-where $L = De^{-rT}/V_0$ is the present-value leverage ratio.
+**Short-maturity behavior ($T \to 0$, $V_0 > D$):** $s_{\text{Merton}}(T) \to 0$ because the probability that a continuous diffusion drops below $D$ decays as $\exp(-c/T)$.
 
-**Short-maturity behavior ($T \to 0$, $V_0 > D$):**
+**Long-maturity behavior ($T \to \infty$):** $s_{\text{Merton}}(T) \to (1-R)\lambda_\infty$ where $\lambda_\infty$ depends on the drift and volatility.
 
-$$
-s_{\text{Merton}}(T) \to 0
-$$
-
-The spread vanishes because the probability that a continuous diffusion drops below $D$ at a fixed time $T$ decays as $\exp(-c/T)$ for $V_0 > D$.
-
-**Long-maturity behavior ($T \to \infty$):**
-
-$$
-s_{\text{Merton}}(T) \to (1-R)\lambda_\infty
-$$
-
-where $\lambda_\infty$ depends on the drift and volatility parameters.
-
-**Curve shapes:** The Merton model produces only **upward-sloping** spread curves for firms with $V_0 > D$ (investment-grade), which is a significant empirical limitation.
+**Curve shapes:** Only **upward-sloping** spread curves for firms with $V_0 > D$ (investment-grade), which is a significant empirical limitation.
 
 ### Black-Cox (First-Passage) Model
 
-With a default barrier $B < V_0$, the first-passage model generates:
+Recall (see [§ Black-Cox Model](../structural_credit_risk_models/black_cox_model.md) and [§ First-Passage Models](../structural_credit_risk_models/first_passage_models.md)): default is the first passage of $V_t$ through a barrier $B < V_0$. With this barrier, the first-passage model generates:
 
 $$
 s_{\text{BC}}(T) = -\frac{1}{T}\ln\left[\frac{P^d(0,T)}{D \cdot P(0,T)}\right]

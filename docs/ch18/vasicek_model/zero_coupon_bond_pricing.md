@@ -172,27 +172,7 @@ This expectation formula is fundamental in interest rate modeling, providing an 
 
 ## Solution: Closed-Form Bond Price Formula
 
-The PDE:
-
-$$f_t + \frac{1}{2}\sigma^2 f_{rr} + [\alpha(\theta - r_t) - \sigma\lambda_t]f_r - rf = 0$$
-
-with boundary condition $f(T, r_T, T) = 1$ has the solution:
-
-$$P(t,T) = A(t,T)e^{-B(t,T)r_t}$$
-
-where:
-
-$$B(t,T) = \frac{1 - e^{-\alpha(T-t)}}{\alpha}$$
-
-$$A(t,T) = \exp\left[\frac{(B(t,T) - (T-t))(a^2b - \sigma^2/2)}{\alpha^2} - \frac{\sigma^2 B^2(t,T)}{4\alpha}\right]$$
-
-Here $a = \alpha$ and $b = \theta - \lambda_t/\alpha$ (incorporating the market price of risk adjustment).
-
-**Key properties**:
-
-- When rates are low, $B(t,T)$ is large, making the exponential more sensitive to rate changes
-- As $T \to t$, both $B(t,T) \to 0$ and $A(t,T) \to 1$, giving $P(t,t) = 1$ (correctness at maturity)
-- The $A(t,T)$ factor accounts for the convexity and term structure curvature
+Recall (see [§ Named functions A and B](named_functions.md), [§ General affine bond pricing](../../ch15/affine_term_structure/bond_pricing_affine_framework.md), [§ Vasicek-as-affine](../../ch15/examples/vasicek_cir_as_affine.md)) for the full derivation of $A(t,T)$ and $B(t,T)$. The PDE has the exponential-affine solution $P(t,T) = A(t,T)e^{-B(t,T)r_t}$ with $B(t,T) = (1 - e^{-\alpha(T-t)})/\alpha$ and $A$ given in closed form. The boundary $P(T,T) = 1$ follows from $B(0) = 0$, $A(0) = 1$.
 
 ---
 

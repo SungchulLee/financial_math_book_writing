@@ -28,17 +28,13 @@ $$S_n = S_0 + \sum_{i=1}^n \xi_i$$
 
 The scaling limit gives **arithmetic Brownian motion** $S(t) = S_0 + \sigma W_t$, which can become negative — a defect for prices.
 
-**Geometric Brownian motion.** The modern remedy (Samuelson, 1965) models log-returns:
+**Geometric Brownian motion.** The modern remedy (Samuelson, 1965) models log-returns, yielding $S(t) = S_0\exp\!\bigl(\mu t + \sigma W_t - \tfrac{1}{2}\sigma^2 t\bigr)$. The Itô correction $-\sigma^2 t/2$ comes from the nonzero quadratic variation — recall (see [§ Quadratic Variation of Brownian Motion](../brownian_motion/quadratic_variation_of_brownian_motion.md)): $[W]_t = t$, the continuous-time limit of $[S]_n = n$.
 
-$$\frac{dS(t)}{S(t)} = \mu\,dt + \sigma\,dW_t \implies S(t) = S_0\exp\!\left(\mu t + \sigma W_t - \tfrac{\sigma^2 t}{2}\right)$$
+**Cox–Ross–Rubinstein model (1979).** Recall (see [§ Risk-Neutral Measure](../../ch01/binomial_model/risk_neutral_measure.md)): the one-period CRR tree uses multiplicative up/down factors $u, d$ and a risk-neutral probability $p^*$ pinned by no-arbitrage. With $u = e^{\sigma/\sqrt{n}}$, $d = e^{-\sigma/\sqrt{n}}$, Donsker's theorem (Thm 1.1.11) applied to the centred log-returns gives
 
-The correction $-\sigma^2 t/2$ is the **Itô correction**, arising from the nonzero quadratic variation $\langle W\rangle_t = t$ established in [Martingale Property](martingale_property.md).
+$$S_n \Rightarrow S(t) = S_0\exp\!\bigl(rt + \sigma W_t - \tfrac{1}{2}\sigma^2 t\bigr)$$
 
-**Cox–Ross–Rubinstein model (1979).** The discrete counterpart uses multiplicative steps:
-
-$$S_n = S_0 \prod_{i=1}^n R_i, \qquad R_i = \begin{cases} u = e^{\sigma/\sqrt{n}} & \text{with prob.\ }p^* \\ d = e^{-\sigma/\sqrt{n}} & \text{with prob.\ }1-p^* \end{cases}$$
-
-where $p^* = (e^{r/\sqrt{n}} - d)/(u - d)$ is the **risk-neutral probability** and $r$ is the risk-free rate. Using $e^x = 1 + x + O(x^2)$: the numerator is $e^{r/\sqrt{n}} - e^{-\sigma/\sqrt{n}} \approx (r+\sigma)/\sqrt{n}$ and the denominator is $e^{\sigma/\sqrt{n}} - e^{-\sigma/\sqrt{n}} \approx 2\sigma/\sqrt{n}$, giving $p^* \approx (r+\sigma)/(2\sigma)$. This is not $1/2$ in general, but the centred log-return $Y_i = \log R_i - \mathbb{E}^*[\log R_i]$ has mean 0 and variance $\sigma^2/n + O(n^{-3/2})$ under $p^*$. Donsker's theorem (Thm 1.1.11) applied to the scaled sum of $Y_i$ gives $\sum_{i=1}^{\lfloor nt \rfloor} Y_i / \sqrt{n} \Rightarrow \sigma W_t$, and hence $S_n \to S(t) = S_0 \exp\!\bigl(r t + \sigma W_t - \tfrac{1}{2}\sigma^2 t\bigr)$ (geometric Brownian motion under the risk-neutral measure $p^*$, with risk-free drift $r$). The no-arbitrage binomial pricing formula converges to the Black–Scholes formula in this limit. We develop this in detail in Chapter 8.
+— geometric Brownian motion under the risk-neutral measure. The discrete no-arbitrage pricing formula then converges to Black–Scholes; full development in Chapter 8.
 
 **Random walk hypothesis (Fama, 1965).** The Efficient Market Hypothesis rests on the assertion that price increments are approximately i.i.d., making asset prices well-modeled by scaled random walks.
 
@@ -52,7 +48,7 @@ The transition density $p(x,t)$ of the particle's position satisfies the **heat 
 
 $$\frac{\partial p}{\partial t} = D\,\frac{\partial^2 p}{\partial x^2}$$
 
-The scaling limit in [Scaling Limit](scaling_limit.md) makes this connection precise: the transition density of Brownian motion $W_t$ is $p(x,t) = (4\pi D t)^{-1/2} e^{-x^2/(4Dt)}$, which is the fundamental solution of the heat equation with diffusion coefficient $D$. (For standard Brownian motion, $D = 1/2$.)
+The scaling limit in [Scaling Limit](scaling_limit.md) makes this precise: the Brownian transition density is the fundamental solution of the heat equation (for standard $W_t$, $D = 1/2$). Recall (see [§ Brownian Motion](../brownian_motion/brownian_motion.md)) for the Gaussian density $W_t \sim \mathcal{N}(0,t)$.
 
 ---
 

@@ -4,6 +4,9 @@ The previous section defined what a stochastic differential equation is and intr
 
 Unlike ODEs, solving an SDE means describing a **random process**, not a single deterministic function. This fundamental distinction — that the solution is itself random — shapes everything that follows: the types of solutions one can seek, the analytical techniques available, and the limits of closed-form solvability.
 
+!!! tip "Toy mechanism: one ODE → one function, one SDE → many paths"
+    Start with $dx/dt = x$, $x_0 = 1$. The "solution" is a single function: $x(t) = e^t$. Now perturb to $dX_t = X_t\,dt + X_t\,dW_t$. The "solution" is no longer a function — it is a *random family* $X_t(\omega) = \exp(\tfrac{1}{2}t + W_t(\omega))$, one trajectory per outcome $\omega$. So "solve" can mean: (i) write the pathwise formula $X_t(\omega) = F(t, W_\cdot(\omega))$ — the strongest answer; (ii) name the distribution $X_t \sim$ log-normal — enough for pricing; (iii) characterise via a PDE on $u(t,x) = \mathbb{E}[\phi(X_T) \mid X_t = x]$ — useful when the law is implicit; (iv) simulate. The four senses of "solve" below are exactly these four answers to the same question.
+
 !!! abstract "Learning Goals"
     After completing this section you should be able to:
 
@@ -13,12 +16,11 @@ Unlike ODEs, solving an SDE means describing a **random process**, not a single 
     - understand why transformations are central to solvability
     - identify when analytical methods are unlikely to succeed
 
-The discussion proceeds in four stages:
+The discussion proceeds in three stages:
 
 1. **What a solution means**
-2. **Structural classification of SDEs**
-3. **Transformation-based thinking**
-4. **Limits of closed-form solvability**
+2. **Transformation-based thinking**
+3. **Limits of closed-form solvability**
 
 ---
 
@@ -40,13 +42,7 @@ There are several distinct senses in which an SDE can be "solved":
 
 **Numerical solvability.** When closed forms are unavailable, the SDE may still be studied effectively through simulation, moment approximations, or PDE solvers.
 
-Formally, a **strong solution** is an adapted, continuous process satisfying the integral equation
-
-$$
-X_t = X_0 + \int_0^t \mu(X_s, s)\,ds + \int_0^t \sigma(X_s, s)\,dW_s
-$$
-
-almost surely for all $t \geq 0$, where the stochastic integral is understood in the Itô sense. The solution may depend on the entire Brownian path up to time $t$, not simply on the current value $W_t$ — for instance, the Ornstein–Uhlenbeck solution involves a stochastic integral over the path.
+Recall (see [§ Strong vs Weak Solutions](../existence_uniqueness/strong_vs_weak.md)): a strong solution is an adapted continuous process satisfying the integral equation a.s., where the stochastic term is an Itô integral. Solutions may depend on the entire Brownian path up to time $t$ — e.g., the OU solution involves a stochastic integral over the path.
 
 Analytical solutions allow us to compute distributions, derive moments, analyze long-term behavior, and benchmark numerical algorithms.
 
@@ -58,28 +54,7 @@ Analytical solutions allow us to compute distributions, derive moments, analyze 
 
 ## 2. Types of SDE Structures
 
-Different analytical techniques apply depending on the structure of the equation. Recognizing the structure is the **most important step in solving an SDE**.
-
-```mermaid
-flowchart TD
-
-A["General SDE<br>dX = μ(X,t) dt + σ(X,t) dW"]
-
-A --> B[Additive noise]
-A --> C[Multiplicative noise]
-A --> D[Linear SDE]
-A --> E[State-dependent diffusion]
-
-B --> B1[Brownian motion with drift]
-C --> C1[Geometric Brownian Motion]
-D --> D1[Vasicek / OU]
-E --> E1[CIR Process]
-
-B1 --> M1[Direct integration]
-C1 --> M2[Itô transformation]
-D1 --> M3[Integrating factor]
-E1 --> M4[Lamperti transform]
-```
+Recall (see [§ Stochastic Differential Equations § Structure Classification](sde.md#3-sde-structure-classification)): additive noise, multiplicative noise, linear/mean-reverting drift, and state-dependent diffusion are the four canonical structures. Recognizing the structure is the most important step in solving an SDE.
 
 ---
 
@@ -107,36 +82,17 @@ Although the details differ from model to model, the strategy is the same: ident
 
 ## 4. Diffusion Model Cheat Sheet
 
+The four-structure classification of [§ SDE Structure Classification](sde.md#3-sde-structure-classification) extends to two further families used in finance:
+
 | Model | SDE | Key Property | Typical Use |
 |---|---|---|---|
-| **Brownian Motion** | $dB_t = dW_t$ | pure randomness | building block |
-| **BM with Drift** | $dX_t = \mu\,dt + \sigma\,dW_t$ | additive noise | physical diffusion |
-| **GBM** | $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ | log-normal | stock prices |
-| **Vasicek / OU** | $dr_t = a(\theta - r_t)\,dt + \sigma\,dW_t$ | Gaussian, mean-reverting | interest rates |
-| **CIR** | $dr_t = a(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$ | non-negative | short-rate models |
+| **CIR** | $dr_t = a(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$ | non-negative, state-dependent diffusion | short-rate models |
 | **Heston** | $dv_t = \kappa(\bar{v} - v_t)\,dt + \xi\sqrt{v_t}\,dW_t$ | stochastic volatility | option pricing |
 
 !!! note "Heston Notation"
     The Heston variance SDE uses the conventional parameters $\kappa$ (mean-reversion speed), $\bar{v}$ (long-run variance), and $\xi$ (vol of vol) to distinguish it from the CIR/Vasicek notation $a$, $\theta$, $\sigma$ used elsewhere in this chapter.
 
-### Key Structural Differences
-
-| Structure                 | Example Model              | Key Feature                         |
-| ------------------------- | -------------------------- | ----------------------------------- |
-| **Additive noise**        | Brownian motion with drift | volatility independent of state     |
-| **Multiplicative noise**  | GBM                        | volatility proportional to state    |
-| **Mean reversion**        | Vasicek                    | process pulled toward long-run mean |
-| **Square-root diffusion** | CIR                        | helps enforce non-negativity        |
-| **Stochastic volatility** | Heston                     | volatility itself follows an SDE    |
-
-### Quick Method Reference
-
-| Model                      | Main Technique                              |
-| -------------------------- | ------------------------------------------- |
-| Brownian motion with drift | direct integration                          |
-| GBM                        | Itô transformation (log)                    |
-| Vasicek / OU               | integrating factor                          |
-| CIR                        | Lamperti transform; Bessel-type connection  |
+For the canonical BM-with-drift, GBM, and Vasicek/OU formulas and methods, see [§ Canonical Examples](sde.md#2-canonical-examples) and [§ Techniques for Solving SDEs](solving_sde.md).
 
 ---
 
@@ -150,19 +106,7 @@ If one can identify a function $g(X_t,t)$ such that $M_t = g(X_t,t)$ is a martin
 
 ### Feynman–Kac Formula
 
-For an SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, quantities of the form
-
-$$
-u(t, x) = \mathbb{E}[\phi(X_T) \mid X_t = x]
-$$
-
-satisfy a backward PDE
-
-$$
-u_t + b(x)\,u_x + \frac{1}{2}\sigma^2(x)\,u_{xx} = 0
-$$
-
-This creates a deep connection between **SDEs and PDEs**, and is the foundation of the Black–Scholes equation in mathematical finance.
+Recall (see [§ Kolmogorov Backward Equation](../../ch05/kolmogorov_equations/kolmogorov_backward.md)): conditional expectations $u(t,x) = \mathbb{E}[\phi(X_T) \mid X_t = x]$ satisfy the backward PDE $u_t + b\,u_x + \tfrac{1}{2}\sigma^2 u_{xx} = 0$ — the foundation of the Black–Scholes equation.
 
 ### Girsanov's Theorem
 
@@ -178,40 +122,7 @@ Even when a simple explicit pathwise formula is unavailable, one may still have 
 
 ---
 
-## 7. Decision Framework
-
-A practical workflow when encountering a new SDE:
-
-```mermaid
-flowchart TD
-
-A[Identify SDE structure]
-
-A --> B{Additive noise?}
-B -->|Yes| C[Direct integration]
-
-B -->|No| D{Multiplicative noise?}
-D -->|Yes| E[Log / Itô transform]
-
-D -->|No| F{Linear equation?}
-F -->|Yes| G[Integrating factor]
-
-F -->|No| H{State-dependent diffusion?}
-H -->|Yes| I[Lamperti transform]
-
-H -->|No| J[Use analytical approximations or numerical methods]
-```
-
-!!! abstract "Key Takeaways"
-
-    - Only a small class of SDEs admit elementary closed-form pathwise solutions
-    - Many solvable models rely on **transformations**
-    - Structural recognition is the first and most important step
-    - When common transformations fail, one usually turns to PDE methods, transform methods, or numerical simulation
-
----
-
-## 8. Bridge to Solution Techniques
+## 7. Bridge to Solution Techniques
 
 This page focused on **conceptual foundations**: what it means to solve an SDE, the four senses of solvability, and the structural patterns that determine which techniques apply.
 

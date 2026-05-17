@@ -77,13 +77,13 @@ $$
     $\mathbb{E}\left[\int_{t_0}^{t_0+h} |f'(X_s)|^2 \sigma^2(X_s, s) \, ds\right] < \infty$
     so the Itô integral is a martingale.
 
-Apply Itô's lemma to $f(X_t)$:
+Apply Itô's lemma to $f(X_t)$ (see [§ Itô's Lemma](../ito_lemma/ito_lemma.md)):
 
 $$
 df(X_t) = \underbrace{\left[\mu f'(X_t) + \frac{1}{2}\sigma^2 f''(X_t)\right]}_{(\mathcal{L}_t f)(X_t)}dt + f'(X_t)\sigma(X_t, t)\,dW_t
 $$
 
-Taking expectations (the Itô integral has zero mean):
+Taking expectations and dividing by $h$ (the stochastic integral's contribution averages to zero — see [§ The Dynkin Martingale](generator_and_martingales.md#the-dynkin-martingale)):
 
 $$
 \frac{d}{dh}\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0]\Big|_{h=0} = (\mathcal{L}_{t_0} f)(x_0)
@@ -293,17 +293,13 @@ stochastic analysis to deterministic structure.
 
 ## Connection to PDEs
 
+The generator is the link between SDEs and PDEs. The detailed equations are developed in chapter 5:
+
 | PDE | Formula | Probabilistic meaning |
 |-----|---------|----------------------|
-| Kolmogorov backward | $\partial_{t_0} u + \mathcal{L}_{t_0} u = 0$, $u(x_0,T) = g(x_0)$ | $u(x_0,t_0) = \mathbb{E}[g(X_T) \mid X_{t_0}=x_0]$ |
-| Fokker–Planck | $\partial_t p = \mathcal{L}^*_t p$ | Density evolution |
-| Feynman–Kac | $\tilde{\mathcal{L}} u - r u = 0$ | Discounted expectation |
-
-The **adjoint generator** $\mathcal{L}^*_t$ governs density evolution:
-
-$$\mathcal{L}^*_t f = -\frac{\partial}{\partial x}[\mu(x, t) f] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x, t) f]$$
-
-See [Fokker–Planck Equation](../../ch05/kolmogorov_equations/kolmogorov_forward.md) for the full derivation.
+| Kolmogorov backward | $\partial_{t_0} u + \mathcal{L}_{t_0} u = 0$ | Recall (see [§ Kolmogorov Backward](../../ch05/kolmogorov_equations/kolmogorov_backward.md)): $u(x_0,t_0) = \mathbb{E}[g(X_T) \mid X_{t_0}=x_0]$. |
+| Fokker–Planck | $\partial_t p = \mathcal{L}^*_t p$ | Recall (see [§ Fokker–Planck](../../ch05/kolmogorov_equations/kolmogorov_forward.md)): density evolution via the adjoint $\mathcal{L}^*$. |
+| Feynman–Kac | $\tilde{\mathcal{L}} u - r u = 0$ | Recall (see [§ Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md)): discounted expectation. |
 
 ---
 
@@ -314,7 +310,7 @@ See [Fokker–Planck Equation](../../ch05/kolmogorov_equations/kolmogorov_forwar
 | Generator $\mathcal{L}_t$ | $\lim_{h \downarrow 0} \frac{(P_{t_0,t_0+h}f)(x_0) - f(x_0)}{h}$ | Local (infinitesimal) dynamics |
 | Extended generator $\tilde{\mathcal{L}}$ | $\partial_t + \mathcal{L}_t$ | Time-dependent functions |
 | Transition operator $P_{t_0, t}$ | $\mathbb{E}[f(X_t) \mid X_{t_0} = x_0]$ | Global (finite-time) evolution |
-| Adjoint $\mathcal{L}^*_t$ | Defined by duality | Density evolution (Fokker–Planck) |
+| Adjoint $\mathcal{L}^*_t$ | Recall (see [§ Fokker–Planck](../../ch05/kolmogorov_equations/kolmogorov_forward.md)) | Density evolution |
 
 $$
 \boxed{
@@ -332,11 +328,9 @@ $$
 
     **Multi-D Generator**: $\mathcal{L}_t f = \sum_i \mu^i \partial_i f + \frac{1}{2}\sum_{i,j} a^{ij} \partial_i \partial_j f$
 
-    **Adjoint**: $\mathcal{L}^*_t f = -\partial_x[\mu f] + \frac{1}{2}\partial_x^2[\sigma^2 f]$
+    **Kolmogorov Backward** (recall see [§ Kolmogorov Backward](../../ch05/kolmogorov_equations/kolmogorov_backward.md)): $\partial_{t_0} u + \mathcal{L}_{t_0} u = 0$
 
-    **Kolmogorov Backward**: $\partial_{t_0} u + \mathcal{L}_{t_0} u = 0$
-
-    **Fokker–Planck**: $\partial_t p = \mathcal{L}^*_t p$
+    **Fokker–Planck** (recall see [§ Fokker–Planck](../../ch05/kolmogorov_equations/kolmogorov_forward.md)): $\partial_t p = \mathcal{L}^*_t p$
 
 ---
 

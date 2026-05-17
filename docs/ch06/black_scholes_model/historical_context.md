@@ -3,7 +3,7 @@
 
 The Black-Scholes model did not emerge in a vacuum. Its development in 1973 was the culmination of over seven decades of intellectual effort, beginning with Louis Bachelier's pioneering work in 1900 and refined through contributions by Paul Samuelson, James Boness, and others. Understanding this historical trajectory illuminates *why* the model takes the form it does and reveals the mathematical problems each generation sought to solve.
 
-This section traces the evolution from Bachelier's arithmetic Brownian motion to the Black-Scholes-Merton framework, emphasizing the mathematical innovations at each stage.
+Read this section as the toy-first trajectory of the entire chapter played out historically: Bachelier's arithmetic model is the toy that exposes the *mechanism* (price = expected payoff under some measure); Samuelson's GBM is the refinement that fixes the toy's defects; Black, Scholes, and Merton supply the *replication* argument that closes the remaining preference-dependence; post-1987 models are the extensions. Each step removes a specific defect of the previous one — that is what the chronology is really tracking.
 
 !!! abstract "Learning Objectives"
     After completing this section, you should understand:
@@ -150,31 +150,7 @@ The fundamental innovation of Fischer Black, Myron Scholes, and Robert Merton wa
 1. The option price equals the cost of the replicating portfolio (by no-arbitrage)
 2. The expected return $\mu$ of the stock **cancels out** of the pricing formula
 
-The mathematical argument proceeds as follows. Consider a portfolio $\Pi$ consisting of one option $V(S_t, t)$ and $-\Delta$ shares of the stock:
-
-$$
-\Pi_t = V(S_t, t) - \Delta \, S_t
-$$
-
-Applying Ito's lemma to $V(S_t, t)$ and choosing
-
-$$
-\Delta = \frac{\partial V}{\partial S}
-$$
-
-the stochastic ($dW_t$) terms cancel, leaving a **deterministic** change in portfolio value:
-
-$$
-d\Pi_t = \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right) dt
-$$
-
-Since the portfolio is risk-free over the infinitesimal interval $dt$, no-arbitrage requires it to earn the risk-free rate:
-
-$$
-d\Pi_t = r\,\Pi_t \, dt
-$$
-
-Combining these two equations yields the **Black-Scholes partial differential equation**:
+Recall (see [§ Delta Hedging](../bs_pde_derivation/delta_hedging.md)): forming the hedged portfolio $\Pi_t = V(S_t, t) - \Delta S_t$ with $\Delta = \partial V/\partial S$ cancels the $dW_t$ exposure (so the $\mu$-term drops out), and no-arbitrage forces the deterministic residual to earn $r$, yielding the **Black-Scholes PDE**:
 
 $$
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
@@ -190,19 +166,7 @@ $$
 
 ### 3. The Black-Scholes Formula
 
-Solving the PDE with the terminal condition $V(S,T) = (S - K)^+$ for a European call yields the celebrated **Black-Scholes formula**:
-
-$$
-C(S_0, T) = S_0\,\mathcal{N}(d_1) - Ke^{-rT}\,\mathcal{N}(d_2)
-$$
-
-where
-
-$$
-d_1 = \frac{\ln(S_0/K) + (r + \tfrac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \qquad d_2 = d_1 - \sigma\sqrt{T}
-$$
-
-Compared to the earlier formulas of Sprenkle and Boness, the Black-Scholes formula replaces all subjective parameters ($\mu$, $\alpha$, $Z$) with the single observable quantity $r$. This is the mathematical expression of the no-arbitrage principle applied to continuous-time hedging.
+Recall (see [§ Black-Scholes Formula](../black_scholes_formula/bs_formula_statement.md)): solving the PDE with $V(S,T)=(S-K)^+$ yields $C = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$. Compared to Sprenkle and Boness, all subjective parameters ($\mu, \alpha, Z$) are replaced by the single observable $r$ — the no-arbitrage principle applied to continuous-time hedging.
 
 !!! tip "Comparing Historical Formulas"
     The structural similarity between Boness's formula and the Black-Scholes formula is instructive. Replace $\mu$ with $r$ in Boness's expression to recover Black-Scholes. The economic justification for this replacement---that dynamic hedging eliminates risk, so the relevant discount rate is $r$---was the conceptual breakthrough that earned the Nobel Prize.

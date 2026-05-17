@@ -7,41 +7,19 @@ Local volatility models provide an *exact* fit (in principle) to a continuum of 
 
 ## The local volatility model
 
-
-In the (risk-neutral) local volatility model, the underlying $S_t$ follows
-
-$$
-dS_t = (r-q)S_t\,dt + \sigma_{\text{loc}}(t,S_t)\,S_t\,dW_t
-$$
-
-
-where $r$ is the risk-free rate, $q$ is the dividend yield (or convenience yield), and
-$\sigma_{\text{loc}}(t,S)$ is the **local volatility** function to be calibrated.
-
-Given $\sigma_{\text{loc}}$, the model implies a unique surface of European option prices $C(K,T)$.
+Recall (see [§ Local volatility model](../../ch13/local_volatility_framework/local_volatility_model.md)): under $\mathbb{Q}$, $dS_t = (r-q)S_t\,dt + \sigma_{\text{loc}}(t,S_t)\,S_t\,dW_t$, and $\sigma_{\text{loc}}(t,S)$ is the function to be calibrated. Given $\sigma_{\text{loc}}$, the model implies a unique surface of European option prices $C(K,T)$.
 
 ---
 
 ## Dupire’s forward equation
 
-
-Let $C(K,T)$ denote the time-0 price of a European call with strike $K$ and maturity $T$.
-Under standard smoothness assumptions, Dupire derived a forward PDE relating $C$ and $\sigma_{\text{loc}}$.
-
-A common (simplified) form is:
+Recall (see [§ Dupire formula derivation](../../ch13/local_volatility_framework/dupire_formula_derivation.md)): Dupire's forward PDE for $C(K,T)$ has the form
 
 $$
-\partial_T C(K,T)
-= \frac12\,\sigma_{\text{loc}}^2(T,K)\,K^2\,\partial_{KK} C(K,T)
-
-- (r-q)K\,\partial_K C(K,T)
-+ q\,C(K,T)
+\partial_T C = \tfrac12\,\sigma_{\text{loc}}^2(T,K)\,K^2\,\partial_{KK} C - (r-q)K\,\partial_K C + q\,C
 $$
 
-
-where derivatives are with respect to strike.
-
-Solving this equation *forward* is the pricing problem.
+(derivatives with respect to strike). Solving this *forward* is the pricing problem.
 
 ---
 
@@ -58,10 +36,12 @@ $$
 
 
 
-This reveals why calibration is an inverse problem:
+This reveals why calibration is an inverse problem (Recall (see [§ Calibration as inverse problem](../calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md))):
 
 - it requires $\partial_T C$ and $\partial_{KK} C$,
 - these are *derivatives* of market prices, which are observed only at discrete points and contaminated by noise.
+
+Also, $\partial_{KK}C$ is (up to discounting) the risk-neutral density (Recall (see [§ Breeden–Litzenberger](../../ch12/model_free_results/breeden_litzenberger_formula.md))), which can be small in the wings.
 
 Thus, the mapping
 
@@ -77,7 +57,7 @@ is an unstable inversion involving differentiation and division by curvature.
 ## Relationship to implied volatility
 
 
-Market data are often given as implied vol $\sigma_{\text{impl}}(K,T)$, not prices.
+Market data are often given as implied vol $\sigma_{\text{impl}}(K,T)$ (Recall (see [§ Implied volatility surface](../../ch12/implied_volatility_surface/empirical_smile_spx.md))), not prices.
 One may:
 
 1. convert implied vol to prices via Black–Scholes,

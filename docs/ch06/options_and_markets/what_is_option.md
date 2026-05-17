@@ -1,6 +1,8 @@
 # What is an Option?
 
-An option is a financial derivative giving the holder the **right, but not the obligation**, to buy or sell an underlying asset at a predetermined price. In everyday terms, an option is insurance with a price: the buyer pays a premium today for protection (or opportunity) tomorrow. This asymmetry — the holder chooses, the writer must comply — is the defining feature of options and the source of their mathematical richness.
+Return to Thales for a moment. He paid a small deposit in winter for the right to use the olive presses after the harvest, *but only if he wished*. When the harvest was abundant, he exercised and profited. Had it failed, he would simply have walked away — losing the deposit and nothing more. Two features make this arrangement an option: the holder *chooses* whether to act, and the writer *must comply* once chosen against. Strip away the olives and the centuries, and the same contract is traded electronically today on every major exchange.
+
+Formally, an option is a financial derivative giving the holder the **right, but not the obligation**, to buy or sell an underlying asset at a predetermined price. In everyday terms, an option is insurance with a price: the buyer pays a premium today for protection (or opportunity) tomorrow. This asymmetry — the holder chooses, the writer must comply — is the defining feature of options and the source of their mathematical richness.
 
 ---
 
@@ -17,6 +19,8 @@ There are two fundamental types:
 | Holder's right | Buy at $K$ | Sell at $K$ |
 | Holder benefits when | $S_T > K$ | $S_T < K$ |
 | Maximum loss (holder) | Premium paid | Premium paid |
+
+The exact payoff formulas $(S_T - K)^+$ and $(K - S_T)^+$ are developed in [§ Option Payoffs](option_payoffs.md).
 
 ---
 
@@ -41,7 +45,7 @@ Every option trade has two sides:
 
 **Writer (seller)**: Receives the premium. Is obligated to fulfill the contract if the holder exercises. Faces potentially unlimited loss (for a naked call writer).
 
-This asymmetry explains why writers must post **margin** — a deposit guaranteeing their ability to meet the obligation. The buyer's loss is bounded; the writer's is not.
+This asymmetry explains why writers must post **margin** — a deposit guaranteeing their ability to meet the obligation. The detailed risk profile and collateral mechanics are developed in [§ Margin and Short Positions](margin.md).
 
 ---
 

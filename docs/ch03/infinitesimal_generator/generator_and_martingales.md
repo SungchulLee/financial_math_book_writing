@@ -31,27 +31,17 @@ $$
 
 ## Why It's a Martingale
 
-From the [Itô expansion](infinitesimal_generator.md#generator-of-a-diffusion-process)
-of $f(X_t)$, rearranging gives:
-
-$$M_t = \int_0^t f'(X_s)\sigma(X_s)\,dW_s$$
-
-This is an Itô integral, hence a (local) martingale. $\square$
-
-!!! info "Interpretation"
-
-    $$f(X_t) = \underbrace{f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds}_{\text{predictable drift}} + \underbrace{M_t}_{\text{martingale}}$$
-
-    - **Drift**: systematic, predictable change (captured by $\mathcal{L}$)
-    - **Martingale**: unpredictable fluctuations (zero-mean increments)
-
-The Dynkin martingale **is** the Itô integral — the noise that remains after subtracting the systematic drift.
+This follows directly from the Itô computation already done when deriving the generator (see [§ Generator of a Diffusion Process](infinitesimal_generator.md#generator-of-a-diffusion-process)): subtracting the drift term from $df(X_t)$ leaves exactly the stochastic-integral remainder
 
 $$
 \boxed{
 M_t = \int_0^t f'(X_s)\sigma(X_s)\,dW_s
 }
 $$
+
+an Itô integral, hence a (local) martingale. $\square$
+
+**The Dynkin martingale is the Itô integral** — the unpredictable, zero-mean fluctuations that remain once the drift captured by $\mathcal{L}$ is removed from the master decomposition.
 
 ---
 
@@ -207,16 +197,7 @@ When $\mu = \sigma^2/2$, the nontrivial exponent degenerates to zero and only co
 
 ## Connection to Martingale Problem
 
-The Stroock–Varadhan **martingale problem** uses this characterization as its foundation:
-
-!!! abstract "Martingale Problem (Stroock–Varadhan)"
-    A probability measure $\mathbb{P}$ on path space **solves the martingale problem** for $\mathcal{L}$ if:
-
-    $$M_t^f := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds$$
-
-    is a $\mathbb{P}$-martingale for all $f \in C_c^\infty$.
-
-This gives a probabilistic characterization of diffusions without requiring pathwise SDE solutions. See [Stroock–Varadhan Martingale Problem](../diffusion_process/martingale_problem_stroock_varadhan.md) for the full development, including uniqueness theory and applications to degenerate diffusions.
+Recall (see [§ Stroock–Varadhan Martingale Problem](../diffusion_process/martingale_problem_stroock_varadhan.md)): a measure $\mathbb{P}$ on path space solves the martingale problem for $\mathcal{L}$ if $M_t^f$ above is a $\mathbb{P}$-martingale for all $f \in C_c^\infty$ — turning this page's characterization into a definition of the diffusion.
 
 ---
 

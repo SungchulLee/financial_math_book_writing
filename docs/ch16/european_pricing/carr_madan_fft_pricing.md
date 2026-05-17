@@ -2,6 +2,8 @@
 
 The Carr-Madan method enables fast computation of European option prices by recovering the probability density from the characteristic function using Fast Fourier Transform (FFT). This is particularly powerful for models like Heston where the characteristic function is known in closed form.
 
+Recall (see [§ Carr-Madan FFT](../../ch09/alternative_fourier/carr_madan_fft.md)): the general construction -- damping factor $\alpha$, FFT grid relation $\Delta_u\,\Delta_x = 2\pi/N$, and the discrete trapezoidal/Simpson approximation -- is model-agnostic. This section specializes those steps to the Heston characteristic function.
+
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
 
@@ -11,62 +13,11 @@ The Carr-Madan method enables fast computation of European option prices by reco
 
 ---
 
-## Density Recovery from Characteristic Function
+## Density Recovery and FFT Setup
 
-The relationship between the probability density $f(x)$ and the characteristic function $\varphi(u) = \mathbb{E}[e^{iuX}]$ is given by the Fourier inversion formula:
+Recall (see [§ Carr-Madan FFT](../../ch09/alternative_fourier/carr_madan_fft.md)): density recovery $f(x) = \frac{1}{\pi}\operatorname{Re}\int_0^\infty e^{-iux}\varphi(u)\,du$, the FFT grid constraint $\Delta_u\,\Delta_x = 2\pi/N$, trapezoidal discretization with boundary correction, and the phase-shift trick $\phi(u_n) = e^{-ix_{\min}u_n}\varphi(u_n)$ reducing the sum to a length-$N$ FFT in $O(N\log N)$ time -- all model-agnostic.
 
-$$
-f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-iux}\varphi(u) du
-$$
-
-For real-valued $x$, using symmetry properties:
-
-$$
-f(x) = \frac{1}{\pi} \mathbb{Re}\left(\int_0^{\infty} e^{-iux}\varphi(u) du\right)
-$$
-
----
-
-## FFT Implementation
-
-To apply FFT efficiently, discretize the integration domain. Let:
-
-- $u_n = \Delta_u \cdot n$ for $n = 0, 1, \ldots, N-1$ (frequency grid)
-- $x_k = x_{\min} + \Delta_x \cdot k$ for $k = 0, 1, \ldots, N-1$ (space grid)
-
-The crucial relationship linking grid sizes is:
-
-$$
-\Delta_u \cdot \Delta_x = \frac{2\pi}{N}
-$$
-
-This ensures the discrete transform is consistent with FFT requirements (usually $N = 2^m$).
-
-### Trapezoidal Rule with Boundary Correction
-
-Approximate the integral using trapezoidal rule:
-
-$$
-f(x_k) \approx \frac{\Delta_u}{\pi} \mathbb{Re}\left(\sum_{n=0}^{N-1} e^{-iu_n x_k}\varphi(u_n) - \frac{1}{2}(\text{first} + \text{last})\right)
-$$
-
-The boundary correction terms account for the approximation of the infinite integral by $[0, u_{\max}]$.
-
-### FFT Transformation
-
-Factor out the phase shift:
-
-$$
-\phi(u_n) := e^{-ix_{\min}u_n}\varphi(u_n)
-$$
-
-Then:
-
-$$
-f(x_k) \approx \frac{\Delta_u}{\pi} \mathbb{Re}\left(\sum_{n=0}^{N-1} e^{-i\frac{2\pi}{N}nk} \phi(u_n) - \frac{1}{2}(\text{boundary})\right)
-$$
-
-The exponential sum is precisely an FFT (inverse Fourier transform), which can be computed in $O(N \log N)$ time.
+For Heston, plug in $\varphi(u)$ from the canonical Riccati CF (see [§ Heston CF](../heston_cf/heston_sde_and_affine_recap.md)) at the frequency nodes $u_n = n\Delta_u$.
 
 ---
 

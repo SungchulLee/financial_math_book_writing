@@ -29,36 +29,9 @@ Knowing $\mathcal{A}$ is equivalent to knowing the semigroup (under mild conditi
 
 ## The General Infinitesimal Generator
 
-### Diffusion Case
-
-For a $d$-dimensional diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ with drift $\mu : \mathbb{R}^d \to \mathbb{R}^d$ and diffusion matrix $a(x) = \sigma(x)\sigma(x)^\top$, the generator acts on twice continuously differentiable functions $f \in C^2(\mathbb{R}^d)$ as
-
-$$
-\mathcal{A}f(x) = \sum_{i=1}^d \mu_i(x)\,\frac{\partial f}{\partial x_i}(x) + \frac{1}{2}\sum_{i,j=1}^d a_{ij}(x)\,\frac{\partial^2 f}{\partial x_i \partial x_j}(x)
-$$
-
-In compact notation:
-
-$$
-\mathcal{A}f(x) = \mu(x)^\top \nabla f(x) + \frac{1}{2}\operatorname{tr}\!\bigl[a(x)\,\nabla^2 f(x)\bigr]
-$$
-
-### Jump-Diffusion Case
-
-When the process also has jumps with compensator $m(x, dz)$ (the Levy-type jump measure that may depend on the state), the generator gains an integral term:
-
-!!! info "Definition: Generator of a Jump-Diffusion"
-    The infinitesimal generator of a jump-diffusion is
-
-    $$
-    \mathcal{A}f(x) = \mu(x)^\top \nabla f(x) + \frac{1}{2}\operatorname{tr}\!\bigl[a(x)\,\nabla^2 f(x)\bigr] + \int_{\mathbb{R}^d \setminus \{0\}} \!\bigl[f(x+z) - f(x) - z^\top \nabla f(x)\,\mathbf{1}_{\{|z| \leq 1\}}\bigr]\,m(x, dz)
-    $$
-
-    The three terms represent:
-
-    - **Drift**: the deterministic component of the infinitesimal evolution
-    - **Diffusion**: the second-order contribution from the continuous martingale part
-    - **Jumps**: the contribution from discontinuous movements, with the truncation function $\mathbf{1}_{\{|z| \leq 1\}}$ ensuring integrability
+Recall (see [§ general generator + Dynkin](../../ch03/infinitesimal_generator/infinitesimal_generator.md)) the form
+$\mathcal{A}f(x) = \mu(x)^\top \nabla f(x) + \tfrac{1}{2}\operatorname{tr}[a(x)\nabla^2 f(x)] + \int [f(x+z) - f(x) - h(z)^\top \nabla f(x)]\,m(x,dz)$
+with truncation $h(z) = z\mathbf{1}_{\{|z|\leq 1\}}$.
 
 ---
 
@@ -66,25 +39,8 @@ When the process also has jumps with compensator $m(x, dz)$ (the Levy-type jump 
 
 ### Affine Coefficients
 
-For an affine process on the state space $D = \mathbb{R}_+^m \times \mathbb{R}^{d-m}$, the generator coefficients are affine functions of the state:
-
-$$
-\mu(x) = b_0 + B x
-$$
-
-$$
-a(x) = a_0 + \sum_{i=1}^d \alpha_i\,x^{(i)}
-$$
-
-$$
-m(x, dz) = m_0(dz) + \sum_{i=1}^d x^{(i)}\,m_i(dz)
-$$
-
-where:
-
-- $b_0 \in \mathbb{R}^d$ and $B \in \mathbb{R}^{d \times d}$ define the affine drift
-- $a_0 \in \mathbb{R}^{d \times d}$ (symmetric, positive semi-definite) and $\alpha_i \in \mathbb{R}^{d \times d}$ (symmetric, positive semi-definite) define the affine diffusion
-- $m_0(dz)$ and $m_i(dz)$ are Levy measures on $\mathbb{R}^d \setminus \{0\}$ defining the affine jump structure
+Recall (see [§ affine definition](../definition_and_setup/state_space_and_regularity.md)) that for an affine process on $D = \mathbb{R}_+^m \times \mathbb{R}^{d-m}$,
+$\mu(x) = b_0 + Bx$, $a(x) = a_0 + \sum_i \alpha_i x^{(i)}$, and $m(x,dz) = m_0(dz) + \sum_i x^{(i)} m_i(dz)$.
 
 !!! info "Theorem: Generator of an Affine Process"
     The infinitesimal generator of an affine process takes the form
@@ -152,19 +108,7 @@ Collecting terms independent of $x$ into $F(u)$ and terms proportional to $x^{(i
 
 ### Connection to the Riccati System
 
-The functions $F$ and $R$ are precisely the right-hand sides of the Riccati ODEs for the characteristic function. If $\phi(\tau, u)$ and $\psi(\tau, u)$ satisfy
-
-$$
-\frac{d\psi}{d\tau} = R(\psi), \qquad \frac{d\phi}{d\tau} = F(\psi)
-$$
-
-with $\psi(0, u) = u$ and $\phi(0, u) = 0$, then
-
-$$
-\mathbb{E}\!\left[e^{u^\top X_T} \mid X_t = x\right] = \exp\!\bigl(\phi(\tau, u) + \psi(\tau, u)^\top x\bigr)
-$$
-
-This follows because the process $M_s = \exp(\phi(T-s, u) + \psi(T-s, u)^\top X_s)$ is a martingale on $[t, T]$, which requires $\partial_s M_s + \mathcal{A}M_s = 0$ --- and the Riccati system is precisely the condition for this cancellation.
+The functions $F$ and $R$ feed the Riccati system $\psi' = R(\psi)$, $\phi' = F(\psi)$ that produces the characteristic function. Recall (see [§ Riccati ODE system](../characteristic_function/characteristic_function.md)) for the full derivation and well-posedness.
 
 ---
 
@@ -185,69 +129,9 @@ In practice, the exponential functions $e_u(x) = e^{u^\top x}$ do not belong to 
 
 ---
 
-## Example: CIR Process
+## Examples
 
-Consider the one-dimensional CIR process
-
-$$
-dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t
-$$
-
-on $D = \mathbb{R}_+$, with no jumps. The affine coefficients are:
-
-- $b_0 = \kappa\theta$, $B = -\kappa$ (scalar)
-- $a_0 = 0$, $\alpha_1 = \xi^2$
-- $m_0 = m_1 = 0$ (no jumps)
-
-The generator is
-
-$$
-\mathcal{A}f(x) = \kappa(\theta - x)\,f'(x) + \frac{1}{2}\xi^2 x\,f''(x)
-$$
-
-Applying to $e_u(x) = e^{ux}$:
-
-$$
-\mathcal{A}e^{ux} = \left[\kappa\theta\,u + \left(-\kappa u + \frac{1}{2}\xi^2 u^2\right)x\right]e^{ux}
-$$
-
-Reading off:
-
-$$
-F(u) = \kappa\theta\,u, \qquad R(u) = -\kappa u + \frac{1}{2}\xi^2 u^2
-$$
-
-The Riccati equation $\psi' = R(\psi) = -\kappa\psi + \frac{1}{2}\xi^2\psi^2$ is the familiar CIR Riccati equation, whose solution gives the CIR characteristic function and bond price formula.
-
----
-
-## Example: Affine Jump-Diffusion
-
-Consider a one-dimensional affine process with constant-intensity compound Poisson jumps:
-
-$$
-dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t + dJ_t
-$$
-
-where $J_t = \sum_{k=1}^{N_t} Z_k$ is a compound Poisson process with intensity $\lambda$ and jump size distribution $\nu(dz)$. Here the jumps are state-independent, so $m_0(dz) = \lambda\,\nu(dz)$ and $m_1 = 0$.
-
-The generator is
-
-$$
-\mathcal{A}f(x) = \kappa(\theta - x)f'(x) + \frac{1}{2}\sigma^2 f''(x) + \lambda\int_{\mathbb{R} \setminus \{0\}}\bigl[f(x+z) - f(x)\bigr]\,\nu(dz)
-$$
-
-where the truncation function is absorbed since $\int |z|\,\nu(dz) < \infty$ for compound Poisson processes. Applying to $e^{ux}$:
-
-$$
-F(u) = \kappa\theta\,u + \frac{1}{2}\sigma^2 u^2 + \lambda\bigl(\hat{\nu}(u) - 1\bigr)
-$$
-
-$$
-R(u) = -\kappa u
-$$
-
-where $\hat{\nu}(u) = \int e^{uz}\,\nu(dz)$ is the moment generating function of the jump size distribution. The jump contribution $\lambda(\hat{\nu}(u) - 1)$ adds to the $F$ function because the jump intensity is state-independent.
+Recall (see [§ worked examples](../examples/gbm_as_affine.md)) for explicit CIR and affine jump-diffusion generators, including the readout $F(u) = \kappa\theta u$, $R(u) = -\kappa u + \tfrac{1}{2}\xi^2 u^2$ for CIR and the jump contribution $\lambda(\hat{\nu}(u) - 1)$ for compound Poisson jumps.
 
 ---
 

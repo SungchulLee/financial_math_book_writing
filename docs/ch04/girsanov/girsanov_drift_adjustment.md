@@ -1,76 +1,52 @@
 # Drift Adjustment and Financial Meaning
 
+This page isolates the **drift-removal substitution** at the heart of Girsanov's financial application: how the identity $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta\,dt$ propagates through an SDE.
 
-Applying [Girsanov’s theorem](girsanov_theorem.md) to geometric Brownian motion removes risk premia from asset prices, making arbitrage-free pricing possible.
+!!! tip "Toy mechanism: one substitution removes the drift"
+    The financial content of Girsanov is a single substitution. The physical SDE has drift $\mu$; the discounted price has residual drift $\mu - r$. Choose $\theta = (\mu - r)/\sigma$, define $W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t$, and write $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta\,dt$. Substituting this one line into the SDE collapses the drift from $\mu$ to $r$ and leaves $\sigma$ untouched. Everything below is consequence — the full GBM calculation, the zero-coupon bond, the state-dependent kernel — but the mechanism never gets more complicated than this substitution.
 
----
+Recall (see [§ Construction of the Risk-Neutral Measure](../risk_neutral/construction.md)): for GBM $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}$, discounting alone leaves a residual drift $(\mu - r)$ in $\widetilde{S}_t = e^{-rt}S_t$; a measure change is needed to eliminate it.
 
-## Asset Price Dynamics
+Recall (see [§ Market Price of Risk](../risk_neutral/market_price_of_risk.md)): the Girsanov kernel is $\theta = (\mu - r)/\sigma$.
 
-Under the physical measure $\mathbb{P}$, assume the stock price follows geometric Brownian motion:
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
-$$
-
-where $\mu$ is the real-world expected return and $\sigma > 0$ is the volatility.
-
-For derivative pricing we need the **discounted** stock price $\widetilde{S}_t := e^{-rt}S_t$ to be a martingale. By Itô's lemma:
-
-$$
-d\widetilde{S}_t = d(e^{-rt}S_t) = -r e^{-rt}S_t\,dt + e^{-rt}dS_t
-= e^{-rt}S_t\bigl[(\mu - r)\,dt + \sigma\,dW_t^{\mathbb{P}}\bigr]
-$$
-
-The $dt$ coefficient is $(\mu - r)S_te^{-rt}$, which is non-zero whenever $\mu \neq r$. Discounting alone does not eliminate the drift — we need a change of measure to remove it.
+Recall (see [§ Girsanov's Theorem](girsanov_theorem.md#statement-of-girsanovs-theorem)): with $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$, the process $W_t^{\mathbb{Q}} := W_t^{\mathbb{P}} + \theta t$ is a $\mathbb{Q}$-Brownian motion, hence $W_t^{\mathbb{P}} = W_t^{\mathbb{Q}} - \theta t$.
 
 ---
 
-## Market Price of Risk
+## The Drift-Removal Substitution
 
-The Girsanov kernel for GBM is the [market price of risk](../risk_neutral/market_price_of_risk.md) $\theta = (\mu - r)/\sigma$, representing excess return per unit of volatility. To remove the residual drift $(\mu - r)$ from the discounted stock price, we shift the Brownian motion by $\theta$.
-
----
-
-## Measure Change
-
-Using the [exponential martingale](girsanov_theorem.md#the-exponential-martingale) $Z_T$ with kernel $\theta = (\mu - r)/\sigma$, define $\mathbb{Q}$ via $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = Z_T$. By [Girsanov's theorem](girsanov_theorem.md#statement-of-girsanovs-theorem), the shifted process $W_t^{\mathbb{Q}} := W_t^{\mathbb{P}} + \theta t$ is a standard $\mathbb{Q}$-Brownian motion, so $W_t^{\mathbb{P}} = W_t^{\mathbb{Q}} - \theta t$.
-
----
-
-## Risk-Neutral Dynamics
-
-We now substitute $W_t^{\mathbb{P}} = W_t^{\mathbb{Q}} - \theta t$ into the original SDE:
+Substitute $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta\,dt$ into the original SDE:
 
 $$\begin{array}{lll}
-dS_t 
+dS_t
 &=&\displaystyle \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}\\
 &=&\displaystyle \mu S_t\,dt + \sigma S_t\left(dW_t^{\mathbb{Q}} - \theta\,dt\right)\\
-&=&\displaystyle \mu S_t\,dt - \sigma\theta S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}\\
 &=&\displaystyle (\mu - \sigma\theta)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
 \end{array}$$
 
-Substituting $\theta = (\mu - r)/\sigma$, so $\sigma\theta = \mu - r$:
+Since $\sigma\theta = \mu - r$:
 
 $$
 \boxed{dS_t = r S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}}
 $$
 
-The drift has shifted from $\mu$ to $r$. To confirm that $\widetilde{S}_t = e^{-rt}S_t$ is now a $\mathbb{Q}$-martingale, apply Itô's lemma:
+The drift shifts from $\mu$ to $r$; the diffusion coefficient $\sigma$ is unchanged. The discounted price is then driftless:
 
 $$
-d\widetilde{S}_t = e^{-rt}S_t\bigl[(r - r)\,dt + \sigma\,dW_t^{\mathbb{Q}}\bigr] = \sigma\widetilde{S}_t\,dW_t^{\mathbb{Q}}
+d\widetilde{S}_t = \sigma\widetilde{S}_t\,dW_t^{\mathbb{Q}}
 $$
 
-There is no $dt$ term, confirming that $\widetilde{S}_t$ is a $\mathbb{Q}$-local martingale. In the constant-coefficient GBM setting the integrability check is straightforward, so $\widetilde{S}_t$ is a true $\mathbb{Q}$-martingale. For the pricing formula that follows from this martingale property, see [Risk-Neutral Valuation](../risk_neutral/risk_neutral_valuation_principle.md).
+(In constant-coefficient GBM this is a true $\mathbb{Q}$-martingale; see [§ Risk-Neutral Valuation](../risk_neutral/risk_neutral_valuation_principle.md) for the resulting pricing formula.)
 
 ---
 
 ## Interpretation
 
-**Expected returns are redefined to equal the risk-free rate.** Under $\mathbb{Q}$, every asset grows at $r$ — a reweighting of the probability space (see [Intuitive Introduction](girsanov_intuition.md)), not a belief about actual returns. The real-world drift $\mu$ drops out of option prices entirely.
+Recall (see [§ Intuitive Introduction](girsanov_intuition.md)): drift lives in the probability measure, not in the paths.
 
-**Volatility is unchanged** — quadratic variation is a pathwise property (see [Intuitive Introduction](girsanov_intuition.md)).
+**Expected returns are redefined to equal the risk-free rate.** Under $\mathbb{Q}$, every asset grows at $r$ — a reweighting of the probability space, not a belief about actual returns. The real-world drift $\mu$ drops out of option prices entirely.
+
+**Volatility is unchanged** — quadratic variation is a pathwise property.
 
 **Girsanov transforms a model with drift $\mu$ into a pricing model with drift $r$, enabling arbitrage-free valuation.** This drift adjustment converts the no-arbitrage condition (the discounted price is a martingale) into a concrete computational tool.
 
@@ -90,7 +66,7 @@ A stock follows $dS_t = 0.08\,S_t\,dt + 0.30\,S_t\,dW_t^{\mathbb{P}}$ with risk-
     \theta = \frac{\mu - r}{\sigma} = \frac{0.08 - 0.02}{0.30} = \frac{0.06}{0.30} = 0.2
     $$
 
-    **Density process:**
+    **Density process:** Recall (see [§ The Exponential Martingale](girsanov_theorem.md#the-exponential-martingale)) that $Z_t = \exp(-\theta W_t - \tfrac{1}{2}\theta^2 t)$ for constant $\theta$. With $\theta = 0.2$:
 
     $$
     Z_t = \exp\!\left(-0.2\,W_t^{\mathbb{P}} - \frac{1}{2}(0.2)^2 t\right) = \exp\!\left(-0.2\,W_t^{\mathbb{P}} - 0.02\,t\right)
@@ -240,10 +216,10 @@ Suppose $\theta$ is not constant but depends on the current stock price: $\theta
     = \exp\!\left(-\int_0^T \frac{\mu(S_t) - r}{\sigma(S_t)}\,dW_t^{\mathbb{P}} - \frac{1}{2}\int_0^T \left(\frac{\mu(S_t) - r}{\sigma(S_t)}\right)^2 dt\right)
     $$
 
-    The **Novikov condition** requires:
+    Recall (see [§ Setting and Assumptions](girsanov_theorem.md#setting-and-assumptions)): the Novikov condition is $\mathbb{E}^{\mathbb{P}}[\exp(\tfrac{1}{2}\int_0^T \theta_s^2\,ds)] < \infty$. Substituting our state-dependent kernel:
 
     $$
-    \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \theta_t^2\,dt\right)\right] = \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \left(\frac{\mu(S_t) - r}{\sigma(S_t)}\right)^2 dt\right)\right] < \infty
+    \mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \left(\frac{\mu(S_t) - r}{\sigma(S_t)}\right)^2 dt\right)\right] < \infty
     $$
 
     This condition may fail in several scenarios:

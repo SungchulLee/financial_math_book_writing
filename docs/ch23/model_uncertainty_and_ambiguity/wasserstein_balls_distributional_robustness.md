@@ -243,83 +243,19 @@ provided $\varepsilon_n$ is chosen to satisfy the concentration inequality.
 
 ### 1. Distributionally Robust Portfolio Optimization
 
-
-**Setup**: An investor selects portfolio weights $w$ for $d$ assets with return vector $R$.
-
-**Classical Mean-Variance**:
-
-$$
-\max_w \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
-$$
-
-**DRO Portfolio Problem**: Using a Wasserstein ball around the empirical distribution of returns:
-
-$$
-\max_w \inf_{Q: W_p(Q, \hat{P}_n) \leq \varepsilon} \left\{ \mathbb{E}_Q[w^\top R] - \frac{\lambda}{2} \text{Var}_Q(w^\top R) \right\}
-$$
-
-**Tractable Reformulation** (1-Wasserstein, mean only): When the ambiguity affects only the mean:
-
-$$
-\max_w \left\{ w^\top \hat{\mu} - \varepsilon \|w\| - \frac{\lambda}{2} w^\top \hat{\Sigma} w \right\}
-$$
-
-**Effect**: The penalty $\varepsilon\|w\|$ shrinks portfolio weights toward zero, preventing extreme positions that arise from estimation error. This provides a geometric interpretation of shrinkage in portfolio theory.
+**Recall** (see [§ Robust Portfolio Selection](../ambiguity_averse_preferences/entropy_penalization.md)): the 1-Wasserstein DRO portfolio problem with mean ambiguity reduces to $\max_w \{w^\top \hat\mu - \varepsilon \|w\| - (\lambda/2) w^\top \hat\Sigma w\}$, where the penalty $\varepsilon \|w\|$ shrinks weights toward zero — a geometric justification for norm-regularized shrinkage.
 
 ### 2. Distributionally Robust Risk Measurement
 
-
-**Worst-Case CVaR**: Consider the Conditional Value-at-Risk under distributional uncertainty:
-
-$$
-\sup_{Q: W_1(Q, \hat{P}_n) \leq \varepsilon} \text{CVaR}_\alpha^Q(L)
-$$
-
-where $L$ is a loss random variable.
-
-**Theorem**: For 1-Wasserstein ambiguity with Lipschitz loss:
-
-$$
-\sup_{Q: W_1(Q, \hat{P}_n) \leq \varepsilon} \text{CVaR}_\alpha^Q(L) = \text{CVaR}_\alpha^{\hat{P}_n}(L) + \frac{\varepsilon}{\alpha}
-$$
-
-**Interpretation**: Worst-case CVaR adds a buffer proportional to the Wasserstein radius and inversely proportional to the confidence level $\alpha$. More extreme risk measures (smaller $\alpha$) are more sensitive to distributional uncertainty.
+**Recall** (see [§ Coherent Risk Measures](../../ch22/market_risk_measures/coherent_risk_measures.md)): for 1-Wasserstein ambiguity with Lipschitz loss, the worst-case CVaR satisfies $\sup_{Q: W_1(Q,\hat P_n) \le \varepsilon} \text{CVaR}_\alpha^Q(L) = \text{CVaR}_\alpha^{\hat P_n}(L) + \varepsilon/\alpha$, adding a tail-confidence-scaled buffer.
 
 ### 3. Robust Option Pricing
 
-
-**Setup**: Price a European derivative with payoff $\Phi(S_T)$ when the risk-neutral distribution is uncertain.
-
-**Wasserstein Pricing Bounds**: Given observed option prices implying an empirical risk-neutral distribution $\hat{Q}$:
-
-$$
-\overline{V} = \sup_{Q: W_p(Q, \hat{Q}) \leq \varepsilon} \mathbb{E}_Q[e^{-rT} \Phi(S_T)]
-$$
-
-$$
-\underline{V} = \inf_{Q: W_p(Q, \hat{Q}) \leq \varepsilon} \mathbb{E}_Q[e^{-rT} \Phi(S_T)]
-$$
-
-**Advantage over KL-based bounds**: The Wasserstein bounds allow the worst-case distribution to place mass at stock price levels not observed in the market data, capturing tail risk scenarios absent from the empirical distribution.
+**Recall** (see [§ Robust No-Arbitrage Pricing](../robust_no_arbitrage_pricing/hobson_robust_bounds.md)): given an implied empirical risk-neutral $\hat Q$, the Wasserstein pricing bounds $\overline V = \sup_{Q: W_p(Q,\hat Q) \le \varepsilon} \mathbb{E}_Q[e^{-rT}\Phi(S_T)]$ and $\underline V = \inf$ thereof explore tail-scenario mass absent from market data, in contrast to KL-based bounds.
 
 ### 4. Stress Testing and Scenario Analysis
 
-
-**Worst-Case Scenario**: The distribution $Q^*$ achieving the supremum in the DRO identifies the most adversarial scenario:
-
-$$
-Q^* = \arg\sup_{Q: W_p(Q, \hat{P}) \leq \varepsilon} \mathbb{E}_Q[\ell(\xi)]
-$$
-
-For the 1-Wasserstein case, the worst-case distribution shifts mass toward high-loss regions, with the shift magnitude bounded by the Lipschitz constant of the loss.
-
-**Reverse Stress Test**: Find the smallest Wasserstein perturbation causing a specified loss threshold $L_0$:
-
-$$
-\varepsilon^* = \inf \left\{ \varepsilon > 0 : \sup_{Q: W_1(Q, \hat{P}) \leq \varepsilon} \mathbb{E}_Q[\ell(\xi)] \geq L_0 \right\}
-$$
-
-This identifies how much the distribution must change to trigger a crisis-level loss.
+**Recall** (see [§ Robust Calibration](../robust_calibration/confidence_sets_for_models.md)): the DRO maximizer $Q^* = \arg\sup_{Q: W_p(Q,\hat P)\le \varepsilon} \mathbb{E}_Q[\ell(\xi)]$ yields adversarial scenarios; reverse stress testing inverts the radius — $\varepsilon^* = \inf\{\varepsilon: \sup_{Q} \mathbb{E}_Q[\ell] \ge L_0\}$ — to quantify the smallest distributional shock triggering a target loss.
 
 ## Theoretical Foundations
 

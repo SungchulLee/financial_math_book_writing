@@ -24,22 +24,17 @@ interest rates, and equity indices worth trillions of dollars.
 ## Why Forwards Come Before Options
 
 This section deliberately precedes our treatment of options pricing, and the reason
-is pedagogical. A forward contract has a **linear payoff**: the profit or loss at
-maturity is simply the difference between the spot price and the agreed-upon forward
-price. There is no optionality, no early-exercise decision, and no volatility
-parameter to estimate. Pricing a forward reduces to a single, clean application of
-the no-arbitrage principle combined with static replication.
+is pedagogical. Recall (see [§ Payoff of Forwards and Futures](payoff.md)): the forward payoff $S_T - K$ is **linear**, with no optionality and no volatility parameter. Recall (see [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md)): pricing reduces to one equation $F_0 = S_0 e^{rT}$ — the prototype for every pricing argument that follows, including Black-Scholes.
 
-Concretely, if the forward price on a non-dividend-paying asset is $F$ and the
-current spot price is $S_0$, the relationship enforced by arbitrage is
+## How to Read This Section
 
-$$
-F = S_0 \, e^{rT}
-$$
+Every page that follows is built on the same three-step pattern:
 
-where $r$ is the continuously compounded risk-free rate and $T$ is the time to
-maturity. This one equation — and the reasoning behind it — is the prototype for
-every pricing argument that follows, including Black-Scholes.
+1. **A tiny concrete scene** — one farmer, one barrel of oil, one numerical arbitrage — that exposes the mechanism on a single page.
+2. **The abstract principle** the toy reveals — no-arbitrage, replication, cost of carry — stated in symbols only after the reader has *seen* it work.
+3. **The general formula and its extensions** — dividends, storage, convexity, daily settlement — each obtained by perturbing the toy.
+
+Read the concrete scene first; treat the formulas as compressions of the scene, not as definitions to memorize. The same pattern reappears in later chapters when we replace the linear payoff $S_T - K$ with the nonlinear payoff $(S_T - K)^+$ and rebuild the pricing argument for options.
 
 ## What This Section Covers
 
@@ -56,12 +51,7 @@ topics:
 
 ## The Key Takeaway
 
-Mastering forward pricing is not merely a prerequisite — it is the foundation.
-Every concept introduced here (no-arbitrage, replication, cost of carry, risk-neutral
-valuation) reappears, in a more complex form, when we price options. If you
-understand *why* the forward price must equal $S_0 \, e^{rT}$, you already
-possess the core intuition behind the Black-Scholes formula. The rest is
-generalization.
+Mastering forward pricing is not merely a prerequisite — it is the foundation. Every concept introduced here (no-arbitrage, replication, cost of carry, risk-neutral valuation) reappears in more complex form when we price options. The bridge from this linear world to the nonlinear world of options is developed in [§ From Forwards to Options](bridge_to_options.md).
 
 ## Exercises
 
@@ -76,4 +66,44 @@ generalization.
 
 ??? success "Solution to Exercise 2"
     Consider two portfolios: (A) enter a long forward at price F, and (B) buy the stock now at S_0, funded by borrowing at rate r. Portfolio B costs S_0 * exp(rT) at delivery. Both portfolios deliver one share at time T. By no-arbitrage, they must have the same cost, so F = S_0 * exp(rT).
+
+---
+
+**Exercise 3.** In one sentence each, state the role of (a) replication, (b) cost of carry, and (c) daily settlement in the theory of forwards and futures. For each, name the section of this chapter where the concept is developed.
+
+??? success "Solution to Exercise 3"
+    (a) **Replication** constructs a portfolio of traded assets whose payoff matches the forward's, pinning down the forward price via no-arbitrage — see [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md).
+
+    (b) **Cost of carry** generalizes the replication argument to include dividends, storage costs, and convenience yields — see [§ Cost of Carry](cost_of_carry.md).
+
+    (c) **Daily settlement** converts the forward's single terminal payment into a sequence of daily margin flows, exchanging credit risk for liquidity risk — see [§ Margin and Marking to Market](margin_mark_to_market.md).
+
+---
+
+**Exercise 4.** Forwards and futures have linear payoffs, while options have nonlinear payoffs. In one sentence, explain why this distinction matters for the *complexity of pricing*.
+
+??? success "Solution to Exercise 4"
+    Linear payoffs can be replicated by a one-time **static** portfolio of stock and bond, so pricing is algebraic and depends only on $r$; nonlinear payoffs require **dynamic** rebalancing whose cost depends on volatility $\sigma$, leading to the Black-Scholes machinery — see [§ From Forwards to Options](bridge_to_options.md).
+
+---
+
+**Exercise 5.** Name three real-world futures contracts and identify, for each, whether it is settled by physical delivery or in cash.
+
+??? success "Solution to Exercise 5"
+    Examples (recall, see [§ What is a Forward and a Future?](what_is_forward_future.md)):
+
+    - **WTI Crude Oil (CL)**: physical delivery at Cushing, Oklahoma.
+    - **Gold (GC)**: physical delivery (100 troy oz).
+    - **S&P 500 E-mini (ES)** and **KOSPI 200**: cash-settled against the final index level.
+
+    VIX futures are also cash-settled — against a special VIX settlement value.
+
+---
+
+**Exercise 6.** Two practitioners disagree: one says "the forward price is what the market expects the stock to be worth at $T$"; the other says "the forward price is just $S_0$ carried at the risk-free rate." Which is correct, and why?
+
+??? success "Solution to Exercise 6"
+    The second is correct under the standard no-arbitrage assumption: $F_0 = S_0 e^{rT}$ depends only on $S_0$, $r$, and $T$, not on the real-world drift $\mu$ of the stock. Any market expectation is already embedded in $S_0$.
+
+    The first statement is only correct under the **risk-neutral measure** $\mathbb{Q}$: $F_0 = \mathbb{E}^{\mathbb{Q}}[S_T]$ — the expected price under $\mathbb{Q}$, not under the real-world probability $\mathbb{P}$ — see [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md).
 

@@ -31,8 +31,9 @@ formula will misprice every liquid option on the screen---and create apparent
 arbitrage against its own book.
 
 !!! abstract "Core idea"
-    Pricing parameters come from calibration to market prices ($\mathbb{Q}$),
-    not from statistical estimation on historical data ($\mathbb{P}$).
+    Calibration operates under the risk-neutral framework; estimation
+    operates under the physical measure (see
+    [§ Physical vs Risk-Neutral World](physical_vs_risk_neutral.md)).
 
 ### The Two Approaches
 
@@ -53,9 +54,8 @@ Three reasons make calibration the standard for pricing:
 2. **Information content.** Implied volatilities encode the market's
    collective assessment of jump risk, stochastic volatility, and tail
    events that historical data may underrepresent.
-3. **Drift irrelevance.** Derivative prices under $\mathbb{Q}$ depend on
-   $r$ and $\sigma$ but not on $\mu$. Estimating the physical drift is
-   unnecessary for pricing.
+3. **Drift irrelevance.** Estimating the physical drift is unnecessary for
+   pricing (see [§ Risk Premium Decomposition](risk_premium_decomposition.md)).
 
 !!! note "Calibration does not determine the physical measure"
     A model calibrated to $\mathbb{Q}$ cannot be used for risk management

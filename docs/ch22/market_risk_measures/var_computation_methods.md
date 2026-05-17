@@ -340,19 +340,7 @@ For a \$10M portfolio, this is approximately \$491,000.
 
 ## Multi-Day VaR and the Square-Root-of-Time Rule
 
-For a holding period of $h$ days, under i.i.d. returns:
-
-$$
-\text{VaR}_\alpha(h) = \sqrt{h} \cdot \text{VaR}_\alpha(1)
-$$
-
-This **square-root-of-time rule** is exact under normality but approximate otherwise. It systematically underestimates multi-day VaR when:
-
-- Returns exhibit **volatility clustering** (GARCH effects)
-- Returns have **fat tails** (heavier than normal)
-- Returns are **autocorrelated**
-
-For regulatory 10-day VaR: $\text{VaR}_{0.99}^{10\text{-day}} \approx \sqrt{10} \cdot \text{VaR}_{0.99}^{1\text{-day}} \approx 3.16 \cdot \text{VaR}_{0.99}^{1\text{-day}}$.
+Recall (see [§ Value-at-Risk](value_at_risk_var.md)) the square-root-of-time rule $\text{VaR}_\alpha(h) \approx \sqrt{h}\,\text{VaR}_\alpha(1)$, exact under i.i.d. normal returns and prone to underestimation under volatility clustering, fat tails, or serial correlation. For regulatory 10-day VaR the factor is $\sqrt{10} \approx 3.16$.
 
 ---
 

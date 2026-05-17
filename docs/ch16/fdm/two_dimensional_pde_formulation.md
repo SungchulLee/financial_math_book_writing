@@ -17,33 +17,9 @@ Fourier methods price European options efficiently but cannot easily handle Amer
 
 ## Deriving the Heston PDE
 
-Under the risk-neutral measure $\mathbb{Q}$, the joint dynamics of the stock price and variance are:
+Recall (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)) the risk-neutral dynamics $dS_t = (r-q)S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^{(1)}$, $dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}$ with $d\langle W^{(1)}, W^{(2)}\rangle_t = \rho\,dt$, giving quadratic variations $(dS)^2 = v S^2 dt$, $(dv)^2 = \xi^2 v\,dt$, $(dS)(dv) = \rho \xi v S\,dt$.
 
-$$
-dS_t = (r - q) S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1)}
-$$
-
-$$
-dv_t = \kappa(\theta - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^{(2)}
-$$
-
-with $d\langle W^{(1)}, W^{(2)} \rangle_t = \rho \, dt$.
-
-Let $V(t, S, v)$ denote the price of a European derivative. By the Feynman-Kac theorem, $V$ satisfies a PDE obtained by applying Ito's formula to $V(t, S_t, v_t)$ and requiring that the discounted price process $e^{-rt}V$ be a martingale.
-
-Applying the two-dimensional Ito's lemma:
-
-$$
-dV = \frac{\partial V}{\partial t} dt + \frac{\partial V}{\partial S} dS + \frac{\partial V}{\partial v} dv + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(dS)^2 + \frac{1}{2}\frac{\partial^2 V}{\partial v^2}(dv)^2 + \frac{\partial^2 V}{\partial S \partial v}(dS)(dv)
-$$
-
-Computing the quadratic variations:
-
-$$
-(dS)^2 = v S^2 \, dt, \qquad (dv)^2 = \xi^2 v \, dt, \qquad (dS)(dv) = \rho \xi v S \, dt
-$$
-
-Setting the drift of $e^{-rt}V$ to zero (martingale condition) yields the **Heston PDE**:
+Applying two-dimensional Ito to $V(t, S_t, v_t)$ and setting the drift of $e^{-rt}V$ to zero (Feynman-Kac martingale condition; see [§ Feynman-Kac for option pricing](../../ch05/feynman_kac/feynman_kac_option_pricing.md)) yields the **Heston PDE**:
 
 $$
 \frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \frac{1}{2}\xi^2 v\frac{\partial^2 V}{\partial v^2} + \rho\xi v S\frac{\partial^2 V}{\partial S \partial v} - rV = 0

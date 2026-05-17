@@ -133,31 +133,7 @@ In this case, the Black formula simplifies, and ATM volatility is the most liqui
 
 ## Normal vs Lognormal Volatility
 
-Two conventions are used:
-
----
-
-### Lognormal (Black) Volatility
-
-- Assumes:
-
-$$
-dS = \sigma S\, dW
-$$
-
-- Used in Black swaption formula
-
----
-
-### Normal (Bachelier) Volatility
-
-- Assumes:
-
-$$
-dS = \sigma\, dW
-$$
-
-- Used in low or negative rate environments
+Recall (see [§ Swap Rate Dynamics and Lognormal Model](swap_rate_dynamics_and_lognormal_model.md)) the two conventions: **lognormal (Black)** $dS = \sigma S\,dW$ used in the Black swaption formula, and **normal (Bachelier)** $dS = \sigma\,dW$ used in low- or negative-rate environments.
 
 ---
 

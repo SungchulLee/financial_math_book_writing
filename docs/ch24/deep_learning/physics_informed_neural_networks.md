@@ -85,13 +85,13 @@ The collocation points $\{x_j^r\}$ are sampled (uniformly or adaptively) from th
 
 ### The PDE
 
-The Black-Scholes PDE for a European option price $V(t, S)$ is:
+Recall (see [§ BS PDE via Replication](../../ch06/bs_pde_derivation/replication.md)) the Black-Scholes PDE for a European option price $V(t, S)$:
 
 $$
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
 $$
 
-on the domain $(t, S) \in [0, T) \times (0, \infty)$ with terminal condition $V(T, S) = h(S)$.
+on $(t, S) \in [0, T) \times (0, \infty)$ with terminal condition $V(T, S) = h(S)$.
 
 ### PINN Formulation
 

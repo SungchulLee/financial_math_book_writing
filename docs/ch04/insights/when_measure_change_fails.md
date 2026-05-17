@@ -24,35 +24,21 @@ modes and their financial consequences.
 
 ## Failure Mode 1: Novikov and Kazamaki Conditions Violated
 
-Girsanov's theorem requires the Radon-Nikodym density process
+Recall (see [§ Novikov and Kazamaki Conditions](../martingale/novikov_kazamaki_conditions.md)):
+Girsanov's construction requires the stochastic exponential $Z_t$ to be a true
+martingale with $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$; Novikov is the standard
+sufficient guarantee.
 
-$$
-Z_t = \exp\!\left(-\int_0^t \theta_s\,dW_s^{\mathbb{P}} - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
-$$
-
-to satisfy $\mathbb{E}^{\mathbb{P}}[Z_T] = 1$. As a non-negative local
-martingale, $Z_t$ is automatically a supermartingale. The danger is
-$\mathbb{E}^{\mathbb{P}}[Z_T] < 1$---a strict local martingale---so that
-$Z_T$ fails to define a valid density.
-
-The Novikov condition
-
-$$
-\mathbb{E}^{\mathbb{P}}\!\left[\exp\!\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] < \infty
-$$
-
-guarantees the true martingale property. When it fails, mass leaks to
-infinity: the quadratic variation $\int_0^t \theta_s^2\,ds$ explodes,
-driving $Z_t$ toward zero. The **defect**
+The failure mode here is Novikov broken: $Z_t$ stays a non-negative
+supermartingale but $\mathbb{E}^{\mathbb{P}}[Z_T] < 1$ — mass leaks to infinity
+because $\int_0^t \theta_s^2\,ds$ explodes, driving $Z_t$ toward zero. The
+**defect**
 
 $$
 \delta := 1 - \mathbb{E}^{\mathbb{P}}[Z_T] > 0
 $$
 
-measures the escaped mass. The normalized density
-$Z_T / \mathbb{E}^{\mathbb{P}}[Z_T]$ defines a probability measure, but one
-that is **not equivalent** to $\mathbb{P}$: it ignores events where
-$Z_T = 0$.
+measures the escaped mass. The normalized density $Z_T / \mathbb{E}^{\mathbb{P}}[Z_T]$ defines a probability measure, but one that is **not equivalent** to $\mathbb{P}$: it ignores events where $Z_T = 0$.
 
 ### Example: Exploding Market Price of Risk
 

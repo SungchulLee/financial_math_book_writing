@@ -303,33 +303,10 @@ $$
 
 ## Regulatory Expectations
 
+Recall (see [§ Model Risk and Governance](../../ch22/model_risk_and_governance/model_validation.md)) for the SR 11-7 framework (effective challenge, independent validation, documentation). Two further regimes constrain the human/automation boundary specifically:
 
-### 1. SR 11-7 (Model Risk Management)
-
-
-**Effective Challenge**: Models must be challenged by qualified, independent parties.
-
-**Human Oversight**: Cannot fully delegate decisions to models.
-
-**Documentation**: Clear records of model use and limitations.
-
-### 2. GDPR and Algorithmic Decisions
-
-
-**Right to Explanation**: Individuals can request explanation of automated decisions.
-
-**Human Review**: Right to have decision reviewed by human.
-
-**Impact**: Affects credit scoring, trading access, insurance pricing.
-
-### 3. MiFID II
-
-
-**Algorithmic Trading Controls**: Kill switches, monitoring requirements.
-
-**Human Oversight**: Designated responsible persons for algorithms.
-
-**Testing Requirements**: Stress testing of automated systems.
+- **GDPR**: right to explanation of automated decisions and right to human review (affects credit scoring, trading access, insurance pricing).
+- **MiFID II**: mandated kill switches, designated responsible persons for algorithms, stress testing of automated systems.
 
 ## Future Directions
 

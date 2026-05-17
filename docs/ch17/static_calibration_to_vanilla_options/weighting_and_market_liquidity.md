@@ -8,14 +8,7 @@ Calibration is only as good as its treatment of **quote quality**. Two instrumen
 ## Why weights matter
 
 
-Consider weighted least squares:
-
-$$
-\mathcal{L}(\theta)=\frac12\sum_{j=1}^m w_j\,r_j(\theta)^2,
-\qquad r_j(\theta)=f_j(\theta)-y_j
-$$
-
-
+Recall (see [§ Choice of Objective Function](choice_of_objective_function.md)) the weighted least squares objective $\mathcal{L}(\theta)=\frac12\sum_j w_j\,r_j(\theta)^2$:
 
 - Large $w_j$: the optimizer will prioritize fitting instrument $j$.
 - Small $w_j$: instrument $j$ is effectively down-weighted (treated as noisy/unreliable).
@@ -68,13 +61,7 @@ Therefore, practitioners often apply **region-dependent weights**:
 ## Vega weighting and effective information content
 
 
-In vol-space calibration, the same vol error can imply very different price errors depending on Vega:
-
-$$
-\Delta C \approx \text{Vega}\,\Delta\sigma
-$$
-
-
+Recall (see [§ Choice of Objective Function](choice_of_objective_function.md)) the approximation $\Delta C \approx \text{Vega}\,\Delta\sigma$: in vol-space calibration, the same vol error implies very different price errors depending on Vega.
 
 Possible schemes:
 

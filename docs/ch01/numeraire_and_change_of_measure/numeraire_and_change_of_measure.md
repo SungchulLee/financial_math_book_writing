@@ -1,9 +1,11 @@
 # Numéraire and Change of Measure
 
 
-The [Fundamental Theorem of Asset Pricing](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) guarantees the existence of an equivalent martingale measure (EMM) relative to a chosen numéraire. This chapter develops the **numéraire framework** in full: we define what a numéraire is, state and prove the **change of numéraire theorem**, and show through worked examples how choosing the right numéraire can dramatically simplify derivative pricing.
+Recall (see [§ FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md)): no arbitrage is equivalent to the existence of an equivalent martingale measure (EMM) relative to a chosen numéraire.
 
-The central message is that **prices are invariant under numéraire changes**. Different numéraires give different martingale measures but identical arbitrage-free prices. This is not merely a theoretical curiosity—it is one of the most powerful computational tools in quantitative finance.
+This page develops the **discrete-time** numéraire framework: definition, the change-of-numéraire theorem, and the algebra of Radon–Nikodym derivatives connecting different martingale measures. The continuous-time numéraire machinery (driven by Girsanov's theorem) is developed in [§ Continuous Numéraire Framework](../../ch04/risk_neutral/numeraire.md) and the $T$-forward measure in [§ Forward Measure](../../ch04/risk_neutral/forward_measure.md).
+
+The central message: **prices are invariant under numéraire changes**. Different numéraires give different martingale measures but identical arbitrage-free prices.
 
 
 ## Numéraire: Definition and Requirements
@@ -105,24 +107,9 @@ $$M_t \cdot \mathbb{E}^{\mathbb{Q}^M}\!\left[\frac{\Phi_T}{M_T} \;\bigg|\; \math
 $\square$
 
 
-## Connection to Girsanov's Theorem
+## Continuous-Time Counterpart
 
-
-In continuous-time models driven by Brownian motion, the abstract change-of-measure machinery takes a concrete form via Girsanov's theorem.
-
-Suppose under $\mathbb{Q}^N$ the numéraire ratio $M_t / N_t$ follows
-
-$$d\!\left(\frac{M_t}{N_t}\right) = \frac{M_t}{N_t}\bigl(\cdots\, dt + \eta_t \cdot dW^N_t\bigr)$$
-
-where $W^N_t$ is a $\mathbb{Q}^N$-Brownian motion and $\eta_t$ is the volatility of the ratio process. Since $M_t/N_t$ is a $\mathbb{Q}^N$-martingale, the drift term vanishes and the Radon–Nikodym process is
-
-$$L_t = \frac{M_t/N_t}{M_0/N_0} = \mathcal{E}\!\left(\int_0^t \eta_s \cdot dW^N_s\right)$$
-
-where $\mathcal{E}$ denotes the stochastic exponential. By Girsanov's theorem, the process
-
-$$W^M_t = W^N_t - \int_0^t \eta_s\, ds$$
-
-is a Brownian motion under $\mathbb{Q}^M$. The drift adjustment $\eta_t$ encodes the difference between the two martingale measures.
+Recall (see [§ Girsanov's Theorem](../../ch04/girsanov/girsanov_theorem.md)): in Brownian models the Radon–Nikodym process $L_t = (M_t/M_0)/(N_t/N_0)$ is the stochastic exponential $\mathcal{E}\!\left(\int_0^t \eta_s\, dW^N_s\right)$, where $\eta_t$ is the volatility of $M_t/N_t$, and $W^M_t = W^N_t - \int_0^t \eta_s\, ds$ is $\mathbb{Q}^M$-Brownian motion. The drift adjustment $\eta_t$ encodes the change between the two martingale measures.
 
 
 ## Examples
@@ -139,21 +126,15 @@ Under $\mathbb{Q}$, all assets earn the risk-free rate in expectation: $\mathbb{
 
 ### Example 2: Zero-Coupon Bond and Forward Measure
 
-Let $N_t = P(t, T)$, the price of a zero-coupon bond maturing at $T$. Since $P(T, T) = 1$, the pricing formula simplifies to
+Let $N_t = P(t, T)$, the price of a zero-coupon bond maturing at $T$. Since $P(T, T) = 1$, the master formula collapses to
 
 $$V_t = P(t, T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]$$
 
-The expectation is taken directly over the payoff $\Phi_T$ without any discounting—the discount factor has been absorbed into the numéraire.
-
-Under $\mathbb{Q}^T$, the **forward price** $F(t, T) = S_t / P(t, T)$ is a martingale:
-
-$$F(t, T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]$$
-
-This is the measure of choice for pricing interest-rate derivatives. For example, in the LIBOR market model, each caplet on the forward rate $L(T_{i-1}, T_i)$ is priced under the $T_i$-forward measure, where $L(T_{i-1}, T_i)$ is a martingale. This eliminates the need to model the drift of forward rates—a major computational simplification.
-
-The Radon–Nikodym derivative from the risk-neutral measure $\mathbb{Q}$ to the $T$-forward measure $\mathbb{Q}^T$ is
+with no further discounting under the $T$-forward measure $\mathbb{Q}^T$. The Radon–Nikodym derivative from the risk-neutral measure to $\mathbb{Q}^T$ is
 
 $$\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{P(t, T) / P(0, T)}{e^{rt} / 1} = \frac{P(t, T)}{P(0, T)\, e^{rt}}$$
+
+Recall (see [§ Forward Measure](../../ch04/risk_neutral/forward_measure.md)): under $\mathbb{Q}^T$ the forward price $F(t,T) = S_t/P(t,T)$ is a martingale, and LIBOR-market-model caplets are priced under the $T_i$-forward measure where the forward rate is driftless.
 
 
 ### Example 3: Stock as Numéraire
@@ -165,53 +146,17 @@ $$\frac{S^i_t}{S^j_t} = \mathbb{E}^{\mathbb{Q}^j}\!\left[\frac{S^i_T}{S^j_T} \;\
 This is useful for pricing options on ratios and exchange options.
 
 
-### Example 4: Margrabe's Formula via Change of Numéraire
+### Example 4: Exchange Option (Margrabe)
 
-As a worked example of the computational power of numéraire changes, consider an **exchange option** with payoff
-
-$$\Phi_T = (S^1_T - S^2_T)^+$$
-
-the right to exchange asset 2 for asset 1 at maturity.
-
-**Direct approach.** Under the risk-neutral measure, one must evaluate $e^{-rT}\, \mathbb{E}^{\mathbb{Q}}[(S^1_T - S^2_T)^+]$ with two correlated lognormal variables—a two-dimensional integral.
-
-**Numéraire approach.** Choose $N_t = S^2_t$ as numéraire. Then
+For the exchange-option payoff $\Phi_T = (S^1_T - S^2_T)^+$, choosing $N_t = S^2_t$ as numéraire gives
 
 $$V_0 = S^2_0 \cdot \mathbb{E}^{\mathbb{Q}^2}\!\left[\left(\frac{S^1_T}{S^2_T} - 1\right)^{\!+}\right]$$
 
-Under $\mathbb{Q}^2$, the ratio $R_t = S^1_t / S^2_t$ is a martingale. If both assets follow geometric Brownian motion, $R_t$ is itself a geometric Brownian motion (with volatility $\sigma_R = \sqrt{\sigma_1^2 - 2\rho\sigma_1\sigma_2 + \sigma_2^2}$). The expectation is now a **one-dimensional** Black–Scholes-type integral:
+so that pricing reduces to a one-dimensional integral in the ratio $R_t = S^1_t/S^2_t$ (a $\mathbb{Q}^2$-martingale). In the Black–Scholes setting this yields the closed-form **Margrabe (1978)** formula
 
-$$V_0 = S^2_0 \bigl[R_0\, \mathcal{N}(d_1) - \mathcal{N}(d_2)\bigr]$$
+$$V_0 = S^1_0\, \mathcal{N}(d_1) - S^2_0\, \mathcal{N}(d_2), \qquad \sigma_R = \sqrt{\sigma_1^2 - 2\rho\sigma_1\sigma_2 + \sigma_2^2}$$
 
-where $R_0 = S^1_0 / S^2_0$ and
-
-$$d_1 = \frac{\ln(R_0) + \frac{1}{2}\sigma_R^2 T}{\sigma_R \sqrt{T}}, \qquad d_2 = d_1 - \sigma_R\sqrt{T}$$
-
-Substituting $S^2_0 R_0 = S^1_0$:
-
-$$\boxed{V_0 = S^1_0\, \mathcal{N}(d_1) - S^2_0\, \mathcal{N}(d_2)}$$
-
-This is **Margrabe's formula** (1978). The change of numéraire reduced a two-dimensional problem to a one-dimensional one.
-
-
-## Connection to Black–Scholes
-
-
-In the Black–Scholes model $dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$ with money market numéraire $N_t = e^{rt}$, the risk-neutral dynamics are
-
-$$dS_t = rS_t\, dt + \sigma S_t\, dW^{\mathbb{Q}}_t$$
-
-Now consider using the **stock itself** as numéraire ($N_t = S_t$). The bond price normalized by $S_t$ is
-
-$$\frac{e^{rt}}{S_t}$$
-
-Under the stock measure $\mathbb{Q}^S$, this ratio is a martingale. By Girsanov's theorem, the $\mathbb{Q}^S$-Brownian motion is $W^S_t = W^{\mathbb{Q}}_t - \sigma t$ (the drift adjustment equals the stock's volatility), and the normalized bond evolves as
-
-$$d\!\left(\frac{e^{rt}}{S_t}\right) = \frac{e^{rt}}{S_t}\bigl(-\sigma\, dW^S_t\bigr)$$
-
-confirming it is a driftless process (martingale) under $\mathbb{Q}^S$.
-
-Since the Black–Scholes model has a single source of randomness and one risky asset, the market is complete and the EMM is unique regardless of the numéraire choice. Changing the numéraire from the money market to the stock changes the measure and the Brownian motion, but produces the same option prices.
+with $d_1 = [\ln(S^1_0/S^2_0) + \tfrac{1}{2}\sigma_R^2 T]/(\sigma_R\sqrt{T})$ and $d_2 = d_1 - \sigma_R\sqrt{T}$. The continuous-time derivation (and the Girsanov drift $W^S_t = W^{\mathbb{Q}}_t - \sigma t$ for the stock numéraire) is in [§ Continuous Numéraire Framework](../../ch04/risk_neutral/numeraire.md).
 
 
 ## Interpretation and Significance

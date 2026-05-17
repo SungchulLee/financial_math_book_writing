@@ -49,24 +49,7 @@ $$
 
 ## Heston 1993 Original Formulation
 
-In Heston's original 1993 paper, the characteristic function was written with
-
-$$
-D_{\text{orig}}(\tau, u) = \frac{\kappa - i\rho\xi u + \gamma}{\xi^2} \cdot \frac{1 - e^{\gamma\tau}}{1 - h \, e^{\gamma\tau}}
-$$
-
-where
-
-$$
-h = \frac{\kappa - i\rho\xi u + \gamma}{\kappa - i\rho\xi u - \gamma}
-$$
-
-and the corresponding $C$ function involves $\log(1 - h \, e^{\gamma\tau})$.
-
-!!! danger "The Instability"
-    In this formulation, $|h| \geq 1$ generically. As $\tau$ increases, $|h \, e^{\gamma\tau}|$ grows exponentially, and the argument of the logarithm $1 - h e^{\gamma\tau}$ sweeps through large circles in the complex plane, inevitably crossing the branch cut of $\log$. This makes the original formulation **numerically unstable for moderate to large $\tau$**.
-
-    The exponential $e^{\gamma\tau}$ with $\text{Re}(\gamma) > 0$ amplifies any branch-cut crossing, making the problem worse at longer maturities --- precisely where accurate pricing is most needed.
+Recall (see [§ Heston 1993 vs Albrecher](heston_1993_vs_albrecher.md)) the original form using $e^{+\gamma\tau}$ and $h = 1/g$ with $|h| \geq 1$, and its catastrophic-cancellation instability for moderate-to-large $\tau$.
 
 ---
 

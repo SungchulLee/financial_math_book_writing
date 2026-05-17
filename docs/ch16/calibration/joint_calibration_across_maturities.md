@@ -35,35 +35,24 @@ The Heston model's five parameters have different sensitivities to different par
 
 ### Short Maturities (T ≤ 3 months)
 
-For small $T$, the variance process has not yet mean-reverted significantly: $v_T \approx v_0 + \mathcal{O}(\kappa T)$. The short-maturity smile is therefore controlled primarily by:
+Recall (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)) for parameter roles. For small $T$, the variance process has not yet mean-reverted significantly. The short-maturity smile is controlled by:
 
-- **$v_0$ (initial variance)**: Determines the ATM implied volatility level. The approximation $\sigma_{\text{ATM}}^2 T \approx v_0 T$ holds for short $T$, so the ATM level directly pins down $v_0$.
-- **$\rho$ (correlation)**: Controls the **skew** (slope of the smile). To leading order in $T$, the ATM skew is:
-
-$$
-\left. \frac{\partial \sigma_{\text{imp}}}{\partial \ln K} \right|_{K = S_0 e^{rT}} \approx \frac{\rho \xi}{4 \sqrt{v_0}}
-$$
-
-This linear-in-$\rho$ dependence makes $\rho$ well-identified from the short-maturity skew.
-
-- **$\xi$ (vol-of-vol)**: Controls the **convexity** (curvature) of the smile. To leading order:
-
-$$
-\left. \frac{\partial^2 \sigma_{\text{imp}}}{\partial (\ln K)^2} \right|_{K = S_0 e^{rT}} \approx \frac{\xi^2(1 - \rho^2)}{8 v_0}
-$$
+- **$v_0$**: pins the ATM level via $\sigma_{\text{ATM}}^2 T \approx v_0 T$.
+- **$\rho$**: controls the **skew** with $\partial\sigma_{\text{imp}}/\partial\ln K|_{\text{ATM}} \approx \rho\xi / (4\sqrt{v_0})$, making $\rho$ well-identified from short-maturity skew.
+- **$\xi$**: controls **convexity** with $\partial^2\sigma_{\text{imp}}/\partial(\ln K)^2|_{\text{ATM}} \approx \xi^2(1-\rho^2)/(8 v_0)$.
 
 ### Long Maturities (T ≥ 1 year)
 
-For large $T$, the variance process has time to mean-revert, and the smile reflects the long-run behavior:
+For large $T$, the variance process has time to mean-revert:
 
-- **$\theta$ (long-run variance)**: Determines the long-maturity ATM level. As $T \to \infty$, $\sigma_{\text{ATM}}^2 \to \theta$. Options with $T > 1/\kappa$ (the mean-reversion half-life) are primarily sensitive to $\theta$.
-- **$\kappa$ (mean-reversion speed)**: Controls how quickly the term structure of ATM volatility transitions from $\sqrt{v_0}$ (short end) to $\sqrt{\theta}$ (long end). The ATM variance term structure is approximately:
+- **$\theta$**: as $T \to \infty$, $\sigma_{\text{ATM}}^2 \to \theta$. Options with $T > 1/\kappa$ are primarily sensitive to $\theta$.
+- **$\kappa$**: controls the rate of transition. Recall (see [§ Variance Dynamics](../variance_dynamics/cir_variance_process_solution.md)) the expected average variance:
 
 $$
 \bar{v}(T) = \frac{1}{T} \int_0^T \mathbb{E}[v_t] \, dt = \theta + (v_0 - \theta) \frac{1 - e^{-\kappa T}}{\kappa T}
 $$
 
-The shape of $\bar{v}(T)$ as a function of $T$ identifies $\kappa$ separately from $\theta$.
+The shape of $\bar{v}(T)$ identifies $\kappa$ separately from $\theta$.
 
 !!! note "The Role of Medium Maturities"
     Options with $T \approx 1/\kappa$ (typically 3--12 months) are critical for separating $\kappa$ from $\theta$. The transition region of the variance term structure provides the strongest signal for $\kappa$. Without medium-maturity data, the $\kappa$-$\theta$ degeneracy remains.

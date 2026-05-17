@@ -1,12 +1,13 @@
 # Transaction Costs and Liquidity Effects
 
+!!! tip "Toy mechanism: proportional cost makes BS hedging infinitely expensive"
+    The whole no-transaction-region picture comes from one estimate. Each rebalance costs $\lambda S|\delta\Delta|$, and $|\delta\Delta| \sim \Gamma\sigma S\sqrt{\Delta t}$ between rebalances of length $\Delta t$. Summing over $N = T/\Delta t$ rebalances, the total cost scales as $1/\sqrt{\Delta t}$ — *unbounded as $\Delta t \to 0$*. So pure Black–Scholes hedging in any positive-cost market has *infinite* expected cost, and the optimal response is *not* to rebalance continuously: instead, hold the hedge ratio inside a no-trade band $[\Delta - h, \Delta + h]$ and only rebalance when it crosses the boundary. The Leland adjustment ($\sigma \to \sigma\sqrt{1 + cost\text{-correction}}$) is a clever way to price this *into the volatility* used to compute delta, recovering an effectively closed-form hedge.
 
 With proportional cost $\lambda$ (bid-ask spread), rebalancing $\delta \theta$ shares costs about
 
 $$
 \text{Cost} = \lambda S |\delta\theta|
 $$
-
 
 Since hedge turnover increases with gamma, costs can dominate near expiry.
 

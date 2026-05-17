@@ -1,33 +1,30 @@
 # One-Period Market Model
 
-This chapter derives modern asset pricing from a single economic assumption:
-**no-arbitrage**. The entire theory rests on one theorem.
+This page sets up the **environment** in which all of one-period asset pricing
+takes place: states, probabilities, traded assets, the payoff matrix, and the
+risk-free bond. The economic content — arbitrage, the linear pricing rule,
+state prices, and risk-neutral expectation — is developed in the three pages
+that follow, each of which depends on the notation fixed here.
 
-!!! success "Main theorem (First Fundamental Theorem of Asset Pricing, finite case)"
-    In a finite-state one-period market, prices $\mathbf{P}$ and payoffs $\mathbf{X}$
-    admit no arbitrage if and only if there exists a strictly positive state
-    price vector $\boldsymbol{\phi} \gg 0$ such that
-
-    $$
-    \mathbf{P} = \mathbf{X}\boldsymbol{\phi}
-    $$
-
-    This linear pricing rule is equivalent to discounted expectation under a
-    risk-neutral measure $\mathbb{Q}$.
-
-Everything in this chapter builds toward this result. The roadmap:
+The chapter has a single destination: the **First Fundamental Theorem of Asset
+Pricing**, which states that a finite market admits no arbitrage if and only
+if its price vector $\mathbf{P}$ and payoff matrix $\mathbf{X}$ satisfy a
+linear pricing rule $\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$ with
+$\boldsymbol{\phi} \gg 0$. The theorem is stated and proved in
+[§ Arbitrage and dominance](arbitrage_and_dominance.md); its interpretation as
+Arrow–Debreu pricing and risk-neutral expectation is the subject of
+[§ State prices](state_prices_arrow_debreu.md). The roadmap:
 
 | Section | Role | Concept |
 |---|---|---|
-| **One-period model** (this page) | Environment | States, assets, uncertainty |
-| [Portfolios and payoffs](portfolios_and_payoffs.md) | Mechanics | Trading, linear payoff space |
-| [Arbitrage and dominance](arbitrage_and_dominance.md) | Economic restriction | No free lunch |
-| [State prices](state_prices_arrow_debreu.md) | Pricing structure | Linear valuation, $\mathbb{Q}$ |
+| **One-period model** (this page) | Environment | States, assets, payoff matrix, bond |
+| [Portfolios and payoffs](portfolios_and_payoffs.md) | Mechanics | Trading, linearity, attainable set |
+| [Arbitrage and dominance](arbitrage_and_dominance.md) | Core theory | No-arbitrage, LOP, FTAP |
+| [State prices](state_prices_arrow_debreu.md) | Interpretation | Arrow–Debreu, $\mathbb{Q}$, SDF |
 
-The finite-state model is the minimal framework in which this theorem can be
-stated, proved, and computed. Every continuous-time result later in the book
---- Black-Scholes, HJM, and beyond --- has a one-period ancestor built on the
-same logic: **no-arbitrage $\Leftrightarrow$ linear pricing**.
+Every continuous-time result later in the book — Black–Scholes, HJM, and
+beyond — has a one-period ancestor built on the same logic:
+**no-arbitrage $\Leftrightarrow$ linear pricing**.
 
 !!! abstract "Learning Objectives"
     After completing this section, you should be able to:
@@ -263,13 +260,11 @@ Several modeling choices deserve brief comment.
 
 ## What Comes Next
 
-With the one-period model in place, we are ready to build the machinery of asset pricing. The next three sections develop this machinery in sequence:
+With the environment in place, the chapter continues as previewed in the roadmap above:
 
-1. **[Portfolios and Payoffs](portfolios_and_payoffs.md)**: We define portfolio vectors $\boldsymbol{\theta} \in \mathbb{R}^N$, the cost of a portfolio $\boldsymbol{\theta}^\top \mathbf{P}$, and the payoff vector $\mathbf{X}^\top \boldsymbol{\theta} \in \mathbb{R}^S$. The set of all attainable payoffs is the column space of $\mathbf{X}^\top$.
-
-2. **[Arbitrage and Dominance](arbitrage_and_dominance.md)**: We formalize the no-arbitrage condition and the weaker notion of dominance, and characterize when a price vector $\mathbf{P}$ is arbitrage-free given the payoff matrix $\mathbf{X}$.
-
-3. **[Arrow-Debreu Securities and State Prices](state_prices_arrow_debreu.md)**: We show that the absence of arbitrage is equivalent to the existence of strictly positive state prices $\phi_s > 0$ satisfying $P_j = \sum_{s} \phi_s X_{js}$, connecting the one-period model to the First Fundamental Theorem of Asset Pricing.
+- [§ Portfolios and Payoffs](portfolios_and_payoffs.md) introduces the trading mechanics and the linearity of cost and payoff.
+- [§ Arbitrage and Dominance](arbitrage_and_dominance.md) imposes the no-arbitrage condition and proves the FTAP.
+- [§ State Prices](state_prices_arrow_debreu.md) interprets the resulting $\boldsymbol{\phi}$ as Arrow–Debreu prices and rescales it into a risk-neutral measure.
 
 ---
 

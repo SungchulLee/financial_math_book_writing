@@ -21,13 +21,9 @@ While the COS method prices a single option at a given strike with exponential c
 
 ## Motivation: Why Transform the Call Price?
 
-The European call price as a function of log-strike $k = \ln K$ is
+Recall (see [§ Risk-Neutral Valuation Principle](../../ch04/risk_neutral/risk_neutral_valuation_principle.md)) the risk-neutral pricing identity $C(k) = e^{-rT}\int_{-\infty}^{\infty}(e^x - e^k)^+ f(x)\,dx$, with $k=\ln K$, $x=\ln S_T$.
 
-$$
-C(k) = e^{-rT}\int_{-\infty}^{\infty}(e^x - e^k)^+ f(x)\,dx
-$$
-
-where $x = \ln S_T$ and $f$ is the risk-neutral density of $\ln S_T$. The function $C(k)$ is not square-integrable over $k \in \mathbb{R}$ because $C(k) \to S_0 e^{-qT}$ as $k \to -\infty$ (deep in-the-money calls approach the forward price). This means the Fourier transform of $C(k)$ does not exist in the classical sense. Carr and Madan's insight was to introduce an exponential damping factor that makes the modified call price square-integrable.
+The function $C(k)$ is not square-integrable over $k \in \mathbb{R}$ because $C(k) \to S_0 e^{-qT}$ as $k \to -\infty$. Carr--Madan's insight was to introduce an exponential damping factor that makes the modified call price square-integrable.
 
 ---
 
@@ -97,12 +93,11 @@ $$
 $$
 
 !!! warning "Choosing $\alpha$"
-    The damping parameter $\alpha$ must lie in the strip where the moment $\mathbb{E}[S_T^{\alpha+1}]$ is finite:
+    The damping parameter $\alpha$ must lie in the strip where the moment $\mathbb{E}[S_T^{\alpha+1}]$ is finite. The strip boundary depends on the model's characteristic function:
 
-    - **Black--Scholes:** All $\alpha > 0$ work (Gaussian tails ensure all moments exist)
-    - **Heston:** $\alpha$ must satisfy $\alpha + 1 < u^*$ where $u^*$ is the explosion point of the Riccati ODE for $D(u, T)$. Typically $\alpha \in (0.5, 2)$
-    - **Variance Gamma:** $\alpha + 1 < M/\sigma$ where $M$ is the right exponential parameter
-    - **CGMY:** $\alpha + 1 < M$
+    - **Black--Scholes** (see [§ Fourier Transform of BS](../../ch06/bs_pde_analytic_solution/fourier_transform.md)): all $\alpha > 0$ work
+    - **Heston** (see [§ Heston Characteristic Function](../../ch16/heston_cf/closed_form_characteristic_function.md)): $\alpha + 1 < u^*$ (Riccati explosion point), typically $\alpha \in (0.5, 2)$
+    - **VG / CGMY** (see [§ Beyond Heston](../beyond_heston/cos_for_interest_rate_models.md)): $\alpha + 1 <$ right exponential parameter
 
     A common practical choice is $\alpha = 1.5$, which works for most models.
 

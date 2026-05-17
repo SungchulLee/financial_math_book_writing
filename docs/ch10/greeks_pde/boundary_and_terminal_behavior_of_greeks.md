@@ -60,31 +60,17 @@ $$
 
 At maturity $V(T,S)=\Phi(S)$. For payoffs with kinks, derivatives at $T$ are not classical; gamma concentrates near the kink.
 
-**ATM behavior as $\tau \to 0$.** For $S = K$ (at-the-money):
+**Recall** (see [§ Scaling Laws for Greeks](../greeks_asympt/scaling_laws_for_greeks.md) for the full ATM scaling table, and [§ Blow-Up of Gamma Near Expiry](../greeks_asympt/blow_up_of_gamma_near_expiry.md) for the gamma spike): as $\tau \to 0$ at $S = K$,
 
 $$
-\Delta_{\text{ATM}} = N(d_1) \to \frac{1}{2} + \mathcal{O}(\sqrt{\tau})
+\Gamma_{\text{ATM}} \sim \frac{1}{K\sigma\sqrt{2\pi\tau}} = \mathcal{O}(\tau^{-1/2}),
+\qquad
+\Theta_{\text{ATM}} \sim -\tau^{-1/2},
+\qquad
+\nu_{\text{ATM}} \sim \sqrt{\tau}.
 $$
 
-$$
-\Gamma_{\text{ATM}} = \frac{N'(0)}{K\sigma\sqrt{\tau}} = \frac{1}{K\sigma\sqrt{2\pi\tau}} \sim \tau^{-1/2}
-$$
-
-$$
-\nu_{\text{ATM}} = K\sqrt{\tau}N'(0) = \frac{K\sqrt{\tau}}{\sqrt{2\pi}} \sim \sqrt{\tau}
-$$
-
-$$
-\Theta_{\text{ATM}} \sim -\frac{K\sigma}{2\sqrt{2\pi\tau}} \sim -\tau^{-1/2}
-$$
-
-**Transition layer width.** The region where delta transitions from 0 to 1 has width
-
-$$
-\delta S \sim S \cdot \sigma\sqrt{\tau}
-$$
-
-in spot space, or equivalently $\delta x \sim \sigma\sqrt{\tau}$ in log-moneyness $x = \ln(S/K)$.
+**Transition layer width.** The region where delta transitions from 0 to 1 has width $\delta S \sim S \cdot \sigma\sqrt{\tau}$ in spot space, or $\delta x \sim \sigma\sqrt{\tau}$ in log-moneyness $x = \ln(S/K)$ (see [§ Delta Behavior Near the Money](../greeks_asympt/delta_behavior_near_the_money.md)).
 
 ---
 

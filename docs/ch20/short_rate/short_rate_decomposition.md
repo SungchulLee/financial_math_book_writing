@@ -84,30 +84,11 @@ e^{-\int_t^T\psi(t')dt'+iu\psi(T)}
     \mathbb{E}^\mathbb{Q}\left[e^{-\int_t^T\tilde{r}(t')dt'+iu\tilde{r}(T)}\Big{|}{\cal F}(t)\right]\\
     \end{array}$$
 
-    The remaining expectation involves only $\tilde{r}$, which follows a simple Ornstein–Uhlenbeck process without the time-dependent $\theta$, making the computation tractable.
+    The remaining expectation involves the zero-mean OU process $\tilde{r}$ (Recall (see [§ Vasicek model](../../ch18/vasicek_model/vasicek_sde_and_ou_process.md))), making the computation tractable via the standard Vasicek affine functions $\tilde{A},\tilde{B}$.
 
 ## ZCB Price via Decomposition
 
-$$
-\displaystyle
-P(t,T)=e^{A(\tau)+B(\tau)r(t)}
-$$
-
-???+ note "Proof"
-
-    Setting $u=0$:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    P(0,T)
-    &=&\displaystyle
-    \phi(u=0;t=0,T=T)\\
-    &=&\displaystyle
-    \text{exp}\left(-\int_0^T\psi(z)dz+\tilde{A}(0,\tau)+\tilde{B}(0,\tau)\tilde r(0)\right)\\
-    &=&\displaystyle
-    \text{exp}\left(
-    -\int_0^T\left[r_0e^{-\lambda z}+\lambda\int_0^z\theta(z')e^{-\lambda(z-z')}dz'\right]dz+\tilde{A}(0,\tau)\right)
-    \end{array}$$
+Setting $u=0$ in the discounted characteristic function gives the affine ZCB price $P(t,T)=e^{A(\tau)+B(\tau)r(t)}$ (Recall (see [§ HW bond pricing](../bond_pricing/bond_price_formula.md)) for the explicit forms of $A,B$).
 
 ## Final Form of ψ
 

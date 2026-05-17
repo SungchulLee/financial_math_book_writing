@@ -4,7 +4,7 @@ The expectation-based derivation of the Hull-White bond price exploits the Gauss
 
 !!! info "Prerequisites"
 
-    - Hull-White SDE: $dr(t) = [\theta(t) - ar(t)]\,dt + \sigma\,dW^{\mathbb{Q}}(t)$
+    - HW SDE (see [§ Model Definition](../model_definition/hull_white_sde_and_mean_reversion.md))
     - Feynman-Kac theorem connecting conditional expectations to PDEs
     - Bond price formula from the expectation derivation (sibling section) for cross-verification
 
@@ -21,13 +21,7 @@ The expectation-based derivation of the Hull-White bond price exploits the Gauss
 
 ## From Feynman-Kac to the Bond Pricing PDE
 
-The zero-coupon bond price satisfies the risk-neutral pricing identity
-
-$$
-P(t,T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r(s)\,ds}\,\Big|\,\mathcal{F}(t)\right]
-$$
-
-By the Feynman-Kac theorem, any function $P(t,r)$ satisfying this conditional expectation also satisfies a backward PDE with the short rate dynamics providing the drift and diffusion coefficients.
+Recall (see [§ Risk-Neutral Pricing](../../ch04/risk_neutral/construction.md)) the bond price identity $P(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r(s)\,ds}\mid\mathcal{F}(t)]$. By the Feynman-Kac theorem, any function $P(t,r)$ satisfying this conditional expectation also satisfies a backward PDE with the short rate dynamics providing the drift and diffusion coefficients.
 
 !!! info "Theorem: Hull-White Bond Pricing PDE"
     Under the Hull-White model, the zero-coupon bond price $P(t,T)$ satisfies

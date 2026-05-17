@@ -1,6 +1,6 @@
 # Richardson Extrapolation
 
-Richardson extrapolation combines numerical solutions computed on two or more grids to cancel leading-order error terms, producing a more accurate approximation without redesigning the numerical scheme. It is a powerful and general technique for improving convergence order.
+If a method of order $p$ produces error $c_p h^p + O(h^{p+1})$, run it at two mesh sizes $h$ and $h/2$. The leading errors are $c_p h^p$ and $c_p h^p/2^p$ -- the *same* unknown constant $c_p$. Take the linear combination that kills $c_p h^p$ and you obtain an estimate accurate to $O(h^{p+1})$, *without* changing the scheme. That single algebraic trick is **Richardson extrapolation**, and iterating it climbs the convergence-order ladder for free.
 
 ---
 

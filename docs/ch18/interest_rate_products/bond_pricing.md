@@ -293,7 +293,7 @@ $$
 The discount factor $P(t,T)$ is the fundamental quantity from which all others derive. Zero rates $R(t,T)$ provide the term structure. The yield to maturity $y$ compresses the curve into a single number for each bond. Duration and convexity measure the sensitivity of bond prices to yield changes.
 
 !!! note "Connection to the short-rate framework"
-    Under a short-rate model $dr_t = \mu(t, r_t) \, dt + \sigma(t, r_t) \, dW_t$, the zero-coupon bond price satisfies $P(t,T) = \mathbb{E}_t^{\mathbb{Q}}[e^{-\int_t^T r_s \, ds}]$. The deterministic discount factor framework of this section is recovered in the limit of zero volatility ($\sigma \to 0$), where $P(t,T) = e^{-\int_t^T f(t,s) \, ds}$ with $f(t,s)$ the deterministic forward rate. The stochastic generalization is developed in the short-rate model sections of this chapter.
+    The stochastic generalization $P(t,T) = \mathbb{E}_t^{\mathbb{Q}}[e^{-\int_t^T r_s \, ds}]$ is developed in [§ General Short-Rate Framework](../short_rate_models/general_short_rate_framework.md); the deterministic framework of this section is the $\sigma \to 0$ limit.
 
 ---
 

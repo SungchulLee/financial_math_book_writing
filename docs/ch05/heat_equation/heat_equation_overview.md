@@ -1,6 +1,6 @@
 # The Heat Equation
 
-The heat equation is the canonical partial differential equation describing diffusion. It plays a central role in probability theory, stochastic processes, and mathematical finance, serving as the prototype for all parabolic PDEs.
+Take a tiny segment of a heated rod and ask how its temperature changes in the next instant. If each point relaxes toward the average of its neighbors, the rate of change is proportional to the local curvature -- the second spatial derivative. That single observation gives the heat equation, the canonical PDE of diffusion and the prototype for every parabolic equation in this book.
 
 ---
 
@@ -116,7 +116,11 @@ $$
 \max_x u(t,x) \leq \max_x f(x)
 $$
 
-The maximum temperature decreases over time (in the absence of sources).
+The maximum temperature decreases over time (in the absence of sources); see [§ Maximum Principle and Uniqueness](maximum_principle.md) for the precise statement and proof.
+
+### 6. Diffusive Spread
+
+Recall (see [§ The Scaling Relation: x ~ √t](scaling_and_invariance.md)): the characteristic spread grows as $\sqrt{t}$, not linearly -- the signature of diffusion.
 
 ---
 
@@ -128,13 +132,7 @@ $$
 \frac{\partial u}{\partial t} = \frac{1}{2}\Delta u = \frac{1}{2}\sum_{i=1}^d \frac{\partial^2 u}{\partial x_i^2}
 $$
 
-The fundamental solution becomes:
-
-$$
-G(t,x) = \frac{1}{(2\pi t)^{d/2}} \exp\left(-\frac{|x|^2}{2t}\right)
-$$
-
-This is the density of $d$-dimensional Brownian motion $B_t \in \mathbb{R}^d$.
+Recall (see [§ The Heat Kernel in Higher Dimensions](fundamental_solution.md)): the $d$-dimensional fundamental solution $G(t,x) = (2\pi t)^{-d/2}\exp(-|x|^2/(2t))$ is the density of $d$-dimensional Brownian motion.
 
 ---
 
@@ -156,16 +154,13 @@ $$
 
 ## Connection to Brownian Motion
 
-The heat equation is the analytical counterpart of Brownian motion: solutions can be written as expectations over Brownian paths, formalized by the **Feynman-Kac theorem**. See [Heat Equation and Brownian Motion](heat_equation_and_brownian_motion.md) for the full generator/martingale/density correspondence.
+Recall (see [§ The Fundamental Connection](heat_equation_and_brownian_motion.md)): solutions are expectations over Brownian paths, $u(t,x) = \mathbb{E}[f(x + B_t)]$, formalized by the [Feynman-Kac theorem](../feynman_kac/feynman_kac_formula.md).
 
 ---
 
 ## Historical Note
 
-- **Joseph Fourier** (1822): Derived the heat equation and introduced Fourier series to solve it
-- **Norbert Wiener** (1923): Constructed Brownian motion rigorously
-- **Andrey Kolmogorov** (1931): Connected diffusions to parabolic PDEs
-- **Mark Kac** (1949): Probabilistic interpretation of PDE solutions
+Recall (see [§ Historical Development](heat_equation_and_brownian_motion.md)): Fourier (1822), Wiener (1923), Kolmogorov (1931), and Kac (1949) provide the historical arc from the heat equation to its probabilistic representation.
 
 ---
 

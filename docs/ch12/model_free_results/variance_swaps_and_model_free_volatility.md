@@ -16,12 +16,7 @@ Key features:
 - Fair strike $K_{\text{var}}^*$ determined by replication arguments
 
 **Model-Free Replication**
-Under risk-neutral measure, realized variance can be replicated using:
-
-1. A log contract (payoff = $\ln S_T / S_0$) for the mean term
-2. A continuum of out-of-the-money options across all strikes for the variance term
-
-The replication formula:
+Under the risk-neutral measure, realized variance is replicated by a log contract plus a continuum of OTM options (see [§ VIX Formula Derivation](vix_formula_derivation.md) for the full log-contract / static-replication derivation):
 
 $$\text{Var}(S) = 2 \int_0^{\infty} \frac{C(K)}{K^2} dK - \frac{1}{T}\ln^2(F/S_0)$$
 
@@ -36,11 +31,7 @@ The variance risk premium: $\text{VRP} = \sigma_{\text{IV}}^2 - E^P[\text{RV}]$
 where the superscript denotes risk-neutral (Q) vs physical (P) measure.
 
 **Model-Free Implied Volatility**
-The VIX index computes model-free implied volatility from options:
-
-$$\text{VIX}^2 = \frac{2}{T}\int_0^{\infty} \frac{C(K)}{K^2} dK - \frac{1}{T}\ln^2(F/K_0)$$
-
-This is model-independent and directly observable from market option prices.
+Recall (see [§ VIX Formula Derivation](vix_formula_derivation.md)): the VIX index packages the variance-swap integral $(2/T)\int_0^\infty Q(K)/K^2\,dK$ minus a convexity correction $(1/T)(F/K_0 - 1)^2$ into a model-independent volatility number directly observable from market option prices.
 
 **Volatility Curve Construction**
 Variance swaps at different maturities trace out the variance curve:

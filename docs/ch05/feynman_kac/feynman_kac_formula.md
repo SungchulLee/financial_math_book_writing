@@ -90,47 +90,7 @@ $$
 
 ## Proof Sketch
 
-**Step 1**: Define the process
-
-$$
-Y_s = e^{-\int_t^s r(\tau, X_\tau)\,d\tau} u(s, X_s) + \int_t^s e^{-\int_t^\tau r(\xi, X_\xi)\,d\xi} f(\tau, X_\tau)\,d\tau
-$$
-
-**Step 2**: Apply Itô's lemma to $e^{-\int_t^s r\,d\tau} u(s, X_s)$:
-
-$$
-d\left(e^{-\int_t^s r\,d\tau} u\right) = e^{-\int_t^s r\,d\tau} \left[ -r\,u\,ds + du \right]
-$$
-
-where by Itô's lemma:
-
-$$
-du = \left( \frac{\partial u}{\partial s} + \mu \frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 u}{\partial x^2} \right) ds + \sigma \frac{\partial u}{\partial x} dW_s
-$$
-
-**Step 3**: Substitute the PDE (which says the bracketed term equals $ru - f$):
-
-$$
-d\left(e^{-\int_t^s r\,d\tau} u\right) = e^{-\int_t^s r\,d\tau} \left[ -ru + ru - f \right] ds + (\text{martingale term})
-$$
-
-$$
-= -e^{-\int_t^s r\,d\tau} f\,ds + (\text{martingale term})
-$$
-
-**Step 4**: Therefore $Y_s$ is a martingale (the $-f$ term cancels with the integral term).
-
-**Step 5**: By the martingale property:
-
-$$
-Y_t = \mathbb{E}[Y_T \mid \mathcal{F}_t]
-$$
-
-$$
-u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r\,d\tau} g(X_T) + \int_t^T e^{-\int_t^s r\,d\tau} f(s, X_s)\,ds \,\Big|\, X_t = x \right]
-$$
-
-$\square$
+Recall (see [§ Proof Sketch of the Feynman-Kac Formula](feynman_kac_proof_sketch.md)): apply Itô to the discounted process $Y_s = e^{-\int_t^s r\,d\tau} u(s, X_s) + \int_t^s e^{-\int_t^\tau r\,d\xi} f(\tau, X_\tau)\,d\tau$; the PDE makes its drift vanish, so $Y_s$ is a martingale, and $Y_t = \mathbb{E}[Y_T \mid \mathcal{F}_t]$ yields the representation. $\square$
 
 ---
 
@@ -154,24 +114,7 @@ where $\mathcal{L}$ is the generator of $X_t$.
 
 ## Connection to the Infinitesimal Generator
 
-The PDE in Feynman–Kac can be written compactly as:
-
-$$
-\frac{\partial u}{\partial t} + \mathcal{L}u - ru + f = 0
-$$
-
-where the **infinitesimal generator** is:
-
-$$
-\mathcal{L} = \mu(t,x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2}{\partial x^2}
-$$
-
-**Interpretation**:
-
-- $\frac{\partial u}{\partial t}$: Time evolution
-- $\mathcal{L}u$: Spatial diffusion (drift + volatility)
-- $-ru$: Discounting/killing
-- $f$: Source/running payoff
+Recall (see [§ Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md)): writing $\mathcal{L} = \mu\,\partial_x + \tfrac12\sigma^2\,\partial_{xx}$, the FK PDE compresses to $\partial_t u + \mathcal{L}u - ru + f = 0$ — time evolution ($\partial_t u$) + spatial diffusion ($\mathcal{L}u$) − discounting/killing ($ru$) + running payoff ($f$).
 
 ---
 
@@ -255,45 +198,13 @@ $$
 
 ## Multidimensional Feynman–Kac
 
-For an $\mathbb{R}^d$-valued diffusion:
-
-$$
-dX_t^i = \mu^i(t, X_t)\,dt + \sigma^{i\alpha}(t, X_t)\,dW_t^\alpha
-$$
-
-The Feynman–Kac PDE becomes:
-
-$$
-\frac{\partial u}{\partial t} + \mu^i \frac{\partial u}{\partial x^i} + \frac{1}{2}a^{ij}\frac{\partial^2 u}{\partial x^i \partial x^j} - ru + f = 0
-$$
-
-where $a^{ij} = \sigma^{i\alpha}\sigma^{j\alpha}$ is the diffusion matrix.
+For an $\mathbb{R}^d$-valued diffusion $dX_t^i = \mu^i\,dt + \sigma^{i\alpha}\,dW_t^\alpha$, the PDE becomes $\partial_t u + \mu^i \partial_i u + \tfrac12 a^{ij}\partial_{ij} u - ru + f = 0$ with diffusion matrix $a^{ij} = \sigma^{i\alpha}\sigma^{j\alpha}$. Recall (see [§ Options on Multiple Assets (Rainbow Options)](feynman_kac_option_pricing.md#options-on-multiple-assets-rainbow-options)) for the financial form with correlated $W^i, W^j$.
 
 ---
 
 ## Numerical Methods: Monte Carlo vs PDE
 
-The Feynman–Kac formula enables two numerical approaches:
-
-### Monte Carlo (SDE-based)
-
-1. Simulate $N$ paths of $X_t$
-2. Compute average of $e^{-\int r\,ds} g(X_T)$
-3. Estimate: $\hat{u} = \frac{1}{N}\sum_{i=1}^N e^{-\int_t^T r(s, X_s^{(i)})\,ds} g(X_T^{(i)})$
-
-**Advantages**: High dimensions, complex payoffs, path-dependent options
-
-**Disadvantages**: Slow convergence ($O(1/\sqrt{N})$), variance reduction needed
-
-### Finite Differences (PDE-based)
-
-1. Discretize the PDE on a grid
-2. Solve backward from terminal condition
-3. Interpolate to get $u(t, x)$
-
-**Advantages**: Fast for low dimensions, all option values at once
-
-**Disadvantages**: Curse of dimensionality, complex boundaries difficult
+Recall (see [§ The PDE–Monte Carlo Duality](feynman_kac_option_pricing.md#the-pde-monte-carlo-duality)): Feynman–Kac yields two equivalent routes — Monte Carlo on the SDE ($O(1/\sqrt{N})$, dimension-free, best for high-$d$ / path-dependent payoffs) and finite differences on the PDE (fast in low $d$, returns the full grid and Greeks, but suffers the curse of dimensionality).
 
 ---
 
@@ -340,70 +251,14 @@ $$
 
 ---
 
-## QuantPie Derivation
-
-### Proof via Martingale Methods
-
-**Define the process:**
-
-$$
-Y(s) = e^{-\int_t^s V(X_\tau, \tau)d\tau} u(X_s, s) + \int_t^s e^{-\int_t^r V(X_\tau, \tau)d\tau} f(X_r, r)dr
-$$
-
-where $u$ solves the PDE:
-
-$$
-\frac{\partial u}{\partial t} + \mu(t,x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2 u}{\partial x^2} - V(t,x)u + f(t,x) = 0
-$$
-
-**Applying Itô's Lemma** to the first term:
-
-$$
-d\left(e^{-\int_t^s V d\tau}\right) = -V(X_s, s)e^{-\int_t^s V d\tau}ds
-$$
-
-$$
-du(X_s, s) = \left(\frac{\partial u}{\partial s} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right)ds + \sigma\frac{\partial u}{\partial x}dW_s
-$$
-
-**Computing $dY$:**
-
-$$
-dY = e^{-\int_t^s V d\tau}\left[-Vu + du\right] + e^{-\int_t^s V d\tau}f ds + (\text{higher order})
-$$
-
-$$
-= e^{-\int_t^s V d\tau}\left[-Vu + \frac{\partial u}{\partial s} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} + f\right]ds + (\text{martingale})
-$$
-
-**The bracketed term equals zero by the PDE**, leaving only the martingale part:
-
-$$
-dY = e^{-\int_t^s V d\tau}\sigma\frac{\partial u}{\partial x}dW_s
-$$
-
-**Therefore $Y(s)$ is a martingale:**
-
-$$
-Y(t) = \mathbb{E}[Y(T) | \mathcal{F}_t]
-$$
-
-$$
-u(t, x) = \mathbb{E}\left[e^{-\int_t^T V d\tau}u(X_T, T) + \int_t^T e^{-\int_t^s V d\tau}f(X_s, s)ds \,\Big|\, X_t = x\right]
-$$
-
-### Examples: Diffusion Equations
-
-Worked heat-equation examples (pure diffusion and drifted diffusion with terminal condition $u(T,x) = x^2$) are in [Feynman–Kac Applications](feynman_kac_applications.md).
-
-### Key Insight
+## Key Insight
 
 The Feynman-Kac formula shows that **solving the PDE is equivalent to computing an expectation**. This opens two computational paths:
 
 1. **Analytical:** Solve the PDE directly (finite differences, separation of variables)
 2. **Probabilistic:** Simulate the SDE and average payoffs (Monte Carlo)
 
-Each approach has advantages depending on dimensionality and problem structure.
+Each approach has advantages depending on dimensionality and problem structure. Worked heat-equation examples (pure diffusion and drifted diffusion with $u(T,x) = x^2$) are in [§ Feynman–Kac Applications](feynman_kac_applications.md).
 
 ---
 

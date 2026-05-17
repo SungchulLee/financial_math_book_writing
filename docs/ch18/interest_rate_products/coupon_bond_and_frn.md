@@ -1,6 +1,8 @@
 # Coupon-Bearing Bond and Floating-Rate Note
 
-A **coupon-bearing bond** (CB) pays a fixed coupon at regular intervals plus the principal at maturity. Its value is the present value of these known cash flows. A **floating-rate note** (FRN) is a bond whose coupon resets to the current market rate at each payment date. Because the coupon always reflects prevailing rates, the FRN reprices to par immediately after each reset — a key property that simplifies swap valuation.
+All interest rate derivatives are ultimately priced using discount factors. A **coupon-bearing bond** (CB) pays a fixed coupon at regular intervals plus the principal at maturity. Its value is the present value of these known cash flows. A **floating-rate note** (FRN) is a bond whose coupon resets to the current market rate at each payment date. Because the coupon always reflects prevailing rates, the FRN reprices to par immediately after each reset — a key property that simplifies swap valuation.
+
+Recall (see [§ Bond Pricing](bond_pricing.md)): the general present-value formula $B(t) = \sum_k c_k P(t, T_k)$ prices any bond from its discount factors. The CB below is the case of constant fractional coupons with principal repaid at maturity; the FRN is its floating-rate counterpart.
 
 ---
 
@@ -12,15 +14,17 @@ $$
 \text{CB}(t, \mathcal{T}, N, c) = Nc\sum_{k=m+1}^{n} \tau_k P(t, T_k) + N P(t, T_n)
 $$
 
-Equivalently, defining the total cash flow at each date as $C_k = Nc\tau_k$ for $k < n$ and $C_n = Nc\tau_n + N$:
+Equivalently, defining the total cash flow at each date as $C_k = Nc\tau_k$ for $k < n$ and $C_n = Nc\tau_n + N$ (so the final cash flow includes principal repayment):
 
 $$
 \text{CB}(t, \mathcal{T}, N, c) = \sum_{k=m+1}^{n} C_k P(t, T_k)
 $$
 
+The two terms separate the coupon annuity from the principal repayment, mirroring the decomposition in [§ Bond Pricing](bond_pricing.md).
+
 ## Floating-Rate Note
 
-At any reset date $T_m$, the FRN is worth par because its future coupons will reset to the prevailing market rate. At time $t$, its value is that par value discounted back from the next reset date:
+At a reset date $T_m$, the FRN is worth par: its future coupons will reset to the prevailing market rate, so the present value of the floating-coupon stream plus principal exactly equals $N$. At time $t < T_m$, the FRN value is simply that par value discounted back from the next reset date:
 
 $$
 \text{FRN}(t, \mathcal{T}, N) = N P(t, T_m)
@@ -28,7 +32,7 @@ $$
 
 ???+ note "Proof"
 
-    A floating-rate note is a Payer IRS with $K=0$ plus the principle $N$ available at $T_n$. So the value of this floating-rate note is
+    A floating-rate note is a Payer IRS with $K=0$ plus the principal $N$ paid at $T_n$. Using the IRS valuation identity from [§ Interest Rate Swap](interest_rate_swap.md):
 
     $$\begin{array}{lll}
     {\bf\text{FRN}}(t,{\cal T},N)
@@ -42,18 +46,20 @@ $$
 
 ## Interest Rate Swap Valuation in Terms of FRN and CB
 
+Recall (see [§ Interest Rate Swap](interest_rate_swap.md)): the payer IRS value reduces to $N\sum_k (L(t,T_{k-1},T_k)-K)\tau_k P(t,T_k)$. Rearranging the floating-leg telescoping sum reveals a clean decomposition in terms of the two building blocks defined above:
+
 $$\begin{array}{lllllllll}
 \displaystyle
 {\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K)
 &=&
-N\sum_{k=m+1}^n\left(l_k(t)-K\right)\tau_kP(t,T_k)\\
+N\sum_{k=m+1}^n\left(L(t,T_{k-1},T_k)-K\right)\tau_kP(t,T_k)\\
 &=&
 NP(t,T_m)-N\left(P(t,T_n)+\sum_{k=m+1}^n K\tau_k P(t,T_k)\right)\\
 &=&
-{\bf\text{FRN}}(t,{\cal T},N)-{\bf\text{CB}}(t,{\cal T},N,{\cal C}=(K\tau_k))\\
+{\bf\text{FRN}}(t,{\cal T},N)-{\bf\text{CB}}(t,{\cal T},N,{\cal C}=(K\tau_k))
 \end{array}$$
 
-The two legs of an IRS are two fundamental interest rate contracts. The fixed leg is a coupon-bearing bond (minus the principle at the end), and the floating leg is a floating-rate note (minus the principle at the end). Thus, an IRS is a swap contract exchanging the coupon-bearing bond for the floating-rate note.
+The two legs of an IRS are two fundamental interest rate contracts. The fixed leg is a coupon-bearing bond (minus the principal at the end), and the floating leg is a floating-rate note (minus the principal at the end). Thus, an IRS is a swap contract exchanging the coupon-bearing bond for the floating-rate note.
 
 *Adopted from Page 14 of Interest Rate Models - Theory and Practice by Damiano Brigo & Fabio Mercurio*
 
@@ -93,7 +99,7 @@ The two legs of an IRS are two fundamental interest rate contracts. The fixed le
 
 ??? success "Solution to Exercise 2"
 
-    **Backward induction argument.** Let the FRN have face value $N$, payment dates $T_1, T_2, \ldots, T_n$ with $\tau_k = T_k - T_{k-1}$, and floating rate $l_k(T_{k-1})$ set at $T_{k-1}$ and paid at $T_k$.
+    **Backward induction argument.** Let the FRN have face value $N$, payment dates $T_1, T_2, \ldots, T_n$ with $\tau_k = T_k - T_{k-1}$, and floating rate $L(T_{k-1}, T_{k-1}, T_k)$ set at $T_{k-1}$ and paid at $T_k$.
 
     *Step 1 (terminal value).* At $T_n$, the FRN pays $N + N\tau_n l_n(T_{n-1})$. Just before this payment, the value is $N(1 + \tau_n l_n(T_{n-1}))$.
 
@@ -103,18 +109,18 @@ The two legs of an IRS are two fundamental interest rate contracts. The fixed le
     V(T_{n-1}) = \frac{N(1 + \tau_n l_n(T_{n-1}))}{1 + \tau_n l_n(T_{n-1})} = N
     $$
 
-    *Step 3 (induction).* At any reset date $T_{k-1}$, the FRN holder receives the coupon $N\tau_k l_k(T_{k-1})$ at $T_k$ and the FRN is again worth $N$ at $T_k$ (by induction). Therefore:
+    *Step 3 (induction).* At any reset date $T_{k-1}$, the FRN holder receives the coupon $N\tau_k L(T_{k-1}, T_{k-1}, T_k)$ at $T_k$ and the FRN is again worth $N$ at $T_k$ (by induction). Therefore:
 
     $$
-    V(T_{k-1}) = \frac{N\tau_k l_k(T_{k-1}) + N}{1 + \tau_k l_k(T_{k-1})} = N
+    V(T_{k-1}) = \frac{N\tau_k L(T_{k-1}, T_{k-1}, T_k) + N}{1 + \tau_k L(T_{k-1}, T_{k-1}, T_k)} = N
     $$
 
     By induction, $V(T_k) = N$ at every reset date.
 
-    **Between reset dates.** At time $t$ where $T_{k-1} < t < T_k$, the next cash flow at $T_k$ is already fixed at $N(1 + \tau_k l_k(T_{k-1}))$. The FRN value is:
+    **Between reset dates.** At time $t$ where $T_{k-1} < t < T_k$, the next cash flow at $T_k$ is already fixed at $N(1 + \tau_k L(T_{k-1}, T_{k-1}, T_k))$. The FRN value is:
 
     $$
-    V(t) = N(1 + \tau_k l_k(T_{k-1})) \cdot P(t, T_k)
+    V(t) = N(1 + \tau_k L(T_{k-1}, T_{k-1}, T_k)) \cdot P(t, T_k)
     $$
 
     This generally differs from $N$ because the discount factor $P(t, T_k)$ reflects current rates, while the coupon was fixed at $T_{k-1}$. The FRN trades at a "dirty price" that includes accrued floating interest, and it returns to par at each reset date.
@@ -217,7 +223,7 @@ The two legs of an IRS are two fundamental interest rate contracts. The fixed le
 
     Specifically:
 
-    - The **floating leg** of the swap (receiving floating) corresponds to holding the FRN, which pays $N\tau_k l_k(T_{k-1})$ at each $T_k$.
+    - The **floating leg** of the swap (receiving floating) corresponds to holding the FRN, which pays $N\tau_k L(T_{k-1}, T_{k-1}, T_k)$ at each $T_k$.
     - The **fixed leg** of the swap (paying fixed) corresponds to shorting the coupon bond, which requires paying $NK\tau_k$ at each $T_k$.
 
     **Interest rate risk implications.** This decomposition reveals the risk profile of a payer swap:

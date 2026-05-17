@@ -1,5 +1,7 @@
 # Digital Option Pricing via Girsanov's Theorem
 
+The digital is the cleanest possible payoff: it pays $\$1$ if the stock finishes above $K$, and nothing otherwise. Stripped of the "how far in the money" question, its time-$0$ price is *literally* the discounted risk-neutral exercise probability — exactly the second term of the Black–Scholes call formula divided by $K$. This pages explores three consequences of that observation: (i) the digital is the strike-derivative of the standard call, (ii) differentiating once more recovers the implied risk-neutral density (Breeden–Litzenberger), and (iii) the diverging hedge ratio near expiry forces practitioners to replace the digital by a tight call spread.
+
 !!! info "Where this fits"
     - **Roadmap row(s):** Strike-space; also Probability through $\mathcal{N}(d_2)$.
     - **Builds on:** [The Black-Scholes formula](bs_formula_statement.md) (the call price differentiated in $K$) and [Properties and bounds](properties_and_bounds.md) (strike monotonicity).
@@ -21,19 +23,7 @@ Unlike a standard European call, which pays the excess $(S_T - K)^+$, the digita
 
 ## Risk-Neutral Pricing
 
-*Section goal: pricing the digital under the risk-neutral measure $\mathbb{Q}$.*
-
-Under the risk-neutral measure $\mathbb{Q}$, the price of any derivative is the discounted expected payoff:
-
-$$
-D_0 := \mathbb{E}^{\mathbb{Q}}\left[ e^{-rT} \mathbf{1}_{\{S_T > K\}} \right]
-= e^{-rT}\, \mathbb{Q}(S_T > K)
-= e^{-rT}\, \mathcal{N}(d_2)
-$$
-
-The probabilistic interpretation of $\mathcal{N}(d_2)$ as the risk-neutral exercise probability is developed in [Probabilistic Interpretation](probabilistic_interpretation.md); we use only the resulting formula here.
-
-This is the fair price of a digital call option paying $1$ at maturity $T$ if $S_T > K$.
+Recall (see [§ Risk-Neutral Valuation Principle](../../ch04/risk_neutral/risk_neutral_valuation_principle.md) and [§ Probabilistic Interpretation](probabilistic_interpretation.md)): $D_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\mathbf{1}_{\{S_T>K\}}] = e^{-rT}\mathbb{Q}(S_T>K) = e^{-rT}\mathcal{N}(d_2)$, the fair price of a digital call paying $1$ at maturity if $S_T > K$.
 
 ---
 
@@ -91,7 +81,10 @@ $$
 \frac{\partial^2 C_0}{\partial K^2} = -e^{-rT}\,\frac{\partial}{\partial K}\int_K^{\infty} f^{\mathbb{Q}}_{S_T}(s)\,ds = e^{-rT}\,f^{\mathbb{Q}}_{S_T}(K)
 $$
 
-Rearranging gives the formula above. The structure is now transparent: $C_0(K)$ is a *double* integral of the density (an integral of the survival function, itself an integral of $f$, weighted by the payoff ramp), so two strike-derivatives strip away both integrations and expose the density directly.
+Rearranging gives the formula above. The structure is now transparent: $C_0(K)$ is a *double* integral of the density (an integral of the survival function, itself an integral of $f$, weighted by the payoff ramp), so two strike-derivatives strip away both integrations and expose the density directly. In summary:
+
+- first strike-derivative $\;\to\;$ tail probability $\mathbb{Q}(S_T > K)$,
+- second strike-derivative $\;\to\;$ the density $f^{\mathbb{Q}}_{S_T}(K)$ itself.
 
 This is one of the deepest connections between option markets and probability theory—it shows that a complete set of call prices implicitly encodes the entire risk-neutral distribution.
 

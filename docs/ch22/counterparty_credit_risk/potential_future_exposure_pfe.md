@@ -237,43 +237,13 @@ $$
 
 ## PFE with Collateral
 
-Under a collateral agreement with threshold $H$:
-
-$$
-E_t^{\text{coll}} = \max(V_t - C_{t-\Delta}, 0)
-$$
-
-where $\Delta$ is the margin period of risk (MPOR).
-
-**Collateralized PFE:**
-
-$$
-\text{PFE}_\alpha^{\text{coll}}(t) = \text{Quantile}_\alpha(E_t^{\text{coll}})
-$$
-
-**Effect:** Collateral significantly reduces PFE but:
-
-- MPOR creates residual exposure
-- Threshold $H$ creates a floor
-- Collateral disputes can increase effective MPOR
+Recall (see [§ Netting and Collateral](netting_and_collateral.md)): under a CSA with threshold $H$ and MPOR $\Delta$, the collateralized exposure is $E_t^{\text{coll}}=(V_t-C_{t-\Delta})^+$, so $\text{PFE}_\alpha^{\text{coll}}(t)=\text{Quantile}_\alpha(E_t^{\text{coll}})$. Collateral sharply reduces PFE, but MPOR creates residual exposure and threshold $H$ creates a floor.
 
 ---
 
 ## Wrong-Way Risk and PFE
 
-When exposure and default probability are correlated:
-
-$$
-\text{PFE}^{\text{WWR}}_\alpha(t) > \text{PFE}_\alpha(t)
-$$
-
-**Treatment:**
-
-- Stressed PFE calculations
-- Explicit correlation modeling
-- Conservative add-ons
-
-See [Wrong-Way Risk](wrong_way_risk.md) for details.
+Recall (see [§ Wrong-Way Risk](wrong_way_risk.md)): when exposure and default probability are positively correlated, $\text{PFE}^{\text{WWR}}_\alpha(t)>\text{PFE}_\alpha(t)$, addressed via stressed PFE, explicit correlation modeling, or conservative add-ons.
 
 ---
 

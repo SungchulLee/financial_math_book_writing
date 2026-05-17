@@ -94,30 +94,17 @@ $$
 
 **Step 2: Backward recursion** ($n = N-1, N-2, \ldots, 0$)
 
-At each node $(n, j)$, the option value is the discounted risk-neutral expectation:
+At each node $(n, j)$, treat the next period as a one-period model with up-state payoff $V_{n+1,j+1}$ and down-state payoff $V_{n+1,j}$. Applying the one-period risk-neutral formula $V_0 = e^{-r\Delta t}[qH_u + (1-q)H_d]$ (see [§ Risk-Neutral Measure](../binomial_model/risk_neutral_measure.md)) gives:
 
 $$
 \boxed{V_{n,j} = e^{-r\Delta t}\left[qV_{n+1,j+1} + (1-q)V_{n+1,j}\right]}
 $$
 
-where $q = \frac{e^{r\Delta t} - d}{u - d}$.
+where $q = (e^{r\Delta t} - d)/(u - d)$ is the risk-neutral probability derived in the [§ Binomial Model](../binomial_model/binomial_model.md). Note that $q$ depends only on $u, d, r, \Delta t$ — the same value applies at every node.
 
 **Step 3: Output**
 
 The option price is $V_{0,0}$.
-
-### Why Backward Induction Works
-
-At each node, we apply the one-period pricing formula. The option at node $(n,j)$ is a one-period claim with:
-
-- Up-state payoff: $V_{n+1,j+1}$
-- Down-state payoff: $V_{n+1,j}$
-
-By risk-neutral pricing:
-
-$$
-V_{n,j} = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[V_{n+1} \mid \text{at node } (n,j)]
-$$
 
 ---
 
@@ -125,34 +112,15 @@ $$
 
 ### The Hedging Strategy
 
-At each node $(n, j)$, we construct a **locally replicating portfolio**:
+At each node $(n, j)$, we construct a **locally replicating portfolio**: $\Delta_{n,j}$ shares of stock and $B_{n,j}$ units of bond, chosen to replicate the option over the next period.
 
-- Hold $\Delta_{n,j}$ shares of stock
-- Hold $B_{n,j}$ units of bond (cash)
-
-The portfolio replicates the option over the next period.
-
-### Computing Delta at Each Node
-
-From the one-period hedging formula:
+Recall (see [§ Replicating Portfolio](../binomial_model/replicating_portfolio.md)) the one-period replication formulas applied locally at node $(n,j)$:
 
 $$
-\boxed{\Delta_{n,j} = \frac{V_{n+1,j+1} - V_{n+1,j}}{S_{n,j}(u - d)}}
+\boxed{\Delta_{n,j} = \frac{V_{n+1,j+1} - V_{n+1,j}}{S_{n,j}(u - d)}, \qquad B_{n,j} = V_{n,j} - \Delta_{n,j}\, S_{n,j}}
 $$
 
-This is the **local hedge ratio**—the number of shares to hold at node $(n,j)$.
-
-### Computing the Cash Position
-
-$$
-\boxed{B_{n,j} = e^{-r\Delta t}\left(V_{n+1,j+1} - \Delta_{n,j} \cdot uS_{n,j}\right)}
-$$
-
-Or equivalently:
-
-$$
-B_{n,j} = V_{n,j} - \Delta_{n,j} \cdot S_{n,j}
-$$
+The novelty in the multi-period setting is that $(\Delta_{n,j}, B_{n,j})$ now varies node by node, so the portfolio must be **rebalanced** each period.
 
 ### The Rebalancing Process
 

@@ -110,39 +110,7 @@ dynamics under $\mathbb{Q}^T$, LIBOR forward rates, and caplet pricing.
 
 ## Example: Black's Formula
 
-### Setup
-
-Price a European call on a forward contract with strike $K$ and maturity $T$.
-
-### Under Risk-Neutral Measure Q
-
-$$
-C_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}(F_T - K)^+ \mid \mathcal{F}_t\right]
-$$
-
-This requires modeling the joint distribution of $r$ and $F$.
-
-### Under Forward Measure Q^T
-
-$$
-C_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(F_T - K)^+ \mid \mathcal{F}_t]
-$$
-
-If $F_t$ is log-normal under $\mathbb{Q}^T$ with volatility $\sigma_F$:
-
-$$
-\boxed{
-C_t = P(t,T)[F_t\mathcal{N}(d_1) - K\mathcal{N}(d_2)]
-}
-$$
-
-where:
-
-$$
-d_1 = \frac{\ln(F_t/K) + \frac{1}{2}\sigma_F^2(T-t)}{\sigma_F\sqrt{T-t}}, \quad d_2 = d_1 - \sigma_F\sqrt{T-t}
-$$
-
-This is **Black's formula** (1976).
+Recall (see [§ Forward Measure, Caplet Pricing](forward_measure.md#caplet-pricing) and [§ Forward Contract](forward_measure.md#example-forward-contract)): switching to the $T$-forward measure turns $C_t = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds}(F_T-K)^+ \mid \mathcal{F}_t]$ into $C_t = P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[(F_T-K)^+ \mid \mathcal{F}_t]$, which evaluates to the Black (1976) formula $C_t = P(t,T)[F_t\mathcal{N}(d_1)-K\mathcal{N}(d_2)]$ when $F$ is log-normal under $\mathbb{Q}^T$.
 
 ---
 
@@ -186,27 +154,17 @@ and $\sigma^2 = \sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2$.
 
 ## Dynamics Under Different Measures
 
-### Under Money Market Numéraire (Q)
+Recall (see [§ Construction of $\mathbb{Q}$](construction.md#risk-neutral-dynamics)) under $\mathbb{Q}$: $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$.
 
-$$
-dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
+Recall (see [§ Forward Measure, Asset Dynamics](forward_measure.md#asset-dynamics)) under $\mathbb{Q}^T$: $dS_t = (r + \sigma\sigma_P\rho_{S,P})S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^T}$.
 
-### Under Forward Measure (Q^T)
-
-$$
-dS_t = (r + \sigma\sigma_P\rho_{SP})S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^T}
-$$
-
-where $\sigma_P$ is bond volatility and $\rho_{SP}$ is stock-bond correlation.
-
-### Under Stock Measure (Q^S)
+Under the **stock measure** $\mathbb{Q}^S$ (numéraire $S_t$), the drift acquires the convexity adjustment $\sigma^2$:
 
 $$
 dS_t = (r + \sigma^2)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^S}
 $$
 
-The drift increases by $\sigma^2$ (the "convexity adjustment").
+(derived from $d\mathbb{Q}^S/d\mathbb{Q} = S_T/(S_0 B_T)$; see Exercise 5).
 
 ---
 

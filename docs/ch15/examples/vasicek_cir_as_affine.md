@@ -1,6 +1,6 @@
 # Vasicek and CIR as Affine
 
-The Vasicek and Cox-Ingersoll-Ross (CIR) models are the two canonical one-factor short-rate models, and both are affine processes. They illustrate the two fundamental cases of the affine framework: constant diffusion (Gaussian dynamics, Vasicek) and state-dependent diffusion (square-root dynamics, CIR). This section embeds both models in the affine framework, identifies the functions $F$ and $R$, derives the bond pricing Riccati solutions, and contrasts the two models systematically.
+The Vasicek and Cox-Ingersoll-Ross (CIR) models are the two canonical one-factor short-rate models, and both are affine processes. They illustrate the two fundamental cases of the affine framework: constant diffusion (Gaussian dynamics, Vasicek) and state-dependent diffusion (square-root dynamics, CIR). This section embeds both models in the affine framework, identifies the functions $F$ and $R$, derives the bond pricing Riccati solutions, and contrasts the two models systematically. For complete model treatments, see [Vasicek](../../ch18/vasicek_model/bond_options_jamshidian.md) and [CIR](../../ch18/cir_model/bond_options.md).
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
@@ -48,19 +48,17 @@ Affine parameters:
 
 ### Functions F and R
 
-$$
-F(w) = \kappa\theta\,w + \frac{1}{2}\sigma^2 w^2
-$$
+Recall (see [characteristic function](../characteristic_function/characteristic_function.md)) the $F$, $R$ definitions. For Vasicek:
 
 $$
-R(w) = -\kappa\,w
+F(w) = \kappa\theta\,w + \tfrac{1}{2}\sigma^2 w^2, \qquad R(w) = -\kappa\,w
 $$
 
-Since $a_1 = 0$, the function $R$ is linear---the Riccati equation degenerates to a first-order linear ODE.
+Since $a_1 = 0$, $R$ is linear---the Riccati equation degenerates to a first-order linear ODE.
 
 ### Bond Pricing Riccati System
 
-With $\rho_0 = 0$ and $\rho_1 = 1$, the extended Riccati for bond pricing is:
+Recall (see [ATSM bond pricing](../affine_term_structure/bond_pricing_affine_framework.md)) the extended Riccati system $B' = R(B) - \rho_1$, $A' = F(B) - \rho_0$. For Vasicek ($\rho_0 = 0$, $\rho_1 = 1$):
 
 $$
 B'(\tau) = R(B(\tau)) - 1 = -\kappa B(\tau) - 1, \qquad B(0) = 0
@@ -127,15 +125,13 @@ Affine parameters:
 
 ### Functions F and R
 
-$$
-F(w) = \kappa\theta\,w
-$$
+For CIR:
 
 $$
-R(w) = -\kappa\,w + \frac{1}{2}\xi^2 w^2
+F(w) = \kappa\theta\,w, \qquad R(w) = -\kappa\,w + \tfrac{1}{2}\xi^2 w^2
 $$
 
-Since $a_1 = \xi^2 \neq 0$, the function $R$ is quadratic---a genuine Riccati equation.
+Since $a_1 = \xi^2 \neq 0$, $R$ is quadratic---a genuine Riccati equation.
 
 ### Feller Condition
 
@@ -148,6 +144,8 @@ $$
 When violated, the process can reach zero but is instantaneously reflected. This condition translates to the admissibility requirement $(b_0)_1 = \kappa\theta > 0$ being strong enough relative to the diffusion.
 
 ### Bond Pricing Riccati System
+
+The extended Riccati for bond pricing (see [ATSM bond pricing](../affine_term_structure/bond_pricing_affine_framework.md)) becomes:
 
 $$
 B'(\tau) = -\kappa B(\tau) + \frac{1}{2}\xi^2 B(\tau)^2 - 1, \qquad B(0) = 0

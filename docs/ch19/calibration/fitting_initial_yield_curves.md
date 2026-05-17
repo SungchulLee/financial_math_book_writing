@@ -35,9 +35,9 @@ Modern practice treats curve construction as a pre-model step.
 
 Common approaches to enforce exact fit include:
 
-- **Deterministic shifts:** add a time-dependent drift (e.g. Hull–White extension),
-- **Initial term-structure fitting:** calibrate model functions to match $P(0,T)$,
-- **HJM framework:** exact fit is automatic by construction.
+- **Deterministic shifts:** add a time-dependent drift. Recall (see [§ Short-rate models](../../ch18/short_rate_models/affine_term_structure.md)) for the Hull–White extension $\theta(t)$.
+- **Initial term-structure fitting:** calibrate model functions to match $P(0,T)$.
+- **HJM framework:** exact fit is automatic by construction. Recall (see [§ HJM](../hjm/forward_rate_dynamics.md)).
 
 Exact fit is essential for pricing curve-sensitive products.
 

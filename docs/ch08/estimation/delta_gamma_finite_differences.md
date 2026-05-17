@@ -1,6 +1,6 @@
 # Delta and Gamma via Finite Differences
 
-Delta ($\Delta$) and gamma ($\Gamma$) are the most important spatial Greeks for hedging. Finite difference methods provide two natural approaches for estimating them: direct extraction from the solution grid and the bump-and-revalue method. Each has distinct accuracy and cost characteristics.
+Once the FDM has produced the price grid $\{V_i\}$, two spatial Greeks fall out for free. Apply central differences in $S$ to obtain $\Delta_i=(V_{i+1}-V_{i-1})/(2\Delta S)$ and $\Gamma_i=(V_{i+1}-2V_i+V_{i-1})/(\Delta S)^2$ -- one extra pass over the grid, no extra PDE solve. The alternative is to bump $S$ by $\delta$, re-solve, and difference: more expensive, but useful when grid extraction is inaccurate (near the kink) or unavailable (Monte Carlo). This page compares the two on accuracy and cost.
 
 ---
 
@@ -161,57 +161,13 @@ $$
 
 ## Grid Placement and the Strike
 
-### The Problem
-
-Option payoffs have a kink at $S = K$. Near the strike, delta changes rapidly and gamma has a peak. If the grid does not resolve this region well, Greek estimates suffer.
-
-### Node at the Strike
-
-Placing a grid node exactly at $S = K$ ensures that the delta and gamma estimates near the strike use the most accurate values. This is achieved by choosing $\Delta S$ such that $K / \Delta S$ is an integer.
-
-### Staggered Grid
-
-If $K$ falls between two nodes $S_j$ and $S_{j+1}$, the central difference for delta at the strike requires interpolation, introducing additional error. The gamma estimate is particularly sensitive because it involves a **second** difference that amplifies the payoff kink.
-
-### Non-Uniform Grids
-
-Concentrating grid points near $K$ while using coarser spacing far from the strike improves Greek accuracy without excessive computational cost. A common choice is a sinh or tanh stretching that clusters points near $K$.
+Recall (see [§ Accuracy and Grid Sensitivity](accuracy_and_grid_sensitivity.md)): place a node at $S=K$ to capture the payoff kink exactly; otherwise the gamma stencil smears the kink and convergence degrades. Sinh/tanh stretching concentrates points near $K$ while keeping the far field coarse.
 
 ---
 
 ## The Theta-Gamma-Delta Relation
 
-The Black-Scholes PDE provides a consistency check for numerically computed Greeks. At any point $(t, S)$ where the PDE holds:
-
-$$
-\boxed{\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV}
-$$
-
-where $\Theta = \partial V / \partial t$.
-
-### Using the PDE as a Check
-
-After computing $\Delta$, $\Gamma$, and $\Theta$ from the grid:
-
-$$
-\text{Residual} = \Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma - rV
-$$
-
-This residual should be close to zero. A large residual indicates:
-
-- Insufficient grid resolution
-- Boundary condition contamination
-- Implementation error
-
-### Using the PDE to Compute Theta
-
-Alternatively, if delta and gamma are computed accurately from the spatial grid, theta can be obtained from the PDE without using the time direction:
-
-$$
-\Theta = rV - rS\Delta - \frac{1}{2}\sigma^2 S^2 \Gamma
-$$
-
-This avoids the time-differencing error inherent in computing theta directly from two time levels.
+Recall (see [BS PDE structure](../../ch06/bs_pde_structure/discounting_and_killing_term.md)): the Black-Scholes PDE $\Theta + rS\Delta + \tfrac{1}{2}\sigma^2 S^2 \Gamma = rV$ provides both a residual consistency check on numerically computed Greeks and a PDE-based theta formula (see [§ Theta from Time Stepping](theta_from_time_stepping.md)).
 
 ---
 

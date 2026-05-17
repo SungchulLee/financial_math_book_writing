@@ -66,27 +66,7 @@ $$
 
 ### From Log-Affine Property to ODEs
 
-The functions $\phi(\tau, iv)$ and $\psi(\tau, iv)$ satisfy the generalized Riccati ODEs derived in the previous section. For an affine diffusion with drift $b(x) = b_0 + \sum_i b_i x_i$ and diffusion $a(x) = a_0 + \sum_i a_i x_i$:
-
-$$
-\frac{\partial \phi}{\partial \tau}(\tau, iv) = F(\psi(\tau, iv))
-$$
-
-$$
-\frac{\partial \psi}{\partial \tau}(\tau, iv) = R(\psi(\tau, iv))
-$$
-
-where
-
-$$
-F(w) = \langle b_0, w \rangle + \frac{1}{2}\langle w, a_0 w \rangle + \int_{D \setminus \{0\}} (e^{\langle w, z \rangle} - 1)\,m_0(dz)
-$$
-
-$$
-R_j(w) = \langle b_j, w \rangle + \frac{1}{2}\langle w, a_j w \rangle + \int_{D \setminus \{0\}} (e^{\langle w, z \rangle} - 1)\,m_j(dz)
-$$
-
-evaluated at $w = \psi(\tau, iv)$.
+Recall (see [generalized Riccati ODEs](generalized_riccati_odes.md)) that $\phi$ and $\psi$ satisfy $\partial_\tau\phi = F(\psi)$, $\partial_\tau\psi = R(\psi)$, with $F$, $R$ assembled from the drift, diffusion, and jump parameters of the affine process. The characteristic function corresponds to evaluating this system at $u = iv$.
 
 ### Scalar Affine Diffusion
 
@@ -108,88 +88,35 @@ Since $\psi(0) = iv$ is purely imaginary, the solution $\psi(\tau)$ is generally
 
 ### Gaussian Case (Vasicek / Ornstein-Uhlenbeck)
 
-For $\sigma_1 = 0$ (constant diffusion), the $\psi$-equation is linear:
+For $\sigma_1 = 0$, the $\psi$-equation is linear; for the OU process ($\kappa_0 = 0$, $\kappa_1 = -\kappa$, $\sigma_0 = \sigma^2$),
 
 $$
-\psi'(\tau) = \kappa_1 \psi(\tau), \qquad \psi(0) = iv
+\psi(\tau) = iv\,e^{-\kappa\tau}, \qquad \phi(\tau) = -\frac{\sigma^2 v^2}{4\kappa}(1 - e^{-2\kappa\tau})
 $$
 
-$$
-\psi(\tau) = iv\,e^{\kappa_1 \tau}
-$$
-
-The $\phi$-equation integrates to:
-
-$$
-\phi(\tau) = \kappa_0 \int_0^\tau \psi(s)\,ds + \frac{\sigma_0}{2}\int_0^\tau \psi(s)^2\,ds
-$$
-
-For the Ornstein-Uhlenbeck process ($\kappa_0 = 0$, $\kappa_1 = -\kappa$, $\sigma_0 = \sigma^2$):
-
-$$
-\psi(\tau) = iv\,e^{-\kappa\tau}
-$$
-
-$$
-\phi(\tau) = -\frac{\sigma^2 v^2}{4\kappa}(1 - e^{-2\kappa\tau})
-$$
-
-The characteristic function is:
-
-$$
-\Phi(\tau, v, x) = \exp\!\left(-\frac{\sigma^2 v^2}{4\kappa}(1 - e^{-2\kappa\tau}) + iv\,e^{-\kappa\tau} x\right)
-$$
-
-This is the characteristic function of a Gaussian random variable with mean $x e^{-\kappa\tau}$ and variance $\frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\tau})$, confirming that the OU process has a Gaussian transition density.
+giving $\Phi(\tau, v, x) = \exp(-\frac{\sigma^2 v^2}{4\kappa}(1 - e^{-2\kappa\tau}) + iv\,e^{-\kappa\tau} x)$, the CF of a Gaussian with mean $xe^{-\kappa\tau}$ and variance $\frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\tau})$. Full derivation: Recall (see [explicit Riccati solutions § Vasicek](explicit_riccati_solutions.md#vasicek-model-linear-riccati)).
 
 ### Square-Root Case (CIR)
 
-For the CIR process $dX_t = \kappa(\theta - X_t)\,dt + \xi\sqrt{X_t}\,dW_t$ with $\kappa_0 = \kappa\theta$, $\kappa_1 = -\kappa$, $\sigma_0 = 0$, $\sigma_1 = \xi^2$, the $\psi$-equation becomes a genuine Riccati equation:
+For the CIR process the $\psi$-equation $\psi' = -\kappa\psi + \frac{\xi^2}{2}\psi^2$, $\psi(0) = iv$ admits the closed-form
 
 $$
-\psi'(\tau) = -\kappa\psi(\tau) + \frac{\xi^2}{2}\psi(\tau)^2, \qquad \psi(0) = iv
+\psi(\tau) = \frac{iv\,\gamma\,e^{-\frac{1}{2}(\gamma + \kappa)\tau}}{\gamma - \frac{1}{2}iv\xi^2(1 - e^{-\gamma\tau})}, \qquad \gamma = \sqrt{\kappa^2 - 2\xi^2 iv}
 $$
 
-This nonlinear ODE has the closed-form solution:
-
-$$
-\psi(\tau) = \frac{iv\,\gamma\,e^{-\frac{1}{2}(\gamma + \kappa)\tau}}{\gamma - \frac{1}{2}iv\xi^2(1 - e^{-\gamma\tau})}
-$$
-
-where $\gamma = \sqrt{\kappa^2 - 2\xi^2 iv}$ (the branch of the square root is chosen so that $\operatorname{Re}(\gamma) > 0$).
-
-The $\phi$-equation integrates to:
-
-$$
-\phi(\tau) = \frac{\kappa\theta}{\xi^2}\left[(\gamma + \kappa)\tau - 2\log\!\left(\frac{\gamma - \frac{1}{2}iv\xi^2(1-e^{-\gamma\tau})}{\gamma}\right)\right]
-$$
-
-!!! warning "Branch Cuts in Complex Riccati Solutions"
-    The square root $\gamma = \sqrt{\kappa^2 - 2\xi^2 iv}$ and the logarithm in $\phi(\tau)$ require careful treatment of branch cuts. The standard choice ensures $\operatorname{Re}(\gamma) > 0$ for all $v \in \mathbb{R}$, and the logarithm uses the principal branch with a cut along $(-\infty, 0]$. Incorrect branch choices produce discontinuities in the characteristic function that corrupt Fourier inversion.
+with the principal branch $\operatorname{Re}(\gamma) > 0$, and $\phi(\tau) = \frac{\kappa\theta}{\xi^2}\!\left[(\gamma+\kappa)\tau - 2\log\!\frac{\gamma - \tfrac12 iv\xi^2(1-e^{-\gamma\tau})}{\gamma}\right]$. Branch-cut treatment, alternative ("Little Heston Trap") parameterisation, and derivation: Recall (see [explicit Riccati solutions § CIR](explicit_riccati_solutions.md#cir-model-scalar-riccati-equation)).
 
 ---
 
 ## The Discounted Characteristic Function
 
-For derivative pricing, we often need the *discounted* characteristic function, which incorporates the discount factor $e^{-\int_t^T r_s\,ds}$ into the expectation. If the short rate is affine, $r(x) = \rho_0 + \langle \rho_1, x \rangle$, the discounted characteristic function also has exponential-affine form:
-
-$$
-\mathbb{E}\!\left[e^{-\int_t^T r(X_s)\,ds + i\langle v, X_T \rangle} \mid X_t = x\right] = \exp\!\left(\tilde{\phi}(\tau, iv) + \langle \tilde{\psi}(\tau, iv), x \rangle\right)
-$$
-
-where $\tilde{\phi}$ and $\tilde{\psi}$ satisfy a modified Riccati system that incorporates the discounting terms $\rho_0$ and $\rho_1$. This extension is developed in detail in the section on the discounted transform.
+For pricing under an affine short rate $r(x) = \rho_0 + \langle \rho_1, x \rangle$, the discounted CF $\mathbb{E}[e^{-\int_t^T r(X_s)\,ds + i\langle v, X_T\rangle} \mid X_t = x] = \exp(\tilde\phi(\tau,iv) + \langle\tilde\psi(\tau,iv), x\rangle)$ retains the exponential-affine form, with $\tilde\phi$, $\tilde\psi$ solving a Riccati system shifted by $\rho_0$, $\rho_1$. Recall (see [discounted transform](../discounted_transform/discounted_characteristic_function.md)).
 
 ---
 
 ## From Characteristic Function to Pricing
 
-The characteristic function connects to option pricing through Fourier inversion. For a European call with strike $K$ and maturity $T$ on the log-price $X_T = \log S_T$:
-
-$$
-C(t, x) = S_t - \frac{K e^{-r\tau}}{\pi} \int_0^\infty \operatorname{Re}\!\left[\frac{e^{-iv\log K}\,\Phi(\tau, v - i, x)}{iv\,\Phi(\tau, -i, x)}\right] dv
-$$
-
-The key point is that $\Phi(\tau, v, x)$ is known in closed form (or semi-closed form) for affine processes, so the only numerical step is evaluating a one-dimensional integral. This is the foundation of the Carr-Madan FFT method and the COS method.
+Fourier inversion turns the affine CF into option prices via a single one-dimensional integral. Recall (see [Fourier inversion § ch09](../../ch09/fourier_series/fourier_series_finite_intervals.md) and the Carr-Madan / COS / Lewis methods in [ch09](../../ch09/index.md)).
 
 ??? example "Characteristic Function of Arithmetic Brownian Motion"
     For $dX_t = \mu\,dt + \sigma\,dW_t$ (constant coefficients, $\kappa_0 = \mu$, $\kappa_1 = 0$, $\sigma_0 = \sigma^2$, $\sigma_1 = 0$):

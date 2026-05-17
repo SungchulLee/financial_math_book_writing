@@ -41,7 +41,7 @@ Consider an American call with strike $K$ and maturity $T$. At any time $t < T$,
 
 **Option B — Sell the option:** Receive at least $C_{\text{European}}(S_t, t)$.
 
-By the lower bound for European calls:
+By the lower bound for European calls (Recall (see [§ Properties and bounds](../../ch06/black_scholes_formula/properties_and_bounds.md))):
 
 $$
 C_{\text{European}}(S_t, t) \geq S_t - K e^{-r(T-t)}

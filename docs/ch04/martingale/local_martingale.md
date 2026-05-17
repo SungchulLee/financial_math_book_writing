@@ -1,6 +1,6 @@
 # Local Martingales
 
-A **local martingale** is a process that behaves like a martingale "locally" — when stopped at appropriate times — but may fail to be a true martingale globally (see [Unifying Principle](unifying_principle.md)). This distinction is crucial in continuous-time finance, where many natural price processes are local martingales but not martingales.
+Run an Itô integral $M_t = \int_0^t \theta_s\,dW_s$ for a wild integrand $\theta$ -- say one whose quadratic variation blows up before some horizon $T$. On every bounded time window the process is driftless: each tiny increment has mean zero. Yet $\mathbb{E}[M_t]$ can still drift below $M_0$, because mass can escape to infinity in the meantime. That gap between local fairness and global fairness is exactly the difference between a **local martingale** and a true martingale, and it is the failure mode every other page in this section is built to detect and repair (see [Unifying Principle](unifying_principle.md)).
 
 !!! tip "Mental model"
 
@@ -185,23 +185,11 @@ By the Itô isometry criterion, $M_{t \wedge \tau_n}$ is a true martingale for e
 
 ### Example 2: Stochastic Exponential (True Martingale)
 
-The **stochastic exponential** of Brownian motion:
+Recall (see [§ The Stochastic Exponential](stochastic_exponential.md)): $\mathcal{E}(W)_t = \exp(W_t - t/2)$ solves $dZ_t = Z_t\,dW_t$ with $Z_0 = 1$, so it is always a local martingale.
 
-$$
-Z_t = \mathcal{E}(W)_t := \exp\left(W_t - \frac{t}{2}\right)
-$$
+**Claim**: $\mathcal{E}(W)_t$ is a true martingale with $\mathbb{E}[\mathcal{E}(W)_t] = 1$ for all $t \geq 0$.
 
-satisfies the SDE $dZ_t = Z_t\,dW_t$ with $Z_0 = 1$.
-
-**Claim**: $Z_t$ is a true martingale with $\mathbb{E}[Z_t] = 1$ for all $t \geq 0$.
-
-**Proof**: We verify Novikov's condition. Here $\langle W \rangle_t = t$, so:
-
-$$
-\mathbb{E}\left[\exp\left(\frac{1}{2}\langle W \rangle_T\right)\right] = \mathbb{E}\left[\exp\left(\frac{T}{2}\right)\right] = e^{T/2} < \infty
-$$
-
-By Novikov's theorem (see [Novikov & Kazamaki Conditions](novikov_kazamaki_conditions.md)), $\mathcal{E}(W)$ is a true martingale. $\square$
+**Proof**: Here $\langle W \rangle_t = t$ is deterministic, so $\mathbb{E}[\exp(\frac{1}{2}\langle W \rangle_T)] = e^{T/2} < \infty$. By Novikov's theorem (see [§ Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md)), $\mathcal{E}(W)$ is a true martingale. $\square$
 
 !!! tip "Pattern recognition"
     Stochastic exponential = candidate density for measure change. Always a local martingale — needs Novikov to be valid.
@@ -325,13 +313,10 @@ with **equality if and only if** $M$ is a true martingale.
 
 ## Sufficient Conditions for True Martingale
 
-A local martingale $M$ is a true martingale if any of the following holds:
+Recall (see [§ Integrability Conditions for Martingales](integrability_conditions.md)): every sufficient criterion works by ruling out mass leakage, ultimately via [uniform integrability](../../ch02/filtration_and_martingale/uniform_integrability.md). In brief:
 
-- **Boundedness**, **domination**, or **$L^p$ boundedness** ($p > 1$) → see [Integrability Conditions](integrability_conditions.md)
-- **Finite expected quadratic variation** (BDG inequality) → see [Integrability Conditions](integrability_conditions.md)
-- **Novikov's condition** or **Kazamaki's condition** (for stochastic exponentials) → see [Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md)
-
-All conditions ultimately ensure [uniform integrability](../../ch02/filtration_and_martingale/uniform_integrability.md), which prevents mass from escaping to infinity.
+- **Boundedness**, **domination**, **$L^p$ boundedness** ($p > 1$), or **finite expected quadratic variation** (BDG) — see [§ Integrability Conditions for Martingales](integrability_conditions.md)
+- **Novikov** or **Kazamaki** for stochastic exponentials — see [§ Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md)
 
 ---
 
@@ -413,15 +398,7 @@ Put-call parity fails, and the put price includes a "bubble premium."
 
 ### Connection to Girsanov's Theorem
 
-When performing measure changes via Girsanov's theorem, the Radon–Nikodym derivative:
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = Z_t = \mathcal{E}\left(-\int_0^\cdot \theta_s\,dW_s\right)_t
-$$
-
-must be a **true martingale** (not just a local martingale) for the measure change to be valid. This is precisely where Novikov and Kazamaki conditions enter.
-
-See [Girsanov's Theorem](../girsanov/girsanov_theorem.md) for the full treatment.
+Recall (see [§ Girsanov's Theorem](../girsanov/girsanov_theorem.md)): the Girsanov density $Z_t = \mathcal{E}(-\int_0^\cdot \theta_s\,dW_s)_t$ must be a true martingale (not merely local) — this is where [Novikov / Kazamaki](novikov_kazamaki_conditions.md) enter.
 
 ---
 

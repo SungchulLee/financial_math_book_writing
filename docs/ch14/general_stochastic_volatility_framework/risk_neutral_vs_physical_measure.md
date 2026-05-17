@@ -48,28 +48,7 @@ Under $\mathbb{Q}$:
 
 ## Measure Change via Girsanov
 
-### The Radon–Nikodym Derivative
-
-The change from $\mathbb{P}$ to $\mathbb{Q}$ is characterized by a **Radon–Nikodym derivative**:
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T = \exp\left(-\int_0^T \lambda_t \cdot dW_t^{\mathbb{P}} - \frac{1}{2}\int_0^T |\lambda_t|^2\,dt\right)
-$$
-
-where $\lambda_t = (\lambda_t^S, \lambda_t^V)^{\top}$ is the **market price of risk** vector.
-
-### Girsanov Transformation
-
-Under $\mathbb{Q}$, the Brownian motions transform as:
-
-$$
-\begin{aligned}
-dW_t^{S,\mathbb{Q}} &= dW_t^{S,\mathbb{P}} + \lambda_t^S\,dt \\
-dW_t^{V,\mathbb{Q}} &= dW_t^{V,\mathbb{P}} + \lambda_t^V\,dt
-\end{aligned}
-$$
-
-**Crucially:** The diffusion coefficients are unchanged. Only drifts are modified.
+Recall (see [§ Girsanov's Theorem and Market Price of Risk](../../ch04/girsanov/girsanov_theorem.md)): the Radon–Nikodym derivative $Z_T = \exp(-\int_0^T \lambda_t \cdot dW_t^{\mathbb{P}} - \tfrac{1}{2}\int_0^T |\lambda_t|^2\,dt)$ induces $dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} + \lambda_t\,dt$, with $\lambda_t = (\lambda_t^S, \lambda_t^V)^{\top}$. **Diffusion coefficients are unchanged; only drifts shift.**
 
 ### Drift Modification
 

@@ -47,25 +47,9 @@ The vega surface has characteristic features that distinguish Heston from Black-
 
 ### Mean-Reversion Decay
 
-The conditional expectation of variance is:
+Recall (see [§ Mean Reversion and Long-Run Variance](../variance_dynamics/mean_reversion_and_long_run.md)): $\mathbb{E}[v_T \mid v_0] = \theta + (v_0 - \theta) e^{-\kappa T}$, so the sensitivity to the initial variance is $\partial_{v_0}\mathbb{E}[v_T \mid v_0] = e^{-\kappa T}$.
 
-$$
-\mathbb{E}[v_T \mid v_0] = \theta + (v_0 - \theta) e^{-\kappa T}
-$$
-
-The sensitivity of this expectation to $v_0$ is:
-
-$$
-\frac{\partial}{\partial v_0}\mathbb{E}[v_T \mid v_0] = e^{-\kappa T}
-$$
-
-This exponential decay governs the term structure of vega. The **half-life** of vega is:
-
-$$
-T_{1/2} = \frac{\ln 2}{\kappa}
-$$
-
-For $\kappa = 1.5$, $T_{1/2} \approx 0.46$ years. Beyond this maturity, the option price is primarily driven by $\theta$ (the long-run variance) rather than $v_0$.
+This exponential decay governs the term structure of vega. The **half-life** of vega is $T_{1/2} = \ln 2 / \kappa$. For $\kappa = 1.5$, $T_{1/2} \approx 0.46$ years. Beyond this maturity, the option price is primarily driven by $\theta$ (the long-run variance) rather than $v_0$.
 
 ### Short-Maturity and Long-Maturity Behavior
 
@@ -82,15 +66,7 @@ The combination produces a **hump-shaped** vega term structure, peaking near $T 
 
 ## Vega-Gamma Decoupling
 
-### The Black-Scholes Identity
-
-In Black-Scholes with constant volatility $\sigma$, the following identity holds exactly:
-
-$$
-\mathcal{V}_{\text{BS}} = \sigma S^2 T \, \Gamma_{\text{BS}}
-$$
-
-This means vega and gamma provide redundant information: knowing one determines the other. A delta-hedged portfolio's exposure to volatility changes is fully captured by its gamma.
+Recall (see [§ Greeks in the Black-Scholes Model](../../ch10/greeks/greeks_in_black_scholes_model.md)): under constant-vol Black-Scholes, vega and gamma are locked by the identity $\mathcal{V}_{\text{BS}} = \sigma S^2 T\,\Gamma_{\text{BS}}$, so a delta-hedged portfolio's exposure to volatility changes is fully captured by its gamma.
 
 ### Breakdown in Heston
 

@@ -67,96 +67,9 @@ where $\eta$ captures fixed costs (bid-ask spread) and $\gamma$ is a market-spec
 
 ---
 
-## Almgren-Chriss Model
+## Almgren-Chriss Model and Optimal Execution
 
-### Setup
-
-Liquidate $X$ shares over time horizon $T$ with strategy $x(t)$:
-
-$$
-\int_0^T \dot{x}(t) \, dt = X, \quad x(0) = X, \quad x(T) = 0
-$$
-
-### Price Dynamics
-
-$$
-S_t = S_0 - g(v_t) - h(v_t) + \sigma W_t
-$$
-
-where:
-
-- $v_t = -\dot{x}(t)$ is the trading rate
-- $g(v)$ = permanent impact function
-- $h(v)$ = temporary impact function
-- $\sigma W_t$ = price volatility
-
-### Linear Impact Model
-
-Common specification:
-
-$$
-g(v) = \gamma v, \quad h(v) = \eta v
-$$
-
-where $\gamma$ is permanent impact coefficient and $\eta$ is temporary impact coefficient.
-
-### Cost Functional
-
-Total cost of execution:
-
-$$
-C[x(\cdot)] = \gamma X^2 + \int_0^T \eta v_t^2 \, dt + \text{Risk Cost}
-$$
-
-The first term is permanent impact (unavoidable), the second is temporary impact (depends on speed).
-
----
-
-## Optimal Execution
-
-### Mean-Variance Objective
-
-Minimize expected cost plus risk penalty:
-
-$$
-\min_{x(\cdot)} \mathbb{E}[C] + \lambda \cdot \text{Var}[C]
-$$
-
-where $\lambda$ is risk aversion.
-
-### Optimal Strategy (Linear Impact)
-
-The optimal trading trajectory is:
-
-$$
-x(t) = X \cdot \frac{\sinh(\kappa(T-t))}{\sinh(\kappa T)}
-$$
-
-where $\kappa = \sqrt{\lambda \sigma^2 / \eta}$ depends on risk aversion and market parameters.
-
-### Limiting Cases
-
-**Risk-neutral ($\lambda = 0$):** Trade at constant rate (TWAP)
-
-$$
-x(t) = X \cdot \left(1 - \frac{t}{T}\right)
-$$
-
-**Highly risk-averse ($\lambda \to \infty$):** Trade immediately
-
-$$
-x(t) = 0 \text{ for } t > 0
-$$
-
-### Implementation Shortfall
-
-Expected cost of the optimal strategy:
-
-$$
-\mathbb{E}[C^*] = \gamma X^2 + \eta X^2 \cdot \frac{\kappa}{\tanh(\kappa T)}
-$$
-
-Decomposed into permanent impact and temporary impact terms.
+Recall (see [§ Optimal Execution](optimal_execution.md)) for the full Almgren-Chriss setup, mean-variance objective, the optimal $\sinh$-trajectory $x^*(t) = X \sinh(\kappa(T-t))/\sinh(\kappa T)$ with urgency $\kappa = \sqrt{\lambda \sigma^2/\eta}$, TWAP and immediate-execution limits, and the optimal expected cost.
 
 ---
 
@@ -280,11 +193,7 @@ $$
 
 ### Liquidity-Adjusted VaR (LVaR)
 
-$$
-\text{LVaR} = \text{VaR} + \text{Liquidation Cost}
-$$
-
-where liquidation cost depends on position size and impact model.
+Recall (see [§ Liquidity Premia](liquidity_premia.md)) for LVaR construction, holding-period extensions, and stress adjustments.
 
 ### Stressed Impact
 
@@ -301,24 +210,7 @@ During crises, impact increases:
 
 ## Hedging with Market Impact
 
-### Impact-Adjusted Delta
-
-Optimal hedge with impact costs:
-
-$$
-\Delta^* = \Delta^{\text{BS}} \cdot \frac{1}{1 + \text{Impact Cost Factor}}
-$$
-
-Under-hedge when impact is costly.
-
-### Rebalancing Frequency
-
-Trade-off between:
-
-- Tracking error (favor frequent rebalancing)
-- Impact costs (favor infrequent rebalancing)
-
-**Optimal frequency** balances these costs.
+Recall (see [§ Transaction Costs and Liquidity Effects](../../ch11/model_risk/transaction_costs_and_liquidity_effects.md)) for impact-adjusted delta, rebalancing-frequency trade-offs (tracking error vs. impact costs), and Whalley-Wilmott hedging bands.
 
 ---
 

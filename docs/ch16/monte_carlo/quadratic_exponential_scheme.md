@@ -17,21 +17,17 @@ Euler and Milstein schemes discretize the CIR variance SDE step-by-step, accumul
 
 ## Exact Conditional Moments of CIR
 
-The CIR variance process has a known transition distribution (non-central chi-squared), from which the conditional moments follow in closed form. Given $v_n = v(t_n)$, the moments of $v_{n+1} = v(t_{n+1})$ with $\Delta t = t_{n+1} - t_n$ are:
-
-**Conditional mean:**
+Recall (see [§ CIR Variance Process](../variance_dynamics/cir_variance_process_solution.md) and [§ Non-Central Chi-Squared](../variance_dynamics/non_central_chi_squared.md)): the CIR transition has known closed-form conditional moments. Given $v_n$, with $\Delta t = t_{n+1} - t_n$:
 
 $$
 m = \mathbb{E}[v_{n+1} \mid v_n] = \theta + (v_n - \theta) e^{-\kappa \Delta t}
 $$
 
-**Conditional variance:**
-
 $$
 s^2 = \text{Var}[v_{n+1} \mid v_n] = \frac{v_n \xi^2 e^{-\kappa \Delta t}}{\kappa}\left(1 - e^{-\kappa \Delta t}\right) + \frac{\theta \xi^2}{2\kappa}\left(1 - e^{-\kappa \Delta t}\right)^2
 $$
 
-These moments are exact --- they come directly from the non-central chi-squared transition density, not from any approximation.
+These moments are exact --- derived from the non-central chi-squared transition density.
 
 ---
 

@@ -4,28 +4,7 @@ Pricing bond options in the Hull-White model requires the distribution of the sh
 
 ## Drift Adjustment via Girsanov
 
-Recall from the change-of-numeraire section that the Brownian motions under $\mathbb{Q}$ and $\mathbb{Q}^T$ are related by
-
-$$
-dW^{\mathbb{Q}}(t) = dW^{T}(t) + \sigma_P(t,T)\,dt
-$$
-
-where $\sigma_P(t,T) = -\frac{\sigma}{\lambda}(1 - e^{-\lambda(T-t)})$ is the volatility of the zero-coupon bond $P(t,T)$.
-
-Substituting into the $\mathbb{Q}$-dynamics of the short rate:
-
-$$\begin{array}{lllll}
-\displaystyle
-dr(t)
-&=&\displaystyle
-\lambda\!\left(\theta^{\mathbb{Q}}(t) - r(t)\right)dt + \sigma\,dW^{\mathbb{Q}}(t)
-\\[6pt]
-&=&\displaystyle
-\lambda\!\left(\theta^{\mathbb{Q}}(t) - r(t)\right)dt + \sigma\!\left(dW^{T}(t) + \sigma_P(t,T)\,dt\right)
-\\[6pt]
-&=&\displaystyle
-\lambda\!\left(\theta^{\mathbb{Q}}(t) + \frac{\sigma}{\lambda}\sigma_P(t,T) - r(t)\right)dt + \sigma\,dW^{T}(t)
-\end{array}$$
+Recall (see [§ Change of Numeraire Q to T](change_of_numeraire_q_to_t.md)): $dW^{\mathbb{Q}}(t) = dW^T(t) + \sigma_P(t,T)\,dt$ with $\sigma_P(t,T) = -\frac{\sigma}{\lambda}(1 - e^{-\lambda(T-t)})$. Substituting into the $\mathbb{Q}$-dynamics of $r(t)$ gives the absorbed-drift form below.
 
 !!! info "Theorem: Short Rate Dynamics Under the T-Forward Measure"
     Under $\mathbb{Q}^T$, the Hull-White short rate satisfies

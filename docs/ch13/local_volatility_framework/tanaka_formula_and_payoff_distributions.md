@@ -96,17 +96,8 @@ $$
 $$
 This shows that the gamma is proportional to the risk-neutral probability density at the strike price. This is a profound result: gamma measures how likely the stock is to end up exactly at the strike price.
 ### The Strike Derivative
-Similarly, with respect to the strike $K$:
-$$
 
-\frac{\partial C}{\partial K} = e^{-rT}\mathbb{E}^Q\left[-1(S_T > K)\right] = -e^{-rT}\int_{K}^{\infty} p(s, T) \, ds
-
-$$
-$$
-
-\frac{\partial^2 C}{\partial K^2} = e^{-rT}\mathbb{E}^Q[\delta(S_T - K)] = e^{-rT}p(K, T)
-
-$$
+Recall (see [§ Breeden-Litzenberger](../../ch12/model_free_results/breeden_litzenberger_formula.md)) for $C_K = -e^{-rT}\int_K^\infty p(s,T)\,ds$ and $C_{KK} = e^{-rT}p(K,T)$, which follow from the distributional derivatives of the call payoff with respect to $K$.
 ---
 ## Itô's Lemma for Non-Smooth Functions
 Using the Tanaka formula, we can apply an extended version of Itô's lemma to the call payoff. Under the risk-neutral measure:

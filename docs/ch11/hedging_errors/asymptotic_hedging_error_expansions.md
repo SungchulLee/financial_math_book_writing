@@ -1,7 +1,9 @@
 # Asymptotic Hedging Error Expansions
 
-
 One seeks expansions of hedging error in small parameters.
+
+!!! tip "Toy mechanism: variance scales with $\Delta t$, std with $\sqrt{\Delta t}$"
+    The whole $\sqrt{\Delta t}$ scaling is one observation. Each rebalancing step contributes a hedging error of order $\Gamma(\Delta S)^2 - \Gamma\sigma^2 S^2\Delta t$ — a mean-zero quantity with variance proportional to $(\Delta t)^2$. Summing $N = T/\Delta t$ independent such terms gives total variance $\propto T\cdot\Delta t$, hence total standard deviation $\propto \sqrt{\Delta t}$. That single CLT-style argument fixes the leading order; the higher-order corrections $c_2\Delta t + \cdots$ come from third- and fourth-order Taylor terms suppressed at first order. All the formulas below are bookkeeping on top of this one scaling.
 
 ---
 
@@ -14,25 +16,7 @@ $$
 \mathrm{HE}=c_1\sqrt{\Delta t}+c_2\Delta t+\cdots
 $$
 
-**Derivation of $c_1$.** The leading-order error is:
-
-$$
-\mathrm{HE} \approx \sum_{k=0}^{N-1} \frac{1}{2}\Gamma_k\left[(\Delta S_k)^2 - \sigma_k^2 S_k^2 \Delta t\right]
-$$
-
-Each term has mean zero and variance:
-
-$$
-\text{Var}\left(\frac{1}{2}\Gamma_k\left[(\Delta S_k)^2 - \sigma^2 S^2 \Delta t\right]\right) \approx \frac{1}{2}\Gamma_k^2 S_k^4 \sigma^4 (\Delta t)^2
-$$
-
-Summing $N = T/\Delta t$ independent terms:
-
-$$
-\text{Var}(\mathrm{HE}) \approx \sum_k \frac{1}{2}\Gamma_k^2 S_k^4 \sigma^4 (\Delta t)^2 \approx \frac{1}{2}\bar{\Gamma^2 S^4 \sigma^4} \cdot T \cdot \Delta t
-$$
-
-Thus:
+**Derivation of $c_1$.** Recall (see [§ Discrete-Time Hedging Error](discrete_time_hedging_error.md)): the per-step error $\frac{1}{2}\Gamma_k[(\Delta S_k)^2 - \sigma^2 S_k^2 \Delta t]$ has variance $\frac{1}{2}\Gamma_k^2 S_k^4 \sigma^4 (\Delta t)^2$, and summing $N = T/\Delta t$ independent steps gives $\text{Var}(\mathrm{HE}) \approx \frac{1}{2}\overline{\Gamma^2 S^4 \sigma^4} \cdot T \cdot \Delta t$. Thus:
 
 $$
 \boxed{c_1 = \sqrt{\frac{1}{2}\int_0^T \Gamma(t,S_t)^2 S_t^4 \sigma^4 \, dt}}
@@ -53,35 +37,7 @@ This involves the time derivative of gamma and curvature effects.
 ## Transaction cost expansion
 
 
-With proportional transaction cost $\lambda$ per dollar traded:
-
-**No-trade band.** Optimal strategy involves a no-trade band around the Black–Scholes delta:
-
-$$
-\Delta^* \in \left[\Delta - h, \Delta + h\right]
-$$
-
-where the bandwidth $h$ scales as:
-
-$$
-\boxed{h \sim \left(\frac{3\lambda}{2\Gamma S^2 \sigma^2}\right)^{1/3}}
-$$
-
-**Utility loss.** The expected utility loss from transaction costs scales as:
-
-$$
-\text{Cost} \sim \lambda^{2/3} (\Gamma S^2 \sigma^2)^{1/3} T
-$$
-
-This is the **Leland–Whalley–Wilmott** result.
-
-**Effective volatility.** Alternatively, one can hedge at the Black–Scholes delta with an adjusted volatility:
-
-$$
-\sigma_{\text{eff}}^2 = \sigma^2 \left(1 + \sqrt{\frac{8\lambda}{\pi\sigma\sqrt{\Delta t}}}\text{sign}(\Gamma)\right)
-$$
-
-This Leland (1985) approach accounts for transaction costs through volatility adjustment.
+Recall (see [§ Transaction Costs and Liquidity Effects](../model_risk/transaction_costs_and_liquidity_effects.md)): with proportional cost $\lambda$, the Whalley–Wilmott bandwidth is $h \sim (3\lambda/(2\Gamma S^2\sigma^2))^{1/3}$, the utility loss scales as $\lambda^{2/3}(\Gamma S^2\sigma^2)^{1/3} T$, and Leland's adjusted volatility $\sigma_{\text{eff}}^2 = \sigma^2(1 + \sqrt{8\lambda/(\pi\sigma\sqrt{\Delta t})}\,\text{sign}(\Gamma))$ absorbs the cost into the hedge model. The fractional powers $\lambda^{1/3}$, $\lambda^{2/3}$ arise from balancing $O(h^2)$ hedging error against $O(1/h)$ trading frequency.
 
 ---
 
@@ -94,19 +50,7 @@ $$
 \mathrm{HE}\approx \varepsilon A_1+\varepsilon^2 A_2+\cdots
 $$
 
-**Volatility misspecification.** If true volatility is $\sigma$ but hedging uses $\hat{\sigma}$:
-
-$$
-\varepsilon = \sigma^2 - \hat{\sigma}^2
-$$
-
-The first-order term is:
-
-$$
-A_1 = \frac{1}{2}\int_0^T \Gamma(t,S_t) S_t^2 \, dt
-$$
-
-This is the "vega-weighted" exposure to volatility error.
+**Volatility misspecification.** Recall (see [§ Impact of Volatility Misspecification](impact_of_volatility_misspecification.md)): with $\varepsilon = \sigma^2 - \hat{\sigma}^2$, the first-order term is the gamma-weighted exposure $A_1 = \frac{1}{2}\int_0^T \Gamma(t,S_t) S_t^2 \, dt$.
 
 **Jump risk.** If true dynamics include jumps with intensity $\lambda_J$ and size $J$:
 
@@ -121,13 +65,7 @@ The hedging error is dominated by jump contributions, not diffusive terms.
 ## Greeks-based P&L attribution
 
 
-The asymptotic expansion connects to practical P&L attribution:
-
-$$
-P\&L = \underbrace{\Theta \cdot \Delta t}_{\text{time decay}} + \underbrace{\frac{1}{2}\Gamma(\Delta S)^2}_{\text{gamma P&L}} + \underbrace{\nu \cdot \Delta\sigma}_{\text{vega P&L}} + \underbrace{\text{higher order}}_{\text{residual}}
-$$
-
-The residual should be small if:
+Recall (see [§ Gamma Risk and Convexity Effects](gamma_risk_and_convexity_effects.md)): the asymptotic expansion reduces to the standard decomposition $P\&L \approx \Theta\,\Delta t + \tfrac{1}{2}\Gamma(\Delta S)^2 + \nu\,\Delta\sigma + \text{higher order}$. The residual should be small if:
 
 1. Rebalancing is frequent ($\Delta t$ small)
 2. Model is accurate ($\varepsilon$ small)

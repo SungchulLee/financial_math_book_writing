@@ -2,6 +2,9 @@
 
 When markets are incomplete --- due to unhedgeable risk factors, transaction costs, or trading constraints --- perfect replication is impossible. This section surveys the principal approaches to hedging under incompleteness: **superreplication** (eliminate all risk at maximum cost), **quantile hedging** (replicate with high probability), and **shortfall risk minimization** (control the severity of hedging failures). These methods span a spectrum from conservative to risk-tolerant, each offering a different resolution of the price-risk tradeoff.
 
+!!! tip "Toy mechanism: which risk are you willing to leave on the table?"
+    The cleanest version: in a *complete* market every payoff $H$ admits a unique replicating portfolio $V_T = H$ a.s. — perfect hedge, unique price. In an *incomplete* market the equation $V_T = H$ a.s. has *no* solution, so you must relax it. Three natural relaxations partition this section. Superreplication asks for $V_T \geq H$ a.s. — eliminates downside, pays maximum cost. Quantile hedging asks for $\mathbb{P}(V_T \geq H) \geq 1 - \alpha$ — accepts an $\alpha$-tail failure to save initial capital. Shortfall hedging minimises $\mathbb{E}[(H - V_T)^+]$ — controls the *size* of failures rather than their probability. The price spread between these and the superreplication cost is exactly the "incompleteness premium" the section quantifies.
+
 ---
 
 ## Sources of Market Incompleteness
@@ -172,8 +175,8 @@ $$
 | **Superreplication** | Highest | None (zero risk) | Perfect |
 | **Quantile hedging** | High | Small probability of total failure | Probability only |
 | **Expected shortfall min** | Moderate | Accepts some loss | Average loss |
-| **Mean-variance** | Moderate | Symmetric $L^2$ loss | Variance |
-| **Utility-based** | Depends on $\gamma$ | Preference-based | Utility-weighted |
+| **Mean-variance** | Moderate | Symmetric $L^2$ loss | Variance (see [§ Mean-Variance Hedging](mean_variance_hedging.md)) |
+| **Utility-based** | Depends on $\gamma$ | Preference-based | Utility-weighted (see [§ Utility-Based Hedging](utility_based_hedging.md)) |
 
 ### Price Ordering
 
@@ -254,8 +257,8 @@ The various approaches studied --- mean-variance, local risk minimization, utili
 | Superreplication | $c + G_T(\xi) \geq H$ a.s. | $\pi^{\sup} = \sup_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}[\tilde{H}]$ |
 | Quantile hedging | $\max \mathbb{P}(\text{success})$ for given budget | Neyman-Pearson on modified claim |
 | Shortfall risk min | $\min \mathbb{E}[\ell((H - c - G_T)^+)]$ | Generalized Neyman-Pearson |
-| Mean-variance | $\min \mathbb{E}[(H - c - G_T)^2]$ | $L^2$ projection / FS decomposition |
-| Utility-based | $\max \mathbb{E}[U(W_T)]$ | Entropy / HJB duality |
+| Mean-variance | $\min \mathbb{E}[(H - c - G_T)^2]$ | Recall (see [§ Mean-Variance Hedging](mean_variance_hedging.md)) |
+| Utility-based | $\max \mathbb{E}[U(W_T)]$ | Recall (see [§ Utility-Based Hedging](utility_based_hedging.md)) |
 | Price ordering | $\pi^{\sup} \geq \pi_\varepsilon \geq p_{\text{indiff}} \geq \inf \mathbb{E}^{\mathbb{Q}}[\tilde{H}]$ | |
 | Key insight | Incompleteness creates a risk-cost frontier; no approach eliminates the tradeoff | |
 

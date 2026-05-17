@@ -123,7 +123,7 @@ $$
 }
 $$
 
-where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ is the Black–Scholes generator. This formulation is studied in detail in [Free Boundary Problems](../../ch08/american_options/free_boundary_problems_american_options.md).
+where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ is the Black–Scholes generator (Recall (see [§ BS PDE structure](../../ch06/bs_pde_structure/discounting_and_killing_term.md))). Free-boundary numerics are deferred to Recall (see [§ Free Boundary Problems](../../ch08/american_options/free_boundary_problems_american_options.md)).
 
 ---
 

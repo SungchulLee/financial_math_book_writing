@@ -1,10 +1,18 @@
 # Black–Scholes PDE via Self-Financing Replication
 
-This derivation removes the physical drift $\mu$ by **self-financing replication**: the martingale representation theorem enforces $\alpha_t = V_S$, and the self-financing condition does the rest. Where the [heuristic delta hedge](delta_hedging.md) freezes $\Delta$ over each infinitesimal interval and appeals to an informal rebalancing argument, this version constructs a genuinely self-financing strategy whose value process satisfies $dV_t = \alpha_t\,dS_t + \beta_t\,dB_t$ with no external cash flows.
+This derivation removes the physical drift $\mu$ by **self-financing replication**: the martingale representation theorem enforces $\alpha_t = V_S$, and the self-financing condition does the rest. Where the [heuristic delta hedge](delta_hedging.md) freezes $\Delta$ over each infinitesimal interval, this version constructs a genuinely self-financing strategy whose value process satisfies $dV_t = \alpha_t\,dS_t + \beta_t\,dB_t$ with no external cash flows.
 
-This section presents a **fully rigorous derivation** of the Black–Scholes partial differential equation using the framework of **self-financing trading strategies**, following the level of mathematical precision found in Shreve (2004) and Björk (2009).
+The emphasis of this page is therefore on **structure rather than algebra**: semimartingale dynamics, the self-financing condition, the role of the martingale representation theorem (MRT), and completeness. The unifying view across the five derivations is set out in [§ Why So Many Derivations?](one_equation_five_perspectives.md).
 
-We explicitly distinguish between informal heuristic arguments and the **stochastic calculus formulation**, and we formalize the notion of replication. This replication argument yields the same PDE obtained via [delta hedging](delta_hedging.md), [risk-neutral pricing](risk_neutral_measure.md), [change of numéraire](change_of_numeraire.md), and [equilibrium (SDF) pricing](equilibrium.md)—the five approaches are equivalent, but differ in method and emphasis. The replicating strategy $(\alpha_t, \beta_t)$ constructed here is the central object: it appears informally as $\Delta$ in delta hedging, reappears under the martingale lens in risk-neutral pricing, and is implicit (via the change-of-numéraire theorem) in the stock-numéraire derivation.
+---
+
+## Mechanism: Self-Financing on a Two-Step Tree
+
+Before the continuous version, the structure is visible on a two-step binomial tree. With stock $S_0 \to \{S_0 u, S_0 d\} \to \{S_0 u^2, S_0 ud, S_0 d^2\}$ and bond $B_t = (1+r)^t$, a trading strategy is a pair $(\alpha_t, \beta_t)$ giving share and bond holdings. **Self-financing** means wealth changes only through asset moves: at every node,
+
+$$\Pi_{t+1} = \alpha_t S_{t+1} + \beta_t B_{t+1}$$
+
+Working backward from the terminal payoff $\Phi(S_2)$, the replication condition $\Pi_t = V(t, S_t)$ in both successor states pins down $\alpha_t$ uniquely as a difference quotient — the discrete analog of $V_S$ — and the wealth identity fixes $\beta_t$. No external cash is needed at any node: rebalancing finances itself out of price moves. The continuous derivation below replaces difference quotients with Itô's formula and invokes the martingale representation theorem in place of the backward induction; the same self-financing structure carries over.
 
 ---
 
@@ -34,6 +42,9 @@ $$
 Hence $B_t = e^{rt}$.
 
 This market is **complete**: with one Brownian motion and one traded risky asset, every contingent claim can be replicated by a self-financing portfolio (see Exercise 6 for the failure of this condition when the dimensional matching breaks down).
+
+!!! note "Why completeness matters"
+    Recall (see [§ Martingale Representation Theorem](../../ch04/martingale/martingale_representation_theorem.md)): in the one-dimensional Brownian filtration, every square-integrable martingale is a stochastic integral against $W_t$. This dimensional match — one Brownian motion, one tradable risky asset — is what forces $\alpha_t = V_S$ in Step 6 and pins down the price uniquely. When the match fails (Exercise 6), MRT no longer determines the integrand and the replicating strategy is non-unique.
 
 ---
 
@@ -81,11 +92,9 @@ Note: The payoff $\Phi$ need not be smooth; the solution becomes smooth for $t <
 
 ## 4. Itô Dynamics of the Derivative
 
-By Itô's formula:
+Recall (see [§ Itô's Lemma](../../ch03/ito_lemma/ito_lemma.md)): applying Itô's formula to $V(t, S_t)$ under $\mathbb{P}$ gives
 
-$$
-dV = \left( V_t + \mu S V_S + \frac{1}{2}\sigma^2 S^2 V_{SS} \right) dt + \sigma S V_S \, dW
-$$
+$$dV = \left( V_t + \mu S V_S + \frac{1}{2}\sigma^2 S^2 V_{SS} \right) dt + \sigma S V_S \, dW$$
 
 ---
 
@@ -107,65 +116,27 @@ This is the **replication condition**.
 
 ---
 
-## 6. Matching Dynamics
+## 6. Matching Dynamics — MRT Forces $\alpha_t = V_S$
 
-From self-financing, substitute the asset dynamics:
+From self-financing, $d\Pi_t = \alpha_t\,dS_t + \beta_t\,dB_t$. Matching the diffusion coefficient of $d\Pi_t$ with that of $dV$ from §4 — both written against the same Brownian motion $W$ — and invoking MRT in the one-dimensional Brownian filtration to ensure uniqueness, we obtain
 
-$$
-d\Pi_t = \alpha_t (\mu S \, dt + \sigma S \, dW) + \beta_t r B_t \, dt = (\alpha_t \mu S + \beta_t r B_t) \, dt + \alpha_t \sigma S \, dW
-$$
+$$\alpha_t = V_S$$
 
-Since $\Pi_t = V(t,S_t)$, the coefficients of $d\Pi_t$ and $dV$ must agree.
-
-**Diffusion term.** $\alpha_t \sigma S = \sigma S V_S$, so $\alpha_t = V_S$ (since $\sigma > 0$, $S > 0$).
-
-**Drift term.** Substituting $\alpha_t = V_S$ and cancelling $V_S \mu S$ from both sides:
-
-$$
-\beta_t r B_t = V_t + \frac{1}{2}\sigma^2 S^2 V_{SS}
-$$
+This is the rigorous counterpart of the heuristic choice $\Delta = V_S$ on the [delta-hedging](delta_hedging.md) page.
 
 ---
 
-## 7. Elimination of beta
+## 7. Substitution and the PDE
 
-From the wealth identity:
+Substituting $\alpha_t = V_S$ into the drift equality and using the wealth identity $\beta_t B_t = V - V_S S$ yields the Black–Scholes PDE:
 
-$$
-\Pi_t = V = V_S S + \beta_t B_t
-$$
+$$V_t + rS V_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$$
 
-So:
-
-$$
-\beta_t B_t = V - V_S S
-$$
-
-Substitute into drift equation:
-
-$$
-r(V - S V_S) = V_t + \frac{1}{2}\sigma^2 S^2 V_{SS}
-$$
+with terminal condition $V(T,S) = \Phi(S)$. The drift $\mu$ cancels on both sides of the matching equation — algebraically identical to the cancellation in [§ delta hedging](delta_hedging.md), but here driven by MRT rather than an explicit hedge choice.
 
 ---
 
-## 8. Black–Scholes PDE
-
-Rearranging:
-
-$$
-V_t + rS V_S + \frac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0
-$$
-
-with terminal condition:
-
-$$
-V(T,S) = \Phi(S)
-$$
-
----
-
-## 9. Hedging Interpretation
+## 8. Hedging Interpretation
 
 The replication strategy is:
 
@@ -178,46 +149,13 @@ $$
 
 ---
 
-## 10. Why the Drift mu Disappears
+## 9. Why the Drift μ Disappears
 
-The drift $\mu$ cancels because the pricing problem is one of **replication**, not prediction.
-
-Once the diffusion term is eliminated by setting $\alpha_t = V_S$, the portfolio becomes locally riskless. By the absence of arbitrage, it must earn the risk-free rate $r$, which forces the drift in the PDE to adjust from $\mu$ to $r$. The cancellation appears algebraic—$\mu$ enters both $dV$ and $\alpha_t\,dS_t$ through the same Itô expansion, and the matching $\alpha_t = V_S$ cancels it from both the diffusion and the drift simultaneously—but it reflects the economic fact that a locally riskless portfolio must earn the risk-free rate.
-
-This reflects a deeper principle:
-
-> Pricing depends only on the absence of arbitrage, not on investors' beliefs about expected returns.
+Recall (see [§ Why So Many Derivations?](one_equation_five_perspectives.md)): each derivation removes $\mu$ by a distinct mechanism. Here it is the **MRT-enforced choice** $\alpha_t = V_S$: locally, the replicating portfolio carries no $W$-exposure, so its drift must equal $r$ — leaving the PDE in terms of $r$ and $\sigma$ only.
 
 ---
 
-## 11. Hedging Flow (Mermaid Diagram)
-
-```mermaid
-flowchart TD
-    A[Derivative V(t,S)] --> B[Apply Ito's Formula]
-    B --> C[Decompose into Drift + Diffusion]
-    C --> D[Construct Portfolio Π]
-    D --> E[Choose α = V_S]
-    E --> F[Diffusion Eliminated]
-    F --> G[Portfolio Becomes Riskless]
-    G --> H[Must Earn Risk-Free Rate r]
-    H --> I[Obtain PDE]
-```
-
----
-
-## 12. Replication Structure
-
-```mermaid
-flowchart LR
-    S[Stock S] -->|α = V_S| P[Portfolio Π]
-    B[Bond B] -->|β| P
-    P -->|Replicates| V[Derivative V]
-```
-
----
-
-## 13. Conceptual Summary
+## 10. Conceptual Summary
 
 The derivation consists of three rigorous steps:
 
@@ -232,7 +170,7 @@ The Black–Scholes PDE **characterizes exactly those price processes that admit
 
 ---
 
-## 14. Remarks
+## 11. Remarks
 
 * The PDE is a **backward parabolic equation**.
 * The solution is unique under suitable growth conditions.

@@ -21,13 +21,7 @@ Collective adaptation can destabilize markets.
 ## Feedback amplification
 
 
-Learning-induced effects include:
-
-- crowded trades,
-- self-reinforcing trends,
-- sudden regime shifts.
-
-Small signals can be amplified through learning feedback.
+Recall (see [Market impact as endogeneity](endogenous_price_dynamics.md#market-impact-as-endogeneity)): trading-induced price moves feed back into strategies. Learning-induced effects include crowded trades, self-reinforcing trends, and sudden regime shifts, so small signals can be amplified through learning feedback.
 
 ---
 

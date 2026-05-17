@@ -22,21 +22,11 @@ The fundamental concepts in this area include:
 
 ## Fokker-Planck and Dupire Connection
 
-The Dupire formula can be understood through a deep connection with the Fokker-Planck equation. Under the risk-neutral measure, the stock price evolves as:
+Recall (see [§ Fokker-Planck Equation](../../ch05/kolmogorov_equations/kolmogorov_forward.md)) for the forward PDE governing the density $p(x,t)$ under $dS_t = rS_t\,dt + \sigma(t,S_t)S_t\,dW_t$. The Dupire formula is the call-price analogue: the same diffusion coefficient $\sigma^2(K,T)$ that drives $\partial_t p$ via $\frac{1}{2}\partial_{xx}[\sigma^2 x^2 p]$ also drives $\partial_T C$ via $\frac{1}{2}\sigma^2 K^2 C_{KK}$, giving
 
 $$
-dS_t = rS_t dt + \sigma(t, S_t) S_t dW_t
+\sigma^2(K,T) = \frac{\partial_T C + rK\,\partial_K C}{\tfrac{1}{2}K^2\,\partial_{KK}C}.
 $$
-
-This leads to two equivalent formulations of the local volatility surface:
-
-$$\begin{array}{ccc}
-\text{Fokker-Planck} & & \text{Dupire} \\
-p(x,t|x_0,t_0) & & C(K,T|S_t,t) \\
-\displaystyle dX_t = \sigma dW_t & & \\
-\displaystyle \frac{\partial p(x,t)}{\partial t} - \frac{1}{2}\sigma^2\frac{\partial^2 p(x,t)}{\partial x^2} = 0 & & \displaystyle \frac{\partial C(K,T)}{\partial T} + rK\frac{\partial C(K,T)}{\partial K} - \frac{1}{2}\sigma^2(K,T)K^2\frac{\partial^2 C(K,T)}{\partial K^2} = 0 \\
-\displaystyle \sigma^2 = \frac{\frac{\partial p(x,t)}{\partial t}}{\frac{1}{2}\frac{\partial^2 p(x,t)}{\partial x^2}} & & \displaystyle \sigma^2(K,T) = \frac{\frac{\partial C(K,T)}{\partial T} + rK\frac{\partial C(K,T)}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C(K,T)}{\partial K^2}}
-\end{array}$$
 
 ---
 
@@ -56,14 +46,11 @@ where $p = p(s, T)$ is the transition density of the stock price at maturity $T$
 
 ### Key Partial Derivatives
 
-From the expression above, we can compute the following partial derivatives:
+Recall (see [§ Breeden-Litzenberger](../../ch12/model_free_results/breeden_litzenberger_formula.md) and [Digital Option Pricing](../../ch06/black_scholes_formula/digital_option_pricing.md)) for the identities
 
-$$\begin{array}{lll}
-\displaystyle
-C_K &=& -e^{-rT}\int_{K}^{\infty }p \, ds \\
-\displaystyle
-C_{KK} &=& e^{-rT}p(K,T)
-\end{array}$$
+$$
+C_K = -e^{-rT}\int_K^\infty p\,ds, \qquad C_{KK} = e^{-rT}p(K,T).
+$$
 
 Also, we have the important relation:
 

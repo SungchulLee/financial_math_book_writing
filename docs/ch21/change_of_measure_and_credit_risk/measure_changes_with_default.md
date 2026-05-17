@@ -8,7 +8,9 @@ Changing probability measures in the presence of default requires special care b
 ## Measure change framework
 
 
-Let $\mathbb{Q}$ and $\mathbb{P}$ be equivalent measures on the enlarged filtration $(\mathcal{G}_t)$.
+Recall (see [§ Girsanov Theorem](../../ch04/girsanov/girsanov_theorem.md) and [§ Stopping Times and Enlargement of Filtration](../default_as_a_random_time/stopping_times_and_enlargement_of_filtration.md)): the Girsanov theorem in diffusion models reweights paths via a Radon–Nikodym density, and the enlarged filtration $(\mathcal{G}_t)$ adjoins the default indicator to the market filtration.
+
+Let $\mathbb{Q}$ and $\mathbb{P}$ be equivalent measures on $(\mathcal{G}_t)$.
 The Radon–Nikodym derivative must account for:
 
 - diffusion risks,
@@ -19,16 +21,7 @@ The Radon–Nikodym derivative must account for:
 ## Effect on intensities
 
 
-Under a change of measure, the default intensity transforms as
-
-$$
-\lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \theta_t
-$$
-
-
-where $\theta_t$ reflects the market price of default risk.
-
-This parallels drift changes in diffusion models.
+Recall (see [§ Girsanov for Jump Processes](girsanov_for_jump_processes.md)): under a change of measure, the default intensity transforms (additively or multiplicatively) with a tilt $\theta_t$ reflecting the market price of default risk. This parallels drift changes in diffusion models.
 
 ---
 

@@ -41,13 +41,7 @@ $$
 
 This is not just a notational change. Brownian motion is almost surely nowhere differentiable and has infinite variation on every interval, so the quantity $dB_t/dt$ does not exist in the classical sense. A new construction is required.
 
-A key property of Brownian motion is its **quadratic variation**. If we divide $[0,t]$ into many small steps and sum the squared increments, then
-
-$$
-\sum_k (B_{t_{k+1}}-B_{t_k})^2 \;\to\; t
-$$
-
-in $L^2$ and in probability as the partition becomes finer. Unlike ordinary calculus, these second-order terms do **not vanish**. This non-vanishing quadratic variation is responsible for the correction terms in Itô's formula.
+Recall (see [§ Quadratic Variation](quadratic_variation.md)): Brownian motion satisfies $\sum_k (B_{t_{k+1}}-B_{t_k})^2 \to t$ in $L^2$, so its quadratic variation does **not vanish**. This single fact is what forces a new integration theory and produces every correction term in Itô's formula.
 
 ```mermaid
 flowchart LR
@@ -216,29 +210,13 @@ This integrand is random, so the distribution of the integral will generally not
 
 ### 5. Key Properties
 
-The Itô integral $I_t := \int_0^t H_s\,dB_s$ satisfies four fundamental properties.
-
-**Zero mean**: since the integrand is adapted and the Brownian increment has mean zero,
-
-$$
-\mathbb{E}\!\left[\int_0^t H_s\,dB_s\right] = 0
-$$
-
-**Martingale property**: for $s < t$,
-
-$$
-\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s
-$$
-
-The integral accumulates gains from a fair game—each increment has expected value zero given the past.
-
-**Itô isometry**: the variance of the integral equals the time integral of the squared integrand,
+Recall (see [§ Properties of the Itô Integral](ito_integral_properties.md)): the Itô integral $I_t := \int_0^t H_s\,dB_s$ has zero mean, is a martingale ($\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s$), satisfies the Itô isometry (see [§ Itô Isometry](ito_isometry.md))
 
 $$
 \mathbb{E}\!\left[\left(\int_0^t H_s\,dB_s\right)^2\right] = \mathbb{E}\!\left[\int_0^t H_s^2\,ds\right]
 $$
 
-**Continuous paths**: the process $t \mapsto I_t$ has continuous sample paths almost surely.
+and has continuous sample paths a.s. Intuitively, the integral accumulates gains from a fair game — each increment has expected value zero given the past, which is why left-endpoint evaluation is essential.
 
 ---
 
@@ -346,19 +324,7 @@ The simulation illustrates three important phenomena.
 
 ### 7. Connection to Itô's Formula
 
-The simulation connects naturally to Itô's formula. For $f(x) = \sin x$,
-
-$$
-d(\sin B_t) = \cos(B_t)\,dB_t - \tfrac{1}{2} \sin(B_t)\,dt
-$$
-
-so Case 3 is related to a transformed Brownian path together with a drift correction. More generally, Itô's formula shows that whenever $f \in C^2$,
-
-$$
-f(B_t) = f(B_0) + \int_0^t f'(B_s)\,dB_s + \frac{1}{2}\int_0^t f''(B_s)\,ds
-$$
-
-The stochastic integral $\int f'(B_s)\,dB_s$ is the martingale part and the ordinary integral $\frac{1}{2}\int f''(B_s)\,ds$ is the drift correction arising from quadratic variation.
+Recall (see [§ Itô's Lemma](../ito_lemma/ito_lemma.md)): for $f \in C^2$, $f(B_t)$ decomposes into a stochastic-integral martingale part $\int_0^t f'(B_s)\,dB_s$ and a drift correction $\tfrac{1}{2}\int_0^t f''(B_s)\,ds$ arising from quadratic variation; Case 3 above ($H_s = -\cos(B_s)$) is the martingale part of $d(\sin B_t)$.
 
 ---
 

@@ -47,7 +47,7 @@ The call is exercised when $r_T < r^*$ and the put is exercised when $r_T > r^*$
 
 ## Pricing via the T-forward measure
 
-Using the $T$-forward measure $\mathbb{Q}^T$ from the change-of-measure section, the call price at time $t$ is
+Recall (see [§ Change of Measure for the CIR Model](change_of_measure.md)) the $T$-forward measure $\mathbb{Q}^T$. The call price at time $t$ is
 
 $$
 C(t) = P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}\!\left[\big(P(T,S) - K\big)^+\,\big|\,\mathcal{F}_t\right]

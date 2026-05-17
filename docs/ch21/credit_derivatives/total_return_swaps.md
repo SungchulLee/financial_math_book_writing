@@ -158,6 +158,8 @@ where $P_{\tau}$ is the post-default market value (typically $R \times \text{Fac
 
 ### Comparison with CDS at Default
 
+Recall (see [§ Credit Default Swaps (CDS)](credit_default_swaps_cds.md)): the CDS protection leg pays $(1-R) \times N$ at default, with no pre-default mark-to-market settlements.
+
 | Event | CDS | TRS |
 |-------|-----|-----|
 | Default payment | $(1-R) \times N$ | $P_{\text{previous}} - P_{\tau}$ |
@@ -186,6 +188,8 @@ Both parties face counterparty risk:
 - Exposure is: $\max(P_{t_i} - P_{t_{i-1}}, 0)$ at each reset
 
 ### Wrong-Way Risk
+
+Recall (see [§ Counterparty Credit Risk](../../ch22/counterparty_credit_risk/exposure_profiles.md)): wrong-way risk arises when exposure to a counterparty is positively correlated with the counterparty's probability of default.
 
 The TRS exhibits **wrong-way risk** for the TR payer:
 

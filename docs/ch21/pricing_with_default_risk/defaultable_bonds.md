@@ -37,7 +37,7 @@ The key distinction from default-free bonds:
 
 ### Risk-Neutral Valuation
 
-Under the risk-neutral measure $\mathbb{Q}$, the price at time $t$ (on $\{\tau > t\}$) is:
+Recall (see [§ Risk-Neutral Valuation Principle](../../ch04/risk_neutral/risk_neutral_valuation_principle.md)): under the risk-neutral measure $\mathbb{Q}$, prices are conditional expectations of discounted payoffs. For a defaultable claim, the price at time $t$ (on $\{\tau > t\}$) is:
 
 $$
 P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[\text{PV of Payoff} \mid \mathcal{G}_t\right]
@@ -55,77 +55,19 @@ The exact form of the second term depends on the recovery assumption.
 
 ## Recovery Conventions
 
-### Recovery of Face Value (RFV)
-
-At default, bondholders receive a fraction $R$ of **face value**:
+Recall (see [§ Recovery Schemes](recovery_schemes.md)): the three standard conventions are RFV ($R \cdot F$ at $\tau$), RT ($R \cdot F \cdot P(\tau,T)$ at $\tau$), and RMV ($R \cdot P^d(\tau-,T)$ at $\tau$). The Duffie-Singleton RMV formula
 
 $$
-\text{Recovery Payment} = R \cdot F \quad \text{paid at } \tau
+P^d(t,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + (1-R)\lambda_s) ds} \mid \mathcal{F}_t\right]
 $$
 
-**Price formula:**
-
-$$
-P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}_{\{\tau > T\}} \mid \mathcal{F}_t\right] + \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} RF \cdot \mathbf{1}_{\{t < \tau \le T\}} \mid \mathcal{F}_t\right]
-$$
-
-### Recovery of Treasury (RT)
-
-At default, bondholders receive a fraction $R$ of the **risk-free bond value**:
-
-$$
-\text{Recovery Payment} = R \cdot P(\tau, T) \cdot F \quad \text{paid at } \tau
-$$
-
-where $P(\tau, T)$ is the risk-free discount factor from $\tau$ to $T$.
-
-This is equivalent to receiving $R \cdot F$ at maturity $T$.
-
-**Price formula:**
-
-$$
-P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}_{\{\tau > T\}} \mid \mathcal{F}_t\right] + R \cdot F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} \mathbf{1}_{\{t < \tau \le T\}} \mid \mathcal{F}_t\right]
-$$
-
-### Recovery of Market Value (RMV)
-
-At default, bondholders recover a fraction $R$ of the **pre-default market value** of the bond:
-
-$$
-\text{Recovery Payment} = R \cdot P^d(\tau-, T) \quad \text{paid at } \tau
-$$
-
-This leads to a recursive relationship in pricing.
-
-**Simplified formula (Duffie-Singleton):**
-
-Under RMV, the defaultable bond price satisfies:
-
-$$
-P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + (1-R)\lambda_s) ds} F \mid \mathcal{F}_t\right]
-$$
-
-The intensity-adjusted discount rate is $r + (1-R)\lambda$, where $(1-R)\lambda$ is the **loss-adjusted intensity**.
+uses the **loss-adjusted intensity** $(1-R)\lambda$.
 
 ---
 
 ## Pricing Under Intensity Models
 
-### Survival Component
-
-Using the fundamental credit pricing formula:
-
-$$
-\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}_{\{\tau > T\}} \mid \mathcal{F}_t\right] = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right]
-$$
-
-### Default Component (RFV)
-
-$$
-\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} RF \cdot \mathbf{1}_{\{t < \tau \le T\}} \mid \mathcal{F}_t\right] = RF \cdot \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s) ds} \lambda_u \, du \mid \mathcal{F}_t\right]
-$$
-
-### Combined Formula (RFV)
+Recall (see [§ Pricing under Intensity Models](pricing_under_intensity_models.md)): the survival and default components combine to give, under RFV,
 
 $$
 P^d(t,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right] + RF \cdot \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s) ds} \lambda_u \, du \mid \mathcal{F}_t\right]
@@ -181,23 +123,7 @@ under independence of $r$ and $\lambda$.
 
 ## Credit Spread Analysis
 
-### Definition of Yield
-
-The yield on a defaultable zero-coupon bond is:
-
-$$
-y^d(t,T) = -\frac{1}{T-t} \ln\left(\frac{P^d(t,T)}{F}\right)
-$$
-
-### Credit Spread
-
-The **credit spread** (or **yield spread**) is:
-
-$$
-s(t,T) = y^d(t,T) - y(t,T)
-$$
-
-where $y(t,T)$ is the yield on a comparable risk-free bond.
+Recall (see [§ Term Structure of Credit Spreads](term_structure_of_credit_spreads.md)): the yield $y^d(t,T) = -\frac{1}{T-t}\ln(P^d(t,T)/F)$ and credit spread $s(t,T) = y^d(t,T) - y(t,T)$.
 
 ### Spread Components
 
@@ -304,23 +230,7 @@ $$
 
 ## Comparison of Recovery Conventions
 
-| Convention | Recovery at Default | Analytical Simplicity | Market Use |
-|------------|--------------------|-----------------------|------------|
-| RFV | $R \cdot F$ | Moderate | Common |
-| RT | $R \cdot P(\tau,T) \cdot F$ | Good | Academic |
-| RMV | $R \cdot P^d(\tau-,T)$ | Best (Duffie-Singleton) | CDS market |
-
-**RMV advantages:**
-
-- Simple multiplicative adjustment to discount rate
-- Closed-form pricing in affine models
-- Consistent with CDS market quoting conventions
-
-**RFV advantages:**
-
-- Intuitive: recover fraction of par
-- Directly observable in bankruptcy proceedings
-- Standard in bond market analysis
+Recall (see [§ Recovery Schemes](recovery_schemes.md)): a full comparison table, with empirical recovery rates by seniority and advantages of each convention.
 
 ---
 

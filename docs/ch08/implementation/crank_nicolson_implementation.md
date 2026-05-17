@@ -1,36 +1,24 @@
 # Crank-Nicolson Scheme: Implementation
 
-The **Crank-Nicolson method** combines the accuracy of the explicit method with the stability of the implicit method. It is **second-order accurate** in both time and space, making it the preferred method in many financial engineering applications.
+Explicit Euler evaluates the spatial operator at the *known* time level; implicit Euler at the *unknown* level. Average the two and the leading $O(\Delta t)$ truncation error cancels by symmetry, leaving $O(\Delta t^2)$ accuracy -- the same order as the spatial discretization. The result is **Crank-Nicolson**: one extra linear solve per step compared to explicit Euler, but unconditional stability and second-order convergence in time, which is why it is the default time-stepper for Black-Scholes.
 
 ---
 
 ### The Idea
 
-The Crank-Nicolson method uses the **average of the explicit and implicit finite difference approximations**:
+Recall (see [§ Explicit, Implicit, and Crank-Nicolson Schemes](../fdm/explicit_implicit_crank_nicolson_schemes.md)): the Crank-Nicolson rule averages the explicit and implicit right-hand sides,
 
 $$
-\frac{V_i^{n+1} - V_i^n}{\Delta t} = \frac{1}{2} \left( L V_i^n + L V_i^{n+1} \right)
+\frac{V_i^{n+1} - V_i^n}{\Delta t} = \frac{1}{2}\left(L V_i^n + L V_i^{n+1}\right),
 $$
 
-where $L$ is the spatial differential operator in the Black-Scholes PDE. This leads to a **tridiagonal linear system** at each time step with improved accuracy.
-
----
-
-### Finite Difference Formulation
-
-Writing the Black-Scholes PDE as:
+where $L$ is the Black-Scholes spatial operator (see [§ Discounting and killing term](../../ch06/bs_pde_structure/discounting_and_killing_term.md)). This produces the tridiagonal linear system
 
 $$
-\frac{\partial V}{\partial t} = -\frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - r S \frac{\partial V}{\partial S} + r V
+A\mathbf{V}^{n+1} = B\mathbf{V}^n + \mathbf{b}_{\text{boundary}},
 $$
 
-and applying the Crank-Nicolson approach, we derive a linear system:
-
-$$
-A \mathbf{V}^{n+1} = B \mathbf{V}^n + \mathbf{b}_{\text{boundary}}
-$$
-
-where $A$ and $B$ are tridiagonal matrices and $\mathbf{b}_{\text{boundary}}$ incorporates boundary adjustments.
+with $A,B$ tridiagonal and $\mathbf{b}_{\text{boundary}}$ absorbing the boundary contributions.
 
 ---
 

@@ -22,12 +22,7 @@ is a $\mathbb{Q}$-martingale, where $\widetilde{V}_t = e^{-rt}V(t,S_t)$ is the d
 
 ## Martingale representation and delta
 
-
-By the martingale representation theorem (applicable in complete markets driven by a single Brownian motion), there exists a unique predictable process $Z_t$ such that
-
-$$
-\widetilde{V}_t = \widetilde{V}_0 + \int_0^t Z_s\,\mathrm{d}W_s^{\mathbb{Q}}
-$$
+Recall (see [§ Martingale Representation Theorem](../../ch04/martingale/martingale_representation_theorem.md)): in a complete one-Brownian market there is a unique predictable $Z_t$ with $\widetilde{V}_t = \widetilde{V}_0 + \int_0^t Z_s\,dW_s^{\mathbb{Q}}$.
 
 In the Black–Scholes model, one can identify this integrand explicitly. Since $V(t,S_t)$ is a function of the Markov state $S_t$ and Itô's formula gives
 
@@ -54,26 +49,13 @@ The self-financing replicating portfolio holds $\Delta(t, S_t)$ shares at time $
 
 ## Delta as a conditional expectation
 
-
-In the risk-neutral framework, delta can itself be written as a conditional expectation. For a European call with payoff $\Phi(S_T) = (S_T - K)^+$:
-
-$$
-\Delta(t, S_t) = \frac{\partial}{\partial S}\mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}(S_T - K)^+ \mid S_t = S]
-$$
-
-Under regularity conditions allowing interchange of differentiation and expectation (see *Pathwise Differentiation*):
+**Recall** (see [§ Greeks via Feynman–Kac](greeks_via_feynman_kac.md) and [§ Pathwise Differentiation](pathwise_differentiation.md)): for a European call,
 
 $$
-\Delta(t, S_t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}\!\left[\frac{\partial S_T}{\partial S_t}\mathbf{1}_{S_T > K}\,\Big|\, S_t\right]
+\Delta(t, S_t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}\!\left[\frac{S_T}{S_t}\mathbf{1}_{S_T > K}\,\Big|\, S_t\right],
 $$
 
-In Black–Scholes, $\frac{\partial S_T}{\partial S_t} = \frac{S_T}{S_t}$ (by log-linearity), so
-
-$$
-\Delta = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}\!\left[\frac{S_T}{S_t}\mathbf{1}_{S_T > K}\,\Big|\, S_t\right]
-$$
-
-which evaluates to $N(d_1)$ — the Black–Scholes call delta.
+which evaluates to $N(d_1)$ in the Black–Scholes model. This is the conditional-expectation form of the pathwise delta and is the bridge between probabilistic and PDE pricing of delta.
 
 ---
 
@@ -104,24 +86,11 @@ with $\mu = r - \sigma^2/2$.
 
 ## Vega and theta as expectations
 
+**Vega** has the score-function representation $\nu = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T)\,\partial_\sigma\log p(S_T|S_t)\mid S_t]$ (see [§ Likelihood Ratio and Malliavin Methods](likelihood_ratio_malliavin_methods.md)).
 
-Similarly:
+**Theta** is not an independent expectation: from the PDE, $\Theta = rV - rS\Delta - \tfrac12\sigma^2 S^2\Gamma$ — the residual fixed by the other Greeks.
 
-**Vega.** Using the chain rule through the transition density:
-
-$$
-\nu = \frac{\partial V}{\partial \sigma} = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}\!\left[\Phi(S_T)\cdot\frac{\partial \log p(S_T|S_t)}{\partial \sigma}\,\Big|\,S_t\right]
-$$
-
-In Black–Scholes, this simplifies to $\nu = S\sqrt{\tau}\,N'(d_1)$.
-
-**Theta.** From the Black–Scholes PDE:
-
-$$
-\Theta = rV - rS\Delta - \frac{1}{2}\sigma^2 S^2 \Gamma
-$$
-
-So theta is determined by the other Greeks and does not require a separate conditional expectation representation — it is the "residual" needed for the PDE to hold.
+Recall (see [§ Greeks in the Black–Scholes Model](../greeks/greeks_in_black_scholes_model.md)): BS closed forms $\nu_{\text{call}}=S\sqrt{\tau}N'(d_1)$ and the call/put theta formulas.
 
 ---
 

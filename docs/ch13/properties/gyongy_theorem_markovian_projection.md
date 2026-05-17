@@ -302,13 +302,13 @@ This is mathematically equivalent to the conditional expectation approach (by Gy
 
 ### Dupire as Gyongy
 
-Dupire's formula can be understood as the computational realization of Gyongy's projection:
+Recall (see [§ Dupire Formula Derivation](../local_volatility_framework/dupire_formula_derivation.md)) for the Dupire formula. The left side (Dupire) computes the local volatility from observable prices; the right side (Gyongy) gives its theoretical interpretation as a conditional expectation:
 
 $$
-\sigma_{\text{loc}}^2(K, T) = \frac{\partial_T C + qC + (r-q)K\partial_K C}{\frac{1}{2}K^2 \partial_{KK} C} = \mathbb{E}[\sigma_T^2 \mid S_T = K]
+\sigma_{\text{loc}}^2(K, T) = \mathbb{E}[\sigma_T^2 \mid S_T = K].
 $$
 
-The left side (Dupire) computes the local volatility from observable prices. The right side (Gyongy) gives its theoretical interpretation as a conditional expectation. The equality holds for any underlying model — the Dupire formula automatically computes the Gyongy projection of whatever dynamics generated the market prices.
+The equality holds for any underlying model — the Dupire formula automatically computes the Gyongy projection of whatever dynamics generated the market prices.
 
 ### Consistency Check
 

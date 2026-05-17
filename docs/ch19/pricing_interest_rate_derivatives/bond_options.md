@@ -24,13 +24,11 @@ A **European put option** has payoff $(K - P(T, T_B))^+$.
 
 ### Pricing Framework
 
-Under the $T$-forward measure $\mathbb{Q}^T$:
+Recall (see [§ Forward Measures](../forward_measures/measure_change_examples.md)): under $\mathbb{Q}^T$ the forward bond price $P(T,T_B)$ is a martingale, so
 
 $$
-C(0) = P(0, T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(P(T, T_B) - K)^+]
+C(0) = P(0, T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(P(T, T_B) - K)^+].
 $$
-
-The forward bond price $P(T, T_B)$ is a martingale under $\mathbb{Q}^T$.
 
 ---
 
@@ -282,17 +280,7 @@ $$
 
 ## Connection to Caps and Floors
 
-### Caplet as Bond Put
-
-A caplet paying $\delta(L(T_1, T_2) - K)^+$ at $T_2$ can be rewritten as a put on a bond:
-
-$$
-\text{Caplet} = (1 + K\delta) \cdot \text{Put}(P(T_1, T_2), K_{\text{bond}})
-$$
-
-where $K_{\text{bond}} = 1/(1 + K\delta)$.
-
-This connection allows caplet pricing using bond option formulas.
+Recall (see [§ Caps and Floors](caps_and_floors.md)): a caplet paying $\delta(L(T_1,T_2)-K)^+$ at $T_2$ equals $(1+K\delta)$ times a put on $P(T_1,T_2)$ with strike $K_{\text{bond}}=1/(1+K\delta)$, allowing caplet pricing via bond option formulas.
 
 ---
 

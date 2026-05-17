@@ -1,5 +1,7 @@
 # Margin and Short Positions
 
+Picture two traders on opposite sides of a single naked call: strike \$100, premium \$5, one contract on 100 shares. The buyer hands over \$500 and goes home; no matter what the stock does, that \$500 is the most she can ever lose. The writer collects the \$500 and goes home with an obligation. If the stock closes at \$150, he owes \$5,000; at \$300, he owes \$20,000; at \$1,000, he owes \$90,000. Same trade, same contract — but one side's exposure is bounded and the other's is not. That single asymmetry, repeated millions of times across the market every day, is the entire reason exchanges require option writers to post collateral *before* the trade is allowed to print.
+
 When an investor buys an option, the maximum loss is the premium paid — a known, finite amount settled at the time of purchase. The writer of that same option, however, accepts an obligation whose eventual cost depends on the future path of the underlying. This fundamental asymmetry between bounded and potentially unbounded loss is the reason margin requirements exist: they ensure that option writers can meet their obligations when called upon.
 
 ---
@@ -8,30 +10,15 @@ When an investor buys an option, the maximum loss is the premium paid — a know
 
 **Key idea**: Margin exists because losses are asymmetric — the buyer's loss is bounded by the premium, but the writer's loss can be far larger.
 
-The holder of a call option pays the premium $C_0$ and receives the payoff $(S_T - K)^+$ at maturity. The worst outcome is that the option expires worthless and the holder loses $C_0$. The same bounded-loss argument applies to put holders, whose maximum loss is the premium $P_0$.
+Recall (see [§ The Four Elementary Positions](basic_strategies.md)): the max-loss column of the four-position table makes the asymmetry explicit — long calls and long puts lose at most the premium, a **naked call** writer faces unbounded loss as $S_T \to \infty$, and a **naked put** writer faces a bounded but potentially large loss of up to $K - P_0$ (attained when $S_T = 0$).
 
-Writers face the opposite situation. The writer of a **naked call** (a call written without holding the underlying asset) receives $C_0$ but must deliver the payoff $(S_T - K)^+$. Since $S_T$ is unbounded above, the writer's loss
-
-$$
-L_{\text{call}} = (S_T - K)^+ - C_0
-$$
-
-has no finite upper bound. As $S_T \to \infty$, the loss grows without limit.
-
-The writer of a **naked put** receives $P_0$ and must pay $(K - S_T)^+$. Because $S_T \geq 0$, the maximum loss is bounded:
+Concretely, the writer's loss profiles are
 
 $$
-L_{\text{put}} = (K - S_T)^+ - P_0 \leq K - P_0
+L_{\text{call}} = (S_T - K)^+ - C_0, \qquad L_{\text{put}} = (K - S_T)^+ - P_0 \leq K - P_0.
 $$
 
-This worst case occurs when $S_T = 0$. Although the loss is finite, it can still be very large relative to the premium received when $K$ is large.
-
-| Position | Maximum gain | Maximum loss |
-|---|---|---|
-| Long call | Unlimited | $C_0$ |
-| Short (naked) call | $C_0$ | Unlimited |
-| Long put | $K - P_0$ | $P_0$ |
-| Short (naked) put | $P_0$ | $K - P_0$ |
+The first has no finite upper bound; the second, although finite, can still be very large relative to the premium received when $K$ is large. This is the risk profile that margin requirements are designed to cover.
 
 ---
 

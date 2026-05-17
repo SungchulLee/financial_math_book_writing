@@ -8,22 +8,7 @@ In practice, *static* calibration to vanilla options is often performed not dire
 ## From prices to implied volatility
 
 
-For a given maturity $T$ and strike $K$, a market quote is typically a bid/ask or mid option price
-
-$$
-C^{\text{mkt}}(K,T)
-$$
-
-
-
-The **Black–Scholes implied volatility** $\sigma_{\text{impl}}(K,T)$ is defined as the unique $\sigma\ge 0$ such that
-
-$$
-C^{\text{BS}}(K,T;\sigma) = C^{\text{mkt}}(K,T)
-$$
-
-
-where $C^{\text{BS}}$ is the Black–Scholes call price (with the appropriate forward/discounting conventions).
+Recall (see [§ Implied volatility as inverse pricing map](../../ch12/definition_of_implied_volatility/implied_volatility_as_inverse_pricing_map.md)): for a market quote $C^{\text{mkt}}(K,T)$, the **Black–Scholes implied volatility** $\sigma_{\text{impl}}(K,T)$ is the unique $\sigma\ge 0$ solving $C^{\text{BS}}(K,T;\sigma) = C^{\text{mkt}}(K,T)$.
 
 ### 1. Why implied vols?
 
@@ -61,14 +46,7 @@ A robust workflow typically:
 ## No-arbitrage considerations (static)
 
 
-A “good” implied vol surface should not generate static arbitrage.
-
-Typical constraints (informally):
-
-- **Calendar arbitrage:** total variance should be non-decreasing in $T$ for fixed moneyness.
-- **Butterfly arbitrage:** call prices convex in strike; in implied vol coordinates this imposes shape constraints.
-
-In practice, calibration is often done after (or together with) an **arbitrage-cleaning** step: remove obvious violations, widen bid/ask, or fit a surface constrained to be arbitrage-free.
+Recall (see [§ Static arbitrage-free conditions](../../ch12/implied_volatility_surface/static_arbitrage_free_conditions.md)): a good surface must satisfy calendar and butterfly no-arbitrage. In practice, calibration is often done after (or together with) an **arbitrage-cleaning** step: remove obvious violations, widen bid/ask, or fit a surface constrained to be arbitrage-free.
 
 ---
 

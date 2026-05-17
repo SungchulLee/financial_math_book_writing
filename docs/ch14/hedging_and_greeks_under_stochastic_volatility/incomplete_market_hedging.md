@@ -8,13 +8,7 @@ Stochastic volatility models operate in **incomplete markets**: not all sources 
 ## Why markets are incomplete
 
 
-In stochastic volatility models:
-
-- volatility is not directly tradable,
-- variance shocks introduce independent risk,
-- delta hedging alone cannot eliminate uncertainty.
-
-As a result, perfect replication is impossible.
+Recall (see [§ General SV framework](../general_stochastic_volatility_framework/correlation_and_leverage_effect.md)): volatility is not directly tradable and variance shocks introduce a second Brownian factor, so delta hedging alone cannot eliminate uncertainty and perfect replication is impossible.
 
 ---
 
@@ -47,19 +41,11 @@ Still, some risks remain irreducible.
 ## Hedging error as a random variable
 
 
-Hedging error should be viewed as:
+Recall (see [§ Hedging errors](../../ch11/hedging_errors/asymptotic_hedging_error_expansions.md)): hedging error is a random variable; risk management focuses on its distribution, tail risk, and robustness across scenarios. Under SV, the decomposition becomes
 
 $$
-\text{P&L}_{\text{hedge}} = \text{model error} + \text{unhedgeable risk}
+\text{P&L}_{\text{hedge}} = \text{model error} + \text{unhedgeable variance risk}.
 $$
-
-
-
-Risk management focuses on:
-
-- distribution of hedging error,
-- tail risk,
-- robustness across scenarios.
 
 ---
 

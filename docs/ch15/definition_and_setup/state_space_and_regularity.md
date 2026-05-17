@@ -242,22 +242,7 @@ $$
 
 This theorem is the foundation of the Riccati ODE approach: once we know $F$ and $R$, we solve the ODEs $\phi' = F(\psi)$ and $\psi' = R(\psi)$ to obtain the characteristic function of the process. The derivation of the Riccati system and its solutions are developed in subsequent sections.
 
-??? example "Regularity Check for the Vasicek Model"
-    For the Vasicek model $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$ on $D = \mathbb{R}$ (so $m = 0$, $d = 1$):
-
-    - $b_0 = \kappa\theta$, $b_1 = -\kappa$, $a_0 = \sigma^2$, $a_1 = 0$, no jumps
-
-    The functions $F$ and $R$ are:
-
-    $$
-    F(u) = \kappa\theta \cdot u + \frac{1}{2}\sigma^2 u^2
-    $$
-
-    $$
-    R(u) = -\kappa \cdot u
-    $$
-
-    The Riccati system $\psi'(\tau) = R(\psi(\tau)) = -\kappa\psi(\tau)$ with $\psi(0) = u$ gives $\psi(\tau) = u e^{-\kappa\tau}$, and integrating $\phi' = F(\psi)$ yields a closed-form expression in terms of $\tau$. Both $\phi$ and $\psi$ are smooth in $\tau$, confirming the regularity theorem. $\square$
+Recall (see [§ Vasicek and CIR as Affine](../examples/vasicek_cir_as_affine.md)): the regularity theorem is verified concretely for Vasicek (where $F(u) = \kappa\theta u + \tfrac{1}{2}\sigma^2 u^2$, $R(u) = -\kappa u$ yield smooth $\phi, \psi$) and CIR. Explicit closed-form solutions of the resulting Riccati system are derived in [§ Generalized Riccati ODEs](../characteristic_function/generalized_riccati_odes.md).
 
 ---
 

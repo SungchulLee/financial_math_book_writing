@@ -17,19 +17,13 @@ Since both securities derive their value from $V_t$, their prices must move toge
 
 ### Equity as a Leveraged Position
 
-From Merton's model, equity value is:
+Recall (see [§ Equity Value (Black-Scholes Call)](firm_value_models_merton.md#equity-value-black-scholes-call)). With $E = V N(d_1) - De^{-rT}N(d_2)$, the delta is
 
 $$
-E = V N(d_1) - D e^{-rT} N(d_2)
+\Delta_E = \frac{\partial E}{\partial V} = N(d_1) > 0,
 $$
 
-with delta (sensitivity to firm value):
-
-$$
-\Delta_E = \frac{\partial E}{\partial V} = N(d_1) > 0
-$$
-
-Equity is a **leveraged long position** in firm value. When $V$ increases:
+making equity a **leveraged long position** in firm value. When $V$ increases:
 
 - Equity value rises
 - Default probability falls
@@ -107,35 +101,11 @@ These relationships are:
 
 ### Distance to Default
 
-The **distance to default** (DD) provides a normalized measure:
-
-$$
-DD = \frac{\ln(V/D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}
-$$
-
-where $\mu$ is the physical drift of asset value.
-
-In terms of observables:
-
-$$
-DD \approx \frac{\ln(E + D) - \ln(D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}
-$$
-
-**KMV/Moody's Analytics approach:**
-
-1. Estimate $V$ and $\sigma_V$ from equity data
-2. Compute DD
-3. Map DD to expected default frequency (EDF) using historical data
+Recall (see [§ KMV Distance to Default](kmv_distance_to_default.md)) for the DD definition, the equity-based observable form, and the empirical EDF mapping pipeline (estimate $(V,\sigma_V)$ from equity, compute DD, then map to EDF).
 
 ### Spread Approximation
 
-For small spreads and near-the-money situations:
-
-$$
-s \approx (1 - R) \cdot \lambda \approx (1 - R) \cdot \frac{N(-DD)}{T}
-$$
-
-where $R$ is recovery rate and $\lambda$ is an implied intensity.
+For small spreads, $s \approx (1-R)\lambda \approx (1-R)N(-DD)/T$ where $\lambda$ is an implied intensity (recall [reduced-form intensity models](../reduced_form_intensity_based_models/default_intensity_and_hazard_rates.md)).
 
 ---
 

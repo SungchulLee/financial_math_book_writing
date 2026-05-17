@@ -41,15 +41,7 @@ $$
 \Theta_i^{(0)} = \Theta^{\text{lo}} + U_i \odot (\Theta^{\text{hi}} - \Theta^{\text{lo}}), \qquad i = 1, \ldots, N_p
 $$
 
-where $U_i \in [0,1]^5$ is a random vector, $\odot$ denotes element-wise multiplication, and $\Theta^{\text{lo}}, \Theta^{\text{hi}}$ are the lower and upper bounds. For Heston calibration, typical bounds are:
-
-| Parameter | Lower | Upper | Interpretation |
-|---|---|---|---|
-| $v_0$ | $0.001$ | $1.0$ | Initial variance ($\sigma_0$ from 3% to 100%) |
-| $\kappa$ | $0.01$ | $10.0$ | Mean-reversion speed (half-life 0.07 to 69 years) |
-| $\theta$ | $0.001$ | $1.0$ | Long-run variance |
-| $\xi$ | $0.01$ | $3.0$ | Vol-of-vol |
-| $\rho$ | $-0.99$ | $0.99$ | Correlation |
+where $U_i \in [0,1]^5$ is a random vector, $\odot$ denotes element-wise multiplication, and $\Theta^{\text{lo}}, \Theta^{\text{hi}}$ are the lower and upper bounds. Recall (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)) for parameter interpretations; typical calibration bounds are $v_0 \in [0.001, 1]$, $\kappa \in [0.01, 10]$, $\theta \in [0.001, 1]$, $\xi \in [0.01, 3]$, $\rho \in [-0.99, 0.99]$.
 
 A population size of $N_p = 10 \times d = 50$ (where $d = 5$ is the dimension) provides a reasonable trade-off between exploration and computational cost.
 
@@ -111,16 +103,13 @@ This places the repaired component between the violated bound and the current ta
 
 ### Feller Condition as Penalty
 
-Rather than strictly enforcing the Feller condition (which reduces the search space and may prevent the optimizer from finding good fits when the market data implies Feller violation), add a **soft penalty**:
+Recall (see [§ Variance Dynamics (CIR/Feller)](../variance_dynamics/cir_variance_process_solution.md)): the Feller condition $2\kappa\theta \geq \xi^2$ ensures the variance process stays strictly positive. Rather than enforcing it strictly (which can produce worse fits, since many market-calibrated parameters violate Feller), add a **soft penalty**:
 
 $$
 \mathcal{L}_{\text{pen}}(\Theta) = \mathcal{L}(\Theta) + \mu \cdot \max\bigl(0, \, \xi^2 - 2\kappa\theta\bigr)^2
 $$
 
-where $\mu > 0$ is a penalty weight. Setting $\mu$ large enough discourages Feller violation without creating a hard boundary that could cause the optimizer to miss nearby good solutions.
-
-!!! tip "Feller Condition in Practice"
-    Many market-calibrated Heston parameters violate the Feller condition ($2\kappa\theta < \xi^2$). The variance process still stays positive almost surely---it just touches zero with positive probability. Strictly enforcing Feller can produce worse fits. A soft penalty with $\mu$ between 10 and 100 is a practical compromise.
+with $\mu$ typically in $[10, 100]$.
 
 ---
 

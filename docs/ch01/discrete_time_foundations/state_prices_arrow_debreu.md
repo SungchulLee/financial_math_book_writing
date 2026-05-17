@@ -1,58 +1,42 @@
 # Arrow-Debreu Securities and State Prices
 
-This is the destination of the chapter. The
-[previous section](arbitrage_and_dominance.md) established that no-arbitrage
-is the only economic assumption needed for pricing; this section shows
-exactly what pricing rule it produces. The answer is the
-[First Fundamental Theorem](one_period_market_model.md):
-
-!!! success "First Fundamental Theorem of Asset Pricing (finite case)"
-    The market admits no arbitrage if and only if there exists a strictly
-    positive state price vector $\boldsymbol{\phi} \gg 0$ such that
-
-    $$
-    \mathbf{P} = \mathbf{X}\boldsymbol{\phi}
-    $$
-
-    Equivalently, there exists a risk-neutral measure $\mathbb{Q}$ such that
-    $P_j = \frac{1}{1 + r_f}\mathbb{E}^{\mathbb{Q}}[X_j]$ for every asset $j$.
-
-Arrow-Debreu securities provide the concrete objects --- one security per
-state, paying \$1 in that state and 0 elsewhere --- whose prices are the
-components $\phi_s$ of the state price vector. Every other asset decomposes
-into a bundle of these elementary claims, so pricing reduces to decomposing
-payoffs into state-contingent pieces.
-
-Introduced by Kenneth Arrow and Gérard Debreu in the 1950s, this framework
-establishes the theoretical basis for no-arbitrage pricing, risk-neutral
-valuation, and market completeness.
+The [previous page](arbitrage_and_dominance.md) proved the First
+Fundamental Theorem of Asset Pricing in finite states: a market is
+arbitrage-free if and only if its prices satisfy
+$\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$ for some $\boldsymbol{\phi} \gg
+0$. We now **interpret** that algebraic equation. The components $\phi_s$
+of $\boldsymbol{\phi}$ are the prices of elementary state-contingent claims
+called **Arrow–Debreu securities**, introduced by Kenneth Arrow and Gérard
+Debreu in the 1950s. Rescaling $\boldsymbol{\phi}$ produces a probability
+measure $\mathbb{Q}$, the **risk-neutral measure**, under which every asset
+price is the discounted expected payoff; dividing by physical probabilities
+produces the **stochastic discount factor** that links asset pricing to
+consumption-based macroeconomic models. This page is the canonical home
+for these three interpretations and for the Breeden–Litzenberger
+extraction of state prices from option markets.
 
 !!! abstract "Learning Objectives"
     After completing this section, you should understand:
-    
+
     - What Arrow-Debreu securities are and how they define state prices
-    - How state prices relate to no-arbitrage conditions and risk-neutral pricing
-    - The connection between state prices, stochastic discount factors, and equivalent martingale measures
-    - How to extract state prices from observed market prices
-    - Practical applications to derivative pricing and portfolio theory
+    - How rescaled state prices produce the risk-neutral measure $\mathbb{Q}$ and the discounted-expectation pricing formula
+    - The relationship between state prices, stochastic discount factors, and equivalent martingale measures
+    - How completeness governs the uniqueness of $\boldsymbol{\phi}$
+    - How to extract state prices from observed asset and option prices
 
 ---
 
-## Setup: A Discrete-State Economy
+## Notation (recall)
 
-Consider a single-period economy with time $t = 0$ (today) and $t = 1$ (future). At $t = 1$, exactly one of $S$ possible **states of the world** $\omega_1, \omega_2, \ldots, \omega_S$ will occur. Each state $\omega_s$ occurs with a known physical (real-world) probability $p_s > 0$, where
-
-$$
-\sum_{s=1}^{S} p_s = 1
-$$
-
-There are $N$ traded assets in this economy. Asset $j$ has a known price $P_j$ at $t = 0$ and delivers a state-contingent payoff $X_j(\omega_s) = X_{js}$ at $t = 1$. We can organize these payoffs into a **payoff matrix**:
-
-$$
-\mathbf{X} = \begin{pmatrix} X_{11} & X_{12} & \cdots & X_{1S} \\ X_{21} & X_{22} & \cdots & X_{2S} \\ \vdots & \vdots & \ddots & \vdots \\ X_{N1} & X_{N2} & \cdots & X_{NS} \end{pmatrix}
-$$
-
-where row $j$ represents the payoffs of asset $j$ across all states, and column $s$ represents the payoffs of all assets in state $s$.
+Recall (see [§ One-Period Market Model](one_period_market_model.md)): the
+market has $S$ states $\omega_1, \ldots, \omega_S$ with physical
+probabilities $p_s > 0$, $N$ traded assets with price vector
+$\mathbf{P} \in \mathbb{R}^N$, and payoff matrix
+$\mathbf{X} \in \mathbb{R}^{N \times S}$. A risk-free bond pays $1 + r_f$
+in every state. Throughout this page we assume no arbitrage, so by the
+FTAP proved in [§ Arbitrage and dominance](arbitrage_and_dominance.md)
+there exists $\boldsymbol{\phi} \gg 0$ with
+$\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$.
 
 <figure markdown="span">
   ![State Economy Diagram](./image/state_economy_diagram.svg)
@@ -127,50 +111,17 @@ $$
 
 where $\mathbf{P} = (P_1, P_2, \ldots, P_N)^\top$ is the vector of asset prices.
 
-### Properties of State Prices
+### Two Properties of $\boldsymbol{\phi}$
 
-!!! tip "Key Properties"
-    Under the assumption of **no arbitrage**:
+Under no-arbitrage, the FTAP gives **positivity**: $\phi_s > 0$ for every $s$. Economically, every state is "valuable" — investors are willing to pay a positive price for insurance against any possible state.
 
-    1. **Positivity**: $\phi_s > 0$ for all $s = 1, 2, \ldots, S$. Every state is "valuable" — investors are willing to pay a positive price for insurance against any possible state.
-    
-    2. **Sum relates to the risk-free rate**: If a risk-free bond exists paying \$1 in every state, its price is
-    
-    $$
-    P_{\text{rf}} = \sum_{s=1}^{S} \phi_s = \frac{1}{1 + r_f}
-    $$
-    
-    where $r_f$ is the one-period risk-free interest rate. Thus, $\sum_s \phi_s < 1$ when $r_f > 0$.
-    
-    3. **Linearity**: Pricing is linear — the price of a portfolio equals the portfolio of prices.
-
----
-
-## No-Arbitrage and the Existence of State Prices
-
-### Arbitrage
-
-An **arbitrage opportunity** is a trading strategy that costs nothing (or less) today and yields a non-negative payoff in all future states with a strictly positive payoff in at least one state. Formally, a portfolio $\boldsymbol{\theta} = (\theta_1, \ldots, \theta_N)^\top$ is an arbitrage if:
+The risk-free bond pays $1 + r_f$ in every state at price $1$. Applying $P = \boldsymbol{\phi}^\top \mathbf{X}_j$ to this row gives the **bond identity**:
 
 $$
-\boldsymbol{\theta}^\top \mathbf{P} \leq 0, \quad \mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}, \quad \text{and} \quad \mathbf{X}^\top \boldsymbol{\theta} \neq \mathbf{0}
+\sum_{s=1}^{S} \phi_s = \frac{1}{1 + r_f}
 $$
 
-### The Fundamental Theorem (First Version)
-
-!!! success "Theorem: No-Arbitrage $\iff$ Existence of Positive State Prices"
-    There are **no arbitrage opportunities** in the market if and only if there exists a strictly positive state price vector $\boldsymbol{\phi} \gg \mathbf{0}$ such that:
-    
-    $$
-    \mathbf{P} = \mathbf{X} \, \boldsymbol{\phi}
-    $$
-
-This is a form of the **First Fundamental Theorem of Asset Pricing** in finite-state settings. It connects the economic condition (no free lunch) to a mathematical condition (existence of positive pricing functionals).
-
-**Proof sketch**:
-
-- ($\Leftarrow$) If $\boldsymbol{\phi} \gg 0$ exists, then any portfolio $\boldsymbol{\theta}$ with $\mathbf{X}^\top \boldsymbol{\theta} \geq 0$ must have $\boldsymbol{\theta}^\top \mathbf{P} = \boldsymbol{\theta}^\top \mathbf{X} \boldsymbol{\phi} \geq 0$, ruling out arbitrage.
-- ($\Rightarrow$) Follows from the **Separating Hyperplane Theorem** (Farkas' Lemma): if no arbitrage exists, the set of achievable payoffs and the positive orthant can be separated, implying the existence of $\boldsymbol{\phi} \gg 0$.
+so the state prices sum to the discount factor $\beta$. In particular $\sum_s \phi_s < 1$ when $r_f > 0$. This identity is the bridge from $\boldsymbol{\phi}$ to the risk-neutral measure below.
 
 ---
 
@@ -252,29 +203,14 @@ $$
 
 ---
 
-## Complete Markets
+## Completeness and Uniqueness of State Prices
 
-### Definition
-
-!!! info "Definition: Complete Market"
-    A market is **complete** if every state-contingent payoff can be replicated by a portfolio of traded assets. Formally, the market is complete if for any payoff vector $\mathbf{c} \in \mathbb{R}^S$, there exists a portfolio $\boldsymbol{\theta} \in \mathbb{R}^N$ such that $\mathbf{X}^\top \boldsymbol{\theta} = \mathbf{c}$.
-
-This requires $\text{rank}(\mathbf{X}) = S$, which in turn requires $N \geq S$ (at least as many assets as states).
-
-### Uniqueness of State Prices
+Recall (see [§ Portfolios and payoffs](portfolios_and_payoffs.md)): the market is **complete** iff $\operatorname{rank}(\mathbf{X}) = S$, i.e. every payoff vector $\mathbf{c} \in \mathbb{R}^S$ is replicable.
 
 !!! success "Theorem: Completeness $\iff$ Unique State Prices"
-    If the market is arbitrage-free, then:
+    Under no-arbitrage, the state price vector $\boldsymbol{\phi} \gg \mathbf{0}$ with $\mathbf{P} = \mathbf{X}\boldsymbol{\phi}$ is **unique** iff the market is complete. In the incomplete case, infinitely many positive $\boldsymbol{\phi}$ (and hence risk-neutral measures $\mathbb{Q}$ and SDFs $m$) are consistent with the observed prices, and non-attainable claims have a range of no-arbitrage prices rather than a single one.
 
-    - **Complete market**: The state price vector $\boldsymbol{\phi}$ is **unique**. There is a unique risk-neutral measure $\mathbb{Q}$ and a unique SDF.
-    - **Incomplete market**: Multiple state price vectors (and risk-neutral measures) are consistent with no-arbitrage. Assets can be priced, but not all contingent claims have a unique price.
-
-This is related to the **Second Fundamental Theorem of Asset Pricing**.
-
-!!! example "Example: Complete vs. Incomplete"
-    **Complete**: 3 states, 3 linearly independent assets $\Rightarrow$ $\text{rank}(\mathbf{X}) = 3 = S$ $\Rightarrow$ unique $\boldsymbol{\phi}$.
-    
-    **Incomplete**: 3 states, 2 assets $\Rightarrow$ $\text{rank}(\mathbf{X}) \leq 2 < 3$ $\Rightarrow$ infinitely many $\boldsymbol{\phi}$ consistent with no-arbitrage.
+The proof and the pricing-interval consequences in the incomplete case are the subject of the **Second FTAP**: see [§ Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md).
 
 ---
 
@@ -351,32 +287,6 @@ This is the **Breeden-Litzenberger formula**. It shows that the curvature of the
 
 !!! tip "Practical Implication"
     Butterfly spreads (long calls at $K - \Delta K$ and $K + \Delta K$, short two calls at $K$) approximate $\frac{\partial^2 C}{\partial K^2}$ and thus provide discrete estimates of state prices. This is the basis for extracting implied risk-neutral distributions from option markets.
-
----
-
-## Multi-Period Extension
-
-In a multi-period setting with times $t = 0, 1, \ldots, T$, the state price framework extends naturally via **state-price processes**.
-
-### State-Price Deflator
-
-A **state-price deflator** (or **numeraire portfolio process**) $\{\pi_t\}$ satisfies:
-
-$$
-P_t^{(j)} = \frac{1}{\pi_t} \mathbb{E}_t^{\mathbb{P}}[\pi_T \cdot X_T^{(j)}]
-$$
-
-for any asset $j$, where $\mathbb{E}_t^{\mathbb{P}}[\cdot]$ denotes the conditional expectation under the physical measure given information at time $t$.
-
-### Recursive Pricing
-
-Between any two adjacent periods $t$ and $t+1$:
-
-$$
-P_t = \mathbb{E}_t^{\mathbb{P}}[m_{t+1} \cdot (P_{t+1} + D_{t+1})]
-$$
-
-where $m_{t+1} = \pi_{t+1}/\pi_t$ is the **one-period SDF** and $D_{t+1}$ is any intermediate dividend.
 
 ---
 

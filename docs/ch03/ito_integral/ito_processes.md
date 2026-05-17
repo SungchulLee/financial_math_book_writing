@@ -2,7 +2,7 @@
 
 ### 1. Concept Definition
 
-An **Itô process** is a continuous adapted process $X_t$ that combines an ordinary (Lebesgue) integral and a stochastic (Itô) integral:
+A diffusing asset price experiences two co-existing motions in every instant: a smooth drift over $dt$ (interest, expected return, mean reversion) and a random kick proportional to a Brownian increment $dB_t$. Adding the two contributions gives the differential $dX_t = \mu_t\,dt + \sigma_t\,dB_t$, whose integrated form is an **Itô process** -- a continuous adapted process combining an ordinary (Lebesgue) integral and a stochastic (Itô) integral:
 
 $$
 \boxed{
@@ -36,13 +36,13 @@ with the understanding that this is shorthand for the integral form above. The s
 
 #### Heuristic multiplication rules
 
-The compact notation $dX_t = \mu_t\,dt + \sigma_t\,dB_t$ comes with algebraic rules that encode the quadratic variation structure of Brownian motion:
+Recall (see [§ Quadratic Variation](quadratic_variation.md)): the compact notation $dX_t = \mu_t\,dt + \sigma_t\,dB_t$ comes with the Itô multiplication table
 
 $$
 dt \cdot dt = 0, \qquad dB_t \cdot dt = 0, \qquad dB_t \cdot dB_t = dt
 $$
 
-These rules capture the essence of stochastic calculus: deterministic infinitesimals are negligible compared to stochastic ones, and the quadratic variation of Brownian motion is of order $dt$. They are shorthand for rigorous statements about quadratic covariation.
+which is shorthand for the covariation identities $[t,t]=0$, $[B,t]=0$, $[B,B]_t = t$.
 
 #### Martingale characterization
 
@@ -69,13 +69,7 @@ The quadratic variation of an Itô process is determined entirely by its diffusi
 
 **Theorem.** $[X,X]_t = \int_0^t \sigma_s^2\, ds$.
 
-**Proof.** The drift integral $\int_0^t \mu_s\,ds$ has finite variation, so its quadratic variation is zero. The quadratic variation is then:
-
-$$
-[X,X]_t = \left[\int_0^\cdot \sigma_s\,dB_s,\, \int_0^\cdot \sigma_s\,dB_s\right]_t = \int_0^t \sigma_s^2\, ds
-$$
-
-where the last equality is the quadratic variation property of the Itô integral. $\square$
+Recall (see [§ Quadratic Variation](quadratic_variation.md)): finite-variation processes contribute zero QV, so the drift integral drops out; the diffusion integral contributes $\int_0^t \sigma_s^2\,ds$ by the canonical QV formula for Itô integrals.
 
 **Corollary.** The **instantaneous variance** (spot volatility squared) of $X_t$ at time $t$ is $\sigma_t^2\,dt$. The diffusion coefficient $|\sigma_t|$ is the instantaneous volatility.
 
@@ -156,15 +150,9 @@ $$
 dS_t = \mu S_t\, dt + \sigma S_t\, dB_t
 $$
 
-The coefficients $\mu_t = \mu S_t$ and $\sigma_t = \sigma S_t$ depend on the unknown process $S_t$ itself—this is a **stochastic differential equation** rather than an Itô process with given coefficients. Applying Itô's formula to $\log S_t$ shows the solution is:
+Here $\mu_t = \mu S_t$ and $\sigma_t = \sigma S_t$ depend on $S_t$ itself, so this is a **stochastic differential equation** rather than an Itô process with given coefficients.
 
-$$
-S_t = S_0 \exp\!\left(\left(\mu - \tfrac{\sigma^2}{2}\right)t + \sigma B_t\right)
-$$
-
-(The $-\sigma^2/2$ correction arises from the quadratic variation of $\sigma B_t$—a hallmark of Itô's formula.)
-
-This process is the foundation of the Black-Scholes option pricing model.
+Recall (see [§ Stochastic Differential Equations](../sde/sde.md)): the closed-form solution $S_t = S_0 \exp\!\left((\mu - \sigma^2/2)t + \sigma B_t\right)$ and the $-\sigma^2/2$ Itô correction are derived there. GBM is the foundation of the Black-Scholes model.
 
 ---
 

@@ -241,19 +241,9 @@ The standard approach:
 - Too large: nonlinearity distorts estimate.
 - Rule of thumb: $\delta \sim \sigma_{\theta_i}$ (one standard deviation).
 
-### Scenario analysis
+### Scenario analysis and alternative model comparison
 
-Evaluate prices under alternative calibrations:
-
-- Calibrate to different subsets of data.
-- Use different objective functions or weights.
-- Perturb data within bid-ask spreads.
-
-The dispersion of prices across scenarios quantifies model risk.
-
-### Alternative model comparison
-
-Price the same product under different models (Heston, SABR, local vol). The range of prices reflects model uncertainty beyond parameter uncertainty.
+Recall (see [stability-based validation](robust_calibration_criteria.md#stability-based-validation) and [ensemble calibration](robust_calibration_criteria.md#robust-objective-functions)) — repricing under perturbed data, alternative objectives/weights, and competing models (Heston, SABR, local vol) yields a dispersion of prices that quantifies model risk beyond a single parameter set.
 
 ---
 

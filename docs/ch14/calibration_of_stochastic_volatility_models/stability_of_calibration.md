@@ -1,6 +1,8 @@
 # Stability of Calibration
 
 
+Recall (see [§ Ill-Posedness and Non-Uniqueness](../../ch17/calibration_as_inverse_problem/ill_posedness_and_non_uniqueness.md), [§ Tikhonov Regularization](../../ch17/regularization_and_stability/tikhonov_regularization.md), [§ Trade-off Between Fit and Robustness](../../ch17/regularization_and_stability/trade_off_between_fit_and_robustness.md)) the general regularization framework. This page applies these ideas to *stochastic volatility* calibration.
+
 Beyond fit quality, a calibration must be **stable**: small changes in market data should not cause large parameter shifts. Stability is a central criterion for production models.
 
 ---
@@ -11,7 +13,7 @@ Beyond fit quality, a calibration must be **stable**: small changes in market da
 Calibration instability arises from:
 
 - ill-posed inverse problems,
-- weakly identifiable parameters,
+- weakly identifiable parameters (see [§ Identifiability Issues](identifiability_issues.md)),
 - noisy or illiquid quotes,
 - overly flexible objectives.
 

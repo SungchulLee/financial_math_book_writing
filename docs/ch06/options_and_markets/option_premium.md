@@ -1,5 +1,7 @@
 # Option Premium
 
+Picture an investor on Monday morning. A call with strike \$100 on a stock currently trading at \$98 is quoted at \$5. She pays the \$5 today, in certain currency. Three months later the stock closes at \$104, the option pays \$4, and her trade — profitable on paper at exercise — has lost \$1 overall. Had the stock instead closed at \$110, the same \$5 ticket would have returned \$10. The \$5 is the **premium**: a definite price paid *today* for an uncertain payoff *tomorrow*. Understanding what makes \$5 the right number — not \$3, not \$8 — is the entire problem of option pricing.
+
 Having defined what options are and characterized their payoffs at maturity, we now turn to a more fundamental question: how much should one pay to acquire an option *today*? The payoff at expiration is a random variable that depends on the future stock price, but the purchase happens now, at a definite price. This price — the **option premium** — is the central object of option pricing theory.
 
 ---
@@ -38,7 +40,7 @@ $$
 \text{Intrinsic value (put)} = \max(K - S_t,\, 0) = (K - S_t)^+
 $$
 
-An in-the-money call with $S_t = 105$ and $K = 100$ has an intrinsic value of \$5. An out-of-the-money option has zero intrinsic value.
+Recall (see [§ Moneyness](what_is_option.md#moneyness)): an option is ITM when its intrinsic value is positive, OTM when it is zero, and ATM at the boundary.
 
 The **time value** (also called *extrinsic value*) is the remainder:
 
@@ -63,42 +65,21 @@ Time value reflects the possibility that the underlying price may move favorably
 
 ## Factors Affecting the Premium
 
-Five quantities govern the option premium. Their influence can be summarized qualitatively before any pricing formula is derived.
+Five quantities govern the option premium. Their **signs** can be read off the payoff structure before any pricing formula is derived; the magnitudes (the Greeks) are deferred forward.
 
-| Factor | Symbol | Effect on call premium | Effect on put premium |
+| Factor | Symbol | Call | Put |
 |---|---|---|---|
-| Stock price | $S$ | Increases | Decreases |
-| Strike price | $K$ | Decreases | Increases |
-| Time to maturity | $T - t$ | Increases | Increases |
-| Volatility | $\sigma$ | Increases | Increases |
-| Risk-free rate | $r$ | Increases | Decreases |
+| Stock price | $S$ | $\uparrow$ | $\downarrow$ |
+| Strike price | $K$ | $\downarrow$ | $\uparrow$ |
+| Time to maturity | $T - t$ | $\uparrow$ | $\uparrow$ |
+| Volatility | $\sigma$ | $\uparrow$ | $\uparrow$ |
+| Risk-free rate | $r$ | $\uparrow$ | $\downarrow$ |
 
-The first two are immediate: a call becomes more valuable as the underlying rises (moving it deeper in the money) and less valuable as the strike rises (making exercise less likely). Greater time to maturity increases the premium for both calls and puts because it enlarges the range of possible outcomes.
+The signs follow from the asymmetric payoff: a longer horizon or higher volatility widens the distribution of $S_T$, and the holder benefits from favorable tails while the unfavorable tail is floored at zero.
 
-Volatility $\sigma$ is perhaps the most important determinant. Higher volatility means larger potential swings in $S_T$, which benefits the option holder: upside gains grow while the downside remains bounded at zero payoff. This asymmetry makes options more valuable in volatile markets, a feature that will be made precise through the Black-Scholes formula.
+Recall (see [§ The Greeks](../../ch10/greeks/delta_gamma_vega_theta_rho.md)): the partial derivatives $\Delta, \Gamma, \mathcal{V}, \Theta, \rho$ that quantify these sensitivities are developed in Chapter 10, after the Black-Scholes formula is in hand. The empirical pattern that OTM puts trade at higher implied volatilities than OTM calls — the **volatility skew** — is treated in [§ Implied Volatility Surface](../../ch12/implied_volatility_surface/empirical_smile_spx.md).
 
-??? tip "Volatility Skew"
-    In real markets, the effect of volatility on premiums is not uniform across strikes. Out-of-the-money puts tend to trade at higher implied volatilities than symmetric out-of-the-money calls — a phenomenon called **volatility skew**. For S&P 500 options, a put struck 200 points below the index may be priced at a higher implied volatility than a call struck 200 points above, even though both are equally far from the current level.
-
-    This skew reflects the market's demand for **downside protection**: investors are willing to pay a disproportionate premium to insure against sudden market declines, which tend to be sharper and more damaging than rallies of equal magnitude. The volatility skew is a persistent empirical feature of equity index options and has important implications for pricing models beyond Black-Scholes.
-
-The risk-free rate $r$ enters because exercising a call at maturity is equivalent to deferring purchase of the stock. A higher rate reduces the present value of the strike payment $K e^{-r(T-t)}$, making the call more valuable. The effect is reversed for puts.
-
----
-
-## Premium as Discounted Expected Payoff
-
-There is a deeper interpretation of the premium that foreshadows the risk-neutral pricing framework developed in subsequent sections. Under certain assumptions (no arbitrage, complete markets), the fair premium equals the **discounted expected payoff under a risk-neutral probability measure** $\mathbb{Q}$:
-
-$$
-C_0 = e^{-rT}\, \mathbb{E}^{\mathbb{Q}}\!\left[(S_T - K)^+\right]
-$$
-
-$$
-P_0 = e^{-rT}\, \mathbb{E}^{\mathbb{Q}}\!\left[(K - S_T)^+\right]
-$$
-
-The measure $\mathbb{Q}$ is not the real-world probability — it is the unique measure under which discounted asset prices are martingales. We do not yet have the tools to construct $\mathbb{Q}$ or justify these formulas; that is the subject of later chapters. For now, the key insight is that the premium is not merely a market convention or a subjective assessment of risk. It is determined by a precise mathematical expectation, discounted at the risk-free rate. This expectation-based viewpoint transforms option pricing from a problem of forecasting into a problem of computing expectations — a shift that lies at the heart of mathematical finance. The existence and form of $\mathbb{Q}$ will be **derived, not assumed**, from the no-arbitrage principle in the chapters that follow.
+Recall (see [§ Why Pricing Matters](why_pricing_matters.md)): the fair premium is the cost of a replicating portfolio, equivalently a discounted expectation $e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{payoff}]$ under a risk-neutral measure $\mathbb{Q}$ derived from no-arbitrage. The construction of $\mathbb{Q}$ and the closed-form premia are developed in [§ Black-Scholes Formula](../black_scholes_formula/asymptotic_behavior.md).
 
 ---
 

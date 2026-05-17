@@ -69,7 +69,13 @@ $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \frac{M_T}{\mathbb{E}^{\mathbb{P}}[M_T]}
 $$
 
-Pricing a risk-free bond ($X_T = 1$, price $= e^{-rT}$) confirms $\mathbb{E}^{\mathbb{P}}[M_T] = e^{-rT}$, consistent with the definition. The transformation from $\mathbb{P}$ to $\mathbb{Q}$ upweights bad states and downweights good states---exactly what risk-averse investors do. The risk-neutral measure $\mathbb{Q}$ is not a belief; it is a preference-adjusted probability.
+Pricing a risk-free bond ($X_T = 1$, price $= e^{-rT}$) confirms
+$\mathbb{E}^{\mathbb{P}}[M_T] = e^{-rT}$, consistent with the definition.
+The conceptual interpretation of $\mathbb{Q}$ as a preference-adjusted
+probability is developed in
+[§ Physical vs Risk-Neutral World](physical_vs_risk_neutral.md); the
+contribution here is that the SDF makes the underlying economic reweighting
+explicit through marginal utility.
 
 ---
 
@@ -196,3 +202,35 @@ In one sentence, explain what the stochastic discount factor does. Then state th
     - $d\mathbb{Q}/d\mathbb{P}$: stochastic reweighting that inflates the probability of bad states and deflates the probability of good states, reflecting risk aversion.
 
     Together, they transform the real-world expectation of a payoff into its market price.
+
+---
+
+**Exercise 6.**
+Given $M_T = e^{-rT}\,d\mathbb{Q}/d\mathbb{P}$, show that the Girsanov kernel
+$\theta$ from [§ Risk Premium Decomposition](risk_premium_decomposition.md)
+and the SDF are linked by
+$d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_T} = \exp(-\theta W_T^{\mathbb{P}} - \tfrac{1}{2}\theta^2 T)$
+in the constant-$\theta$ Black--Scholes setting. Interpret $M_T$ economically.
+
+??? success "Solution to Exercise 6"
+    In the constant-$\theta$ setting, Girsanov's theorem gives
+
+    $$
+    \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\!\left(-\theta W_T^{\mathbb{P}} - \tfrac{1}{2}\theta^2 T\right)
+    $$
+
+    Therefore
+
+    $$
+    M_T = e^{-rT}\exp\!\left(-\theta W_T^{\mathbb{P}} - \tfrac{1}{2}\theta^2 T\right)
+    $$
+
+    Economically, $M_T$ has two factors. The deterministic factor $e^{-rT}$
+    captures the time value of money. The stochastic factor
+    $\exp(-\theta W_T^{\mathbb{P}} - \tfrac{1}{2}\theta^2 T)$ encodes the
+    state-dependent value of a dollar: paths with high $W_T^{\mathbb{P}}$
+    correspond to favorable states (low marginal utility) and receive low
+    weight, while paths with low $W_T^{\mathbb{P}}$ correspond to adverse
+    states (high marginal utility) and receive high weight. The same object
+    that effects the measure change in pricing simultaneously expresses the
+    investor's marginal-utility weighting of outcomes. $\square$

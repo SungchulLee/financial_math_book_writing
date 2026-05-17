@@ -97,17 +97,13 @@ where $p(r_{t_{k+1}} | r_{t_k})$ is the CIR transition density, which is a scale
 
 ### Transition density
 
-The density of $r_{t+\Delta t}$ given $r_t$ is
+Recall (see [§ Transition Density: Non-Central Chi-Squared](transition_density.md)) that $r_{t+\Delta t}\mid r_t$ has the scaled non-central chi-squared density
 
 $$
-p(r_{t+\Delta t}\,|\,r_t) = c_e\,f_{\chi^2(d,\lambda)}(c_e\,r_{t+\Delta t})
+p(r_{t+\Delta t}\,|\,r_t) = c_e\,f_{\chi^2(d,\lambda)}(c_e\,r_{t+\Delta t}),
 $$
 
-where $f_{\chi^2(d,\lambda)}$ is the non-central chi-squared PDF and
-
-$$
-c_e = \frac{4\kappa}{\sigma^2(1 - e^{-\kappa\Delta t})}, \qquad d = \frac{4\kappa\theta}{\sigma^2}, \qquad \lambda = c_e\,r_t\,e^{-\kappa\Delta t}
-$$
+with $c_e = 4\kappa/[\sigma^2(1-e^{-\kappa\Delta t})]$, $d = 4\kappa\theta/\sigma^2$, $\lambda = c_e\,r_t\,e^{-\kappa\Delta t}$.
 
 The log-likelihood of a single observation is
 

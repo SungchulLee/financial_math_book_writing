@@ -39,11 +39,7 @@ By USD swaption convention, $\beta = 0.5$. This is not calibrated.
 
 ### Step 2: Determine Alpha from the ATM Quote
 
-The ATM Hagan formula at $K = F = 0.035$ is:
-
-$$
-\sigma_B^{\text{ATM}} = \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2\alpha^2}{24 F^{2(1-\beta)}} + \frac{\rho\beta\nu\alpha}{4 F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]
-$$
+Recall the ATM Hagan formula (see [§ Hagan ATM Implied Volatility](hagan_implied_volatility_approximation.md#atm-implied-volatility)), evaluated at $K = F = 0.035$.
 
 **Leading-order estimate.** Setting the correction term to zero:
 

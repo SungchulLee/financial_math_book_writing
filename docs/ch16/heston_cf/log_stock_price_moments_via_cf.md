@@ -59,37 +59,7 @@ The central moments and cumulants follow from the **cumulant-generating function
 
 ## Heston Characteristic Function Recap
 
-Under the risk-neutral measure $\mathbb{Q}$, the Heston model specifies
-
-$$
-dS_t = (r - q) S_t \, dt + \sqrt{v_t} \, S_t \, dW_t^{(1)}
-$$
-
-$$
-dv_t = \kappa(\theta - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^{(2)}
-$$
-
-with $d\langle W^{(1)}, W^{(2)} \rangle_t = \rho \, dt$. The characteristic function of $X_T = \log S_T$ conditional on $(\log S_t, v_t)$ is
-
-$$
-\varphi(u) = \exp\bigl(C(\tau, u) + D(\tau, u) \, v_t + iu \log S_t\bigr)
-$$
-
-where $\tau = T - t$, and the functions $C(\tau, u)$ and $D(\tau, u)$ satisfy the Riccati system
-
-$$
-D(\tau, u) = \frac{\kappa - i\rho\xi u - \gamma}{\xi^2} \cdot \frac{1 - e^{-\gamma \tau}}{1 - g \, e^{-\gamma \tau}}
-$$
-
-$$
-C(\tau, u) = (r - q) i u \tau + \frac{\kappa \theta}{\xi^2} \left[(\kappa - i\rho\xi u - \gamma)\tau - 2 \log\!\left(\frac{1 - g \, e^{-\gamma \tau}}{1 - g}\right)\right]
-$$
-
-with
-
-$$
-\gamma = \sqrt{(\kappa - i\rho\xi u)^2 + \xi^2(iu + u^2)}, \qquad g = \frac{\kappa - i\rho\xi u - \gamma}{\kappa - i\rho\xi u + \gamma}
-$$
+Recall (see [§ Closed-Form Characteristic Function](closed_form_characteristic_function.md)) the Albrecher form $\varphi(u) = \exp(C(\tau,u) + D(\tau,u)v_t + iu\log S_t)$ with $\gamma$, $g$, $D$, $C$ as given there. We use $\xi$ for the vol-of-vol in this section.
 
 ---
 

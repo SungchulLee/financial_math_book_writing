@@ -42,13 +42,7 @@ Key properties:
 
 ### Setup
 
-From the Ito formula for jump processes, the log-return over $[0, T]$ is:
-
-$$
-x_T \equiv \ln\frac{S_T}{S_0} = \underbrace{\left(r - \lambda\bar{k} - \frac{1}{2}\sigma^2\right)T}_{\text{drift}} + \underbrace{\sigma W_T}_{\text{diffusion}} + \underbrace{\sum_{i=1}^{N_T}\ln Y_i}_{\text{jumps}}
-$$
-
-The three components are mutually independent (Brownian motion, Poisson process, and jump sizes are independent by assumption).
+Recall (see [Ito Formula for Jump Processes § Application: Log-Price in the Merton Model](ito_formula_for_jump_processes.md#application-log-price-in-the-merton-model)): the log-return decomposes as $x_T \equiv \ln(S_T/S_0) = (r - \lambda\bar{k} - \tfrac{1}{2}\sigma^2)T + \sigma W_T + \sum_{i=1}^{N_T}\ln Y_i$, with the three components mutually independent.
 
 ### Derivation
 
@@ -75,13 +69,13 @@ $$
 \mathbb{E}[e^{iu\sigma W_T}] = e^{-\frac{1}{2}\sigma^2 u^2 T}
 $$
 
-**Factor 3 (jumps):** This is the characteristic function of a compound Poisson process with jump sizes $\ln Y_i \sim N(\mu_J, \sigma_J^2)$. Using the compound Poisson MGF result (replacing the real argument by $iu$):
+**Factor 3 (jumps):** Recall (see [Poisson Process § Moment Generating Function](poisson_process_and_jump_size.md#moment-generating-function)): the compound Poisson MGF is $\exp[\lambda T(M_Z(u) - 1)]$; replacing the real argument by $iu$ gives
 
 $$
-\mathbb{E}\!\left[e^{iu\sum_{i=1}^{N_T}\ln Y_i}\right] = \exp\!\left[\lambda T\bigl(\phi_{\ln Y}(u) - 1\bigr)\right]
+\mathbb{E}\!\left[e^{iu\sum_{i=1}^{N_T}\ln Y_i}\right] = \exp\!\left[\lambda T\bigl(e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2} - 1\bigr)\right]
 $$
 
-where $\phi_{\ln Y}(u) = \mathbb{E}[e^{iu\ln Y}] = e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2}$ is the characteristic function of a $N(\mu_J, \sigma_J^2)$ random variable.
+since $\phi_{\ln Y}(u) = e^{iu\mu_J - \frac{1}{2}\sigma_J^2 u^2}$ for $\ln Y \sim N(\mu_J, \sigma_J^2)$.
 
 Multiplying the three factors:
 
@@ -182,31 +176,13 @@ The general pattern is that the $n$-th cumulant of the jump component equals $\l
 
 ### Cumulants and Distribution Shape
 
-The standardized cumulants give the skewness and excess kurtosis:
-
-$$
-\text{Skewness} = \frac{\kappa_3}{\kappa_2^{3/2}}, \qquad \text{Excess kurtosis} = \frac{\kappa_4}{\kappa_2^2}
-$$
-
-Both quantities are determined entirely by the jump parameters $(\lambda, \mu_J, \sigma_J)$ and the diffusion volatility $\sigma$. As $T \to 0$, the skewness diverges as $T^{-1/2}$ and the kurtosis diverges as $T^{-1}$, reflecting the dominance of jumps at short time scales.
+The standardized cumulants give skewness $\kappa_3/\kappa_2^{3/2}$ and excess kurtosis $\kappa_4/\kappa_2^2$. Recall (see [Jump-Diffusion SDE § Skewness and Kurtosis](jump_diffusion_sde.md#skewness-and-kurtosis)): as $T \to 0$, skewness diverges as $T^{-1/2}$ and excess kurtosis as $T^{-1}$, reflecting the dominance of jumps at short horizons.
 
 ---
 
 ## Connection to Fourier Pricing
 
-### The Carr-Madan Formula
-
-The price of a European call with strike $K$ and maturity $T$ can be expressed as:
-
-$$
-C(K) = \frac{e^{-rT-\alpha k}}{\pi}\int_0^{\infty} e^{-ivk}\frac{\phi_{x_T}(v - (\alpha+1)i)}{(\alpha + iv)(\alpha + 1 + iv)}\,dv
-$$
-
-where $k = \ln K$, $\alpha > 0$ is a damping parameter, and $\phi_{x_T}$ is the characteristic function derived above. This integral is evaluated numerically using the FFT, producing option prices across a grid of strikes in $O(N\log N)$ operations.
-
-### Why the Closed-Form Characteristic Function Matters
-
-Without a closed-form characteristic function, Fourier pricing requires numerical evaluation of $\phi$ at each quadrature point, which itself might involve Monte Carlo or PDE solvers. The Merton model's analytical $\phi$ makes FFT pricing extremely fast --- typically under one millisecond for a full strike grid.
+Recall (see [Fourier Transform Pricing](../../ch06/bs_pde_analytic_solution/fourier_transform.md) and the general Fourier/FFT chapter in [Chapter 9](../../ch09/index.md)): the Carr-Madan formula expresses the call price as an FFT integral of $\phi_{x_T}(v - (\alpha+1)i)/[(\alpha + iv)(\alpha + 1 + iv)]$. The Merton-specific value is that the closed-form $\phi_{x_T}$ derived above plugs directly into this framework, giving sub-millisecond pricing for a full strike grid.
 
 ---
 

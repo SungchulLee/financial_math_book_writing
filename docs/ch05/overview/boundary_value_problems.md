@@ -130,25 +130,7 @@ where $g$ is the terminal data, $h$ is the boundary data, and $f$ is the source 
 
 ## The Maximum Principle and Uniqueness
 
-For parabolic equations, the **maximum principle** provides both uniqueness and continuous dependence.
-
-**Theorem (Parabolic Maximum Principle)**: If $u$ satisfies $\partial_t u + \mathcal{L}u \leq 0$ in $(0,T) \times \Omega$ (with $r \geq 0$ in $\mathcal{L}$), then:
-
-$$
-\max_{\overline{Q}_T} u = \max_{\Gamma} u
-$$
-
-where $\Gamma$ is the parabolic boundary.
-
-**Corollary (Uniqueness)**: If $u_1$ and $u_2$ both solve the same parabolic IBVP, then $w = u_1 - u_2$ satisfies the homogeneous problem with zero data on $\Gamma$. By the maximum principle, $w \leq 0$ and $-w \leq 0$, so $w = 0$. $\square$
-
-**Corollary (Stability)**: The continuous dependence estimate:
-
-$$
-\|u_1 - u_2\|_{L^\infty(Q_T)} \leq \max\left(\|g_1 - g_2\|_\infty,\, \|h_1 - h_2\|_\infty\right)
-$$
-
-follows directly from the maximum principle.
+Recall (see [§ Maximum Principle](../heat_equation/maximum_principle.md)): for parabolic operators $\partial_t + \mathcal{L}$ (with $r \ge 0$), the maximum of $u$ over $\overline{Q}_T$ is attained on the parabolic boundary $\Gamma$, which immediately yields uniqueness of the IBVP and the stability estimate $\|u_1 - u_2\|_\infty \le \max(\|g_1 - g_2\|_\infty, \|h_1 - h_2\|_\infty)$.
 
 ---
 
@@ -166,16 +148,7 @@ This is universal -- it encodes the derivative's payoff structure.
 
 ### Boundary at S = 0
 
-At $S = 0$, the Black-Scholes operator degenerates: $\frac{1}{2}\sigma^2 S^2 \partial_{SS} \to 0$. The PDE reduces to:
-
-$$
-\frac{\partial V}{\partial t} = rV \quad \Longrightarrow \quad V(t, 0) = e^{-r(T-t)} g(0)
-$$
-
-For a call ($g(0) = 0$): $V(t, 0) = 0$. For a put ($g(0) = K$): $V(t, 0) = Ke^{-r(T-t)}$.
-
-!!! info "Why No Boundary Condition Is Needed at $S = 0$"
-    The degeneracy of the PDE at $S = 0$ means $S = 0$ is an **absorbing boundary** for geometric Brownian motion: once $S_t = 0$, it remains there forever. Probabilistically, $\mathbb{P}(S_t = 0 \text{ for some } t) = 0$, so the boundary is never reached. The PDE determines its own boundary behavior there.
+Recall (see [§ Classification of Second-Order PDEs](classification_of_second_order_pdes.md)): the BS operator degenerates at $S=0$ — the PDE collapses to $\partial_t V = rV$, no extra boundary condition is needed, and the value reads $V(t,0) = e^{-r(T-t)} g(0)$ (so $V(t,0)=0$ for a call, $V(t,0)=Ke^{-r(T-t)}$ for a put).
 
 ### Boundary as S → ∞
 

@@ -8,53 +8,28 @@ Calibration of interest-rate models faces challenges of **stability** and **iden
 ## Identifiability issues
 
 
-Some parameters are weakly identifiable due to:
-
-- limited option maturity coverage,
-- correlations between factors,
-- flat sensitivity of prices to certain directions.
-
-This leads to multiple parameter sets fitting the same data.
+Recall (see [§ Calibration as inverse problem](../../ch17/calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md)) for the general identifiability framework. In rates models, weak identifiability arises from limited option maturity coverage, correlations between factors, and flat sensitivity of prices to certain parameter directions, producing multiple parameter sets that fit the same data.
 
 ---
 
 ## Stability across time
 
 
-A stable calibration should exhibit:
-
-- smooth parameter evolution,
-- robustness to small quote changes,
-- consistent dynamics across market regimes.
-
-Large day-to-day parameter swings indicate overfitting.
+A stable calibration should exhibit smooth parameter evolution, robustness to small quote changes, and consistent dynamics across market regimes. Large day-to-day parameter swings indicate overfitting. Recall (see [§ IR model risk](../interest_rate_model_risk/multi_curve_issues.md)).
 
 ---
 
 ## Diagnostic tools
 
 
-Useful diagnostics include:
-
-- sensitivity and Jacobian analysis,
-- perturbation of market quotes,
-- rolling-window calibration tests.
-
-These help separate structural issues from numerical ones.
+Useful diagnostics include sensitivity and Jacobian analysis, perturbation of market quotes, and rolling-window calibration tests. These help separate structural issues from numerical ones.
 
 ---
 
 ## Practical mitigation strategies
 
 
-Stability is improved by:
-
-- reducing model dimensionality,
-- imposing economically motivated constraints,
-- penalizing parameter variability,
-- focusing calibration on the most liquid instruments.
-
-Practitioners often prefer stability over perfect fit.
+Recall (see [§ Regularization and stability](../../ch17/regularization_and_stability/penalization_and_smoothness_constraints.md)) for the general toolkit. In the rates context, stability is improved by reducing model dimensionality, imposing economically motivated constraints, penalizing parameter variability, and focusing calibration on the most liquid instruments. Practitioners often prefer stability over perfect fit.
 
 ---
 

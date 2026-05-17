@@ -2,6 +2,37 @@
 
 **Key idea**: Daily settlement transforms credit risk into liquidity risk — the counterparty may not default, but must fund daily margin calls.
 
+## A Five-Day Tale of Two Contracts
+
+Before any taxonomy, watch the same economic exposure run through two settlement machines. Two long positions on the S&P 500 are entered at $F_0 = 5{,}000$; both will close out at $F_5 = 5{,}080$ five days later. The cumulative gain is identical: $80$ index points, or \$4,000 at the \$50 E-mini multiplier.
+
+| Day | Settlement | Forward cash flow | Futures cash flow |
+|---|---|---|---|
+| 0 | 5,000 | — | — |
+| 1 | 4,960 | $0$ | $-\$2{,}000$ |
+| 2 | 5,020 | $0$ | $+\$3{,}000$ |
+| 3 | 4,990 | $0$ | $-\$1{,}500$ |
+| 4 | 5,040 | $0$ | $+\$2{,}500$ |
+| 5 | 5,080 | $+\$4{,}000$ | $+\$2{,}000$ |
+| **Total** | | $\$4{,}000$ | $\$4{,}000$ |
+
+The two columns sum to the same number, but the *paths* differ:
+
+- The **forward** holder receives a single \$4,000 payment on day 5, after carrying the full unrealized P&L for five days against a counterparty who might default before maturity.
+- The **futures** holder receives daily flows $F_t - F_{t-1}$ — small, signed, sometimes negative. After day 1 the trader had to *post* \$2,000 to the exchange in cash, or face liquidation, even though the position would ultimately profit by \$4,000.
+
+Three observations follow immediately:
+
+- Cumulative cash is identical, so under deterministic rates the *prices* of the two contracts must also be identical — that is the theorem below.
+- The forward exposes one party to credit risk over the whole horizon; the futures caps that exposure at one day's adverse move.
+- A futures trader who is right about the terminal price can still be forced out at day 1 if cash to fund margin runs short — **credit risk has been transformed into liquidity risk**.
+
+The rest of this page formalizes these observations: the structural comparison, the deterministic-rate theorem, and the convexity adjustment that breaks the equivalence when rates are stochastic.
+
+---
+
+## A Structural Comparison
+
 Both futures and forwards are agreements to buy or sell an asset at a predetermined price on a future date. Despite this shared purpose, they differ fundamentally in how they are traded, settled, and regulated. Understanding these differences is essential for pricing, risk management, and choosing the right instrument in practice.
 
 ---
@@ -28,21 +59,7 @@ A practical consequence of standardization is that futures contracts have fixed 
 
 ## Why Mark-to-Market Matters
 
-The most important operational difference is **daily settlement**. At the end of each trading day, the clearinghouse revalues every open futures position. Gains are credited and losses are debited from the trader's margin account.
-
-Suppose a trader enters a long futures contract at price $F_0$. If the settlement price on day $k$ is $F_k$, then the cash flow on that day is
-
-$$
-F_k - F_{k-1}
-$$
-
-with $F_0$ being the initial futures price. Over the life of the contract, the cumulative cash flow is
-
-$$
-\sum_{k=1}^{n}(F_k - F_{k-1}) = F_n - F_0
-$$
-
-which equals the same total gain or loss as a forward, but the timing of cash flows is different. This daily realization of gains and losses dramatically reduces credit exposure: no large obligation accumulates over the contract's life.
+Recall (see [§ Margin and Marking to Market](margin_mark_to_market.md)): daily settlement replaces a single terminal payment with daily flows $F_k - F_{k-1}$ that telescope to $F_n - F_0$, converting credit risk into liquidity risk.
 
 ---
 
@@ -54,13 +71,7 @@ A natural question is whether the forward price and the futures price on the sam
 
 The intuition is straightforward. When rates are deterministic, the reinvestment of daily settlement cash flows is perfectly predictable. One can replicate a forward payoff using futures, and vice versa, at zero cost. Since both contracts deliver the same terminal exposure with no additional cost, no-arbitrage forces their prices to coincide.
 
-Formally, if $r$ is constant and the maturity is $T$, then both the forward price and the futures price equal
-
-$$
-F_0 = S_0 \, e^{rT}
-$$
-
-for a non-dividend-paying asset, or more generally $S_0 \, e^{(r-q)T}$ with continuous dividend yield $q$.
+Recall (see [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md) and [§ Cost of Carry](cost_of_carry.md)): under deterministic rates this common value is $F_0 = S_0 e^{rT}$ for a non-dividend-paying asset, generalizing to $S_0 e^{(r-q)T}$ with continuous dividend yield $q$.
 
 ---
 
@@ -158,3 +169,23 @@ For a short-dated equity futures contract, the difference between the forward an
     while the forward payoff has present value $(F_n - F_0) \, e^{-rT}$.
 
     When $r$ is constant (and known), a hedging argument shows these are equal. Each daily cash flow $F_k - F_{k-1}$ received at time $t_k$ can be invested (or borrowed) at the known rate $r$ to time $T$, yielding $(F_k - F_{k-1}) \, e^{r(T - t_k)}$ at maturity. The sum of these rolled-up cash flows, discounted back to time $0$, equals $(F_n - F_0) \, e^{-rT}$ because the compounding factors are deterministic. This is precisely why forward and futures prices coincide under deterministic rates: the reinvestment strategy perfectly transforms one cash flow pattern into the other.
+
+---
+
+**Exercise 5.** Suppose the futures price $G_0$ and forward price $F_0$ on the same underlying satisfy $G_0 = F_0 + 0.30$ for a 5-year contract. Explain qualitatively whether the underlying $S$ is more likely positively or negatively correlated with short-term interest rates $r$, and identify a real-world asset class where this sign matters in practice.
+
+??? success "Solution to Exercise 5"
+    Since $G_0 > F_0$, the convexity adjustment is positive. Recall: a positive adjustment corresponds to **positive** correlation between $S$ and $r$ — gains on the long futures arrive when rates are high (favorable reinvestment) and losses arrive when rates are low (cheap financing), making the long futures preferable to the long forward and pushing $G_0$ above $F_0$.
+
+    This sign matters most for **interest rate derivatives** (e.g., SOFR futures vs. forward rate agreements), where the underlying is mechanically tied to interest rates and the correlation is strong. For short-dated equity index futures the correlation is weak and the adjustment is negligible.
+
+---
+
+**Exercise 6.** A producer wants to hedge revenue from selling 50,000 barrels of crude oil exactly 75 days from today. The exchange lists WTI futures with monthly expirations only. Explain the trade-offs between using a customized OTC forward versus stacking exchange-traded futures, in terms of basis risk, credit risk, and liquidity.
+
+??? success "Solution to Exercise 6"
+    With a customized OTC **forward**, the producer can match the exact 75-day maturity and the exact 50,000-barrel notional. There is **no basis risk** at maturity (the contract settles against the producer's actual delivery), but the producer is exposed to **counterparty credit risk** for the full 75 days, and the contract is illiquid — exiting early is difficult and usually expensive.
+
+    With exchange-traded **futures**, the producer would use the nearest monthly contracts (e.g., the contract expiring just after day 75) and roll if needed. The clearinghouse eliminates credit risk and daily mark-to-market reduces accumulated exposure, but the maturity mismatch introduces **basis risk**: the futures price at day 75 may differ from the producer's local cash price. Liquidity is high — positions can be closed at any time at tight spreads — at the cost of having to fund daily margin calls.
+
+    The choice trades off precision (forward) against credit safety and liquidity (futures); large producers commonly combine both.

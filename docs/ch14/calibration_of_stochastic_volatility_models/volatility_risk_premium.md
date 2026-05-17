@@ -1,31 +1,12 @@
 # Volatility Risk Premium
 
+Recall (see [§ Risk-Neutral vs Physical Measure](../general_stochastic_volatility_framework/risk_neutral_vs_physical_measure.md), [§ Market Price of Risk](../../ch04/risk_neutral/market_price_of_risk.md)): option prices identify parameters under $\mathbb{Q}$, time-series estimation identifies parameters under $\mathbb{P}$, and the gap is the **volatility risk premium**
 
-Stochastic volatility models distinguish between **risk-neutral** and **physical** volatility dynamics. The gap between them is captured by the **volatility risk premium (VRP)**, which has direct implications for calibration and interpretation.
+$$
+\text{VRP} = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2],
+$$
 
----
-
-## Risk-neutral calibration
-
-
-Option prices identify parameters under the risk-neutral measure $\mathbb{Q}$.
-These parameters reflect:
-
-- investor risk preferences,
-- compensation for unhedgeable volatility risk.
-
-They should not be confused with historical estimates.
-
----
-
-## Physical dynamics
-
-
-Historical time-series analysis estimates parameters under the physical measure $\mathbb{P}$.
-Empirically:
-
-- realized volatility is lower than option-implied variance,
-- volatility shocks earn negative premia.
+empirically positive for equity indices. This page focuses on the *calibration-side* consequences: what option calibration actually recovers, and what mistakes follow from mixing measures.
 
 ---
 

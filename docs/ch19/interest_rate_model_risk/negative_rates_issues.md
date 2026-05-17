@@ -48,20 +48,7 @@ or numerical inconsistencies.
 ## Lognormal Models and Their Limitations
 
 
-Lognormal models, such as:
-
-- Black’s formula,
-- lognormal LIBOR Market Models (LMM),
-
-assume that rates or forward rates remain strictly positive.
-
-Under negative rates:
-
-- logarithms become undefined,
-- volatility scaling becomes meaningless,
-- calibration may fail or become unstable.
-
-This does not indicate market failure, but rather **model misspecification**.
+Recall (see [§ Shifted and Normal Models](shifted_and_normal_models.md)): lognormal dynamics (Black's formula, lognormal LMM) require strictly positive rates; under negative rates, $\ln(F)$ is undefined, volatility scaling proportional to $F$ breaks down, and calibration fails. This is **model misspecification**, not market failure.
 
 ---
 
@@ -85,19 +72,12 @@ These effects are particularly pronounced for:
 ## Common Modeling Responses
 
 
-Market practice has adopted several approaches to handle negative rates:
+Market practice adopts:
 
-- **Normal (Bachelier) models**  
-  Allow rates to take any real value and behave well near zero.
+- **Normal (Bachelier)** and **shifted lognormal** models — Recall (see [§ Shifted and Normal Models](shifted_and_normal_models.md)).
+- **Gaussian short-rate models** (Vasicek, Hull–White), which naturally allow negative rates.
 
-- **Shifted lognormal models**  
-  Apply a positive shift to rates before modeling them lognormally.
-
-- **Gaussian short-rate models**  
-  Such as Vasicek or Hull–White, which naturally allow negative rates.
-
-Each approach involves trade-offs between realism, tractability, and
-consistency with market conventions.
+Each approach trades off realism, tractability, and market convention.
 
 ---
 

@@ -59,9 +59,11 @@ $$
 
 Equivalently, $\mathcal{L}^* \pi = 0$ in the distributional sense. The proof of this equivalence is given [below](#proof-derivation).
 
-### Stationary Fokker–Planck Equation
+### From Generator to Densities: Fokker–Planck Duality { #from-generator-to-densities-fokker-planck-duality }
 
-When $\pi$ has a density, $\mathcal{L}^*\pi = 0$ reduces to the **stationary Fokker–Planck equation** — an elliptic PDE for $\pi$ in terms of the drift $b$ and diffusion matrix $a = \sigma\sigma^\top$. This is the main computational tool for finding invariant densities (see exercises).
+Recall (see [§ Kolmogorov Forward Equation](../../ch05/kolmogorov_equations/kolmogorov_forward.md)): if $X_t$ has density $p(t,x)$, then $\partial_t p = \mathcal{L}^* p$, where $\mathcal{L}^*$ is the formal adjoint of $\mathcal{L}$.
+
+Invariance ($\partial_t \pi = 0$) is therefore equivalent to the **stationary Fokker–Planck equation** $\mathcal{L}^*\pi = 0$ — an elliptic PDE for $\pi$ in terms of $b$ and $a = \sigma\sigma^\top$. This is the main computational tool for finding invariant densities (see exercises).
 
 ### Existence and Uniqueness
 
@@ -70,6 +72,16 @@ An invariant measure need not exist. Existence can be established via **Lyapunov
 ### Reversibility
 
 A stronger property than invariance is **reversibility** (detailed balance): $\mathcal{L}$ is self-adjoint in $L^2(\pi)$. This implies the process is time-symmetric under $\pi$. Gradient diffusions are always reversible; adding a non-gradient drift component breaks detailed balance. Reversibility is exactly the condition under which the [time-reversal formula](time_reversal_of_diffusions.md) simplifies: the reversed process has the same generator as the forward process.
+
+### The Score Function
+
+Once $\pi$ exists, the equilibrium geometry is captured by the **score**
+
+$$
+\mathrm{score}(x) := \nabla \log \pi(x)
+$$
+
+Since $\nabla \pi = \pi\,\nabla\log\pi$, the score is the natural "coordinate" of probability flow: it points toward higher density and encodes the local shape of equilibrium. The score is the bridge between equilibrium and dynamics — it appears explicitly in the [reversed drift formula](time_reversal_of_diffusions.md), and it is the object learned by score-based generative models in modern machine learning.
 
 ---
 
@@ -122,9 +134,10 @@ where the first equality uses $\frac{\mathrm{d}}{\mathrm{d}t}P_t f = \mathcal{L}
 
 - An invariant measure $\pi$ satisfies $\pi P_t = \pi$: the law is preserved under the dynamics.
 - Starting from $\pi$ produces a **stationary process**.
-- Stationary densities solve the **Fokker–Planck equation** $\mathcal{L}^*\pi = 0$.
+- Stationary densities solve the **Fokker–Planck equation** $\mathcal{L}^*\pi = 0$, the dual of $\partial_t p = \mathcal{L}^* p$.
 - Existence follows from Lyapunov criteria; uniqueness from irreducibility and non-degeneracy.
 - **Reversibility** (detailed balance) is stronger than invariance and implies time-symmetry of the process.
+- The **score** $\nabla\log\pi$ is the geometric object connecting equilibrium to [time reversal](time_reversal_of_diffusions.md) and to score-based generative models.
 
 ---
 

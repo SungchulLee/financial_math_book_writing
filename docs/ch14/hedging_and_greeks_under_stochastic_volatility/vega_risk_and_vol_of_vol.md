@@ -8,21 +8,15 @@ Under stochastic volatility, option risk is no longer captured by delta alone. *
 ## Vega in stochastic volatility models
 
 
-In Black–Scholes, vega measures sensitivity to a single volatility parameter:
+Recall (see [§ Greeks (BS)](../../ch10/greeks/delta_gamma_vega_theta_rho.md)) the BS vega $\partial_\sigma P$ and (see [§ IV sensitivities](../../ch12/implied_volatility_sensitivities/smile_dynamics_and_hedging.md)) sensitivities to the implied surface.
 
-$$
-\text{Vega} = \partial_{\sigma} P
-$$
-
-
-
-In stochastic volatility models, volatility itself is random, so vega represents sensitivity to:
+Under SV, volatility is itself random, so vega splits into sensitivities to
 
 - the current variance level,
 - the volatility state variable,
 - the implied volatility surface.
 
-Thus, vega is model- and state-dependent.
+Vega is therefore model- and state-dependent.
 
 ---
 
@@ -57,9 +51,7 @@ These Greeks are typically large for long-dated or exotic options.
 ## Practical implications
 
 
-- Vega hedging with a single option is insufficient.
-- Smile dynamics cause residual P&L even for delta–vega neutral portfolios.
-- Vol-of-vol risk explains persistent hedging errors in practice.
+Recall (see [§ Optimal hedging criteria](optimal_hedging_criteria.md)) that delta–vega neutral portfolios retain residual P&L; vol-of-vol risk explains the persistent component of these hedging errors.
 
 ---
 

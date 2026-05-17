@@ -15,21 +15,13 @@ Under the local volatility model, the Black-Scholes PDE retains its structure bu
 
 ### From SDE to PDE
 
-Under the risk-neutral measure, the asset price follows:
-
-$$
-dS_t = (r - q) S_t \, dt + \sigma_{\text{loc}}(S_t, t) S_t \, dW_t^{\mathbb{Q}}
-$$
-
-By the Feynman-Kac theorem, the price $V(S, t)$ of a European contingent claim with payoff $\Phi(S_T)$ satisfies the **local volatility PDE**:
+Recall (see [§ Black-Scholes PDE](../../ch06/index.md)): under the risk-neutral measure with local-volatility SDE $dS_t = (r-q)S_t\,dt + \sigma_{\text{loc}}(S_t,t)S_t\,dW_t^{\mathbb{Q}}$, the Feynman-Kac theorem gives the **local volatility PDE**
 
 $$
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 V}{\partial S^2} + (r - q) S \frac{\partial V}{\partial S} - rV = 0
 $$
 
-with terminal condition $V(S, T) = \Phi(S)$.
-
-This is identical to the Black-Scholes PDE except that the constant $\sigma$ is replaced by the function $\sigma_{\text{loc}}(S, t)$. The dependence on $(S, t)$ means the coefficients of the PDE vary across the grid, requiring careful treatment in the discretization.
+with terminal condition $V(S, T) = \Phi(S)$. The dependence on $(S, t)$ means the coefficients of the PDE vary across the grid, requiring careful treatment in the discretization.
 
 ### Log-Spot Transformation
 
@@ -128,7 +120,7 @@ $$
 
 ### Stability Condition
 
-The explicit scheme is conditionally stable. The von Neumann stability analysis requires all coefficients $\alpha_j$, $\beta_j$, $\gamma_j$ to be non-negative. The binding constraint is typically $\beta_j \geq 0$:
+Recall (see [§ FDM](../../ch08/fdm/boundary_and_terminal_conditions.md)): the explicit scheme is conditionally stable via von Neumann analysis requiring non-negativity of all coefficients $\alpha_j, \beta_j, \gamma_j$. Specializing the CFL bound to local volatility, the binding constraint is
 
 $$
 \Delta t \leq \frac{(\Delta x)^2}{2a_j + |c|(\Delta x)^2} = \frac{(\Delta x)^2}{\sigma_{\text{loc}}^2(e^{x_j}, t) + 2r(\Delta x)^2}
@@ -195,23 +187,7 @@ A critical difference from constant-volatility FDM: the matrix $\mathbf{A}^n$ ch
 
 ### The Theta Method
 
-The general **theta-scheme** combines explicit and implicit evaluations:
-
-$$
-\frac{U_j^n - U_j^{n+1}}{\Delta t} + \theta \mathcal{L}^n U_j^n + (1 - \theta)\mathcal{L}^{n+1} U_j^{n+1} = 0
-$$
-
-where $\mathcal{L}$ is the spatial differential operator:
-
-$$
-\mathcal{L}^n U_j^n = a_j^n \frac{U_{j+1}^n - 2U_j^n + U_{j-1}^n}{(\Delta x)^2} + b_j^n \frac{U_{j+1}^n - U_{j-1}^n}{2\Delta x} + c U_j^n
-$$
-
-The parameter $\theta$ controls the scheme:
-
-- $\theta = 0$: Explicit (forward Euler)
-- $\theta = 1$: Fully implicit (backward Euler)
-- $\theta = 1/2$: **Crank-Nicolson** (trapezoidal rule)
+Recall (see [§ FDM](../../ch08/fdm/boundary_and_terminal_conditions.md)): the general **theta-scheme** combines explicit and implicit evaluations of the spatial operator $\mathcal{L}$, with $\theta = 0$ giving forward Euler, $\theta = 1$ backward Euler, and $\theta = 1/2$ **Crank-Nicolson** (trapezoidal rule). Under local volatility the operator $\mathcal{L}^n$ uses time-dependent coefficients $a_j^n = \tfrac{1}{2}\sigma_{\text{loc}}^2(e^{x_j}, t^n)$, $b_j^n = r - q - a_j^n$.
 
 ### Crank-Nicolson Properties
 

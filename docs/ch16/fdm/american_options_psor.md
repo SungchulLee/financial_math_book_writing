@@ -17,9 +17,7 @@ European options under Heston have semi-analytical prices through Fourier invers
 
 ## The Early Exercise Problem
 
-An American option with payoff $g(S)$ can be exercised at any time $t \leq T$. The holder's optimal strategy creates a **free boundary** $S^*(t, v)$ separating the exercise region (where $V = g(S)$) from the continuation region (where $V > g(S)$).
-
-In the Heston model, the free boundary is a **surface** in $(t, S, v)$ space---not just a curve as in the one-dimensional Black-Scholes setting. For an American put with $g(S) = (K - S)^+$:
+Recall (see [§ Free-boundary problems](../../ch08/american_options/free_boundary_problems_american_options.md)) that an American option creates a free boundary separating exercise from continuation. Under Heston the boundary is a **surface** $S^*(t, v)$ in $(t, S, v)$ rather than a curve, because variance is an additional state variable. For an American put with $g(S) = (K - S)^+$:
 
 - When $v$ is **small**, volatility is low and the put is less likely to move further in-the-money, so early exercise is more attractive and $S^*(t, v)$ is **higher**
 - When $v$ is **large**, high volatility increases the option's time value, delaying exercise and pushing $S^*(t, v)$ **lower**
@@ -28,40 +26,7 @@ In the Heston model, the free boundary is a **surface** in $(t, S, v)$ space---n
 
 ## Linear Complementarity Formulation
 
-The American option price $V(t, x, v)$ satisfies three conditions simultaneously:
-
-**Condition 1** (Value above intrinsic):
-
-$$
-V(t, x, v) \geq g(e^x)
-$$
-
-**Condition 2** (PDE inequality):
-
-$$
-\frac{\partial V}{\partial t} + \mathcal{L}V - rV \leq 0
-$$
-
-**Condition 3** (Complementarity):
-
-$$
-\left(V - g(e^x)\right) \cdot \left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV\right) = 0
-$$
-
-where $\mathcal{L} = \mathcal{L}_x + \mathcal{L}_v + \mathcal{L}_{xv}$ is the full spatial operator.
-
-These three conditions state that at every point $(t, x, v)$:
-
-- Either $V = g$ (exercise region) and the PDE inequality is strict
-- Or $V > g$ (continuation region) and the PDE equality holds
-
-After time discretization, the LCP at each time step becomes a **matrix** complementarity problem:
-
-$$
-\mathbf{V}^{n+1} \geq \mathbf{g}, \qquad A \mathbf{V}^{n+1} \geq \mathbf{b}, \qquad (\mathbf{V}^{n+1} - \mathbf{g})^T (A \mathbf{V}^{n+1} - \mathbf{b}) = 0
-$$
-
-where $A$ is the implicit time-stepping matrix and $\mathbf{b}$ depends on $\mathbf{V}^n$.
+Recall (see [§ Linear complementarity formulation](../../ch08/american_options/linear_complementarity_formulation.md)) the LCP triple $V \geq g$, $\partial_t V + \mathcal{L}V - rV \leq 0$, $(V-g)(\partial_t V + \mathcal{L}V - rV)=0$. For Heston the only change is that the spatial operator is the 2D one, $\mathcal{L} = \mathcal{L}_x + \mathcal{L}_v + \mathcal{L}_{xv}$, with $g(e^x) = (K - e^x)^+$ for an American put. After time discretization the matrix LCP is $\mathbf{V}^{n+1} \geq \mathbf{g}$, $A\mathbf{V}^{n+1} \geq \mathbf{b}$, $(\mathbf{V}^{n+1} - \mathbf{g})^T (A\mathbf{V}^{n+1} - \mathbf{b}) = 0$.
 
 ---
 
@@ -69,25 +34,7 @@ where $A$ is the implicit time-stepping matrix and $\mathbf{b}$ depends on $\mat
 
 ### From Gauss-Seidel to PSOR
 
-The standard **Gauss-Seidel** iteration for solving $A\mathbf{V} = \mathbf{b}$ updates each component sequentially using the latest available values:
-
-$$
-V_k^{(\ell+1)} = \frac{1}{a_{kk}}\left(b_k - \sum_{j < k} a_{kj} V_j^{(\ell+1)} - \sum_{j > k} a_{kj} V_j^{(\ell)}\right)
-$$
-
-**Successive over-relaxation (SOR)** accelerates convergence by introducing a relaxation parameter $\omega \in (1, 2)$:
-
-$$
-\tilde{V}_k^{(\ell+1)} = (1 - \omega) V_k^{(\ell)} + \frac{\omega}{a_{kk}}\left(b_k - \sum_{j < k} a_{kj} V_j^{(\ell+1)} - \sum_{j > k} a_{kj} V_j^{(\ell)}\right)
-$$
-
-**Projected SOR (PSOR)** adds the exercise constraint by projecting onto the feasible set after each SOR update:
-
-$$
-V_k^{(\ell+1)} = \max\!\left(\tilde{V}_k^{(\ell+1)}, \, g_k\right)
-$$
-
-where $g_k = g(e^{x_k})$ is the intrinsic value at grid point $k$.
+Recall (see [§ PSOR algorithm](../../ch08/american_options/psor_algorithm.md)) that PSOR combines an SOR update with a projection: $\tilde{V}_k^{(\ell+1)} = (1-\omega)V_k^{(\ell)} + (\omega/a_{kk})\bigl(b_k - \sum_{j<k} a_{kj}V_j^{(\ell+1)} - \sum_{j>k} a_{kj}V_j^{(\ell)}\bigr)$, then $V_k^{(\ell+1)} = \max(\tilde{V}_k^{(\ell+1)}, g_k)$, with $g_k = g(e^{x_k})$ and $\omega \in (0,2)$.
 
 ### Algorithm
 

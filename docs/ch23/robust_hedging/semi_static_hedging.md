@@ -467,76 +467,9 @@ where $\text{Realized Vol} = \sqrt{\text{RV}}$.
 ## Transaction Cost Optimization
 
 
-### 1. Cost Model
+Recall (see [§ Hedging Under Transaction Costs](hedging_under_transaction_costs.md)) and (see [§ Hedging](../../ch11/index.md)) for the proportional-cost objective $\mathbb{E}[(V_T-\Phi)^2] + \lambda\sum_i |\Delta\theta_i| S_i$, the threshold-band policy $|\theta_{\text{opt}}-\theta_t|>\Delta^*$, and the asymptotic $\varepsilon^{1/3}$ scaling.
 
-
-**Proportional Costs**: Each trade incurs cost $\lambda |$quantity$| \times$ price.
-
-**Objective**: Minimize total cost:
-
-
-$$
-\min_{\theta, \{t_i\}} \left\{ \mathbb{E}[(V_T - \Phi)^2] + \lambda \sum_{i=1}^M |\theta_{t_i} - \theta_{t_{i-1}}| S_{t_i} \right\}
-$$
-
-
-
-**Trade-off**: Hedging accuracy vs. transaction costs.
-
-### 2. Optimal Rebalancing Times
-
-
-**Problem**: Choose trading times $\{t_1, \ldots, t_M\}$ optimally.
-
-**Dynamic Programming**: Value function:
-
-
-$$
-J(t, S, V) = \inf_{\tau > t} \mathbb{E}\left[\text{Cost}(\tau, S_{\tau}, V_{\tau}) + J(\tau, S_{\tau}, V_{\tau})\right]
-$$
-
-
-
-where $\tau$ is the next trading time.
-
-**Threshold Policy**: Rebalance when:
-
-
-$$
-|\theta_{\text{optimal}}(S_t) - \theta_t| > \Delta^*
-$$
-
-
-
-for optimal threshold $\Delta^*$ balancing cost and risk.
-
-**Volatility Dependence**: Threshold typically increases with volatility:
-
-
-$$
-\Delta^*(t) = c \cdot \sigma(t) \cdot \sqrt{T - t}
-$$
-
-
-
-### 3. Option Rebalancing
-
-
-**Question**: When to adjust the static option portfolio?
-
-**Criteria**:
-
-1. **Time-based**: At regular intervals (monthly, quarterly)
-2. **Price-based**: When $S_t$ moves beyond certain levels
-3. **Greeks-based**: When delta, gamma, or vega deviate from targets
-4. **Volatility-based**: When implied volatility shifts significantly
-
-**Optimal Policy**: Typically combines multiple criteria:
-
-
-$$
-\text{Rebalance if } \max\{|\Delta_t - \Delta^*|, |\Gamma_t - \Gamma^*|, |\mathcal{V}_t - \mathcal{V}^*|\} > \epsilon
-$$
+**Semi-static specialization**: option-portfolio adjustment combines time-, price-, Greeks-, and vol-based triggers — rebalance when $\max\{|\Delta_t-\Delta^*|,|\Gamma_t-\Gamma^*|,|\mathcal{V}_t-\mathcal{V}^*|\} > \epsilon$.
 
 
 
@@ -763,22 +696,9 @@ $$
 ### 3. Stochastic Volatility
 
 
-**Model**: Volatility follows its own stochastic process:
+Recall (see [§ Stochastic Volatility](../../ch14/index.md)) for the Heston-type model and (see [§ Greeks](../../ch10/greeks/delta_gamma_vega_theta_rho.md)) for vega/volga.
 
-
-$$
-dS_t = \mu S_t dt + \sqrt{V_t} S_t dW_t^S, \quad dV_t = \kappa(\theta - V_t) dt + \xi \sqrt{V_t} dW_t^V
-$$
-
-
-
-**Semi-Static Approach**:
-
-1. **Vega Hedging**: Hold options at multiple strikes to hedge volatility risk
-2. **Adjustment**: When implied volatility changes significantly, rebalance option portfolio
-3. **Frequency**: Based on vol-of-vol (typically more frequent than delta adjustments)
-
-**Greeks to Monitor**: Delta, gamma, vega, and volga ($\frac{\partial^2 V}{\partial \sigma^2}$).
+**Semi-static specialization**: hold options at multiple strikes for vega; rebalance the option leg when implied vol shifts significantly (frequency set by vol-of-vol, typically more often than delta adjustments).
 
 ### 4. Path-Dependent Interest Rates
 

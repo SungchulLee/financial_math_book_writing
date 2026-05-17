@@ -6,13 +6,7 @@ Caps, floors, and swaptions are the primary volatility instruments in interest r
 
 ## Caplet as a bond option
 
-### Caplet payoff
-
-A caplet on the simply compounded rate $L(T_{k-1}, T_k)$ over the accrual period $[T_{k-1}, T_k]$ with day count fraction $\delta_k = T_k - T_{k-1}$ and strike rate $\kappa_{\text{cap}}$ pays at time $T_k$:
-
-$$
-\delta_k\,(L(T_{k-1}, T_k) - \kappa_{\text{cap}})^+
-$$
+Recall (see [§ IR products](../interest_rate_products/bond_pricing.md)) for the caplet definition and payoff $\delta_k(L(T_{k-1},T_k) - \kappa_{\text{cap}})^+$ at $T_k$.
 
 ### Reduction to a ZCB put
 
@@ -117,13 +111,7 @@ $$
 
 ### Swaption payoff
 
-A **payer swaption** with expiry $T_0$ gives the holder the right to enter a payer swap with fixed rate $K$ on a swap with payment dates $T_1, \ldots, T_n$. The payoff at $T_0$ is
-
-$$
-\left(\sum_{k=1}^n \delta_k\,(S_{0,n}(T_0) - K)\,P(T_0, T_k)\right)^+ = \left(\sum_{k=1}^n \delta_k\,P(T_0, T_k)\right)\!(S_{0,n}(T_0) - K)^+
-$$
-
-An equivalent representation uses the coupon bond decomposition. The payer swaption payoff is
+Recall (see [§ Swaption pricing](../swaption_pricing/annuity_measure_and_change_of_numeraire.md)) for the payer swaption payoff structure. The payoff at $T_0$ admits the coupon-bond representation
 
 $$
 \left(1 - P(T_0, T_n) - K\sum_{k=1}^n \delta_k\,P(T_0, T_k)\right)^+

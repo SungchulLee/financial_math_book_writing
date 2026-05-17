@@ -435,104 +435,14 @@ $$
 ## Dynamic Risk Measures
 
 
-### 1. Coherent Risk Measures
-
-
-**Definition** (Artzner et al., 1999): A functional $\rho: L^{\infty} \to \mathbb{R}$ is a **coherent risk measure** if:
-
-1. **Monotonicity**: $X \geq Y \implies \rho(X) \leq \rho(Y)$
-2. **Translation invariance**: $\rho(X + c) = \rho(X) - c$
-3. **Positive homogeneity**: $\rho(\lambda X) = \lambda \rho(X)$ for $\lambda > 0$
-4. **Subadditivity**: $\rho(X + Y) \leq \rho(X) + \rho(Y)$
-
-**Example**: Average Value-at-Risk (AVaR or CVaR):
-
-
-$$
-\text{AVaR}_{\alpha}(X) = \frac{1}{\alpha} \int_0^{\alpha} \text{VaR}_u(X) \, du
-$$
-
-
-
-### 2. Dynamic Coherent Risk Measures
-
-
-**Definition**: A family $\{\rho_t\}_{t \in [0,T]}$ is a **dynamic coherent risk measure** if each $\rho_t$ is coherent and satisfies **time consistency**:
-
-
-$$
-\rho_s(\rho_t(X)) = \rho_s(X) \quad \text{for } s \leq t
-$$
-
-
-
-**Theorem** (Delbaen et al., 2010): Dynamic coherent risk measures correspond to g-expectations with generators that are convex, positively homogeneous, and Lipschitz.
-
-**Representation**: 
-
-
-$$
-\rho_t(X) = \mathcal{E}_g[-X|\mathcal{F}_t]
-$$
-
-
-
-for appropriate generator $g$.
-
-### 3. Connection to BSDEs
-
-
-**Theorem**: If $\rho_t$ is a dynamic coherent risk measure, then $Y_t = \rho_t(X)$ satisfies a BSDE:
-
-
-$$
-dY_t = g(t, Y_t, Z_t) \, dt - Z_t \, dW_t, \quad Y_T = X
-$$
-
-
-
-where $g$ is convex and positively homogeneous in $(y, z)$.
-
-**Converse**: Given such a generator, the g-expectation defines a dynamic coherent risk measure.
+**Recall** (see [§ Dynamic Risk Measures](../../ch22/dynamic_risk_measures/time_consistency.md)) for the full coherent and dynamic-coherent-risk-measure axiomatics (Artzner; Delbaen) and the BSDE representation $\rho_t(X) = \mathcal{E}_g[-X | \mathcal{F}_t]$ with convex, positively homogeneous, Lipschitz generator $g$. Time consistency $\rho_s(\rho_t(X)) = \rho_s(X)$ is the BSDE tower property.
 
 ## Applications to Finance
 
 
 ### 1. Option Pricing Under Model Uncertainty
 
-
-**Setup**: Uncertain volatility $\sigma \in [\underline{\sigma}, \overline{\sigma}]$.
-
-**Robust Price**: The seller's (super-replication) price is:
-
-
-$$
-V_0 = \mathcal{E}_g[\Phi(S_T)]
-$$
-
-
-
-where:
-
-
-$$
-g(t, y, z) = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ -\frac{1}{2} \sigma^2 |z|^2 \right\} = -\frac{1}{2} \underline{\sigma}^2 |z|^2
-$$
-
-
-
-for positive gamma positions.
-
-**BSDE**:
-
-
-$$
-dY_t = \frac{1}{2} \underline{\sigma}^2 |Z_t|^2 \, dt + Z_t \, dW_t, \quad Y_T = \Phi(S_T)
-$$
-
-
-
-**Hedging Strategy**: The optimal hedge is $\Delta_t = Z_t$.
+**Recall** (see [§ Uncertain Volatility Models](uncertain_volatility_models.md)) for the BSB equation and the gamma-sign volatility selection. In g-expectation form, the seller's price is $V_0 = \mathcal{E}_g[\Phi(S_T)]$ with generator $g$ arising from $\sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]}\{-\tfrac{1}{2}\sigma^2|z|^2\}$, and the optimal hedge is $\Delta_t = Z_t$.
 
 ### 2. Utility Indifference Pricing
 
@@ -799,58 +709,15 @@ $$
 
 ### 1. Feynman-Kac Formula for BSDEs
 
-
-**Theorem**: If $Y_t = v(t, X_t)$ for some function $v$ and state process $X_t$, then $v$ satisfies the PDE:
-
-
-$$
-\frac{\partial v}{\partial t} + \mathcal{L} v + g(t, v, \sigma^\top \nabla v) = 0
-$$
-
-
-
-with terminal condition $v(T, x) = \Phi(x)$, where $\mathcal{L}$ is the infinitesimal generator of $X_t$.
-
-**Proof**: Apply Itô's formula to $v(t, X_t)$ and match terms with the BSDE.
-
-**Interpretation**: BSDEs provide probabilistic representation for nonlinear PDEs.
+**Recall** (see [§ Feynman-Kac](../../ch05/feynman_kac/feynman_kac_formula.md)) for the classical formula. The BSDE extension: if $Y_t = v(t, X_t)$, then $v$ solves the semilinear PDE $\partial_t v + \mathcal{L}v + g(t, v, \sigma^\top \nabla v) = 0$ with $v(T,x) = \Phi(x)$, providing a probabilistic representation for nonlinear PDEs.
 
 ### 2. Viscosity Solutions
 
-
-**Definition**: A function $v$ is a **viscosity solution** if it satisfies the PDE in the viscosity sense (comparison with smooth test functions).
-
-**Theorem** (Crandall-Ishii-Lions): Under appropriate conditions, the BSDE solution $Y_t = v(t, X_t)$ where $v$ is the unique viscosity solution to the associated PDE.
-
-**Advantage**: Viscosity solutions exist even when classical solutions don't (e.g., non-smooth payoffs).
+**Recall** (see [§ Viscosity Solutions](../../ch06/bs_pde_analytic_solution/viscosity_solutions.md)) for the test-function definition and the Crandall-Ishii-Lions framework. The BSDE solution $Y_t = v(t, X_t)$ is the unique viscosity solution to the associated PDE, accommodating non-smooth payoffs.
 
 ### 3. Hamilton-Jacobi-Bellman Equations
 
-
-**Stochastic Control**: Consider:
-
-
-$$
-V(t, x) = \sup_{\alpha \in \mathcal{A}} E\left[\int_t^T f(s, X_s^{\alpha}, \alpha_s) \, ds + \Phi(X_T^{\alpha}) \bigg| X_t = x\right]
-$$
-
-
-
-**HJB Equation**:
-
-
-$$
-\frac{\partial V}{\partial t} + \sup_{\alpha} \{\mathcal{L}^{\alpha} V + f(t, x, \alpha)\} = 0
-$$
-
-
-
-**BSDE Connection**: The value function satisfies a BSDE with generator:
-
-
-$$
-g(t, y, z) = \sup_{\alpha} \{-f(t, x, \alpha) - \mu^{\alpha}(t, x) \cdot \nabla v - \frac{1}{2} \text{tr}[(\sigma^{\alpha})^2 \nabla^2 v]\}
-$$
+**Recall** (see [§ Reinforcement Learning and Control](../../ch24/reinforcement_learning_and_control/markov_decision_processes.md)) for HJB derivation in stochastic control. The control value function $V(t,x) = \sup_\alpha E[\int_t^T f\,ds + \Phi(X_T^\alpha) \mid X_t = x]$ admits a BSDE representation with generator $g(t,y,z) = \sup_\alpha\{-f - \mu^\alpha\cdot\nabla v - \tfrac{1}{2}\text{tr}[(\sigma^\alpha)^2\nabla^2 v]\}$.
 
 
 

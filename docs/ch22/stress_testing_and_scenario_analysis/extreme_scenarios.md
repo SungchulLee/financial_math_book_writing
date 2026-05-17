@@ -93,17 +93,7 @@ Construct scenarios not directly observed historically:
 
 ### 3. Regulatory Scenarios
 
-Scenarios prescribed by supervisors:
-
-**Fed CCAR/DFAST Severely Adverse:**
-
-- Typically includes recession, equity decline, credit spread widening
-- Specifies paths for dozens of macro variables
-
-**EBA Adverse Scenario:**
-
-- EU-wide common scenario
-- Multi-year horizon with specified GDP, unemployment, etc.
+Scenarios prescribed by supervisors (Fed CCAR/DFAST severely adverse, EBA adverse, BoE ACS). Recall (see [§ Overview of Major Frameworks](regulatory_stress_tests.md#overview-of-major-frameworks)) for the full specification: 9-quarter US horizons, 3-year EU horizons, prescribed macro paths (GDP, unemployment, equity, credit spreads), and capital-adequacy pass/fail mechanics.
 
 ### 4. Sensitivity Scenarios
 

@@ -94,13 +94,7 @@ $$
 
 ### Early Payment (T_p < T_{i+1})
 
-When payment occurs before the natural date (e.g., at $T_i$), the adjustment is related to **LIBOR-in-arrears**:
-
-$$
-\mathbb{E}^{\mathbb{Q}^{T_i}}[L_i(T_i)] = L_i(0) + \frac{L_i(0)^2 \, \sigma_i^2 \, T_i \, \delta_i}{1 + \delta_i L_i(0)}
-$$
-
-The adjustment is **positive** because paying earlier at a higher rate benefits the receiver (convexity effect).
+When payment occurs before the natural date (e.g., at $T_i$), the adjustment is the **LIBOR-in-arrears correction**, Recall (see [§ LIBOR in Arrears](libor_in_arrears.md)). The adjustment is **positive** because paying earlier at a higher rate benefits the receiver (convexity effect).
 
 ### Late Payment (T_p > T_{i+1})
 
@@ -114,7 +108,7 @@ The sign depends on the correlation between the rate and the discount factor for
 
 ### Payment at Fixing Date (T_p = T_i)
 
-This is the LIBOR-in-arrears case, which receives its own detailed treatment in the next section. The timing adjustment is the largest of the common cases.
+This is the LIBOR-in-arrears case; see [§ LIBOR in Arrears](libor_in_arrears.md) for the full derivation. The timing adjustment is the largest of the common cases.
 
 ---
 

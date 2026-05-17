@@ -181,51 +181,7 @@ $$
 
 ## Extremal Measures and Martingale Optimal Transport
 
-
-### 1. Martingale Optimal Transport Formulation
-
-
-Hobson's robust bounds can be formulated as **martingale optimal transport** (MOT) problems.
-
-**Primal Problem**:
-
-$$
-\overline{V} = \sup_{\pi \in \mathcal{M}(\delta_{S_0}, \mu)} \int c(x, y) \, d\pi(x, y)
-$$
-
-where:
-
-- $\mathcal{M}(\delta_{S_0}, \mu)$ is the set of martingale couplings: joint distributions $\pi$ with marginals $\delta_{S_0}$ and $\mu$, satisfying $\int y \, d\pi(x, y | x) = x$
-- $c(x, y)$ is the cost function encoding the exotic payoff
-
-For example, for a lookback-type payoff, the cost function involves the maximum of the martingale path, which requires an extension to the multi-marginal or continuous-path setting.
-
-### 2. Dual Problem
-
-
-**Theorem** (Hobson-Neuberger, 2012; Beiglbock-Henry-Labordere-Penkner, 2013): The dual of the martingale transport problem is:
-
-$$
-\overline{V} = \inf_{(\phi, h)} \left\{ \int \phi(y) \, d\mu(y) : \phi(S_T) + \int_0^T h_t \, dS_t \geq \Phi((S_t)_{0 \leq t \leq T}) \right\}
-$$
-
-where:
-
-- $\phi: \mathbb{R}_+ \to \mathbb{R}$ is a payoff function of vanilla options (static hedge)
-- $h_t$ is a dynamic trading strategy in the underlying
-
-**Interpretation**: The dual provides a **semi-static superhedging strategy** combining a static portfolio of vanilla options (encoded by $\phi$) with a dynamic delta-hedging component (encoded by $h$). The robust upper bound equals the cheapest such superhedge.
-
-### 3. Strong Duality
-
-
-**Theorem**: Under mild regularity conditions (continuity of the payoff, compactness of the marginal support), strong duality holds:
-
-$$
-\sup_{\pi \in \mathcal{M}(\delta_{S_0}, \mu)} \int c \, d\pi = \inf_{(\phi, h)} \left\{ \int \phi \, d\mu : \phi(S_T) + \int_0^T h_t \, dS_t \geq c \text{ a.s.} \right\}
-$$
-
-**Proof**: This is a consequence of minimax duality adapted to the martingale constraint setting. The key technical step is verifying that the constraint set is compact in the appropriate topology and that the objective is continuous. $\square$
+**Recall** (see [§ Martingale Optimal Transport](martingale_optimal_transport.md)): Hobson's robust bounds are an MOT problem with primal $\overline{V} = \sup_{\pi \in \mathcal{M}(\delta_{S_0}, \mu)} \int c \, d\pi$ and dual a cheapest semi-static superhedge $\inf_{(\phi, h)} \{\int \phi \, d\mu : \phi(S_T) + \int_0^T h_t \, dS_t \geq \Phi\}$. Strong duality holds under standard regularity conditions (Beiglböck-Henry-Labordère-Penkner 2013).
 
 ## Key Examples
 
@@ -318,30 +274,7 @@ $$
 
 ## Connection to Skorokhod Embedding
 
-
-### 1. The Link
-
-
-**Key Correspondence**: For a continuous martingale $M_t = B_{\tau \wedge t}$ (time-changed Brownian motion), the problem of finding the extremal martingale is equivalent to finding the optimal **Skorokhod embedding** of $\mu$ into Brownian motion.
-
-Specifically, the robust upper bound:
-
-$$
-\overline{V} = \sup \left\{ \mathbb{E}[\Phi(B_{\tau \wedge t})_{0 \leq t \leq T}] : B_\tau \sim \mu, \; \tau \text{ stopping time} \right\}
-$$
-
-reduces the problem to optimizing over stopping times $\tau$ that embed $\mu$.
-
-### 2. Specific Embeddings and Their Financial Meaning
-
-
-**Azema-Yor Embedding**: Maximizes $\mathbb{E}[\max_{t \leq \tau} B_t]$ among all embeddings of $\mu$. This attains the upper bound for lookback options.
-
-**Root Embedding**: Minimizes $\mathbb{E}[\tau]$ (expected stopping time). This is optimal for variance-swap-type payoffs.
-
-**Perkins Embedding**: Simultaneously controls the maximum and minimum of the path. This is relevant for double barrier options.
-
-The choice of embedding determines the extremal model, and different payoff structures call for different embeddings.
+**Recall** (see [§ Skorokhod Embedding Problem](skorokhod_embedding_problem.md)): via Dambis-Dubins-Schwarz, $\overline{V} = \sup_\tau \{\mathbb{E}[\Phi(B_{\tau \wedge t})] : B_\tau \sim \mu\}$ over stopping times embedding $\mu$. Azéma-Yor attains lookback bounds, Root attains variance-swap bounds, Perkins attains double-barrier bounds.
 
 ## Summary and Key Takeaways
 

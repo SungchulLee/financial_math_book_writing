@@ -1,60 +1,12 @@
 # Risk-Neutral Measure
 
-
-The **risk-neutral measure** is the cornerstone of arbitrage-free pricing. Under this measure, discounted asset prices are martingales, allowing derivative prices to be expressed as discounted expectations.
-
----
-
-## Numéraire and probability measure
-
-
-Let $B_t$ denote the money-market account:
+Recall (see [§ risk-neutral construction](../../ch04/risk_neutral/construction.md)): with the money-market account $B_t = \exp(\int_0^t r_s\,ds)$ as numéraire, the risk-neutral measure $\mathbb{Q}$ makes $S_t/B_t$ a martingale for every tradable, giving
 
 $$
-dB_t = r_t B_t\,dt, \qquad B_0=1
+V_t = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r_s\,ds}\,V_T\,\middle|\,\mathcal{F}_t\right]
 $$
 
-
-
-A probability measure $\mathbb{Q}$ is **risk-neutral** if, for any tradable asset with price $S_t$,
-
-$$
-\frac{S_t}{B_t} \text{ is a martingale under } \mathbb{Q}
-$$
-
-
-
----
-
-## Fundamental pricing formula
-
-
-Under the risk-neutral measure,
-
-$$
-V_t = \mathbb{E}^{\mathbb{Q}}\left[
-e^{-\int_t^T r_s ds} \, V_T
-\middle| \mathcal{F}_t
-\right]
-$$
-
-
-where $V_T$ is the payoff at maturity.
-
-This formula applies to bonds, options, and general derivatives.
-
----
-
-## Change of measure intuition
-
-
-The risk-neutral measure:
-
-- absorbs risk premia into the drift,
-- leaves diffusion terms unchanged,
-- simplifies pricing to expectation of discounted cashflows.
-
-It is not the physical (real-world) probability measure.
+This section emphasises features specific to interest-rate modelling.
 
 ---
 

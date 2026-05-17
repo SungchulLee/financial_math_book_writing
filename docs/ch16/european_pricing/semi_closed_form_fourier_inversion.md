@@ -20,38 +20,11 @@ In the Black-Scholes model, the call price $C = S_0 N(d_1) - K e^{-rT} N(d_2)$ i
 
 ## European Call Price Decomposition
 
-The risk-neutral pricing formula for a European call with strike $K$ and maturity $T$ is
+Recall (see [§ Risk-Neutral Pricing](../../ch04/risk_neutral/martingale_and_no_arbitrage.md) and [§ Measure Change](../measure_change/risk_neutral_measure.md)): from $C = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]$, splitting on $\{S_T > K\}$ and switching the stock term to the share numeraire $\mathbb{Q}^S$ via $\mathbb{E}^{\mathbb{Q}}[S_T\mathbf{1}_{S_T>K}] = S_0 e^{(r-q)\tau}\mathbb{Q}^S(S_T > K)$ gives
 
 $$
-C = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}\!\left[(S_T - K)^+\right]
+C = S_0 e^{-q\tau} P_1 - K e^{-r\tau} P_2,\qquad P_1 = \mathbb{Q}^S(S_T > K),\quad P_2 = \mathbb{Q}(S_T > K).
 $$
-
-where $\tau = T - t$. Conditioning on the event $\{S_T > K\}$:
-
-$$
-C = e^{-r\tau}\left[\mathbb{E}^{\mathbb{Q}}[S_T \mathbf{1}_{S_T > K}] - K \, \mathbb{Q}(S_T > K)\right]
-$$
-
-The first term can be rewritten using the stock-price numeraire:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[S_T \mathbf{1}_{S_T > K}] = S_0 e^{(r-q)\tau} \, \mathbb{Q}^S(S_T > K)
-$$
-
-!!! info "Theorem (Semi-Closed-Form Call Price)"
-    The European call price under the Heston model is
-
-    $$
-    C = S_0 e^{-q\tau} P_1 - K e^{-r\tau} P_2
-    $$
-
-    where
-
-    $$
-    P_1 = \mathbb{Q}^S(S_T > K), \qquad P_2 = \mathbb{Q}(S_T > K)
-    $$
-
-    are the exercise probabilities under the stock-price numeraire and money-market numeraire respectively.
 
 The European put price follows from put-call parity:
 
@@ -63,50 +36,19 @@ $$
 
 ## Fourier Inversion of Exercise Probabilities
 
-Each probability $P_j$ is recovered from the corresponding characteristic function by Fourier inversion.
-
-!!! info "Theorem (Gil-Pelaez Formula for P1 and P2)"
-    The exercise probabilities are
-
-    $$
-    P_j = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty} \text{Re}\!\left[\frac{e^{-iu\log K} \varphi_j(u)}{iu}\right] du, \qquad j = 1, 2
-    $$
-
-    where $\varphi_1(u)$ is the CF of $\log S_T$ under $\mathbb{Q}^S$ and $\varphi_2(u)$ is the CF under $\mathbb{Q}$.
-
-**Characteristic functions.** The $\mathbb{Q}$-CF is the standard Heston CF:
+Apply Gil-Pelaez (see [§ Gil-Pelaez Inversion](gil_pelaez_inversion.md)) to $X = \log S_T$, $x = \log K$:
 
 $$
-\varphi_2(u) = \exp\bigl(C(\tau, u) + D(\tau, u) v_0 + iu\log S_0\bigr)
+P_j = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\operatorname{Re}\!\left[\frac{e^{-iu\log K}\varphi_j(u)}{iu}\right] du,\qquad j = 1, 2,
 $$
 
-with $C, D$ solving the Heston Riccati system. The $\mathbb{Q}^S$-CF is obtained by the shift formula:
-
-$$
-\varphi_1(u) = \frac{\varphi_2(u - i)}{S_0 e^{(r-q)\tau}}
-$$
+where $\varphi_2$ is the Heston CF under $\mathbb{Q}$ (see [§ Heston CF](../heston_cf/heston_sde_and_affine_recap.md)) and $\varphi_1(u) = \varphi_2(u-i)/(S_0 e^{(r-q)\tau})$ is the share-measure shift (see [§ Measure Change](../measure_change/risk_neutral_measure.md)).
 
 ---
 
 ## Properties of the Integrands
 
-The integrands $f_j(u) = \text{Re}[e^{-iu\log K}\varphi_j(u)/(iu)]$ have important properties that guide numerical integration.
-
-**Behavior at $u = 0$.** Both integrands have a removable singularity at $u = 0$. Using L'Hopital's rule:
-
-$$
-\lim_{u \to 0} \frac{\varphi_j(u)}{iu} = -i \varphi_j'(0)
-$$
-
-In practice, the limit is finite and can be computed from the CF derivatives.
-
-**Decay for large $u$.** For the Heston model, $|\varphi_j(u)| \leq C e^{-\alpha |u|}$ for some $\alpha > 0$. This exponential decay ensures:
-
-1. The integral converges absolutely
-2. Truncation at a finite upper limit introduces exponentially small error
-3. Standard quadrature rules achieve rapid convergence
-
-**Oscillatory behavior.** The factor $e^{-iu\log K}$ introduces oscillation at frequency proportional to $|\log K|$. For deep in-the-money or out-of-the-money options ($K$ far from $S_0$), the oscillation is rapid, requiring finer quadrature grids.
+The integrands $f_j(u) = \operatorname{Re}[e^{-iu\log K}\varphi_j(u)/(iu)]$ have a removable singularity at $u = 0$ (limit $= -i\varphi_j'(0)$) and inherit the exponential decay $|\varphi_j(u)| \leq C e^{-\alpha|u|}$ of the Heston CF, ensuring absolute convergence and rapid quadrature accuracy. The factor $e^{-iu\log K}$ produces oscillation at frequency $|\log K|$; deep ITM/OTM strikes therefore demand finer grids.
 
 !!! warning "Deep OTM Options"
     For very deep out-of-the-money options ($K \gg S_0$ or $K \ll S_0$), the integrands oscillate rapidly while the option value is small. This causes cancellation errors in the Fourier integral. For such cases, using the in-the-money counterpart via put-call parity and then subtracting is more numerically stable.

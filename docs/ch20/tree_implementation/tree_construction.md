@@ -4,17 +4,7 @@ Trinomial trees provide a lattice-based numerical method for pricing interest ra
 
 ## Zero-Mean Process
 
-The Hull-White short rate $r_t$ satisfies $dr_t = [\theta(t) - \lambda r_t]\,dt + \sigma\,dW_t$. To separate the time-dependent drift from the stochastic dynamics, define the zero-mean process
-
-$$
-x_t = r_t - \alpha(t)
-$$
-
-where $\alpha(t)$ absorbs $\theta(t)$ and will be determined later to fit the initial curve. The process $x_t$ satisfies
-
-$$
-dx_t = -\lambda\,x_t\,dt + \sigma\,dW_t, \quad x_0 = 0
-$$
+Recall (see [§ HW model](../model_definition/hull_white_sde_and_mean_reversion.md)) the SDE $dr_t = [\theta(t) - \lambda r_t]\,dt + \sigma\,dW_t$ and (see [§ HW short rate](../short_rate/short_rate_solution.md)) the decomposition $r_t = \alpha(t) + x_t$ with $dx_t = -\lambda x_t\,dt + \sigma\,dW_t$, $x_0 = 0$.
 
 The tree is first constructed for $x_t$, then shifted by $\alpha(t_i)$ at each time step $t_i$ so that $r_{ij} = \alpha_i + j\,\Delta x$ at node $(i, j)$.
 
@@ -36,13 +26,13 @@ This ensures that the branching probabilities remain positive and well-behaved. 
 
 ## Branching Geometry
 
-At each node $(i, j)$, the process can move to one of three nodes at time $t_{i+1}$. The branching pattern depends on the position of node $j$ relative to the center of the grid.
+Recall (see [§ BK trinomial tree](../../ch18/black_karasinski/log_normal_short_rate_sde.md)) the three branching patterns used to keep the tree bounded:
 
-**Normal branching** (used at most nodes): from node $j$, the process moves to nodes $j+1$ (up), $j$ (middle), or $j-1$ (down).
+**Normal branching** (used at most nodes): $j \to j+1, j, j-1$.
 
-**Up branching** (used near the upper boundary): from node $j$, the process moves to nodes $j$ (up), $j-1$ (middle), or $j-2$ (down). This pattern prevents the tree from growing unboundedly.
+**Up branching** (used near the upper boundary): $j \to j, j-1, j-2$. This pattern prevents the tree from growing unboundedly.
 
-**Down branching** (used near the lower boundary): from node $j$, the process moves to nodes $j+2$ (up), $j+1$ (middle), or $j$ (down).
+**Down branching** (used near the lower boundary): $j \to j+2, j+1, j$.
 
 The boundary between normal and non-normal branching occurs at
 
@@ -143,28 +133,7 @@ $$
 
 ## Recombining Property
 
-The tree is recombining because the spatial grid is uniform: a sequence of up-middle-down moves returns to the same node regardless of the order. At time step $i$, the node index $j$ ranges from $-j_{\max,i}$ to $j_{\max,i}$, where $j_{\max,i}$ grows initially (as the process diffuses) but is bounded by the non-normal branching boundaries.
-
-The total number of nodes at time step $i$ is at most $2j_{\max} + 1$, independent of $i$ after the initial growth phase. This keeps the tree size manageable: $O(N \cdot j_{\max})$ total nodes for $N$ time steps.
-
-## Visualization of the Trinomial Tree
-
-The tree structure at time step $i$ is:
-
-```
-        j_max   ●───●───●
-                │ ╲ │ ╱ │
-        j_max-1 ●───●───●
-                │ ╲ │ ╱ │
-          ...   ... ... ...
-                │ ╲ │ ╱ │
-       -j_max+1 ●───●───●
-                │ ╲ │ ╱ │
-       -j_max   ●───●───●
-                t_i  t_{i+1}
-```
-
-Each node connects to three successor nodes, with the branching pattern (normal, up, or down) determined by the node's position $j$.
+Recall (see [§ general trinomial tree](../../ch01/multi_period_model/trinomial_model.md)) that the uniform grid makes the tree recombining, giving $O(N \cdot j_{\max})$ total nodes. The node index $j$ at time step $i$ is bounded by $\pm j_{\max}$ after the initial growth phase.
 
 ???+ example "Small Tree Construction"
     Consider $\lambda = 0.1$, $\sigma = 0.01$, $\Delta t = 1$. Then:

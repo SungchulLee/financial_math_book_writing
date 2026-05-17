@@ -8,13 +8,7 @@
 ## Concept of reflexivity
 
 
-Reflexivity posits that:
-
-- beliefs influence actions,
-- actions influence prices,
-- prices reinforce beliefs.
-
-Markets are thus self-referential systems.
+Reflexivity posits a self-referential loop: beliefs influence actions, actions influence prices (recall [Market impact as endogeneity](endogenous_price_dynamics.md#market-impact-as-endogeneity)), and prices in turn reinforce beliefs.
 
 ---
 

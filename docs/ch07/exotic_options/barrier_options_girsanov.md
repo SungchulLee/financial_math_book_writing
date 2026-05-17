@@ -14,22 +14,12 @@ This is a **path-dependent** payoff: the option value depends not only on the te
 
 ## Log-Price Representation under Q
 
-Under the risk-neutral measure $\mathbb{Q}$ (obtained via Girsanov's theorem), the stock price satisfies:
+Recall (see [Risk-Neutral Pricing](../../ch04/risk_neutral/risk_neutral_valuation_principle.md) and [Itô's Lemma](../../ch03/ito_lemma/taylor_expansion_linear.md)): under $\mathbb{Q}$, $dS_t = r S_t\,dt + \sigma S_t\,d\tilde{W}_t$ and $X_t := \log S_t = x + \mu t + \sigma \tilde{W}_t$ with $\mu := r - \tfrac{1}{2}\sigma^2$ and $x := \log S_0$.
+
+Define the key quantities:
 
 $$
-dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t
-$$
-
-Taking $X_t := \log S_t$:
-
-$$
-X_t = x + \left(r - \tfrac{1}{2}\sigma^2\right)t + \sigma \tilde{W}_t
-$$
-
-where $x := \log S_0$. Define the key quantities:
-
-$$
-b := \log H, \quad k := \log K, \quad \mu := r - \tfrac{1}{2}\sigma^2
+b := \log H, \quad k := \log K
 $$
 
 The pricing problem becomes:
@@ -42,19 +32,13 @@ $$
 
 ## The Reflection Principle
 
-The key tool for evaluating the barrier condition is the **reflection principle** for Brownian motion with drift.
-
-### Joint Distribution of Maximum and Terminal Value
-
-For a drifted Brownian motion $X_t = x + \mu t + \sigma \tilde{W}_t$, the joint density of the maximum $M_T := \sup_{0 \le t \le T} X_t$ and terminal value $X_T$ involves reflecting paths that cross the barrier.
-
-The reflection principle states that the probability of a Brownian path reaching level $b$ and ending at $y < b$ can be related to paths starting from the **reflected point** $2b - x$:
+Recall (see [Reflection Principle](../../ch02/brownian_motion/reflection_principle.md)): for drifted log-price $X_t = x + \mu t + \sigma \tilde{W}_t$, a Girsanov-type measure change yields
 
 $$
-\mathbb{Q}\left(\sup_{t \le T} X_t \ge b, \; X_T \in dy\right) = e^{2\mu(b-x)/\sigma^2} \cdot \mathbb{Q}_{2b-x}(X_T \in dy)
+\mathbb{Q}\left(\sup_{t \le T} X_t \ge b, \; X_T \in dy\right) = e^{2\mu(b-x)/\sigma^2} \cdot \mathbb{Q}_{2b-x}(X_T \in dy),
 $$
 
-This is the **image method**: for each path that crosses the barrier and ends at $y$, there exists a corresponding "image" path starting from $2b - x$.
+i.e. each barrier-crossing path is associated with an "image" path starting from $2b - x$.
 
 ---
 
@@ -132,13 +116,7 @@ The barrier is immediately hit, so the option is worth nothing.
 
 ### In-Out Parity
 
-For barrier options with the same strike and barrier:
-
-$$
-C_{\text{up-and-in}} + C_{\text{up-and-out}} = C_{\text{BS}}
-$$
-
-Therefore:
+Recall (see [§ In–Out Parity](barrier_options.md#inout-parity)): $V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}$. Therefore:
 
 $$
 C_{\text{UI}} = \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)
@@ -182,15 +160,7 @@ is the Radon–Nikodým derivative evaluated at the reflected starting point.
 
 ### Continuous vs. Discrete Monitoring
 
-The formula above assumes **continuous barrier monitoring**. In practice, barriers are often checked at discrete intervals (daily close), which makes the option more valuable since the asset can briefly cross the barrier undetected.
-
-**Broadie–Glasserman correction** adjusts for discrete monitoring:
-
-$$
-H_{\text{adjusted}} = H \cdot e^{\pm \beta \sigma \sqrt{\Delta t}}
-$$
-
-where $\beta \approx 0.5826$ and $\Delta t$ is the monitoring interval.
+Recall (see [§ Discrete vs. Continuous Monitoring](barrier_options.md#discrete-vs-continuous-monitoring)): under discrete monitoring at $m$ equally-spaced times, the Broadie–Glasserman–Kou correction $H_{\text{eff}} = H \cdot e^{\pm \beta \sigma \sqrt{T/m}}$ with $\beta \approx 0.5826$ shifts the barrier outward to match the continuous-monitoring price.
 
 ### Near-Barrier Behavior
 

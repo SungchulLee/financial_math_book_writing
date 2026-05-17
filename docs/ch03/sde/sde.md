@@ -4,6 +4,9 @@ Many real systems evolve under the influence of both **deterministic trends** an
 
 A **stochastic differential equation (SDE)** provides a mathematical framework for describing systems whose evolution combines deterministic trends with random fluctuations. It extends an ordinary differential equation by including a random forcing term, typically represented by Brownian motion.
 
+!!! tip "Toy mechanism: ODE + noise term"
+    The whole construction starts from one substitution. An ODE $dx/dt = b(x)$ says "the rate of change is determined by the state." Adding random shocks gives $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$ — "the rate of change is the deterministic rate plus a random kick of size $\sigma$." The toy version is the simplest possible case: take $b = 0$ and $\sigma = 1$. The resulting "equation" $dX_t = dW_t$ has solution $X_t = W_t$ — just Brownian motion. From there, adding a constant drift $\mu$ gives $X_t = \mu t + W_t$, scaling the noise gives $X_t = \mu t + \sigma W_t$, and making $b, \sigma$ depend on $X_t$ gives the general nonlinear SDE. Everything below — the three canonical models, the structure classification, even the integral formulation that handles non-differentiability of $W_t$ — is one variation on this single mechanism.
+
 !!! abstract "Learning Goals"
     After completing this section you should be able to:
 

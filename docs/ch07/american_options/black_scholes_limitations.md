@@ -25,19 +25,7 @@ This section explains precisely why the analytical framework breaks down and how
 
 ## The European Case: Fixed Boundary
 
-For a European option, the Black–Scholes PDE:
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0
-$$
-
-is solved on the domain $(S, t) \in (0, \infty) \times [0, T)$ with a **fixed terminal condition**:
-
-$$
-V(S, T) = \Phi(S)
-$$
-
-and boundary conditions at $S = 0$ and $S \to \infty$. The domain is fully specified, and the problem admits a unique closed-form solution via the Feynman–Kac representation.
+Recall (see [§ BS PDE derivation](../../ch06/bs_pde_derivation/one_equation_five_perspectives.md)) the Black–Scholes PDE $V_t + \tfrac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0$ on the domain $(S,t) \in (0,\infty) \times [0,T)$, with terminal condition $V(S,T) = \Phi(S)$ and boundary conditions at $S = 0$, $S \to \infty$ (Recall (see [§ Terminal and boundary conditions](../../ch06/bs_pde_structure/terminal_and_boundary_conditions.md))). The domain is fully specified, and the problem admits a unique closed-form solution via Feynman–Kac.
 
 ---
 
@@ -124,7 +112,7 @@ $$
 
 ## Why No Closed-Form Solution Exists
 
-The Black–Scholes formula relies on:
+The Black–Scholes formula (Recall (see [§ Black–Scholes formula](../../ch06/black_scholes_formula/bs_formula_statement.md))) relies on:
 
 1. **Known boundary**: The domain is $(0, \infty) \times [0, T]$ with conditions only at $S = 0$, $S \to \infty$, and $t = T$
 2. **Linear PDE**: Solved by the heat equation transformation

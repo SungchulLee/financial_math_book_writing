@@ -37,21 +37,7 @@ The CIR variance process $dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,
 
     In both cases, $v_t \geq 0$ a.s. for all $t \geq 0$.
 
-**Proof (sketch for part 1).** The idea is to apply the comparison theorem for SDEs combined with the properties of Bessel processes. The CIR process $v_t$ is related to the squared Bessel process of dimension $\delta = 4\kappa\theta/\sigma_v^2$ by a time change.
-
-Consider the squared Bessel process of dimension $\delta$:
-
-$$
-dR_t = \delta\,dt + 2\sqrt{R_t}\,dB_t
-$$
-
-The CIR process $v_t$ with parameters $(\kappa, \theta, \sigma_v)$ satisfies $v_t = e^{-\kappa t}R(\psi(t))$ where $\psi(t) = \frac{\sigma_v^2}{4\kappa}(e^{\kappa t} - 1)$ (a deterministic time change). A squared Bessel process of dimension $\delta \geq 2$ never reaches zero. The condition $\delta \geq 2$ is:
-
-$$
-\frac{4\kappa\theta}{\sigma_v^2} \geq 2 \qquad \Longleftrightarrow \qquad 2\kappa\theta \geq \sigma_v^2
-$$
-
-which is the Feller condition. When $\delta < 2$ (Feller condition violated), the squared Bessel process reaches zero with positive probability. $\square$
+**Proof (sketch for part 1).** Recall (see [§ CIR Variance Process Solution](../variance_dynamics/cir_variance_process_solution.md)): the CIR process is a deterministically time-changed squared Bessel process of dimension $\delta = 4\kappa\theta/\sigma_v^2$. A squared Bessel process of dimension $\delta \geq 2$ never reaches zero, and $\delta \geq 2 \Longleftrightarrow 2\kappa\theta \geq \sigma_v^2$. When $\delta < 2$, the boundary is hit with positive probability. $\square$
 
 !!! info "Definition: Feller Ratio"
     The **Feller ratio** is defined as:
@@ -140,28 +126,7 @@ When the Feller condition is violated and the CIR process reaches $v = 0$, two p
 
 ## Implications for Simulation
 
-Monte Carlo simulation of the CIR variance process faces challenges when the Feller condition is violated, because discrete-time Euler steps can produce negative variance values.
-
-??? example "Euler Scheme and Negativity"
-    The Euler discretization of the CIR process is:
-
-    $$
-    v_{t+\Delta t} = v_t + \kappa(\theta - v_t)\Delta t + \sigma_v\sqrt{v_t}\sqrt{\Delta t}\,Z, \qquad Z \sim N(0,1)
-    $$
-
-    Even if $v_t > 0$, the Gaussian noise $Z$ can produce $v_{t+\Delta t} < 0$ when $\sigma_v\sqrt{v_t}\sqrt{\Delta t}|Z|$ exceeds $v_t + \kappa(\theta - v_t)\Delta t$. This is especially likely when $v_t$ is small and $\sigma_v$ is large (Feller condition violated).
-
-Common fixes for negative variance in simulation:
-
-| Scheme | Treatment of Negative $v$ | Bias |
-|:---|:---|:---|
-| Full truncation | $v_{t+\Delta t} \gets \max(v_{t+\Delta t}, 0)$ | $O(\Delta t)$ |
-| Reflection | $v_{t+\Delta t} \gets |v_{t+\Delta t}|$ | $O(\Delta t)$ |
-| Partial truncation | Use $\sqrt{\max(v_t, 0)}$ in the diffusion only | $O(\Delta t)$ |
-| Exact simulation (Broadie-Kaya) | Sample from non-central $\chi^2$ | Unbiased |
-| QE scheme (Andersen) | Match moments exactly | Near-exact |
-
-The exact and QE schemes avoid the negativity problem entirely by sampling from the true or moment-matched distribution. These methods are discussed in the [Monte Carlo section](../monte_carlo/euler_discretization_and_pitfalls.md).
+Recall (see [§ Euler Discretization and Pitfalls](../monte_carlo/euler_discretization_and_pitfalls.md)): when the Feller condition is violated, Euler steps for the CIR variance can produce negative values, and remedies (full truncation, reflection, exact Broadie-Kaya, Andersen QE) trade off bias versus variance. The takeaway for this section is that boundary-touching variance paths are the rule rather than the exception in calibrated parameter sets, so the simulation scheme must accommodate them.
 
 ---
 

@@ -34,13 +34,7 @@ Models appear stable until stress occurs.
 ## Stress testing
 
 
-Robust credit risk management relies on:
-
-- scenario analysis,
-- extreme but plausible stresses,
-- reverse stress testing.
-
-Stress tests complement, not replace, models.
+Recall (see [§ Stress Testing and Scenario Analysis](../../ch22/stress_testing_and_scenario_analysis/extreme_scenarios.md)): robust credit risk management relies on scenario analysis, extreme but plausible stresses, and reverse stress testing. Stress tests complement, not replace, models.
 
 ---
 

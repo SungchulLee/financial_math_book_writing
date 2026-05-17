@@ -16,7 +16,7 @@ Pure model-based approaches:
 Pure data-driven approaches:
 
 - offer flexibility,
-- may violate financial principles.
+- may violate financial principles (Recall (see [§ No-Arbitrage Constraints in Learning](no_arbitrage_constraints_in_learning.md))).
 
 Hybrid models bridge this gap.
 

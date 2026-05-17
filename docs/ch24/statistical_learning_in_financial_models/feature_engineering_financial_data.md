@@ -1,6 +1,6 @@
 # Feature Engineering for Financial Data
 
-Feature engineering transforms raw market observables into informative predictors for learning algorithms. In finance, where signal-to-noise ratios are extremely low ($R^2 \approx 0.25\%$ for daily return prediction), the choice and construction of features is often more important than the choice of learning algorithm. This section develops a systematic framework for constructing return, volatility, microstructure, and cross-sectional features, with careful attention to stationarity, look-ahead bias, and the unique challenges of financial data.
+Feature engineering transforms raw market observables into informative predictors for learning algorithms. Recall the low-SNR regime of financial returns (see [§ Bias–Variance Trade-Off](bias_variance_trade_off.md)): in this setting, the choice and construction of features is often more important than the choice of learning algorithm. This section develops a systematic framework for constructing return, volatility, microstructure, and cross-sectional features, with careful attention to stationarity, look-ahead bias, and the unique challenges of financial data.
 
 ---
 
@@ -257,13 +257,7 @@ $$
 
 ### LASSO Feature Selection
 
-The LASSO penalty induces sparsity, selecting relevant features:
-
-$$
-\hat{\beta} = \arg\min_\beta \left\{\sum_t (r_{t+1} - X_t^\top \beta)^2 + \lambda \|\beta\|_1\right\}
-$$
-
-Features with $\hat{\beta}_j \neq 0$ are selected as predictive. The adaptive LASSO with feature-specific penalties $\lambda_j = \lambda / |\tilde{\beta}_j|^\gamma$ achieves oracle properties (correct selection asymptotically).
+Recall the LASSO objective $\hat{\beta} = \arg\min_\beta\{\|Y - X\beta\|_2^2 + \lambda\|\beta\|_1\}$ (see [§ Bias–Variance Trade-Off](bias_variance_trade_off.md)). Features with $\hat{\beta}_j \neq 0$ are selected as predictive. The adaptive LASSO with feature-specific penalties $\lambda_j = \lambda / |\tilde{\beta}_j|^\gamma$ achieves oracle properties (correct selection asymptotically).
 
 ---
 

@@ -4,40 +4,11 @@ Under the risk-neutral measure $\mathbb{Q}$, the price of a zero-coupon bond equ
 
 ## Risk-Neutral Pricing Formula
 
-The fundamental pricing identity for a zero-coupon bond paying one unit at maturity $T$ states that its time-$t$ price equals the conditional expectation of the stochastic discount factor under $\mathbb{Q}$.
-
-!!! info "Definition: Zero-Coupon Bond Price"
-    Under the risk-neutral measure $\mathbb{Q}$, the zero-coupon bond price is
-
-    $$
-    P(t,T) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-\int_t^T r(s)\,ds}\,\Big|\,\mathcal{F}(t)\right]
-    $$
-
-    where $r(s)$ is the short rate process and $\mathcal{F}(t)$ is the filtration at time $t$.
-
-The key observation is that when $r(s)$ follows the Hull-White process
-
-$$
-dr(s) = \lambda\bigl(\theta^{\mathbb{Q}}(s) - r(s)\bigr)\,ds + \sigma\,dW^{\mathbb{Q}}(s)
-$$
-
-the integral $\int_t^T r(s)\,ds$ is a Gaussian random variable conditional on $\mathcal{F}(t)$. This Gaussian structure allows us to evaluate the expectation in closed form using the moment generating function of the normal distribution.
+Recall (see [§ Risk-Neutral Pricing](../../ch04/risk_neutral/construction.md)) the identity $P(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r(s)\,ds}\mid\mathcal{F}(t)]$. Recall (see [HW SDE](../model_definition/hull_white_sde_and_mean_reversion.md)) the dynamics $dr(s) = \lambda(\theta^{\mathbb{Q}}(s) - r(s))\,ds + \sigma\,dW^{\mathbb{Q}}(s)$; the integral $\int_t^T r(s)\,ds$ is Gaussian conditional on $\mathcal{F}(t)$. This Gaussian structure allows us to evaluate the expectation in closed form using the moment generating function of the normal distribution.
 
 ## Conditional Distribution of the Integral
 
-Recall from the short rate solution that for $s \ge t$,
-
-$$
-r(s) = r(t)e^{-\lambda(s-t)} + \alpha(s) - \alpha(t)e^{-\lambda(s-t)} + \sigma\int_t^s e^{-\lambda(s-u)}\,dW^{\mathbb{Q}}(u)
-$$
-
-where
-
-$$
-\alpha(s) = f^M(0,s) + \frac{\sigma^2}{2\lambda^2}\left(1 - e^{-\lambda s}\right)^2
-$$
-
-Integrating $r(s)$ from $t$ to $T$ and interchanging the order of integration with the stochastic integral, the random variable $I(t,T) := \int_t^T r(s)\,ds$ conditional on $\mathcal{F}(t)$ is normally distributed.
+Recall (see [HW short rate solution](../short_rate/short_rate_solution.md)) that for $s \ge t$, $r(s) = r(t)e^{-\lambda(s-t)} + \alpha(s) - \alpha(t)e^{-\lambda(s-t)} + \sigma\int_t^s e^{-\lambda(s-u)}\,dW^{\mathbb{Q}}(u)$, where $\alpha(s)$ is the named function from [§ Named Functions](../named_functions/named_functions_definition.md). Integrating $r(s)$ from $t$ to $T$, the random variable $I(t,T) := \int_t^T r(s)\,ds$ conditional on $\mathcal{F}(t)$ is normally distributed.
 
 !!! info "Proposition: Conditional Gaussian Integral"
     The integrated short rate $I(t,T) = \int_t^T r(s)\,ds$ conditional on $\mathcal{F}(t)$ satisfies

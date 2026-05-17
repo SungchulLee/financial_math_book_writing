@@ -35,17 +35,7 @@ The probability of missing a barrier crossing between two consecutive observatio
 
 ### Broadie–Glasserman–Kou Correction
 
-Broadie, Glasserman, and Kou (1997) derived an asymptotic correction for this bias. For a down barrier $H$ monitored at $m$ equally-spaced times:
-
-$$
-\boxed{
-H_{\text{eff}} = H \cdot \exp\left(-\beta\, \sigma \sqrt{\Delta t}\right), \quad \beta = \frac{-\zeta(1/2)}{\sqrt{2\pi}} \approx 0.5826
-}
-$$
-
-where $\zeta$ is the Riemann zeta function. The correction shifts the barrier **downward** (for a down barrier), accounting for the paths that would have crossed $H$ between observation times.
-
-**Intuition.** Between consecutive observations, the price process behaves like a Brownian bridge. The probability that a Brownian bridge crosses a level depends on the distance to that level relative to $\sigma\sqrt{\Delta t}$. The correction adjusts the barrier by approximately $0.58\sigma\sqrt{\Delta t}$ to account for the "missed" crossings.
+Recall (see [§ Broadie–Glasserman–Kou Correction](barrier_options.md#broadieglassermankou-correction)): for a down barrier monitored at $m$ equally-spaced times, $H_{\text{eff}} = H \cdot \exp(-\beta\, \sigma \sqrt{\Delta t})$ with $\beta = -\zeta(1/2)/\sqrt{2\pi} \approx 0.5826$. Intuitively, between two observations the log-price behaves as a Brownian bridge whose crossing probability scales with distance to the barrier in units of $\sigma\sqrt{\Delta t}$.
 
 ### Convergence with Correction
 
@@ -62,25 +52,7 @@ The correction is simple to implement (modify $H$ before running the simulation)
 
 ### Moment Matching
 
-Since the arithmetic average $\bar{S}_{\text{arith}} = \frac{1}{n}\sum_{i=1}^{n} S_{t_i}$ is a sum of correlated lognormals, its distribution is not analytically tractable. The **moment-matching** approach approximates $\bar{S}_{\text{arith}}$ by a lognormal distribution with matched first and second moments.
-
-Under GBM, the first two moments of the arithmetic average are:
-
-$$
-M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}] = \frac{1}{n}\sum_{i=1}^{n} S_0\, e^{r t_i}
-$$
-
-$$
-M_2 = \mathbb{E}^{\mathbb{Q}}[\bar{S}^2] = \frac{1}{n^2}\sum_{i=1}^{n}\sum_{j=1}^{n} S_0^2\, e^{(r + \sigma^2 \min(t_i, t_j))(t_i + t_j)/2 + \ldots}
-$$
-
-The matched lognormal parameters are:
-
-$$
-\hat{\sigma}^2 = \ln\!\left(\frac{M_2}{M_1^2}\right), \quad \hat{\mu} = \ln M_1 - \frac{1}{2}\hat{\sigma}^2
-$$
-
-The Asian call price is then approximated using a Black–Scholes formula with these adjusted parameters.
+Recall (see [§ Arithmetic Asian Options: Approximation Methods](asian_options.md#arithmetic-asian-options-approximation-methods)): match the first two moments $M_1, M_2$ of $\bar{S}_{\text{arith}}$ to a lognormal via $\hat\sigma^2 = \ln(M_2/M_1^2)$, $\hat\mu = \ln M_1 - \tfrac12\hat\sigma^2$, then price with a Black–Scholes-like formula.
 
 ### Laplace Transform Methods
 
@@ -101,13 +73,11 @@ For continuous-time Asian options, Geman and Yor (1993) derived the Laplace tran
 
 ### The Running Maximum Distribution
 
-The analytical pricing of lookback options rests on the **joint distribution of Brownian motion and its running maximum**. For a standard Brownian motion $W_t$:
+Recall (see [Reflection Principle](../../ch02/brownian_motion/reflection_principle.md)): for standard BM,
 
 $$
-\mathbb{P}\!\left(W_T \leq x,\; \max_{0 \leq t \leq T} W_t \leq y\right) = N\!\left(\frac{x}{\sqrt{T}}\right) - e^{-2xy/T}\, N\!\left(\frac{x - 2y}{\sqrt{T}}\right)
+\mathbb{P}\!\left(W_T \leq x,\; \max_{0 \leq t \leq T} W_t \leq y\right) = N\!\left(\frac{x}{\sqrt{T}}\right) - e^{-2xy/T}\, N\!\left(\frac{x - 2y}{\sqrt{T}}\right),\quad y\ge 0,\; x\le y.
 $$
-
-for $y \geq 0$ and $x \leq y$. This formula follows from the **reflection principle**: the event $\{\max_t W_t \geq y\}$ can be related to $\{W_T \geq 2y - x\}$ by reflecting paths that hit level $y$.
 
 ### From Brownian Motion to GBM
 
@@ -124,7 +94,7 @@ where $\lambda = (r - \frac{1}{2}\sigma^2)/\sigma^2 + 1$ and $a, b$ depend on $s
 The analytical formulas assume **continuous monitoring**. For discrete monitoring (which is the practical case), two approaches are available:
 
 1. **Monte Carlo simulation** with sufficiently fine time steps
-2. **Broadie–Glasserman–Kou correction** (analogous to barrier options): adjust the monitored extremum by $e^{\pm \beta\sigma\sqrt{\Delta t}}$
+2. BGK correction adjusts the monitored extremum by $e^{\pm \beta\sigma\sqrt{\Delta t}}$ (see [§ BGK Correction](barrier_options.md#broadieglassermankou-correction))
 
 ---
 

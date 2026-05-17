@@ -47,11 +47,7 @@ Choose $\beta$ according to market convention. This reduces the free parameters 
 
 ### Step 2: Determine Alpha from ATM
 
-The ATM implied volatility $\sigma_{\text{ATM}}^{\text{mkt}}$ is typically the most liquid and reliable quote. Use it to determine $\alpha$ by solving the ATM Hagan formula:
-
-$$
-\sigma_{\text{ATM}}^{\text{mkt}} = \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2\alpha^2}{24 F^{2(1-\beta)}} + \frac{\rho\beta\nu\alpha}{4 F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]
-$$
+The ATM implied volatility $\sigma_{\text{ATM}}^{\text{mkt}}$ is typically the most liquid and reliable quote. Use it to determine $\alpha$ by solving the ATM Hagan formula (Recall see [§ Hagan ATM Implied Volatility](hagan_implied_volatility_approximation.md#atm-implied-volatility)) $\sigma_{\text{ATM}}^{\text{mkt}} = \sigma_B^{\text{ATM}}(\alpha;\, F, \beta, \rho, \nu, T)$.
 
 This is a cubic equation in $\alpha$ (the terms involving $\rho$ and $\nu$ are treated as known from initial guesses or from the previous day's calibration). The leading-order solution is:
 

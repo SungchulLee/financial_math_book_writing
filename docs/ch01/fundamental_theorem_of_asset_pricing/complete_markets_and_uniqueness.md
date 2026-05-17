@@ -1,9 +1,7 @@
 # Complete Markets and Uniqueness
 
 
-The [Fundamental Theorem of Asset Pricing](fundamental_theorem_of_asset_pricing.md) established that an arbitrage-free market admits at least one equivalent martingale measure (EMM). A natural follow-up question arises: how many such measures can there be, and what determines whether the answer is exactly one? The answer turns out to be deeply connected to whether every contingent claim can be replicated by trading in the available assets -- a property called **market completeness**. The **Second Fundamental Theorem of Asset Pricing** makes this link precise: in an arbitrage-free market, the EMM is unique if and only if the market is complete.
-
-This page defines market completeness, states and proves the Second FTAP in the finite-state setting, explores its implications for pricing, and works through explicit examples of complete and incomplete markets.
+This page is the canonical home for the **Second Fundamental Theorem of Asset Pricing**: in an arbitrage-free finite market, the EMM is unique if and only if every contingent claim is replicable (the market is **complete**). The First FTAP and its proof are on the [previous page](fundamental_theorem_of_asset_pricing.md); here we develop the uniqueness side, the rank condition $\operatorname{rank}(X) = n - 1$, and the pricing intervals that arise when uniqueness fails.
 
 
 ??? abstract "Learning Objectives"
@@ -17,26 +15,11 @@ This page defines market completeness, states and proves the Second FTAP in the 
     - Explain why adding assets to an incomplete market can restore completeness
 
 
-## Motivation and Intuition
+## Setup
 
+By the [First FTAP](fundamental_theorem_of_asset_pricing.md), an arbitrage-free finite market admits at least one EMM. The question addressed here is when that measure is unique, and what uniqueness says about the market.
 
-Recall from the [First FTAP](fundamental_theorem_of_asset_pricing.md) that in a finite-state market with no arbitrage, there exists at least one EMM $\mathbb{Q}$ under which discounted asset prices are martingales. Under any such measure, the no-arbitrage price of a contingent claim $\Phi$ is given by the discounted expectation $\mathbb{E}^{\mathbb{Q}}[\Phi / S^0_T]$. But if multiple EMMs exist, different measures may assign different prices to the same claim, yielding not a single price but a range of no-arbitrage prices.
-
-The question of uniqueness is therefore a question of pricing power: can we assign a definite price to every derivative, or only to those that happen to be replicable? The Second FTAP answers this by showing that the EMM is unique precisely when the market is rich enough to replicate every claim -- that is, when the market is complete.
-
-Geometrically, in a finite model with $n$ states and $d$ risky assets, the set of attainable payoffs forms a subspace of $\mathbb{R}^n$. When this subspace fills the entire payoff space (up to a constant), every claim can be replicated and the EMM is forced to be unique. When the subspace is too small, there are directions in $\mathbb{R}^n$ that cannot be reached by trading, and the pricing measure has freedom to assign different probabilities to those unreachable states -- resulting in multiple EMMs and ambiguous prices.
-
-
-## Definitions
-
-
-We work in the one-period finite-state model established in the [First FTAP page](fundamental_theorem_of_asset_pricing.md): a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ with $\Omega = \{\omega_1, \ldots, \omega_n\}$ and $\mathbb{P}(\omega_i) = p_i > 0$, a numéraire $S^0$ normalized to $1$ at both dates, and $d$ risky assets with discounted excess returns encoded in the $n \times d$ payoff matrix
-
-$$
-X_{ij} = S^j_1(\omega_i) - S^j_0, \qquad i = 1, \ldots, n, \quad j = 1, \ldots, d
-$$
-
-A strategy $\theta \in \mathbb{R}^d$ produces the zero-cost payoff vector $X\theta \in \mathbb{R}^n$.
+Recall (see [§ Proof of the First FTAP](fundamental_theorem_of_asset_pricing.md#proof-of-the-first-ftap-finite-state-space)): the model has states $\Omega = \{\omega_1, \ldots, \omega_n\}$ with $\mathbb{P}(\omega_i) > 0$, numéraire $S^0$ normalized to $1$, $d$ risky assets, and $n \times d$ excess-return matrix $X_{ij} = S^j_1(\omega_i) - S^j_0$. A strategy $\theta \in \mathbb{R}^d$ produces the zero-cost payoff $X\theta \in \mathbb{R}^n$; an EMM is a vector $q \in \operatorname{int}(\Delta_n)$ with $X^T q = 0$.
 
 
 ### Attainable Claims
@@ -152,23 +135,17 @@ for some portfolio $\theta$, since $\Phi - \mathbb{E}^{\mathbb{Q}}[\Phi] \cdot \
 ## Pricing Implications
 
 
-The Second FTAP has immediate consequences for derivative pricing.
+The general risk-neutral pricing formula $\pi(\Phi) = \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T]$ was introduced in the [First FTAP page](fundamental_theorem_of_asset_pricing.md#economic-intuition). The Second FTAP determines whether this formula gives a single number or a range.
 
-**Complete markets: unique prices.** When the EMM $\mathbb{Q}$ is unique, the no-arbitrage price of any contingent claim $\Phi$ is determined unambiguously:
+**Complete markets: unique prices.** With a unique EMM, every claim is replicable and has a single no-arbitrage price $\pi(\Phi) = \mathbb{E}^{\mathbb{Q}}[\Phi/S^0_T]$.
 
-$$
-\pi(\Phi) = \mathbb{E}^{\mathbb{Q}}\!\left[\frac{\Phi}{S^0_T}\right]
-$$
-
-Every claim can be replicated, and the replication cost equals this expectation. There is no pricing ambiguity.
-
-**Incomplete markets: price intervals.** When multiple EMMs exist, different measures assign different prices to non-attainable claims. The set of no-arbitrage prices for a claim $\Phi$ is the interval
+**Incomplete markets: price intervals.** With multiple EMMs, non-attainable claims have a range of no-arbitrage prices
 
 $$
 \pi(\Phi) \in \left[\inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}^{\mathbb{Q}}\!\left[\frac{\Phi}{S^0_T}\right], \; \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}^{\mathbb{Q}}\!\left[\frac{\Phi}{S^0_T}\right]\right]
 $$
 
-where $\mathcal{M}$ is the set of all EMMs. Any price outside this interval admits an arbitrage; any price inside it is consistent with no-arbitrage. The lower bound is the **sub-replication price** (the cheapest portfolio whose payoff is dominated by $\Phi$), and the upper bound is the **super-replication price** (the cheapest portfolio whose payoff dominates $\Phi$).
+where $\mathcal{M}$ is the set of all EMMs. The lower bound is the **sub-replication price** (the cheapest portfolio whose payoff is dominated by $\Phi$); the upper bound is the **super-replication price** (the cheapest portfolio whose payoff dominates $\Phi$).
 
 For attainable claims, even in an incomplete market, all EMMs assign the same price (since the replication cost is model-independent). The pricing ambiguity applies only to non-attainable claims.
 
@@ -215,13 +192,13 @@ $$
 
 Solving: $\theta = 1/2$ and $c = 1$. The replicating portfolio holds $\theta = 1/2$ units of the risky asset with an initial cost of $c = 1$.
 
-**Verification via EMM pricing.**
+**EMM expectation:**
 
 $$
-\pi(\Phi) = \mathbb{E}^{\mathbb{Q}}[\Phi] = \frac{1}{2} \cdot 2 + \frac{1}{2} \cdot 0 = 1
+\mathbb{E}^{\mathbb{Q}}[\Phi] = \tfrac{1}{2} \cdot 2 + \tfrac{1}{2} \cdot 0 = 1
 $$
 
-The replication cost and the risk-neutral expectation agree, as the Second FTAP guarantees.
+matching the replication cost $c = 1$.
 
 
 ## Example 2: An Incomplete Market (3 States, 1 Risky Asset)
@@ -259,29 +236,27 @@ $$
 \mathbb{Q}_{q_3} : \quad q_1 = \frac{3}{4}q_3, \quad q_2 = 1 - \frac{7}{4}q_3, \quad q_3 \in \left(0, \frac{4}{7}\right)
 $$
 
-This confirms incompleteness: there is a continuum of EMMs, parameterized by $q_3$.
+A continuum of EMMs, parameterized by $q_3$.
 
-**Pricing a non-attainable claim.** Consider the claim $\Phi = (5, 1, 0)^T$ (it pays $5$ in state $\omega_1$, $1$ in $\omega_2$, and $0$ in $\omega_3$). Under the EMM $\mathbb{Q}_{q_3}$:
+**Pricing a non-attainable claim.** For $\Phi = (5, 1, 0)^T$ under $\mathbb{Q}_{q_3}$:
 
 $$
 \mathbb{E}^{\mathbb{Q}_{q_3}}[\Phi] = 5 \cdot \frac{3}{4}q_3 + 1 \cdot \left(1 - \frac{7}{4}q_3\right) + 0 \cdot q_3 = 1 + 2q_3
 $$
 
-As $q_3$ ranges over $(0, 4/7)$, this expectation ranges over the interval $(1, 15/7)$. The no-arbitrage price interval for $\Phi$ is
+As $q_3$ ranges over $(0, 4/7)$, the expectation ranges over $(1, 15/7) \approx (1, 2.143)$:
 
 $$
-\pi(\Phi) \in \left(1, \; \frac{15}{7}\right) \approx (1, \; 2.143)
+\pi(\Phi) \in \left(1, \; \frac{15}{7}\right)
 $$
 
-Any price in this interval is consistent with no-arbitrage, but no single price is forced by the model.
-
-**Pricing an attainable claim.** The claim $\Psi = (4, 0, -3)^T$ is proportional to the column of $X$, so $\Psi = X \cdot 1$ is attainable with $\theta = 1$ and $c = 0$. For any EMM:
+**Pricing an attainable claim.** The claim $\Psi = (4, 0, -3)^T$ equals $X \cdot 1$, attainable with $\theta = 1$, $c = 0$. For any EMM:
 
 $$
 \mathbb{E}^{\mathbb{Q}_{q_3}}[\Psi] = 4 \cdot \frac{3}{4}q_3 + 0 \cdot \left(1 - \frac{7}{4}q_3\right) + (-3) \cdot q_3 = 3q_3 - 3q_3 = 0
 $$
 
-All EMMs agree on the price $\pi(\Psi) = 0$, consistent with the fact that $\Psi$ is attainable at zero cost.
+All EMMs agree on $\pi(\Psi) = 0$ (attainable at zero cost).
 
 
 ## Example 3: Restoring Completeness by Adding an Asset
@@ -336,12 +311,7 @@ which lies within the interval $(1, 15/7) \approx (1, 2.143)$ computed earlier -
 ## Connection to Continuous Time
 
 
-In the Black--Scholes model, the stock follows $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ with one source of randomness ($W_t$) and one risky asset. By Girsanov's theorem, there is a unique equivalent local martingale measure under which $dS_t = r S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t$. Uniqueness of the EMM confirms that the Black--Scholes market is complete, and the famous Black--Scholes formula gives the unique no-arbitrage price of any European contingent claim. See [Numeraire and Change of Measure](../numeraire_and_change_of_measure/numeraire_and_change_of_measure.md) for the full treatment of measure changes via the Radon--Nikodym derivative and Girsanov's theorem.
-
-When a model has more sources of randomness than traded assets -- for instance, stochastic volatility models with two Brownian motions but only one stock -- the EMM is no longer unique and the market is incomplete. The extra source of risk cannot be hedged, and option prices depend on additional modeling choices beyond no-arbitrage.
-
-!!! note "Counting rule"
-    A useful heuristic in continuous time: if the model has $m$ independent sources of randomness (Brownian motions) and $d$ risky assets with non-degenerate volatility, the market is complete when $d = m$ and generically incomplete when $d < m$. This is the continuous-time analogue of the finite-state rank condition $d \geq n - 1$.
+The finite-state rank condition $d \geq n - 1$ has a continuous-time analogue: with $m$ independent Brownian drivers and $d$ risky assets with non-degenerate volatility, the market is complete when $d = m$ and generically incomplete when $d < m$. In particular, Black–Scholes ($m = d = 1$) is complete with a unique EMM, while stochastic volatility models ($m = 2$, $d = 1$) are incomplete. The mechanics of measure change underlying these statements are treated in [Numeraire and Change of Measure](../numeraire_and_change_of_measure/numeraire_and_change_of_measure.md).
 
 
 ## Summary

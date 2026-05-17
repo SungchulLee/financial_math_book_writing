@@ -17,27 +17,13 @@ The derivation of the characteristic function is the central analytical achievem
 
 ## The Heston Bivariate SDE
 
-Under the risk-neutral measure $\mathbb{Q}$, the log-price $x_t = \ln S_t$ and variance $v_t$ satisfy (see [Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)):
-
-$$
-dx_t = \left(r - q - \tfrac{1}{2}\,v_t\right)dt + \sqrt{v_t}\,dW_t^{(1)}
-$$
-
-$$
-dv_t = \kappa(\theta - v_t)\,dt + \sigma_v\sqrt{v_t}\,dW_t^{(2)}
-$$
-
-$$
-d\langle W^{(1)}, W^{(2)} \rangle_t = \rho\,dt
-$$
-
-The parameters are: $\kappa > 0$ (mean-reversion speed), $\theta > 0$ (long-run variance), $\sigma_v > 0$ (vol-of-vol), $\rho \in [-1, 1]$ (correlation), and $v_0 > 0$ (initial variance). The constants $r \geq 0$ and $q \geq 0$ are the risk-free rate and continuous dividend yield.
+Recall (see [§ Heston SDE and Parameters](../model_definition/heston_sde_and_parameters.md)) the log-price/variance SDE under $\mathbb{Q}$, with parameters $\kappa, \theta, \sigma_v, \rho, v_0, r, q$ fixed for the remainder of this chapter.
 
 ---
 
 ## Affine Property Summary
 
-The Heston model is an **affine diffusion** (see [Affine Structure and Riccati System](../model_definition/affine_structure_and_riccati.md)). For the characteristic function derivation, the relevant affine properties are:
+Recall (see [§ Affine Structure and Riccati System](../model_definition/affine_structure_and_riccati.md)) that Heston is an affine diffusion. For the CF derivation, the relevant affine properties are:
 
 !!! note "Affine Conditions for the Characteristic Function"
     The characteristic function has an exponential-affine form because:
@@ -82,7 +68,7 @@ In the Black-Scholes model, the log-price distribution is Gaussian and the densi
 
 ### Derivation
 
-By the Feynman-Kac theorem, $\phi$ satisfies the backward Kolmogorov equation associated with the bivariate diffusion $(x_t, v_t)$. The generator of the Heston diffusion is:
+By Feynman-Kac, $\phi$ satisfies the backward Kolmogorov equation with Heston generator $\mathcal{L}$ (see [§ Affine Generator](../../ch15/generator/exponential_martingales.md)):
 
 $$
 \mathcal{L} = \left(r - q - \tfrac{1}{2}v\right)\frac{\partial}{\partial x} + \kappa(\theta - v)\frac{\partial}{\partial v} + \tfrac{1}{2}v\frac{\partial^2}{\partial x^2} + \rho\sigma_v v\frac{\partial^2}{\partial x\,\partial v} + \tfrac{1}{2}\sigma_v^2 v\frac{\partial^2}{\partial v^2}

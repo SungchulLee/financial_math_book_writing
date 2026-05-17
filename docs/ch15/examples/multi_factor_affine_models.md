@@ -22,12 +22,9 @@ The yield curve has at least three independent degrees of freedom---level, slope
 
 ### The Aₘ(d) Family
 
+Recall (see [affine definition](../definition_and_setup/definition_of_affine_process.md)) the canonical state space $D = \mathbb{R}^m_+ \times \mathbb{R}^{d-m}$.
+
 **Definition ($A_m(d)$ Models).** An affine term structure model with $d$ state variables, of which $m$ are CIR-type (non-negative), belongs to the $A_m(d)$ family, where $0 \leq m \leq d$.
-
-The state space is $D = \mathbb{R}^m_+ \times \mathbb{R}^{d-m}$:
-
-- The first $m$ components $X_1, \ldots, X_m \in \mathbb{R}_+$ are CIR-type with square-root diffusion
-- The remaining $d - m$ components $X_{m+1}, \ldots, X_d \in \mathbb{R}$ are Gaussian with constant (or CIR-driven) diffusion
 
 ### Classification Table
 

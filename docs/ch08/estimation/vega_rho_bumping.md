@@ -1,6 +1,6 @@
 # Vega and Rho via Bumping
 
-Vega and rho measure the sensitivity of the option price to the volatility and interest rate parameters, respectively. Unlike delta and gamma, which are derivatives with respect to the state variable $S$ available directly from the FDM grid, vega and rho require **bumping** --- perturbing the parameter and re-solving the PDE.
+The FDM grid discretizes the state space $(S,\tau)$ but treats $\sigma$ and $r$ as fixed numbers baked into the operator. So $\partial V/\partial\sigma$ cannot be read off a single grid -- there is nothing to difference against. The remedy is **bumping**: solve the PDE twice, once at $\sigma$ and once at $\sigma+\delta\sigma$, then approximate $\mathcal{V}\approx(V(\sigma+\delta\sigma)-V(\sigma-\delta\sigma))/(2\delta\sigma)$. The same recipe gives $\rho$ for the interest rate. Bumping doubles (or triples) the cost, but it is the only route to parameter Greeks.
 
 ---
 
@@ -131,21 +131,7 @@ For vega, a common choice is $\delta\sigma = 0.01$ (a 1% absolute bump in volati
 
 ## Vega in Detail
 
-### Black-Scholes Analytical Vega
-
-For a European call under Black-Scholes:
-
-$$
-\mathcal{V} = S\sqrt{T}\,\phi(d_1)
-$$
-
-where $\phi$ is the standard normal density and $d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}$. This is always positive: higher volatility increases option value.
-
-### Properties of Vega
-
-- **Vega is maximized at-the-money**: $S \approx Ke^{-rT}$
-- **Vega decays with time**: $\mathcal{V} \propto \sqrt{T}$ for ATM options
-- **Vega is the same for calls and puts**: By put-call parity, $\mathcal{V}_{\text{call}} = \mathcal{V}_{\text{put}}$
+Recall (see [BS Greeks closed forms](../../ch10/greeks/greeks_in_black_scholes_model.md)): the analytical vega is $\mathcal{V} = S\sqrt{T}\,\phi(d_1)$, peaks ATM, decays with $\sqrt{T}$, and is identical for calls and puts by parity.
 
 ### FDM Bumping for Vega
 
@@ -165,21 +151,7 @@ Note that **both the diffusion and drift coefficients change** when $\sigma$ is 
 
 ## Rho in Detail
 
-### Black-Scholes Analytical Rho
-
-For a European call:
-
-$$
-\rho_{\text{call}} = KTe^{-rT}\mathcal{N}(d_2)
-$$
-
-For a European put:
-
-$$
-\rho_{\text{put}} = -KTe^{-rT}\mathcal{N}(-d_2)
-$$
-
-Call rho is positive (higher rates increase call values), and put rho is negative.
+Recall (see [BS Greeks closed forms](../../ch10/greeks/greeks_in_black_scholes_model.md)): $\rho_{\text{call}} = KTe^{-rT}\mathcal{N}(d_2) > 0$ and $\rho_{\text{put}} = -KTe^{-rT}\mathcal{N}(-d_2) < 0$.
 
 ### FDM Bumping for Rho
 

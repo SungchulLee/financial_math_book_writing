@@ -8,13 +8,7 @@ Unlike caplets, which depend on a single forward rate and price exactly via Blac
 
 ### Swap Rate in Terms of Forward Rates
 
-The forward swap rate for a swap over $[T_\alpha, T_\beta]$ is
-
-$$
-S(t) = \frac{P(t, T_\alpha) - P(t, T_\beta)}{A(t)}
-$$
-
-where $A(t) = \sum_{j=\alpha+1}^{\beta} \delta_j P(t, T_j)$ is the annuity factor. Expressing bond prices in terms of forward rates:
+Recall (see [§ Interest Rate Swap](../../ch18/interest_rate_products/interest_rate_swap.md)) the forward swap rate $S(t) = (P(t,T_\alpha) - P(t,T_\beta))/A(t)$ with annuity $A(t) = \sum_{j=\alpha+1}^{\beta}\delta_j P(t,T_j)$. Expressing bond prices in terms of forward rates:
 
 $$
 S(t) = \frac{1 - \prod_{i=\alpha}^{\beta-1}(1 + \delta_i L_i(t))^{-1}}{\sum_{j=\alpha+1}^{\beta} \delta_j \prod_{i=\alpha}^{j-1}(1 + \delta_i L_i(t))^{-1}}
@@ -84,15 +78,7 @@ This is **Rebonato's formula**. It expresses the Black swaption implied volatili
 
 ### Swaption Price
 
-With $\sigma_S$ computed from Rebonato's formula, the swaption is priced using Black's formula under the annuity measure:
-
-$$
-V_0 = A(0)\bigl[S(0) \, N(d_1) - K \, N(d_2)\bigr]
-$$
-
-$$
-d_1 = \frac{\ln(S(0)/K) + \frac{1}{2}\sigma_S^2 T_\alpha}{\sigma_S\sqrt{T_\alpha}}, \qquad d_2 = d_1 - \sigma_S\sqrt{T_\alpha}
-$$
+With $\sigma_S$ computed from Rebonato's formula, the swaption is priced via Black's formula under the annuity measure: recall (see [§ Black Swaption Formula](../../ch18/swaption_pricing/black_swaption_formula.md)) $V_0 = A(0)[S(0) N(d_1) - K N(d_2)]$ with $d_{1,2} = [\ln(S(0)/K) \pm \tfrac{1}{2}\sigma_S^2 T_\alpha]/(\sigma_S\sqrt{T_\alpha})$.
 
 ---
 

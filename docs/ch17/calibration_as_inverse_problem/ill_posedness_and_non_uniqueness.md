@@ -95,20 +95,9 @@ Constraints (positivity, Feller condition, no-arbitrage filters) can create mult
 ## A linearized view: conditioning and singular values
 
 
-Around a reference $\theta_0$, with $F(\theta)\approx F(\theta_0)+J\Delta\theta$, least squares suggests
+Recall (see [§ Local linearization and sensitivity](forward_pricing_map_vs_inverse_calibration_map.md#local-linearization-and-sensitivity)) that around a reference $\theta_0$, $F(\theta)\approx F(\theta_0)+J\Delta\theta$. If $J^\top WJ$ is ill-conditioned (small eigenvalues), the linearized inverse $\Delta\theta \approx (J^\top W J)^{-1}J^\top W (y - F(\theta_0))$ is numerically unstable and $\|\Delta\theta\|$ blows up relative to data noise.
 
-$$
-\Delta\theta \approx (J^\top W J)^{-1}J^\top W (y - F(\theta_0))
-$$
-
-
-
-If $J^\top WJ$ is ill-conditioned (small eigenvalues), then:
-
-- the inverse is numerically unstable,
-- $\|\Delta\theta\|$ can blow up relative to data noise.
-
-This connects directly to **regularization** (Chapter 5.3).
+This connects directly to **Tikhonov regularization** (see [§ Tikhonov regularization](../regularization_and_stability/tikhonov_regularization.md)).
 
 ---
 

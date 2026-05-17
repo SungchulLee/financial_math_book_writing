@@ -1,6 +1,8 @@
 # Option Payoffs
 
-The previous section defined what options are and introduced the key contract terms. We now turn to the central question: what is an option actually worth at maturity? The answer depends entirely on the relationship between the stock price $S_T$ and the strike price $K$ at expiration. The **payoff** of an option is its value at maturity, before accounting for the premium paid to enter the position. Understanding payoff functions is the first step toward pricing options at any earlier time.
+The previous section defined what options are and introduced the key contract terms. We now turn to the central question: what is an option actually worth at maturity? Imagine watching a single call option through expiration day. As long as the stock sits below the strike, the option is worth nothing — a flat line. The instant the stock crosses the strike, value begins accumulating dollar-for-dollar with the stock. The resulting graph is a kinked, piecewise-linear curve — the famous "hockey stick" — and that shape, not the algebra, is the geometric object at the heart of every later pricing argument.
+
+The answer depends entirely on the relationship between the stock price $S_T$ and the strike price $K$ at expiration. The **payoff** of an option is its value at maturity, before accounting for the premium paid to enter the position. Understanding payoff functions is the first step toward pricing options at any earlier time.
 
 ---
 
@@ -96,7 +98,7 @@ Every option trade has two sides. The **long** party is the buyer (holder) of th
 | Long (holder) | $(S_T - K)^+$ | $(K - S_T)^+$ |
 | Short (writer) | $-(S_T - K)^+$ | $-(K - S_T)^+$ |
 
-The writer's payoff is the **negative** of the holder's payoff. The option market is zero-sum at expiration: every dollar gained by the holder is lost by the writer, and vice versa. This is why the writer demands compensation upfront — the **premium** — in exchange for accepting this obligation.
+The writer's payoff is the **negative** of the holder's payoff. The option market is zero-sum at expiration: every dollar gained by the holder is lost by the writer, and vice versa. This is why the writer demands compensation upfront — the **premium** — in exchange for accepting this obligation. The same long/short identity propagates into profit-and-loss profiles for combined strategies (see [§ The Four Elementary Positions](basic_strategies.md)).
 
 ---
 

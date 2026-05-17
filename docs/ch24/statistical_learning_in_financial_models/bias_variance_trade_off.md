@@ -247,7 +247,7 @@ For neural networks with $M$ hidden units:
 - **Approximation error** (related to bias): Decreases with $M$ as the network can represent more complex functions
 - **Estimation error** (related to variance): Increases with $M$ as more parameters require more data
 
-Modern deep learning often operates in the **overparameterized regime** ($M \gg n$), where classical bias–variance intuition requires modification (see "double descent" phenomenon below).
+Modern deep learning often operates in the **overparameterized regime** ($M \gg n$), where classical bias–variance intuition requires modification (see "double descent" phenomenon below). For Barron-type approximation rates and the explicit total-error decomposition for ReLU networks, see [§ Neural Network Function Approximation](../deep_learning/neural_network_function_approximation.md).
 
 ---
 

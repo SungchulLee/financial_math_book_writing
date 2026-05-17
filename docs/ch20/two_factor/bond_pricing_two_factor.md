@@ -4,19 +4,13 @@ The two-factor Hull-White model preserves the exponential-affine bond price stru
 
 ## Two-Factor Bond Price Formula
 
-The zero-coupon bond price in the two-factor Hull-White model is
+Recall (see [§ Two-Factor Hull-White Model](two_factor_model_definition.md)) the exponential-affine ZCB
 
 $$
 P(t, T) = \exp\!\bigl(A^{(2)}(t, T) + B_x(t, T)\,x_t + B_y(t, T)\,y_t\bigr)
 $$
 
-where the factor loadings are
-
-$$
-B_x(t, T) = \frac{e^{-\lambda_1(T-t)} - 1}{\lambda_1}, \qquad B_y(t, T) = \frac{e^{-\lambda_2(T-t)} - 1}{\lambda_2}
-$$
-
-and $A^{(2)}(t, T)$ is determined by the no-arbitrage condition.
+with factor loadings $B_x(t, T) = (e^{-\lambda_1(T-t)} - 1)/\lambda_1$, $B_y(t, T) = (e^{-\lambda_2(T-t)} - 1)/\lambda_2$, and $A^{(2)}(t, T)$ determined by no-arbitrage.
 
 The factor loadings have the same functional form as the one-factor $B(t,T)$, with each factor contributing through its own mean-reversion speed. Both $B_x$ and $B_y$ are negative (since $e^{-\lambda\tau} < 1$ for $\tau > 0$), so higher values of $x_t$ or $y_t$ reduce the bond price, as expected.
 
@@ -70,23 +64,11 @@ with $\tau = T - t$.
 
 The two-factor model extends the named function apparatus:
 
-**Factor loadings.**
+**Factor loadings** $B_x, B_y$: Recall (see [§ Two-Factor Bond Price Formula](#two-factor-bond-price-formula)).
 
-$$
-B_x(\tau) = \frac{e^{-\lambda_1\tau} - 1}{\lambda_1}, \qquad B_y(\tau) = \frac{e^{-\lambda_2\tau} - 1}{\lambda_2}
-$$
+**Deterministic drift** $\varphi(t)$: Recall (see [§ Model Specification](two_factor_model_definition.md#model-specification)).
 
-**Deterministic drift.**
-
-$$
-\varphi(t) = f^M(0, t) + \frac{\sigma_1^2}{2\lambda_1^2}\left(1 - e^{-\lambda_1 t}\right)^2 + \frac{\sigma_2^2}{2\lambda_2^2}\left(1 - e^{-\lambda_2 t}\right)^2 + \frac{\rho\sigma_1\sigma_2}{\lambda_1\lambda_2}\left(1 - e^{-\lambda_1 t}\right)\left(1 - e^{-\lambda_2 t}\right)
-$$
-
-**Short rate variance.**
-
-$$
-\sigma_r^2(t) = \frac{\sigma_1^2}{2\lambda_1}\left(1 - e^{-2\lambda_1 t}\right) + \frac{\sigma_2^2}{2\lambda_2}\left(1 - e^{-2\lambda_2 t}\right) + \frac{2\rho\sigma_1\sigma_2}{\lambda_1 + \lambda_2}\left(1 - e^{-(\lambda_1+\lambda_2)t}\right)
-$$
+**Short rate variance** $\sigma_r^2(t)$: Recall (see [§ Short Rate Variance](correlation_between_factors.md#short-rate-variance)).
 
 ## Consistency with Initial Yield Curve
 

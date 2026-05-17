@@ -6,7 +6,7 @@ Local volatility calibration via Dupire's formula requires computing derivatives
 
 ## The differentiation problem
 
-Dupire's formula involves:
+Recall (see [§ Dupire formula derivation](../../ch13/local_volatility_framework/dupire_formula_derivation.md)). Dupire's formula involves:
 
 $$
 \sigma_{\text{loc}}^2(T, K) = \frac{2 \left( \partial_T C + (r - q) K \partial_K C - q C \right)}{K^2 \partial_{KK} C}
@@ -179,7 +179,7 @@ where $\lambda > 0$ controls the smoothness-fit trade-off.
 
 ## Differentiation in implied volatility coordinates
 
-Market data are often given as implied volatilities. Dupire's formula can be rewritten in terms of $\sigma_{\text{impl}}(K, T)$ or total variance $w(k, T)$.
+Market data are often given as implied volatilities (Recall (see [§ Implied volatility surface](../../ch12/implied_volatility_surface/empirical_smile_spx.md))). Dupire's formula can be rewritten in terms of $\sigma_{\text{impl}}(K, T)$ or total variance $w(k, T)$.
 
 ### Dupire in total variance coordinates
 
@@ -240,7 +240,7 @@ $$
 K^2 \partial_{KK} C > 0 \quad \Leftrightarrow \quad \partial_{KK} C > 0
 $$
 
-This is the butterfly arbitrage condition.
+This is the butterfly arbitrage condition (Recall (see [§ Breeden–Litzenberger](../../ch12/model_free_results/breeden_litzenberger_formula.md))).
 
 ### What to do if ∂_KK C ≤ 0
 

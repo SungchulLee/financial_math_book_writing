@@ -8,7 +8,7 @@
 
 ### Setup
 
-Consider a Markov decision process with state space $\mathcal{S}$, action space $\mathcal{A}$, transition kernel $P(s' \mid s, a)$, reward function $r(s, a)$, and discount factor $\gamma \in (0,1]$. A **stochastic policy** $\pi_\theta(a \mid s)$ is parameterized by $\theta \in \mathbb{R}^p$.
+Recall (see [§ Definition of an MDP](markov_decision_processes.md#definition-of-an-mdp)) the MDP tuple $(\mathcal{S}, \mathcal{A}, P, r, \gamma)$. A **stochastic policy** $\pi_\theta(a \mid s)$ is parameterized by $\theta \in \mathbb{R}^p$.
 
 The objective is to maximize the expected discounted return:
 

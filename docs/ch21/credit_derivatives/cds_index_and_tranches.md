@@ -29,19 +29,15 @@ A CDS index is a portfolio of equally weighted single-name CDS contracts:
 
 ### Index Spread
 
-The **index spread** is the premium that equates the present value of premium and protection legs for the entire portfolio:
+Recall (see [§ Credit Default Swaps (CDS)](credit_default_swaps_cds.md)): for a single-name CDS, the par spread equates the PV of premium and protection legs, yielding the approximation $s \approx (1-R)\lambda$.
+
+The **index spread** applies the same equation at the portfolio level:
 
 $$
-s_{\text{index}} = \frac{\sum_{k=1}^n \text{PV}_{\text{prot}}^{(k)}}{\text{Risky Annuity}} = \frac{\sum_{k=1}^n (1-R_k) \int_0^T D(0,u) S_k(0,u) \lambda_k(u) \, du}{\sum_{i=1}^m \Delta_i D(0,t_i) \frac{1}{n}\sum_{k=1}^n S_k(0,t_i)}
+s_{\text{index}} = \frac{\sum_{k=1}^n (1-R_k) \int_0^T D(0,u) S_k(0,u) \lambda_k(u) \, du}{\sum_{i=1}^m \Delta_i D(0,t_i) \frac{1}{n}\sum_{k=1}^n S_k(0,t_i)}
 $$
 
-Under the simplifying assumption of homogeneous names:
-
-$$
-s_{\text{index}} \approx (1-R)\bar{\lambda}
-$$
-
-where $\bar{\lambda}$ is the average intensity.
+Under the simplifying assumption of homogeneous names, $s_{\text{index}} \approx (1-R)\bar{\lambda}$, where $\bar{\lambda}$ is the average intensity.
 
 !!! note "Index vs Average Single-Name Spread"
     The index spread is approximately equal to the **arithmetic average** of the constituent single-name CDS spreads, with small convexity adjustments.

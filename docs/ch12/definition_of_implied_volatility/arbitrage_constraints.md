@@ -405,54 +405,12 @@ This is **stronger** than the Gatheral constraint but easier to verify.
 ### 1. Breeden-Litzenberger Formula
 
 
-The arbitrage-free condition $\partial^2 C / \partial K^2 \geq 0$ arises from:
-
-
-$$
-\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
-$$
-
-
-
-where $q(K)$ is the risk-neutral probability density of $S_T$.
-
-Non-negativity of $q(K)$ is necessary and sufficient for:
-
-
-$$
-\int_0^\infty q(K) dK = 1 \quad \text{(probability measure)}
-$$
-
-
+Recall (see [§ Breeden-Litzenberger Formula](../model_free_results/breeden_litzenberger_formula.md) and [§ Digital Option Pricing](../../ch06/black_scholes_formula/digital_option_pricing.md)): the convexity condition $\partial^2 C / \partial K^2 \geq 0$ is equivalent to non-negativity of the risk-neutral density $q(K) = e^{rT}\partial^2 C/\partial K^2$, which must integrate to one.
 
 ### 2. Moment Explosion Constraints
 
 
-**Theorem 4.3.7** (Lee's Moment Formula)  
-For the implied volatility surface to admit a finite-variance risk-neutral density:
-
-
-$$
-\lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) |y| = \infty
-$$
-
-
-
-where $y = \ln(K/F)$ is log-moneyness.
-
-*This prevents probability mass from accumulating in the tails too heavily.*
-
-**Corollary 4.3.5** (Wing Slope Bounds)  
-As $y \to \pm \infty$:
-
-
-$$
-\sigma_{\text{IV}}^2(y, T) \geq C \frac{|y|}{T}
-$$
-
-
-
-for some constant $C > 0$, ensuring finite variance.
+Recall (see [§ Wing Asymptotics and Moment Constraints](../asymptotics_of_implied_volatility/wing_asymptotics_and_moment_constraints.md)): **Lee's moment formula** relates the wing growth rate of total variance to the maximum finite moment of the risk-neutral density. For finite variance, $\sigma_{\text{IV}}^2(y, T) |y| \to \infty$ as $|y| \to \infty$, and the linear lower bound $\sigma_{\text{IV}}^2(y, T) \geq C |y|/T$ holds for some $C > 0$.
 
 ## Practical Arbitrage Detection
 

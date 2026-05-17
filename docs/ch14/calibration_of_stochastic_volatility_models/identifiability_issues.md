@@ -1,7 +1,9 @@
 # Identifiability Issues
 
 
-Calibration of stochastic volatility models is fundamentally limited by **identifiability**. Even with rich option surfaces, some parameters are only weakly constrained, leading to instability and ambiguity.
+Recall (see [§ Identifiability of Model Parameters](../../ch17/calibration_as_inverse_problem/identifiability_of_model_parameters.md)) the general inverse-problem perspective on identifiability. This page focuses on identifiability obstacles *specific to stochastic volatility models*.
+
+Calibration of SV models is fundamentally limited by **identifiability**. Even with rich option surfaces, some parameters are only weakly constrained, leading to instability and ambiguity.
 
 ---
 
@@ -22,7 +24,7 @@ Thus, many parameters are only *practically* identifiable within wide confidence
 ## Typical weakly identifiable parameters
 
 
-Across stochastic volatility models, common weak points include:
+Across SV models (Heston specifics: see [§ Heston Calibration Pipeline](../../ch17/sv_calibration/heston_calibration_pipeline.md); SABR specifics: see [§ SABR Calibration Workflow](../../ch17/sv_calibration/sabr_calibration_workflow.md)), common weak points include:
 
 - long-run variance vs initial variance,
 - mean reversion speed,

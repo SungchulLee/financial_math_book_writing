@@ -18,46 +18,13 @@ In well-functioning markets, arbitrage opportunities cannot persist. This princi
 
 ## Replication Argument for Forward Rates
 
-### Setup
-
-Consider two strategies for obtaining 1 unit of currency at time $T_2$:
-
-**Strategy A (Direct):**
-
-- At time 0: Buy a $T_2$ zero-coupon bond
-- Cost: $P(0, T_2)$
-- Payoff at $T_2$: 1
-
-**Strategy B (Synthetic):**
-
-- At time 0: Buy $1/P(T_1, T_2)$ units of a $T_1$ zero-coupon bond
-- This costs: $P(0, T_1) / P(T_1, T_2)$
-- At time $T_1$: Receive $1/P(T_1, T_2)$ and invest at the prevailing rate
-
-### The Problem with Strategy B
-
-Strategy B involves reinvestment at an **unknown future rate**. To eliminate this uncertainty, we use a **forward contract**:
-
-- At time 0: Enter a forward agreement to lend at rate $F(0; T_1, T_2)$ from $T_1$ to $T_2$
-- At time 0: Buy a $T_1$ zero-coupon bond for $P(0, T_1)$
-- At $T_1$: Receive 1, lend at the locked-in forward rate
-- At $T_2$: Receive $1 + F(0; T_1, T_2)(T_2 - T_1)$
-
-### No-Arbitrage Condition
-
-For no arbitrage, both strategies must cost the same:
+Recall (see [§ Simple Forward Rates from Discount Factors](forward_rates_and_term_structures.md#simple-forward-rates-from-discount-factors)): comparing the direct $T_2$-bond strategy with a $T_1$-bond rolled into a forward locks in
 
 $$
-P(0, T_2) \cdot [1 + F(0; T_1, T_2)(T_2 - T_1)] = P(0, T_1)
+\frac{P(0, T_1)}{P(0, T_2)} = 1 + F(0; T_1, T_2)(T_2 - T_1),
 $$
 
-Rearranging:
-
-$$
-\frac{P(0, T_1)}{P(0, T_2)} = 1 + F(0; T_1, T_2)(T_2 - T_1)
-$$
-
-This is precisely the forward rate definition, showing it arises from no-arbitrage.
+so the forward rate arises directly from no-arbitrage.
 
 ---
 
@@ -111,17 +78,7 @@ by Jensen's inequality (since $e^{-x}$ is convex).
 
 ### Instantaneous Forward Rates
 
-The continuous-time analog of the replication argument yields:
-
-$$
-P(0, T) = P(0, t) \cdot e^{-\int_t^T f(0,u) du}
-$$
-
-for any $0 \leq t \leq T$. Differentiating:
-
-$$
-f(0, T) = -\frac{\partial}{\partial T} \log P(0, T)
-$$
+Recall (see [§ Instantaneous Forward Rate](forward_rates_and_term_structures.md#instantaneous-forward-rate)): the continuous-time analog yields $P(0,T) = P(0,t)\,e^{-\int_t^T f(0,u)\,du}$ and $f(0,T) = -\partial_T \log P(0,T)$.
 
 ### Chain Rule for Discount Factors
 

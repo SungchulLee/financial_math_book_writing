@@ -2,6 +2,9 @@
 
 In incomplete markets, there is no unique price or hedge for a contingent claim. **Utility-based hedging** resolves this ambiguity by introducing the agent's risk preferences through a utility function. The agent selects the trading strategy that maximizes expected utility of terminal wealth, and prices are determined by **indifference** --- the price at which the agent is equally happy trading or not trading the claim.
 
+!!! tip "Toy mechanism: indifference price as a certainty equivalent"
+    The whole apparatus reduces to one question: at what price $p$ would an agent be *equally happy* to take or not take a position? Toy version: an agent with utility $U(w) = -e^{-\gamma w}$ values a risky payoff $H$ via its certainty equivalent $c$, defined by $U(c) = \mathbb{E}[U(H)]$. For exponential utility this gives $c = -\tfrac{1}{\gamma}\log\mathbb{E}[e^{-\gamma H}]$. The *indifference price* $p$ is the difference between the certainty equivalents of "wealth + sell claim for $p$" and "wealth alone": $p = c_{\text{with claim}} - c_{\text{baseline}}$. As $\gamma \to 0$ (risk-neutral limit), $p$ collapses to $\mathbb{E}^{\mathbb{Q}}[H]$ — the standard risk-neutral price under the *minimal entropy* martingale measure. The whole utility/duality machinery below is one way of computing this certainty-equivalent gap in continuous time.
+
 ---
 
 ## Expected Utility Framework
@@ -152,13 +155,7 @@ The first term is the **Merton ratio** (myopic demand); the second is the **hedg
 
 ## Worked Example: Exponential Utility with Basis Risk
 
-Consider the basis risk model:
-
-$$
-dS_t = 0.08\,S_t\,dt + 0.20\,S_t\,dW_t^1, \qquad dY_t = 0.10\,Y_t\,dt + 0.25\,Y_t(\rho\,dW_t^1 + \sqrt{1-\rho^2}\,dW_t^2)
-$$
-
-with $r = 0.03$, $T = 0.5$, $\rho = 0.7$, and claim $H = (Y_T - 100)^+$.
+Recall the basis-risk model (see [§ Mean-Variance Hedging](mean_variance_hedging.md)) with $\sigma_S = 0.20$, $\sigma_Y = 0.25$, $r = 0.03$, $T = 0.5$, $\rho = 0.7$, and claim $H = (Y_T - 100)^+$.
 
 **Without the claim** (Merton portfolio):
 

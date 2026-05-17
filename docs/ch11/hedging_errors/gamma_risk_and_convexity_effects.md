@@ -1,5 +1,7 @@
 # Gamma Risk and Convexity Effects
 
+!!! tip "Toy mechanism: delta-hedged P&L is just $\tfrac{1}{2}\Gamma(\delta S)^2$"
+    One line of Taylor: a delta-hedged portfolio still feels the *quadratic* response of the option value to spot. Long gamma ($\Gamma > 0$) means $\tfrac{1}{2}\Gamma(\delta S)^2 \geq 0$ — every spot move, up or down, contributes positively to the hedged P&L. Short gamma flips the sign. This is why a delta-hedged option position is fundamentally a *bet on realised variance*: the hedger pays theta in exchange for an exposure $\tfrac{1}{2}\Gamma\,\sigma_{\text{realised}}^2 S^2\,dt$, profitable iff realised vol exceeds the implied vol baked into theta. Every formula below — variance swaps, gamma scalping, dollar gamma — is a consequence of this single quadratic.
 
 For a small move $\delta S$,
 
@@ -128,18 +130,7 @@ $$
 ## Realized vs implied volatility trading
 
 
-The P&L from delta-hedging over $[0,T]$ is:
-
-$$
-P\&L = \frac{1}{2}\int_0^T \Gamma(t,S_t) S_t^2 (\sigma_{\text{realized}}^2 - \sigma_{\text{implied}}^2) dt
-$$
-
-where $\sigma_{\text{realized}}^2 dt = (dS/S)^2$ is instantaneous realized variance.
-
-**Trading strategy:**
-
-- If you expect $\sigma_{\text{realized}} > \sigma_{\text{implied}}$: buy options (long gamma)
-- If you expect $\sigma_{\text{realized}} < \sigma_{\text{implied}}$: sell options (short gamma)
+Recall (see [§ Impact of Volatility Misspecification](impact_of_volatility_misspecification.md)): integrating the hedged P&L gives $P\&L = \frac{1}{2}\int_0^T \Gamma(t,S_t) S_t^2 (\sigma_{\text{realized}}^2 - \sigma_{\text{implied}}^2)\,dt$ — buy options (long gamma) when realized vol is expected to exceed implied, sell when below.
 
 ---
 

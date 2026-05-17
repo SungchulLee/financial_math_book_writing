@@ -235,13 +235,7 @@ The variance saturates at $\sigma^2/(2a)$, the stationary variance of the Ornste
 
 ## The Ornstein-Uhlenbeck Connection
 
-The Hull-White model is a time-inhomogeneous Ornstein-Uhlenbeck (OU) process. The classical OU process
-
-$$
-dX_t = -a\, X_t\, dt + \sigma\, dW_t
-$$
-
-has a constant long-run mean of zero. The Hull-White model generalizes this by introducing the time-dependent function $\theta(t)$ that shifts the mean level continuously. The decomposition
+Recall (see [§ OU SDE](../../ch03/sde/index.md)): the classical Ornstein-Uhlenbeck process $dX_t = -a\, X_t\, dt + \sigma\, dW_t$ has a constant long-run mean of zero. The Hull-White model is a time-inhomogeneous OU process, generalizing this by introducing the time-dependent function $\theta(t)$ that shifts the mean level continuously. The decomposition
 
 $$
 r_t = \psi(t) + \tilde{r}_t

@@ -21,13 +21,7 @@ Understanding the error structure of the COS method is essential for choosing pa
 
 ## Error Decomposition
 
-The COS pricing formula approximates the true option value $V$ by
-
-$$
-V_{\text{COS}} = e^{-rT}\sum_{k=0}^{N-1}{}' F_k\, V_k
-$$
-
-The total error $|V - V_{\text{COS}}|$ arises from two sources that we analyze separately.
+**Recall** (see [§ COS Pricing Formula](cos_pricing_formula.md)): the COS approximation is $V_{\text{COS}} = e^{-rT}\sum_{k=0}^{N-1}{}' F_k\, V_k$. The total error $|V - V_{\text{COS}}|$ arises from two sources that we analyze separately.
 
 !!! note "Theorem: Error Decomposition"
     The total COS error satisfies

@@ -6,6 +6,8 @@ The **Deep BSDE method**, introduced by E, Han, and Jentzen (2017), reformulates
 
 ## From PDEs to BSDEs: The Feynman-Kac Connection
 
+Recall (see [§ Feynman-Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md)) the linear Feynman-Kac representation linking parabolic PDEs to expectations of diffusions; here we use its **nonlinear** extension (see [§ 2BSDEs](../../ch23/second_order_bsdes_and_nonlinear_expectations/2bsdes.md) for the BSDE framework).
+
 ### The Semilinear Parabolic PDE
 
 Consider the semilinear parabolic PDE on $[0,T] \times \mathbb{R}^d$:
@@ -14,13 +16,7 @@ $$
 \frac{\partial u}{\partial t}(t,x) + \frac{1}{2}\operatorname{tr}\!\left[\sigma\sigma^\top(t,x)\,D^2_x u(t,x)\right] + \mu(t,x)^\top D_x u(t,x) + f\!\left(t, x, u(t,x), \sigma^\top(t,x)\,D_x u(t,x)\right) = 0
 $$
 
-with terminal condition $u(T,x) = g(x)$, where $D_x u$ denotes the gradient and $D^2_x u$ the Hessian.
-
-This PDE arises throughout quantitative finance:
-
-- **Black-Scholes PDE** for multi-asset derivatives ($d$ assets)
-- **Hamilton-Jacobi-Bellman equations** for optimal control
-- **Pricing under counterparty risk** (CVA/DVA computations)
+with terminal condition $u(T,x) = g(x)$. This PDE arises throughout quantitative finance: Black-Scholes PDE for multi-asset derivatives, HJB equations for optimal control, and pricing under counterparty risk (CVA/DVA).
 
 ### The Associated BSDE
 
@@ -30,19 +26,7 @@ $$
 Y_t = g(X_T) + \int_t^T f(s, X_s, Y_s, Z_s) \, ds - \int_t^T Z_s^\top \, dW_s
 $$
 
-where the forward process satisfies:
-
-$$
-dX_s = \mu(s, X_s) \, ds + \sigma(s, X_s) \, dW_s, \quad X_t = x
-$$
-
-The relationship is:
-
-$$
-Y_s = u(s, X_s), \quad Z_s = \sigma^\top(s, X_s) \, D_x u(s, X_s)
-$$
-
-The pair $(Y, Z)$ is the unknown. $Y$ gives the PDE solution along the forward path, and $Z$ gives the (scaled) gradient. Solving the BSDE is equivalent to solving the PDE.
+where the forward process satisfies $dX_s = \mu(s, X_s) \, ds + \sigma(s, X_s) \, dW_s$, $X_t = x$. The identification is $Y_s = u(s, X_s)$ and $Z_s = \sigma^\top(s, X_s) \, D_x u(s, X_s)$: $Y$ tracks the PDE solution along the forward path, $Z$ encodes the (scaled) gradient.
 
 !!! note "Why BSDEs Are Hard"
     The BSDE is a **backward** equation: the terminal condition $Y_T = g(X_T)$ is given, but we must find $(Y_t, Z_t)$ for $t < T$. Unlike forward SDEs, backward SDEs cannot be simulated by simply stepping forward in time. Classical numerical methods (Bouchard-Touzi, Zhang) discretize backward in time and solve nested conditional expectations, which scales exponentially in dimension $d$.

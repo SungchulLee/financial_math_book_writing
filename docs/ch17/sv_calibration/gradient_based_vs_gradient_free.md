@@ -26,38 +26,11 @@ The choice of algorithm depends on three factors:
 
 Gradient-based methods use derivative information to determine the search direction. They achieve fast convergence when the objective is smooth and a good starting point is available.
 
-### Gauss-Newton method
+### Gauss-Newton and Levenberg-Marquardt methods
 
-For nonlinear least-squares problems, the Gauss-Newton method approximates the Hessian using only first-order information. The update solves
+Recall (see [§ Optimization algorithms](../calibration_as_inverse_problem/optimization_algorithms.md)): the Gauss-Newton update solves $(J^\top W J)\Delta\Theta = -J^\top W r$ using the small-residual Hessian approximation; the Levenberg-Marquardt (LM) algorithm regularizes this with damping $(J^\top W J + \lambda I)\Delta\Theta = -J^\top W r$, interpolating between Gauss-Newton ($\lambda\to 0$) and gradient descent ($\lambda\to\infty$).
 
-$$
-(J^\top W J) \, \Delta\Theta = -J^\top W r
-$$
-
-The approximation $H \approx J^\top W J$ ignores second-order terms $\sum_j w_j r_j \nabla^2 f_j$, which are small when residuals are small (i.e., the model fits the data well).
-
-**Convergence.** Near a solution $\Theta^*$ with small residuals, Gauss-Newton converges quadratically:
-
-$$
-\| \Theta^{(k+1)} - \Theta^* \| \leq C \| r(\Theta^*) \| \cdot \| \Theta^{(k)} - \Theta^* \| + \mathcal{O}(\| \Theta^{(k)} - \Theta^* \|^2)
-$$
-
-When residuals are exactly zero (perfect fit), convergence is genuinely quadratic. For calibration problems with nonzero residuals, convergence degrades to linear with rate proportional to $\| r(\Theta^*) \|$.
-
-**Limitation.** The Gauss-Newton method can fail when $J^\top W J$ is singular or nearly so. This occurs when parameters are poorly identified by the data---a common situation in stochastic volatility calibration where $\kappa$ and $\theta$ are entangled.
-
-### Levenberg-Marquardt algorithm
-
-The Levenberg-Marquardt (LM) algorithm regularizes the Gauss-Newton system by adding a damping term:
-
-$$
-(J^\top W J + \lambda I) \, \Delta\Theta = -J^\top W r
-$$
-
-The damping parameter $\lambda > 0$ interpolates between two regimes:
-
-- **Small $\lambda$** ($\lambda \to 0$): Gauss-Newton step, fast convergence near the solution.
-- **Large $\lambda$** ($\lambda \to \infty$): $\Delta\Theta \approx -(\lambda)^{-1} J^\top W r$, a short gradient descent step, ensuring progress when far from the solution.
+For SV calibration specifically, Gauss-Newton convergence degrades when $J^\top W J$ is near-singular — common when $\kappa$ and $\theta$ are entangled in Heston.
 
 **Adaptive damping.** The gain ratio $\varrho$ measures the quality of the quadratic model:
 

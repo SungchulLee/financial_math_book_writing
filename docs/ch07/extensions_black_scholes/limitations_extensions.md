@@ -81,62 +81,11 @@ The "smile" shape contradicts constant $\sigma$.
 
 🔧 **Extension 1: Stochastic Volatility Models**
 
-Allow volatility itself to be random:
-
-**Heston model** (1993):
-
-$$
-\begin{aligned}
-dS_t &= rS_t dt + \sqrt{v_t} S_t dW_t^S \\
-dv_t &= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
-\end{aligned}
-$$
-
-where:
-
-- $v_t$ = instantaneous variance (stochastic)
-- $\kappa$ = mean-reversion speed
-- $\theta$ = long-run variance
-- $\xi$ = volatility of volatility
-- $\text{Corr}(dW_t^S, dW_t^v) = \rho$ (leverage effect)
-
-**Features**:
-
-- Captures volatility smiles
-- Allows mean-reversion
-- Incorporates leverage effect via correlation $\rho < 0$
-- Requires numerical solutions (no closed form for vanilla options, though semi-closed form exists)
-
-**Other stochastic vol models**:
-
-- **SABR model**: Popular for interest rate derivatives
-- **3/2 model**: $dv_t = \kappa(\theta - v_t)dt + \xi v_t^{3/2} dW_t^v$
-- **Rough volatility models**: Recent development using fractional Brownian motion
+Recall (see [§ Stochastic Volatility Models](stochastic_volatility_models.md)): Heston introduces a second random factor for the instantaneous variance $v_t$ with mean reversion and leverage correlation $\rho < 0$; SABR, the 3/2 model, and rough-volatility models are related variants treated there.
 
 🔧 **Extension 2: Local Volatility Models**
 
-Make volatility a **deterministic function** of price and time:
-
-**Dupire model** (1994):
-
-$$
-\sigma = \sigma(S, t)
-$$
-
-**Key equation (Dupire's formula)**:
-
-$$
-\sigma^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}
-$$
-
-where $C(K,T)$ is the market price of call option with strike $K$ and maturity $T$.
-
-**Features**:
-
-- Calibrates exactly to observed volatility surface
-- Deterministic (easier to implement than stochastic vol)
-- Still uses PDE framework
-- Forward volatility may not match market expectations
+Recall (see [§ Local Volatility Models](local_volatility_models.md)): Dupire's deterministic surface $\sigma(S,t)$ recovered from market call prices via Dupire's formula; calibrates exactly to the observed smile but produces unrealistic forward smile dynamics.
 
 🔧 **Extension 3: Implied Volatility Surface**
 
@@ -193,50 +142,7 @@ where $C(K,T)$ is the market price of call option with strike $K$ and maturity $
 
 🔧 **Extension: Jump-Diffusion Models**
 
-Add a jump component to the price process:
-
-**Merton model** (1976):
-
-$$
-dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t
-$$
-
-where:
-
-- $J_t$ = compound Poisson process (jump process)
-- $\lambda$ = jump intensity (average number of jumps per year)
-- Jump size $Y \sim \mathcal{N}(\mu_J, \sigma_J^2)$ (log-normal)
-
-**Full dynamics**:
-
-$$
-S_t = S_0 \exp\left((\mu - \frac{1}{2}\sigma^2)t + \sigma W_t + \sum_{i=1}^{N_t} Y_i\right)
-$$
-
-where $N_t \sim \text{Poisson}(\lambda t)$.
-
-**Option pricing**:
-
-$$
-C = \sum_{n=0}^\infty \frac{e^{-\lambda' T}(\lambda' T)^n}{n!} C_{BS}(S, K, T, r, \sigma_n)
-$$
-
-where:
-
-- $\lambda' = \lambda(1 + \mu_J e^{\sigma_J^2/2})$ (risk-neutral jump intensity)
-- $\sigma_n^2 = \sigma^2 + n\sigma_J^2/T$ (conditional volatility given $n$ jumps)
-
-**Features**:
-
-- Captures fat tails and skewness
-- Semi-closed form solution (sum of Black-Scholes terms)
-- Can model crash risk via negative $\mu_J$
-
-**Other jump models**:
-
-- **Kou model**: Double exponential jump distribution (different upward/downward intensities)
-- **Variance gamma**: Pure jump process (infinite activity)
-- **CGMY model**: Lévy process with flexible tail behavior
+Recall (see [§ Jump-Diffusion Models](jump_diffusion_models.md) and [§ Jump-Diffusion SDE](../merton_jump_diffusion/jump_diffusion_sde.md)): Merton (1976) superimposes a compound Poisson jump on geometric Brownian motion, yielding semi-closed pricing via a Poisson-weighted sum of Black-Scholes prices (the Merton series formula, [§ Merton Series Formula](../merton_jump_diffusion/merton_series_formula.md)). Kou (double-exponential), Variance Gamma, and CGMY are flexible alternatives.
 
 ---
 
@@ -491,25 +397,7 @@ Use $S'$ in Black-Scholes formula.
 
 🔧 **Extension: Incomplete Markets**
 
-When perfect replication is impossible:
-
-**Pricing bounds**:
-
-$$
-C_{lower} \leq C \leq C_{upper}
-$$
-
-Instead of unique price, derive **bid-ask bounds**.
-
-**Super-replication**:
-
-- Upper bound: cheapest super-hedging portfolio (always covers payoff)
-- Lower bound: most expensive sub-hedging portfolio (always below payoff)
-
-**Utility indifference pricing**:
-
-- Price depends on investor's risk preferences
-- Different agents quote different prices
+Recall (see [§ Incomplete Markets and Pricing Bounds](incomplete_markets_and_pricing_bounds.md)): when perfect replication fails, no-arbitrage prices form an interval $[\underline{\pi}(H), \overline{\pi}(H)]$ obtained as the inf/sup of expected discounted payoff over the set of equivalent martingale measures; super-replication and utility indifference pricing select specific prices inside this band.
 
 ---
 

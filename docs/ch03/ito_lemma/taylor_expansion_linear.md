@@ -231,7 +231,7 @@ $$
 
 This means the quadratic term in the Taylor expansion does **not** vanish — it contributes at the same order as the linear terms. The next section makes this precise by examining exactly how large second-order corrections become, and why ignoring them leads to wrong answers.
 
-That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansion that keeps the quadratic term. The scaling $(\Delta B_t)^2 \sim \Delta t$ is made precise in [From Taylor to Itô](from_taylor_to_ito.md) and [Quadratic Variation of Brownian Motion](../../ch02/brownian_motion/quadratic_variation_of_brownian_motion.md), and is the key fact that makes this correction necessary.
+That analysis leads to **Itô's lemma**, which can be viewed as a Taylor expansion that keeps the quadratic term. The scaling $(\Delta B_t)^2 \sim \Delta t$ is the key fact that makes the correction necessary; it is made precise in [§ Quadratic Approximation](taylor_expansion_quadratic.md), promoted to the rule $(dB_t)^2 = dt$ in [§ From Taylor to Itô](from_taylor_to_ito.md) (the canonical home of the multiplication table), and grounded in [Quadratic Variation of Brownian Motion](../../ch02/brownian_motion/quadratic_variation_of_brownian_motion.md).
 
 ---
 

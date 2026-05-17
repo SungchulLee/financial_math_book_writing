@@ -72,43 +72,14 @@ $$
 ## Implied volatility at extreme strikes
 
 
-The Black–Scholes implied volatility $\Sigma(K)$ has specific limiting behavior:
-
-**Roger Lee's moment formula.** Define the tail slopes:
-
-$$
-\beta_R = \limsup_{k \to +\infty} \frac{\Sigma(k)^2 \tau}{k}, \quad \beta_L = \limsup_{k \to -\infty} \frac{\Sigma(k)^2 \tau}{|k|}
-$$
-
-These are related to the existence of moments:
-
-- If $\mathbb{E}[S_T^{1+\alpha}] < \infty$, then $\beta_R \leq 2 - 4(\sqrt{\alpha^2 + \alpha} - \alpha)$
-- If $\mathbb{E}[S_T^{-\alpha}] < \infty$, then $\beta_L \leq 2 - 4(\sqrt{\alpha^2 + \alpha} - \alpha)$
-
-For Black–Scholes (all moments finite), $\beta_R = \beta_L = 0$, meaning implied vol is bounded.
+Recall (see [§ Wing Asymptotics and Moment Constraints](../../ch12/asymptotics_of_implied_volatility/wing_asymptotics_and_moment_constraints.md)): Roger Lee's moment formula bounds the tail slopes $\beta_{R,L} = \limsup \Sigma(k)^2\tau/|k|$ by the moment-explosion thresholds of $S_T$; for Black–Scholes all moments are finite so $\beta_R = \beta_L = 0$ and implied vol is bounded.
 
 ---
 
 ## Greeks at extreme strikes
 
 
-**Delta asymptotics:**
-
-Large $K$: $\Delta_{\text{call}} = N(d_1) \approx \frac{N'(d_1)}{|d_1|} \to 0$ exponentially
-
-Small $K$: $\Delta_{\text{call}} \to 1$ exponentially fast
-
-**Gamma asymptotics:**
-
-$$
-\Gamma = \frac{N'(d_1)}{S\sigma\sqrt{\tau}} \to 0 \quad \text{exponentially for } K \to 0, \infty
-$$
-
-**Vega asymptotics:**
-
-$$
-\nu = S\sqrt{\tau}N'(d_1) \to 0 \quad \text{exponentially}
-$$
+Recall (see [§ Scaling Laws for Greeks](../greeks_asympt/scaling_laws_for_greeks.md)): as $K\to 0$ or $K\to\infty$, all Greeks ($\Delta$, $\Gamma$, $\nu$) for the OTM side decay exponentially because $N'(d_1)$ carries the Gaussian tail factor $e^{-d_1^2/2}$.
 
 ---
 

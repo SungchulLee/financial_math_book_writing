@@ -24,6 +24,9 @@ Unlike replication (which asks "what portfolio matches the payoff?"), hedging as
 
 ---
 
+!!! note "Recall (see [§ Binomial Model](binomial_model.md))"
+    One-period setup with stock $S_{\Delta t} \in \{uS_0, dS_0\}$, bond $B_{\Delta t} = e^{r\Delta t}$, contingent claim payoffs $(H_u, H_d)$, and no-arbitrage condition $d < e^{r\Delta t} < u$.
+
 ## The Hedging Problem
 
 ### The Challenge
@@ -38,7 +41,7 @@ A portfolio with the same value in all states is **risk-free**.
 
 ### The Principle
 
-A risk-free portfolio must earn the risk-free rate—otherwise, arbitrage is possible. This constraint determines the option price.
+A risk-free portfolio must earn the risk-free rate—otherwise, arbitrage is possible (see the [no-arbitrage discussion in § Binomial Model](binomial_model.md)). This constraint determines the option price.
 
 ---
 
@@ -96,17 +99,7 @@ $$
 \Delta \cdot uS_0 - H_u = \Delta \cdot dS_0 - H_d
 $$
 
-### Solving for Delta
-
-Rearranging:
-
-$$
-\Delta \cdot uS_0 - \Delta \cdot dS_0 = H_u - H_d
-$$
-
-$$
-\Delta \cdot S_0(u - d) = H_u - H_d
-$$
+Solving for $\Delta$ recovers the same hedge ratio derived in [§ Replicating Portfolio](replicating_portfolio.md):
 
 !!! success "The Hedge Ratio (Delta)"
 
@@ -114,7 +107,7 @@ $$
     \boxed{\Delta = \frac{H_u - H_d}{(u - d)S_0}}
     $$
     
-    Delta is the **ratio of the option's payoff spread to the stock's price spread**.
+    Delta is the **ratio of the option's payoff spread to the stock's price spread**. The same quantity appears as the stock holding of the replicating portfolio.
 
 ### Interpretation of Delta
 
@@ -208,124 +201,24 @@ The risk-neutral probability $q$ **emerges from hedging** — it was not assumed
 
 ---
 
-## Numerical Example
+## Numerical Example: The Hedging Mechanism in Action
 
-### Setup
+Use the standard parameters from [§ Replicating Portfolio](replicating_portfolio.md): $S_0 = 100$, $u = 1.2$, $d = 0.9$, $r = 5\%$, $\Delta t = 1$, $K = 105$, with $S_{\Delta t}^{up} = 120$ and $S_{\Delta t}^{down} = 90$.
 
-| Parameter | Value |
-|-----------|-------|
-| $S_0$ | $100$ |
-| $u$ | $1.2$ |
-| $d$ | $0.9$ |
-| $r$ | $5\%$ |
-| $\Delta t$ | $1$ year |
-| Strike | $K = 105$ |
+### European Call ($\Delta > 0$): Long Stock Hedges Short Call
 
-**Stock prices at $\Delta t$:**
+With $H_u = 15$ and $H_d = 0$, the hedge ratio is $\Delta = (15 - 0)/(0.3 \times 100) = 0.5$. The hedging-specific check is that the portfolio terminal value $\Pi_{\Delta t} = \Delta S_{\Delta t} - H$ is **identical in both states**:
 
-- Up: $S_{\Delta t}^{up} = 120$
-- Down: $S_{\Delta t}^{down} = 90$
+- Up state: $0.5 \times 120 - 15 = 45$
+- Down state: $0.5 \times 90 - 0 = 45$
 
-### European Call Option
+The portfolio is risk-free at level $\Pi_{\Delta t} = 45$, so $\Pi_0 = e^{-0.05} \times 45 = 42.80$ and $V_0 = \Delta S_0 - \Pi_0 = 50 - 42.80 = 7.20$ — matching the call price already derived by replication in [§ Replicating Portfolio (Example 1)](replicating_portfolio.md).
 
-**Payoffs:**
+### European Put ($\Delta < 0$): Short Stock Hedges Short Put
 
-$$
-H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0
-$$
+With $H_u = 0$, $H_d = 15$, the hedge ratio flips sign: $\Delta = -0.5$. **Shorting 0.5 shares** offsets the larger payoff in the down state. The full numerical price $P_0 = 7.07$ is derived in [§ Replicating Portfolio (Example 2)](replicating_portfolio.md); the hedging argument here produces the same number.
 
-**Delta:**
-
-$$
-\Delta = \frac{15 - 0}{(1.2 - 0.9) \times 100} = \frac{15}{30} = 0.5
-$$
-
-**Risk-free portfolio terminal value:**
-
-$$
-\Pi_{\Delta t} = \frac{0.9 \times 15 - 1.2 \times 0}{0.3} = \frac{13.5}{0.3} = 45
-$$
-
-**Initial portfolio value** (via no-arbitrage):
-
-$$
-\Pi_0 = e^{-0.05} \times 45 = 0.9512 \times 45 = 42.80
-$$
-
-**Option price:**
-
-$$
-V_0 = \Delta S_0 - \Pi_0 = 0.5 \times 100 - 42.80 = 7.20
-$$
-
-**Verification:**
-
-- Up state: $0.5 \times 120 - 15 = 45$ ✓
-- Down state: $0.5 \times 90 - 0 = 45$ ✓
-- Return: $45 / 42.80 = e^{0.05}$ ✓
-
-!!! success "Result"
-    The hedged portfolio earns exactly the risk-free rate in both states, confirming $C_0 = 7.20$.
-
-### European Put Option
-
-**Payoffs:**
-
-$$
-H_u = (105 - 120)^+ = 0, \qquad H_d = (105 - 90)^+ = 15
-$$
-
-**Delta:**
-
-$$
-\Delta = \frac{H_u - H_d}{(u - d)S_0} = \frac{0 - 15}{0.3 \times 100} = -0.5
-$$
-
-The negative delta means the put gains when the stock falls, so the hedge requires **shorting 0.5 shares** of stock.
-
-**Hedged portfolio** (short 1 put, long $\Delta = -0.5$ shares, i.e., short 0.5 shares):
-
-$$
-\Pi_0 = \Delta S_0 - V_0 = -0.5 \times 100 - V_0 = -50 - V_0
-$$
-
-**Terminal values:**
-
-$$
-\Pi_{\Delta t}^{up} = -0.5 \times 120 - 0 = -60
-$$
-
-$$
-\Pi_{\Delta t}^{down} = -0.5 \times 90 - 15 = -60 \checkmark
-$$
-
-The portfolio is risk-free with terminal value $-60$ (a liability — consistent with being short stock and short put).
-
-**No-arbitrage** ($\Pi_{\Delta t} = \Pi_0 \cdot e^{r\Delta t}$):
-
-$$
--60 = (-50 - V_0) \times e^{0.05}
-$$
-
-$$
--50 - V_0 = -60 \times e^{-0.05} = -57.07
-$$
-
-$$
-V_0 = -50 + 57.07 = 7.07
-$$
-
-!!! success "European Put Price"
-
-    $$P_0 = 7.07$$
-    
-    **Verification via risk-neutral pricing:**
-    
-    $$q = \frac{e^{0.05} - 0.9}{0.3} \approx 0.504$$
-    
-    $$P_0 = e^{-0.05}(0.504 \times 0 + 0.496 \times 15) = e^{-0.05} \times 7.44 \approx 7.08$$
-    
-    The tiny residual difference is due to rounding throughout; both methods are consistent.
+The two sign cases above are the only new content the hedging perspective adds at the example level — *what* the hedge looks like for $\Delta > 0$ vs. $\Delta < 0$. The numerical *price* comes out identical to replication by construction.
 
 ---
 
@@ -368,39 +261,13 @@ The hedge neutralizes the portfolio's sensitivity to small stock price movements
 
 ## Equivalence to Replication
 
-### The Two Approaches
-
-**Replication** (from [Replicating Portfolio](replicating_portfolio.md)):
-
-- Find $(\Delta, B)$ such that $\Delta S_{\Delta t} + B e^{r\Delta t} = H$ in all states
-- Price = $\Delta S_0 + B$
-
-**Hedging** (this section):
-
-- Find $\Delta$ such that $\Delta S_{\Delta t} - H$ is constant
-- Apply no-arbitrage to determine price
-
-### Why They're Equivalent
-
-Both approaches:
-
-1. Use the same $\Delta = \frac{H_u - H_d}{(u-d)S_0}$
-2. Apply no-arbitrage (law of one price / risk-free rate)
-3. Yield the same price formula
-
-The replication approach solves for the portfolio directly. The hedging approach constructs a risk-free combination and backs out the price. They're two sides of the same coin.
+Replication asks: find $(\Delta, B)$ with $\Delta S_{\Delta t} + B e^{r\Delta t} = H$ in both states. Hedging asks: find $\Delta$ such that $\Delta S_{\Delta t} - H$ is constant, then apply no-arbitrage. Both pin down the **same** $\Delta = (H_u - H_d)/((u-d)S_0)$ and the same $V_0$ — they are two sides of the same coin. See the unifying statement in [§ Binomial Model](binomial_model.md).
 
 ---
 
 ## Why Physical Probability Doesn't Appear
 
-The hedging argument works **regardless of the actual probabilities** of up and down moves.
-
-- The hedge eliminates risk in **both** states
-- The risk-free portfolio earns $r$ no matter which state occurs
-- The actual probability $p$ of an up move never enters the calculation
-
-This is the deep insight of arbitrage pricing: **prices are determined by what can be hedged, not by beliefs about probabilities**.
+The hedge eliminates risk in **both** states, so the risk-free portfolio earns $r$ regardless of which state actually occurs. The physical probability $p$ never enters the hedging equations — **prices are determined by what can be hedged, not by beliefs about probabilities**. (See also the discussion in [§ Risk-Neutral Pricing](risk_neutral_measure.md).)
 
 ---
 

@@ -36,6 +36,8 @@ where $T_0 = 0$.
 
 ### Survival Probability
 
+Recall (see [§ Reduced-form intensity](../reduced_form_intensity_based_models/affine_intensity_models.md)) that under a deterministic intensity, $S(0,T)=\exp(-\int_0^T\lambda(s)\,ds)$. With piecewise-constant $\lambda$:
+
 $$
 S(0, T_i) = \exp\left(-\sum_{j=1}^{i} \lambda_j (T_j - T_{j-1})\right) = \prod_{j=1}^{i} e^{-\lambda_j \Delta T_j}
 $$
@@ -87,13 +89,9 @@ where both sides depend on survival probabilities up to $T_i$.
 
 ## Detailed Formulas
 
+Recall (see [§ Credit derivatives (CDS)](../credit_derivatives/credit_default_swaps_cds.md)) the protection and premium leg constructions; here we evaluate them under piecewise-constant $\lambda$.
+
 ### Protection Leg Present Value
-
-$$
-\text{PV}_{\text{prot}}(T_i) = (1-R) \sum_{j=1}^{i} \int_{T_{j-1}}^{T_j} D(0,t) \lambda_j S(0,t) \, dt
-$$
-
-With piecewise-constant intensity and assuming continuous compounding:
 
 $$
 \text{PV}_{\text{prot}}(T_i) = (1-R) \sum_{j=1}^{i} \lambda_j \int_{T_{j-1}}^{T_j} D(0,t) S(0, T_{j-1}) e^{-\lambda_j (t - T_{j-1})} \, dt
@@ -287,15 +285,7 @@ For $T > T_n$, common approaches:
 
 ## Connection to Yield Curve Bootstrapping
 
-| Interest Rates | Credit Risk |
-|----------------|-------------|
-| Swap rates | CDS spreads |
-| Discount factors $D(0,T)$ | Survival probabilities $S(0,T)$ |
-| Zero rates | Hazard rates |
-| Bootstrap from swaps | Bootstrap from CDS |
-| OIS discounting | Risk-free discounting |
-
-The mathematical machinery is nearly identical, with survival replacing discounting.
+Recall (see [§ IR yield curves](../../ch18/yield_curves/bootstrapping_algorithms.md)): swap rates ↔ CDS spreads, discount factors $D(0,T)$ ↔ survival $S(0,T)$, zero rates ↔ hazard rates. The machinery is identical, with survival replacing discounting.
 
 ---
 
@@ -303,14 +293,7 @@ The mathematical machinery is nearly identical, with survival replacing discount
 
 ### Global Fitting
 
-Instead of sequential bootstrapping, fit all hazard rates simultaneously by minimizing:
-
-$$
-\sum_{i=1}^n \left(s_i^{\text{model}}(\lambda_1, \ldots, \lambda_n) - s_i^{\text{market}}\right)^2
-$$
-
-**Advantages:** More stable, can impose smoothness
-**Disadvantages:** Non-unique solution, slower
+Recall (see [§ Regularization](../../ch17/regularization_and_stability/tikhonov_regularization.md)): fit all $\lambda_i$ jointly by minimizing $\sum_i (s_i^{\text{model}}-s_i^{\text{market}})^2$, optionally with a smoothness penalty. Trade-off: stability vs. non-unique solutions and slower runtime.
 
 ### Parametric Models
 

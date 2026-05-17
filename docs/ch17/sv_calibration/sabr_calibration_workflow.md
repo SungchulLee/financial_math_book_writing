@@ -6,73 +6,16 @@ The SABR model is the market standard for quoting and interpolating implied vola
 
 ## The SABR model
 
-### Model dynamics
-
-The SABR (Stochastic Alpha, Beta, Rho) model specifies the forward rate $F_t$ and its stochastic volatility $\alpha_t$ under the forward measure $\mathbb{Q}^T$:
-
-$$
-dF_t = \alpha_t \, F_t^{\beta} \, dW_t^F
-$$
-
-$$
-d\alpha_t = \nu \, \alpha_t \, dW_t^{\alpha}
-$$
-
-where $dW_t^F \, dW_t^{\alpha} = \rho \, dt$. The four parameters are:
-
-| Parameter | Symbol | Role | Typical range |
-|-----------|--------|------|---------------|
-| Initial volatility | $\alpha_0$ | Overall volatility level | $(0, \infty)$ |
-| CEV exponent | $\beta$ | Backbone slope | $[0, 1]$ |
-| Correlation | $\rho$ | Skew of the smile | $(-1, 1)$ |
-| Vol-of-vol | $\nu$ | Curvature of the smile | $(0, \infty)$ |
-
-The parameter $\beta$ governs the local volatility structure: $\beta = 0$ gives a normal model (absolute volatility), $\beta = 1$ gives a log-normal model (proportional volatility), and intermediate values interpolate between these extremes.
+Recall (see [§ SABR SDE and parameters](../../ch14/sabr_model/sabr_sde_and_parameters.md)): the calibration target is $(\alpha_0, \beta, \rho, \nu)$ with $\alpha_0 > 0$ the overall level, $\beta \in [0,1]$ the CEV backbone exponent, $\rho \in (-1,1)$ the skew parameter, and $\nu > 0$ the vol-of-vol controlling curvature.
 
 !!! tip "Role of beta"
     In practice, $\beta$ is often fixed rather than calibrated. Common choices are $\beta = 0$ (normal SABR, preferred for low or negative rate environments), $\beta = 0.5$ (CIR-like square-root backbone), or $\beta = 1$ (log-normal SABR). Fixing $\beta$ reduces the calibration to three free parameters $(\alpha_0, \rho, \nu)$, improving stability and identifiability.
-
-### Financial interpretation
-
-Each parameter controls a distinct feature of the implied volatility smile:
-
-- **$\alpha_0$** sets the overall level of implied volatility. Increasing $\alpha_0$ shifts the entire smile upward.
-- **$\beta$** determines the slope of the ATM volatility backbone as a function of the forward rate. For $\beta < 1$, ATM volatility increases as rates decrease (normal-like behavior).
-- **$\rho$** controls the asymmetry (skew) of the smile. Negative $\rho$ makes the smile left-skewed; positive $\rho$ makes it right-skewed.
-- **$\nu$** controls the curvature (convexity) of the smile. Larger $\nu$ produces a more pronounced smile with higher wings.
 
 ---
 
 ## Hagan's implied volatility approximation
 
-The key to rapid SABR calibration is the closed-form approximation of Hagan, Kumar, Lesniewski, and Woodward (2002) for the Black implied volatility.
-
-### General strike formula
-
-For a European option on the forward $F_0$ with strike $K$ and expiry $T$, the SABR implied volatility is approximately
-
-$$
-\sigma_B(K, F_0) = \frac{\alpha_0}{(F_0 K)^{(1-\beta)/2} \left[ 1 + \frac{(1-\beta)^2}{24} \ln^2\!\frac{F_0}{K} + \frac{(1-\beta)^4}{1920} \ln^4\!\frac{F_0}{K} \right]} \cdot \frac{z}{x(z)} \cdot \left[ 1 + \epsilon \, T \right]
-$$
-
-where
-
-$$
-z = \frac{\nu}{\alpha_0} (F_0 K)^{(1-\beta)/2} \ln \frac{F_0}{K}
-$$
-
-$$
-x(z) = \ln\!\left( \frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho} \right)
-$$
-
-and the correction term is
-
-$$
-\epsilon = \frac{(1-\beta)^2 \alpha_0^2}{24 (F_0 K)^{1-\beta}} + \frac{\rho \beta \nu \alpha_0}{4 (F_0 K)^{(1-\beta)/2}} + \frac{(2 - 3\rho^2) \nu^2}{24}
-$$
-
-!!! warning "Limitations of Hagan's formula"
-    The Hagan approximation is a second-order perturbation expansion in $T$. It becomes inaccurate for: (1) long maturities ($T > 10$--$15$ years), (2) far out-of-the-money strikes ($|k| > 2$--$3$ in log-moneyness), and (3) large vol-of-vol ($\nu > 1$). For these regimes, the approximation may produce negative implied volatilities or arbitrage violations. Alternative approaches include the Obloj (2008) correction, the Antonov-Konikov-Spector exact formula, and PDE-based pricing.
+Recall (see [§ Hagan implied volatility approximation](../../ch14/sabr_model/hagan_implied_volatility_approximation.md)): the SABR Black implied volatility $\sigma_B(K,F_0;\alpha_0,\beta,\rho,\nu,T)$ has a closed-form leading-order approximation in $T$, with the standard $z/x(z)$ structure where $z = (\nu/\alpha_0)(F_0K)^{(1-\beta)/2}\ln(F_0/K)$ and a correction term involving $\rho$, $\beta$, $\nu$. The approximation is accurate for short-to-medium maturities and moderate moneyness but breaks down for long $T$, large $|k|$, or large $\nu$.
 
 ### ATM formula
 

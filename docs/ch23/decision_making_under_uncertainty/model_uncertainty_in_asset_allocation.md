@@ -218,28 +218,7 @@ $$
 ### 2. Multiple Priors (Ambiguity)
 
 
-**Setup**: The investor has a set of possible priors $\mathcal{P}$ over models.
-
-**Max-Min Expected Utility**:
-
-$$
-\max_w \min_{P \in \mathcal{P}} \sum_k P(M_k) \mathbb{E}[U(W) | M_k]
-$$
-
-**Interpretation**: Robust to misspecification of model weights.
-
-### 3. Smooth Ambiguity
-
-
-**KMM Approach**:
-
-$$
-V(w) = \phi^{-1}\left(\sum_k \mu(M_k) \phi(\mathbb{E}[U(W) | M_k])\right)
-$$
-
-where $\phi$ is a concave ambiguity transformation and $\mu$ is a second-order probability.
-
-**Advantage**: Separates ambiguity attitude ($\phi$) from model likelihood beliefs ($\mu$).
+Recall MEU and smooth (KMM) preferences for choosing among models (see [§ Ambiguity-Averse Preferences](../ambiguity_averse_preferences/max_min_expected_utility.md)). Applied here, MEU gives $\max_w \min_{P \in \mathcal{P}} \sum_k P(M_k) \mathbb{E}[U(W) | M_k]$ (robust model weights), while KMM separates ambiguity attitude $\phi$ from second-order beliefs $\mu(M_k)$.
 
 ## Practical Applications
 
@@ -348,13 +327,7 @@ where $\Omega_k$ is the state space under model $M_k$.
 ### 3. Dynamic Consistency
 
 
-**Challenge**: With model learning, preferences may be time-inconsistent.
-
-**Resolution**:
-
-1. **Bayesian updating**: Consistent by construction
-2. **Rectangular ambiguity**: Maintains dynamic consistency for robust preferences
-3. **Sophisticated agents**: Anticipate future preference changes
+Recall rectangularity, sophisticated agents, and recursive preferences as resolutions to time-inconsistency under learning and ambiguity (see [§ Dynamic Consistency](dynamic_consistency.md)).
 
 ## Computational Methods
 

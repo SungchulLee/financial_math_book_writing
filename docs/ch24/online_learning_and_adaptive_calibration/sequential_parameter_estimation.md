@@ -466,25 +466,7 @@ More drift ($Q$ large) → larger gain; more noise ($R$ large) → smaller gain.
 
 ## Connection to Kalman Filtering
 
-RLS is equivalent to Kalman filtering for the static state-space model:
-
-$$
-\theta_t = \theta_{t-1} \quad \text{(state equation: no dynamics)}
-$$
-
-$$
-Y_t = X_t^\top \theta_t + \varepsilon_t \quad \text{(observation equation)}
-$$
-
-With forgetting factor $\lambda$, RLS corresponds to:
-
-$$
-\theta_t = \theta_{t-1} + \eta_t, \quad \eta_t \sim \mathcal{N}(0, Q_t)
-$$
-
-where $Q_t$ is chosen to match the effect of $\lambda$.
-
-The Kalman filter (Section 14.2.2) generalizes to arbitrary state dynamics.
+Recall (see [§ The Kalman Filter](kalman_and_particle_filters.md#the-kalman-filter)) that RLS is the Kalman filter for the static state $\theta_t = \theta_{t-1}$ with observation $Y_t = X_t^\top \theta_t + \varepsilon_t$; forgetting-factor RLS corresponds to a random-walk state $\theta_t = \theta_{t-1} + \eta_t$ with $Q_t$ chosen to match $\lambda$. The Kalman framework generalizes to arbitrary state dynamics.
 
 ---
 

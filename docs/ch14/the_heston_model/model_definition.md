@@ -6,9 +6,7 @@ The Heston model is one of the most widely used **stochastic volatility models**
 
 ## Dynamics Under the Risk-Neutral Measure
 
-### The Heston SDE System
-
-Under the risk-neutral measure $\mathbb{Q}$, the Heston model is defined by:
+Recall (see [§ Heston SDE and Parameters](../../ch16/model_definition/heston_sde_and_parameters.md)) the risk-neutral SDE system
 
 $$
 \begin{aligned}
@@ -18,114 +16,40 @@ d\langle W^S, W^V \rangle_t &= \rho\,dt
 \end{aligned}
 $$
 
-where:
-
-| Parameter | Symbol | Typical Range | Interpretation |
-|-----------|--------|---------------|----------------|
-| Asset price | $S_t$ | — | Current price level |
-| Instantaneous variance | $V_t$ | — | Current volatility squared |
-| Risk-free rate | $r$ | 0–5% | Continuously compounded |
-| Dividend yield | $q$ | 0–3% | Continuously compounded |
-| Mean-reversion speed | $\kappa$ | 0.5–5 | Rate of return to $\theta$ |
-| Long-run variance | $\theta$ | 0.02–0.10 | Stationary variance level |
-| Volatility of volatility | $\xi$ | 0.2–1.0 | Vol-of-vol parameter |
-| Correlation | $\rho$ | $-0.9$ to $0$ | Price-variance correlation |
-| Initial variance | $V_0$ | 0.01–0.10 | Spot variance |
-
-### Log-Price Dynamics
-
-For pricing, it is often convenient to work with $X_t = \log S_t$:
+with parameters $(\kappa, \theta, \xi, \rho, V_0)$ and standing assumptions $\kappa, \theta, \xi > 0$, $\rho \in (-1, 1)$. The log-price form
 
 $$
-dX_t = \left(r - q - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\,dW_t^S
+dX_t = \left(r - q - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\,dW_t^S, \qquad X_t = \log S_t,
 $$
 
-The pair $(X_t, V_t)$ is a **two-dimensional affine diffusion**.
+makes $(X_t, V_t)$ a **two-dimensional affine diffusion** (see [§ Affine Processes](../../ch15/index.md)).
 
 ---
 
 ## Interpretation of Parameters
 
-### Mean Reversion Speed (κ)
+Each parameter controls a distinct smile feature (full discussion: [§ Heston SDE and Parameters](../../ch16/model_definition/heston_sde_and_parameters.md), calibration mapping: [§ Calibration](../../ch16/calibration/calibration_to_iv_surface.md)).
 
-The parameter $\kappa > 0$ controls how quickly variance returns to its long-run level:
-
-- **Half-life of shocks:** $t_{1/2} = \frac{\ln 2}{\kappa}$
-- $\kappa = 1$: half-life of 8.3 months
-- $\kappa = 3$: half-life of 2.8 months
-- $\kappa = 5$: half-life of 1.7 months
-
-**Calibration insight:** $\kappa$ primarily affects the **term structure** of implied volatility. Higher $\kappa$ flattens the term structure faster.
-
-### Long-Run Variance (θ)
-
-The parameter $\theta > 0$ is the **stationary mean** of the variance process:
-
-$$
-\lim_{t \to \infty} \mathbb{E}[V_t] = \theta
-$$
-
-**Calibration insight:** $\theta$ controls the level of long-maturity implied volatility:
-
-$$
-\sigma_{\text{impl}}^2(T \to \infty) \approx \theta
-$$
-
-### Volatility of Volatility (ξ)
-
-The parameter $\xi > 0$ controls the magnitude of variance fluctuations:
-
-- Higher $\xi$ → more volatile volatility → more pronounced smile **curvature**
-- $\xi$ affects both wings of the smile (not just skew)
-
-**Calibration insight:** $\xi$ is identifiable from the **convexity** of the smile:
-
-$$
-\frac{\partial^2 \sigma_{\text{impl}}}{\partial k^2} \propto \xi^2
-$$
-
-### Correlation (ρ)
-
-The parameter $\rho \in (-1, 1)$ controls the correlation between price and variance shocks:
-
-- $\rho < 0$: leverage effect (typical for equities)
-- $\rho = 0$: symmetric smile
-- $\rho > 0$: inverse leverage (rare)
-
-**Calibration insight:** $\rho$ directly controls the **skew**:
-
-$$
-\frac{\partial \sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \propto \rho
-$$
-
-### Initial Variance (V_0)
-
-The parameter $V_0 > 0$ is the **current** instantaneous variance:
-
-- Primarily affects short-maturity options
-- Often set from ATM implied volatility: $V_0 \approx \sigma_{\text{ATM}}^2$
+| Parameter | Primary effect on implied vol | Quick rule |
+|-----------|-------------------------------|------------|
+| $V_0$ | ATM level (short maturity) | $\sigma_{\text{impl}}(0,T)\approx\sqrt{V_0}$ for small $T$ |
+| $\theta$ | Long-maturity ATM level | $\sigma_{\text{impl}}^2(T\to\infty)\approx\theta$ |
+| $\kappa$ | Term-structure speed | Half-life $t_{1/2}=\ln 2/\kappa$ |
+| $\rho$ | Skew (slope) | $\partial\sigma_{\text{impl}}/\partial k\big|_{k=0}\propto\rho$ |
+| $\xi$ | Smile curvature (wings) | $\partial^2\sigma_{\text{impl}}/\partial k^2\propto\xi^2$ |
 
 ---
 
 ## Stationary Distribution
 
-When $V_t$ reaches its stationary distribution (for $t$ large):
+Recall (see [§ Variance Dynamics](../../ch16/variance_dynamics/cir_variance_process_solution.md)) that the CIR variance has stationary law
 
 $$
-V_{\infty} \sim \text{Gamma}\left(\frac{2\kappa\theta}{\xi^2}, \frac{2\kappa}{\xi^2}\right)
+V_{\infty} \sim \text{Gamma}\!\left(\tfrac{2\kappa\theta}{\xi^2}, \tfrac{2\kappa}{\xi^2}\right),
+\qquad \mathbb{E}[V_\infty]=\theta,\quad \text{Var}[V_\infty]=\tfrac{\xi^2\theta}{2\kappa}.
 $$
 
-**Stationary moments:**
-
-$$
-\begin{aligned}
-\mathbb{E}[V_{\infty}] &= \theta \\
-\text{Var}[V_{\infty}] &= \frac{\xi^2 \theta}{2\kappa} \\
-\text{Skew}[V_{\infty}] &= \frac{2\xi}{\sqrt{2\kappa\theta}}
-\end{aligned}
-$$
-
-The variance distribution is always right-skewed and bounded below by zero.
+The distribution is right-skewed and supported on $[0,\infty)$.
 
 ---
 
@@ -173,63 +97,13 @@ This shows:
 
 ---
 
-## Parameter Constraints
+## Parameter Constraints and Simulation
 
-### Positivity of Variance
+Recall (see [§ Feller Condition and Boundary Behavior](feller_condition_and_boundary_behavior.md)) that the **Feller condition** $2\kappa\theta \geq \xi^2$ ensures strict positivity of $V_t$.
 
-For $V_t \geq 0$ to hold, we need $\kappa, \theta, \xi > 0$.
+Moment existence: $\mathbb{E}^{\mathbb{Q}}[S_T^n] < \infty$ iff $n < n^*(\kappa, \theta, \xi, \rho)$ (Andersen–Piterbarg moment-explosion bound).
 
-### Feller Condition
-
-The **Feller condition** ensures $V_t > 0$ (strictly positive):
-
-$$
-2\kappa\theta \geq \xi^2
-$$
-
-See Section 9.3.2 for detailed boundary behavior.
-
-### Existence of Moments
-
-The $n$-th moment of $S_T$ exists under $\mathbb{Q}$ if and only if $n < n^*$ where $n^*$ depends on $(\kappa, \theta, \xi, \rho)$.
-
-**Andersen–Piterbarg condition:** Moments may explode for large $n$, affecting certain exotic pricing.
-
----
-
-## Simulation of Heston Paths
-
-### Euler Scheme (with Truncation)
-
-The simplest scheme (with variance floor):
-
-$$
-\begin{aligned}
-V_{t+\Delta} &= V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}\,Z_1 \\
-S_{t+\Delta} &= S_t \exp\left[\left(r - q - \frac{1}{2}V_t^+\right)\Delta + \sqrt{V_t^+}\sqrt{\Delta}\,Z_2\right]
-\end{aligned}
-$$
-
-where $V_t^+ = \max(V_t, 0)$ and $(Z_1, Z_2)$ are correlated normals.
-
-### QE Scheme (Andersen)
-
-The **Quadratic-Exponential** scheme is more accurate:
-
-1. Match moments of the non-central $\chi^2$ transition density
-2. Use quadratic approximation for small $V$, exponential for large $V$
-
-See Section 9.4 for implementation details.
-
-### Exact Simulation
-
-The variance transition $V_{t+\Delta} | V_t$ follows a scaled non-central $\chi^2$:
-
-$$
-V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2\left(\frac{4\kappa\theta}{\xi^2}, \frac{4\kappa e^{-\kappa\Delta}}{\xi^2(1-e^{-\kappa\Delta})}V_t\right)
-$$
-
-Exact simulation is possible but computationally expensive.
+Recall (see [§ Variance Dynamics](../../ch16/variance_dynamics/cir_variance_process_solution.md) and [§ Euler/QE Simulation](../../ch16/european_pricing/semi_closed_form_fourier_inversion.md)) the standard simulation toolkit: Euler with full truncation, Andersen's QE scheme, and exact non-central $\chi^2$ sampling.
 
 ---
 

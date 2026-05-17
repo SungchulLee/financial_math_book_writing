@@ -39,31 +39,16 @@ At maturity:
 
 ### Risk-Neutral Dynamics
 
-Under the risk-neutral measure $\mathbb{Q}$, the firm's asset value follows geometric Brownian motion:
+Recall (see [GBM under $\mathbb{Q}$](../../ch06/black_scholes_model/introduction.md) and [risk-neutral measure](../../ch04/risk_neutral/martingale_and_no_arbitrage.md)). Under $\mathbb{Q}$, the firm's asset value follows geometric Brownian motion:
 
 $$
 dV_t = (r - q)V_t \, dt + \sigma_V V_t \, dW_t^{\mathbb{Q}}
 $$
 
-where:
-
-- $r$: risk-free interest rate
-- $q$: continuous dividend (payout) rate to equity holders
-- $\sigma_V$: asset volatility
-- $W_t^{\mathbb{Q}}$: standard Brownian motion under $\mathbb{Q}$
-
-### Solution
-
-The asset value at maturity is:
+with $r$ the risk-free rate, $q$ the payout rate, $\sigma_V$ the asset volatility. The terminal log-asset is normal:
 
 $$
-V_T = V_0 \exp\left[\left(r - q - \frac{\sigma_V^2}{2}\right)T + \sigma_V W_T^{\mathbb{Q}}\right]
-$$
-
-Under $\mathbb{Q}$, $\ln(V_T/V_0)$ is normally distributed:
-
-$$
-\ln\left(\frac{V_T}{V_0}\right) \sim \mathcal{N}\left(\left(r - q - \frac{\sigma_V^2}{2}\right)T, \sigma_V^2 T\right)
+\ln(V_T/V_0) \sim \mathcal{N}\!\left((r - q - \sigma_V^2/2)T, \sigma_V^2 T\right).
 $$
 
 ---
@@ -108,16 +93,14 @@ Debt is **risk-free debt minus a put option** on firm value.
 
 ### Equity Value (Black-Scholes Call)
 
-Applying the Black-Scholes formula for a call option on $V$:
+Recall (see [Black-Scholes formula](../../ch06/black_scholes_formula/bs_formula_statement.md)). Equity is a call on $V$ with strike $D$:
 
 $$
-E_0 = V_0 e^{-qT} N(d_1) - D e^{-rT} N(d_2)
+E_0 = V_0 e^{-qT} N(d_1) - D e^{-rT} N(d_2),
 $$
 
-where:
-
 $$
-d_1 = \frac{\ln(V_0/D) + (r - q + \sigma_V^2/2)T}{\sigma_V \sqrt{T}}, \quad d_2 = d_1 - \sigma_V \sqrt{T}
+d_1 = \frac{\ln(V_0/D) + (r - q + \sigma_V^2/2)T}{\sigma_V \sqrt{T}}, \quad d_2 = d_1 - \sigma_V \sqrt{T}.
 $$
 
 ### Debt Value

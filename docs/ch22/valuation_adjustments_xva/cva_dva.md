@@ -50,19 +50,7 @@ $$
 
 ### CVA with Hazard Rate
 
-If the default intensity (hazard rate) is $\lambda(t)$:
-
-$$
-PD(t) = 1 - e^{-\int_0^t \lambda(s) \, ds}
-$$
-
-$$
-dPD(t) = \lambda(t) \cdot e^{-\int_0^t \lambda(s) \, ds} \, dt = \lambda(t) \cdot S(t) \, dt
-$$
-
-where $S(t) = 1 - PD(t)$ is the survival probability.
-
-**CVA formula:**
+Recall hazard-rate / survival probability machinery (see [§ Ch.21 Credit Risk](../../ch21/index.md)). Substituting $dPD(t) = \lambda(t) S(t) \, dt$ yields:
 
 $$
 \text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot S(t) \cdot D(0,t) \, dt
@@ -185,13 +173,7 @@ with $\text{EE}(t)$ computed analytically (e.g., for single swap).
 
 ### 2. Monte Carlo Simulation
 
-**Algorithm:**
-
-1. Simulate $M$ paths of market factors
-2. For each path and time point, compute portfolio value $V_t^{(m)}$
-3. Compute exposure $E_t^{(m)} = V_t^{(m)+}$
-4. Average: $\text{EE}(t) = \frac{1}{M} \sum_{m=1}^M E_t^{(m)}$
-5. Apply CVA formula
+Simulate exposure paths (EE construction: see [§ Counterparty Credit Risk](../counterparty_credit_risk/expected_positive_exposure_epe.md)) and apply the CVA formula.
 
 ### 3. American Monte Carlo (Longstaff-Schwartz)
 

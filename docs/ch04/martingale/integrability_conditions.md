@@ -1,6 +1,6 @@
 # Integrability Conditions for Martingales
 
-This section provides the concrete tests that upgrade a [local martingale](local_martingale.md) to a true martingale (see [Unifying Principle](unifying_principle.md)). While the [Novikov and Kazamaki conditions](novikov_kazamaki_conditions.md) address stochastic exponentials specifically, the criteria here apply to general local martingales.
+Suppose a non-negative local martingale $M_t$ has $\mathbb{E}[M_t] < M_0$: every increment looks fair, yet on average mass keeps leaking out of the system. The leak is caused by tail behavior -- the process spending too much weight far from the origin -- and the cure is therefore a global moment bound that keeps the family $\{M_\tau\}$ tight. The conditions below (uniform integrability, $L^p$ bounds, $\langle M\rangle$-integrability) are exactly the bookkeeping tools that close the leak and upgrade a local martingale to a true martingale (see [Unifying Principle](unifying_principle.md); the [Novikov and Kazamaki conditions](novikov_kazamaki_conditions.md) are the stochastic-exponential specialization).
 
 !!! info "Prerequisites"
     This section assumes familiarity with:
@@ -120,16 +120,7 @@ Each condition is strictly stronger than the next — there exist true martingal
 
 ## Relation to Novikov and Kazamaki
 
-The [Novikov and Kazamaki conditions](novikov_kazamaki_conditions.md) are integrability conditions specialized to **stochastic exponentials** $\mathcal{E}(M)_t = \exp(M_t - \frac{1}{2}\langle M \rangle_t)$:
-
-| Condition | Applies to | Requires |
-|-----------|-----------|----------|
-| Boundedness / Domination / $L^p$ | Any local martingale | Bounds on $M_t$ itself |
-| BDG / Itô isometry | Any local martingale | Bounds on $\langle M \rangle_t$ |
-| **Novikov** | Stochastic exponential $\mathcal{E}(M)$ | $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] < \infty$ |
-| **Kazamaki** | Stochastic exponential $\mathcal{E}(M)$ | $\sup_{t \leq T}\mathbb{E}[\exp(\frac{1}{2}M_t)] < \infty$ |
-
-Novikov and Kazamaki are **not** special cases of the general criteria above — they exploit the specific exponential structure of $\mathcal{E}(M)$. In particular, Novikov's condition involves exponential moments of $\langle M \rangle$, which is much stronger than the polynomial moments required by BDG but is tailored to guarantee that the stochastic exponential (rather than $M$ itself) is a true martingale.
+Recall (see [§ Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md)): Novikov and Kazamaki are integrability tests specialized to **stochastic exponentials** $\mathcal{E}(M)_t = \exp(M_t - \frac{1}{2}\langle M \rangle_t)$, exploiting the exponential structure rather than bounding $M$ or $\langle M \rangle$ polynomially. Novikov requires the exponential moment $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] < \infty$ — much stronger than the polynomial moments behind BDG, but tailored to upgrade $\mathcal{E}(M)$ (not $M$ itself) to a true martingale.
 
 ---
 

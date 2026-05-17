@@ -136,57 +136,13 @@ $$
 ### 1. Breeden-Litzenberger Density Constraint
 
 
-From the Breeden-Litzenberger formula:
+Recall (see [§ Breeden-Litzenberger Formula](../model_free_results/breeden_litzenberger_formula.md) and [§ Digital Option Pricing](../../ch06/black_scholes_formula/digital_option_pricing.md)): $q(K) = e^{rT}\partial^2 C/\partial K^2$ is the risk-neutral density. The no-arbitrage requirement $q(K) \geq 0$ is therefore equivalent to the **butterfly arbitrage-free condition**
 
 $$
-q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}
+\frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{for all } K,
 $$
 
-
-
-where $q(K)$ is the risk-neutral probability density.
-
-**No-arbitrage requirement:** $q(K) \geq 0$ for all $K > 0$
-
-**Equivalent constraint:**
-
-$$
-\frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{for all } K
-$$
-
-
-
-This is the **butterfly arbitrage-free condition**.
-
-### 2. Normalization: Probability Sums to One
-
-
-The density must integrate to unity:
-
-$$
-\int_0^\infty q(K) dK = 1
-$$
-
-
-
-**Verification:** Using integration by parts:
-
-$$
-e^{rT} \int_0^\infty \frac{\partial^2 C}{\partial K^2} dK = e^{rT} \left[ \frac{\partial C}{\partial K}\bigg|_0^\infty \right]
-$$
-
-
-
-Boundary conditions:
-
-- As $K \to 0$: $C(K) \to S_0 e^{-qT}$, so $\frac{\partial C}{\partial K} \to 0$
-- As $K \to \infty$: $C(K) \to 0$, so $\frac{\partial C}{\partial K} \to -e^{-rT}$
-
-Thus:
-
-$$
-e^{rT}(0 - (-e^{-rT})) = 1 \quad \checkmark
-$$
+and the normalization $\int_0^\infty q(K)\,dK = 1$ follows automatically from the boundary behavior $\partial C/\partial K|_{0} = 0$, $\partial C/\partial K|_{\infty} = -e^{-rT}$.
 
 
 
@@ -263,111 +219,21 @@ i.e., total variance is convex in log-moneyness.
 ## Constraints on Implied Volatility Derivatives
 
 
-### 1. Bounds on Skew
+### 1. Bounds on Skew and Curvature
 
 
-The **slope of implied volatility** in log-moneyness coordinates:
-
-$$
-\mathcal{S}(y, T) := \frac{\partial \sigma_{\text{IV}}}{\partial y}
-$$
-
-
-
-For the surface to be arbitrage-free:
-
-**Proposition 4.3.1** (Skew Bound)  
-There exists a finite bound:
-
-$$
-\left| \frac{\partial \sigma_{\text{IV}}}{\partial y} \right| \leq C(T, \sigma_{\text{IV}})
-$$
-
-
-
-where the bound depends on maturity and the level of IV.
-
-**Heuristic:** Extremely steep skew (e.g., $\frac{\partial \sigma_{\text{IV}}}{\partial y} = -100$) would imply unrealistic densities with most probability concentrated at a single point.
-
-### 2. Bounds on Curvature
-
-
-The **curvature of implied volatility**:
-
-$$
-\mathcal{C}(y, T) := \frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2}
-$$
-
-
-
-**Proposition 4.3.2** (Curvature Constraint)  
-For the Breeden-Litzenberger density to be non-negative:
-
-$$
-\frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2} \geq -\frac{f(y, \sigma_{\text{IV}}, T)}{\sigma_{\text{IV}} T}
-$$
-
-
-
-where $f$ is a function of the current smile level.
-
-**Interpretation:** Negative curvature (downward-bending smile) is permitted but cannot be arbitrarily large in magnitude.
+Recall (see [§ Skew and Smile](skew_and_smile.md)): $\mathcal{S}(y,T) := \partial\sigma_{\text{IV}}/\partial y$ and $\mathcal{C}(y,T) := \partial^2\sigma_{\text{IV}}/\partial y^2$. Arbitrage-freeness imposes a finite bound $|\mathcal{S}| \leq C(T,\sigma_{\text{IV}})$ (extremely steep skew would concentrate probability on a single point) and a one-sided curvature bound $\mathcal{C} \geq -f(y,\sigma_{\text{IV}},T)/(\sigma_{\text{IV}}T)$ ensuring the BL density stays non-negative; negative curvature is permitted but cannot be arbitrarily large in magnitude.
 
 ## Lee's Moment Formula
 
 
-### 1. Wing Behavior Constraint
-
-
-**Theorem 4.3.2** (Lee, 2004)  
-For the risk-neutral distribution to have finite variance:
+Recall (see [§ Wing Asymptotics and Moment Constraints](../asymptotics_of_implied_volatility/wing_asymptotics_and_moment_constraints.md)): the left/right wing slopes
 
 $$
-\lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) \cdot T \cdot \frac{1}{|y|} = 2
+p_{\pm} = \lim_{y \to \pm\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}
 $$
 
-
-
-More generally, for finite $p$-th moment ($p \geq 2$):
-
-$$
-\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} \geq \frac{2}{p}
-$$
-
-
-
-**Interpretation:** The wings of the implied volatility smile cannot be too flat. As strike moves away from ATM, IV must grow approximately as $\sqrt{|y|/T}$ to prevent infinite variance.
-
-### 2. Left and Right Wing Slopes
-
-
-Define the **left wing slope**:
-
-$$
-p_- = \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}
-$$
-
-
-
-and **right wing slope**:
-
-$$
-p_+ = \lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}
-$$
-
-
-
-**Constraints:**
-
-$$
-0 < p_- \leq 2, \quad 0 < p_+ \leq 2
-$$
-
-
-
-**Symmetry:** For a symmetric density, $p_- = p_+ = 2$.
-
-**Asymmetry:** Equity markets often have $p_- < p_+$ (left tail flatter than theory predicts due to put overpricing).
+satisfy $p_{\pm} = 2/m_{\pm}$, where $m_{\pm}$ are the maximum finite moments of $S_T$ and $S_T^{-1}$. Hence $0 < p_{\pm} \leq 2$, with equality for finite-variance densities, and $\sigma_{\text{IV}}^2(y,T)T \sim 2|y|$ is the canonical wing growth used for arbitrage-free extrapolation below.
 
 ## Practical Arbitrage Detection
 
@@ -453,26 +319,7 @@ Standard cubic splines can introduce spurious oscillations violating convexity.
 ### 3. Arbitrage-Free Parametrizations
 
 
-**SVI (Stochastic Volatility Inspired):**
-
-
-$$
-w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)
-$$
-
-
-
-**Arbitrage-free conditions:**
-
-$$
-b \geq 0, \quad |b\rho| < 4a, \quad b(1 + |\rho|) < 4a, \quad a + b\sigma\sqrt{1 - \rho^2} \geq 0
-$$
-
-
-
-Fit parameters $(a, b, \rho, m, \sigma)$ to market data with these constraints.
-
-**SSVI (Surface SVI):** Extends SVI across maturities with joint no-arbitrage constraints.
+Recall (see [§ Skew and Smile](skew_and_smile.md)): the **SVI** total-variance ansatz $w(y) = a + b(\rho(y-m) + \sqrt{(y-m)^2 + \sigma^2})$ is fit under $b\geq 0$, $b(1+|\rho|) < 4a$, and $a+b\sigma\sqrt{1-\rho^2}\geq 0$. **SSVI** extends SVI across maturities with joint no-arbitrage constraints.
 
 ### 4. Extrapolation to Wings
 
@@ -565,25 +412,12 @@ can still violate Durrleman's joint condition $g(y, T) \geq 0$.
 ### 1. Local Volatility Extraction
 
 
-If the call price surface violates arbitrage, **Dupire's formula** can produce:
-
-- Negative local volatility $\sigma_{\text{loc}}^2 < 0$
-- Infinite local volatility $\sigma_{\text{loc}}^2 = \infty$
-- Complex local volatility $\sigma_{\text{loc}} \in \mathbb{C}$
-
-**Consequence:** Models fail to calibrate. 
-
-**Solution:** Enforce arbitrage-free constraints before extracting local vol.
+Recall (see [§ Dupire Formula](../../ch13/local_volatility_framework/dupire_formula_and_local_volatility_surface.md)): butterfly violations make $\sigma_{\text{loc}}^2 < 0$ (or infinite/complex) since the denominator $\propto \partial^2 C/\partial K^2$ flips sign. Enforce arbitrage-free constraints before extracting local vol.
 
 ### 2. Stochastic Volatility Models
 
 
-Arbitrage violations also prevent calibration of parametric models (Heston, SABR):
-
-- Optimization may not converge
-- Calibrated parameters may be unrealistic (e.g., $\rho = -1.2 > 1$)
-
-**Best practice:** Clean data for arbitrage violations before calibration.
+Recall (see [§ Stochastic Volatility](../../ch14/index.md)): arbitrage violations also break calibration of Heston/SABR (non-convergent optimization, $|\rho|>1$, etc.). Clean data before calibration.
 
 ## Empirical Violations and Causes
 

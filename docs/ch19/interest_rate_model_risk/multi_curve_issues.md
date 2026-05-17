@@ -8,29 +8,7 @@ Modern interest-rate markets operate with **multiple yield curves**, reflecting 
 ## From single-curve to multi-curve
 
 
-Pre-crisis practice used:
-
-- one curve for discounting and forwarding.
-
-Post-crisis markets distinguish:
-
-- OIS curves for discounting,
-- tenor-specific curves for forwarding (LIBOR, EURIBOR).
-
-This separation is essential for arbitrage-free pricing.
-
----
-
-## Implications for valuation
-
-
-Multi-curve pricing affects:
-
-- swaps and FRAs,
-- caps/floors and swaptions,
-- collateralized vs uncollateralized trades.
-
-Cashflows must be discounted and projected using different curves.
+Recall (see [§ OIS-LIBOR Spread Modeling](ois_libor_spread_modeling.md)): pre-crisis used one curve; post-crisis splits into an **OIS discount curve** plus **tenor-specific projection curves** (LIBOR, EURIBOR), with cashflows discounted and projected on different curves. This separation is essential for arbitrage-free pricing of swaps, FRAs, caps/floors, swaptions, and collateralized vs. uncollateralized trades.
 
 ---
 

@@ -24,27 +24,13 @@ The Heath-Jarrow-Morton (HJM) framework provides the most fundamental approach t
 
 The HJM framework models the evolution of the instantaneous forward rate curve $f(t,T)$ for all maturities $T \geq t$ simultaneously.
 
-!!! note "Definition: HJM Forward Rate Dynamics"
-    Under the risk-neutral measure $\mathbb{Q}$, the instantaneous forward rate satisfies
+Recall (see [§ HJM framework and drift condition](../../ch19/hjm/forward_rate_dynamics.md)): under $\mathbb{Q}$ the instantaneous forward rate satisfies $df(t,T) = \alpha(t,T)\, dt + \sigma_f(t,T)\, dW_t^{\mathbb{Q}}$, and the no-arbitrage drift condition uniquely determines
 
-    $$
-    df(t,T) = \alpha(t,T)\, dt + \sigma_f(t,T)\, dW_t^{\mathbb{Q}}
-    $$
+$$
+\alpha(t,T) = \sigma_f(t,T) \int_t^T \sigma_f(t,u)\, du.
+$$
 
-    where $\sigma_f(t,T)$ is the forward rate volatility (which may depend on $t$ and $T$ but is assumed deterministic for the Hull-White case) and $\alpha(t,T)$ is the drift.
-
-The fundamental result of the HJM theory is that the no-arbitrage condition uniquely determines the drift in terms of the volatility.
-
-!!! note "Theorem: HJM Drift Condition"
-    Under the risk-neutral measure $\mathbb{Q}$, absence of arbitrage requires
-
-    $$
-    \alpha(t,T) = \sigma_f(t,T) \int_t^T \sigma_f(t,u)\, du
-    $$
-
-    That is, the drift of the forward rate at maturity $T$ is completely determined by the volatility structure.
-
-This is a powerful constraint: choosing the volatility function $\sigma_f(t,T)$ determines the entire model, including the drift, leaving no additional freedom.
+Choosing the volatility function $\sigma_f(t,T)$ therefore determines the entire model, including the drift, leaving no additional freedom.
 
 ---
 

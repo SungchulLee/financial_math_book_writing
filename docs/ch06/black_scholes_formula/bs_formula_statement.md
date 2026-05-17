@@ -1,9 +1,8 @@
 # The Black-Scholes Formula
 
+The **Black-Scholes formula**, derived independently by Fischer Black, Myron Scholes (1973), and Robert Merton (1973), provides a closed-form solution for pricing European options. It remains one of the most influential results in financial economics, earning Scholes and Merton the 1997 Nobel Prize.
 
-The **Black-Scholes formula**, derived independently by Fischer Black, Myron Scholes (1973), and Robert Merton (1973), provides a closed-form solution for pricing European options. It remains one of the most influential results in financial economics, earning Scholes and Merton the 1997 Nobel Prize in Economics.
-
-This section presents the formula, its underlying assumptions, and the meaning of its components.
+Before the symbols arrive, the mechanism is simple: a European call pays $(S_T - K)^+$ at maturity, so its fair price must be the *discounted expected payoff* taken under a measure that prices the underlying correctly. Once the stock is a geometric Brownian motion under that measure, the expectation reduces to a Gaussian integral and collapses into a two-term closed form. The remainder of this section records the formula, its assumptions, and the meaning of its two terms; the rest of the chapter develops the six perspectives below.
 
 !!! info "Roadmap: Six Perspectives on the Black-Scholes Formula"
     The same closed-form result $C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$ admits six different mathematical viewpoints. Each row below names a perspective, its central object, the equation that captures it, what it expresses about the option, and the sibling section in which it is developed. The remaining files in this section — [Put-call parity](put_call_parity.md), [Asymptotic behavior](asymptotic_behavior.md), and [Computational examples](computational_examples.md) — exploit these perspectives to derive constraints, limiting cases, and numerical implementation respectively.
@@ -23,56 +22,15 @@ This section presents the formula, its underlying assumptions, and the meaning o
 
 ## Model Setup and Assumptions
 
-*Section goal: the geometric-Brownian-motion dynamics and the seven assumptions under which the formula is valid.*
-
-### 1. **Asset Price Dynamics**
-
-
-The underlying asset price $S_t$ follows **geometric Brownian motion** under the risk-neutral measure $\mathbb{Q}$:
+Recall (see [§ GBM as Asset Price Model](../black_scholes_model/gbm_as_asset_price_model.md) and [§ Assumptions](../black_scholes_model/assumptions.md)): under the risk-neutral measure $\mathbb{Q}$, the underlying follows
 
 $$
-dS_t = rS_t dt + \sigma S_t dW_t
+dS_t = rS_t \, dt + \sigma S_t \, dW_t, \qquad S_t = S_0\exp\!\left((r - \tfrac{1}{2}\sigma^2)t + \sigma W_t\right),
 $$
 
-where:
+with the standard frictionless / constant-parameter / no-dividend / European-exercise assumptions. We retain only the notational conventions needed below.
 
-- $r$ = risk-free interest rate (continuously compounded, constant)
-- $\sigma$ = volatility (constant)
-- $W_t$ = standard Brownian motion under $\mathbb{Q}$
-
-**Equivalent representation**:
-
-$$
-S_t = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)t + \sigma W_t\right)
-$$
-
-### 2. **Fundamental Assumptions**
-
-
-**Market structure:**
-
-1. **Frictionless markets**: No transaction costs, taxes, or restrictions on short selling
-2. **Continuous trading**: Assets can be traded continuously in time
-3. **No arbitrage**: The market admits no risk-free profits
-
-**Price dynamics:**
-
-4. **Constant parameters**: Risk-free rate $r$ and volatility $\sigma$ are known constants
-5. **Log-normal returns**: Log-returns $\log(S_t / S_0)$ are normally distributed
-6. **No dividends**: The underlying asset pays no dividends during the option's life
-
-**Contract:**
-
-7. **European exercise**: Options can only be exercised at maturity $T$
-
-### 3. **Contract Specifications**
-
-
-- $S$ (or $S_0$) = current asset price
-- $K$ = strike price (exercise price)
-- $T$ = time to maturity (in years)
-
-We price at time $0$ throughout, so $T$ plays the dual role of *maturity date* and *time remaining*. When discussing time evolution we use $T \to 0$ instead of $t \to T$.
+**Contract specifications.** $S$ (or $S_0$) is the current asset price, $K$ the strike, and $T$ the time to maturity (in years). We price at time $0$ throughout, so $T$ plays the dual role of *maturity date* and *time remaining*; when discussing time evolution we use $T \to 0$ instead of $t \to T$.
 
 ---
 
@@ -81,7 +39,6 @@ We price at time $0$ throughout, so $T$ plays the dual role of *maturity date* a
 *Section goal: the call and put pricing formulas, stated as a theorem with the rigour caveat.*
 
 ### 1. **European Call Option**
-
 
 !!! note "Theorem (Black-Scholes Formula)"
     Under assumptions 1–7 above — together with the standard admissibility conditions on trading strategies and a Brownian filtration — the market is complete, the equivalent martingale measure $\mathbb{Q}$ is unique, and the unique arbitrage-free time-$0$ prices of European call and put options with strike $K$ and maturity $T$ are:
@@ -117,8 +74,9 @@ $$
 
 *Section goal: decomposition and interpretation of the parameters $d_1$ and $d_2$.*
 
-### 1. **The d_1 Parameter**
+The pair $(d_1, d_2)$ is the algebraic shadow of the two perspectives that produce the formula: $d_2$ records the standardised log-moneyness under the risk-neutral measure $\mathbb{Q}$, and $d_1$ does the same under the stock-numéraire measure $\mathbb{Q}^S$ that arises from change of numéraire. The fixed gap $d_1 - d_2 = \sigma\sqrt{T}$ is the Girsanov drift between these two measures; everything that follows in this section unpacks consequences of that single shift.
 
+### 1. **The d_1 Parameter**
 
 $$
 d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
@@ -133,7 +91,6 @@ $$
 
 ### 2. **The d_2 Parameter**
 
-
 $$
 d_2 = d_1 - \sigma\sqrt{T}
 $$
@@ -141,7 +98,6 @@ $$
 The gap $d_1 - d_2 = \sigma\sqrt{T}$ widens with volatility and time.
 
 ### 3. **Key Identity**
-
 
 The normal density values at $d_1$ and $d_2$ satisfy a fundamental relation used throughout the Greeks derivations:
 
@@ -152,7 +108,6 @@ $$
 where $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ is the standard normal density. This follows from $d_1^2 - d_2^2 = 2\left[\ln(S/K) + rT\right]$.
 
 ### 4. **The Normal CDF N(·)**
-
 
 **Properties**:
 
@@ -185,7 +140,6 @@ The two terms are the discounted $\mathbb{Q}$-expected payments received and pai
 
 ### 1. **Definitions**
 
-
 For a call option with strike $K$:
 
 - **In-the-money (ITM)**: $S > K$ 
@@ -206,7 +160,6 @@ For a call option with strike $K$:
 For a put: ITM when $S < K$, OTM when $S > K$.
 
 ### 2. **Relationship to d_1 and d_2**
-
 
 | Moneyness | $\ln(S/K)$ | $d_1, d_2$ | $\mathcal{N}(d_1), \mathcal{N}(d_2)$ |
 |-----------|------------|------------|--------------------------------------|
@@ -258,87 +211,23 @@ $$
 
 ## The Black-Scholes PDE
 
-*Section goal: the partial differential equation the price function $V(S, t)$ must satisfy.*
-
-### 1. **PDE Formulation**
-
-
-The Black-Scholes formula is the solution to a **partial differential equation**:
+Recall (see [§ Delta Hedging](../bs_pde_derivation/delta_hedging.md) and [§ Discounting and Killing Term](../bs_pde_structure/discounting_and_killing_term.md)): the price function $V(S, t)$ must satisfy
 
 $$
-\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
+\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}, \qquad V(S, T) = (S-K)^+ \text{ (call) or } (K-S)^+ \text{ (put)}.
 $$
 
-with **terminal condition**:
-
-$$
-V(S,T) = \text{Payoff}(S) = \begin{cases}
-(S-K)^+ & \text{for call} \\
-(K-S)^+ & \text{for put}
-\end{cases}
-$$
-
-**Interpretation**: Any replicable derivative whose value is $V(S,t)$ must satisfy this PDE. The equation describes how the option value evolves over time given the stock price dynamics.
-
-### 2. **Trivial Solutions**
-
-
-Before solving for option prices, observe that simple portfolios satisfy the PDE:
-
-**1. The stock itself**: $V = S$
-
-Verify:
-
-$$
-\frac{\partial S}{\partial t} = 0, \quad \frac{\partial S}{\partial S} = 1, \quad \frac{\partial^2 S}{\partial S^2} = 0
-$$
-
-$$
-0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = 0 \quad \checkmark
-$$
-
-**2. The risk-free bond**: $V = e^{rt}$
-
-Verify:
-
-$$
-\frac{\partial e^{rt}}{\partial t} = re^{rt}, \quad \frac{\partial e^{rt}}{\partial S} = 0, \quad \frac{\partial^2 e^{rt}}{\partial S^2} = 0
-$$
-
-$$
-re^{rt} + 0 + 0 - re^{rt} = 0 \quad \checkmark
-$$
-
-These trivial solutions confirm that the PDE correctly describes basic traded assets. Any **linear combination** of stock and bond also satisfies the PDE, which forms the basis of the **replication argument**.
-
-### 3. **Connection to Option Pricing**
-
-
-The Black-Scholes call and put formulas are **non-trivial solutions** to this PDE with the appropriate terminal conditions, derived in subsequent sections by solving the PDE through several analytical techniques.
+The Black-Scholes call and put formulas are the unique solutions with these terminal conditions; the derivation routes (heat-equation transform, Feynman-Kac, characteristic functions, similarity solutions) are developed in [§ BS PDE Analytic Solution](../bs_pde_analytic_solution/intro.md). Both trivial solutions $V = S$ and $V = e^{rt}$ are verified as Exercise 6 of [§ Delta Hedging](../bs_pde_derivation/delta_hedging.md).
 
 ---
 
 ## Why This Formula?
 
-*Section goal: four equivalent derivations of the same result (PDE, replication, expectation, martingale).*
-
-The Black-Scholes formula can be derived via several mutually consistent methods:
-
-1. **PDE approach**: Solve the Black-Scholes partial differential equation introduced above
-
-2. **Risk-neutral expectation**: Compute $e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]$ directly
-
-3. **Replication**: Construct a self-financing portfolio that replicates the option payoff
-
-4. **Martingale theory**: Apply Girsanov's theorem and martingale pricing
-
-!!! note "Equivalence of Perspectives"
-    The PDE, risk-neutral expectation, and replication approaches are **mathematically equivalent**: each leads to the same Black-Scholes formula. The PDE characterizes local dynamics, the expectation gives a global probabilistic view, and replication reveals the hedging strategy. All three are unified by the no-arbitrage principle.
+Recall (see [§ One Equation, Five Perspectives](../bs_pde_derivation/one_equation_five_perspectives.md)): the formula admits four mutually consistent derivations — PDE, risk-neutral expectation, self-financing replication, and Girsanov / martingale change of measure. All three are unified by the no-arbitrage principle, and the unification is the subject of [§ One Equation, Five Perspectives](../bs_pde_derivation/one_equation_five_perspectives.md).
 
 ---
 
 ## Summary
-
 
 The Black-Scholes formula for European options:
 

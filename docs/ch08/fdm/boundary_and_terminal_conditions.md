@@ -1,7 +1,7 @@
 # Boundary and Terminal Conditions
 
 
-Numerical PDE pricing requires:
+The Black-Scholes PDE alone does not pick out a unique price -- it is a backward parabolic equation that needs anchoring on three sides of the computational rectangle. The **terminal payoff** at $t=T$ anchors the time direction (we know exactly what the option is worth at expiry); the **side conditions** at $S=0$ and $S=S_{\max}$ close the truncated spatial domain after replacing the natural interval $(0,\infty)$ with the finite $[0,S_{\max}]$. With those three pieces in place the FDM has everything it needs to step backward to the present:
 
 - a **terminal condition** at $t=T$,
 - **boundary conditions** in $S$ after truncating $(0,\infty)$ to $[0,S_{\max}]$.

@@ -1,83 +1,20 @@
 # Cap and Floor Pricing
 
-Interest rate caps and floors are among the most actively traded OTC derivatives. A cap protects a floating-rate borrower against rising rates by paying the difference whenever the reference rate exceeds a strike, while a floor protects a lender against falling rates. Since a cap is a portfolio of individual caplets, and each caplet in the Hull-White model reduces to a put on a zero-coupon bond, the entire cap can be priced analytically. This section derives the cap and floor pricing formulas and compares the Hull-White result with Black's formula.
+Interest rate caps and floors are among the most actively traded OTC derivatives. Since a cap is a portfolio of individual caplets, and each caplet in the Hull-White model reduces to a put on a zero-coupon bond, the entire cap can be priced analytically. This section derives the cap and floor pricing formulas and compares the Hull-White result with Black's formula.
 
 ## Cap and Floor Structure
 
-An interest rate cap on a notional $N$ with strike $K$ and payment dates $T_1, T_2, \ldots, T_n$ consists of $n$ individual caplets. Each caplet pays at $T_k$ based on the floating rate observed at $T_{k-1}$.
-
-!!! info "Definition: Cap and Floor"
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    \text{Cap}(t_0) &=& \displaystyle\sum_{k=1}^{n} \text{Caplet}_k(t_0)
-    \\[8pt]
-    \displaystyle
-    \text{Floor}(t_0) &=& \displaystyle\sum_{k=1}^{n} \text{Floorlet}_k(t_0)
-    \end{array}$$
-
-    where each caplet and floorlet has payoff at $T_k$:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    \text{Caplet}_k(T_k) &=& N\tau_k\max(l_k(T_{k-1}) - K,\; 0)
-    \\[4pt]
-    \displaystyle
-    \text{Floorlet}_k(T_k) &=& N\tau_k\max(K - l_k(T_{k-1}),\; 0)
-    \end{array}$$
-
-    Here $\tau_k = T_k - T_{k-1}$ is the accrual fraction and $l_k(T_{k-1}) = l(T_{k-1}; T_{k-1}, T_k)$ is the simply compounded forward rate set at $T_{k-1}$.
+Recall (see [§ Interest Rate Products](../../ch18/interest_rate_products/coupon_bond_and_frn.md)): a cap (resp. floor) is the sum $\text{Cap}(t_0)=\sum_k \text{Caplet}_k(t_0)$ (resp. $\text{Floor}(t_0)=\sum_k \text{Floorlet}_k(t_0)$) of caplets/floorlets with payoffs at $T_k$ given by $N\tau_k\max(l_k(T_{k-1})-K,0)$ and $N\tau_k\max(K-l_k(T_{k-1}),0)$, where $\tau_k=T_k-T_{k-1}$ and $l_k(T_{k-1})=l(T_{k-1};T_{k-1},T_k)$.
 
 ## Hull-White Caplet as a ZCB Put
 
-The key insight for pricing individual caplets in the Hull-White model is that each caplet is equivalent to a put option on a zero-coupon bond. This equivalence allows direct application of the Hull-White ZCB option formula.
-
-!!! info "Theorem: Caplet-ZCB Put Equivalence"
-    A caplet with reset date $T_{k-1}$, payment date $T_k$, strike $K$, and notional $N$ equals
-
-    $$
-    \text{Caplet}_k(t_0) = \hat{N}\,V_p^{\text{ZCB}}\!\left(t_0,\, T_{k-1},\, T_k;\, \hat{K}\right)
-    $$
-
-    where $\hat{N} = N(1 + \tau_k K)$ and $\hat{K} = \frac{1}{1 + \tau_k K}$.
-
-???+ note "Proof"
-
-    Starting from the risk-neutral pricing formula:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    \text{Caplet}_k(t_0)
-    &=&\displaystyle
-    \mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T_k)}\,N\tau_k\max(l_k(T_{k-1}) - K, 0)\,\Big|\,\mathcal{F}(t_0)\right]
-    \end{array}$$
-
-    Using the tower property and the relation $l_k(T_{k-1}) = \frac{1}{\tau_k}\!\left(\frac{1}{P(T_{k-1}, T_k)} - 1\right)$:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    &=&\displaystyle
-    \mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T_{k-1})}\,N\max\!\left(\frac{1}{P(T_{k-1}, T_k)} - (1 + \tau_k K),\; 0\right)P(T_{k-1}, T_k)\,\Big|\,\mathcal{F}(t_0)\right]
-    \end{array}$$
-
-    Rearranging:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    &=&\displaystyle
-    \mathbb{E}^{\mathbb{Q}}\!\left[\frac{M(t_0)}{M(T_{k-1})}\,N(1 + \tau_k K)\max\!\left(\frac{1}{1 + \tau_k K} - P(T_{k-1}, T_k),\; 0\right)\,\Big|\,\mathcal{F}(t_0)\right]
-    \\[6pt]
-    &=&\displaystyle
-    \hat{N}\,V_p^{\text{ZCB}}(t_0,\, T_{k-1},\, T_k;\, \hat{K})
-    \end{array}$$
-
-    $\square$
-
-Similarly, a floorlet equals a scaled ZCB call:
+Recall (see [§ HW Caplet/Floorlet Formula](caplet_floorlet_formula.md)): a caplet equals a scaled ZCB put,
 
 $$
-\text{Floorlet}_k(t_0) = \hat{N}\,V_c^{\text{ZCB}}\!\left(t_0,\, T_{k-1},\, T_k;\, \hat{K}\right)
+\text{Caplet}_k(t_0) = \hat{N}\,V_p^{\text{ZCB}}\!\left(t_0,\, T_{k-1},\, T_k;\, \hat{K}\right), \qquad \hat{N} = N(1 + \tau_k K),\quad \hat{K} = \frac{1}{1 + \tau_k K},
 $$
+
+and a floorlet equals a scaled ZCB call $\text{Floorlet}_k(t_0)=\hat{N}\,V_c^{\text{ZCB}}(t_0,T_{k-1},T_k;\hat{K})$. The ZCB option pricing is the closed-form formula from [§ HW Bond Options](../bond_options/zero_coupon_bond_options.md).
 
 ## Hull-White Cap Formula
 
@@ -131,25 +68,7 @@ $$
 
 ## Comparison with Black's Formula
 
-In the market convention, caplets are quoted using Black's formula with an implied volatility $\sigma_k^{\text{Black}}$:
-
-$$
-\text{Caplet}_k^{\text{Black}}(t_0) = N\tau_k\,P(t_0, T_k)\!\left[l_k(t_0)\,\mathcal{N}(d_1) - K\,\mathcal{N}(d_2)\right]
-$$
-
-where
-
-$$\begin{array}{lllll}
-\displaystyle
-d_1 &=& \displaystyle\frac{\log(l_k(t_0)/K) + \frac{1}{2}v_k^2}{v_k}
-\\[8pt]
-\displaystyle
-d_2 &=& d_1 - v_k
-\\[4pt]
-v_k &=& \sigma_k^{\text{Black}}\sqrt{T_{k-1} - t_0}
-\end{array}$$
-
-Black's formula assumes the forward rate $l_k(t)$ is lognormal under $\mathbb{Q}^{T_k}$, while the Hull-White model produces a Gaussian (normal) short rate distribution. The two approaches give different implied volatility structures:
+Recall (see [§ Black's Caplet Formula](../../ch19/lmm/caplet_pricing_black_formula.md)): caplets are market-quoted via Black's formula with implied volatility $\sigma_k^{\text{Black}}$, which assumes $l_k(t)$ is lognormal under $\mathbb{Q}^{T_k}$. The Hull-White model instead produces a Gaussian short rate distribution. The two approaches give different implied volatility structures:
 
 - **Black's formula**: Constant implied volatility across strikes produces a flat volatility smile.
 - **Hull-White**: Since bond prices are exponential in the Gaussian $r$, the model generates implied volatilities that vary with strike, producing a volatility skew.

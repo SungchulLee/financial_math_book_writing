@@ -29,13 +29,7 @@ The Hagan formula covers European options at a single expiry with constant SABR 
 
 ### Discretization
 
-The SABR SDE system:
-
-$$
-dF_t = \sigma_t F_t^{\beta}\,dW_t^{(1)}, \qquad d\sigma_t = \nu\sigma_t\,dW_t^{(2)}
-$$
-
-is discretized on a time grid $0 = t_0 < t_1 < \cdots < t_N = T$ with step size $\Delta t = T/N$.
+Recall (see [§ SABR SDE and Parameters](sabr_sde_and_parameters.md)) the SABR SDE system $dF_t = \sigma_t F_t^{\beta}\,dW_t^{(1)}$, $d\sigma_t = \nu\sigma_t\,dW_t^{(2)}$ with $d\langle W^{(1)}, W^{(2)}\rangle_t = \rho\,dt$. We discretize on a time grid $0 = t_0 < t_1 < \cdots < t_N = T$ with step size $\Delta t = T/N$.
 
 **Volatility step** (Euler--Maruyama):
 

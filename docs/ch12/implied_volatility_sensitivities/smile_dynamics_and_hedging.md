@@ -201,110 +201,14 @@ $$
 ## Model-Based Smile Dynamics
 
 
-### 1. Local Volatility Dynamics
+Recall (see [§ Dynamic Consistency](../smile_dynamics/dynamic_consistency.md) and [§ Forward Smile](../smile_dynamics/forward_smile.md)): each model class produces a characteristic smile-dynamics signature:
 
+- **Local volatility:** sticky-strike behavior; forward smile flattens over time, inconsistent with persistent empirical skew.
+- **Heston / stochastic vol:** ATM level co-moves with $v_t$; spot-vol correlation $\rho < 0$ generates skew, vol-of-vol $\xi$ controls magnitude.
+- **SABR ($\beta$):** backbone parameter interpolates between sticky strike ($\beta = 1$) and sticky delta ($\beta = 0$).
+- **Bergomi:** forward variance curve $\xi_t^T = \mathbb{E}_t[\sigma_T^2]$ is the primary state, giving direct control over forward-smile dynamics.
 
-In local volatility models, the smile dynamics are fully determined by the local volatility surface:
-
-$$
-\sigma_{\text{loc}}(S, t) = \sigma_{\text{loc}}(S, t) \quad \text{(fixed)}
-$$
-
-
-**Key property:** The local vol model produces **sticky strike** behavior:
-
-- IV at each strike is fixed
-- When spot moves, the option "visits" different parts of the local vol surface
-- No smile-related P&L at fixed strike
-
-**Forward smile:** The local vol model implies a specific forward smile that typically **flattens** over time:
-
-$$
-\sigma_{\text{fwd}}(K, T_1, T_2) \to \text{flat as } T_1 \to \infty
-$$
-
-
-This is inconsistent with persistent empirical skew, a major shortcoming of local vol.
-
-### 2. Stochastic Volatility Dynamics (Heston)
-
-
-The Heston model produces richer smile dynamics:
-
-**ATM volatility:**
-
-$$
-\sigma_{\text{ATM}}^2 \approx v_t + \text{corrections}
-$$
-
-
-So ATM volatility moves with the variance process $v_t$.
-
-**Skew:**
-
-$$
-\text{Skew} \propto \rho \cdot \xi
-$$
-
-
-The spot-vol correlation $\rho$ generates skew, and vol-of-vol $\xi$ affects its magnitude.
-
-**Smile dynamics:**
-
-- When $v_t$ increases, the entire smile shifts up
-- When $S_t$ decreases (with $\rho < 0$), $v_t$ tends to increase, steepening the skew
-- This creates **leverage-like dynamics**
-
-### 3. SABR Dynamics
-
-
-The SABR model:
-
-$$
-\begin{align}
-dF_t &= \alpha_t F_t^\beta dW_t^F \\
-d\alpha_t &= \nu \alpha_t dW_t^\alpha \\
-d\langle W^F, W^\alpha \rangle &= \rho dt
-\end{align}
-$$
-
-
-**Backbone parameter $\beta$:**
-
-- $\beta = 1$: Lognormal dynamics, sticky strike behavior
-- $\beta = 0$: Normal dynamics, sticky delta behavior
-- $0 < \beta < 1$: Intermediate
-
-**SABR smile dynamics:**
-
-- The parameter $\alpha_t$ (ATM vol) evolves stochastically
-- Skew is controlled by $\rho$ and $\nu$
-- The model can match both smile shape and basic dynamics
-
-### 4. Bergomi's Framework
-
-
-Bergomi models the forward variance curve directly:
-
-$$
-\xi_t^T = \mathbb{E}_t[\sigma_T^2]
-$$
-
-
-The dynamics:
-
-$$
-d\xi_t^T = \xi_t^T \cdot \omega(T-t) \cdot dZ_t
-$$
-
-
-**Key insight:** By specifying how forward variances evolve, Bergomi's model can match:
-
-- Realistic smile dynamics
-- Forward smile behavior
-- Term structure of skew
-
-This framework provides a unified approach to smile dynamics and is widely used in equity derivatives.
+For the hedging perspective below, what matters is the implied spot-vol sensitivity $\Sigma_S = \partial \sigma_{\text{IV}}/\partial S$ that each model induces; see [§ Sticky Strike vs Sticky Delta](sticky_strike_vs_sticky_delta.md) for the local-vol $\Rightarrow$ sticky-strike correspondence.
 
 ## Hedging Implications
 
@@ -523,110 +427,12 @@ $$
 ## Dynamic Consistency Considerations
 
 
-### 1. The Dynamic Consistency Problem
-
-
-A model is **dynamically consistent** if:
-
-- Calibrated to today's surface
-- Evolved forward under the model
-- The resulting surface matches future recalibration
-
-**Violation:** Most models exhibit dynamic inconsistency:
-
-- Local vol: Forward smile flattens unrealistically
-- Stochastic vol: Better but not perfect
-- Market-implied: Not a model, just interpolation
-
-### 2. Consequences for Hedging
-
-
-**If the model is dynamically inconsistent:**
-
-- Today's hedge ratios may be wrong for tomorrow's market
-- Recalibration introduces P&L noise
-- Hedging effectiveness degrades over time
-
-**Mitigation:**
-
-- Use models with better dynamic properties
-- Hedge with robust instruments (variance swaps)
-- Frequent recalibration and hedge adjustment
-
-### 3. Forward Smile as a Diagnostic
-
-
-The **forward smile** reveals model dynamics:
-
-$$
-\sigma_{\text{fwd}}(K, T_1, T_2) = \text{IV of forward-start option}
-$$
-
-
-**Local vol:** Forward smile flattens quickly
-**Stochastic vol:** Forward smile persists but may steepen/flatten
-**Empirical:** Forward smile should reflect expected future dynamics
-
-Comparing model-implied forward smiles to historical smile behavior is a key model validation tool.
+Recall (see [§ Dynamic Consistency](../smile_dynamics/dynamic_consistency.md) and [§ Forward Smile](../smile_dynamics/forward_smile.md)) for the definition of dynamic consistency, the model-by-model classification, and the forward-smile diagnostic. The **hedging consequence** is the focus here: when a model is dynamically inconsistent (e.g., local vol, whose forward smile flattens too quickly), today's hedge ratios will mis-price tomorrow's exposure, recalibration injects P&L noise, and hedging effectiveness decays over the rebalancing horizon. Mitigation: prefer models with realistic forward-smile behavior, hedge with model-robust instruments (variance swaps), and rebalance frequently.
 
 ## Empirical Smile Dynamics
 
 
-### 1. Stylized Facts
-
-
-**Equity indices (SPX, EURO STOXX):**
-
-- Negative spot-vol correlation: $\rho \approx -0.7$
-- Skew steepens after down moves
-- Vol spikes decay within days to weeks
-- Term structure inverts during stress
-
-**FX markets:**
-
-- Spot-vol correlation varies by pair
-- EUR/USD: near zero correlation
-- EM pairs: often positive correlation
-
-**Individual stocks:**
-
-- More idiosyncratic behavior
-- Earnings-driven dynamics
-- Jump risk dominates
-
-### 2. Quantitative Measures
-
-
-**Skew-spot beta:**
-
-$$
-\frac{d(\text{skew})}{d(\text{log spot})} \approx -0.3 \text{ to } -0.5 \text{ for SPX}
-$$
-
-
-**Vol-spot beta:**
-
-$$
-\frac{d(\sigma_{\text{ATM}})}{d(\text{log spot})} \approx -1.5 \text{ to } -2.5 \text{ for SPX}
-$$
-
-
-**Vol-of-vol:**
-
-$$
-\text{Realized vol of ATM IV} \approx 3\% \text{ to } 5\% \text{ annualized}
-$$
-
-
-### 3. Time Scales
-
-
-| Effect | Time Scale |
-|--------|------------|
-| Spot-vol correlation | Intraday to daily |
-| Vol mean reversion | Days to weeks |
-| Skew normalization | Weeks to months |
-| Term structure normalization | Months |
+Recall (see [§ Empirical Stylized Facts](../smile_dynamics/empirical_stylized_facts.md)) for the stylized facts (SPX $\rho\approx -0.7$, skew steepens after down moves, FX cross-pair variation, single-stock idiosyncrasies), the quantitative measures (vol-spot beta $\approx -2$, skew-spot beta $\approx -0.4$, ATM-IV realized vol $\approx 3$-$5\%$), and the relevant time scales (intraday spot-vol correlation, days-to-weeks vol mean reversion, weeks-to-months skew normalization). The hedging consequences are developed in this section.
 
 ## Summary
 

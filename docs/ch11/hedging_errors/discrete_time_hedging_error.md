@@ -1,7 +1,9 @@
 # Discrete-Time Hedging Error
 
-
 Continuous-time delta hedging is an idealization. Discrete rebalancing introduces a random hedging error influenced by gamma.
+
+!!! tip "Toy mechanism: $(\Delta S)^2$ doesn't equal $\sigma^2 S^2\Delta t$ at finite resolution"
+    The mechanism is one line. Continuous-time Black–Scholes hedging works because $\langle S\rangle_t = \int_0^t \sigma^2 S_s^2\,ds$ exactly — the gamma term $\tfrac{1}{2}\Gamma(\delta S)^2$ matches the theta term $-\Theta\,\delta t$ on average. Discretise the time grid and the *pathwise* random variable $(\Delta S_k)^2$ replaces the *expected* quantity $\sigma^2 S_k^2\Delta t$. Their difference $(\Delta S_k)^2 - \sigma^2 S_k^2\Delta t$ has mean zero but nonzero variance — and that variance, multiplied by $\tfrac{1}{2}\Gamma$, *is* the per-step hedging error. Everything below — the gamma scaling, the $\sqrt{\Delta t}$ standard deviation, the cost–error tradeoff — comes from accumulating this single discrepancy across $N$ steps.
 
 ---
 
@@ -23,19 +25,7 @@ where $\Delta_k = \Delta(t_k, S_k)$ is the delta computed at rebalancing time.
 ## Hedging error: rigorous derivation
 
 
-The hedging error over $[t_k, t_{k+1}]$ is the difference between the option value change and the hedge portfolio change:
-
-$$
-\epsilon_k = (V_{k+1} - V_k) - (\Pi_{k+1} - \Pi_k)
-$$
-
-Using Taylor expansion of $V$ and ignoring discounting:
-
-$$
-V_{k+1} - V_k \approx \Delta_k(S_{k+1} - S_k) + \Theta_k \Delta t + \frac{1}{2}\Gamma_k(S_{k+1} - S_k)^2
-$$
-
-The hedge P&L is $\Delta_k(S_{k+1} - S_k)$, so:
+The hedging error over $[t_k, t_{k+1}]$ is $\epsilon_k = (V_{k+1} - V_k) - (\Pi_{k+1} - \Pi_k)$. Recall (see [§ Gamma Risk and Convexity Effects](gamma_risk_and_convexity_effects.md)): Taylor expanding $V$ and subtracting the hedge P&L $\Delta_k(S_{k+1}-S_k)$ leaves
 
 $$
 \boxed{\epsilon_k \approx \Theta_k \Delta t + \frac{1}{2}\Gamma_k(\Delta S_k)^2}
@@ -177,7 +167,7 @@ This path dependence is the source of "gamma risk" in practice.
 
 The analysis assumes correct model. In practice:
 
-- **Volatility misspecification**: Changes the drift of hedging error (see Section 6.6)
+- **Volatility misspecification**: Changes the drift of hedging error (see [§ Impact of Volatility Misspecification](impact_of_volatility_misspecification.md))
 - **Jump risk**: Causes large discrete errors that dominate diffusive terms
 - **Correlation breakdown**: Hedging error in multi-asset positions
 

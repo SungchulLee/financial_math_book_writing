@@ -37,7 +37,7 @@ admits a solution of the form $f(t,r) = A(\tau)\,e^{-B(\tau)\,r}$, and the funct
 
 ## Why Black-Karasinski is not affine
 
-The BK short rate dynamics (from Ito's lemma applied to $r_t = e^{x_t}$) are
+Recall (see [§ Log-Normal Short Rate SDE](log_normal_short_rate_sde.md)) the BK short rate dynamics
 
 $$
 dr_t = r_t\!\left[\theta(t) - a\ln r_t + \frac{1}{2}\sigma^2\right]dt + \sigma\,r_t\,dW_t

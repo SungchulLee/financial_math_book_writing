@@ -8,23 +8,7 @@ Monte Carlo methods are essential when closed-form pricing formulas are unavaila
 
 ### The exact transition
 
-The Vasicek short rate satisfies
-
-$$
-r_{t+\Delta t} \mid r_t \sim \mathcal{N}\!\left(\mu_{\Delta t}(r_t),\; v^2_{\Delta t}\right)
-$$
-
-where
-
-$$
-\mu_{\Delta t}(r_t) = \theta + (r_t - \theta)\,e^{-\kappa\Delta t}
-$$
-
-$$
-v^2_{\Delta t} = \frac{\sigma^2}{2\kappa}\!\left(1 - e^{-2\kappa\Delta t}\right)
-$$
-
-This follows directly from the explicit solution of the OU SDE. The transition is exact for any step size $\Delta t$---there is no discretization error.
+Recall (see [§ Explicit solution and distribution](explicit_solution_and_distribution.md)) the Gaussian transition $r_{t+\Delta t}\mid r_t \sim \mathcal{N}(\mu_{\Delta t}(r_t), v^2_{\Delta t})$ with $\mu_{\Delta t}(r_t) = \theta + (r_t-\theta)e^{-\kappa\Delta t}$ and $v^2_{\Delta t} = \tfrac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})$. This is exact for any $\Delta t$ — no discretization error.
 
 ### Simulation algorithm
 

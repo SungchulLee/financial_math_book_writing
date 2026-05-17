@@ -35,13 +35,7 @@ Let $H$ denote the constant **barrier level** and $K$ the strike price.
 | **Down-and-Out** | Knocked out if $\min_{0 \le t \le T} S_t \le H$ | $(S_T - K)^+ \cdot \mathbf{1}_{\{\min S_t > H\}}$ |
 | **Down-and-In** | Activated if $\min_{0 \le t \le T} S_t \le H$ | $(S_T - K)^+ \cdot \mathbf{1}_{\{\min S_t \le H\}}$ |
 
-**In–Out Parity.** For any barrier type, the in-version and out-version satisfy:
-
-$$
-C_{\text{In}} + C_{\text{Out}} = C_{\text{Vanilla}}
-$$
-
-This follows because the events $\{\text{barrier hit}\}$ and $\{\text{barrier not hit}\}$ partition the sample space.
+**In–Out Parity.** Recall (see [§ In–Out Parity](barrier_options.md#inout-parity)): $C_{\text{In}} + C_{\text{Out}} = C_{\text{Vanilla}}$.
 
 ---
 
@@ -107,38 +101,13 @@ $$
 
 ## Closed-Form via Reflection Principle
 
-For a **vanilla up-and-out call** with barrier $H > \max(S_0, K)$, a closed-form solution exists using the **image method** (also called the method of images), which is closely related to the reflection principle.
-
-### Formula
+Recall (see [§ Final Result](barrier_options_girsanov.md#final-result)): the image-method closed form is
 
 $$
-C_{\text{UO}}(S_0, K, H, T) = C_{\text{BS}}(S_0, K, T) - \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}\!\left( \frac{H^2}{S_0}, K, T \right)
+C_{\text{UO}}(S_0, K, H, T) = C_{\text{BS}}(S_0, K, T) - \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}\!\left( \frac{H^2}{S_0}, K, T \right),
 $$
 
-where:
-
-- $C_{\text{BS}}(S, K, T)$ is the standard Black–Scholes European call price,
-- $\lambda = \dfrac{r}{\sigma^2} + \dfrac{1}{2}$.
-
-### Derivation Sketch
-
-The idea proceeds in three steps:
-
-1. **Standard BS price** $C_{\text{BS}}$ prices all paths, including those that cross the barrier.
-
-2. **Image charge trick.** For each path that crosses the barrier $H$, the reflection principle associates a "mirror" path starting from $H^2 / S_0$. The probability weight of these reflected paths is captured by the second term.
-
-3. **The exponent** $2\lambda - 2$ arises from the Radon–Nikodym derivative that accounts for the drift when reflecting drifted Brownian motion.
-
-### Other Barrier Types
-
-Using **in–out parity**, the up-and-in call price is:
-
-$$
-C_{\text{UI}} = C_{\text{BS}} - C_{\text{UO}} = \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}\!\left( \frac{H^2}{S_0}, K, T \right)
-$$
-
-For **down-and-out** and **down-and-in** options (barrier $H < S_0$), analogous formulas exist with the running minimum replacing the maximum, and the joint density $f_{m_T, W_T}$ of $\left(\inf_{0 \le t \le T} W_t,\, W_T\right)$.
+with $\lambda = r/\sigma^2 + 1/2$ and exponent $2\lambda-2$ arising from the Girsanov correction. By in–out parity, $C_{\text{UI}} = (S_0/H)^{2\lambda-2} C_{\text{BS}}(H^2/S_0, K, T)$. For down-and-out/in (barrier $H<S_0$), analogous formulas use the running minimum and the joint density $f_{m_T, W_T}$.
 
 ---
 

@@ -6,13 +6,7 @@ The yield curve --- the function mapping maturity $\tau$ to the continuously com
 
 ## Yield from the bond price formula
 
-The continuously compounded zero-coupon yield for maturity $\tau = T - t$ is defined by
-
-$$
-R(t,T) = -\frac{\ln P(t,T)}{\tau}
-$$
-
-Substituting the CIR bond price $P(t,T) = A(\tau)e^{-B(\tau)r_t}$ gives
+Recall (see [§ Zero-Coupon Bond Pricing Under CIR](zero_coupon_bond_pricing.md)) $P(t,T) = A(\tau)e^{-B(\tau)r_t}$ with $\tau = T - t$. The continuously compounded zero-coupon yield is $R(t,T) = -\ln P(t,T)/\tau$, giving
 
 $$
 R(t,T) = -\frac{\ln A(\tau)}{\tau} + \frac{B(\tau)}{\tau}\,r_t

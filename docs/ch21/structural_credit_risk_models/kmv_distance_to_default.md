@@ -111,33 +111,13 @@ Typical values for investment-grade firms: $DD \in [4, 8]$. For speculative-grad
 
 ### The Two-Equation System
 
-The key calibration challenge is to extract the unobservable $(V_0, \sigma_V)$ from observable equity data. Two equations relate equity to asset quantities:
-
-**Equation 1 (Equity as a call option):**
+Recall (see [§ Calibration: Inferring Asset Parameters](firm_value_models_merton.md#calibration-inferring-asset-parameters)). With DP in place of $D$:
 
 $$
-E_0 = V_0 N(d_1) - \text{DP} \cdot e^{-rT} N(d_2)
+E_0 = V_0 N(d_1) - \text{DP}\,e^{-rT} N(d_2), \qquad \sigma_E = \frac{V_0 N(d_1)}{E_0}\,\sigma_V,
 $$
 
-where:
-
-$$
-d_1 = \frac{\ln(V_0/\text{DP}) + (r + \sigma_V^2/2)T}{\sigma_V\sqrt{T}}, \quad d_2 = d_1 - \sigma_V\sqrt{T}
-$$
-
-**Equation 2 (Volatility linkage via delta):**
-
-From Ito's lemma applied to $E = E(V, t)$:
-
-$$
-\sigma_E E_0 = \frac{\partial E}{\partial V} \sigma_V V_0 = N(d_1) \sigma_V V_0
-$$
-
-which gives:
-
-$$
-\sigma_E = \frac{V_0 N(d_1)}{E_0} \cdot \sigma_V
-$$
+where $d_1 = [\ln(V_0/\text{DP}) + (r+\sigma_V^2/2)T]/(\sigma_V\sqrt{T})$ and $d_2 = d_1 - \sigma_V\sqrt{T}$.
 
 ### Iterative Solution Algorithm
 

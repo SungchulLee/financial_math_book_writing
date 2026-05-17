@@ -282,15 +282,7 @@ Parseval's theorem can produce remarkable closed-form sums by choosing $f$ strat
 
 ## Connection to Financial Applications
 
-The Fourier series framework developed here is not merely classical analysis---it is the mathematical foundation for modern computational finance. The connection operates at three levels:
-
-1. **Density representation.** A risk-neutral density $f(x)$ on a truncated interval $[a, b]$ admits a Fourier series whose coefficients encode the distribution. Recovering these coefficients from the characteristic function is the central idea of the COS method.
-
-2. **Coefficient computation via characteristic function.** The complex Fourier coefficient $c_n$ involves $\int f(x) e^{-2\pi i n x / L}\, dx$, which is precisely the characteristic function $\phi$ evaluated at a specific frequency. This eliminates the need to know $f$ explicitly.
-
-3. **Parseval's theorem and error control.** The energy identity guarantees that truncating the Fourier series to $N$ terms captures all but $\sum_{|n|>N} |c_n|^2$ of the energy. When coefficients decay rapidly (as they do for smooth densities), few terms suffice for high accuracy.
-
-These connections are developed precisely in the sections on [Fourier Series of Probability Densities](fourier_series_of_densities.md) and [Cosine Coefficients via Characteristic Function](../cos_method/cosine_coefficients_via_cf.md).
+Recall (see [§ Fourier series of densities](fourier_series_of_densities.md) and [§ COS method](../cos_method/characteristic_function_to_density.md)): the complex Fourier coefficient $c_n = \frac{1}{L}\int f(x) e^{-2\pi i n x/L}\,dx$ is, when $f$ is a density on $[a,b]$, a sampled value of the characteristic function $\phi$, and Parseval bounds the truncation error by $\sum_{|n|>N}|c_n|^2$. These are the foundations of Fourier pricing.
 
 ---
 

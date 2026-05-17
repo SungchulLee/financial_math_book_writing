@@ -17,25 +17,7 @@ In the Black-Scholes model, Greeks have closed-form expressions involving the no
 
 ## The Gil-Pelaez Framework
 
-Recall that the European call price under Heston is:
-
-$$
-C = S_0 e^{-qT} P_1 - K e^{-rT} P_2
-$$
-
-where the exercise probabilities are:
-
-$$
-P_j = \frac{1}{2} + \frac{1}{\pi} \int_0^\infty \text{Re}\!\left[\frac{e^{-iu \ln K} \phi_j(u)}{iu}\right] du, \qquad j = 1, 2
-$$
-
-Here $\phi_1(u)$ is the characteristic function under the stock-numeraire measure $\mathbb{Q}^S$ and $\phi_2(u) = \phi(u)$ is the characteristic function under the money-market measure $\mathbb{Q}$. Both have the exponential-affine form:
-
-$$
-\phi(u) = \exp\!\left(C(\tau, u) + D(\tau, u) v_0 + iu \ln S_0\right)
-$$
-
-where $C$ and $D$ are the Riccati solutions depending on $\kappa, \theta, \xi, \rho$ but not on $S_0$ or $v_0$.
+Recall (see [§ Gil-Pelaez Inversion](../european_pricing/gil_pelaez_inversion.md) and [§ Closed-Form Characteristic Function](../heston_cf/closed_form_characteristic_function.md)): the European call price is $C = S_0 e^{-qT} P_1 - K e^{-rT} P_2$ with $P_j = \tfrac{1}{2} + \tfrac{1}{\pi}\int_0^\infty \mathrm{Re}\!\left[e^{-iu\ln K}\phi_j(u)/(iu)\right] du$, and the Heston characteristic function has the exponential-affine form $\phi(u) = \exp(C(\tau,u) + D(\tau,u)v_0 + iu\ln S_0)$ with Riccati coefficients $C, D$ depending on $\kappa,\theta,\xi,\rho$ but not on $S_0$ or $v_0$.
 
 ---
 

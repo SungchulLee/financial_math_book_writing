@@ -23,41 +23,9 @@ While the Vasicek SDE is elegant and intuitive, having explicit solutions and un
 
 ### Method: Integrating Factor
 
-The Vasicek SDE is:
-
-$$dr_t = \alpha(\theta - r_t)dt + \sigma dW_t$$
-
-This is a linear SDE with a known explicit solution. We can solve it using the integrating factor method.
-
-First, rewrite the equation in standard form:
-
-$$dr_t + \alpha r_t dt = \alpha\theta dt + \sigma dW_t$$
-
-The integrating factor is $e^{\alpha t}$. Multiply both sides:
-
-$$e^{\alpha t}dr_t + \alpha e^{\alpha t}r_t dt = \alpha\theta e^{\alpha t}dt + \sigma e^{\alpha t}dW_t$$
-
-The left side is $d(e^{\alpha t}r_t)$:
-
-$$d(e^{\alpha t}r_t) = \alpha\theta e^{\alpha t}dt + \sigma e^{\alpha t}dW_t$$
-
-Integrating from $0$ to $t$:
-
-$$e^{\alpha t}r_t - r_0 = \alpha\theta\int_0^t e^{\alpha s}ds + \sigma\int_0^t e^{\alpha s}dW_s$$
-
-The deterministic integral evaluates to:
-
-$$\int_0^t e^{\alpha s}ds = \frac{1}{\alpha}(e^{\alpha t} - 1)$$
-
-Therefore:
-
-$$e^{\alpha t}r_t = r_0 + \theta(e^{\alpha t} - 1) + \sigma\int_0^t e^{\alpha s}dW_s$$
-
-Solving for $r_t$:
+Recall (see [§ OU SDE general](../../ch03/sde/index.md)) the integrating factor method for linear SDEs. Applied to the Vasicek SDE $dr_t = \alpha(\theta - r_t)dt + \sigma dW_t$ with factor $e^{\alpha t}$, integration from $0$ to $t$ yields the **explicit solution**:
 
 $$\boxed{r_t = e^{-\alpha t}r_0 + \theta(1 - e^{-\alpha t}) + \sigma e^{-\alpha t}\int_0^t e^{\alpha s}dW_s}$$
-
-This is the **explicit solution** of the Vasicek SDE.
 
 ### Alternative Form
 

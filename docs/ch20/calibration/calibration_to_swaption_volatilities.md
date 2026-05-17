@@ -23,43 +23,17 @@ The **co-terminal** swaptions (along the anti-diagonal where $T_0 + \text{tenor}
 
 ## Hull-White Swaption Price via Jamshidian
 
-A European payer swaption with expiry $T_0$ on a swap with payment dates $T_1, \ldots, T_n$ and fixed rate $K$ has the payoff
+Recall (see [§ Hull-White Swaption Formula](../derivatives_pricing/swaption_formula.md) and [§ Jamshidian's Trick](../bond_options/jamshidian_trick.md)): a payer swaption with expiry $T_0$, payment dates $T_1,\dots,T_n$, and fixed rate $K$ decomposes — via Jamshidian's critical-rate construction — into a portfolio of Hull-White ZCB options,
 
 $$
-\max\!\left(\sum_{i=1}^{n} c_i\,P(T_0, T_i) - 1,\; 0\right)
+V_{\text{swaption}} = \sum_{i=1}^{n} c_i\,\text{Call}(0; T_0, T_i, K_i),
 $$
 
-where $c_i = K\delta_i$ for $i < n$ and $c_n = 1 + K\delta_n$.
-
-By Jamshidian's trick, since $P(T_0, T_i)$ is a decreasing function of $r_{T_0}$ in the Hull-White model, there exists a unique $r^*$ solving
-
-$$
-\sum_{i=1}^{n} c_i\,P(T_0, T_i; r^*) = 1
-$$
-
-The swaption decomposes into a portfolio of ZCB options:
-
-$$
-V_{\text{swaption}} = \sum_{i=1}^{n} c_i\,\text{Call}(0; T_0, T_i, K_i)
-$$
-
-where $K_i = P(T_0, T_i; r^*) = \exp(A(T_0, T_i) + B(T_0, T_i)\,r^*)$ and each call uses the Hull-White ZCB option formula.
+with $c_i=K\delta_i$ for $i<n$, $c_n=1+K\delta_n$, $K_i=\exp(A(T_0,T_i)+B(T_0,T_i)r^*)$, and $r^*$ solving $\sum_i c_i P(T_0,T_i;r^*)=1$.
 
 ## Hull-White Implied Swaption Volatility
 
-The model-implied Black swaption volatility $\sigma_S^{\text{HW}}$ is obtained by inverting Black's formula from the Hull-White swaption price:
-
-$$
-V_{\text{swaption}}^{\text{HW}} = A_{\text{mn}}(0)\left[S_0\,N(d_1) - K\,N(d_2)\right]
-$$
-
-where $A_{\text{mn}}(0) = \sum_{i=1}^{n} \delta_i\,P(0, T_i)$ is the annuity factor, $S_0$ is the forward swap rate, and
-
-$$
-d_{1,2} = \frac{\ln(S_0/K) \pm \frac{1}{2}(\sigma_S^{\text{HW}})^2 T_0}{\sigma_S^{\text{HW}}\sqrt{T_0}}
-$$
-
-An approximate closed-form expression for the Hull-White swaption volatility is
+The model-implied Black swaption volatility $\sigma_S^{\text{HW}}$ is obtained by inverting Black's swaption formula (see [§ Swap Market Model](../../ch18/interest_rate_products/bond_pricing.md)) from the Hull-White swaption price. An approximate closed-form expression for the Hull-White swaption volatility is
 
 $$
 (\sigma_S^{\text{HW}})^2 T_0 \approx \sum_{i=1}^{n} \sum_{j=1}^{n} w_i\,w_j\,\sigma^2\,B(T_0, T_i)\,B(T_0, T_j)\,\frac{1 - e^{-2\lambda T_0}}{2\lambda}

@@ -9,9 +9,7 @@ the risk-neutral measure $\mathbb{Q}$---is the most important conceptual
 boundary in quantitative finance. Confusing them leads to pricing errors,
 flawed risk estimates, and deep misunderstandings of what models actually say.
 
-This page establishes what each measure is, why they differ, and how
-Girsanov's theorem connects them. A worked example derives the Black--Scholes
-formula directly from $\mathbb{Q}$-dynamics.
+This page owns the conceptual boundary: what each measure is, why they differ, and how they relate. The algebraic mechanism that effects the change is developed in [§ Risk Premium Decomposition](risk_premium_decomposition.md); the pricing formula it makes possible is developed in [§ Risk-Neutral Valuation Principle](../risk_neutral/risk_neutral_valuation_principle.md).
 
 ---
 
@@ -55,32 +53,12 @@ actually evolve---it is a mathematical device engineered so that derivative
 prices can be computed as discounted expectations. Its construction is the
 central achievement of the no-arbitrage pricing theory.
 
-The defining property of $\mathbb{Q}$ is the **martingale condition**:
-discounted asset prices are martingales under $\mathbb{Q}$. For a stock $S_t$
-and money market account $B_t = e^{rt}$, this means
-
-$$
-\mathbb{E}^{\mathbb{Q}}\!\left[\frac{S_T}{B_T}\,\Big|\,\mathcal{F}_t\right] = \frac{S_t}{B_t}
-$$
-
-This condition has an immediate and powerful consequence. For any contingent
-claim with payoff $X_T$ at maturity $T$, the no-arbitrage price at time $0$
-is
-
-$$
-\boxed{V_0 = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-rT}X_T\right]}
-$$
-
-This is the **risk-neutral valuation formula**---the heart of Section 4. The
-proof follows from the martingale property: if the discounted value process
-$e^{-rt}V_t$ is a $\mathbb{Q}$-martingale, then evaluating at $t = 0$ gives
-
-$$
-V_0 = e^{-r \cdot 0}V_0 = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-rT}V_T\,|\,\mathcal{F}_0\right] = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-rT}X_T\right]
-$$
-
-since $V_T = X_T$ at maturity. The entire problem of pricing a derivative
-reduces to computing an integral under the right measure.
+Recall (see [§ Risk-Neutral Valuation Principle](../risk_neutral/risk_neutral_valuation_principle.md)):
+$\mathbb{Q}$ is defined by the martingale property
+$\mathbb{E}^{\mathbb{Q}}[S_T/B_T \mid \mathcal{F}_t] = S_t/B_t$, which yields the
+pricing formula $V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT}X_T]$ for any contingent
+claim. The entire problem of pricing a derivative reduces to computing an
+integral under the right measure.
 
 Under $\mathbb{Q}$, the stock dynamics become
 
@@ -104,16 +82,14 @@ measurable event $A$. The set of sample paths $\omega \in \Omega$ is the same
 under both measures---the stock can reach the same prices, follow the same
 trajectories, and produce the same extreme outcomes.
 
-What changes is the *weighting* of those paths. The Radon--Nikodym derivative
-
-$$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T = \exp\!\left(-\theta W_T^{\mathbb{P}} - \frac{1}{2}\theta^2 T\right)
-$$
-
-where $\theta = (\mu - r)/\sigma$ is the market price of risk, reweights
-each path $\omega$. Paths where the stock performs well (high $W_T^{\mathbb{P}}$
-values) are downweighted by $Z_T$; paths where the stock performs poorly are
-upweighted. The effect is precisely to remove the risk premium from the drift.
+What changes is the *weighting* of those paths. Recall (see
+[§ Girsanov's Theorem](../girsanov/girsanov_theorem.md#the-exponential-martingale)):
+the Radon--Nikodym derivative
+$Z_T = \exp(-\theta W_T^{\mathbb{P}} - \tfrac{1}{2}\theta^2 T)$ with
+$\theta = (\mu - r)/\sigma$ reweights each path: high-$W_T^{\mathbb{P}}$ paths
+(good outcomes) are downweighted, low-$W_T^{\mathbb{P}}$ paths (bad outcomes)
+are upweighted. The effect is precisely to remove the risk premium from the
+drift.
 
 !!! note "Equivalence is essential"
     If $\mathbb{Q}$ assigned zero probability to an event that $\mathbb{P}$
@@ -126,113 +102,7 @@ upweighted. The effect is precisely to remove the risk premium from the drift.
 
 ## Why Drift Disappears
 
-Readers familiar with
-[Girsanov's theorem](../girsanov/girsanov_theorem.md) will recognize the
-mechanism immediately; here is a short self-contained reminder of why the
-physical drift $\mu$ vanishes from derivative prices.
-
-Under $\mathbb{P}$, the stock satisfies
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
-$$
-
-The market price of risk is $\theta = (\mu - r)/\sigma$, and Girsanov's
-theorem defines a new Brownian motion under $\mathbb{Q}$:
-
-$$
-W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t
-$$
-
-Substituting $dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta\,dt$ into the
-stock dynamics:
-
-$$
-dS_t = \mu S_t\,dt + \sigma S_t\!\left(dW_t^{\mathbb{Q}} - \theta\,dt\right) = (\mu - \sigma\theta)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
-
-Since $\mu - \sigma\theta = \mu - (\mu - r) = r$, the $\mathbb{Q}$-dynamics
-are
-
-$$
-dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-$$
-
-The risk premium $\mu - r$ has been absorbed into the measure change. Two
-observations are worth emphasizing:
-
-1. **Volatility is unchanged.** The diffusion coefficient $\sigma$ is
-   identical under both measures. This is because quadratic variation is a
-   path-by-path property---it depends only on the realized trajectory, not on
-   the probability measure used to weight trajectories.
-
-2. **The physical drift $\mu$ is irrelevant for pricing.** It enters the
-   Radon--Nikodym derivative $Z_T$ but cancels out of any
-   $\mathbb{Q}$-expectation. Derivative prices depend on $r$, $\sigma$,
-   $S_0$, $K$, and $T$, but not on $\mu$.
-
-For the full decomposition $\mu = r + \sigma\theta$ and its financial
-interpretation, see
-[Risk Premium Decomposition](risk_premium_decomposition.md).
-
----
-
-## Example: European Call Pricing
-
-The risk-neutral valuation formula transforms derivative pricing into a
-calculation. Here we derive the Black--Scholes formula for a European call
-option with strike $K$ and maturity $T$, starting from the
-$\mathbb{Q}$-dynamics established above.
-
-**Step 1: Terminal stock price under $\mathbb{Q}$.**
-Applying Ito's lemma to $\ln S_t$ under $\mathbb{Q}$ gives
-
-$$
-S_T = S_0\exp\!\left[\left(r - \tfrac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}}\right]
-$$
-
-Since $W_T^{\mathbb{Q}} \sim N(0, T)$ under $\mathbb{Q}$, we can write
-$W_T^{\mathbb{Q}} = \sqrt{T}\,Z$ where $Z \sim N(0,1)$.
-
-**Step 2: Apply the pricing formula.**
-The call price is
-
-$$
-C_0 = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-rT}(S_T - K)^+\right]
-$$
-
-The payoff $(S_T - K)^+$ is positive when $S_T > K$, i.e., when
-
-$$
-Z > -\frac{\ln(S_0/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}} = -d_2
-$$
-
-where we define
-
-$$
-d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}, \qquad d_2 = d_1 - \sigma\sqrt{T}
-$$
-
-**Step 3: Evaluate the expectation.**
-Splitting the expectation and completing the square (the standard Gaussian
-integral calculation) yields the **Black--Scholes formula**:
-
-$$
-\boxed{C_0 = S_0\,N(d_1) - Ke^{-rT}N(d_2)}
-$$
-
-where $N(\cdot)$ is the standard normal CDF.
-
-The formula depends on five inputs---$S_0$, $K$, $T$, $r$, $\sigma$---but
-not on the physical drift $\mu$. This is the signature of risk-neutral
-pricing: the measure change has absorbed all information about expected
-returns into $\mathbb{Q}$, and the resulting price depends only on
-volatility and the risk-free rate.
-
-!!! tip "Consistency check"
-    Setting $K = 0$ in the formula gives $C_0 = S_0$ (since $N(d_1) \to 1$
-    and $Ke^{-rT}N(d_2) \to 0$), confirming that the model correctly prices
-    the stock itself.
+The conceptual takeaway is simple: the physical drift $\mu$ enters the Radon--Nikodym derivative but cancels out of every $\mathbb{Q}$-expectation, so derivative prices depend on $r$, $\sigma$, $S_0$, $K$, and $T$---never on $\mu$. The algebraic mechanism by which the risk premium $\mu - r$ is absorbed into the measure change is developed in [§ Risk Premium Decomposition](risk_premium_decomposition.md), and the pricing formula that uses these $\mathbb{Q}$-dynamics is developed in [§ Risk-Neutral Valuation Principle](../risk_neutral/risk_neutral_valuation_principle.md).
 
 ---
 

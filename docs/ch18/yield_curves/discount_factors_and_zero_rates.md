@@ -162,17 +162,7 @@ $$
 
 ## Short Rate Connection
 
-Under the risk-neutral measure $\mathbb{Q}$, if $r_t$ denotes the instantaneous short rate, then:
-
-$$
-P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s \, ds} \,\bigg|\, \mathcal{F}_t\right]
-$$
-
-This fundamental relationship:
-
-- Links observable bond prices to the stochastic short rate
-- Forms the basis of short-rate modeling (Section 10.2)
-- Reduces to $P(0,T) = e^{-\int_0^T r(s)ds}$ when rates are deterministic
+Recall (see [§ General Short-Rate Framework](../short_rate_models/general_short_rate_framework.md)): under the risk-neutral measure $\mathbb{Q}$, the bond price is $P(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T r_s\,ds} \mid \mathcal{F}_t]$, which links observable bond prices to the stochastic short rate and reduces to $e^{-\int_0^T r(s)\,ds}$ for deterministic rates.
 
 ---
 

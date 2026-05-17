@@ -29,38 +29,17 @@ These constraints force $u$ to satisfy a specific PDE.
 
 ### A Simple Example
 
-For Brownian motion $X_t = W_t$ with $g(x) = x^2$:
-
-$$u(t, x) = \mathbb{E}[(x + W_t)^2] = x^2 + t$$
-
-This function satisfies the heat equation:
-
-$$\frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2}$$
-
-The connection is not coincidental—it's structural.
+The cleanest instance is Brownian motion: the expectation $\mathbb{E}[(x + W_t)^2]$ satisfies the heat equation $\partial_t u = \tfrac12 \partial_{xx} u$. This is the canonical case — the structural connection becomes visible there and is developed in detail in [§ Heat Equation and Brownian Motion](../heat_equation/heat_equation_and_brownian_motion.md). Everything in the rest of this chapter generalizes that one example to arbitrary drift and diffusion coefficients.
 
 ---
 
 ## The Generator: Foundation of Everything
 
-For the diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the **infinitesimal generator** is:
+Recall (see [§ Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md)): for $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator $\mathcal{L} = \mu(x)\partial_x + \tfrac{1}{2}\sigma^2(x)\partial_{xx}$ acts as the infinitesimal expected rate of change, $(\mathcal{L}f)(x) = \lim_{t\downarrow 0}\frac{\mathbb{E}_x[f(X_t)] - f(x)}{t}$, and uniquely characterises the process in law.
 
 $$\boxed{\mathcal{L} = \mu(x)\frac{\partial}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2}{\partial x^2}}$$
 
-The generator captures:
-
-- **First-order term** $\mu(x)\partial_x$: the deterministic drift
-- **Second-order term** $\frac{\sigma^2(x)}{2}\partial_{xx}$: the random fluctuations
-
-It **uniquely characterizes** the process in law (via the martingale problem).
-
-### What the Generator Tells Us
-
-For any smooth function $f$:
-
-$$(\mathcal{L}f)(x) = \lim_{t \downarrow 0} \frac{\mathbb{E}_x[f(X_t)] - f(x)}{t}$$
-
-This is the **instantaneous expected rate of change** of $f(X_t)$ when starting from $x$.
+The first-order term $\mu\partial_x$ is the deterministic drift; the second-order term $\tfrac12\sigma^2\partial_{xx}$ is the random fluctuation — these are exactly the building blocks of every PDE in the hierarchy below.
 
 ---
 
@@ -268,11 +247,7 @@ This is a deep fact: the same object satisfies two different PDEs in different v
 
 ### Finance: Option Pricing
 
-The Black–Scholes PDE is exactly the Feynman–Kac equation for geometric Brownian motion with constant discounting:
-
-$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} = rV$$
-
-**Key insight**: Pricing = solving a PDE = computing an expectation under the risk-neutral measure. See [Why PDEs in Finance](why_pdes_in_finance.md) for the financial interpretation, derivation via hedging, and numerical methods.
+Specializing Feynman–Kac to geometric Brownian motion with constant discounting yields the Black–Scholes PDE — pricing reduces to solving a PDE, or equivalently to computing a risk-neutral expectation. See [§ Why PDEs in Finance](why_pdes_in_finance.md) for the full PDE, hedging derivation, and numerical methods.
 
 ### Physics: Heat Conduction and Diffusion
 

@@ -4,6 +4,9 @@ In many stochastic differential equations the full probability distribution of t
 
 For Gaussian processes such as Brownian motion and the Ornstein–Uhlenbeck process, the distribution is fully determined by the first two moments. For nonlinear diffusion models such as geometric Brownian motion and the CIR process, higher moments reveal how multiplicative or state-dependent noise affects skewness, tail behavior, and long-run variability.
 
+!!! tip "Toy mechanism: take expectation through the SDE"
+    The cleanest moment computation is one line. For $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, take expectations on both sides; the Itô integral $\int_0^t \sigma\,dW_s$ has mean zero (a true martingale, under integrability), so $\mathbb{E}[X_t] = X_0 + \int_0^t \mathbb{E}[b(X_s)]\,ds$. When $b$ is linear in $X$, this collapses to an ODE for $m(t) = \mathbb{E}[X_t]$; for the OU process $b(x) = a(\theta - x)$, the ODE $\dot m = a(\theta - m)$ has solution $m(t) = X_0 e^{-at} + \theta(1 - e^{-at})$ — that is the entire mean computation, no stochastic calculus needed. The same trick applied to $X_t^2$ via Itô's lemma extracts the variance, and so on. Everything below is variations on "apply Itô to a power and take the expectation."
+
 The models in this section illustrate three fundamental types of stochastic behavior: **pure diffusion** (Brownian motion), **multiplicative noise** (geometric Brownian motion), and **mean reversion** (Vasicek and CIR). For each model we develop moment formulas using three main techniques: direct computation from explicit solutions, Itô's lemma applied to powers, and moment ODEs derived from the infinitesimal generator.
 
 !!! abstract "Learning Goals"
@@ -414,7 +417,7 @@ Examples in this chapter: Brownian motion and BM with drift use Gaussian moments
 
 ### Method 2 — Itô's Lemma Applied to Powers
 
-To find $\mathbb{E}[X_t^n]$, apply Itô's lemma to $f(x) = x^n$:
+Recall (see [§ Itô's Lemma](../ito_lemma/ito_lemma.md)): to find $\mathbb{E}[X_t^n]$, apply Itô's lemma to $f(x) = x^n$:
 
 $$
 d(X_t^n) = nX_t^{n-1}\,dX_t + \frac{n(n-1)}{2}X_t^{n-2}(dX_t)^2
@@ -426,13 +429,13 @@ Example in this chapter: in the CIR model, applying Itô's lemma to $r_t^2$ prod
 
 ### Method 3 — Moment ODEs from the Infinitesimal Generator
 
-For an SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, the infinitesimal generator is
+Recall (see [§ The Infinitesimal Generator](../infinitesimal_generator/infinitesimal_generator.md) and [§ Dynkin's Formula](../infinitesimal_generator/dynkin_formula.md)): for an SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator is
 
 $$
 \mathcal{L} = b(x)\frac{\partial}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2}{\partial x^2}
 $$
 
-The evolution of expectations is governed by
+and the evolution of expectations is governed by
 
 $$
 \frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}[\mathcal{L}f(X_t)]

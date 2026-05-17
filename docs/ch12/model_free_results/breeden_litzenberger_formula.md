@@ -413,16 +413,7 @@ $$
 ### 2. Model-Free Implied Volatility
 
 
-The Breeden-Litzenberger density can be used to define a **model-free implied variance**:
-
-
-$$
-\sigma_{\text{MF}}^2 = \frac{2e^{rT}}{T} \int_0^\infty \frac{C(K) - \max(S_0 e^{-qT} - K e^{-rT}, 0)}{K^2} dK
-$$
-
-
-
-This integral of option prices across all strikes provides a volatility estimate independent of Black-Scholes.
+Recall (see [§ VIX Formula Derivation](vix_formula_derivation.md)): the Breeden-Litzenberger density underlies the **model-free implied variance** $\sigma_{\text{MF}}^2 = (2e^{rT}/T)\int_0^\infty Q(K)/K^2\,dK$ (variance-swap / VIX integral), giving a volatility estimate independent of Black-Scholes.
 
 ### 3. Testing Model Assumptions
 

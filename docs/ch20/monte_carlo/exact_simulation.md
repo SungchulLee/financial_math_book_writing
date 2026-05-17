@@ -4,13 +4,13 @@ Monte Carlo simulation of the Hull-White short rate requires generating values o
 
 ## The Exact Transition Distribution
 
-Recall the Hull-White short rate solution: for $s \ge t$,
+Recall (see [§ Hull-White Short Rate](../short_rate/short_rate_solution.md)): for $s \ge t$,
 
 $$
 r(s) = r(t)\,e^{-\lambda(s-t)} + \alpha(s) - \alpha(t)\,e^{-\lambda(s-t)} + \sigma\int_t^s e^{-\lambda(s-u)}\,dW^{\mathbb{Q}}(u)
 $$
 
-where $\alpha(s) = f^M(0,s) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda s})^2$. The stochastic integral is Gaussian with zero mean and known variance. Setting $s = t + \Delta t$:
+with $\alpha(s) = f^M(0,s) + \frac{\sigma^2}{2\lambda^2}(1 - e^{-\lambda s})^2$. The stochastic integral is Gaussian with zero mean and known variance. Setting $s = t + \Delta t$:
 
 !!! info "Theorem: Exact Simulation Formula"
     The short rate at time $t + \Delta t$ conditional on $r(t)$ is
@@ -46,24 +46,13 @@ r(t)\,e^{-\lambda\Delta t} + \alpha(t + \Delta t) - \alpha(t)\,e^{-\lambda\Delta
 
 ???+ note "Proof"
 
-    From the general solution of the Hull-White SDE using the integrating factor $e^{\lambda t}$:
-
-    $$\begin{array}{lllll}
-    \displaystyle
-    r(t + \Delta t)
-    &=&\displaystyle
-    r(t)\,e^{-\lambda\Delta t} + \lambda\int_t^{t+\Delta t} \theta^{\mathbb{Q}}(s)\,e^{-\lambda(t+\Delta t - s)}\,ds + \sigma\int_t^{t+\Delta t} e^{-\lambda(t+\Delta t - s)}\,dW^{\mathbb{Q}}(s)
-    \end{array}$$
-
-    The deterministic integral evaluates to $\alpha(t + \Delta t) - \alpha(t)e^{-\lambda\Delta t}$ using the identity $\alpha(s) = f^M(0,s) + \frac{\sigma^2}{2\lambda^2}(1-e^{-\lambda s})^2$ and the relation $\lambda\int_t^s \theta^{\mathbb{Q}}(u)e^{-\lambda(s-u)}du = \alpha(s) - \alpha(t)e^{-\lambda(s-t)}$.
-
-    The stochastic integral has variance
+    Recall (see [§ Hull-White Short Rate](../short_rate/short_rate_solution.md)) the integrating-factor solution gives
 
     $$
-    \sigma^2\int_t^{t+\Delta t} e^{-2\lambda(t+\Delta t - s)}\,ds = \frac{\sigma^2}{2\lambda}\left(1 - e^{-2\lambda\Delta t}\right)
+    r(t + \Delta t) = r(t)\,e^{-\lambda\Delta t} + \lambda\int_t^{t+\Delta t}\!\theta^{\mathbb{Q}}(s)e^{-\lambda(t+\Delta t - s)}ds + \sigma\!\int_t^{t+\Delta t}\!e^{-\lambda(t+\Delta t - s)}dW^{\mathbb{Q}}(s)
     $$
 
-    by the Ito isometry. Since the integrand is deterministic, the stochastic integral is Gaussian, giving the stated transition distribution. $\square$
+    The deterministic integral equals $\alpha(t + \Delta t) - \alpha(t)e^{-\lambda\Delta t}$. By Ito isometry, the stochastic integral has variance $\frac{\sigma^2}{2\lambda}(1 - e^{-2\lambda\Delta t})$ and is Gaussian since the integrand is deterministic. $\square$
 
 ## The x(t) Decomposition for Simulation
 
@@ -80,7 +69,7 @@ The short rate is then recovered as $r(t + \Delta t) = x(t + \Delta t) + \alpha(
 
 ## Comparison with Euler Discretization
 
-The Euler-Maruyama discretization of $dr = \lambda(\theta^{\mathbb{Q}}(t) - r)\,dt + \sigma\,dW$ reads
+Recall (see [§ SDE Simulation](../../ch03/sde/sde_simulation.md)) the Euler-Maruyama discretization of $dr = \lambda(\theta^{\mathbb{Q}}(t) - r)\,dt + \sigma\,dW$:
 
 $$
 r(t + \Delta t) \approx r(t) + \lambda\!\left(\theta^{\mathbb{Q}}(t) - r(t)\right)\Delta t + \sigma\sqrt{\Delta t}\;Z

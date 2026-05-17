@@ -2,6 +2,9 @@
 
 When a trading book contains options on multiple underlyings, the risk management problem becomes genuinely multi-dimensional. **Cross-Greeks** --- sensitivities involving more than one underlying --- capture correlation-driven risks that are invisible to single-asset analysis. This section develops the framework for portfolio-level hedging with emphasis on the **cross-gamma** matrix and its implications for hedging error.
 
+!!! tip "Toy mechanism: a single Taylor expansion in $d$ variables"
+    Everything below comes from one expansion. Replace the scalar $\delta C \approx \Delta\,\delta S + \tfrac{1}{2}\Gamma(\delta S)^2$ with its multi-asset analogue $\delta\Pi \approx \Delta^T\,\delta S + \tfrac{1}{2}\delta S^T\,\Gamma\,\delta S$, where $\Delta \in \mathbb{R}^d$ and $\Gamma \in \mathbb{R}^{d \times d}$. The off-diagonal entries $\Gamma_{ij}$ are the cross-gammas; they fire only when assets $i$ and $j$ move *together*, which is precisely what correlation does. A two-asset toy: if asset $i$ and $j$ are perfectly correlated ($\rho = 1$), a one-dollar move in $i$ is also a one-dollar move in $j$, so the cross-gamma $\Gamma_{ij}\,\delta S_i\,\delta S_j$ contributes the *same sign* as the diagonal entries — and a delta-hedge on each asset *individually* misses it. The matrix machinery below is one bookkeeping device for tracking all $d^2$ such interactions at once.
+
 ---
 
 ## Multi-Asset Sensitivity Framework
@@ -79,13 +82,7 @@ where $C(B)$ is the call price as a function of the basket level. Since $\frac{\
 
 ### The Multi-Asset Delta Hedge
 
-To delta-hedge the portfolio, hold $-\Delta_i$ shares of asset $i$ for each $i = 1, \ldots, d$. The hedged portfolio is:
-
-$$
-\Pi_{\text{hedged}} = \Pi - \sum_{i=1}^d \Delta_i S_i
-$$
-
-The residual P&L after delta hedging is:
+Recall (see [§ Delta Hedging](delta_hedging.md)): to delta-hedge, hold $-\Delta_i$ shares of asset $i$ for each $i = 1, \ldots, d$, giving $\Pi_{\text{hedged}} = \Pi - \sum_{i} \Delta_i S_i$. The residual P&L after delta hedging is:
 
 $$
 \delta\Pi_{\text{hedged}} \approx \Theta\,\delta t + \frac{1}{2}\,\delta\mathbf{S}^T \boldsymbol{\Gamma}\,\delta\mathbf{S}

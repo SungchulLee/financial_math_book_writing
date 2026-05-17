@@ -27,6 +27,26 @@ at time $t < T$.
 
 ---
 
+## A Toy: The Backward ODE for Discounting
+
+Before introducing diffusion and operators, consider the simplest object that already contains the killing term: a deterministic, state-free value $V(t)$ representing the present value of a fixed cash flow $c$ paid at $T$. The PV formula above gives $V(t) = c\,e^{-r(T-t)}$. Differentiating in $t$:
+
+$$
+\frac{dV}{dt} = r\,c\,e^{-r(T-t)} = rV
+$$
+
+so $V$ satisfies the backward ODE
+
+$$
+\frac{dV}{dt} - rV = 0, \quad V(T) = c
+$$
+
+This one-line equation already exhibits the entire mechanism: stepping backward by $dt$ shrinks the value by the factor $1 - r\,dt$, and accumulating these infinitesimal shrinkages over $[t, T]$ produces the discount factor $e^{-r(T-t)}$. The $-rV$ term *is* discounting in differential form.
+
+The pricing PDE in the next section replaces $dV/dt$ alone with $V_t + \mathcal{L}V$ to handle a stochastic state, but the $-rV$ term retains its meaning unchanged. Every subsequent reinterpretation — Feynman-Kac discount factor, killed-process survival probability, credit-risk default intensity — is a restatement of this one-line mechanism in a richer setting.
+
+---
+
 ## The Pricing PDE with Discounting
 
 Under the risk-neutral measure, discounted asset prices are martingales. Imposing that the discounted option price $e^{-rt}V(t, S_t)$ is also a martingale and applying Itô's lemma, one finds that the drift of $e^{-rt}V$ vanishes if and only if $V$ satisfies the following PDE.
@@ -55,13 +75,7 @@ so the pricing PDE becomes the familiar $V_t + rSV_S + \frac{1}{2}\sigma^2 S^2 V
 
 ### Feynman-Kac Representation
 
-The solution is:
-
-$$
-V(t,x) = \mathbb{E}\left[e^{-r(T-t)}\Phi(X_T) \mid X_t = x\right]
-$$
-
-The exponential discount factor appears naturally from the killing term.
+Recall (see [§ Feynman-Kac formula](../../ch05/feynman_kac/feynman_kac_formula.md)): the PDE solution is $V(t,x) = \mathbb{E}\!\left[e^{-r(T-t)}\Phi(X_T) \mid X_t = x\right]$ — the exponential discount factor is precisely the killing term in integrated form.
 
 ### Martingale Formulation
 
@@ -266,7 +280,7 @@ $$
 | $r$ | Risk-free rate / killing rate |
 | $r(x)$ | State-dependent discounting |
 
-**The killing term transforms the backward Kolmogorov equation into a pricing equation, encoding the time value of money in the PDE structure.**
+**The killing term transforms the backward Kolmogorov equation into a pricing equation, expressing the time value of money in the PDE structure.**
 
 ---
 
@@ -432,3 +446,35 @@ $$
     $$
 
     Here $e^{-\lambda(T-t)}$ is the survival probability (probability the issuer does not default before $T$), and $e^{-r(T-t)}$ is the discount factor. Being "killed" financially means the **issuer defaults**, rendering the derivative worthless (assuming zero recovery). For nonzero recovery rate $R$, the payoff upon killing is $R \cdot V$ rather than zero, and the PDE includes an additional source term $\lambda R V$, modifying the effective killing rate to $r + \lambda(1-R)$.
+
+---
+**Exercise 6.** Let $M_s = e^{-r(s-t)}V(s,X_s)$ be the discounted value process. Using Itô's lemma, show directly that $M_s$ is a local martingale if and only if $V$ satisfies the pricing PDE $V_t + \mathcal{L}V - rV = 0$. Explain how this equivalence justifies the term "killing" for the $-rV$ contribution.
+
+??? success "Solution to Exercise 6"
+    Apply Itô's lemma to $M_s = e^{-r(s-t)}V(s, X_s)$, treating $s$ as the time variable. The product rule combined with Itô gives:
+
+    $$
+    dM_s = -r e^{-r(s-t)} V\, ds + e^{-r(s-t)}\, dV(s, X_s)
+    $$
+
+    For a diffusion $dX_s = b(X_s)\,ds + \sigma(X_s)\,dW_s$, Itô's lemma applied to $V(s, X_s)$ yields:
+
+    $$
+    dV = \left(\frac{\partial V}{\partial s} + \mathcal{L}V\right) ds + \sigma(X_s)\frac{\partial V}{\partial x}\, dW_s
+    $$
+
+    Combining the two expressions:
+
+    $$
+    dM_s = e^{-r(s-t)}\left[\left(\frac{\partial V}{\partial s} + \mathcal{L}V - rV\right) ds + \sigma(X_s)\frac{\partial V}{\partial x}\, dW_s\right]
+    $$
+
+    The process $M_s$ has zero drift (i.e., is a local martingale) if and only if the $ds$ coefficient vanishes:
+
+    $$
+    \frac{\partial V}{\partial s} + \mathcal{L}V - rV = 0
+    $$
+
+    which is exactly the pricing PDE.
+
+    **Connection to "killing"**: The factor $e^{-r(s-t)}$ is the survival probability of an independent exponential random variable $\zeta \sim \text{Exp}(r)$ up to time $s$. Conditioning the value process on survival, $M_s = \mathbb{P}(\zeta > s - t)\cdot V(s,X_s)$, is the martingale we want. The $-rV$ term in the PDE is precisely the infinitesimal drift contribution from this random killing: at rate $r\,ds$, the contract is "killed" and the value drops to zero, contributing $-rV\,ds$ to $dM_s$. Killing the process is therefore mathematically equivalent to discounting it.

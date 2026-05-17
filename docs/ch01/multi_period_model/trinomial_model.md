@@ -35,13 +35,7 @@ The trinomial model thus serves a dual pedagogical purpose:
 
 We work on a single period $t \in \{0, \Delta t\}$ with two traded assets.
 
-**Risk-free asset (bank account).** Starting from $B_0 = 1$, the bank account grows deterministically:
-
-$$
-B_{\Delta t} = e^{r \Delta t}
-$$
-
-where $r \geq 0$ is the continuously compounded risk-free rate.
+Recall (see [§ Binomial Model — Setup](../binomial_model/binomial_model.md)): the bank account $B_{\Delta t} = e^{r\Delta t}$ with $r \geq 0$ the continuously compounded risk-free rate. The novelty here is in the stock dynamics.
 
 **Risky asset (stock).** Starting from $S_0 > 0$, the stock price at time $\Delta t$ takes one of **three** values:
 
@@ -73,19 +67,7 @@ The filtration is $\mathcal{F}_0 = \{\emptyset, \Omega\}$ (no information at tim
 
 ## No-Arbitrage Condition
 
-### Portfolios
-
-A portfolio $(\Delta, \beta)$ consists of $\Delta$ shares of stock and $\beta$ units of the bank account. Its value at each time is:
-
-$$
-V_0 = \Delta \, S_0 + \beta, \qquad V_{\Delta t} = \Delta \, S_{\Delta t} + \beta \, e^{r \Delta t}
-$$
-
-An **arbitrage** is a portfolio with $V_0 \leq 0$, $V_{\Delta t} \geq 0$ in all states, and $V_{\Delta t} > 0$ in at least one state.
-
-### Derivation
-
-By the same argument as in the [binomial model](../binomial_model/binomial_model.md) — short the stock if $e^{r\Delta t} \ge u$, go long if $e^{r\Delta t} \le d$ — arbitrage exists unless the risk-free return lies strictly between the extreme stock returns. The middle factor $m$ does not appear: only the extremes matter.
+Recall (see [§ Binomial Model — No-Arbitrage Condition](../binomial_model/binomial_model.md#no-arbitrage-condition)) the definition of arbitrage (a portfolio with $V_0 \leq 0$, $V_{\Delta t} \geq 0$ in every state, and $V_{\Delta t} > 0$ in at least one state) and the shorting argument. The same argument applies here: short the stock if $e^{r\Delta t} \geq u$, go long if $e^{r\Delta t} \leq d$. The middle factor $m$ never enters — only the extremes can dominate the bond.
 
 !!! success "No-Arbitrage Condition (Trinomial Model)"
     The one-period trinomial market is arbitrage-free if and only if:
@@ -94,10 +76,7 @@ By the same argument as in the [binomial model](../binomial_model/binomial_model
     \boxed{d < e^{r \Delta t} < u}
     $$
 
-    **Interpretation:** Exactly as in the binomial case, the risk-free return must lie strictly between the worst and best possible stock returns. The middle factor $m$ does not appear in the condition---it is the extreme states that determine whether arbitrage exists.
-
-!!! tip "Why $m$ Does Not Matter"
-    The no-arbitrage condition depends only on $d$ and $u$ because a portfolio that exploits a deterministic dominance of one asset over another must do so in *every* state. Only the extremes $d$ and $u$ are relevant for bounding the risk-free rate.
+    The condition is identical in form to the binomial case; the middle factor $m$ plays no role, because a deterministic dominance must hold in *every* state and only the extremes $d, u$ can violate this.
 
 ---
 
@@ -105,17 +84,7 @@ By the same argument as in the [binomial model](../binomial_model/binomial_model
 
 ### The Martingale Condition
 
-A probability measure $\mathbb{Q}$ on $\Omega = \{\omega_u, \omega_m, \omega_d\}$ is a **risk-neutral measure** (equivalent martingale measure) if:
-
-1. **Equivalence:** $\mathbb{Q}(\omega) > 0$ for every $\omega \in \Omega$, i.e., $q_u, q_m, q_d > 0$
-2. **Normalization:** $q_u + q_m + q_d = 1$
-3. **Martingale property:** The discounted stock price is a $\mathbb{Q}$-martingale:
-
-$$
-S_0 = e^{-r \Delta t} \, \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}]
-$$
-
-Expanding the expectation and dividing by $S_0$:
+Recall (see [§ Risk-Neutral Measure](../binomial_model/risk_neutral_measure.md)): a **risk-neutral measure** (equivalent martingale measure) is a measure $\mathbb{Q}$ that is equivalent to $\mathbb{P}$ (assigns positive mass to every state) and under which the discounted stock price is a martingale, $S_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}]$. Specialized to $\Omega = \{\omega_u, \omega_m, \omega_d\}$ with masses $(q_u, q_m, q_d)$, the three defining conditions become $q_u, q_m, q_d > 0$, $q_u + q_m + q_d = 1$, and:
 
 $$
 e^{r \Delta t} = q_u \, u + q_m \, m + q_d \, d
@@ -178,7 +147,7 @@ The martingale condition defines a **plane** (actually a line, after intersectin
 
 ### Replication Failure
 
-In the binomial model, any contingent claim $H = (H_u, H_d)$ can be replicated by choosing $(\Delta, \beta)$ to solve two equations in two unknowns. In the trinomial model, replication requires:
+Recall (see [§ Replicating Portfolio](../binomial_model/replicating_portfolio.md)) that in the binomial model any claim $H = (H_u, H_d)$ is replicable because two unknowns $(\Delta, \beta)$ solve a $2\times 2$ system. In the trinomial model the system becomes $3 \times 2$:
 
 $$
 \Delta \, u \, S_0 + \beta \, e^{r \Delta t} = H_u
@@ -209,16 +178,12 @@ Claims that fail this condition---such as a generic European call option---canno
 
 ### Connection to the Second Fundamental Theorem
 
-The First FTAP states: *no-arbitrage if and only if there exists at least one risk-neutral measure*. The **Second FTAP** adds:
-
-> The market is complete if and only if the risk-neutral measure is **unique**.
+Recall (see [§ FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md)): First FTAP — no-arbitrage iff a risk-neutral measure exists; Second FTAP (see [§ Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md)) — completeness iff that measure is unique.
 
 In the trinomial model:
 
 - Risk-neutral measures exist (by no-arbitrage), so the First FTAP is satisfied
 - Multiple risk-neutral measures exist, so by the Second FTAP, the market is **incomplete**
-
-This connection is developed rigorously in [Complete Markets and Uniqueness](../fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md).
 
 !!! tip "Completing the Market"
     To make the trinomial market complete, one could introduce a **third** traded asset (e.g., an option on the stock). With three assets and three states, the payoff matrix becomes $3 \times 3$ and generically invertible, restoring uniqueness of the risk-neutral measure. This is a common strategy in practice: liquid options serve as additional hedging instruments.

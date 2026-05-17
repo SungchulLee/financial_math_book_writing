@@ -6,21 +6,7 @@ Pricing interest rate derivatives under the risk-neutral measure $\mathbb{Q}$ re
 
 ## Motivation: why change the numeraire
 
-Under the risk-neutral measure $\mathbb{Q}$ with the money market account $B_t = e^{\int_0^t r_s\,ds}$ as numeraire, the price of a derivative with payoff $g(r_T)$ at time $T$ is
-
-$$
-V(t) = \mathbb{E}^{\mathbb{Q}}_t\!\left[e^{-\int_t^T r_s\,ds}\,g(r_T)\right]
-$$
-
-The difficulty is that the discount factor $e^{-\int_t^T r_s\,ds}$ is stochastic and correlated with $g(r_T)$, so $\mathbb{E}^{\mathbb{Q}}[e^{-\int r_s\,ds}\,g(r_T)] \neq \mathbb{E}^{\mathbb{Q}}[e^{-\int r_s\,ds}]\,\mathbb{E}^{\mathbb{Q}}[g(r_T)]$.
-
-The $T$-forward measure uses the zero-coupon bond $P(t,T)$ as numeraire instead. By the general change-of-numeraire theorem, for any two numeraires $N^{(1)}_t$ and $N^{(2)}_t$, the price ratios $V_t/N^{(i)}_t$ are martingales under the corresponding measures. Switching from $B_t$ to $P(t,T)$ yields
-
-$$
-V(t) = P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}_t\!\left[g(r_T)\right]
-$$
-
-The discount factor has been replaced by the known quantity $P(t,T)$, and the expectation is now over $g(r_T)$ alone.
+Recall (see [§ General SR framework](../short_rate_models/affine_term_structure.md)) the standard motivation: under $\mathbb{Q}$ with money-market numeraire $B_t$, derivative prices $V(t) = \mathbb{E}^{\mathbb{Q}}_t[e^{-\int_t^T r_s\,ds}g(r_T)]$ entangle the stochastic discount factor with the payoff. Switching to the bond numeraire $P(t,T)$ yields $V(t) = P(t,T)\mathbb{E}^{\mathbb{Q}^T}_t[g(r_T)]$.
 
 ---
 

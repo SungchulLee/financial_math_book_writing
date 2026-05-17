@@ -1,6 +1,6 @@
 # CFL Condition and Time Step Restrictions
 
-The Courant-Friedrichs-Lewy (CFL) condition provides a necessary stability constraint for explicit finite difference schemes. For option pricing, it dictates how small the time step must be relative to the spatial grid, and understanding it is essential for efficient numerical implementation.
+An explicit scheme can only see a few neighboring nodes when computing the next time level. If the true PDE propagates information faster than that stencil can reach -- a characteristic crosses more than one cell per time step, or diffusion spreads beyond the three-point window -- the scheme is computing the next value from the wrong source points, and errors compound exponentially. The **CFL condition** is the precise inequality ($c\Delta t\le\Delta x$ for advection, $\sigma^2\Delta t\le(\Delta x)^2$ for diffusion) that forbids this overshoot and fixes the maximum stable time step for any explicit scheme.
 
 ---
 
@@ -33,13 +33,7 @@ so that the foot of the characteristic lies within $[x_{j-1}, x_{j+1}]$.
 
 ## CFL for the Diffusion Equation
 
-For the diffusion equation $u_\tau = D u_{xx}$, the explicit (forward Euler) scheme:
-
-$$
-u_j^{n+1} = u_j^n + \lambda(u_{j+1}^n - 2u_j^n + u_{j-1}^n)
-$$
-
-with $\lambda = D\Delta\tau / (\Delta x)^2$ is stable if and only if $\lambda \leq 1/2$.
+Recall (see [§ Von Neumann Stability Analysis — Explicit Scheme](von_neumann_stability_analysis.md#explicit-scheme-forward-euler)): for $u_\tau = D u_{xx}$ with explicit time stepping and $\lambda = D\Delta\tau/(\Delta x)^2$, the amplification factor $g = 1 - 4\lambda\sin^2(\xi/2)$ gives stability iff $\lambda \leq 1/2$.
 
 ### Positivity Interpretation
 

@@ -100,7 +100,7 @@ Pointwise convergence at each point does not guarantee that the convergence is u
 The logarithmic factor arises from the unbounded $L^1$ norm of the Dirichlet kernel: $\|D_N\|_1 \sim \frac{4}{\pi^2}\ln N$. This slow growth of the kernel norm is the fundamental obstruction to uniform convergence for merely continuous functions.
 
 !!! tip "Practical Consequence for COS Method"
-    When the risk-neutral density is smooth (as in the Black--Scholes or Heston models), the COS method's truncated Fourier series converges uniformly and exponentially fast. The number of terms $N$ needed for a target accuracy $\varepsilon$ grows only as $O(\ln(1/\varepsilon))$, which is why $N = 64$ or $N = 128$ suffices for six-digit accuracy in practice.
+    Recall (see [§ COS method](../cos_method/characteristic_function_to_density.md)): smooth risk-neutral densities give exponential uniform convergence, so $N$ grows only as $O(\ln(1/\varepsilon))$ for accuracy $\varepsilon$.
 
 ---
 

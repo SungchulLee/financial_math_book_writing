@@ -1,20 +1,29 @@
 # Terminal and Boundary Conditions
 
-A PDE alone does not determine a unique solution. **Terminal conditions** and **boundary conditions** encode the specific features of financial contracts, transforming abstract mathematics into concrete pricing tools.
+A PDE alone does not determine a unique solution. **Terminal conditions** and **boundary conditions** capture the specific features of financial contracts, transforming abstract mathematics into concrete pricing tools.
 
 ---
 
 ## Why Conditions Matter
 
-The Black-Scholes PDE:
-
-$$
-\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV
-$$
-
-has infinitely many solutions. The conditions select the **unique solution** corresponding to a specific contract.
+Recall (see [§ Discounting and the Killing Term](discounting_and_killing_term.md)): the Black-Scholes PDE is $V_t + \mathcal{L}V - rV = 0$, i.e., $V_t + rSV_S + \tfrac{1}{2}\sigma^2 S^2 V_{SS} - rV = 0$. By itself this equation has infinitely many solutions. The conditions select the **unique solution** corresponding to a specific contract.
 
 Because the Black-Scholes PDE is **parabolic** and solved backward in time (from known payoff at $T$ toward the present), it requires a **terminal** condition rather than an initial condition. This is the reverse of the heat equation in physics, where the initial temperature is known and the solution evolves forward. In finance, the payoff at maturity is the known quantity, and the price is computed by working backward.
+
+---
+
+## A Toy: An ODE That Needs Conditions
+
+The simplest illustration of why conditions are essential is the ODE $u''(x) = 0$ on $[0, 1]$. Its general solution is the two-parameter family $u(x) = ax + b$ — infinitely many functions satisfy the equation. The ODE specifies *what kind of function* $u$ is (linear), but not *which* linear function.
+
+Two conditions pin down the solution:
+
+- **Dirichlet at both ends**, $u(0) = u_0$ and $u(1) = u_1$, produces the unique line through $(0, u_0)$ and $(1, u_1)$.
+- **Mixed**, $u(0) = u_0$ and $u'(1) = m$, fixes intercept and slope to give $u(x) = mx + u_0$.
+
+The Black-Scholes PDE is richer (one time dimension plus one space dimension) but follows the same pattern. The **terminal condition** $V(T, S) = \Phi(S)$ pins the solution along the top edge of the $(t, S)$ strip, while **spatial boundary conditions** as $S \to 0$ and $S \to \infty$ pin it along the lateral edges. Together they replace the two ODE constants with a unique surface $V(t, S)$.
+
+Each condition represents a feature of the contract — payoff, knockout, exercise. Together they convert the abstract PDE into a uniquely determined pricing problem.
 
 ---
 
@@ -127,37 +136,7 @@ $$
 
 ## Barrier Options
 
-Barrier options encode a **contractual termination event** as an explicit Dirichlet boundary condition where the contract value drops to zero (or a rebate).
-
-### Down-and-Out Call
-
-Knocked out if $S$ hits barrier $B < S_0$:
-
-$$
-\begin{cases}
-V(T, S) = (S - K)^+ & S > B \\
-V(t, B) = 0 & \text{(knocked out)}
-\end{cases}
-$$
-
-### Up-and-Out Put
-
-Knocked out if $S$ hits barrier $B > S_0$:
-
-$$
-\begin{cases}
-V(T, S) = (K - S)^+ & S < B \\
-V(t, B) = 0 & \text{(knocked out)}
-\end{cases}
-$$
-
-### Knock-In Options
-
-The complementary "knock-in" satisfies:
-
-$$
-V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}
-$$
+Recall (see [§ Barrier options](../../ch07/exotic_options/barrier_options.md)): a knockout barrier $B$ enters the BS PDE as a Dirichlet condition $V(t,B) = 0$ on the live side of the barrier, complemented by the in-out parity $V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}$.
 
 ---
 
@@ -195,36 +174,7 @@ where $L_t$ is the local time at the boundary. A concrete financial example is a
 
 ## American Options and Free Boundaries
 
-The early exercise feature of American options corresponds to a **free boundary** — a boundary whose location is not specified by the contract but must be determined as part of the solution.
-
-### Optimal Stopping Problem
-
-$$
-V(t, S) = \sup_{\tau \in [t,T]} \mathbb{E}\left[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S\right]
-$$
-
-### Complementarity Formulation
-
-The exercise decision divides the $(t,S)$-plane into two regions: a **continuation region** where the PDE holds as an equality, and an **exercise region** where $V = \Phi$. At any point, exactly one of these conditions is active. This structure is compactly expressed as a complementarity problem — the American option price satisfies:
-
-$$
-\begin{cases}
-\frac{\partial V}{\partial t} + \mathcal{L}V - rV \leq 0 \\
-V \geq \Phi \\
-\left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV\right)(V - \Phi) = 0
-\end{cases}
-$$
-
-This is a **free boundary problem**: the exercise boundary $S^*(t)$ is part of the solution.
-
-### Exercise Boundary
-
-For an American put:
-
-- $V(t, S) = K - S$ for $S < S^*(t)$ (immediate exercise)
-- $V(t, S) > K - S$ for $S > S^*(t)$ (hold)
-
-The boundary $S^*(t)$ must be determined as part of solving the problem.
+Recall (see [§ Early exercise](../../ch07/american_options/early_exercise.md)): American optionality replaces the fixed terminal/boundary problem with a **free-boundary** (linear complementarity) problem in which the exercise boundary $S^*(t)$ is part of the unknown, governed by value-matching and smooth-pasting conditions at $S^*(t)$.
 
 ---
 
@@ -240,7 +190,7 @@ A problem is **well-posed** if:
 
 With appropriate terminal and boundary conditions:
 
-- **Existence**: Feynman-Kac provides probabilistic solution
+- **Existence**: probabilistic solution via Feynman-Kac (see [§ Feynman-Kac formula](../../ch05/feynman_kac/feynman_kac_formula.md))
 - **Uniqueness**: Maximum principle ensures uniqueness
 - **Stability**: Comparison principle gives continuous dependence
 
@@ -281,7 +231,7 @@ $$
 }
 $$
 
-**Terminal and boundary conditions transform abstract PDEs into specific pricing problems, encoding the contractual features of financial derivatives.**
+**Terminal and boundary conditions transform abstract PDEs into specific pricing problems, capturing the contractual features of financial derivatives.**
 
 !!! note "Synthesis: The Complete PDE Framework"
     The pricing PDE is not just an equation but a complete structure. The **operator** $\mathcal{L}$ captures market dynamics, the **killing term** $-rV$ represents discounting, and the **conditions** specify the contract. The Greeks arise as sensitivities of the solution to this system, and numerical methods approximate it. Together, these elements form a unified framework for derivative pricing — every financial question (pricing, hedging, risk) reduces to a question about this PDE system.

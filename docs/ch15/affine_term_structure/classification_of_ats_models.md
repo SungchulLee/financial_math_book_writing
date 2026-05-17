@@ -29,27 +29,7 @@ Before Dai and Singleton (2000), affine models were specified on a case-by-case 
 
 ## The Canonical Affine Specification
 
-### State Dynamics
-
-Consider a $d$-dimensional state vector $X_t$ with risk-neutral dynamics
-
-$$
-dX_t = (K_0 + K_1 X_t)\,dt + \Sigma(X_t)\,dW_t
-$$
-
-where $W_t$ is a $d$-dimensional Brownian motion under $\mathbb{Q}$, $K_0 \in \mathbb{R}^d$, $K_1 \in \mathbb{R}^{d \times d}$, and the instantaneous covariance matrix is
-
-$$
-\Sigma(X_t)\Sigma(X_t)^\top = H_0 + \sum_{i=1}^d H_i\,X_t^{(i)}
-$$
-
-with $H_0, H_1, \ldots, H_d \in \mathbb{R}^{d \times d}$ symmetric positive semi-definite matrices.
-
-The short rate is affine:
-
-$$
-r_t = \rho_0 + \rho_1^\top X_t
-$$
+Recall (see [§ Affine Definition and Setup](../definition_and_setup/state_space_and_regularity.md)): the $d$-dimensional state $X_t$ has affine drift $K_0 + K_1 X_t$, affine instantaneous covariance $H_0 + \sum_{i=1}^d H_i\,X_t^{(i)}$, and affine short rate $r_t = \rho_0 + \rho_1^\top X_t$.
 
 ### The Role of m
 

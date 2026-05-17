@@ -95,6 +95,7 @@ Rearranging yields the variational formula.
 
 ## Multiplier Preferences
 
+> **Recall** (see [§ Multiplier Preferences](multiplier_preferences.md) for the full development): the preference is defined as the worst case over alternative measures with a relative-entropy penalty. The KL-tilting solution and exponential certainty-equivalent identity below are derived in detail there; we recap them here for self-containment.
 
 ### 1. Definition
 
@@ -207,89 +208,7 @@ connects the entropy constraint to statistical distinguishability.
 
 ## Hansen-Sargent Robust Control
 
-
-### 1. Robust Control Framework
-
-
-**Setup**: A controller chooses action $u_t$ affecting state $x_t$:
-
-$$
-x_{t+1} = A x_t + B u_t + C w_t
-$$
-
-where $w_t$ represents model disturbance.
-
-**Standard LQG**: Under known model, minimize:
-
-$$
-J = \mathbb{E}\left[\sum_{t=0}^{\infty} \beta^t (x_t^\top Q x_t + u_t^\top R u_t)\right]
-$$
-
-**Robustness Concern**: The true model may differ from the assumed one.
-
-### 2. Robust Control Formulation
-
-
-**Hansen-Sargent Problem**:
-
-$$
-\min_u \max_w \mathbb{E}\left[\sum_{t=0}^{\infty} \beta^t \left(x_t^\top Q x_t + u_t^\top R u_t - \theta \|w_t\|^2\right)\right]
-$$
-
-subject to:
-
-$$
-x_{t+1} = A x_t + B u_t + C w_t
-$$
-
-**Interpretation**: 
-
-- Controller minimizes cost
-- Nature (worst-case model) maximizes cost subject to entropy penalty
-- $\theta$ controls robustness: smaller $\theta$ = more robust
-
-### 3. Solution
-
-
-**Robust Riccati Equation**: The value function $V(x) = x^\top P x$ where $P$ satisfies:
-
-$$
-P = Q + \beta A^\top \left(P - P C (C^\top P C - \theta^{-1} I)^{-1} C^\top P\right) A
-$$
-
-$$
-
-- \beta A^\top P B (R + \beta B^\top P B)^{-1} B^\top P A
-$$
-
-**Existence Condition**: Requires $\theta^{-1} < \lambda_{\min}(C^\top P C)$ for well-posedness.
-
-**Optimal Control**:
-
-$$
-u_t^* = -K x_t
-$$
-
-where $K = (R + \beta B^\top P B)^{-1} B^\top P A$.
-
-**Worst-Case Disturbance**:
-
-$$
-w_t^* = (C^\top P C - \theta^{-1} I)^{-1} C^\top P (A - BK) x_t
-$$
-
-### 4. Detection Error Probability
-
-
-**Calibration**: Hansen and Sargent suggest calibrating $\theta$ using:
-
-$$
-\text{Detection Error Probability} = P(\text{Type I error}) = P(\text{Type II error})
-$$
-
-at a given sample size.
-
-**Typical Values**: Detection error probability $\approx 10\%$ yields reasonable robustness without excessive conservatism.
+> **Recall** (see [§ Hansen-Sargent Robust Control](multiplier_preferences.md#hansen-sargent-robust-control)): the LQG controller minimizes $\sum \beta^t(x_t^\top Q x_t + u_t^\top R u_t)$ against a noise-distortion adversary penalized by $\theta\|v_t\|^2$. The robust algebraic Riccati equation, the well-posedness condition $\theta > \beta\lambda_{\max}(C^\top P C)$, the optimal gain, and the detection-error calibration (target $\approx 10\%$) are all developed there.
 
 ## Connection to Risk Measures
 

@@ -13,23 +13,7 @@ A standard Brownian motion is any stochastic process with continuous paths, inde
 
 ## Intuitive Construction
 
-Before giving the formal definition, we develop intuition through discrete approximations that can be performed "by hand."
-
-### Construction via Standard Normal Increments
-
-Consider the following discrete-to-continuous procedure:
-
-| Quantity | Notation |
-|----------|----------|
-| Number of ticks per year | $n$ |
-| Standard normal increment at tick $k$ | $X_k$ |
-| Number of ticks between $0$ and $t$ | $\lfloor nt \rfloor$ |
-| Cumulative increments up to time $t$ | $\displaystyle\sum_{k=1}^{\lfloor nt \rfloor}X_k$ |
-| **Normalized cumulative sum** | $\displaystyle B_t= \frac{1}{\sqrt{n}}\sum_{k=1}^{\lfloor nt \rfloor}X_k$ |
-
-where $X_k \stackrel{\text{iid}}{\sim} \mathcal{N}(0,1)$.
-
-**Key observation:** As $n \to \infty$, by the central limit theorem (more precisely, Donsker's theorem), $B_t$ converges to Brownian motion.
+Recall (see [§ Donsker's Theorem](../simple_random_walk/donsker_theorem.md)): the normalized cumulative sum $B_t^{(n)} = n^{-1/2}\sum_{k=1}^{\lfloor nt\rfloor} X_k$ of iid mean-zero unit-variance increments converges in distribution to Brownian motion as $n \to \infty$. This provides the discrete-to-continuous intuition; the axiomatic definition below characterizes the limit directly.
 
 ## Axiomatic Definition
 
@@ -86,6 +70,8 @@ Brownian motion is statistically self-similar: $W_{ct} \overset{d}{=} \sqrt{c}\,
 With respect to the natural filtration $\mathcal{F}_t = \sigma(W_s : s \le t)$:
 
 $$\boxed{\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s} \qquad \boxed{W_t^2 - t \text{ is a martingale}}$$
+
+Full development — including the exponential martingale $\exp(\theta W_t - \theta^2 t/2)$, Hermite polynomial martingales, and Lévy's characterization — is in [§ Brownian Motion Martingales](../filtration_and_martingale/brownian_motion_martingales.md).
 
 ## Path Regularity
 
@@ -294,7 +280,7 @@ Is $(W_t^3)_{t \ge 0}$ a martingale? Justify your answer by computing $\mathbb{E
 ---
 
 **Exercise 13.**
-Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions. Compute the quadratic covariation $\langle W, \widetilde{W} \rangle_t$.
+Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions. Compute the quadratic covariation $\langle W, \widetilde{W} \rangle_t$. (Full theory: see [§ Quadratic Variation of Brownian Motion](quadratic_variation_of_brownian_motion.md).)
 
 ??? success "Solution to Exercise 13"
     If $W_t$ and $\widetilde{W}_t$ are independent Brownian motions, the cross variation is:
@@ -346,7 +332,7 @@ Interpret the result of Exercise 14 in terms of correlation between the two proc
 ---
 
 **Exercise 16.**
-Show that Brownian motion has infinite total variation on any interval $[0, T]$ almost surely.
+Show that Brownian motion has infinite total variation on any interval $[0, T]$ almost surely. (Full proof: see [§ Hölder Continuity and Non-Differentiability](holder_continuity_and_non_differentiability.md).)
 
 ??? success "Solution to Exercise 16"
     For the uniform partition $\Pi_n$ of $[0, T]$ with $\Delta t = T/n$, each $|\Delta W_i| = |W_{t_{i+1}} - W_{t_i}|$ satisfies $\mathbb{E}[|\Delta W_i|] = \sqrt{2\Delta t/\pi} = \sqrt{2T/(\pi n)}$.
@@ -368,7 +354,7 @@ Show that Brownian motion has infinite total variation on any interval $[0, T]$ 
 ---
 
 **Exercise 17.**
-Prove that Brownian motion is Hölder continuous of any order $\alpha < 1/2$, but of no order $\alpha \ge 1/2$.
+Prove that Brownian motion is Hölder continuous of any order $\alpha < 1/2$, but of no order $\alpha \ge 1/2$. (Full proof: see [§ Hölder Continuity and Non-Differentiability](holder_continuity_and_non_differentiability.md).)
 
 ??? success "Solution to Exercise 17"
     **Hölder-$\alpha$ for $\alpha < 1/2$:** Since $W_t - W_s \sim \mathcal{N}(0, t-s)$, for any $p > 2$:

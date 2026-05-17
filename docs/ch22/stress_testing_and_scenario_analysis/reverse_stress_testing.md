@@ -101,17 +101,7 @@ $$
 \mathbf{x}^* = \arg\min_{\mathbf{x}} \text{Implausibility}(\mathbf{x}) \quad \text{s.t.} \quad L(\mathbf{x}) \ge L^*
 $$
 
-where $\text{Implausibility}(\mathbf{x})$ could be:
-
-**Mahalanobis distance:**
-
-$$
-D(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
-$$
-
-**Kullback-Leibler divergence:** From historical distribution to scenario.
-
-**Entropic distance:** Related to large deviations theory.
+where $\text{Implausibility}(\mathbf{x})$ could be the **Mahalanobis distance** $D(\mathbf{x}) = \sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})}$ — recall (see [§ Mahalanobis Distance Approach](extreme_scenarios.md#mahalanobis-distance-approach)) — or **Kullback-Leibler divergence** from the historical distribution, or an **entropic distance** rooted in large deviations theory.
 
 ### Lagrangian Formulation
 

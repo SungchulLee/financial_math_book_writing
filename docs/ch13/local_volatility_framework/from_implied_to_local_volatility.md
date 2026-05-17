@@ -25,24 +25,13 @@ The relationship between implied and local volatility can be understood through 
 
 ## Black-Scholes Framework
 
-The Black-Scholes formula provides a fundamental tool for connecting market prices to implied volatility. The call option price is:
+Recall (see [§ Black-Scholes Formula](../../ch06/black_scholes_formula/digital_option_pricing.md)) for $C = S_0 N(d_1) - Ke^{-rT}N(d_2)$. In log-moneyness/total-variance coordinates,
 
 $$
-C = S_{0}N(d_{1}) - Ke^{-rT}N(d_{2})
+y = \log\frac{K}{S_0 e^{rT}}, \qquad w = \sigma_{\text{imp}}^2 T,
 $$
 
-where the log-moneyness and variance parameters are defined as:
-
-$$y = \log\frac{K}{S_0e^{rT}}, \quad w = \sigma_{\text{imp}}^2 T$$
-
-and
-
-$$
-\begin{aligned}
-d_{1} &= -\frac{y}{\sqrt{w}} + \sqrt{w} \\
-d_{2} &= -\frac{y}{\sqrt{w}} - \sqrt{w}
-\end{aligned}
-$$
+we have $d_1 = -y/\sqrt{w} + \sqrt{w}/2$, $d_2 = -y/\sqrt{w} - \sqrt{w}/2$ (with the standard sign convention; cf. Form 3 in [§ Dupire and the LV Surface](dupire_formula_and_local_volatility_surface.md)).
 
 ---
 

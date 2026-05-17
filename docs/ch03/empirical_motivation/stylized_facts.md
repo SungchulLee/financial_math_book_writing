@@ -1,12 +1,14 @@
 # Stylized Facts of Financial Returns
 
-Having computed log return series and estimated their moments, we now document
-the **empirical regularities** that appear robustly across assets, markets, and
-time periods. These regularities — called **stylized facts** — are the empirical
-constraints that any credible model must respect. They are also the direct
-motivation for stochastic differential equations: each fact exposes a failure
-mode of simpler models and points toward the mathematical structure needed to
-fix it.
+Recall (see [§ Stock Data and Return Computation](stock_data_and_returns.md)):
+log return series and their sample moments have already been defined. We now
+catalogue the **empirical regularities** that appear robustly across assets,
+markets, and time periods. These regularities — called **stylized facts** —
+are the empirical constraints any credible model must respect. The
+implications of each fact for modelling are stated as constraints only; the
+question of which mathematical framework satisfies them is taken up in
+[§ Why Deterministic Models Fail](why_deterministic_fails.md) and
+[§ Bridge to Stochastic Differential Equations](bridge_to_sdes.md).
 
 ---
 
@@ -86,12 +88,11 @@ Empirical fits for equity indices typically give $\nu \approx 4$–$6$.
     with the table above. Use $\nu > 4$ strictly when finite kurtosis is
     required.
 
-### Implication for Modelling
+### Constraint on Models
 
-Basic GBM assumes Gaussian log-returns ($\kappa = 0$). Capturing heavy tails
-requires either jump-diffusion models (compound Poisson jumps added to the SDE)
-or stochastic volatility models (Heston, SABR), both of which are extensions of
-the Itô SDE framework developed in this book.
+Any acceptable model must produce a marginal return distribution with excess
+kurtosis in the empirical range above. A Gaussian innovation process
+($\kappa = 0$) cannot satisfy this constraint.
 
 ---
 
@@ -138,12 +139,11 @@ def test_arch(returns, nlags=10):
     print(f"Conclusion: {conclusion}")
 ```
 
-### Implication for Modelling
+### Constraint on Models
 
-Basic GBM has constant volatility $\sigma$. Capturing clustering requires
-either discrete-time GARCH processes or their continuous-time analogues —
-stochastic volatility SDEs such as the Heston model, where $\sigma_t$ itself
-satisfies a mean-reverting SDE.
+Any acceptable model must reproduce positive, persistent autocorrelation of
+$r_t^2$ (and $|r_t|$) while keeping $\operatorname{Corr}(r_t, r_{t-k})$
+negligible. A constant-volatility model cannot satisfy this constraint.
 
 ---
 
@@ -208,22 +208,12 @@ def leverage_test(returns, max_lag=20):
     Both numbers are consistent: the attenuation is a known property of
     noisy-proxy regressions, not a sign that the effect is weaker than claimed.
 
-### Implication for Modelling
+### Constraint on Models
 
-The leverage effect cannot be captured by any model in which volatility is
-independent of the price process. It requires a **negative correlation**
-between the Brownian motions driving price and volatility — precisely the
-parameter $\rho < 0$ in the Heston model:
-
-$$
-\operatorname{Cov}(dW_t^S,\, dW_t^V) = \rho\,dt, \qquad \rho \approx -0.6
-$$
-
-where $dW_t^S$ and $dW_t^V$ are standard Brownian increments each with
-variance $dt$, so $\rho$ is their correlation coefficient. In the Heston
-model, $dW_t^V$ drives the variance process $V_t = \sigma_t^2$, so $\rho < 0$
-is the continuous-time counterpart of the empirical
-$\operatorname{Corr}(r_t, \sigma_{t+1}^2) < 0$ observed above.
+Any acceptable model must produce a negative correlation between the signed
+return at time $t$ and the conditional variance at time $t+1$. A model in
+which volatility is independent of the price process cannot satisfy this
+constraint.
 
 ---
 
@@ -262,11 +252,10 @@ def test_return_autocorrelation(returns, lags=20):
 For most equity indices fewer than 1–2 lags out of 20 will be significant,
 consistent with no systematic autocorrelation.
 
-### Implication for Modelling
+### Constraint on Models
 
-The absence of return autocorrelation motivates **martingale models** for
-discounted price processes — a property satisfied by GBM under the risk-neutral
-measure and by all arbitrage-free pricing models.
+Any acceptable model must produce returns with no exploitable serial
+correlation at daily or lower frequencies.
 
 ---
 
@@ -301,29 +290,26 @@ Gaussian as $n \to \infty$.
     i.i.d. assumptions — the direction is correct even if the rate is slower
     in practice due to clustering.
 
-### Implication for Modelling
+### Constraint on Models
 
-GBM's Gaussian log-return distribution is a reasonable approximation at
-monthly and quarterly horizons, but not at daily horizons. Models that
-need to be accurate at short horizons require non-Gaussian innovations,
-jump components, or stochastic volatility.
+Any acceptable model must reproduce the systematic decrease of excess
+kurtosis with aggregation horizon, while remaining accurate at the daily
+scale where non-Gaussianity is most pronounced.
 
 ---
 
-## Summary of Stylized Facts and Model Requirements
+## Summary of Empirical Constraints
 
-| Stylized fact | Basic GBM | Required extension |
-|---|---|---|
-| Heavy tails | ✗ Gaussian | Jump diffusion or stochastic volatility |
-| Volatility clustering | ✗ Constant $\sigma$ | Stochastic volatility SDE |
-| Leverage effect | ✗ Independent noise | Correlated Brownian motions ($\rho < 0$) |
-| No return autocorrelation | ✓ Martingale structure | Already satisfied |
-| Aggregational Gaussianity | ✓ At long horizons | Already approximately satisfied |
+| Stylized fact | Constraint any model must satisfy |
+|---|---|
+| Heavy tails | Marginal return distribution has excess kurtosis $\gg 0$ at daily frequency |
+| Volatility clustering | $\operatorname{Corr}(r_t^2, r_{t-k}^2) > 0$ for $k$ up to ${\sim}100$ days |
+| Leverage effect | $\operatorname{Corr}(r_t, \sigma_{t+1}^2) < 0$ |
+| No return autocorrelation | $\operatorname{Corr}(r_t, r_{t-k}) \approx 0$ for $k \geq 1$ |
+| Aggregational Gaussianity | Excess kurtosis decreases with aggregation horizon |
 
-Basic GBM satisfies two of the five facts. The remaining three — heavy tails,
-clustering, and the leverage effect — require extensions that all remain within
-the Itô SDE framework. This is why developing that framework rigorously is
-worth the mathematical investment.
+These are the five empirical bars that the modelling framework introduced in
+later sections must clear.
 
 ---
 
@@ -338,12 +324,11 @@ The stylized facts reveal that financial returns are:
 - **approximately Gaussian at long horizons** (aggregational Gaussianity).
 
 A model that ignores these facts will produce incorrect risk measures,
-mispriced options, and unreliable simulations. The next section shows
-rigorously why deterministic ODEs fail to reproduce even the most basic
-of these properties, and motivates the transition to stochastic differential
-equations.
+mispriced options, and unreliable simulations. These five constraints are
+the empirical bar that any candidate framework must clear.
 
-**Next:** Why Deterministic Models Fail. $\square$
+**Next:** [§ Why Deterministic Models Fail](why_deterministic_fails.md).
+$\square$
 
 ---
 

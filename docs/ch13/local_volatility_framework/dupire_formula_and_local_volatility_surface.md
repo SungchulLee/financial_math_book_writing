@@ -8,55 +8,7 @@ Dupire's formula (1994) provides a fundamental model-free relationship between o
 
 ## The Local Volatility Model
 
-
-### 1. Model Specification
-
-
-The **local volatility model** assumes the underlying asset follows:
-
-
-$$
-dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
-$$
-
-
-
-where:
-
-- $\sigma_{\text{loc}}(S, t)$ is a deterministic function of spot and time
-- $r$ is the risk-free rate
-- $q$ is the dividend yield
-- $W_t$ is a standard Brownian motion under the risk-neutral measure $\mathbb{Q}$
-
-**Key distinction from Black-Scholes:** Volatility depends on both $(S, t)$ rather than being constant.
-
-### 2. Forward Kolmogorov Equation
-
-
-The probability density $p(S, t; S_0, 0)$ of $S_t$ given $S_0$ at time 0 satisfies the **forward Kolmogorov equation** (Fokker-Planck equation):
-
-
-$$
-\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}\left[(r - q) S p\right] + \frac{1}{2} \frac{\partial^2}{\partial S^2}\left[\sigma_{\text{loc}}^2(S, t) S^2 p\right]
-$$
-
-
-
-This describes the evolution of the probability distribution forward in time.
-
-### 3. Connection to Option Pricing
-
-
-The call option price is:
-
-
-$$
-C(S_0, K, T) = e^{-rT} \int_0^\infty \max(S - K, 0) p(S, T; S_0, 0) dS
-$$
-
-
-
-The key insight: if we know $C(K, T)$ for all strikes and maturities, we can invert this relationship to find $\sigma_{\text{loc}}(S, t)$.
+Recall (see [§ Local Volatility Model](local_volatility_model.md)) for the SDE $dS_t = (r-q)S_t\,dt + \sigma_{\text{loc}}(S_t, t)S_t\,dW_t$ and (see [§ Fokker-Planck Equation](../../ch05/kolmogorov_equations/kolmogorov_forward.md)) for the forward Kolmogorov equation governing $p(S,t;S_0,0)$. The call price is $C(S_0,K,T) = e^{-rT}\int_0^\infty (S-K)^+ p(S,T;S_0,0)\,dS$; inverting this relationship in $(K,T)$ yields $\sigma_{\text{loc}}$.
 
 ## Dupire's Formula: Main Result
 
@@ -124,139 +76,15 @@ $$
 
 where $d_1 = \frac{\ln(S_0/K) + (r - q + \sigma_{\text{IV}}^2/2)T}{\sigma_{\text{IV}}\sqrt{T}}$.
 
-## Derivation via Forward Kolmogorov Equation
+## Derivation
 
-
-### 1. Step 1: Call Price PDE
-
-
-The call option price satisfies the backward Kolmogorov equation:
-
-
-$$
-\frac{\partial C}{\partial t} + (r - q) S \frac{\partial C}{\partial S} + \frac{1}{2} \sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 C}{\partial S^2} - r C = 0
-$$
-
-
-
-with terminal condition $C(S, T, T) = \max(S - K, 0)$.
-
-### 2. Step 2: Differentiate with Respect to Maturity
-
-
-Fix strike $K$ and differentiate the PDE with respect to $T$ (treating $T$ as a parameter):
-
-
-$$
-\frac{\partial}{\partial T}\left(\frac{\partial C}{\partial t}\right) + (r - q) S \frac{\partial}{\partial T}\left(\frac{\partial C}{\partial S}\right) + \frac{1}{2} \sigma_{\text{loc}}^2(S, T) S^2 \frac{\partial}{\partial T}\left(\frac{\partial^2 C}{\partial S^2}\right) - r \frac{\partial C}{\partial T} = 0
-$$
-
-
-
-### 3. Step 3: Evaluate at S = K, t = T
-
-
-At expiry, the call payoff creates a kink at $S = K$:
-
-- $C(S, T, T) = \max(S - K, 0)$
-- $\frac{\partial C}{\partial S}\big|_{S=K, t=T} = 1$ (jump in derivative)
-- $\frac{\partial^2 C}{\partial S^2}\big|_{S=K, t=T}$ contains Dirac delta
-
-Using the **Dupire argument**: differentiate the option price with respect to maturity and evaluate at the money ($S = K$), giving:
-
-
-$$
-\frac{\partial C}{\partial T}\bigg|_{S=K} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}\bigg|_{S=K, t=T}
-$$
-
-
-
-Solving for $\sigma_{\text{loc}}^2$:
-
-
-$$
-\sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}
-$$
-
-
-
-### 4. Step 4: Include Drift Terms (Full Formula)
-
-
-For general $(S, t)$, the complete derivation includes drift corrections:
-
-
-$$
-\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
-$$
-
-
-
-The numerator adjusts for the fact that the underlying drifts at rate $r - q$ under the risk-neutral measure. □
-
-## Alternative Derivation: Tanaka's Formula
-
-
-### 1. Occupation Density Approach
-
-
-Consider the **local time** $L_t^K$ of the process $S_t$ at level $K$. Tanaka's formula gives:
-
-
-$$
-(S_T - K)^+ = (S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t > K} dS_t + \frac{1}{2} L_T^K
-$$
-
-
-
-Taking expectations:
-
-
-$$
-C(S_0, K, T) = e^{-rT} \mathbb{E}\left[(S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t > K} (r - q) S_t dt + \frac{1}{2} L_T^K\right]
-$$
-
-
-
-The local time satisfies:
-
-
-$$
-\mathbb{E}[L_T^K] = \int_0^T \sigma_{\text{loc}}^2(K, t) K^2 p(K, t; S_0, 0) dt
-$$
-
-
-
-Differentiating with respect to $T$ and using Breeden-Litzenberger:
-
-
-$$
-\frac{\partial C}{\partial T} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \cdot e^{-rT} p(K, T) = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}
-$$
-
-
-
-This recovers Dupire's formula. □
+Recall (see [§ Dupire Formula Derivation](dupire_formula_derivation.md)) for the integration-by-parts derivation via the forward Kolmogorov equation, and (see [§ Tanaka Formula and Payoff Distributions](tanaka_formula_and_payoff_distributions.md)) for the alternative occupation-density / local-time derivation. Both yield the formula above. □
 
 ## Properties of the Local Volatility Surface
 
-
 ### 1. Uniqueness
 
-
-**Theorem 4.2.3** (Uniqueness of Local Volatility)  
-Given a complete arbitrage-free European call price surface $C(K, T)$ for all $K > 0$, $T > 0$, there exists a unique local volatility function $\sigma_{\text{loc}}(S, t)$ such that the diffusion:
-
-
-$$
-dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
-$$
-
-
-
-reproduces the entire call price surface.
-
-*Proof sketch.* The forward Kolmogorov equation is a parabolic PDE with unique solution given smooth initial and boundary conditions. The call prices determine the terminal distribution uniquely via Breeden-Litzenberger. Dupire's formula inverts this relationship. □
+Recall (see [§ Local Volatility Model — Theorem 13.1.3](local_volatility_model.md)) for the uniqueness theorem: given an arbitrage-free $C^1$-in-$T$, $C^2$-in-$K$ call surface, the local volatility function is unique.
 
 ### 2. Calibration to Market Prices
 
@@ -299,71 +127,7 @@ In Black-Scholes, all options on the same underlying have the same implied volat
 
 ## Numerical Implementation
 
-
-### 1. Finite Difference Formula
-
-
-On a discrete grid $(K_i, T_j)$, approximate derivatives using centered differences:
-
-
-$$
-\frac{\partial C}{\partial T}\bigg|_{K_i, T_j} \approx \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}}
-$$
-
-
-
-
-$$
-\frac{\partial^2 C}{\partial K^2}\bigg|_{K_i, T_j} \approx \frac{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}{(\Delta K)^2}
-$$
-
-
-
-Then:
-
-
-$$
-\sigma_{\text{loc}}^2(K_i, T_j) = \frac{2}{ K_i^2} \cdot \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}} \cdot \frac{(\Delta K)^2}{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}
-$$
-
-
-
-### 2. Stability Issues
-
-
-**Problem 1: Noise amplification**  
-Taking derivatives of noisy data amplifies errors. Small errors in $C$ lead to large errors in $\sigma_{\text{loc}}$.
-
-**Solution:** 
-
-- Smooth the call price surface before differentiation (e.g., spline interpolation)
-- Use total variation regularization
-- Impose arbitrage-free constraints (convexity in $K$, monotonicity in $T$)
-
-**Problem 2: Division by small numbers**  
-Near the wings, $\frac{\partial^2 C}{\partial K^2} \approx 0$, causing $\sigma_{\text{loc}} \to \infty$.
-
-**Solution:**
-
-- Extrapolate wings using parametric forms (e.g., power law tails)
-- Cap local volatility at reasonable bounds
-- Use regularization penalties for extreme values
-
-### 3. Interpolation of Call Prices
-
-
-To compute Dupire's formula, we need smooth $C(K, T)$:
-
-1. **Interpolate in strike:** For each maturity, fit cubic splines in $K$ with:
-   - Monotonicity constraint: $C_K \leq 0$
-   - Convexity constraint: $C_{KK} \geq 0$
-
-2. **Interpolate in maturity:** For each strike, fit smooth curve in $T$:
-   - Monotonicity constraint: $C_T \geq 0$
-
-3. **Use arbitrage-free interpolation schemes:**
-   - SVI (Stochastic Volatility Inspired) parametrization
-   - SSVI (Surface SVI) for joint $(K, T)$ fitting
+Recall (see [Numerical Methods for Local Volatility](../numerical_methods/local_volatility_surface_construction.md)) for finite-difference stencils of $C_T$, $C_K$, $C_{KK}$, stability issues (noise amplification, division by small $C_{KK}$ in the wings), and arbitrage-free interpolation schemes (constrained splines, SVI/SSVI).
 
 ## Connection to Implied Volatility
 
@@ -387,59 +151,15 @@ $$
 
 ### 2. Explicit Formula in IV Space
 
-
-Gyöngy's formula provides a direct relationship:
-
-
-$$
-\sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \left(\frac{\partial \sigma_{\text{IV}}}{\partial T} + (r - q) K \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)}{1 + 2 d_1 K\sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K} + K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1^2 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
-$$
-
-
-
-This is computationally convenient when starting from implied volatility data.
+Recall (see [From Implied to Local Volatility](from_implied_to_local_volatility.md)) for the full Dupire-in-IV-space identity (already stated as Form 3 above) and its derivation via the $(y, w)$ change of variables.
 
 ### 3. ATM Approximation
 
-
-At-the-money ($K = F = S_0 e^{(r-q)T}$), a useful approximation:
-
-
-$$
-\sigma_{\text{loc}}^2(F, T) \approx \sigma_{\text{IV}}^2(F, T) + 2 T \sigma_{\text{IV}}(F, T) \frac{\partial \sigma_{\text{IV}}}{\partial T}\bigg|_{K=F}
-$$
-
-
-
-**Interpretation:** Local volatility at the forward is approximately the implied volatility plus a correction for the term structure slope.
+Recall (see [LV Properties: ATM Behavior and Term Structure](../properties/smile_dynamics_under_local_volatility.md)) for the ATM approximation $\sigma_{\text{loc}}^2(F, T) \approx \sigma_{\text{IV}}^2 + 2T\sigma_{\text{IV}}\,\partial_T \sigma_{\text{IV}}$ and its term-structure interpretation.
 
 ## Forward Equation Perspective
 
-
-### 1. Forward Kolmogorov PDE
-
-
-The density $p(K, T)$ satisfies:
-
-
-$$
-\frac{\partial p}{\partial T} = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 p(K, T)\right]
-$$
-
-
-
-(assuming drift-free coordinates with $F = S_0 e^{(r-q)T}$).
-
-Using Breeden-Litzenberger $p(K, T) = e^{rT} \frac{\partial^2 C}{\partial K^2}$:
-
-
-$$
-\frac{\partial}{\partial T}\left(e^{rT} \frac{\partial^2 C}{\partial K^2}\right) = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 e^{rT} \frac{\partial^2 C}{\partial K^2}\right]
-$$
-
-
-
-This is a PDE for $C$ in terms of $\sigma_{\text{loc}}$. Dupire's formula inverts this PDE to solve for $\sigma_{\text{loc}}$ given $C$.
+Recall (see [Forward Kolmogorov / Fokker-Planck Equation](../../ch05/kolmogorov_equations/kolmogorov_forward.md)) for the forward PDE $\partial_T p = \frac{1}{2}\partial_{KK}[\sigma_{\text{loc}}^2 K^2 p]$ governing the risk-neutral density. Combined with Breeden-Litzenberger $p(K,T) = e^{rT}C_{KK}$ (see [§ Breeden-Litzenberger](../../ch12/model_free_results/breeden_litzenberger_formula.md)), this yields a PDE for $C$ that Dupire's formula inverts. The forward PDE characterization is developed further in [LV Properties: Forward PDE](../properties/smile_dynamics_under_local_volatility.md).
 
 ### 2. Existence of Solution
 
@@ -459,41 +179,7 @@ then the local volatility $\sigma_{\text{loc}}(K, T)$ given by Dupire's formula 
 
 ## Applications and Limitations
 
-
-### 1. Advantages of Local Volatility
-
-
-1. **Perfect calibration:** Matches all vanilla option prices exactly
-2. **Model-free:** No parameters to estimate (given the surface)
-3. **Tractable:** Amenable to PDE and Monte Carlo methods
-4. **Complete market:** Unique pricing for exotics (in theory)
-
-### 2. Limitations
-
-
-1. **Smile dynamics mismatch:**  
-   Local volatility generates **sticky-strike** smile dynamics (smile is constant in strike space). Market exhibits **sticky-delta** or hybrid behavior.
-
-2. **Instantaneous volatility unrealistic:**  
-   Extracted $\sigma_{\text{loc}}(S, t)$ can be very large (>100%) or very small (<5%) in extreme regions—difficult to justify economically.
-
-3. **Path-dependent pricing issues:**  
-   Exotic options (barriers, cliquets) are often mispriced by local volatility due to incorrect correlation between spot and volatility.
-
-4. **Forward smile:**  
-   Local volatility predicts a flat forward smile, contradicting market data showing persistent smile.
-
-5. **Leverage effect:**  
-   The negative correlation between returns and volatility (leverage effect) is not captured—local vol is purely deterministic.
-
-### 3. Hybrid Models
-
-
-To address limitations, practitioners use:
-
-- **Stochastic local volatility (SLV):** Combine local volatility with stochastic volatility (e.g., Heston + local vol)
-- **Implied tree models:** Discrete analogs that exactly fit vanilla prices
-- **Jump-diffusion + local vol:** Add jumps to capture tail risk
+Recall (see [Limitations of Local Volatility](../limitations/static_vs_dynamic_smile.md)) for the catalogue of advantages (perfect vanilla calibration, model-free, PDE/MC tractable, complete-market) versus limitations (sticky-strike dynamics, flat forward smile, mispricing of cliquets/barriers/variance, missing leverage effect) and hybrid remedies (SLV, implied trees, jump+local vol).
 
 ## Comparison with Implied Volatility
 

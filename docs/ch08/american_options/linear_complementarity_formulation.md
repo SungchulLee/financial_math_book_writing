@@ -1,40 +1,18 @@
 # Linear Complementarity Formulation
 
-The pricing of American options leads naturally to a **linear complementarity problem (LCP)**. The holder's right to exercise at any time imposes a constraint that the option value must lie above the payoff at all times. Combined with the Black-Scholes PDE in the continuation region, this produces a complementarity structure that is both elegant and computationally tractable.
+At every grid node, exactly one of two things is true: either the option is held ($V>\Phi$ and the Black-Scholes operator vanishes), or the option is exercised ($V=\Phi$ and the operator is non-negative). Their *product* therefore vanishes everywhere -- the algebraic fingerprint of complementarity. After discretization this becomes a **linear complementarity problem (LCP)**: a tridiagonal matrix system plus the constraint that each $V_i-\Phi_i$ and each residual entry have opposite signs and zero product. This LCP structure is what PSOR, penalty methods, and projection all aim to solve.
 
 ---
 
 ## From Variational Inequality to Complementarity
 
-### The Continuous Problem
-
-Recall that the American option price $V(t,S)$ satisfies the **variational inequality**:
+Recall (see [§ American Options](../../ch07/american_options/american_option_definition.md)): the American price satisfies the variational inequality
 
 $$
-\min\!\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV,\; V - \Phi\right) = 0
+\min\!\left(-\partial_t V - \mathcal{L}V + rV,\; V - \Phi\right) = 0,\qquad \mathcal{L}V = \tfrac12\sigma^2 S^2 V_{SS} + rSV_S,
 $$
 
-where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ is the Black-Scholes differential operator and $\Phi(S)$ is the payoff function. This can be equivalently written in **complementarity form**:
-
-$$
-\begin{aligned}
--\frac{\partial V}{\partial t} - \mathcal{L}V + rV &\geq 0 \\[4pt]
-V - \Phi &\geq 0 \\[4pt]
-\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV\right)(V - \Phi) &= 0
-\end{aligned}
-$$
-
-!!! info "Complementarity Interpretation"
-    At every point $(t,S)$ in the domain, exactly one of two situations holds:
-
-    - **Continuation**: $V > \Phi$ and the PDE $\frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0$ holds with equality.
-    - **Exercise**: $V = \Phi$ and the PDE residual $-\frac{\partial V}{\partial t} - \mathcal{L}V + rV \geq 0$ (the option is "too cheap" to continue holding).
-
-    The third condition enforces that at least one of the two inequalities is active --- they cannot both be strict simultaneously.
-
-### Analogy with the Obstacle Problem
-
-The American option problem is a **parabolic obstacle problem**. Define the "obstacle" as $\Phi(S)$. The solution $V$ must lie above the obstacle everywhere, and in regions where $V$ is strictly above $\Phi$, it satisfies the PDE. This is identical in structure to the classical obstacle problem in the theory of variational inequalities.
+equivalent to the three-line **complementarity form** $(-\partial_t V-\mathcal{L}V+rV)\ge0$, $V-\Phi\ge0$, with product zero. This is a parabolic obstacle problem with obstacle $\Phi$.
 
 ---
 
@@ -115,16 +93,7 @@ The theory of LCPs guarantees existence and uniqueness under a condition on the 
 
 ### Verification for American Options
 
-For the implicit Euler scheme, $L = I + \Delta\tau\, A$. Under standard discretization of the Black-Scholes operator with a sufficiently fine grid:
-
-- The diagonal entries of $A$ are positive (from the $rI$ term and central differences).
-- The off-diagonal entries of $A$ are non-positive (provided the mesh is fine enough to avoid oscillations).
-- Adding the identity ensures $L$ has strictly positive diagonal and is diagonally dominant.
-
-Therefore $L$ is an M-matrix, and the discrete LCP has a unique solution at each time step.
-
-!!! warning "Crank-Nicolson Caveat"
-    With the Crank-Nicolson scheme, the operator becomes $L = I + \frac{\Delta\tau}{2}A$, and the right-hand side involves $(I - \frac{\Delta\tau}{2}A)\mathbf{u}^n$. The M-matrix property still holds for $L$, but the right-hand side may introduce complications near the free boundary. Rannacher time-stepping (a few implicit Euler steps at the start) is commonly used to restore smoothness.
+For implicit Euler, $L = I + \Delta\tau\, A$ inherits positive diagonal, non-positive off-diagonals and diagonal dominance from $A$ (recall [§ FDM stencils](../fdm/boundary_and_terminal_conditions.md) and [§ Monotone schemes](../monotone/barles_souganidis_theorem.md)), so $L$ is an M-matrix. Crank-Nicolson uses $L=I+\tfrac{\Delta\tau}{2}A$ — still an M-matrix, but the RHS may introduce kinks; Rannacher start-up (see [§ Implementation](../implementation/crank_nicolson_implementation.md)) restores smoothness.
 
 ---
 

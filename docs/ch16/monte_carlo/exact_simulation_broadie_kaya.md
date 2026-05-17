@@ -29,24 +29,13 @@ Each step is exact, so the combined sample is drawn from the true distribution w
 
 ## Step 1: Sampling the Terminal Variance
 
-The CIR process $dv_t = \kappa(\theta - v_t) dt + \xi\sqrt{v_t} \, dW_t^{(2)}$ has a known transition distribution. Conditional on $v_0$, the terminal variance $v_T$ satisfies:
+Recall (see [§ Non-Central Chi-Squared](../variance_dynamics/non_central_chi_squared.md)): conditional on $v_0$,
 
 $$
-v_T \sim \frac{\xi^2(1 - e^{-\kappa T})}{4\kappa} \, \chi^2_d(\lambda)
+v_T \sim \frac{\xi^2(1 - e^{-\kappa T})}{4\kappa} \, \chi^2_d(\lambda), \qquad d = \frac{4\kappa\theta}{\xi^2}, \qquad \lambda = \frac{4\kappa e^{-\kappa T} v_0}{\xi^2(1 - e^{-\kappa T})}
 $$
 
-where $\chi^2_d(\lambda)$ denotes the non-central chi-squared distribution with:
-
-- **Degrees of freedom**: $d = \frac{4\kappa\theta}{\xi^2}$
-- **Non-centrality parameter**: $\lambda = \frac{4\kappa e^{-\kappa T} v_0}{\xi^2(1 - e^{-\kappa T})}$
-
-Sampling from the non-central chi-squared can be done via:
-
-- **Direct decomposition**: when $d > 1$, write $\chi^2_d(\lambda) = \chi^2_1(\lambda) + \chi^2_{d-1}(0)$, where $\chi^2_1(\lambda) = (Z + \sqrt{\lambda})^2$ with $Z \sim N(0,1)$ and $\chi^2_{d-1}(0)$ is a central chi-squared
-- **Poisson mixture**: when $d \leq 1$, sample $N \sim \text{Poisson}(\lambda/2)$ and then $\chi^2_{d+2N}(0)$
-
-!!! note "Feller Condition Connection"
-    The degrees of freedom $d = 4\kappa\theta/\xi^2$ directly relate to the Feller condition: $d \geq 2$ is equivalent to $2\kappa\theta \geq \xi^2$. When $d < 2$ (Feller violated), the non-central chi-squared has a point mass near zero, which the Poisson mixture correctly handles.
+Sample via **direct decomposition** $\chi^2_d(\lambda) = \chi^2_1(\lambda) + \chi^2_{d-1}(0)$ when $d > 1$, where $\chi^2_1(\lambda) = (Z + \sqrt{\lambda})^2$ with $Z \sim N(0,1)$; or via **Poisson mixture** when $d \leq 1$: sample $N \sim \text{Poisson}(\lambda/2)$ and then $\chi^2_{d+2N}(0)$.
 
 ---
 

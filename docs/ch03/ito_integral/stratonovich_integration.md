@@ -2,7 +2,9 @@
 
 ### 1. Concept Definition
 
-The **Stratonovich integral** is a stochastic integral defined using **midpoint sampling**:
+When approximating $\int H_s\,dB_s$ by Riemann sums, *where* you evaluate $H$ on each subinterval matters. Itô samples at the **left** endpoint, freezing $H$ before the increment arrives -- the choice that makes each summand a fair bet and yields the martingale structure. Stratonovich samples at the **midpoint**, splitting the increment symmetrically across the evaluation point. On a smooth integrator the two choices would be invisible; on Brownian motion they differ by exactly half the quadratic-variation term, which is why Itô and Stratonovich assign different values to the same formal expression. The **Stratonovich integral** is the resulting symmetric variant, and its payoff is that stochastic differentials obey the classical chain rule.
+
+It is defined using **midpoint sampling**:
 
 $$
 \int_0^T f(t,\omega) \circ dB_t
@@ -67,7 +69,7 @@ $$
 \sum_j B_{t_j}(B_{t_{j+1}} - B_{t_j})
 $$
 
-Since Brownian increments are independent of the past and have mean zero, each term has $\mathbb{E}[B_{t_j}(B_{t_{j+1}} - B_{t_j})] = 0$. This reflects the **martingale property**: the integral has zero mean.
+Recall (see [§ Construction of the Itô Integral](ito_integral_construction.md)): because $B_{t_j}$ is $\mathcal{F}_{t_j}$-measurable and the future increment is independent with mean zero, each summand has expectation zero, giving the **martingale property** of the Itô integral.
 
 #### Right-endpoint (for contrast only)
 

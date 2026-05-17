@@ -1,6 +1,6 @@
 # RL for Optimal Execution
 
-Optimal execution---liquidating or acquiring a large position while minimizing market impact and timing risk---is a natural application of reinforcement learning. The classical Almgren-Chriss framework provides an analytical benchmark under restrictive assumptions, but RL agents can adapt to real-time market conditions, nonlinear impact, and stochastic liquidity without requiring a closed-form model.
+Optimal execution---liquidating or acquiring a large position while minimizing market impact and timing risk---is a natural application of reinforcement learning. The classical Almgren-Chriss framework provides an analytical benchmark under restrictive assumptions, but RL agents can adapt to real-time market conditions, nonlinear impact, and stochastic liquidity without requiring a closed-form model. Recall (see [§ Connection to Stochastic Control](connection_to_stochastic_control.md)) for the HJB perspective.
 
 ---
 
@@ -79,6 +79,8 @@ In practice, all of these assumptions are violated.
 
 ## MDP Formulation for Execution
 
+Recall (see [§ Definition of an MDP](markov_decision_processes.md#definition-of-an-mdp)) for the general MDP framework.
+
 ### State Space
 
 The RL state captures all information relevant to the execution decision:
@@ -153,7 +155,7 @@ $$
 Q_\theta(s, a) \approx Q^*(s, a) = \max_\pi \mathbb{E}_\pi\!\left[\sum_{k'=k}^{N-1} \gamma^{k'-k} r_{k'} \mid s_k = s, a_k = a\right]
 $$
 
-using a neural network $Q_\theta$ trained via the Bellman loss:
+using a neural network $Q_\theta$ trained via the Bellman loss (Recall (see [§ Bellman equations](markov_decision_processes.md#bellman-equations))):
 
 $$
 \mathcal{L}(\theta) = \mathbb{E}\!\left[\left(r_k + \gamma \max_{a'} Q_{\bar{\theta}}(s_{k+1}, a') - Q_\theta(s_k, a_k)\right)^2\right]
@@ -163,18 +165,7 @@ where $\bar{\theta}$ is a target network updated periodically.
 
 ### Actor-Critic Approach
 
-For continuous action spaces, use an actor-critic method:
-
-- **Actor** $\pi_\theta(a \mid s)$: Gaussian policy outputting trade size
-- **Critic** $V_w(s)$ or $Q_w(s,a)$: Estimates value function
-
-The policy gradient with advantage estimation:
-
-$$
-\nabla_\theta J = \mathbb{E}\!\left[\nabla_\theta \log \pi_\theta(a_k \mid s_k) \hat{A}_k\right]
-$$
-
-where $\hat{A}_k = r_k + \gamma V_w(s_{k+1}) - V_w(s_k)$.
+Recall (see [§ Actor-Critic Methods](policy_gradient_methods.md#actor-critic-methods)). For continuous action spaces, the actor $\pi_\theta(a \mid s)$ is a Gaussian policy outputting trade size and the critic $V_w(s)$ estimates the value function, with advantage estimate $\hat{A}_k = r_k + \gamma V_w(s_{k+1}) - V_w(s_k)$.
 
 ### Training Environment
 

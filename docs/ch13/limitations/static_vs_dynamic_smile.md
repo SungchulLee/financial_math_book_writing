@@ -15,19 +15,7 @@ A model may perfectly reproduce today's observed option prices -- this is **stat
 
 ### What Local Volatility Gets Right
 
-The Dupire formula guarantees that the local volatility model exactly reproduces the entire observed European call price surface $C(K, T)$:
-
-$$
-C^{\text{LV}}(K, T) = C^{\text{market}}(K, T) \quad \text{for all } K > 0, \; T > 0
-$$
-
-This is equivalent to matching all marginal distributions of $S_T$ under the risk-neutral measure. By the Breeden-Litzenberger formula:
-
-$$
-p^{\text{LV}}(S, T) = e^{rT}\frac{\partial^2 C^{\text{LV}}}{\partial K^2}\bigg|_{K=S} = e^{rT}\frac{\partial^2 C^{\text{market}}}{\partial K^2}\bigg|_{K=S} = p^{\text{market}}(S, T)
-$$
-
-The local volatility model matches the risk-neutral density at every maturity. This is a direct consequence of Gyongy's theorem: the local volatility function $\sigma_{\text{loc}}^2(K, t) = \mathbb{E}[\sigma_t^2 \mid S_t = K]$ is precisely the Markovian projection that preserves marginal distributions.
+Recall (see [§ Dupire Formula](../local_volatility_framework/dupire_formula_and_local_volatility_surface.md)): the Dupire formula guarantees that the local volatility model exactly reproduces the entire observed European call surface, $C^{\text{LV}}(K, T) = C^{\text{market}}(K, T)$ for all $K > 0,\;T > 0$. Equivalently, via Breeden-Litzenberger ($p = e^{rT}\partial_{KK} C$, see [§ Implied Volatility and Risk-Neutral Density](../local_volatility_framework/implied_volatility_and_risk_neutral_density.md)), the model matches every risk-neutral marginal $p^{\text{LV}}(\cdot, T) = p^{\text{market}}(\cdot, T)$. By Gyongy's theorem (see [§ Gyongy Theorem and Markovian Projection](../properties/gyongy_theorem_markovian_projection.md)), $\sigma_{\text{loc}}^2(K, t) = \mathbb{E}[\sigma_t^2 \mid S_t = K]$ is the Markovian projection that preserves marginals.
 
 ### The Limits of Static Consistency
 
@@ -76,13 +64,7 @@ $$
 
 This variance arises **solely** from the randomness of $S_{t+\Delta t}$. The volatility process has no independent source of randomness -- it is "slaved" to the spot.
 
-Under stochastic volatility models (e.g., Heston), the variance process $v_t$ has its own Brownian driver:
-
-$$
-dv_t = \kappa(\theta - v_t) \, dt + \xi \sqrt{v_t} \, dW_t^{(2)}
-$$
-
-The parameter $\xi$ (vol-of-vol) introduces genuine randomness in volatility beyond what is explained by spot moves. The vol-of-vol under stochastic volatility is:
+Recall (see [§ Chapter 14](../../ch14/index.md)): under stochastic volatility models (e.g., Heston), the variance process $v_t$ has its own Brownian driver, and the parameter $\xi$ (vol-of-vol) introduces genuine randomness in volatility beyond what is explained by spot moves. The vol-of-vol under stochastic volatility is:
 
 $$
 \text{Vol-of-vol}^{\text{SV}} = \xi^2 v_t \, \Delta t + O(\Delta t^2)
@@ -161,7 +143,7 @@ The variance swap payoff is $\sum_{i}(\log S_{t_i}/S_{t_{i-1}})^2$, which depend
 
 ### The Skew Stickiness Ratio
 
-Bergomi (2004) introduced the **skew stickiness ratio** (SSR) to quantify smile dynamics:
+Recall (see [§ Smile Dynamics](../../ch12/smile_dynamics/dynamic_consistency.md)): Bergomi (2004) introduced the **skew stickiness ratio** (SSR) to quantify smile dynamics:
 
 $$
 \text{SSR} = \frac{\text{Cov}\bigl(d\sigma_{\text{imp}}^{\text{ATM}}, \, dS/S\bigr)}{\text{Var}(dS/S) \cdot \partial_K \sigma_{\text{imp}}|_{K = S_0}}

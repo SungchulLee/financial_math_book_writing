@@ -157,13 +157,7 @@ This theorem has a profound consequence: the space of observationally distinct $
 
 ### One-Factor CIR: A₁(1)
 
-The general one-factor CIR model has parameters $\kappa > 0$, $\theta > 0$, $\xi > 0$. The canonical form normalizes $\xi = 1$ (unit diffusion):
-
-$$
-dX_t = (\tilde{\kappa}\tilde{\theta} - \tilde{\kappa}X_t)\,dt + \sqrt{X_t}\,dW_t
-$$
-
-This is achieved by the state transformation $\tilde{X}_t = X_t / \xi^2$ (since the original diffusion $\xi\sqrt{X_t}$ becomes $\xi \cdot \xi^{-1}\sqrt{\tilde{X}_t} = \sqrt{\tilde{X}_t}$). The transformed parameters are $\tilde{\kappa} = \kappa$ and $\tilde{\theta} = \theta/\xi^2$.
+Recall (see [§ Affine def 1D](../definition_and_setup/state_space_and_regularity.md)). Canonical form normalizes $\xi = 1$ via $\tilde{X}_t = X_t/\xi^2$, giving $\tilde{\kappa} = \kappa$, $\tilde{\theta} = \theta/\xi^2$.
 
 ### Two-Factor Gaussian: A₀(2)
 

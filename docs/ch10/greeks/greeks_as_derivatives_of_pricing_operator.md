@@ -58,13 +58,7 @@ $$
 
 
 
-The derivative can be handled by:
-
-- differentiating the PDE satisfied by $V$,
-- differentiating the stochastic flow $S_T^{\theta}$ (pathwise differentiation),
-- changing measure or using likelihood ratio (score) identities.
-
-Each method leads to a distinct “representation formula” for Greeks.
+Recall (see [§ Greeks via PDE](../greeks_pde/differentiating_black_scholes_pde.md) and [§ Greeks via probability](../greeks_probab/greeks_via_feynman_kac.md)): the derivative can be handled by PDE differentiation, pathwise differentiation of the stochastic flow $S_T^{\theta}$, or likelihood-ratio (score) identities. Each method leads to a distinct representation formula for Greeks.
 
 ---
 

@@ -1,7 +1,9 @@
 # Robustness vs Optimality
 
-
 Optimal strategies are model-dependent; robust strategies trade some optimality for stability under uncertainty.
+
+!!! tip "Toy mechanism: minimax under model uncertainty"
+    The single trade-off: optimal hedging minimises expected loss *under one assumed model*; robust hedging minimises *worst-case* loss across a set of plausible models. The toy version is two coins — one with $\mathbb{P}(H) = 0.6$, one with $\mathbb{P}(H) = 0.4$ — and you must bet without knowing which. The Bayes-optimal bet under either single model wins on its own coin but loses badly on the other; the *minimax* bet (e.g., $\mathbb{P}(H) = 0.5$) gives up expected return for variance-of-outcome that doesn't depend on which coin nature chose. In hedging, the same picture: BS delta is optimal *if* $\sigma$ is known; uncertain-volatility hedges (BSB equation, super-replication) replace $\sigma$ with the worst-case across a band $[\sigma_-, \sigma_+]$. The whole section is one minimax over the model set.
 
 ---
 
@@ -74,42 +76,14 @@ Narrow bounds indicate prices are robust; wide bounds indicate model sensitivity
 ## Robust hedging strategies
 
 
-**Worst-case hedging:** Choose hedge that minimizes maximum loss:
-
-$$
-\Delta^* = \arg\min_\Delta \max_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{HedgingError}(\Delta, \sigma)
-$$
-
-For linear dependence on $\sigma$, this often gives:
-
-$$
-\Delta^* = \frac{1}{2}\left(\Delta(\sigma_{\min}) + \Delta(\sigma_{\max})\right)
-$$
-
-**Model averaging:** Weight hedges by model probabilities:
-
-$$
-\Delta^* = \sum_i w_i \Delta_i
-$$
-
-where $w_i$ are subjective weights on models $i$.
+Recall (see [§ Robust Hedging](../../ch23/robust_hedging/hedging_under_transaction_costs.md)): worst-case hedging minimizes $\max_{\sigma}$ HedgingError, often yielding the endpoint average $\Delta^* = \tfrac{1}{2}(\Delta(\sigma_{\min}) + \Delta(\sigma_{\max}))$; model averaging weights $\Delta^* = \sum_i w_i \Delta_i$ by subjective model probabilities.
 
 ---
 
 ## Stress testing across models
 
 
-Test P&L under alternative models:
-
-| Model | Key feature | Typical stress |
-|:------|:------------|:---------------|
-| Black–Scholes | Constant vol | Baseline |
-| Local vol | $\sigma(S,t)$ | Skew sensitivity |
-| Heston | $\sqrt{v}\, dW^{(2)}$ | Vol-of-vol |
-| Jump-diffusion | Poisson jumps | Tail risk |
-| SABR | $\sigma_t$ mean-reverting | Smile dynamics |
-
-A robust strategy should have bounded losses across all scenarios.
+Recall (see [§ Stochastic Volatility](../../ch14/index.md) and [§ Breakdown of Continuous-Time Hedging](breakdown_of_continuous_time_hedging.md)): test P&L under BS (baseline), local vol (skew sensitivity), Heston (vol-of-vol), jump-diffusion (tail risk), and SABR (smile dynamics). A robust strategy should have bounded losses across all scenarios.
 
 ---
 

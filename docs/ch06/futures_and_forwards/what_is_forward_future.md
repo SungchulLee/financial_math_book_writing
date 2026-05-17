@@ -1,6 +1,24 @@
 # What is a Forward and a Future?
 
-Forwards and futures are the simplest derivative contracts: two parties agree today on a price for a transaction that will occur in the future. Unlike options, both parties are **obligated** to perform — there is no optionality and no premium changes hands at inception. This simplicity makes forwards and futures the natural starting point for understanding derivative pricing.
+## A Farmer and a Baker
+
+Before any formal definition, watch the mechanism work between two people. In March, a wheat farmer expects to harvest 5,000 bushels in September. At the same time, an industrial baker knows the same volume will be needed for autumn production. Today's spot price is \$6 per bushel, but neither side wants to gamble on September: the farmer fears a price collapse, the baker fears a price spike. They agree, in writing, to exchange 5,000 bushels at \$6.50 per bushel on September 15. No money changes hands today. Whatever the September spot price turns out to be — \$4.50, \$6.50, or \$9.00 — both parties are bound to the agreed terms.
+
+That single agreement is a **forward contract**. Strip the wheat and the names away and you are left with three pieces:
+
+- A future date (September 15).
+- A predetermined price (\$6.50 per bushel — the *delivery price* $K$).
+- An obligation, symmetric on both sides, to transact at that price on that date.
+
+A **futures contract** is the same agreement made anonymous and tradable. Instead of the farmer and baker locating one another, an exchange writes a standardized version of the contract — fixed contract size, fixed expiry dates, a clearinghouse as guaranteed counterparty — and lets thousands of unrelated participants take either side. The economic structure is identical; what changes is *who is on the other side* and *how* the obligation is enforced.
+
+The rest of this page formalizes these two ideas (forward = bilateral, futures = exchange-traded), surveys real contracts in modern markets, and shows how the same mechanism extends from physical commodities to volatility itself.
+
+---
+
+## Forwards and Futures in Two Sentences
+
+Forwards and futures are the simplest derivative contracts: two parties agree today on a price for a transaction that will occur in the future. Unlike options, both parties are **obligated** to perform — there is no optionality and no premium changes hands at inception, which is why forwards and futures are the natural starting point for understanding derivative pricing.
 
 ---
 
@@ -82,6 +100,62 @@ Most traders do not hold contracts to delivery. Instead they **roll** their posi
 
 ---
 
+## Volatility Futures and ETFs (VIX, UVIX)
+
+Not all futures are written on physical assets or equity indices. A particularly important modern class is **volatility derivatives**, whose underlying is the market's *expectation* of future volatility rather than a tradable asset.
+
+### VIX Futures
+
+The **VIX index** measures the market's expectation of 30-day volatility of the S&P 500. Because the VIX itself is not directly tradable, exchanges list **VIX futures** that allow investors to trade forward expectations of volatility. A VIX futures contract specifies a maturity $T$ and a price representing expected volatility at $T$. At maturity, VIX futures are **cash-settled** against a special settlement value of the VIX index.
+
+- Rising VIX futures → market expects higher volatility (often stress or downturns).
+- Falling VIX futures → market expects calmer conditions.
+
+### Term Structure and Rolling
+
+Unlike equity index futures, VIX futures often exhibit a pronounced **term structure** (recall, see [§ Cost of Carry](cost_of_carry.md): contango when later maturities are priced higher, backwardation in crises). Traders typically hold the **front-month contract** and must **roll** before expiration; depending on the slope of the curve, rolling introduces systematic gains or losses.
+
+### Volatility ETFs (UVIX)
+
+Exchange-traded products such as **UVIX** (a 2× leveraged long short-term VIX futures ETF) provide leveraged exposure to a basket of front-month VIX futures, targeting approximately twice the *daily* return of that basket. Because of **daily rebalancing**, returns are path-dependent, and these products typically **decay** over time due to contango in the futures curve, rolling costs, and leverage compounding. They are short-term trading instruments, not long-term investments — UVIX can lose value even when realized volatility is flat.
+
+### Conceptual Extension
+
+VIX futures illustrate that the "underlying" of a futures contract need not be a physical asset — it can be an **expectation of a future quantity**. This reinforces the general principle (developed in [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md)) that a futures price reflects the market's consensus expectation under risk-neutral dynamics, with the underlying itself potentially derived from other assets (e.g., option-implied variance).
+
+??? note "Advanced: Risk-Neutral Pricing of VIX Futures"
+    Naively one might expect
+
+    $$
+    F_t(T) = \mathbb{E}^{\mathbb{Q}}[\mathrm{VIX}_T \mid \mathcal{F}_t]
+    $$
+
+    to behave like the standard forward formula. The subtlety is that the VIX is itself a conditional expectation: schematically,
+
+    $$
+    \mathrm{VIX}_t^2 \approx \mathbb{E}^{\mathbb{Q}}[\text{realized variance over } [t, t + 30d] \mid \mathcal{F}_t]
+    $$
+
+    So a VIX future is
+
+    $$
+    F_t(T) = \mathbb{E}^{\mathbb{Q}}\!\left[ \sqrt{\mathbb{E}^{\mathbb{Q}}[\text{future variance} \mid \mathcal{F}_T]} \;\middle|\; \mathcal{F}_t \right]
+    $$
+
+    Because the square root is concave, Jensen's inequality gives
+
+    $$
+    F_t(T) \le \sqrt{\mathbb{E}^{\mathbb{Q}}[\text{future variance} \mid \mathcal{F}_t]}
+    $$
+
+    Consequences:
+
+    - VIX futures are **not** equal to forward variance or to the current VIX.
+    - The gap depends on volatility-of-volatility and on the correlation between variance and returns.
+    - Pricing is model-dependent (e.g., Heston), illustrating that the general principle $F_t(T) = \mathbb{E}^{\mathbb{Q}}[\text{payoff}_T \mid \mathcal{F}_t]$ becomes subtle when the payoff is a **nonlinear functional of expectations** — a theme that returns when we price options.
+
+---
+
 ## Physical Delivery vs Cash Settlement
 
 At maturity, a futures contract is settled in one of two ways:
@@ -99,7 +173,7 @@ WTI crude oil futures (CL) are physically delivered at Cushing, Oklahoma. Unlike
 2. **CME Clearing** assigns the delivery notice to a long position holder, who must accept delivery.
 3. The physical transfer of 1,000 barrels per contract (approximately 159,000 liters) is coordinated through pipeline and storage infrastructure at Cushing.
 
-A trader who cannot take or make physical delivery must exit the position before expiration. This constraint was starkly illustrated on April 20, 2020, when the front-month WTI contract settled at $-\$37.63$ per barrel — sellers were literally paying buyers to take oil because storage at Cushing was full and trapped longs could not accept delivery.
+A trader who cannot take or make physical delivery must exit the position before expiration. Recall (see [§ Margin and Marking to Market](margin_mark_to_market.md)): on April 20, 2020, the front-month WTI contract settled at $-\$37.63$ because Cushing storage was full and trapped longs could not accept delivery.
 
 ### Cash Settlement: KOSPI 200
 
@@ -107,21 +181,9 @@ KOSPI 200 futures on the Korea Exchange (KRX) are cash-settled. Each contract ex
 
 ---
 
-## Long and Short Positions
+## Long, Short, and the Contrast with Options
 
-Every forward or futures contract has exactly two sides:
-
-**Long position (buyer)**: Agrees to **buy** the asset at price $K$ at maturity $T$. The long benefits when the asset price rises above $K$.
-
-**Short position (seller)**: Agrees to **sell** the asset at price $K$ at maturity $T$. The short benefits when the asset price falls below $K$.
-
-Both parties are **obligated** to perform at maturity. This is the fundamental distinction from options, where the holder has the right but not the obligation. Because of this symmetry, neither party pays an upfront premium — the contract is structured so that at inception, the expected benefit to each side is equal.
-
----
-
-## Key Difference from Options
-
-It is worth emphasizing the contrast with options. An option buyer pays a premium for the **right** to transact; if the market moves unfavorably, the buyer simply walks away, losing only the premium. A forward or futures participant has no such escape: the contract **must** be honored regardless of market conditions. This obligation means that both the long and the short face potentially unlimited losses — a feature that makes margin and daily settlement essential for futures markets.
+Recall (see [§ Payoff of Forwards and Futures](payoff.md)): the long pays $K$ and receives the asset (benefits when $S_T > K$); the short does the reverse. Recall (see [§ From Forwards to Options](bridge_to_options.md)): both parties are symmetrically **obligated**, so no upfront premium is paid — this is the structural difference from options, where the holder pays for the right (not obligation) to transact.
 
 ---
 
@@ -186,3 +248,23 @@ It is worth emphasizing the contrast with options. An option buyer pays a premiu
     $$
     \frac{2{,}000{,}000}{1{,}300} \approx \$1{,}538.46
     $$
+
+---
+
+**Exercise 5.** UVIX targets approximately twice the daily return of a basket of front-month VIX futures. Suppose over two consecutive days the basket returns are $+10\%$ and $-10\%$. Compute the two-day return for an unleveraged holder of the basket and for a holder of UVIX (ignoring fees). What does this illustrate about leveraged ETFs as long-term holdings?
+
+??? success "Solution to Exercise 5"
+    The basket goes $1 \to 1.10 \to 0.99$, a two-day return of $-1\%$.
+
+    UVIX targets twice the daily return, so it goes $1 \to 1.20 \to 0.96$, a two-day return of $-4\%$.
+
+    Even though the basket loses only $1\%$, the leveraged product loses $4\%$. This is **volatility decay** from daily rebalancing: $2 \times$ the daily return is not the same as the cumulative return times $2$. Over many days with oscillation, even a flat basket can produce significant losses in the leveraged ETF — the reason UVIX is a short-term trading instrument, not a long-term hedge.
+
+---
+
+**Exercise 6.** WTI crude oil futures (CL) use the standard month codes. The current date is March 10, 2026, and the April 2026 contract (CLJ26) expired in late March (roughly three business days before the 25th of the prior month). Identify the front-month contract on March 10. What is the ticker for the June 2026 contract?
+
+??? success "Solution to Exercise 6"
+    The April 2026 contract (CLJ26) expired before March 25; on March 10, it is no longer the front month. The next active contract is **May 2026**, which uses month code **K**: ticker **CLK26**. This is the front month on March 10, 2026.
+
+    The June 2026 contract uses month code **M**, giving ticker **CLM26**.

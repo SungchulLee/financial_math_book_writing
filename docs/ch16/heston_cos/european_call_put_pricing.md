@@ -18,138 +18,15 @@ The COS method replaces the continuous Fourier inversion integral with a truncat
 
 ---
 
-## COS Pricing Formula Recap
+## COS Pricing Formula and Payoff Coefficients
 
-The European option price at time $t$ with maturity $T$ and log-stock price $x = \log S_t$ is
-
-$$
-V(x) = e^{-r\tau} \int_{\mathbb{R}} v(y) f(y \,|\, x) \, dy
-$$
-
-where $v(y)$ is the payoff as a function of $y = \log S_T$, $f(y|x)$ is the conditional density of $y$ given $x$, and $\tau = T - t$.
-
-Truncating the density support to $[a, b]$ and expanding $f$ in a Fourier cosine series:
+Recall (see [§ COS Pricing Formula](../../ch09/cos_method/cos_pricing_formula.md) and [§ Cosine Coefficients via CF](../../ch09/cos_method/cosine_coefficients_via_cf.md)): the truncated cosine pricing sum $V(x) \approx e^{-r\tau}\sum_{k=0}^{N-1}{}' A_k(x) V_k$ with $A_k(x) = \frac{2}{b-a}\mathrm{Re}[\varphi(k\pi/(b-a))e^{-ik\pi a/(b-a)}]$, the call/put payoff coefficients
 
 $$
-V(x) \approx e^{-r\tau} \sum_{k=0}^{N-1}{}' A_k(x) \, V_k
+V_k^{\text{call}} = \chi_k(\ell,b) - K\psi_k(\ell,b), \qquad V_k^{\text{put}} = K\psi_k(a,\ell) - \chi_k(a,\ell), \qquad \ell = \log K,
 $$
 
-where $\sum'$ means the first term is halved. The density coefficients are
-
-$$
-A_k(x) = \frac{2}{b - a} \, \text{Re}\!\left[\varphi\!\left(\frac{k\pi}{b-a}\right) e^{-ik\pi \frac{a}{b-a}}\right]
-$$
-
-and the payoff coefficients are
-
-$$
-V_k = \int_a^b v(y) \cos\!\left(k\pi \frac{y - a}{b - a}\right) dy
-$$
-
----
-
-## Payoff Coefficients for European Calls
-
-The call payoff in log-coordinates is $v(y) = (e^y - K)^+ = \max(e^y - K, 0)$, which is nonzero for $y > \log K$. Define $\ell = \log K$.
-
-!!! info "Proposition (Call Payoff Coefficients)"
-    The COS payoff coefficients for a European call are
-
-    $$
-    V_k^{\text{call}} = \chi_k(\ell, b) - K \, \psi_k(\ell, b)
-    $$
-
-    where the auxiliary functions $\chi_k$ and $\psi_k$ are defined below.
-
-**Derivation.** For $\ell < b$:
-
-$$
-V_k^{\text{call}} = \int_{\ell}^{b} (e^y - K) \cos\!\left(k\pi \frac{y-a}{b-a}\right) dy = \int_{\ell}^{b} e^y \cos\!\left(k\pi \frac{y-a}{b-a}\right) dy - K \int_{\ell}^{b} \cos\!\left(k\pi \frac{y-a}{b-a}\right) dy
-$$
-
-The first integral defines $\chi_k(\ell, b)$ and the second defines $K \cdot \psi_k(\ell, b)$. $\square$
-
----
-
-## Payoff Coefficients for European Puts
-
-The put payoff is $v(y) = (K - e^y)^+ = \max(K - e^y, 0)$, nonzero for $y < \log K$.
-
-!!! info "Proposition (Put Payoff Coefficients)"
-    The COS payoff coefficients for a European put are
-
-    $$
-    V_k^{\text{put}} = K \, \psi_k(a, \ell) - \chi_k(a, \ell)
-    $$
-
-**Derivation.** By direct integration:
-
-$$
-V_k^{\text{put}} = \int_{a}^{\ell} (K - e^y) \cos\!\left(k\pi \frac{y-a}{b-a}\right) dy = K \, \psi_k(a, \ell) - \chi_k(a, \ell)
-$$
-
-$\square$
-
-!!! tip "Put-Call Parity Check"
-    Adding the call and put coefficients:
-
-    $$
-    V_k^{\text{call}} + V_k^{\text{put}} = \chi_k(\ell, b) + \chi_k(a, \ell) - K[\psi_k(\ell, b) + \psi_k(a, \ell)] + 2K\psi_k(a, \ell) - \chi_k(a, \ell) + \chi_k(a, \ell)
-    $$
-
-    This simplifies to $\chi_k(a, b) - K\psi_k(a, b)$, which are the coefficients of the forward contract $v(y) = e^y - K$. This is consistent with put-call parity $C - P = e^{-r\tau}(F - K)$ at the coefficient level.
-
----
-
-## Auxiliary Functions: Chi and Psi
-
-The two auxiliary functions are elementary integrals that appear in all COS payoff computations.
-
-!!! info "Definition (Chi Function)"
-    For integration limits $c, d$ with $a \leq c < d \leq b$:
-
-    $$
-    \chi_k(c, d) = \int_c^d e^y \cos\!\left(k\pi \frac{y - a}{b - a}\right) dy
-    $$
-
-    **Closed form:** Let $\omega_k = \frac{k\pi}{b-a}$. Integration by parts (twice) gives
-
-    $$
-    \chi_k(c, d) = \frac{1}{1 + \omega_k^2}\left[\cos\!\left(\omega_k(d - a)\right) e^d - \cos\!\left(\omega_k(c - a)\right) e^c + \omega_k \sin\!\left(\omega_k(d - a)\right) e^d - \omega_k \sin\!\left(\omega_k(c - a)\right) e^c\right]
-    $$
-
-!!! info "Definition (Psi Function)"
-    For integration limits $c, d$ with $a \leq c < d \leq b$:
-
-    $$
-    \psi_k(c, d) = \int_c^d \cos\!\left(k\pi \frac{y - a}{b - a}\right) dy
-    $$
-
-    **Closed form:**
-
-    $$
-    \psi_k(c, d) = \begin{cases} \frac{b-a}{k\pi}\left[\sin\!\left(\omega_k(d - a)\right) - \sin\!\left(\omega_k(c - a)\right)\right] & k \neq 0 \\ d - c & k = 0 \end{cases}
-    $$
-
-**Proof of the chi formula.** Write $I = \int_c^d e^y \cos(\omega_k(y - a)) \, dy$. Integrate by parts with $u = \cos(\omega_k(y-a))$, $dv = e^y dy$:
-
-$$
-I = \left[e^y \cos(\omega_k(y-a))\right]_c^d + \omega_k \int_c^d e^y \sin(\omega_k(y-a)) \, dy
-$$
-
-Integrate by parts again with $u = \sin(\omega_k(y-a))$, $dv = e^y dy$:
-
-$$
-I = \left[e^y \cos(\omega_k(y-a))\right]_c^d + \omega_k \left[e^y \sin(\omega_k(y-a))\right]_c^d - \omega_k^2 I
-$$
-
-Solving for $I$:
-
-$$
-I(1 + \omega_k^2) = \left[e^y \cos(\omega_k(y-a)) + \omega_k e^y \sin(\omega_k(y-a))\right]_c^d
-$$
-
-which gives the stated formula. $\square$
+the closed-form chi/psi auxiliary functions, their integration-by-parts derivation, and the coefficient-level put-call parity identity $V_k^{\text{call}} - V_k^{\text{put}} = \chi_k(a,b) - K\psi_k(a,b)$ are all derived in Chapter 9 (model-agnostic). This section specializes those formulas to Heston via the truncation rule and CF evaluations below.
 
 ---
 
@@ -185,27 +62,13 @@ Assembling all components, the pricing algorithm proceeds as follows.
 
 **Input:** Heston parameters $(\kappa, \theta, \xi, \rho, v_0)$, market data $(S_0, r, q, K, \tau)$, number of COS terms $N$.
 
-**Step 1.** Compute truncation bounds $[a, b]$ from cumulants.
+**Step 1.** Compute truncation bounds $[a, b]$ from Heston cumulants (above).
 
-**Step 2.** For $k = 0, 1, \ldots, N-1$, compute the density coefficients:
+**Step 2.** For $k = 0, 1, \ldots, N-1$, evaluate $\varphi_{\text{Heston}}(k\pi/(b-a))$ using the Albrecher stable formulation (see [§ Heston Characteristic Function](../heston_cf/heston_sde_and_affine_recap.md)) and form $A_k$ as in the Recall above.
 
-$$
-A_k = \frac{2}{b-a} \, \text{Re}\!\left[\varphi_{\text{Heston}}\!\left(\frac{k\pi}{b-a}\right) \exp\!\left(-i\frac{k\pi a}{b-a}\right)\right]
-$$
+**Step 3.** For each strike $K$, form $V_k^{\text{call}}$ (call) or $V_k^{\text{put}}$ (put) from the chi/psi formulas of the Recall.
 
-using the Albrecher stable formulation for $\varphi_{\text{Heston}}$.
-
-**Step 3.** For each strike $K$, compute the payoff coefficients:
-
-$$
-V_k^{\text{call}} = \chi_k(\log K, b) - K \, \psi_k(\log K, b)
-$$
-
-**Step 4.** Sum the series:
-
-$$
-C = e^{-r\tau} \sum_{k=0}^{N-1}{}' A_k \, V_k^{\text{call}}
-$$
+**Step 4.** Sum $C = e^{-r\tau}\sum_{k=0}^{N-1}{}' A_k V_k^{\text{call}}$.
 
 **Computational cost:** Step 2 requires $N$ evaluations of the Heston CF (the dominant cost). Step 3 requires $N$ evaluations of elementary functions per strike. Step 4 is a dot product. Total: $O(N)$ per strike once the CF values are computed.
 

@@ -3,26 +3,37 @@
 !!! tip "Key Idea"
     Forwards are easy because the payoff is linear. Options are hard because the payoff is nonlinear. This single distinction---linearity versus nonlinearity---explains why forward pricing requires only algebra and static replication, while option pricing demands the full machinery of stochastic calculus.
 
+## A Two-Scenario Hedge That Fails
+
+Before any general argument, watch a single static hedge break. Suppose $K = 100$ and the stock can end at either $S_T = 90$ or $S_T = 120$ — only two scenarios. A long call $(S_T - K)^+$ pays $0$ in the first scenario and $20$ in the second. Try to match these payoffs with a static portfolio of $\phi$ shares and a constant cash amount $c$:
+
+- Scenario down ($S_T = 90$): $\;\; 90 \phi + c = 0$
+- Scenario up ($S_T = 120$): $\;\; 120 \phi + c = 20$
+
+Solving gives $\phi = \tfrac{2}{3}$ and $c = -60$. The static hedge works — *in exactly two states*. Now add a third scenario, $S_T = 110$. The call pays $10$, but the same portfolio pays $\tfrac{2}{3}(110) - 60 = 13.33$. The "hedge" is now wrong by $\$3.33$, with neither $\phi$ nor $c$ free to fix it.
+
+Repeat the same exercise with a long *forward* $S_T - K$ instead. The system is
+
+- Down: $\;\; 90 \phi + c = -10$
+- Up: $\;\; 120 \phi + c = 20$
+
+giving $\phi = 1$, $c = -100$. Plug in $S_T = 110$: the portfolio pays $110 - 100 = 10$ — *exactly* the forward payoff. Add a fourth scenario, a fifth, a continuum: the same $(\phi, c) = (1, -100)$ keeps working. The static hedge survives every state of the world precisely because the forward payoff lies on the single straight line $\phi S + c$.
+
+The call's payoff lies on two straight pieces joined at $S_T = K$. No single line, and hence no fixed $(\phi, c)$, can sit on both. The hedger must **change** $\phi$ as $S$ moves — the dynamic replication that powers Black–Scholes — and that change is what makes the option price depend on volatility.
+
 The previous sections developed forward and futures pricing from first principles: no-arbitrage, cost of carry, and the replication argument. Every result rested on the fact that the forward payoff $S_T - K$ is a **linear** function of the terminal stock price. This linearity made replication simple and pricing elegant. We now examine what happens when linearity breaks down, and why that breakdown leads directly to the Black-Scholes theory.
 
 ---
 
 ## Linear Payoff and Static Replication
 
-The forward contract pays $S_T - K$ at maturity. This payoff is linear in $S_T$: for every \$1 increase in the stock price, the forward's value increases by exactly \$1. The replication strategy follows immediately from this linearity.
-
-To replicate a long forward with delivery price $K$ and maturity $T$:
-
-1. **Buy one share** of the underlying at cost $S_0$.
-2. **Borrow** $Ke^{-rT}$ at the risk-free rate.
-
-At maturity, the share is worth $S_T$ and the loan requires repayment of $K$, producing a net payoff of $S_T - K$. This is a **static** replication: the portfolio is constructed once at time $0$ and held without adjustment until maturity. The no-arbitrage forward price then follows:
+Recall (see [§ Payoff of Forwards and Futures](payoff.md) and [§ No-Arbitrage Pricing of Forwards](no_arbitrage_pricing.md)): the long forward payoff $S_T - K$ is linear in $S_T$, and a one-time portfolio — buy one share at $S_0$, borrow $K e^{-rT}$ — replicates it exactly, pinning the forward price at
 
 $$
 F_0 = S_0 e^{rT}
 $$
 
-The crucial observation is that this derivation required no assumptions about the stock's volatility $\sigma$, no model for the stock price dynamics, and no stochastic calculus. Linearity of the payoff made the problem purely algebraic.
+The crucial observation is that this derivation required no assumptions about the stock's volatility $\sigma$, no model for the stock price dynamics, and no stochastic calculus. Linearity of the payoff made the problem purely algebraic — the hedge is constructed once at $t = 0$ and held until $T$ without adjustment.
 
 ---
 
@@ -182,3 +193,27 @@ The table below summarizes the conceptual transition from forwards to options:
     Gamma measures how much delta (the hedge ratio) changes when the stock price moves. For a forward, $\Gamma = 0$ means delta is constant: it is always exactly 1. A hedge of one share of stock perfectly offsets the forward's exposure to stock price movements at all times, regardless of where the stock trades. Since the hedge never needs adjustment, it is static, and the cost of maintaining it does not depend on how much the stock price fluctuates. This is why the forward price is independent of $\sigma$.
 
     For a call option, $\Gamma > 0$ means delta changes as the stock moves. When the stock rises, delta increases (the option becomes more sensitive to the stock), and the hedger must buy additional shares. When the stock falls, delta decreases, and the hedger must sell shares. The frequency and magnitude of these adjustments depend directly on how much the stock price moves---that is, on volatility $\sigma$. Higher volatility means more frequent and larger rebalancing trades, which in turn means higher hedging costs. These costs are reflected in the option price. This is why the call price depends on $\sigma$: volatility determines the cost of the dynamic hedge required to replicate the nonlinear payoff. $\square$
+
+---
+
+**Exercise 5.** Consider a portfolio consisting of one long call and one short put on a non-dividend-paying stock, both with strike $K$ and maturity $T$. Using put-call parity, show that this portfolio has the same value today as a forward contract with delivery price $K$. Conclude that, at inception of an at-the-money forward, $C = P$.
+
+??? success "Solution to Exercise 5"
+    Put-call parity gives
+
+    $$
+    C - P = S_0 - K e^{-rT} = e^{-rT}(F_0 - K)
+    $$
+
+    The right-hand side is the present value of the long forward payoff $S_T - K$ — i.e., the value of a forward contract with delivery price $K$.
+
+    Recall (see [§ Payoff of Forwards and Futures](payoff.md)): when $K = F_0$, the forward has zero value at inception. Then $C - P = e^{-rT}(F_0 - F_0) = 0$, so $C = P$. **An at-the-money-forward call and put have equal price.** $\square$
+
+---
+
+**Exercise 6.** Far in-the-money calls have delta $\Delta \approx 1$ and $\Gamma \approx 0$. Explain why such options price very nearly like a forward, and what the residual price difference represents.
+
+??? success "Solution to Exercise 6"
+    When $\Delta \approx 1$ and $\Gamma \approx 0$, the call's value behaves locally like a linear function of $S$ with slope $1$: $C(S, t) \approx S - K e^{-r(T-t)}$. This is exactly the present value of the forward payoff $S_T - K$. Intuitively, the option is so deep in the money that exercise at maturity is virtually certain, and the kink in $(S_T - K)^+$ is irrelevant.
+
+    The residual price difference is the **out-of-the-money insurance**: a small probability that $S_T$ ends below $K$, in which case the option pays $0$ rather than the negative forward value $S_T - K$. This residual is exactly the value of the embedded put — i.e., put-call parity reads $C = (S_0 - K e^{-rT}) + P$, with $P$ small but positive. As $S_0 \to \infty$, $P \to 0$ and $C \to S_0 - K e^{-rT}$, the forward value.

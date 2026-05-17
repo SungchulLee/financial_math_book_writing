@@ -64,13 +64,7 @@ is a standard Brownian motion under $\mathbb{Q}^T$.
 
 ## CIR dynamics under the T-forward measure
 
-The CIR SDE under $\mathbb{Q}$ is
-
-$$
-dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t^{\mathbb{Q}}
-$$
-
-Substituting $dW_t^{\mathbb{Q}} = dW_t^T - B(\tau)\sigma\sqrt{r_t}\,dt$:
+Recall (see [§ CIR SDE and Square-Root Process](cir_sde_and_square_root_process.md)) the CIR SDE under $\mathbb{Q}$. Substituting $dW_t^{\mathbb{Q}} = dW_t^T - B(\tau)\sigma\sqrt{r_t}\,dt$:
 
 $$
 dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\left(dW_t^T - B(\tau)\sigma\sqrt{r_t}\,dt\right)

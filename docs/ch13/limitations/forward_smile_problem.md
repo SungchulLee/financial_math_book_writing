@@ -53,13 +53,7 @@ Two models calibrated to the same spot smile (same marginals of $S_T$) can have 
 
 ### Derivation
 
-Under the local volatility model, the dynamics are:
-
-$$
-dS_u = (r - q)S_u \, du + \sigma_{\text{loc}}(S_u, u) S_u \, dW_u^{\mathbb{Q}}
-$$
-
-Given $S_t = K$, the evolution for $u \in [t, T]$ depends on $\sigma_{\text{loc}}(S_u, u)$ for $S_u$ near $K$. The forward smile at time $t$ is determined by the **local volatility surface restricted to $[t, T]$** and the distribution of paths starting from $S_t = K$.
+Recall (see [§ Dupire Formula](../local_volatility_framework/dupire_formula_and_local_volatility_surface.md)) for the local volatility SDE $dS_u = (r-q)S_u\,du + \sigma_{\text{loc}}(S_u, u)S_u\,dW_u^{\mathbb{Q}}$. Given $S_t = K$, the evolution for $u \in [t, T]$ depends on $\sigma_{\text{loc}}(S_u, u)$ for $S_u$ near $K$. The forward smile at time $t$ is determined by the **local volatility surface restricted to $[t, T]$** and the distribution of paths starting from $S_t = K$.
 
 **Proposition 13.5.3** (Forward Smile Under Local Volatility).
 Under the local volatility model, the forward implied volatility at the ATM forward strike ($\alpha = 1$) satisfies:
@@ -214,13 +208,7 @@ Comparing market-implied forward smiles with local volatility predictions reveal
 
 ### Variance Swap Forward Skew
 
-The variance swap strike $K_{\text{var}}(T)$ is related to the integral of the implied volatility smile:
-
-$$
-K_{\text{var}}(T) = \frac{2e^{rT}}{T}\left(\int_0^F \frac{P(K, T)}{K^2}\,dK + \int_F^{\infty}\frac{C(K, T)}{K^2}\,dK\right)
-$$
-
-The forward variance swap strike is:
+Recall (see [§ Model-Free Results](../../ch12/model_free_results/breeden_litzenberger_formula.md)) for the Carr-Madan replication of the variance swap strike $K_{\text{var}}(T)$ from out-of-the-money option prices. The forward variance swap strike is:
 
 $$
 K_{\text{var}}^{\text{fwd}}(t, T) = \frac{T \cdot K_{\text{var}}(T) - t \cdot K_{\text{var}}(t)}{T - t}

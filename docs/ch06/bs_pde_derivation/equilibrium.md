@@ -5,11 +5,26 @@ This derivation removes the physical drift $\mu$ by **preferences and market cle
 
 The argument proceeds in three stages: (1) specify an economy with CRRA preferences, (2) derive the stochastic discount factor from the Euler equation and market clearing, and (3) apply Itô's formula to the SDF-weighted option price to obtain the PDE.
 
-The Black–Scholes PDE can be derived as a consequence of **general equilibrium** in a representative-agent economy, without explicitly constructing a replicating portfolio or hedging strategy (though the framework still relies on no-arbitrage and market completeness). The key equilibrium output is the **stochastic discount factor** (pricing kernel), which determines the relationship between the stock's physical drift $\mu$, the risk-free rate $r$, and the risk aversion parameter $\gamma$—and once this relationship is imposed, the Black–Scholes PDE follows. This is fundamentally different from the [delta-hedging](delta_hedging.md) and [change-of-numéraire](change_of_numeraire.md) approaches because it provides a **model-based explanation** of the risk-free rate and the equity risk premium as endogenous quantities, rather than taking them as given.
+The Black–Scholes PDE can be derived as a consequence of **general equilibrium** in a representative-agent economy. The key equilibrium output is the **stochastic discount factor** (pricing kernel), which pins down the relationship between $\mu$, $r$, and the risk aversion $\gamma$; once imposed, the Black–Scholes PDE follows. Unlike [§ delta hedging](delta_hedging.md) or [§ change of numéraire](change_of_numeraire.md), this approach delivers $r$ and $\mu - r$ as endogenous quantities.
 
-Note, however, that the equilibrium Euler equation implicitly embeds the absence of arbitrage—the SDF framework prices all assets consistently precisely because no-arbitrage holds. Indeed, the SDF and the risk-neutral measure are two representations of the same pricing object: $M_t = (d\mathbb{Q}/d\mathbb{P})\, e^{-rt}$. One weights states by marginal utility; the other reweights probabilities—both encode the same pricing rule. The distinction is one of *method* (preferences and market clearing vs. replication), not of underlying economic content.
+!!! warning "Equilibrium pricing does not replace arbitrage pricing"
+    The equilibrium derivation provides an **economic interpretation** of the pricing kernel — not an alternative to no-arbitrage. The Euler equation embeds the absence of arbitrage, and the SDF and the risk-neutral measure are two representations of the same object: $M_t = (d\mathbb{Q}/d\mathbb{P})e^{-rt}$ (Exercise 6). One weights states by marginal utility, the other reweights probabilities. The distinction is *method*, not content.
 
 The primary derivation below uses a **Lucas (1978) pure exchange economy**, which is self-contained and logically clean. An [alternative derivation via the Merton problem](#alternative-derivation-via-the-merton-problem) is presented afterward for readers more familiar with portfolio optimization.
+
+
+## Mechanism: Marginal-Utility Weights in Two States
+
+
+The equilibrium mechanism is visible in a one-period, two-state endowment economy. Tomorrow's consumption is $C_h$ in the good state (physical probability $p$) and $C_l$ in the bad state. An agent with utility $u$ values an asset paying $X_h$ or $X_l$ as
+
+$$V_0 = \frac{p\, u'(C_h)\, X_h + (1-p)\, u'(C_l)\, X_l}{u'(C_0)}$$
+
+Marginal utility $u'(C)$ acts as a state weight: scarce-consumption states (low $C$) carry larger weight because an extra dollar is worth more there. Packaging the weights into a single random variable
+
+$$M = \frac{u'(C_1)}{u'(C_0)}$$
+
+(the stochastic discount factor) collapses pricing to $V_0 = \mathbb{E}[M\,X]$. Equivalently, $\mathbb{E}[M\,R] = 1$ for every asset return $R$ — the **Euler equation**. The risk-free rate emerges from $1/(1+r) = \mathbb{E}[M]$, and the risk premium $\mathbb{E}[R] - r$ is governed by the covariance $-\mathrm{Cov}(M, R)/\mathbb{E}[M]$. The continuous derivation below is the dynamic generalization: $M_t = e^{-\rho t}C_t^{-\gamma}$ takes the role of $u'(C_1)/u'(C_0)$, the Euler equation becomes the martingale condition on $M_t V_t$, and the Black–Scholes PDE drops out once market clearing is imposed.
 
 
 ## The Lucas-Tree Economy
@@ -40,7 +55,7 @@ This is the crucial equilibrium condition. Consumption is **exogenous** (determi
 ## Asset Prices and the Stochastic Discount Factor
 
 
-Let $S_t$ denote the price of the tree. By the fundamental asset pricing relation:
+Recall (see [§ SDF](../../ch04/insights/sdf.md)): by the fundamental asset pricing relation,
 
 $$S_t = \mathbb{E}_t\!\left[\int_t^\infty M_{t,s}\, D_s\, ds\right]$$
 
@@ -148,7 +163,7 @@ The equilibrium derivation yields three results that the no-arbitrage approach c
 
 **Endogenous risk premium.** The equity premium $\mu - r = \gamma\sigma^2$ is derived from market clearing, not assumed. The parameter $\gamma$ connects preferences to risk premia—this is the consumption CAPM in continuous time.
 
-**Connection to the equity premium puzzle.** Empirically, $\mu - r \approx 6\%$ and $\sigma \approx 16\%$ for the US equity market. In the model of this page, where consumption volatility equals stock volatility ($\sigma_c = \sigma$), the implied risk aversion is $\gamma = (\mu - r)/\sigma^2 \approx 0.06/0.0256 \approx 2.34$—which appears moderate. However, the Mehra and Prescott (1985) calibration uses **aggregate consumption growth** data, where volatility is much lower ($\sigma_c \approx 3.3\%$). In the consumption CAPM relation $\mu - r = \gamma\sigma_c^2$, this gives $\gamma \approx 0.06/0.00109 \approx 55$—an implausibly high level of risk aversion. The puzzle arises precisely because consumption is far smoother than stock returns in the data, so the simple representative-agent model with CRRA utility requires extreme $\gamma$ to match the observed equity premium. This motivates extensions to habit formation (Campbell and Cochrane, 1999), Epstein–Zin recursive utility, rare disasters (Barro, 2006), and heterogeneous-agent models.
+**Connection to the equity premium puzzle.** Under $\sigma_c = \sigma$ the relation $\mu - r = \gamma\sigma^2$ gives a moderate $\gamma \approx 2.34$ from US data ($\mu - r \approx 6\%$, $\sigma \approx 16\%$). But Mehra and Prescott (1985) calibrate $\gamma$ against *aggregate consumption growth volatility* $\sigma_c \approx 3.3\%$, which forces $\gamma \approx 55$ — implausibly high. This motivates habit formation, Epstein–Zin utility, rare-disaster, and heterogeneous-agent models (Exercise 2 unpacks the calculation).
 
 
 ## Alternative Derivation via the Merton Problem

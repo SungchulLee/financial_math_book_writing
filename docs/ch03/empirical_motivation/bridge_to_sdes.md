@@ -1,21 +1,22 @@
 # Bridge to Stochastic Differential Equations
 
-The previous sections established that financial returns are random,
-non-differentiable, heavy-tailed, and exhibit volatility clustering---none
-of which deterministic ODEs can reproduce. This section builds the conceptual
-bridge from **discrete-time random walks** to **continuous-time stochastic
-differential equations (SDEs)**, showing why the SDE form emerges naturally
-as the only consistent continuous-time limit.
+Having established in
+[§ Why Deterministic Models Fail](why_deterministic_fails.md) that
+deterministic models cannot reproduce observed return behaviour, we now
+construct the continuous-time model consistent with the discrete-time
+dynamics. This section is purely constructive: the empirical motivation is
+not repeated, and the only question is *what continuous-time object is
+compatible with the discrete return scaling*.
 
-The bridge has three spans: (1) the familiar discrete model, (2) the limit
-process that arises as the time step shrinks, and (3) the SDE notation that
-encodes that limit. The goal is to explain *structure*, not machinery---the
-rigorous definitions of the Ito integral, Ito's lemma, and SDE theory follow
-in Sections 2.1--2.3.
+The construction has three spans: (1) the discrete-time model, (2) the
+scaling limit that arises as the time step shrinks, and (3) the SDE notation
+that encodes that limit. The goal is to explain *structure*, not
+machinery---the rigorous definitions of the Ito integral, Ito's lemma, and
+SDE theory follow in Sections 2.1--2.3.
 
 ---
 
-## From Discrete Random Walk to Continuous-Time Limit
+## Constructing the Continuous-Time Limit
 
 ### Step 1 --- The Discrete-Time Model
 
@@ -79,30 +80,25 @@ random walk.
 
 ### Step 3 --- Donsker's Theorem (Functional CLT)
 
-Donsker's theorem provides the rigorous passage from discrete to continuous
-time. It applies to the cumulative sum of rescaled increments and shows it
-converges in distribution to Brownian motion.
+Recall (see [§ Donsker's Theorem](../../ch02/simple_random_walk/donsker_theorem.md)):
+the rescaled partial-sum process
+$W^{(\Delta t)}(t) = \sqrt{\Delta t}\sum_{i=1}^{\lfloor t/\Delta t\rfloor} Z_i$,
+built from i.i.d. mean-zero unit-variance increments, converges in
+distribution to standard Brownian motion $W$ on $[0,T]$ as $\Delta t\to 0$.
 
-!!! note "Donsker's Invariance Principle (1951)"
-    Let $Z_1, Z_2, \ldots$ be i.i.d. with mean zero and variance one (not
-    necessarily Gaussian). Define the rescaled partial-sum process
-
-    $$
-    W^{(\Delta t)}(t) = \sqrt{\Delta t}\sum_{i=1}^{\lfloor t/\Delta t \rfloor} Z_i
-    $$
-
-    As $\Delta t \to 0$, $W^{(\Delta t)} \xrightarrow{d} W$ in the space of
-    continuous functions on $[0,T]$, where $W$ is standard Brownian motion.
-
-Two consequences are essential:
+Two consequences are essential for the bridge:
 
 1. **Universality.** The limit is Brownian motion regardless of the
-   distribution of $Z_i$, as long as mean is zero and variance is one. This
+   distribution of $Z_i$, provided mean is zero and variance is one. This
    justifies using Brownian motion as the canonical noise for any asset whose
    log-returns have finite variance.
 2. **The $\sqrt{\Delta t}$ scaling is decisive.** Scaling by $\Delta t$ would
    collapse the walk to zero; no rescaling would cause divergence. Only
    $\sqrt{\Delta t}$ produces a non-degenerate limit.
+
+Brownian motion is therefore not an assumption but the **unique scaling
+limit** of discrete noise — exactly the object the failure of deterministic
+dynamics demanded.
 
 ### Step 4 --- The SDE Limit
 
@@ -119,65 +115,41 @@ $$
 $$
 
 This is **Geometric Brownian Motion (GBM)**, the foundation of the
-Black--Scholes model. Its explicit solution---derived in Section 2.2 using
-Ito's lemma---is
+Black--Scholes model. Thus the SDE is not postulated — it is the only
+continuous-time object compatible with discrete return scaling.
 
-$$
-S_t = S_0 \exp\!\left[\left(\mu - \tfrac{\sigma^2}{2}\right)t + \sigma W_t\right]
-$$
+Recall (see [§ Itô Calculus Applications](../ito_lemma/ito_calculus_applications.md)):
+the explicit solution is
+$S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]$, with the $-\sigma^2/2$
+drift correction arising from $(dW_t)^2 = dt$.
 
-The $-\sigma^2/2$ drift correction is a consequence of the non-vanishing
-quadratic variation $(dW_t)^2 = dt$, not of the heuristic derivation here.
-
-!!! note "SDE notation is shorthand"
-    The symbol $dW_t$ does not denote an ordinary derivative---Brownian paths
-    are nowhere differentiable. The SDE always means the integral equation
-    $S_t = S_0 + \int_0^t \mu S_s\,ds + \int_0^t \sigma S_s\,dW_s$,
-    where the second integral is defined via Ito's construction (Section 2.1).
+Recall (see [§ Itô Integral Construction](../ito_integral/ito_integral_construction.md)):
+$dW_t$ is shorthand — the SDE always denotes the integral equation
+$S_t = S_0 + \int_0^t \mu S_s\,ds + \int_0^t \sigma S_s\,dW_s$ with the
+stochastic integral defined via Itô's construction.
 
 ---
 
 ## Emergence of the General SDE
 
 The GBM derivation above used constant drift $\mu$ and constant proportional
-volatility $\sigma$. Replacing these with state- and time-dependent functions
-gives the general Ito SDE:
-
-$$
-dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
-$$
-
-- The **drift** $\mu(X_t, t)\,dt$ is the infinitesimal expected change---the
-  analogue of the ODE right-hand side.
-- The **diffusion** $\sigma(X_t, t)\,dW_t$ encodes random fluctuations whose
-  magnitude may depend on state and time.
-
-Different choices of $\mu$ and $\sigma$ produce different financial models.
-The classification of these models and their solutions is the subject of
-Section 2.3.
+volatility $\sigma$. Replacing these with state- and time-dependent
+coefficients $\mu(X_t,t)$ and $\sigma(X_t,t)$ yields the general Itô SDE
+$dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t$. Recall (see
+[§ Stochastic Differential Equations](../sde/sde.md)): the formal definition
+of this object, its drift/diffusion decomposition, and the catalogue of
+canonical models (OU, CIR, …) live in the SDE chapter.
 
 ---
 
-## The Journey in One Diagram
+## The Construction in One Diagram
 
 ```
-Real return data
-      │
-      │  (heavy tails, clustering, non-differentiable paths)
-      ▼
-Stylized facts
-      │
-      │  (ODE has zero variance, smooth paths — Failures 1–5)
-      ▼
-Deterministic models fail
-      │
-      │  (multiplicative noise, Δt → 0, Donsker's theorem)
-      ▼
 Discrete random walk  ──────────────────►  Brownian motion W_t
-      │                                         │
-      │  (formal limit)                         │  (rigorous foundation)
-      ▼                                         ▼
-  dS_t = μ S_t dt + σ S_t dW_t    ◄────  Itô calculus
+      │            (Donsker, √Δt scaling)         │
+      │  (formal limit)                           │  (rigorous foundation)
+      ▼                                           ▼
+  dS_t = μ S_t dt + σ S_t dW_t      ◄────  Itô calculus
       │
       │  (extend drift/diffusion functions)
       ▼
@@ -188,37 +160,30 @@ General SDEs  →  Quantitative finance models
 
 ## What Comes Next
 
-The bridge is conceptually complete. Three items remain to be made rigorous:
-
-- **Section 2.1 --- Ito Integration:** Defines $\int_0^t f(s)\,dW_s$ as a
-  mean-square limit, establishes the Ito isometry, and proves the martingale
-  property.
-- **Section 2.2 --- Ito's Lemma:** Derives the stochastic chain rule and
-  verifies the GBM solution, showing how the $-\sigma^2/2$ correction emerges
-  from the non-zero quadratic variation.
-- **Section 2.3 --- SDE Theory:** Presents canonical models (GBM,
-  Vasicek/OU, CIR), solves them analytically where possible, and discusses
-  numerical simulation.
+The bridge is conceptually complete. The rigorous machinery — Itô
+integration, Itô's lemma, and the theory of SDEs (existence, uniqueness,
+canonical models) — is developed in the chapters that follow:
+[§ Itô Integral](../ito_integral/ito_integral_construction.md),
+[§ Itô's Lemma](../ito_lemma/ito_lemma.md), and
+[§ Stochastic Differential Equations](../sde/sde.md).
 
 ---
 
 ## Summary
 
-The passage from discrete to continuous time is governed by one key
-observation: the $\sqrt{\Delta t}$ scaling of random shocks is the only
-scaling consistent with a non-degenerate continuous-time limit. Donsker's
-theorem makes this precise---the rescaled random walk converges to Brownian
-motion universally across all finite-variance innovations.
-
-The resulting SDE
+The passage from discrete to continuous time is governed by one observation:
+the $\sqrt{\Delta t}$ scaling of random shocks is the only scaling consistent
+with a non-degenerate continuous-time limit. Donsker's theorem makes this
+precise---the rescaled random walk converges to Brownian motion universally
+across all finite-variance innovations. The Ito SDE
 
 $$
 dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dW_t
 $$
 
-captures what the deterministic ODE cannot: randomness, non-differentiable
-paths, and state-dependent volatility. Making this construction rigorous is
-the goal of the next three sections. $\square$
+is therefore not a choice but the unique continuous-time object compatible
+with discrete return scaling. Making this construction rigorous is the goal
+of the next three sections. $\square$
 
 ---
 

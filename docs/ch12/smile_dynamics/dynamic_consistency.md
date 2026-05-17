@@ -66,14 +66,7 @@ Under Black-Scholes:
 
 **Calibration:** Local vol is calibrated to match today's smile exactly.
 
-**Evolution:** Under local vol dynamics:
-
-$$
-dS_t = (r-q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
-$$
-
-
-The forward smile **flattens** over time.
+**Evolution:** Recall (see [§ Local Volatility Dynamics](../../ch13/index.md)). The forward smile **flattens** over time.
 
 **Recalibration:** Tomorrow's market will likely show persistent skew, requiring a new local vol surface.
 
@@ -91,39 +84,10 @@ For local vol, this can be several vol points for long-dated options.
 ### 3. Stochastic Volatility Models
 
 
-**Status:** Better but still imperfect.
+**Status:** Better but still imperfect. Recall (see [§ Stochastic Volatility Dynamics](../../ch14/index.md)) for Heston and SABR specifics. Key dynamic-consistency facts:
 
-**Heston model:**
-
-- Forward smile has persistent skew (due to $\rho$)
-- Level evolves with $v_t$
-- But specific shape may not match recalibrated surface
-
-**Improvement over local vol:**
-
-- Forward skew persists
-- Term structure evolves more realistically
-
-**Remaining issues:**
-
-- Smile wings may not match
-- Vol-of-vol may need adjustment
-- Parameter stability over time
-
-### 4. SABR Model
-
-
-**Status:** Partially consistent.
-
-SABR with stochastic $\alpha_t$:
-
-- ATM level evolves stochastically
-- Skew determined by $\rho$, $\nu$
-
-**Consistency depends on:**
-
-- Whether $\alpha_t$ dynamics match implied vol dynamics
-- Parameter stability ($\rho$, $\nu$, $\beta$)
+- Heston: forward skew persists (via $\rho$), level evolves with $v_t$; wings and vol-of-vol may still drift on recalibration.
+- SABR: with stochastic $\alpha_t$, ATM level evolves stochastically; consistency hinges on stability of $\rho$, $\nu$, $\beta$.
 
 ## Consequences for Pricing and Hedging
 
@@ -342,14 +306,7 @@ $$
 ### 3. Connection to Variance Swaps
 
 
-Forward variance swaps provide model-free information about forward volatility:
-
-$$
-K_{\text{var}}^{\text{fwd}}(T_1, T_2) = \frac{K_{\text{var}}(T_2) T_2 - K_{\text{var}}(T_1) T_1}{T_2 - T_1}
-$$
-
-
-Dynamically consistent models should match these observables.
+Recall (see [§ Model-Free Results](../model_free_results/breeden_litzenberger_formula.md)) for the forward variance swap strike formula. Dynamically consistent models should match these observables.
 
 ## Summary
 

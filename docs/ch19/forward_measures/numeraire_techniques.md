@@ -1,80 +1,36 @@
 # Numéraire Techniques
 
+Recall (see [§ general numéraire framework](../../ch04/risk_neutral/numeraire.md)): a **numéraire** is a strictly positive tradable asset $N_t$; for each admissible $N_t$ there exists an equivalent measure $\mathbb{Q}^N$ under which $S_t/N_t$ is a martingale, and the pricing formula reads
 
-**Numéraire techniques** provide a unified framework for changing probability measures and simplifying derivative pricing by choosing an appropriate reference asset.
+$$
+V_t = N_t\,\mathbb{E}^{\mathbb{Q}^N}\!\left[\frac{V_T}{N_T}\,\middle|\,\mathcal{F}_t\right]
+$$
+
+This section specializes the framework to interest-rate numéraires.
 
 ---
 
-## What is a numéraire?
+## Interest-rate numéraires
 
+Three canonical choices arise in fixed income:
 
-A **numéraire** is a strictly positive tradable asset $N_t$ used to measure value.
-Prices expressed in units of $N_t$ are
+- **Money-market account** $B_t$ → risk-neutral measure $\mathbb{Q}$ (see [§ risk-neutral construction](../../ch04/risk_neutral/construction.md))
+- **Zero-coupon bond** $P(t,T)$ → $T$-forward measure $\mathbb{Q}^T$ (see [§ T-Forward Measures](t_forward_measures.md) and [§ general forward measure](../../ch04/risk_neutral/forward_measure.md))
+- **Annuity** $A(t) = \sum_j \delta_j P(t,T_j)$ → swap measure $\mathbb{Q}^A$ (see [§ Swap Measure](swap_measure.md))
 
-$$
-\tilde S_t = \frac{S_t}{N_t}
-$$
-
-
-
----
-
-## Fundamental theorem of numéraire change
-
-
-For any admissible numéraire $N_t$, there exists a probability measure $\mathbb{Q}^N$ such that
-
-$$
-\frac{S_t}{N_t} \text{ is a martingale under } \mathbb{Q}^N
-$$
-
-
-
-This generalizes the risk-neutral measure concept.
-
----
-
-## Examples of numeraires
-
-
-Common choices include:
-
-- money-market account $B_t$ → risk-neutral measure,
-- zero-coupon bond $P(t,T)$ → T-forward measure,
-- swap annuity → swap measure.
-
-Each choice simplifies pricing of specific products.
-
----
-
-## Pricing with numéraires
-
-
-If payoff $V_T$ is measurable at $T$,
-
-$$
-V_t = N_t\,\mathbb{E}^{\mathbb{Q}^N}\left[
-\frac{V_T}{N_T} \middle| \mathcal{F}_t
-\right]
-$$
-
-
-
-Choosing $N_t$ wisely can remove discounting or complex drifts.
+Each choice removes discounting or complex drifts for the relevant product class.
 
 ---
 
 ## Key takeaways
 
-
 - Numéraire choice determines the pricing measure.
-- Forward measures are special cases of numéraire techniques.
+- Forward and swap measures are the two interest-rate specializations of the framework.
 - Proper numéraire selection simplifies valuation and dynamics.
 
 ---
 
 ## Further reading
-
 
 - Geman, El Karoui & Rochet, numéraire theory.
 - Brigo & Mercurio, change of measure methods.

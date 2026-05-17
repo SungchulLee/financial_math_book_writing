@@ -106,25 +106,17 @@ for $r_s > 0$.
 
 ### Verification of moments
 
-From $\mathbb{E}[2c\,r_s] = \nu + \lambda$:
+Recall (see [§ CIR SDE and Square-Root Process](cir_sde_and_square_root_process.md)) the conditional mean and variance derived from the SDE. From $\mathbb{E}[2c\,r_s] = \nu + \lambda$ and $\text{Var}(2c\,r_s) = 2(\nu + 2\lambda)$, one recovers
 
 $$
-\mathbb{E}[r_s \mid r_t] = \frac{\nu + \lambda}{2c} = \frac{4\kappa\theta/\sigma^2 + 4\kappa\,r_t\,e^{-\kappa\tau}/(\sigma^2(1 - e^{-\kappa\tau}))}{4\kappa/(\sigma^2(1 - e^{-\kappa\tau}))}
+\mathbb{E}[r_s \mid r_t] = \frac{\nu + \lambda}{2c} = \theta + (r_t - \theta)\,e^{-\kappa\tau}
 $$
-
-$$
-= \theta(1 - e^{-\kappa\tau}) + r_t\,e^{-\kappa\tau} = \theta + (r_t - \theta)\,e^{-\kappa\tau}
-$$
-
-This matches the conditional mean derived directly from the SDE. $\square$
-
-Similarly, from $\text{Var}(2c\,r_s) = 2(\nu + 2\lambda)$:
 
 $$
 \text{Var}(r_s \mid r_t) = \frac{2(\nu + 2\lambda)}{(2c)^2} = r_t\,\frac{\sigma^2}{\kappa}(e^{-\kappa\tau} - e^{-2\kappa\tau}) + \theta\,\frac{\sigma^2}{2\kappa}(1 - e^{-\kappa\tau})^2
 $$
 
-matching the variance formula from the CIR SDE section. $\square$
+matching the SDE-based formulas. $\square$
 
 ---
 
